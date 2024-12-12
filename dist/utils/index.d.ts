@@ -1,0 +1,10 @@
+import { ClassValue } from 'clsx';
+export declare function cn(...inputs: ClassValue[]): string;
+export declare const capitalizeFirstLetter: (str: string) => string;
+export declare const concatenateWithSpace: (...strings: (string | undefined)[]) => string;
+export declare const startsWith: (str: string, prefix: string) => boolean;
+export declare const endsWith: (str: string, suffix: string) => boolean;
+export declare const toLowerCase: (str: string) => string;
+export declare const toUpperCase: (str: string) => string;
+export declare const trim: (str: string) => string;
+export declare const reverse: (str: string) => string;
