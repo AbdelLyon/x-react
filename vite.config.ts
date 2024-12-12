@@ -36,7 +36,7 @@ export default defineConfig({
       name: "x-react",
       formats: ["es"],
       fileName: (format, entryName) =>
-        `${entryName ? entryName + "/" : ""}@els_xefi/x-react.${format}.js`,
+        `${entryName ? entryName + "/" : ""}x-react.${format}.js`,
     },
     rollupOptions: {
       external: [

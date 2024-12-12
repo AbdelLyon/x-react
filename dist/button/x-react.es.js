@@ -1,6 +1,6 @@
 import Ce from "react";
 import { Button as me } from "@nextui-org/react";
-import { cn as I } from "../../utils/@els_xefi/x-react.es.js";
+import { cn as I } from "../utils/x-react.es.js";
 var $ = { exports: {} }, N = {};
 /**
  * @license React
