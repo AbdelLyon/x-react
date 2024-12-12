@@ -1,8 +1,9 @@
-import { j as r } from "../jsx-runtime-Bq5baZvQ.js";
+/* empty css                */
+import { j as r } from "../jsx-runtime-Dx-03ztt.js";
 import { useDisclosure as g, Modal as k, ModalContent as B, ModalHeader as C, ModalBody as F, ModalFooter as D, Button as i } from "@nextui-org/react";
 import { useState as O } from "react";
 import { cn as s } from "../utils/x-react.es.js";
-const P = ({
+const v = ({
   trigger: a,
   title: p = "Modal Title",
   footer: x,
@@ -74,5 +75,5 @@ const P = ({
   ] });
 };
 export {
-  P as Modal
+  v as Modal
 };
