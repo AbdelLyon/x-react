@@ -1,5 +1,10 @@
 import { forwardRef } from "react";
-import { Alert as AlertRoot, Button, ButtonProps } from "@nextui-org/react";
+import {
+  AlertProps,
+  Alert as AlertRoot,
+  Button,
+  ButtonProps,
+} from "@nextui-org/react";
 
 type AlertColor =
   | "default"
@@ -13,7 +18,7 @@ type AlertVariant = "solid" | "bordered" | "flat" | "faded";
 
 type AlertRadius = "none" | "sm" | "md" | "lg" | "full";
 
-interface Props {
+interface Props extends AlertProps {
   title?: string;
   icon?: React.ReactNode;
   description?: React.ReactNode;
@@ -50,6 +55,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
       closeButtonProps,
       onClose,
       onVisibleChange,
+      ...props
     },
     ref,
   ) => {
@@ -72,6 +78,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
 
     return (
       <AlertRoot
+        {...props}
         ref={ref}
         color={color}
         variant={variant}

@@ -1,8 +1,8 @@
-import { ButtonProps } from '@nextui-org/react';
+import { AlertProps, ButtonProps } from '@nextui-org/react';
 type AlertColor = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
 type AlertVariant = "solid" | "bordered" | "flat" | "faded";
 type AlertRadius = "none" | "sm" | "md" | "lg" | "full";
-interface Props {
+interface Props extends AlertProps {
     title?: string;
     icon?: React.ReactNode;
     description?: React.ReactNode;
@@ -19,5 +19,5 @@ interface Props {
     onClose?: () => void;
     onVisibleChange?: (isVisible: boolean) => void;
 }
-export declare const Alert: import('react').ForwardRefExoticComponent<Props & import('react').RefAttributes<HTMLDivElement>>;
+export declare const Alert: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};
