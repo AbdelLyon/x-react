@@ -1,14 +1,11 @@
 /* empty css                */
-import { j as n } from "../jsx-runtime-Dx-03ztt.js";
-import { createElement as c } from "react";
-import { Accordion as i, AccordionItem as p } from "@nextui-org/react";
-const f = ({
+import { j as e } from "../jsx-runtime-Dx-03ztt.js";
+import { createElement as n } from "react";
+import { Accordion as c, AccordionItem as m } from "@nextui-org/react";
+const d = ({
   items: o,
   ...t
-}) => /* @__PURE__ */ n.jsx(i, { ...t, children: o.map((e) => {
-  const { content: m, ...r } = e;
-  return /* @__PURE__ */ c(p, { ...r, key: r.key }, m);
-}) });
+}) => /* @__PURE__ */ e.jsx(c, { ...t, children: o.map((r) => /* @__PURE__ */ n(m, { ...r, key: r.key }, r.content)) });
 export {
-  f as AccordionWrapper
+  d as AccordionWrapper
 };
