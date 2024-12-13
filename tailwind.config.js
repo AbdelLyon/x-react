@@ -15,7 +15,7 @@ module.exports = {
               100: "#ffffff",
             },
             background: {
-              DEFAULT: "#f4f4f4",
+              DEFAULT: "#fafafa",
               foreground: "#000000",
             },
             primary: {
