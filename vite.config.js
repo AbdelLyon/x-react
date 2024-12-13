@@ -12,6 +12,7 @@ var modules = [
     "theme",
     "providers",
     "accordion",
+    "alert",
 ];
 export default defineConfig({
     plugins: [

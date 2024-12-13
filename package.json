@@ -42,6 +42,10 @@
     "./accordion": {
       "import": "./dist/accordion/x-react.es.js",
       "types": "./dist/accordion/index.d.ts"
+    },
+    "./alert": {
+      "import": "./dist/alert/x-react.es.js",
+      "types": "./dist/alert/index.d.ts"
     }
   },
   "typesVersions": {
