@@ -13,6 +13,7 @@ var modules = [
     "providers",
     "accordion",
     "alert",
+    "avatar",
 ];
 export default defineConfig({
     plugins: [

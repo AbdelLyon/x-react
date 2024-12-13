@@ -46,6 +46,10 @@
     "./alert": {
       "import": "./dist/alert/x-react.es.js",
       "types": "./dist/alert/index.d.ts"
+    },
+    "./avatar": {
+      "import": "./dist/avatar/x-react.es.js",
+      "types": "./dist/avatar/index.d.ts"
     }
   },
   "typesVersions": {

@@ -15,6 +15,7 @@ const modules = [
   "providers",
   "accordion",
   "alert",
+  "avatar",
 ];
 
 export default defineConfig({
