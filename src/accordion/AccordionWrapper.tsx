@@ -5,7 +5,6 @@ import {
   AccordionItemProps,
 } from "@nextui-org/react";
 
-// Étendre AccordionItemProps pour ajouter content comme ReactNode
 interface ExtendedAccordionItemProps
   extends Omit<AccordionItemProps, "content"> {
   content: React.ReactNode;
@@ -24,9 +23,11 @@ export const AccordionWrapper = ({
       {items.map((item) => {
         const { content, ...itemProps } = item;
         return (
-          <AccordionItem {...itemProps} key={itemProps.key}>
-            {content}
-          </AccordionItem>
+          <AccordionItem
+            {...itemProps}
+            key={itemProps.key}
+            children={content}
+          />
         );
       })}
     </Accordion>
