@@ -16,9 +16,10 @@ export const AccordionWrapper = ({
   return (
     <Accordion {...accordionProps}>
       {items.map((item) => {
+        const { content, ...itemProps } = item;
         return (
-          <AccordionItem {...item} key={item.key}>
-            {item.content}
+          <AccordionItem {...itemProps} key={itemProps.key}>
+            {content}
           </AccordionItem>
         );
       })}
