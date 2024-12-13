@@ -10,10 +10,9 @@ interface ExtendedAccordionItemProps
   content?: React.ReactNode;
 }
 
-interface AccordionWrapperProps extends AccordionProps {
+interface AccordionWrapperProps extends Omit<AccordionProps, "children"> {
   items: ExtendedAccordionItemProps[];
 }
-
 export const AccordionWrapper = ({
   items,
   ...accordionProps
