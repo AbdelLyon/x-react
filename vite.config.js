@@ -14,6 +14,7 @@ var modules = [
     "accordion",
     "alert",
     "avatar",
+    "card",
 ];
 export default defineConfig({
     plugins: [

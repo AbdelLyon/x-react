@@ -50,6 +50,10 @@
     "./avatar": {
       "import": "./dist/avatar/x-react.es.js",
       "types": "./dist/avatar/index.d.ts"
+    },
+    "./card": {
+      "import": "./dist/card/x-react.es.js",
+      "types": "./dist/card/index.d.ts"
     }
   },
   "typesVersions": {
