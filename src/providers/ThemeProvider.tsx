@@ -5,11 +5,7 @@ import {
 
 const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
   return (
-    <NextThemesProvider
-      {...props}
-      enableSystem={false}
-      enableColorScheme={false}
-    >
+    <NextThemesProvider {...props} defaultTheme="light" attribute="class">
       {children}
     </NextThemesProvider>
   );

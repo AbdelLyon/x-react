@@ -19,7 +19,7 @@ module.exports = {
               DEFAULT: "#e2121d",
               foreground: "#ffffff",
             },
-            card: {
+            content1: {
               DEFAULT: "#ffffff",
               foreground: "#000000",
             },
@@ -42,7 +42,7 @@ module.exports = {
             },
             border: "#2f3233",
             muted: "#777777",
-            card: {
+            content1: {
               DEFAULT: "#222426",
               foreground: "#000000",
             },
