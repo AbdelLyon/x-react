@@ -1,5 +1,5 @@
-import { c, T as l, P as m, a as u, D as v, Q as i } from "./B4MFY5CR-KrmDpZzh.js";
-import { g as d, c as f, a as e } from "./index-mMKheuPL.js";
+import { c, T as l, P as m, a as u, D as v, Q as i } from "./B4MFY5CR-Bq3wEk6h.js";
+import { g as d, c as f, a as e } from "./index-C8zeNdby.js";
 var p = (a) => {
   const [r, t] = c({
     prefix: "TanstackQueryDevtools"

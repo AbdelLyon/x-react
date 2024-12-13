@@ -1,7 +1,7 @@
-import { AlertProps } from '@nextui-org/react';
-interface GenericAlertProps extends AlertProps {
+import { AlertProps as AlertPropsRoot } from '@nextui-org/react';
+interface AlertProps extends AlertPropsRoot {
     onClose?: () => void;
     onVisibleChange?: (isVisible: boolean) => void;
 }
-declare const GenericAlert: React.FC<GenericAlertProps>;
-export default GenericAlert;
+export declare const Alert: React.FC<AlertProps>;
+export {};
