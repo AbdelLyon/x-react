@@ -1,1 +1,1 @@
-export { Alert } from "@/alert/Alert";
+export { CloseIcon, InfoCircleIcon, Alert } from "@/alert/Alert";
