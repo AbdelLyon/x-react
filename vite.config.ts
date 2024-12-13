@@ -17,6 +17,7 @@ const modules = [
   "alert",
   "avatar",
   "card",
+  "icons",
 ];
 
 export default defineConfig({

@@ -54,6 +54,10 @@
     "./card": {
       "import": "./dist/card/x-react.es.js",
       "types": "./dist/card/index.d.ts"
+    },
+    "./icons": {
+      "import": "./dist/icons/x-react.es.js",
+      "types": "./dist/icons/index.d.ts"
     }
   },
   "typesVersions": {
