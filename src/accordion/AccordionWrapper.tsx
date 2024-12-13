@@ -7,7 +7,7 @@ import {
 
 interface ExtendedAccordionItemProps
   extends Omit<AccordionItemProps, "content"> {
-  content: React.ReactNode;
+  content?: React.ReactNode;
 }
 
 interface AccordionWrapperProps extends AccordionProps {
