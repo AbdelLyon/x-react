@@ -18,7 +18,7 @@ type AlertVariant = "solid" | "bordered" | "flat" | "faded";
 
 type AlertRadius = "none" | "sm" | "md" | "lg" | "full";
 
-interface Props extends AlertProps {
+interface Props {
   title?: string;
   icon?: React.ReactNode;
   description?: React.ReactNode;
@@ -34,10 +34,18 @@ interface Props extends AlertProps {
   closeButtonProps?: ButtonProps;
   onClose?: () => void;
   onVisibleChange?: (isVisible: boolean) => void;
+  classNames?: {
+    base?: string;
+    title?: string;
+    description?: string;
+    icon?: string;
+    iconWrapper?: string;
+    closeButton?: string;
+  };
 }
 
 // Generic Alert Component
-export const Alert = forwardRef<HTMLDivElement, Props>(
+export const Alert = forwardRef<AlertProps, Props>(
   (
     {
       title,
@@ -55,6 +63,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
       closeButtonProps,
       onClose,
       onVisibleChange,
+      classNames,
       ...props
     },
     ref,
@@ -101,6 +110,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
             </Button>
           ) : undefined
         }
+        classNames={classNames}
       >
         {description}
       </AlertRoot>

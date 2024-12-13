@@ -1,8 +1,8 @@
 /* empty css                */
 import { j as i } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as B } from "react";
-import { Alert as R, Button as g } from "@nextui-org/react";
-const w = B(
+import { forwardRef as R } from "react";
+import { Alert as g, Button as w } from "@nextui-org/react";
+const z = R(
   ({
     title: l,
     icon: o,
@@ -19,18 +19,19 @@ const w = B(
     closeButtonProps: h,
     onClose: r,
     onVisibleChange: e,
-    ...x
-  }, j) => {
-    const A = (y) => {
-      e && e(y);
-    }, v = () => {
-      r && r(), A(!1);
+    classNames: x,
+    ...j
+  }, A) => {
+    const v = (B) => {
+      e && e(B);
+    }, y = () => {
+      r && r(), v(!1);
     };
     return u ? /* @__PURE__ */ i.jsx(
-      R,
+      g,
       {
-        ...x,
-        ref: j,
+        ...j,
+        ref: A,
         color: a,
         variant: f,
         radius: n,
@@ -41,21 +42,22 @@ const w = B(
         startContent: m,
         endContent: d,
         closeButton: t ? /* @__PURE__ */ i.jsx(
-          g,
+          w,
           {
             size: "sm",
             variant: "light",
             ...h,
-            onPress: v,
+            onPress: y,
             children: "Close"
           }
         ) : void 0,
+        classNames: x,
         children: s
       }
     ) : null;
   }
 );
-w.displayName = "Alert";
+z.displayName = "Alert";
 export {
-  w as Alert
+  z as Alert
 };
