@@ -10,5 +10,5 @@ type GenericModalProps = {
     buttonActionLabel?: string;
     classNames?: SlotsToClasses<"footer" | "backdrop" | "base" | "body" | "header" | "closeButton" | "wrapper">;
 };
-export declare const Modal: React.FC<GenericModalProps>;
+export declare const Modal: import('react').ForwardRefExoticComponent<GenericModalProps & import('react').RefAttributes<HTMLDivElement>>;
 export {};

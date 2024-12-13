@@ -11,4 +11,4 @@ export interface ButtonProps extends NextUIButtonProps {
         content?: string;
     };
 }
-export declare const Button: ({ fullWidth, isLoading, isDisabled, startContent, endContent, className, LinkComponent, customStyles, href, children, target, rel, ...props }: ButtonProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Button: import('react').ForwardRefExoticComponent<Omit<ButtonProps, "ref"> & import('react').RefAttributes<HTMLButtonElement>>;

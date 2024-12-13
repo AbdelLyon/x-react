@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import {
   Button as NextUIButton,
   ButtonProps as NextUIButtonProps,
@@ -36,68 +37,81 @@ export interface ButtonProps extends NextUIButtonProps {
   };
 }
 
-export const Button = ({
-  fullWidth = false,
-  isLoading = false,
-  isDisabled = false,
-  startContent,
-  endContent,
-  className = "",
-  LinkComponent,
-  customStyles = {
-    base: "",
-    beforeContent: "",
-    afterContent: "",
-    content: "",
-  },
-  href,
-  children,
-  target,
-  rel,
-  ...props
-}: ButtonProps) => {
-  const baseStyles = cn(
-    "transition-all font-normal dark:bg-opacity-90",
-    fullWidth && "w-full",
-    isLoading && "opacity-50 cursor-not-allowed",
-    customStyles.base,
-    className,
-  );
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      fullWidth = false,
+      isLoading = false,
+      isDisabled = false,
+      startContent,
+      endContent,
+      className = "",
+      LinkComponent,
+      customStyles = {
+        base: "",
+        beforeContent: "",
+        afterContent: "",
+        content: "",
+      },
+      href,
+      children,
+      target,
+      rel,
+      ...props
+    },
+    ref,
+  ) => {
+    const baseStyles = cn(
+      "transition-all font-normal dark:bg-opacity-90",
+      fullWidth && "w-full",
+      isLoading && "opacity-50 cursor-not-allowed",
+      customStyles.base,
+      className,
+    );
 
-  const Content = () => (
-    <>
-      {startContent && (
-        <span className={cn("mr-2", customStyles.beforeContent)}>
-          {startContent}
-        </span>
-      )}
-      <span className={customStyles.content}>{children}</span>
-      {endContent && (
-        <span className={cn("ml-2", customStyles.afterContent)}>
-          {endContent}
-        </span>
-      )}
-    </>
-  );
+    const Content = () => (
+      <>
+        {startContent && (
+          <span className={cn("mr-2", customStyles.beforeContent)}>
+            {startContent}
+          </span>
+        )}
+        <span className={customStyles.content}>{children}</span>
+        {endContent && (
+          <span className={cn("ml-2", customStyles.afterContent)}>
+            {endContent}
+          </span>
+        )}
+      </>
+    );
 
-  if (href && LinkComponent) {
+    if (href && LinkComponent) {
+      return (
+        <NextUIButton
+          ref={ref}
+          {...props}
+          as={LinkComponent}
+          className={baseStyles}
+          href={href}
+          rel={target === "_blank" ? "noopener noreferrer" : rel}
+          target={target}
+        >
+          <Content />
+        </NextUIButton>
+      );
+    }
+
     return (
       <NextUIButton
+        ref={ref}
         {...props}
-        as={LinkComponent}
         className={baseStyles}
-        href={href}
-        rel={target === "_blank" ? "noopener noreferrer" : rel}
-        target={target}
+        isDisabled={isDisabled}
       >
         <Content />
       </NextUIButton>
     );
-  }
+  },
+);
 
-  return (
-    <NextUIButton {...props} className={baseStyles} isDisabled={isDisabled}>
-      <Content />
-    </NextUIButton>
-  );
-};
+Button.displayName = "Button";

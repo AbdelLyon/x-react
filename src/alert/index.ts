@@ -1,2 +1,2 @@
 import "@/index.css";
-export { CloseIcon, InfoCircleIcon, Alert } from "@/alert/Alert";
+export { Alert } from "@/alert/Alert";
