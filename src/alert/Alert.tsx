@@ -44,7 +44,6 @@ interface Props {
   };
 }
 
-// Generic Alert Component
 export const Alert = forwardRef<AlertProps, Props>(
   (
     {
