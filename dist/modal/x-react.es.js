@@ -1,11 +1,10 @@
-/* empty css                */
 import { j as r } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as k, useState as w } from "react";
 import { useDisclosure as B, Modal as C, ModalContent as F, ModalHeader as D, ModalBody as O, ModalFooter as q, Button as a } from "@nextui-org/react";
-import { cn as i } from "../utils/x-react.es.js";
+import { cn as s } from "../utils/x-react.es.js";
 const E = k(
   ({
-    trigger: s,
+    trigger: i,
     title: p = "Modal Title",
     footer: x,
     onAction: d,
@@ -15,8 +14,8 @@ const E = k(
     children: c,
     ...u
   }, j) => {
-    const { isOpen: m, onOpen: b, onClose: l } = B(), [f, g] = w("opaque"), t = (e = "opaque") => {
-      g(e), b();
+    const { isOpen: b, onOpen: m, onClose: l } = B(), [f, g] = w("opaque"), t = (e = "opaque") => {
+      g(e), m();
     }, y = () => {
       d == null || d(), l();
     }, M = (e) => {
@@ -30,7 +29,7 @@ const E = k(
           tabIndex: 0,
           onClick: () => t(),
           onKeyDown: M,
-          children: s
+          children: i
         }
       ),
       /* @__PURE__ */ r.jsx(
@@ -39,14 +38,14 @@ const E = k(
           ref: j,
           backdrop: f,
           classNames: {
-            closeButton: i("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
-            base: i(
+            closeButton: s("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
+            base: s(
               "bg-background border border-border shadow-lg dark:shadow-none rounded-lg",
               o == null ? void 0 : o.base
             ),
             ...o
           },
-          isOpen: m,
+          isOpen: b,
           onClose: l,
           ...u,
           children: /* @__PURE__ */ r.jsx(F, { children: (e) => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [

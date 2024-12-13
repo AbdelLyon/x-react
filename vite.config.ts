@@ -57,8 +57,11 @@ export default defineConfig({
         "react-dom",
         // Dependencies
         "@nextui-org/react",
+        "@tabler/icons-react",
+        "@tanstack/react-query",
         "@vitejs/plugin-react-swc",
         "clsx",
+        "next-themes",
       ],
 
       output: {
