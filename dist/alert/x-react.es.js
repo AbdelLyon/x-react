@@ -78,7 +78,7 @@ const f = (t) => /* @__PURE__ */ e.jsx(
     (i || x) && /* @__PURE__ */ e.jsx("button", { onClick: n, ...p(), children: /* @__PURE__ */ e.jsx(m, {}) })
   ] }) : null;
 });
-w.displayName = "MyAlert";
+w.displayName = "Alert";
 export {
   w as Alert,
   m as CloseIcon,

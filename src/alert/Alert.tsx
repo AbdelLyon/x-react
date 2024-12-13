@@ -99,4 +99,4 @@ export const Alert = forwardRef((props, ref) => {
   );
 });
 
-Alert.displayName = "MyAlert";
+Alert.displayName = "Alert";
