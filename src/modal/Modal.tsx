@@ -7,17 +7,16 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  ModalProps,
+  ModalProps as ModalPropsRoot,
 } from "@nextui-org/react";
 import { SlotsToClasses } from "@nextui-org/react";
 
 import { cn } from "@/utils";
 
-type GenericModalProps = {
+interface Props extends Omit<Partial<ModalPropsRoot>, "title"> {
   trigger: React.ReactNode;
   title?: React.ReactNode;
   footer?: React.ReactNode;
-  modalProps?: Partial<ModalProps>;
   children: React.ReactNode;
   onAction?: () => void;
   buttonCloseLabel?: string;
@@ -31,27 +30,29 @@ type GenericModalProps = {
     | "closeButton"
     | "wrapper"
   >;
-};
-
-export const Modal = forwardRef<HTMLDivElement, GenericModalProps>(
+}
+export const Modal = forwardRef<HTMLDivElement, Props>(
   (
     {
       trigger,
       title = "Modal Title",
       footer,
-      modalProps,
       onAction,
       buttonCloseLabel = "Close",
       buttonActionLabel,
       classNames,
       children,
+      ...modalProps
     },
     ref,
   ) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [backdrop, setBackdrop] = useState<ModalProps["backdrop"]>("opaque");
+    const [backdrop, setBackdrop] =
+      useState<ModalPropsRoot["backdrop"]>("opaque");
 
-    const handleOpen = (backdropType: ModalProps["backdrop"] = "opaque") => {
+    const handleOpen = (
+      backdropType: ModalPropsRoot["backdrop"] = "opaque",
+    ) => {
       setBackdrop(backdropType);
       onOpen();
     };
@@ -70,7 +71,6 @@ export const Modal = forwardRef<HTMLDivElement, GenericModalProps>(
     return (
       <>
         <div
-          ref={ref}
           role="button"
           tabIndex={0}
           onClick={() => handleOpen()}
@@ -80,6 +80,7 @@ export const Modal = forwardRef<HTMLDivElement, GenericModalProps>(
         </div>
 
         <NextUIModal
+          ref={ref}
           backdrop={backdrop}
           classNames={{
             closeButton: cn("absolute right-4 top-4", classNames?.closeButton),

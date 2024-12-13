@@ -8,12 +8,12 @@ const E = k(
     trigger: s,
     title: p = "Modal Title",
     footer: x,
-    modalProps: c,
     onAction: d,
-    buttonCloseLabel: h = "Close",
+    buttonCloseLabel: c = "Close",
     buttonActionLabel: n,
     classNames: o,
-    children: u
+    children: h,
+    ...u
   }, j) => {
     const { isOpen: m, onOpen: f, onClose: t } = C(), [y, M] = B("opaque"), l = (e = "opaque") => {
       M(e), f();
@@ -26,7 +26,6 @@ const E = k(
       /* @__PURE__ */ r.jsx(
         "div",
         {
-          ref: j,
           role: "button",
           tabIndex: 0,
           onClick: () => l(),
@@ -37,6 +36,7 @@ const E = k(
       /* @__PURE__ */ r.jsx(
         F,
         {
+          ref: j,
           backdrop: y,
           classNames: {
             closeButton: a("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
@@ -45,10 +45,10 @@ const E = k(
           },
           isOpen: m,
           onClose: t,
-          ...c,
+          ...u,
           children: /* @__PURE__ */ r.jsx(w, { children: (e) => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
             /* @__PURE__ */ r.jsx(D, { className: "flex flex-col gap-1", children: p }),
-            /* @__PURE__ */ r.jsx(O, { children: u }),
+            /* @__PURE__ */ r.jsx(O, { children: h }),
             /* @__PURE__ */ r.jsx(q, { children: x || /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
               /* @__PURE__ */ r.jsx(
                 i,
@@ -58,7 +58,7 @@ const E = k(
                   radius: "sm",
                   variant: "bordered",
                   onPress: e,
-                  children: h
+                  children: c
                 }
               ),
               n && d && /* @__PURE__ */ r.jsx(
