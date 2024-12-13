@@ -85,6 +85,8 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
           classNames={{
             closeButton: cn("absolute right-4 top-4", classNames?.closeButton),
             base: cn("bg-background", classNames?.base),
+            wrapper: cn("border border-border", classNames?.wrapper),
+
             ...classNames,
           }}
           isOpen={isOpen}
