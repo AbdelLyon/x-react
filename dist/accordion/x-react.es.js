@@ -1,21 +1,41 @@
 /* empty css                */
-import { j as c } from "../jsx-runtime-Dx-03ztt.js";
-import { createElement as m } from "react";
-import { Accordion as i, AccordionItem as p } from "@nextui-org/react";
-const f = ({
-  items: o,
-  ...t
-}) => /* @__PURE__ */ c.jsx(i, { ...t, children: o.map((e) => {
-  const { content: n, ...r } = e;
-  return /* @__PURE__ */ m(
-    p,
+import { j as i } from "../jsx-runtime-Dx-03ztt.js";
+import { createElement as f } from "react";
+import { Accordion as m, AccordionItem as b } from "@nextui-org/react";
+import { cn as n } from "../utils/x-react.es.js";
+const A = ({
+  items: c,
+  itemClasses: o,
+  ...e
+}) => {
+  const r = {
+    base: "w-full border-none shadow-none",
+    title: "text-lg font-semibold"
+  };
+  return /* @__PURE__ */ i.jsx(
+    m,
     {
-      ...r,
-      key: r.key,
-      children: n
+      ...e,
+      itemClasses: {
+        ...r,
+        ...o,
+        base: n(r.base, o == null ? void 0 : o.base),
+        title: n(r.title, o == null ? void 0 : o.title)
+      },
+      children: c.map((p) => {
+        const { content: d, ...t } = p;
+        return /* @__PURE__ */ f(
+          b,
+          {
+            ...t,
+            key: t.key,
+            children: d
+          }
+        );
+      })
     }
   );
-}) });
+};
 export {
-  f as AccordionWrapper
+  A as AccordionWrapper
 };

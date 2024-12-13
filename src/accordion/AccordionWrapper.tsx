@@ -4,6 +4,7 @@ import {
   AccordionProps,
   AccordionItemProps,
 } from "@nextui-org/react";
+import { cn } from "@/utils"; // Assuming you're using the cn utility for class name concatenation
 
 interface ExtendedAccordionItemProps
   extends Omit<AccordionItemProps, "content"> {
@@ -13,12 +14,27 @@ interface ExtendedAccordionItemProps
 interface AccordionWrapperProps extends Omit<AccordionProps, "children"> {
   items: ExtendedAccordionItemProps[];
 }
+
 export const AccordionWrapper = ({
   items,
+  itemClasses,
   ...accordionProps
 }: AccordionWrapperProps) => {
+  const defaultItemClasses = {
+    base: "w-full border-none shadow-none",
+    title: "text-lg font-semibold",
+  };
+
   return (
-    <Accordion {...accordionProps}>
+    <Accordion
+      {...accordionProps}
+      itemClasses={{
+        ...defaultItemClasses,
+        ...itemClasses,
+        base: cn(defaultItemClasses.base, itemClasses?.base),
+        title: cn(defaultItemClasses.title, itemClasses?.title),
+      }}
+    >
       {items.map((item) => {
         const { content, ...itemProps } = item;
         return (

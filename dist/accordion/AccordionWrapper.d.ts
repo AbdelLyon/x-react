@@ -5,5 +5,5 @@ interface ExtendedAccordionItemProps extends Omit<AccordionItemProps, "content">
 interface AccordionWrapperProps extends Omit<AccordionProps, "children"> {
     items: ExtendedAccordionItemProps[];
 }
-export declare const AccordionWrapper: ({ items, ...accordionProps }: AccordionWrapperProps) => import("react/jsx-runtime").JSX.Element;
+export declare const AccordionWrapper: ({ items, itemClasses, ...accordionProps }: AccordionWrapperProps) => import("react/jsx-runtime").JSX.Element;
 export {};
