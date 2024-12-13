@@ -1,26 +1,26 @@
 /* empty css                */
 import { j as r } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as k, useState as B } from "react";
-import { useDisclosure as C, Modal as F, ModalContent as w, ModalHeader as D, ModalBody as O, ModalFooter as q, Button as i } from "@nextui-org/react";
-import { cn as a } from "../utils/x-react.es.js";
+import { forwardRef as k, useState as w } from "react";
+import { useDisclosure as B, Modal as C, ModalContent as F, ModalHeader as D, ModalBody as O, ModalFooter as q, Button as a } from "@nextui-org/react";
+import { cn as i } from "../utils/x-react.es.js";
 const E = k(
   ({
     trigger: s,
     title: p = "Modal Title",
     footer: x,
     onAction: d,
-    buttonCloseLabel: c = "Close",
+    buttonCloseLabel: h = "Close",
     buttonActionLabel: n,
     classNames: o,
-    children: u,
-    ...h
+    children: c,
+    ...u
   }, j) => {
-    const { isOpen: m, onOpen: b, onClose: t } = C(), [f, y] = B("opaque"), l = (e = "opaque") => {
-      y(e), b();
-    }, M = () => {
-      d == null || d(), t();
-    }, g = (e) => {
-      (e.key === "Enter" || e.key === " ") && l();
+    const { isOpen: m, onOpen: b, onClose: l } = B(), [f, g] = w("opaque"), t = (e = "opaque") => {
+      g(e), b();
+    }, y = () => {
+      d == null || d(), l();
+    }, M = (e) => {
+      (e.key === "Enter" || e.key === " ") && t();
     };
     return /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
       /* @__PURE__ */ r.jsx(
@@ -28,48 +28,48 @@ const E = k(
         {
           role: "button",
           tabIndex: 0,
-          onClick: () => l(),
-          onKeyDown: g,
+          onClick: () => t(),
+          onKeyDown: M,
           children: s
         }
       ),
       /* @__PURE__ */ r.jsx(
-        F,
+        C,
         {
           ref: j,
           backdrop: f,
           classNames: {
-            closeButton: a("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
-            base: a(
-              "bg-background border border-border rounded-md",
+            closeButton: i("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
+            base: i(
+              "bg-background border border-border shadow-lg dark:shadow-none rounded-lg",
               o == null ? void 0 : o.base
             ),
             ...o
           },
           isOpen: m,
-          onClose: t,
-          ...h,
-          children: /* @__PURE__ */ r.jsx(w, { children: (e) => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
+          onClose: l,
+          ...u,
+          children: /* @__PURE__ */ r.jsx(F, { children: (e) => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
             /* @__PURE__ */ r.jsx(D, { className: "flex flex-col gap-1", children: p }),
-            /* @__PURE__ */ r.jsx(O, { children: u }),
+            /* @__PURE__ */ r.jsx(O, { children: c }),
             /* @__PURE__ */ r.jsx(q, { children: x || /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
               /* @__PURE__ */ r.jsx(
-                i,
+                a,
                 {
                   className: "border-primary/20",
                   color: "primary",
                   radius: "sm",
                   variant: "bordered",
                   onPress: e,
-                  children: c
+                  children: h
                 }
               ),
               n && d && /* @__PURE__ */ r.jsx(
-                i,
+                a,
                 {
                   color: "primary",
                   radius: "sm",
-                  onPress: M,
+                  onPress: y,
                   children: n
                 }
               )
