@@ -1,18 +1,52 @@
-import {
-  Alert as AlertRoot,
-  AlertProps as AlertPropsRoot,
-} from "@nextui-org/react";
+import { Alert as AlertRoot, Button, ButtonProps } from "@nextui-org/react";
 
-interface AlertProps extends AlertPropsRoot {
+type AlertColor =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger";
+
+type AlertVariant = "solid" | "bordered" | "flat" | "faded";
+
+type AlertRadius = "none" | "sm" | "md" | "lg" | "full";
+
+interface Props {
+  title?: string;
+  icon?: React.ReactNode;
+  description?: React.ReactNode;
+  color?: AlertColor;
+  variant?: AlertVariant;
+  radius?: AlertRadius;
+  startContent?: React.ReactNode;
+  endContent?: React.ReactNode;
+  isVisible?: boolean;
+  isClosable?: boolean;
+  hideIcon?: boolean;
+  hideIconWrapper?: boolean;
+  closeButtonProps?: ButtonProps;
   onClose?: () => void;
   onVisibleChange?: (isVisible: boolean) => void;
 }
 
-export const Alert: React.FC<AlertProps> = ({
+// Generic Alert Component
+export const Alert: React.FC<Props> = ({
+  title,
+  icon,
+  description,
+  color = "default",
+  variant = "flat",
+  radius = "md",
+  startContent,
+  endContent,
+  isVisible = true,
+  isClosable = false,
+  hideIcon = false,
+  hideIconWrapper = false,
+  closeButtonProps,
   onClose,
   onVisibleChange,
-  isVisible = true,
-  ...props
 }) => {
   const handleVisibilityChange = (visible: boolean) => {
     if (onVisibleChange) {
@@ -31,5 +65,31 @@ export const Alert: React.FC<AlertProps> = ({
     return null;
   }
 
-  return <AlertRoot {...props} onClose={handleClose} />;
+  return (
+    <AlertRoot
+      color={color}
+      variant={variant}
+      radius={radius}
+      title={title}
+      icon={hideIcon ? undefined : icon}
+      isClosable={isClosable}
+      hideIconWrapper={hideIconWrapper}
+      startContent={startContent}
+      endContent={endContent}
+      closeButton={
+        isClosable ? (
+          <Button
+            size="sm"
+            variant="light"
+            {...closeButtonProps}
+            onPress={handleClose}
+          >
+            Close
+          </Button>
+        ) : undefined
+      }
+    >
+      {description}
+    </AlertRoot>
+  );
 };
