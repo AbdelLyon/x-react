@@ -7,19 +7,19 @@ const E = k(
   ({
     trigger: x,
     title: a = "Modal Title",
-    footer: h,
+    footer: u,
     onAction: d,
-    buttonCloseLabel: u = "Close",
+    buttonCloseLabel: b = "Close",
     buttonActionLabel: t,
     classNames: o,
-    children: j,
-    ...b
+    children: h,
+    ...j
   }, c) => {
-    const { isOpen: f, onOpen: y, onClose: i } = B(), [M, s] = w("opaque"), l = (e = "opaque") => {
-      s(e), y();
-    }, g = () => {
+    const { isOpen: f, onOpen: y, onClose: i } = B(), [M, m] = w("opaque"), l = (e = "opaque") => {
+      m(e), y();
+    }, s = () => {
       d == null || d(), i();
-    }, m = (e) => {
+    }, g = (e) => {
       (e.key === "Enter" || e.key === " ") && l();
     };
     return /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
@@ -29,7 +29,7 @@ const E = k(
           role: "button",
           tabIndex: 0,
           onClick: () => l(),
-          onKeyDown: m,
+          onKeyDown: g,
           children: x
         }
       ),
@@ -40,17 +40,20 @@ const E = k(
           backdrop: M,
           classNames: {
             closeButton: n("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
-            base: n("bg-background", o == null ? void 0 : o.base),
+            base: n(
+              "bg-background border border-border rounded-md",
+              o == null ? void 0 : o.base
+            ),
             wrapper: n("border border-border", o == null ? void 0 : o.wrapper),
             ...o
           },
           isOpen: f,
           onClose: i,
-          ...b,
+          ...j,
           children: /* @__PURE__ */ r.jsx(F, { children: (e) => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
             /* @__PURE__ */ r.jsx(D, { className: "flex flex-col gap-1", children: a }),
-            /* @__PURE__ */ r.jsx(O, { children: j }),
-            /* @__PURE__ */ r.jsx(q, { children: h || /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
+            /* @__PURE__ */ r.jsx(O, { children: h }),
+            /* @__PURE__ */ r.jsx(q, { children: u || /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
               /* @__PURE__ */ r.jsx(
                 p,
                 {
@@ -59,7 +62,7 @@ const E = k(
                   radius: "sm",
                   variant: "bordered",
                   onPress: e,
-                  children: u
+                  children: b
                 }
               ),
               t && d && /* @__PURE__ */ r.jsx(
@@ -67,7 +70,7 @@ const E = k(
                 {
                   color: "primary",
                   radius: "sm",
-                  onPress: g,
+                  onPress: s,
                   children: t
                 }
               )

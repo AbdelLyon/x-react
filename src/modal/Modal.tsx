@@ -84,7 +84,10 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
           backdrop={backdrop}
           classNames={{
             closeButton: cn("absolute right-4 top-4", classNames?.closeButton),
-            base: cn("bg-background", classNames?.base),
+            base: cn(
+              "bg-background border border-border rounded-md",
+              classNames?.base,
+            ),
             wrapper: cn("border border-border", classNames?.wrapper),
 
             ...classNames,
