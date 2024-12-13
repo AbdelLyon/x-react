@@ -6,7 +6,15 @@ import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import tailwindcss from "tailwindcss";
 
-const modules = ["utils", "button", "modal", "hooks", "theme", "providers"];
+const modules = [
+  "utils",
+  "button",
+  "modal",
+  "hooks",
+  "theme",
+  "providers",
+  "accordion",
+];
 
 export default defineConfig({
   plugins: [

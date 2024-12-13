@@ -38,6 +38,10 @@
     "./theme": {
       "import": "./dist/theme/x-react.es.js",
       "types": "./dist/theme/index.d.ts"
+    },
+    "./accordion": {
+      "import": "./dist/accordion/x-react.es.js",
+      "types": "./dist/accordion/index.d.ts"
     }
   },
   "typesVersions": {
