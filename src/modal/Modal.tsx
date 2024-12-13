@@ -88,8 +88,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
               "bg-background border border-border rounded-md",
               classNames?.base,
             ),
-            wrapper: cn("border border-border", classNames?.wrapper),
-
             ...classNames,
           }}
           isOpen={isOpen}
