@@ -21,7 +21,7 @@ export const AccordionWrapper = ({
   ...accordionProps
 }: AccordionWrapperProps) => {
   const defaultItemClasses = {
-    base: "w-full border-none shadow-md dark:shadow-none",
+    base: "w-full border-none shadow-lg dark:shadow-none",
     title: "text-lg font-semibold",
   };
 
