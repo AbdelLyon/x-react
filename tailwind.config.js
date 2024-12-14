@@ -14,6 +14,10 @@ module.exports = {
             default: {
               100: "#ffffff",
             },
+            danger: {
+              DEFAULT: "#df3b43",
+              foreground: "#ffffff",
+            },
             background: {
               DEFAULT: "#fdfdfd",
               foreground: "#000000",
