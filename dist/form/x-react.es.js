@@ -1,15 +1,15 @@
-import { j as e } from "../jsx-runtime-Dx-03ztt.js";
+import { j as c } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as w } from "react";
-import { RadioGroup as k, Radio as y, CheckboxGroup as O, Checkbox as $, InputOtp as v, Input as L } from "@nextui-org/react";
+import { RadioGroup as O, Radio as $, CheckboxGroup as m, Checkbox as v, InputOtp as L, Input as S } from "@nextui-org/react";
 import { Checkbox as D } from "@nextui-org/react";
-import { cn as n } from "../utils/x-react.es.js";
-const S = w(
+import { cn as e } from "../utils/x-react.es.js";
+const E = w(
   ({
-    items: c,
-    groupClasses: l,
+    items: n,
+    groupClasses: r,
     itemClasses: a,
-    label: d = "Select an option",
-    defaultValue: p,
+    label: p = "Select an option",
+    defaultValue: t,
     ...f
   }, x) => {
     const b = {
@@ -21,62 +21,62 @@ const S = w(
       wrapper: "",
       control: ""
     };
-    return /* @__PURE__ */ e.jsx(
-      k,
+    return /* @__PURE__ */ c.jsx(
+      O,
       {
         ref: x,
-        label: d,
-        defaultValue: p,
+        label: p,
+        defaultValue: t,
         ...f,
         classNames: {
-          base: n(b.base, l == null ? void 0 : l.base),
-          label: n(b.label, l == null ? void 0 : l.label)
+          base: e(b.base, r == null ? void 0 : r.base),
+          label: e(b.label, r == null ? void 0 : r.label)
         },
-        children: c.map((r) => {
-          var u, t, N;
-          return /* @__PURE__ */ e.jsx(
-            y,
+        children: n.map((l) => {
+          var u, d, N;
+          return /* @__PURE__ */ c.jsx(
+            $,
             {
-              ...r,
+              ...l,
               classNames: {
-                base: n(
+                base: e(
                   o.base,
                   a == null ? void 0 : a.base,
-                  r.className
+                  l.className
                 ),
-                label: n(
+                label: e(
                   o.label,
                   a == null ? void 0 : a.label,
-                  (u = r.classNames) == null ? void 0 : u.label
+                  (u = l.classNames) == null ? void 0 : u.label
                 ),
-                wrapper: n(
+                wrapper: e(
                   o.wrapper,
                   a == null ? void 0 : a.wrapper,
-                  (t = r.classNames) == null ? void 0 : t.wrapper
+                  (d = l.classNames) == null ? void 0 : d.wrapper
                 ),
-                control: n(
+                control: e(
                   o.control,
                   a == null ? void 0 : a.control,
-                  (N = r.classNames) == null ? void 0 : N.control
+                  (N = l.classNames) == null ? void 0 : N.control
                 )
               },
-              children: r.label
+              children: l.label
             },
-            r.value
+            l.value
           );
         })
       }
     );
   }
 );
-S.displayName = "RadioGroup";
-const i = w(
+E.displayName = "RadioGroup";
+const P = w(
   ({
-    items: c,
-    groupClasses: l,
+    items: n,
+    groupClasses: r,
     itemClasses: a,
-    label: d = "Select options",
-    defaultValue: p,
+    label: p = "Select options",
+    defaultValue: t,
     ...f
   }, x) => {
     const b = {
@@ -87,117 +87,120 @@ const i = w(
       label: "text-small",
       wrapper: ""
     };
-    return /* @__PURE__ */ e.jsx(
-      O,
+    return /* @__PURE__ */ c.jsx(
+      m,
       {
         ref: x,
-        label: d,
-        defaultValue: p,
+        label: p,
+        defaultValue: t,
         ...f,
         classNames: {
-          base: n(b.base, l == null ? void 0 : l.base),
-          label: n(b.label, l == null ? void 0 : l.label)
+          base: e(b.base, r == null ? void 0 : r.base),
+          label: e(b.label, r == null ? void 0 : r.label)
         },
-        children: c.map((r) => {
-          var u, t;
-          return /* @__PURE__ */ e.jsx(
-            $,
+        children: n.map((l) => {
+          var u, d;
+          return /* @__PURE__ */ c.jsx(
+            v,
             {
-              ...r,
+              ...l,
               classNames: {
-                base: n(
+                base: e(
                   o.base,
                   a == null ? void 0 : a.base,
-                  r.className
+                  l.className
                 ),
-                label: n(
+                label: e(
                   o.label,
                   a == null ? void 0 : a.label,
-                  (u = r.classNames) == null ? void 0 : u.label
+                  (u = l.classNames) == null ? void 0 : u.label
                 ),
-                wrapper: n(
+                wrapper: e(
                   o.wrapper,
                   a == null ? void 0 : a.wrapper,
-                  (t = r.classNames) == null ? void 0 : t.wrapper
+                  (d = l.classNames) == null ? void 0 : d.wrapper
                 )
               },
-              children: r.label
+              children: l.label
             },
-            r.value
+            l.value
           );
         })
       }
     );
   }
 );
-i.displayName = "CheckboxGroup";
-const m = w(
+P.displayName = "CheckboxGroup";
+const T = w(
   ({
-    length: c = 6,
-    label: l = `${c} digits OTP`,
+    length: n = 6,
+    label: r = `${n} digits OTP`,
     labelClasses: a,
-    containerClasses: d,
-    ...p
-  }, f) => /* @__PURE__ */ e.jsxs("div", { ref: f, className: n("flex flex-col", d), children: [
-    l && /* @__PURE__ */ e.jsx("p", { className: n("text-default-500 text-small mb-2", a), children: l }),
-    /* @__PURE__ */ e.jsx(v, { length: c, ...p })
+    containerClasses: p,
+    ...t
+  }, f) => /* @__PURE__ */ c.jsxs("div", { ref: f, className: e("flex flex-col", p), children: [
+    r && /* @__PURE__ */ c.jsx("p", { className: e("text-default-500 text-small mb-2", a), children: r }),
+    /* @__PURE__ */ c.jsx(L, { length: n, ...t })
   ] })
 );
-m.displayName = "InputOtp";
-const E = w(
+T.displayName = "InputOtp";
+const V = w(
   ({
-    variant: c = "flat",
-    color: l = "default",
+    variant: n = "flat",
+    color: r = "default",
     size: a = "md",
-    radius: d = "md",
-    labelPlacement: p = "inside",
+    radius: p = "md",
+    labelPlacement: t = "inside",
     fullWidth: f = !0,
     isClearable: x = !1,
     isRequired: b = !1,
     isReadOnly: o = !1,
-    isDisabled: r = !1,
+    isDisabled: l = !1,
     // Custom props
     containerClasses: u,
-    customValidation: t,
+    customValidation: d,
     // Passthrough props
     validate: N,
     ...G
   }, I) => {
     const R = (j) => {
-      if (t) {
-        const h = t(j);
+      if (d) {
+        const h = d(j);
         if (typeof h == "string")
           return h;
         if (h === !1)
           return "Validation failed";
       }
       return N ? N(j) : !0;
-    };
-    return /* @__PURE__ */ e.jsx("div", { className: n("w-full", u), children: /* @__PURE__ */ e.jsx(
-      L,
+    }, k = "w-full", y = n === "bordered" ? {
+      inputWrapper: "border-red-500 hover:border-red-500 focus:border-red-500"
+    } : {};
+    return /* @__PURE__ */ c.jsx("div", { className: e(k, u), children: /* @__PURE__ */ c.jsx(
+      S,
       {
         ref: I,
-        variant: c,
-        color: l,
+        variant: n,
+        color: r,
         size: a,
-        radius: d,
-        labelPlacement: p,
+        radius: p,
+        labelPlacement: t,
         fullWidth: f,
         isClearable: x,
         isRequired: b,
         isReadOnly: o,
-        isDisabled: r,
+        isDisabled: l,
         validate: R,
+        classNames: y,
         ...G
       }
     ) });
   }
 );
-E.displayName = "Input";
+V.displayName = "Input";
 export {
   D as Checkbox,
-  i as CheckboxGroup,
-  E as Input,
-  m as InputOtp,
-  S as RadioGroup
+  P as CheckboxGroup,
+  V as Input,
+  T as InputOtp,
+  E as RadioGroup
 };
