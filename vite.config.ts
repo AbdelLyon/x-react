@@ -18,6 +18,7 @@ const modules = [
   "avatar",
   "card",
   "icons",
+  "form",
 ];
 
 export default defineConfig({

@@ -58,6 +58,10 @@
     "./icons": {
       "import": "./dist/icons/x-react.es.js",
       "types": "./dist/icons/index.d.ts"
+    },
+    "./form": {
+      "import": "./dist/form/x-react.es.js",
+      "types": "./dist/form/index.d.ts"
     }
   },
   "typesVersions": {
