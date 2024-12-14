@@ -1,2 +1,2 @@
-export { Radio, RadioGroup } from "@/form/Radio";
+export { RadioGroup } from "@/form/Radio";
 export { Checkbox, CheckboxGroup } from "@/form/Checkbox";

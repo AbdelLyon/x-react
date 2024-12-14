@@ -1,9 +1,9 @@
 import { j as d } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as R } from "react";
-import { RadioGroup as u, Radio as j, CheckboxGroup as k, Checkbox as e } from "@nextui-org/react";
-import { Checkbox as A, Radio as B } from "@nextui-org/react";
+import { forwardRef as u } from "react";
+import { RadioGroup as R, Radio as j, CheckboxGroup as k, Checkbox as e } from "@nextui-org/react";
+import { Checkbox as A } from "@nextui-org/react";
 import { cn as r } from "../utils/x-react.es.js";
-const v = R(
+const v = u(
   ({
     items: x,
     groupClasses: o,
@@ -22,7 +22,7 @@ const v = R(
       control: ""
     };
     return /* @__PURE__ */ d.jsx(
-      u,
+      R,
       {
         ref: h,
         label: f,
@@ -70,7 +70,7 @@ const v = R(
   }
 );
 v.displayName = "RadioGroup";
-const y = R(
+const y = u(
   ({
     items: x,
     groupClasses: o,
@@ -134,6 +134,5 @@ y.displayName = "CheckboxGroup";
 export {
   A as Checkbox,
   y as CheckboxGroup,
-  B as Radio,
   v as RadioGroup
 };

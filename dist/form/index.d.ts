@@ -1,2 +1,2 @@
-export { Radio, RadioGroup } from './Radio';
+export { RadioGroup } from './Radio';
 export { Checkbox, CheckboxGroup } from './Checkbox';

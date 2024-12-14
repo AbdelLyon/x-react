@@ -25,7 +25,7 @@ interface RadioWrapperProps extends Omit<RadioGroupProps, "children"> {
   };
 }
 
-const RadioGroup = forwardRef<HTMLDivElement, RadioWrapperProps>(
+export const RadioGroup = forwardRef<HTMLDivElement, RadioWrapperProps>(
   (
     {
       items,
@@ -96,5 +96,3 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioWrapperProps>(
 );
 
 RadioGroup.displayName = "RadioGroup";
-
-export { Radio, RadioGroup };
