@@ -1,65 +1,69 @@
 /* empty css                */
-import { j as n } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as h } from "react";
+import { j as e } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as B } from "react";
 import { Button as p } from "@nextui-org/react";
-import { cn as e } from "../utils/x-react.es.js";
-const B = h(
+import { cn as n } from "../utils/x-react.es.js";
+const w = B(
   ({
     fullWidth: x = !1,
     isLoading: j = !1,
-    isDisabled: d = !1,
-    startContent: r,
-    endContent: s,
-    className: b = "",
-    LinkComponent: o,
-    customStyles: a = {
+    isDisabled: b = !1,
+    startContent: s,
+    endContent: a,
+    className: u = "",
+    LinkComponent: t,
+    variant: o = "solid",
+    customStyles: r = {
       base: "",
       beforeContent: "",
       afterContent: "",
       content: ""
     },
-    href: t,
-    children: u,
-    target: l,
-    rel: N,
-    ...c
-  }, i) => {
-    const m = e(
+    href: l,
+    children: N,
+    target: c,
+    rel: h,
+    ...m
+  }, f) => {
+    const i = n(
       "transition-all font-normal dark:bg-opacity-90",
       x && "w-full",
       j && "opacity-50 cursor-not-allowed",
-      a.base,
-      b
-    ), f = () => /* @__PURE__ */ n.jsxs(n.Fragment, { children: [
-      r && /* @__PURE__ */ n.jsx("span", { className: e("mr-2", a.beforeContent), children: r }),
-      /* @__PURE__ */ n.jsx("span", { className: a.content, children: u }),
-      s && /* @__PURE__ */ n.jsx("span", { className: e("ml-2", a.afterContent), children: s })
+      o === "bordered" && "border-1",
+      r.base,
+      u
+    ), d = () => /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
+      s && /* @__PURE__ */ e.jsx("span", { className: n("mr-2", r.beforeContent), children: s }),
+      /* @__PURE__ */ e.jsx("span", { className: r.content, children: N }),
+      a && /* @__PURE__ */ e.jsx("span", { className: n("ml-2", r.afterContent), children: a })
     ] });
-    return t && o ? /* @__PURE__ */ n.jsx(
+    return l && t ? /* @__PURE__ */ e.jsx(
       p,
       {
-        ref: i,
-        ...c,
-        as: o,
-        className: m,
-        href: t,
-        rel: l === "_blank" ? "noopener noreferrer" : N,
-        target: l,
-        children: /* @__PURE__ */ n.jsx(f, {})
+        ref: f,
+        ...m,
+        as: t,
+        variant: o,
+        className: i,
+        href: l,
+        rel: c === "_blank" ? "noopener noreferrer" : h,
+        target: c,
+        children: /* @__PURE__ */ e.jsx(d, {})
       }
-    ) : /* @__PURE__ */ n.jsx(
+    ) : /* @__PURE__ */ e.jsx(
       p,
       {
-        ref: i,
-        ...c,
-        className: m,
-        isDisabled: d,
-        children: /* @__PURE__ */ n.jsx(f, {})
+        ref: f,
+        ...m,
+        variant: o,
+        className: i,
+        isDisabled: b,
+        children: /* @__PURE__ */ e.jsx(d, {})
       }
     );
   }
 );
-B.displayName = "Button";
+w.displayName = "Button";
 export {
-  B as Button
+  w as Button
 };

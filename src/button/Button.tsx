@@ -47,6 +47,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       endContent,
       className = "",
       LinkComponent,
+      variant = "solid",
       customStyles = {
         base: "",
         beforeContent: "",
@@ -65,6 +66,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       "transition-all font-normal dark:bg-opacity-90",
       fullWidth && "w-full",
       isLoading && "opacity-50 cursor-not-allowed",
+      variant === "bordered" && "border-1",
       customStyles.base,
       className,
     );
@@ -91,6 +93,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ref={ref}
           {...props}
           as={LinkComponent}
+          variant={variant}
           className={baseStyles}
           href={href}
           rel={target === "_blank" ? "noopener noreferrer" : rel}
@@ -105,6 +108,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <NextUIButton
         ref={ref}
         {...props}
+        variant={variant}
         className={baseStyles}
         isDisabled={isDisabled}
       >
