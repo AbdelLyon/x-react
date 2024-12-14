@@ -1,3 +1,4 @@
+/* empty css                */
 import { j as r } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as g, useMemo as j } from "react";
 import { useAvatar as u, AvatarIcon as v } from "@nextui-org/react";

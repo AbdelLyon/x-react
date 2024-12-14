@@ -1,5 +1,5 @@
 import {
-  Accordion,
+  Accordion as AccordionRoot,
   AccordionItem,
   AccordionProps,
   AccordionItemProps,
@@ -15,7 +15,7 @@ interface AccordionWrapperProps extends Omit<AccordionProps, "children"> {
   items: ExtendedAccordionItemProps[];
 }
 
-export const AccordionWrapper = ({
+export const Accordion = ({
   items,
   itemClasses,
   ...accordionProps
@@ -26,7 +26,7 @@ export const AccordionWrapper = ({
   };
 
   return (
-    <Accordion
+    <AccordionRoot
       {...accordionProps}
       itemClasses={{
         ...defaultItemClasses,
@@ -45,6 +45,6 @@ export const AccordionWrapper = ({
           />
         );
       })}
-    </Accordion>
+    </AccordionRoot>
   );
 };

@@ -1,16 +1,17 @@
-import { j as l } from "../jsx-runtime-Dx-03ztt.js";
+/* empty css                */
+import { j as i } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as R } from "react";
 import { Alert as g, Button as w } from "@nextui-org/react";
 const z = R(
   ({
-    title: s,
-    icon: i,
-    description: o,
+    title: l,
+    icon: o,
+    description: s,
     color: a = "default",
     variant: f = "flat",
     radius: n = "md",
-    startContent: d,
-    endContent: m,
+    startContent: m,
+    endContent: d,
     isVisible: u = !0,
     isClosable: t = !1,
     hideIcon: c = !1,
@@ -26,7 +27,7 @@ const z = R(
     }, y = () => {
       r && r(), v(!1);
     };
-    return u ? /* @__PURE__ */ l.jsx(
+    return u ? /* @__PURE__ */ i.jsx(
       g,
       {
         ...j,
@@ -34,13 +35,13 @@ const z = R(
         color: a,
         variant: f,
         radius: n,
-        title: s,
-        icon: c ? void 0 : i,
+        title: l,
+        icon: c ? void 0 : o,
         isClosable: t,
         hideIconWrapper: p,
-        startContent: d,
-        endContent: m,
-        closeButton: t ? /* @__PURE__ */ l.jsx(
+        startContent: m,
+        endContent: d,
+        closeButton: t ? /* @__PURE__ */ i.jsx(
           w,
           {
             size: "sm",
@@ -51,7 +52,7 @@ const z = R(
           }
         ) : void 0,
         classNames: x,
-        children: o
+        children: s
       }
     ) : null;
   }

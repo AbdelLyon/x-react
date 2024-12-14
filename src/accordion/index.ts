@@ -1,2 +1,2 @@
 import "@/index.css";
-export { AccordionWrapper } from "@/accordion/AccordionWrapper";
+export { Accordion } from "@/accordion/Accordion";

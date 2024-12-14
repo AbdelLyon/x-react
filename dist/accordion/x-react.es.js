@@ -1,8 +1,9 @@
-import { j as f } from "../jsx-runtime-Dx-03ztt.js";
-import { createElement as i } from "react";
-import { Accordion as b, AccordionItem as m } from "@nextui-org/react";
+/* empty css                */
+import { j as p } from "../jsx-runtime-Dx-03ztt.js";
+import { createElement as f } from "react";
+import { Accordion as m, AccordionItem as b } from "@nextui-org/react";
 import { cn as n } from "../utils/x-react.es.js";
-const h = ({
+const A = ({
   items: c,
   itemClasses: o,
   ...e
@@ -11,8 +12,8 @@ const h = ({
     base: "w-full border-none shadow-lg dark:shadow-none",
     title: "text-lg font-semibold"
   };
-  return /* @__PURE__ */ f.jsx(
-    b,
+  return /* @__PURE__ */ p.jsx(
+    m,
     {
       ...e,
       itemClasses: {
@@ -22,13 +23,13 @@ const h = ({
         title: n(r.title, o == null ? void 0 : o.title)
       },
       children: c.map((d) => {
-        const { content: p, ...t } = d;
-        return /* @__PURE__ */ i(
-          m,
+        const { content: i, ...t } = d;
+        return /* @__PURE__ */ f(
+          b,
           {
             ...t,
             key: t.key,
-            children: p
+            children: i
           }
         );
       })
@@ -36,5 +37,5 @@ const h = ({
   );
 };
 export {
-  h as AccordionWrapper
+  A as Accordion
 };
