@@ -83,23 +83,23 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
       if (type === "password") {
         return (
           <button
-            className="focus:outline-none opacity-70"
+            className="focus:outline-none opacity-60"
             type="button"
             onClick={() =>
               setInputType(inputType === "password" ? "text" : "password")
             }
           >
             {inputType === "password" ? (
-              <IconEye className="pointer-events-none" size={18} />
+              <IconEye className="pointer-events-none" size={20} />
             ) : (
-              <IconEyeOff className="pointer-events-none" size={18} />
+              <IconEyeOff className="pointer-events-none" size={20} />
             )}
           </button>
         );
       }
       if (type === "email") {
         return (
-          <IconMail className="pointer-events-none opacity-70" size={18} />
+          <IconMail className="pointer-events-none opacity-60" size={20} />
         );
       }
     };

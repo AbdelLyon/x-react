@@ -179,14 +179,14 @@ const K = w(
         return /* @__PURE__ */ r.jsx(
           "button",
           {
-            className: "focus:outline-none opacity-70",
+            className: "focus:outline-none opacity-60",
             type: "button",
             onClick: () => G(j === "password" ? "text" : "password"),
-            children: j === "password" ? /* @__PURE__ */ r.jsx(M, { className: "pointer-events-none", size: 18 }) : /* @__PURE__ */ r.jsx(P, { className: "pointer-events-none", size: 18 })
+            children: j === "password" ? /* @__PURE__ */ r.jsx(M, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ r.jsx(P, { className: "pointer-events-none", size: 20 })
           }
         );
       if (i === "email")
-        return /* @__PURE__ */ r.jsx(V, { className: "pointer-events-none opacity-70", size: 18 });
+        return /* @__PURE__ */ r.jsx(V, { className: "pointer-events-none opacity-60", size: 20 });
     }, R = "w-full", v = {
       inputWrapper: n({
         "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background group-data-[focus=true]:bg-content1": l === "bordered"
