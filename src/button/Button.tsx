@@ -6,25 +6,6 @@ import {
 
 import { cn } from "@/utils";
 
-export type ButtonVariant =
-  | "solid"
-  | "bordered"
-  | "light"
-  | "flat"
-  | "faded"
-  | "shadow"
-  | "ghost";
-
-export type ButtonColor =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-
-export type ButtonSize = "sm" | "md" | "lg";
-
 export interface ButtonProps extends NextUIButtonProps {
   LinkComponent?: React.ComponentType<
     React.AnchorHTMLAttributes<HTMLAnchorElement>
@@ -63,9 +44,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const baseStyles = cn(
-      "transition-all font-normal border-1 border-default rounded-sm",
+      "transition-all font-normal border-1 border-default rounded-md",
       variant === "solid" && "bg-primary text-white",
-      variant === "bordered" && "bg-white bg-background border-primary ",
+      variant === "bordered" &&
+        "bg-white bg-background text-primary border-primary ",
       fullWidth && "w-full",
       isLoading && "opacity-50 cursor-not-allowed",
       customStyles.base,
