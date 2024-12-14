@@ -10,12 +10,10 @@ interface InputWrapperProps extends Omit<InputRootProps, "children"> {
   customValidation?: (value: string) => boolean | string;
 }
 
-export const Input = forwardRef<
-  HTMLInputElement,
-  Omit<InputWrapperProps, "variiant">
->(
+export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
   (
     {
+      variant = "bordered",
       color = "default",
       size = "md",
       radius = "md",
@@ -56,16 +54,19 @@ export const Input = forwardRef<
 
     const defaultContainerClasses = "w-full";
 
-    const borderedClassNames = {
-      inputWrapper:
-        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background group-data-[focus=true]:bg-content1",
-    };
+    const borderedClassNames =
+      variant === "bordered"
+        ? {
+            inputWrapper:
+              "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background group-data-[focus=true]:bg-content1",
+          }
+        : {};
 
     return (
       <div className={cn(defaultContainerClasses, containerClasses)}>
         <InputRoot
           ref={ref}
-          variant={"bordered"}
+          variant={variant}
           color={color}
           size={size}
           radius={radius}
