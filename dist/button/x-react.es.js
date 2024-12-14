@@ -1,7 +1,7 @@
 /* empty css                */
 import { j as r } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as N } from "react";
-import { Button as d } from "@nextui-org/react";
+import { Button as b } from "@nextui-org/react";
 import { cn as s } from "../utils/x-react.es.js";
 const y = N(
   ({
@@ -10,7 +10,7 @@ const y = N(
     isDisabled: j = !1,
     startContent: n,
     endContent: t,
-    className: h = "",
+    className: u = "",
     LinkComponent: a,
     variant: e = "solid",
     customStyles: o = {
@@ -20,46 +20,46 @@ const y = N(
       content: ""
     },
     href: l,
-    children: u,
-    target: i,
+    children: h,
+    target: m,
     rel: w,
-    ...m
-  }, c) => {
-    const f = s(
-      "transition-all font-normal border-1",
+    ...d
+  }, i) => {
+    const c = s(
+      "transition-all font-normal border-1 border-default rounded-sm",
       e === "solid" && "bg-primary text-white",
-      e === "bordered" && "bg-white bg-background border-primary",
+      e === "bordered" && "bg-white bg-background border-primary ",
       x && "w-full",
       p && "opacity-50 cursor-not-allowed",
       o.base,
-      h
-    ), b = () => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
+      u
+    ), f = () => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
       n && /* @__PURE__ */ r.jsx("span", { className: s("mr-2", o.beforeContent), children: n }),
-      /* @__PURE__ */ r.jsx("span", { className: o.content, children: u }),
+      /* @__PURE__ */ r.jsx("span", { className: o.content, children: h }),
       t && /* @__PURE__ */ r.jsx("span", { className: s("ml-2", o.afterContent), children: t })
     ] });
     return l && a ? /* @__PURE__ */ r.jsx(
-      d,
+      b,
       {
-        ref: c,
-        ...m,
+        ref: i,
+        ...d,
         as: a,
         variant: e,
-        className: f,
+        className: c,
         href: l,
-        rel: i === "_blank" ? "noopener noreferrer" : w,
-        target: i,
-        children: /* @__PURE__ */ r.jsx(b, {})
+        rel: m === "_blank" ? "noopener noreferrer" : w,
+        target: m,
+        children: /* @__PURE__ */ r.jsx(f, {})
       }
     ) : /* @__PURE__ */ r.jsx(
-      d,
+      b,
       {
-        ref: c,
-        ...m,
+        ref: i,
+        ...d,
         variant: e,
-        className: f,
+        className: c,
         isDisabled: j,
-        children: /* @__PURE__ */ r.jsx(b, {})
+        children: /* @__PURE__ */ r.jsx(f, {})
       }
     );
   }
