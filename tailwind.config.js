@@ -6,6 +6,13 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
+  theme: {
+    extend: {
+      transitionProperty: {
+        none: "none",
+      },
+    },
+  },
   plugins: [
     nextui({
       themes: {

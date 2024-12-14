@@ -14,7 +14,10 @@ export const ToggleTheme = ({ className }: { className?: string }) => {
 
   return (
     <button
-      className={cn("cursor-pointer hover:opacity-80 ", className)}
+      className={cn(
+        "cursor-pointer transition-all hover:opacity-80 ",
+        className,
+      )}
       onClick={handleClick}
     >
       <IconSunFilled className="hidden dark:block" size={22} />
