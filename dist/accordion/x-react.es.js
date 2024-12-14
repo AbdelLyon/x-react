@@ -1,20 +1,20 @@
 /* empty css                */
-import { j as f } from "../jsx-runtime-Dx-03ztt.js";
+import { j as b } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as p, createElement as a } from "react";
-import { Accordion as m, AccordionItem as l } from "@nextui-org/react";
+import { Accordion as l, AccordionItem as m } from "@nextui-org/react";
 import { cn as t } from "../utils/x-react.es.js";
 const u = p(
-  ({ items: c, itemClasses: o, ...n }, d) => {
+  ({ items: d, itemClasses: o, ...n }, c) => {
     const r = {
       base: t("w-full border-none shadow-none", {
-        "bg-white dark:bg-content-1 border border-default ": n.variant === "splitted"
+        "bg-white dark:bg-default-100 border border-default": n.variant === "splitted"
       }),
       title: "text-lg font-semibold"
     };
-    return /* @__PURE__ */ f.jsx(
-      m,
+    return /* @__PURE__ */ b.jsx(
+      l,
       {
-        ref: d,
+        ref: c,
         ...n,
         itemClasses: {
           ...r,
@@ -22,14 +22,14 @@ const u = p(
           base: t(r.base, o == null ? void 0 : o.base),
           title: t(r.title, o == null ? void 0 : o.title)
         },
-        children: c.map((i) => {
-          const { content: b, ...e } = i;
+        children: d.map((i) => {
+          const { content: f, ...e } = i;
           return /* @__PURE__ */ a(
-            l,
+            m,
             {
               ...e,
               key: e.key,
-              children: b
+              children: f
             }
           );
         })
