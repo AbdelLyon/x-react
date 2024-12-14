@@ -10,7 +10,10 @@ interface InputWrapperProps extends Omit<InputRootProps, "children"> {
   customValidation?: (value: string) => boolean | string;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
+export const Input = forwardRef<
+  HTMLInputElement,
+  Omit<InputWrapperProps, "variiant">
+>(
   (
     {
       color = "default",
