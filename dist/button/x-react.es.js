@@ -3,7 +3,7 @@ import { j as e } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as N } from "react";
 import { Button as b } from "@nextui-org/react";
 import { cn as n } from "../utils/x-react.es.js";
-const E = N(
+const k = N(
   ({
     fullWidth: x = !1,
     isLoading: p = !1,
@@ -28,7 +28,7 @@ const E = N(
     const f = n(
       "font-normal border-1 border-default rounded-md",
       r === "solid" && "bg-primary text-white",
-      r === "bordered" && "bg-white bg-content-1 text-primary border-primary ",
+      r === "bordered" && "bg-white dark:bg-content-1 text-primary border-primary/70 ",
       x && "w-full",
       p && "opacity-50 cursor-not-allowed",
       o.base,
@@ -65,5 +65,5 @@ const E = N(
   }
 );
 export {
-  E as Button
+  k as Button
 };

@@ -47,7 +47,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       "font-normal border-1 border-default rounded-md",
       variant === "solid" && "bg-primary text-white",
       variant === "bordered" &&
-        "bg-white bg-content-1 text-primary border-primary ",
+        "bg-white dark:bg-content-1 text-primary border-primary/70 ",
       fullWidth && "w-full",
       isLoading && "opacity-50 cursor-not-allowed",
       customStyles.base,
