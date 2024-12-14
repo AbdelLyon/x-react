@@ -58,7 +58,8 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
       inputWrapper: cn({
         "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background group-data-[focus=true]:bg-content1":
           variant === "bordered",
-        "bg-default-100 dark:bg-background": variant === "underlined",
+        "data-[hover=true]:border-outline group-data-[focus=true]:border-outline":
+          variant === "underlined",
       }),
     };
 
