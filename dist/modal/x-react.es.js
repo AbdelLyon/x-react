@@ -12,8 +12,8 @@ const E = k(
     buttonCloseLabel: h = "Close",
     buttonActionLabel: n,
     classNames: o,
-    children: c,
-    ...u
+    children: u,
+    ...c
   }, j) => {
     const { isOpen: m, onOpen: b, onClose: l } = B(), [f, g] = w("opaque"), t = (e = "opaque") => {
       g(e), b();
@@ -41,17 +41,17 @@ const E = k(
           classNames: {
             closeButton: i("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
             base: i(
-              "bg-background border border-border shadow-lg dark:shadow-none rounded-lg",
+              "bg-background border border-default shadow-lg dark:shadow-none rounded-lg",
               o == null ? void 0 : o.base
             ),
             ...o
           },
           isOpen: m,
           onClose: l,
-          ...u,
+          ...c,
           children: /* @__PURE__ */ r.jsx(F, { children: (e) => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
             /* @__PURE__ */ r.jsx(D, { className: "flex flex-col gap-1", children: p }),
-            /* @__PURE__ */ r.jsx(O, { children: c }),
+            /* @__PURE__ */ r.jsx(O, { children: u }),
             /* @__PURE__ */ r.jsx(q, { children: x || /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
               /* @__PURE__ */ r.jsx(
                 a,

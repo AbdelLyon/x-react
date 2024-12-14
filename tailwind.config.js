@@ -36,7 +36,6 @@ module.exports = {
               DEFAULT: "#ffffff",
               foreground: "#000000",
             },
-            border: "#dddddd",
           },
         },
         dark: {
