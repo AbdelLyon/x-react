@@ -56,7 +56,7 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
 
     const borderedClassNames = {
       inputWrapper:
-        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline",
+        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background",
     };
 
     return (

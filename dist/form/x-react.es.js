@@ -5,14 +5,14 @@ import { Checkbox as D } from "@nextui-org/react";
 import { cn as o } from "../utils/x-react.es.js";
 const S = w(
   ({
-    items: c,
+    items: b,
     groupClasses: l,
     itemClasses: a,
     label: d = "Select an option",
     defaultValue: p,
     ...f
   }, x) => {
-    const b = {
+    const c = {
       base: "w-full",
       label: "text-medium font-semibold"
     }, e = {
@@ -29,10 +29,10 @@ const S = w(
         defaultValue: p,
         ...f,
         classNames: {
-          base: o(b.base, l == null ? void 0 : l.base),
-          label: o(b.label, l == null ? void 0 : l.label)
+          base: o(c.base, l == null ? void 0 : l.base),
+          label: o(c.label, l == null ? void 0 : l.label)
         },
-        children: c.map((r) => {
+        children: b.map((r) => {
           var u, t, N;
           return /* @__PURE__ */ n.jsx(
             $,
@@ -72,14 +72,14 @@ const S = w(
 S.displayName = "RadioGroup";
 const E = w(
   ({
-    items: c,
+    items: b,
     groupClasses: l,
     itemClasses: a,
     label: d = "Select options",
     defaultValue: p,
     ...f
   }, x) => {
-    const b = {
+    const c = {
       base: "w-full",
       label: "text-medium font-semibold"
     }, e = {
@@ -95,10 +95,10 @@ const E = w(
         defaultValue: p,
         ...f,
         classNames: {
-          base: o(b.base, l == null ? void 0 : l.base),
-          label: o(b.label, l == null ? void 0 : l.label)
+          base: o(c.base, l == null ? void 0 : l.base),
+          label: o(c.label, l == null ? void 0 : l.label)
         },
-        children: c.map((r) => {
+        children: b.map((r) => {
           var u, t;
           return /* @__PURE__ */ n.jsx(
             i,
@@ -133,27 +133,27 @@ const E = w(
 E.displayName = "CheckboxGroup";
 const P = w(
   ({
-    length: c = 6,
-    label: l = `${c} digits OTP`,
+    length: b = 6,
+    label: l = `${b} digits OTP`,
     labelClasses: a,
     containerClasses: d,
     ...p
   }, f) => /* @__PURE__ */ n.jsxs("div", { ref: f, className: o("flex flex-col", d), children: [
     l && /* @__PURE__ */ n.jsx("p", { className: o("text-default-500 text-small mb-2", a), children: l }),
-    /* @__PURE__ */ n.jsx(m, { length: c, ...p })
+    /* @__PURE__ */ n.jsx(m, { length: b, ...p })
   ] })
 );
 P.displayName = "InputOtp";
 const T = w(
   ({
-    variant: c = "flat",
+    variant: b = "flat",
     color: l = "default",
     size: a = "md",
     radius: d = "md",
     labelPlacement: p = "inside",
     fullWidth: f = !0,
     isClearable: x = !1,
-    isRequired: b = !1,
+    isRequired: c = !1,
     isReadOnly: e = !1,
     isDisabled: r = !1,
     // Custom props
@@ -163,7 +163,7 @@ const T = w(
     validate: N,
     ...G
   }, I) => {
-    const R = (j) => {
+    const k = (j) => {
       if (t) {
         const h = t(j);
         if (typeof h == "string")
@@ -172,24 +172,24 @@ const T = w(
           return "Validation failed";
       }
       return N ? N(j) : !0;
-    }, k = "w-full", y = {
-      inputWrapper: "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline"
+    }, R = "w-full", y = {
+      inputWrapper: "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background"
     };
-    return /* @__PURE__ */ n.jsx("div", { className: o(k, u), children: /* @__PURE__ */ n.jsx(
+    return /* @__PURE__ */ n.jsx("div", { className: o(R, u), children: /* @__PURE__ */ n.jsx(
       L,
       {
         ref: I,
-        variant: c,
+        variant: b,
         color: l,
         size: a,
         radius: d,
         labelPlacement: p,
         fullWidth: f,
         isClearable: x,
-        isRequired: b,
+        isRequired: c,
         isReadOnly: e,
         isDisabled: r,
-        validate: R,
+        validate: k,
         classNames: y,
         ...G
       }
