@@ -54,12 +54,10 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
 
     const defaultContainerClasses = "w-full";
 
-    const borderedClassNames =
-      variant === "bordered"
-        ? {
-            inputWrapper: "border-1",
-          }
-        : {};
+    const borderedClassNames = {
+      inputWrapper:
+        "border-1 data-[hover=true]:border:outline data-[hover=focus]:border:outline",
+    };
 
     return (
       <div className={cn(defaultContainerClasses, containerClasses)}>

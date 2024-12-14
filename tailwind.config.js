@@ -18,6 +18,12 @@ module.exports = {
               DEFAULT: "#df3b50",
               foreground: "#ffffff",
             },
+
+            outline: {
+              DEFAULT: "#0e8bdf63",
+              foreground: "#ffffff",
+            },
+
             background: {
               DEFAULT: "#fdfdfd",
               foreground: "#000000",
