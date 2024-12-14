@@ -7,7 +7,7 @@ const u = b(
   ({ items: c, itemClasses: o, ...n }, d) => {
     const r = {
       base: t("w-full shadow-none", {
-        "bg-white dark:bg-content-1 border-1 border-default": n.variant === "splitted"
+        "bg-white dark:bg-content1 border-1 border-default": n.variant === "splitted"
       }),
       title: "text-lg font-semibold"
     };
