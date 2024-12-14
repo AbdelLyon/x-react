@@ -1,19 +1,19 @@
 /* empty css                */
 import { j as f } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as m, createElement as a } from "react";
-import { Accordion as b, AccordionItem as l } from "@nextui-org/react";
+import { forwardRef as m, createElement as b } from "react";
+import { Accordion as a, AccordionItem as l } from "@nextui-org/react";
 import { cn as n } from "../utils/x-react.es.js";
 const u = m(
-  ({ items: c, itemClasses: o, ...d }, e) => {
+  ({ items: c, itemClasses: o, ...e }, d) => {
     const r = {
-      base: "w-full border-none shadow-lg dark:shadow-none",
+      base: "w-full border-none shadow-none",
       title: "text-lg font-semibold"
     };
     return /* @__PURE__ */ f.jsx(
-      b,
+      a,
       {
-        ref: e,
-        ...d,
+        ref: d,
+        ...e,
         itemClasses: {
           ...r,
           ...o,
@@ -22,7 +22,7 @@ const u = m(
         },
         children: c.map((i) => {
           const { content: p, ...t } = i;
-          return /* @__PURE__ */ a(
+          return /* @__PURE__ */ b(
             l,
             {
               ...t,

@@ -24,7 +24,7 @@ interface AccordionWrapperProps extends Omit<AccordionProps, "children"> {
 export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
   ({ items, itemClasses, ...accordionProps }, ref) => {
     const defaultItemClasses = {
-      base: "w-full border-none shadow-lg dark:shadow-none",
+      base: "w-full border-none shadow-none",
       title: "text-lg font-semibold",
     };
 
