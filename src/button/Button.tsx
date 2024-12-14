@@ -47,7 +47,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       "transition-none font-normal border-1 border-default rounded-md",
       variant === "solid" && "bg-primary text-white",
       variant === "bordered" &&
-        "bg-default-100 text-primary border-primary/70 ",
+        "bg-white dark:bg-default-100 text-primary border-primary/70 ",
       variant === "light" &&
         "bg-background border-none data-[hover=true]:bg-transparent data-[hover=true]:underline",
       fullWidth && "w-full",

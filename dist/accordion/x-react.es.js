@@ -1,33 +1,35 @@
 /* empty css                */
-import { j as f } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as m, createElement as b } from "react";
-import { Accordion as a, AccordionItem as l } from "@nextui-org/react";
-import { cn as n } from "../utils/x-react.es.js";
-const u = m(
-  ({ items: c, itemClasses: o, ...e }, d) => {
-    const r = {
-      base: "w-full border-none shadow-none",
+import { j as b } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as p, createElement as a } from "react";
+import { Accordion as l, AccordionItem as m } from "@nextui-org/react";
+import { cn as t } from "../utils/x-react.es.js";
+const u = p(
+  ({ items: d, itemClasses: r, ...e }, c) => {
+    const o = {
+      base: t("w-full border-none shadow-none", {
+        "bg-white dark:border-default-100 border border-default": e.variant === "splitted"
+      }),
       title: "text-lg font-semibold"
     };
-    return /* @__PURE__ */ f.jsx(
-      a,
+    return /* @__PURE__ */ b.jsx(
+      l,
       {
-        ref: d,
+        ref: c,
         ...e,
         itemClasses: {
-          ...r,
           ...o,
-          base: n(r.base, o == null ? void 0 : o.base),
-          title: n(r.title, o == null ? void 0 : o.title)
+          ...r,
+          base: t(o.base, r == null ? void 0 : r.base),
+          title: t(o.title, r == null ? void 0 : r.title)
         },
-        children: c.map((i) => {
-          const { content: p, ...t } = i;
-          return /* @__PURE__ */ b(
-            l,
+        children: d.map((i) => {
+          const { content: f, ...n } = i;
+          return /* @__PURE__ */ a(
+            m,
             {
-              ...t,
-              key: t.key,
-              children: p
+              ...n,
+              key: n.key,
+              children: f
             }
           );
         })
