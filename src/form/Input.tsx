@@ -13,7 +13,6 @@ interface InputWrapperProps extends Omit<InputRootProps, "children"> {
 export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
   (
     {
-      variant = "flat",
       color = "default",
       size = "md",
       radius = "md",
@@ -56,14 +55,14 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
 
     const borderedClassNames = {
       inputWrapper:
-        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background",
+        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background group-data-[focus=true]:bg-content1",
     };
 
     return (
       <div className={cn(defaultContainerClasses, containerClasses)}>
         <InputRoot
           ref={ref}
-          variant={variant}
+          variant={"bordered"}
           color={color}
           size={size}
           radius={radius}
