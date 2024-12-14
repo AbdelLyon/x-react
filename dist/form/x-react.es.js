@@ -165,15 +165,15 @@ const K = w(
     type: i,
     ...I
   }, y) => {
-    const [j, G] = O(i || "text"), k = (h) => {
+    const [h, G] = O(i || "text"), k = (s) => {
       if (d) {
-        const s = d(h);
-        if (typeof s == "string")
-          return s;
-        if (s === !1)
+        const j = d(s);
+        if (typeof j == "string")
+          return j;
+        if (j === !1)
           return "Validation failed";
       }
-      return N ? N(h) : !0;
+      return N ? N(s) : !0;
     }, m = () => {
       if (i === "password")
         return /* @__PURE__ */ r.jsx(
@@ -181,15 +181,15 @@ const K = w(
           {
             className: "focus:outline-none opacity-60",
             type: "button",
-            onClick: () => G(j === "password" ? "text" : "password"),
-            children: j === "password" ? /* @__PURE__ */ r.jsx(M, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ r.jsx(P, { className: "pointer-events-none", size: 20 })
+            onClick: () => G(h === "password" ? "text" : "password"),
+            children: h === "password" ? /* @__PURE__ */ r.jsx(M, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ r.jsx(P, { className: "pointer-events-none", size: 20 })
           }
         );
       if (i === "email")
         return /* @__PURE__ */ r.jsx(V, { className: "pointer-events-none opacity-60", size: 20 });
     }, R = "w-full", v = {
       inputWrapper: n({
-        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-default-100 dark:bg-background group-data-[focus=true]:bg-content1": l === "bordered"
+        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-white dark:bg-background group-data-[focus=true]:bg-content1": l === "bordered"
       })
     };
     return /* @__PURE__ */ r.jsx("div", { className: n(R, f), children: /* @__PURE__ */ r.jsx(
@@ -209,7 +209,7 @@ const K = w(
         validate: k,
         classNames: v,
         endContent: m(),
-        type: j,
+        type: h,
         ...I
       }
     ) });
