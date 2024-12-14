@@ -173,7 +173,7 @@ const T = w(
       }
       return N ? N(j) : !0;
     }, k = "w-full", v = {
-      inputWrapper: "border-1 data-[hover=true]:border:outline data-[hover=focus]:border:outline"
+      inputWrapper: "border-1 data-[hover=true]:border-outline data-[hover=focus]:border-outline"
     };
     return /* @__PURE__ */ n.jsx("div", { className: o(k, u), children: /* @__PURE__ */ n.jsx(
       L,
