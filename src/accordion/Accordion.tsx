@@ -24,8 +24,8 @@ interface AccordionWrapperProps extends Omit<AccordionProps, "children"> {
 export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
   ({ items, itemClasses, ...accordionProps }, ref) => {
     const defaultItemClasses = {
-      base: cn("w-full border-none shadow-none", {
-        "bg-white dark:bg-default-100 border border-default":
+      base: cn("w-full shadow-none", {
+        "bg-white dark:bg-default-100 border-1 border-default":
           accordionProps.variant === "splitted",
       }),
       title: "text-lg font-semibold",
