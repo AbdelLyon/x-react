@@ -57,8 +57,7 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
     const borderedClassNames =
       variant === "bordered"
         ? {
-            inputWrapper:
-              "border-red-500 hover:border-red-500 focus:border-red-500",
+            inputWrapper: "border-1",
           }
         : {};
 
