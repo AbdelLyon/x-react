@@ -1,9 +1,9 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Dx-03ztt.js";
+import { j as e } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as N } from "react";
 import { Button as b } from "@nextui-org/react";
 import { cn as n } from "../utils/x-react.es.js";
-const k = N(
+const E = N(
   ({
     fullWidth: x = !1,
     isLoading: p = !1,
@@ -12,7 +12,7 @@ const k = N(
     endContent: t,
     className: u = "",
     LinkComponent: a,
-    variant: e = "solid",
+    variant: r = "solid",
     customStyles: o = {
       base: "",
       beforeContent: "",
@@ -24,46 +24,46 @@ const k = N(
     target: m,
     rel: w,
     ...d
-  }, i) => {
-    const c = n(
-      "transition-all font-normal border-1 border-default rounded-md",
-      e === "solid" && "bg-primary text-white",
-      e === "bordered" && "bg-white bg-background text-primary border-primary ",
+  }, c) => {
+    const f = n(
+      "font-normal border-1 border-default rounded-md",
+      r === "solid" && "bg-primary text-white",
+      r === "bordered" && "bg-white bg-content-1 text-primary border-primary ",
       x && "w-full",
       p && "opacity-50 cursor-not-allowed",
       o.base,
       u
-    ), f = () => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
-      s && /* @__PURE__ */ r.jsx("span", { className: n("mr-2", o.beforeContent), children: s }),
-      /* @__PURE__ */ r.jsx("span", { className: o.content, children: h }),
-      t && /* @__PURE__ */ r.jsx("span", { className: n("ml-2", o.afterContent), children: t })
+    ), i = () => /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
+      s && /* @__PURE__ */ e.jsx("span", { className: n("mr-2", o.beforeContent), children: s }),
+      /* @__PURE__ */ e.jsx("span", { className: o.content, children: h }),
+      t && /* @__PURE__ */ e.jsx("span", { className: n("ml-2", o.afterContent), children: t })
     ] });
-    return l && a ? /* @__PURE__ */ r.jsx(
+    return l && a ? /* @__PURE__ */ e.jsx(
       b,
       {
-        ref: i,
+        ref: c,
         ...d,
         as: a,
-        variant: e,
-        className: c,
+        variant: r,
+        className: f,
         href: l,
         rel: m === "_blank" ? "noopener noreferrer" : w,
         target: m,
-        children: /* @__PURE__ */ r.jsx(f, {})
+        children: /* @__PURE__ */ e.jsx(i, {})
       }
-    ) : /* @__PURE__ */ r.jsx(
+    ) : /* @__PURE__ */ e.jsx(
       b,
       {
-        ref: i,
+        ref: c,
         ...d,
-        variant: e,
-        className: c,
+        variant: r,
+        className: f,
         isDisabled: j,
-        children: /* @__PURE__ */ r.jsx(f, {})
+        children: /* @__PURE__ */ e.jsx(i, {})
       }
     );
   }
 );
 export {
-  k as Button
+  E as Button
 };

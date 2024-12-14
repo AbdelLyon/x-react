@@ -44,10 +44,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const baseStyles = cn(
-      "transition-all font-normal border-1 border-default rounded-md",
+      "font-normal border-1 border-default rounded-md",
       variant === "solid" && "bg-primary text-white",
       variant === "bordered" &&
-        "bg-white bg-background text-primary border-primary ",
+        "bg-white bg-content-1 text-primary border-primary ",
       fullWidth && "w-full",
       isLoading && "opacity-50 cursor-not-allowed",
       customStyles.base,
