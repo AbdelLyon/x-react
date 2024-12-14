@@ -59,22 +59,22 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
       if (props.type === "password") {
         return (
           <button
-            className="focus:outline-none"
+            className="focus:outline-none opacity-70"
             type="button"
             onClick={() =>
               setInputType(inputType === "password" ? "text" : "password")
             }
           >
             {inputType === "password" ? (
-              <IconEye className="pointer-events-none" />
+              <IconEye className="pointer-events-none" size={18} />
             ) : (
-              <IconEyeOff className="pointer-events-none" />
+              <IconEyeOff className="pointer-events-none" size={18} />
             )}
           </button>
         );
       }
       if (props.type === "email") {
-        return <IconMail className="pointer-events-none" />;
+        return <IconMail className="pointer-events-none" size={18} />;
       }
     };
     const defaultContainerClasses = "w-full";
@@ -103,6 +103,7 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
           validate={combinedValidate}
           classNames={borderedClassNames}
           endContent={endContent()}
+          type={inputType}
           {...props}
         />
       </div>
