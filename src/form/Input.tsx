@@ -6,12 +6,35 @@ import {
 import { cn } from "@/utils";
 import { IconEye, IconEyeOff, IconMail } from "@tabler/icons-react";
 
-interface InputWrapperProps extends Omit<InputRootProps, "type"> {
+interface InputWrapperProps extends Omit<InputRootProps, "children"> {
   containerClasses?: string;
   customValidation?: (value: string) => boolean | string;
+  type:
+    | "button"
+    | "checkbox"
+    | "color"
+    | "date"
+    | "datetime-local"
+    | "email"
+    | "file"
+    | "hidden"
+    | "image"
+    | "month"
+    | "number"
+    | "password"
+    | "radio"
+    | "range"
+    | "reset"
+    | "search"
+    | "submit"
+    | "tel"
+    | "text"
+    | "time"
+    | "url"
+    | "week";
 }
 
-export const Input = forwardRef(
+export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
   (
     {
       variant = "bordered",
@@ -33,8 +56,8 @@ export const Input = forwardRef(
       validate,
       type,
       ...props
-    }: InputWrapperProps & { type?: string },
-    ref: React.Ref<HTMLInputElement>,
+    },
+    ref,
   ) => {
     const [inputType, setInputType] = useState(type || "text");
 
@@ -60,22 +83,26 @@ export const Input = forwardRef(
       if (type === "password") {
         return (
           <button
+            className="focus:outline-none opacity-70"
             type="button"
             onClick={() =>
               setInputType(inputType === "password" ? "text" : "password")
             }
-            className="focus:outline-none"
           >
-            {inputType === "password" ? <IconEyeOff /> : <IconEye />}
+            {inputType === "password" ? (
+              <IconEye className="pointer-events-none" size={18} />
+            ) : (
+              <IconEyeOff className="pointer-events-none" size={18} />
+            )}
           </button>
         );
       }
-
       if (type === "email") {
-        return <IconMail />;
+        return (
+          <IconMail className="pointer-events-none opacity-70" size={18} />
+        );
       }
     };
-
     const defaultContainerClasses = "w-full";
 
     const borderedClassNames = {
@@ -86,25 +113,26 @@ export const Input = forwardRef(
     };
 
     return (
-      <InputRoot
-        ref={ref}
-        type={inputType}
-        variant={variant}
-        color={color}
-        size={size}
-        radius={radius}
-        labelPlacement={labelPlacement}
-        fullWidth={fullWidth}
-        isClearable={isClearable}
-        isRequired={isRequired}
-        isReadOnly={isReadOnly}
-        isDisabled={isDisabled}
-        endContent={endContent()}
-        validate={combinedValidate}
-        className={cn(defaultContainerClasses, containerClasses)}
-        classNames={borderedClassNames}
-        {...props}
-      />
+      <div className={cn(defaultContainerClasses, containerClasses)}>
+        <InputRoot
+          ref={ref}
+          variant={variant}
+          color={color}
+          size={size}
+          radius={radius}
+          labelPlacement={labelPlacement}
+          fullWidth={fullWidth}
+          isClearable={isClearable}
+          isRequired={isRequired}
+          isReadOnly={isReadOnly}
+          isDisabled={isDisabled}
+          validate={combinedValidate}
+          classNames={borderedClassNames}
+          endContent={endContent()}
+          type={inputType}
+          {...props}
+        />
+      </div>
     );
   },
 );
