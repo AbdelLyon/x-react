@@ -10,7 +10,16 @@ import { useQueryClient as Tt, onlineManager as Nt, QueryClient as fn, QueryClie
 import * as P from "react";
 import { useState as hn } from "react";
 import { NextUIProvider as gn } from "@nextui-org/react";
-const zr = ({ children: e, ...t }) => /* @__PURE__ */ fe.jsx(cn, { ...t, defaultTheme: "light", attribute: "class", children: e });
+const zr = ({ children: e, ...t }) => /* @__PURE__ */ fe.jsx(
+  cn,
+  {
+    defaultTheme: "light",
+    attribute: "class",
+    disableTransitionOnChange: !0,
+    ...t,
+    children: e
+  }
+);
 var h = {
   context: void 0,
   registry: void 0,
@@ -2014,7 +2023,7 @@ var ps = (e, t = !1) => {
     const t = Ft(() => {
       const n = this, [r] = d(this, Z), [s] = d(this, J), [i] = d(this, ee), [o] = d(this, te), [l] = d(this, Y);
       let a;
-      return d(this, ne) ? a = d(this, ne) : (a = Ut(() => import("./HO4MOOFI-m7wuSmTq.js")), p(this, ne, a)), un(d(this, Ce), d(this, W)), _t(a, Bt({
+      return d(this, ne) ? a = d(this, ne) : (a = Ut(() => import("./HO4MOOFI-AbAWO2wF.js")), p(this, ne, a)), un(d(this, Ce), d(this, W)), _t(a, Bt({
         get queryFlavor() {
           return d(n, Oe);
         },
@@ -2108,7 +2117,7 @@ var ps = (e, t = !1) => {
     const t = Ft(() => {
       const n = this, [r] = d(this, ie), [s] = d(this, oe), [i] = d(this, le), [o] = d(this, ae), [l] = d(this, re), [a] = d(this, ue);
       let u;
-      return d(this, ce) ? u = d(this, ce) : (u = Ut(() => import("./HUY7CZI3-CmLCVVms.js")), p(this, ce, u)), un(d(this, Ie), d(this, se)), _t(u, Bt({
+      return d(this, ce) ? u = d(this, ce) : (u = Ut(() => import("./HUY7CZI3-BXrf5uB2.js")), p(this, ce, u)), un(d(this, Ie), d(this, se)), _t(u, Bt({
         get queryFlavor() {
           return d(n, Pe);
         },

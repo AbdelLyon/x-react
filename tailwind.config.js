@@ -6,21 +6,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
-  theme: {
-    extend: {
-      transitionProperty: {
-        none: "none",
-      },
-    },
-  },
   plugins: [
     nextui({
       themes: {
         light: {
           colors: {
-            default: {
-              100: "#ffffff",
-            },
             danger: {
               DEFAULT: "#df3b50",
               foreground: "#ffffff",
@@ -59,8 +49,6 @@ module.exports = {
               DEFAULT: "#FF0000",
               foreground: "#ffffff",
             },
-            border: "#2f3233",
-            muted: "#777777",
             content1: {
               DEFAULT: "#222426",
               foreground: "#000000",
