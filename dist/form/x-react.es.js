@@ -189,7 +189,7 @@ const K = w(
         return /* @__PURE__ */ r.jsx(V, { className: "pointer-events-none opacity-60", size: 20 });
     }, R = "w-full", v = {
       inputWrapper: n({
-        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-white dark:bg-background group-data-[focus=true]:bg-content1": l === "bordered"
+        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-white h-10 dark:bg-background group-data-[focus=true]:bg-content1": l === "bordered"
       })
     };
     return /* @__PURE__ */ r.jsx("div", { className: n(R, f), children: /* @__PURE__ */ r.jsx(
