@@ -1,19 +1,19 @@
 /* empty css                */
-import { j as e } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as B } from "react";
-import { Button as p } from "@nextui-org/react";
-import { cn as s } from "../utils/x-react.es.js";
-const w = B(
+import { j as r } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as w } from "react";
+import { Button as j } from "@nextui-org/react";
+import { cn as n } from "../utils/x-react.es.js";
+const E = w(
   ({
-    fullWidth: x = !1,
-    isLoading: j = !1,
+    fullWidth: p = !1,
+    isLoading: d = !1,
     isDisabled: b = !1,
-    startContent: n,
-    endContent: a,
+    startContent: o,
+    endContent: s,
     className: u = "",
-    LinkComponent: t,
-    variant: r = "solid",
-    customStyles: o = {
+    LinkComponent: a,
+    variant: t = "solid",
+    customStyles: e = {
       base: "",
       beforeContent: "",
       afterContent: "",
@@ -24,46 +24,44 @@ const w = B(
     target: c,
     rel: h,
     ...f
-  }, m) => {
-    const i = s(
-      "transition-all font-normal dark:bg-opacity-90",
-      x && "w-full",
-      j && "opacity-50 cursor-not-allowed",
-      r === "bordered" || r === "flat" && "border-1",
-      o.base,
+  }, i) => {
+    const m = n(
+      "transition-all font-normal dark:bg-opacity-90 border-1",
+      p && "w-full",
+      d && "opacity-50 cursor-not-allowed",
+      e.base,
       u
-    ), d = () => /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
-      n && /* @__PURE__ */ e.jsx("span", { className: s("mr-2", o.beforeContent), children: n }),
-      /* @__PURE__ */ e.jsx("span", { className: o.content, children: N }),
-      a && /* @__PURE__ */ e.jsx("span", { className: s("ml-2", o.afterContent), children: a })
+    ), x = () => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
+      o && /* @__PURE__ */ r.jsx("span", { className: n("mr-2", e.beforeContent), children: o }),
+      /* @__PURE__ */ r.jsx("span", { className: e.content, children: N }),
+      s && /* @__PURE__ */ r.jsx("span", { className: n("ml-2", e.afterContent), children: s })
     ] });
-    return l && t ? /* @__PURE__ */ e.jsx(
-      p,
+    return l && a ? /* @__PURE__ */ r.jsx(
+      j,
       {
-        ref: m,
+        ref: i,
         ...f,
-        as: t,
-        variant: r,
-        className: i,
+        as: a,
+        variant: t,
+        className: m,
         href: l,
         rel: c === "_blank" ? "noopener noreferrer" : h,
         target: c,
-        children: /* @__PURE__ */ e.jsx(d, {})
+        children: /* @__PURE__ */ r.jsx(x, {})
       }
-    ) : /* @__PURE__ */ e.jsx(
-      p,
+    ) : /* @__PURE__ */ r.jsx(
+      j,
       {
-        ref: m,
+        ref: i,
         ...f,
-        variant: r,
-        className: i,
+        variant: t,
+        className: m,
         isDisabled: b,
-        children: /* @__PURE__ */ e.jsx(d, {})
+        children: /* @__PURE__ */ r.jsx(x, {})
       }
     );
   }
 );
-w.displayName = "Button";
 export {
-  w as Button
+  E as Button
 };
