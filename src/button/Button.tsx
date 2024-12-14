@@ -66,7 +66,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       "transition-all font-normal dark:bg-opacity-90",
       fullWidth && "w-full",
       isLoading && "opacity-50 cursor-not-allowed",
-      variant === "bordered" && "border-1",
+      variant === "bordered" || (variant === "flat" && "border-1"),
       customStyles.base,
       className,
     );
