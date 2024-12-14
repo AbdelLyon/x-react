@@ -49,7 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant === "bordered" &&
         "bg-default-100 text-primary border-primary/70 ",
       variant === "light" &&
-        "bg-background border-none hover:bg-transparent hover:underline",
+        "bg-background border-none data-[hover=true]:bg-transparent data-[hover=true]:underline",
       fullWidth && "w-full",
       isLoading && "opacity-50 cursor-not-allowed",
       customStyles.base,

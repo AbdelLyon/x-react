@@ -7,10 +7,10 @@ const k = N(
   ({
     fullWidth: p = !1,
     isLoading: x = !1,
-    isDisabled: j = !1,
-    startContent: s,
-    endContent: t,
-    className: u = "",
+    isDisabled: u = !1,
+    startContent: t,
+    endContent: s,
+    className: j = "",
     LinkComponent: a,
     variant: r = "solid",
     customStyles: o = {
@@ -29,15 +29,15 @@ const k = N(
       "font-normal border-1 border-default rounded-md",
       r === "solid" && "bg-primary text-white",
       r === "bordered" && "bg-default-100 text-primary border-primary/70 ",
-      r === "light" && "bg-background border-none hover:bg-transparent hover:underline",
+      r === "light" && "bg-background border-none data-[hover=true]:bg-transparent data-[hover=true]:underline",
       p && "w-full",
       x && "opacity-50 cursor-not-allowed",
       o.base,
-      u
+      j
     ), c = () => /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
-      s && /* @__PURE__ */ e.jsx("span", { className: n("mr-2", o.beforeContent), children: s }),
+      t && /* @__PURE__ */ e.jsx("span", { className: n("mr-2", o.beforeContent), children: t }),
       /* @__PURE__ */ e.jsx("span", { className: o.content, children: h }),
-      t && /* @__PURE__ */ e.jsx("span", { className: n("ml-2", o.afterContent), children: t })
+      s && /* @__PURE__ */ e.jsx("span", { className: n("ml-2", o.afterContent), children: s })
     ] });
     return l && a ? /* @__PURE__ */ e.jsx(
       i,
@@ -59,7 +59,7 @@ const k = N(
         ...m,
         variant: r,
         className: b,
-        isDisabled: j,
+        isDisabled: u,
         children: /* @__PURE__ */ e.jsx(c, {})
       }
     );
