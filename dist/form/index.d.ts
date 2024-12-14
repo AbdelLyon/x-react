@@ -1,2 +1,2 @@
 export { Radio, RadioGroup } from './Radio';
-export type { Checkbox, CheckboxGroup } from './Checkbox';
+export { Checkbox, CheckboxGroup } from './Checkbox';
