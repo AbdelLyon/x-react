@@ -3,6 +3,7 @@ interface CustomThumbConfig {
     baseClassName?: string;
     thumbClassName?: string;
     renderCustomThumb?: (props: SliderRenderThumbProps) => React.ReactNode;
+    position?: "left" | "right" | "both";
 }
 interface GenericSliderProps extends SliderProps {
     customThumb?: CustomThumbConfig;

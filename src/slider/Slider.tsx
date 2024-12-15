@@ -4,11 +4,13 @@ import {
   SliderProps,
   SliderRenderThumbProps,
 } from "@nextui-org/react";
+import { cn } from "@/utils";
 
 interface CustomThumbConfig {
   baseClassName?: string;
   thumbClassName?: string;
   renderCustomThumb?: (props: SliderRenderThumbProps) => React.ReactNode;
+  position?: "left" | "right" | "both";
 }
 
 interface GenericSliderProps extends SliderProps {
@@ -20,7 +22,8 @@ export const Slider = forwardRef<HTMLDivElement, GenericSliderProps>(
     const defaultThumb = (thumbProps: SliderRenderThumbProps) => (
       <div
         {...thumbProps}
-        className={`
+        className={cn(
+          `
         group 
         p-1 
         top-1/2 
@@ -32,23 +35,26 @@ export const Slider = forwardRef<HTMLDivElement, GenericSliderProps>(
         rounded-full 
         cursor-grab 
         data-[dragging=true]:cursor-grabbing
-        ${customThumb?.baseClassName || ""}
-      `}
+        `,
+          customThumb?.baseClassName,
+        )}
       >
         <span
-          className={`
+          className={cn(
+            `
           transition-transform 
           bg-gradient-to-br 
           shadow-small 
-          from-primay
+          from-primary
           to-black
           rounded-full 
           w-5 
           h-5 
           block 
           group-data-[dragging=true]:scale-80
-          ${customThumb?.thumbClassName || ""}
-        `}
+          `,
+            customThumb?.thumbClassName,
+          )}
         />
       </div>
     );
@@ -56,14 +62,27 @@ export const Slider = forwardRef<HTMLDivElement, GenericSliderProps>(
     const thumbRenderer =
       customThumb?.renderCustomThumb || renderThumb || defaultThumb;
 
+    const handleRenderThumb = (thumbProps: SliderRenderThumbProps) => {
+      // Support for multiple thumbs
+      if (customThumb?.position === "both") {
+        return (
+          <>
+            {thumbRenderer({ ...thumbProps, "data-position": "left" })}
+            {thumbRenderer({ ...thumbProps, "data-position": "right" })}
+          </>
+        );
+      }
+      return thumbRenderer(thumbProps);
+    };
+
     return (
       <SliderRoot
         ref={ref}
-        renderThumb={thumbRenderer}
+        renderThumb={handleRenderThumb}
         classNames={{
           base: "max-w-md gap-3",
-          track: "border-s-secondary-100",
-          filler: "bg-gradient-to-r from-primary to-black",
+          track: cn("border-s-secondary-100", "left-0"),
+          filler: cn("bg-gradient-to-r from-primary to-black", "left-0"),
           ...classNames,
         }}
         {...props}
