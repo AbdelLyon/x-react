@@ -14,7 +14,7 @@ export interface DropdownSectionConfig {
     showDivider?: boolean;
     items: DropdownItemConfig[];
 }
-interface Props extends Omit<DropdownProps, "trigger"> {
+interface Props extends Omit<DropdownProps, "trigger" | "children"> {
     trigger: React.ReactNode;
     sections: DropdownSectionConfig[];
     dropdownMenuProps?: DropdownMenuProps;
