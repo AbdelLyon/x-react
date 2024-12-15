@@ -61,17 +61,6 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
   ) => {
     const [inputType, setInputType] = useState(type || "text");
 
-    const inputWrapper = cn({
-      inputWrapper: cn(
-        "border-1 bg-white dark:bg-background",
-        {
-          "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-11 group-data-[focus=true]:bg-content1":
-            variant === "bordered",
-        },
-        props.classNames?.inputWrapper,
-      ),
-    });
-
     const combinedValidate = (value: string) => {
       if (customValidation) {
         const customResult = customValidation(value);
@@ -132,8 +121,15 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
           isDisabled={isDisabled}
           validate={combinedValidate}
           classNames={{
+            inputWrapper: cn(
+              "border-1 bg-white dark:bg-background",
+              {
+                "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-11 group-data-[focus=true]:bg-content1":
+                  variant === "bordered",
+              },
+              props.classNames?.inputWrapper,
+            ),
             ...props.classNames,
-            inputWrapper,
           }}
           endContent={endContent()}
           type={inputType}
