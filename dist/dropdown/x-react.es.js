@@ -1,49 +1,53 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as b } from "react";
-import { Dropdown as c, DropdownTrigger as h, DropdownMenu as D, DropdownSection as f, DropdownItem as u } from "@nextui-org/react";
-const x = b(
-  ({ trigger: n, sections: d, dropdownMenuProps: s, classNames: a, ...i }, p) => /* @__PURE__ */ r.jsxs(
-    c,
-    {
-      ref: p,
-      showArrow: !0,
-      classNames: {
-        base: "before:bg-default-200",
-        content: "p-0 border border-divider bg-background",
-        ...a
-      },
-      ...i,
-      children: [
-        /* @__PURE__ */ r.jsx(h, { children: n }),
-        /* @__PURE__ */ r.jsx(D, { className: "p-3", ...s, children: d.map((o) => /* @__PURE__ */ r.jsx(
-          f,
-          {
-            showDivider: o.showDivider,
-            "aria-label": o.label,
-            children: o.items.map((e) => {
-              const { key: t, label: l, ...m } = e;
-              return /* @__PURE__ */ r.jsx(
-                u,
-                {
-                  href: e.href,
-                  onPress: (w) => {
-                    w.continuePropagation();
+import { j as o } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as h } from "react";
+import { Dropdown as D, DropdownTrigger as f, DropdownMenu as x, DropdownSection as g, DropdownItem as j } from "@nextui-org/react";
+const u = h(
+  ({ trigger: s, sections: d, dropdownMenuProps: a, onItemPress: e, classNames: i, ...p }, l) => {
+    const m = (r) => {
+      e && e(r);
+    };
+    return /* @__PURE__ */ o.jsxs(
+      D,
+      {
+        ref: l,
+        showArrow: !0,
+        classNames: {
+          base: "before:bg-default-200",
+          content: "p-0 border border-divider bg-background",
+          ...i
+        },
+        ...p,
+        children: [
+          /* @__PURE__ */ o.jsx(f, { children: s }),
+          /* @__PURE__ */ o.jsx(x, { className: "p-3", ...a, children: d.map((r) => /* @__PURE__ */ o.jsx(
+            g,
+            {
+              showDivider: r.showDivider,
+              "aria-label": r.label,
+              children: r.items.map((n) => {
+                const { key: t, label: w, href: c, ...b } = n;
+                return console.log(c), /* @__PURE__ */ o.jsx(
+                  j,
+                  {
+                    onPress: () => {
+                      m(n);
+                    },
+                    ...b,
+                    children: w
                   },
-                  ...m,
-                  children: l
-                },
-                t
-              );
-            })
-          },
-          o.key
-        )) })
-      ]
-    }
-  )
+                  t
+                );
+              })
+            },
+            r.key
+          )) })
+        ]
+      }
+    );
+  }
 );
-x.displayName = "Dropdown";
+u.displayName = "Dropdown";
 export {
-  x as Dropdown
+  u as Dropdown
 };
