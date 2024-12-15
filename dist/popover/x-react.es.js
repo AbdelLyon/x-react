@@ -1,9 +1,10 @@
 /* empty css                */
 import { j as r } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as c } from "react";
-import { Popover as p, PopoverTrigger as l, PopoverContent as v } from "@nextui-org/react";
-import { B as y } from "../Button-CFcBPnF9.js";
-const d = c(
+import { Popover as l, PopoverTrigger as p, PopoverContent as v } from "@nextui-org/react";
+import { B as f } from "../Button-CFcBPnF9.js";
+import { cn as u } from "../utils/x-react.es.js";
+const m = c(
   ({
     trigger: e,
     contentClassName: i,
@@ -31,28 +32,28 @@ const d = c(
     offset: n = 10,
     placement: s = "bottom",
     ...o
-  }, m) => /* @__PURE__ */ r.jsxs(
-    p,
+  }, d) => /* @__PURE__ */ r.jsxs(
+    l,
     {
-      ref: m,
+      ref: d,
       motionProps: t,
       offset: n,
       placement: s,
       ...o,
       children: [
-        /* @__PURE__ */ r.jsx(l, { children: e }),
+        /* @__PURE__ */ r.jsx(p, { children: e }),
         /* @__PURE__ */ r.jsx(v, { className: i, ...a, children: o.children })
       ]
     }
   )
 );
-d.displayName = "Popover";
-const u = c(({ trigger: e, links: i, onPress: a, ...t }, n) => {
+m.displayName = "Popover";
+const y = c(({ trigger: e, links: i, onPress: a, ...t }, n) => {
   const s = (o) => {
     a && a(o);
   };
   return /* @__PURE__ */ r.jsx(
-    d,
+    m,
     {
       ref: n,
       trigger: e,
@@ -61,11 +62,14 @@ const u = c(({ trigger: e, links: i, onPress: a, ...t }, n) => {
       },
       ...t,
       children: i.map((o) => /* @__PURE__ */ r.jsx(
-        y,
+        f,
         {
           onPress: () => s(o),
           startContent: o.icon,
-          className: t.classNameLinks,
+          className: u(
+            "w-full flex justify-start gap-2",
+            t.classNameLinks
+          ),
           variant: t.variant,
           children: o.label
         },
@@ -74,8 +78,8 @@ const u = c(({ trigger: e, links: i, onPress: a, ...t }, n) => {
     }
   );
 });
-u.displayName = "PopoverNavigation";
+y.displayName = "PopoverNavigation";
 export {
-  d as Popover,
-  u as PopoverNavigation
+  m as Popover,
+  y as PopoverNavigation
 };

@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { Button } from "@/button";
 import { Popover, PropsPopover } from "./Popover";
 import { VariantProps } from "@nextui-org/react";
+import { cn } from "@/utils";
 
 interface Link {
   label: string;
@@ -39,7 +40,10 @@ export const PopoverNavigation = forwardRef<
           key={link.label}
           onPress={() => handlePress(link)}
           startContent={link.icon}
-          className={props.classNameLinks}
+          className={cn(
+            "w-full flex justify-start gap-2",
+            props.classNameLinks,
+          )}
           variant={props.variant}
         >
           {link.label}
