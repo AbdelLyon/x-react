@@ -1,62 +1,20 @@
 /* empty css                */
-import { j as e } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as u } from "react";
-import { Spinner as d } from "@nextui-org/react";
-const g = u(
-  ({
-    label: r,
-    labelPosition: s = "right",
-    labelColor: t = "foreground",
-    color: n = "default",
-    size: o = "md",
-    containerClassName: i = "",
-    labelClassName: f = "",
-    disableAnimation: a,
-    strokeWidth: c = 4,
-    ...m
-  }, x) => {
-    const l = () => {
-      switch (s) {
-        case "top":
-          return "flex-col";
-        case "bottom":
-          return "flex-col-reverse";
-        case "left":
-          return "flex-row-reverse";
-        case "right":
-        default:
-          return "flex-row";
-      }
-    }, p = () => t === "foreground" ? "text-foreground" : `text-${t}`;
-    return /* @__PURE__ */ e.jsxs(
-      "div",
-      {
-        ref: x,
-        className: `flex items-center justify-center gap-2 ${l()} ${i}`,
-        children: [
-          /* @__PURE__ */ e.jsx(
-            d,
-            {
-              color: n,
-              size: o,
-              strokeWidth: c,
-              disableAnimation: a,
-              ...m
-            }
-          ),
-          r && /* @__PURE__ */ e.jsx(
-            "span",
-            {
-              className: `font-medium text-sm ${p()} ${f}`,
-              children: r
-            }
-          )
-        ]
-      }
-    );
-  }
+import { j as i } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as m } from "react";
+import { Spinner as t } from "@nextui-org/react";
+const s = m(
+  ({ color: r = "default", size: n = "md", strokeWidth: o = 4, ...p }, e) => /* @__PURE__ */ i.jsx(
+    t,
+    {
+      ref: e,
+      color: r,
+      size: n,
+      strokeWidth: o,
+      ...p
+    }
+  )
 );
-g.displayName = "Spinner";
+s.displayName = "Spinner";
 export {
-  g as Spinner
+  s as Spinner
 };
