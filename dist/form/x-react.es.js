@@ -163,18 +163,18 @@ const A = i(
     // Passthrough props
     validate: N,
     type: w,
-    ...j
-  }, m) => {
+    ...s
+  }, y) => {
     var I;
-    const [s, G] = v(w || "text"), k = (y) => {
+    const [h, G] = v(w || "text"), k = (m) => {
       if (d) {
-        const h = d(y);
-        if (typeof h == "string")
-          return h;
-        if (h === !1)
+        const j = d(m);
+        if (typeof j == "string")
+          return j;
+        if (j === !1)
           return "Validation failed";
       }
-      return N ? N(y) : !0;
+      return N ? N(m) : !0;
     }, R = () => {
       if (w === "password")
         return /* @__PURE__ */ o.jsx(
@@ -182,8 +182,8 @@ const A = i(
           {
             className: "focus:outline-none opacity-60",
             type: "button",
-            onClick: () => G(s === "password" ? "text" : "password"),
-            children: s === "password" ? /* @__PURE__ */ o.jsx(L, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ o.jsx(W, { className: "pointer-events-none", size: 20 })
+            onClick: () => G(h === "password" ? "text" : "password"),
+            children: h === "password" ? /* @__PURE__ */ o.jsx(L, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ o.jsx(W, { className: "pointer-events-none", size: 20 })
           }
         );
       if (w === "email")
@@ -192,7 +192,7 @@ const A = i(
     return /* @__PURE__ */ o.jsx("div", { className: r("w-full", f), children: /* @__PURE__ */ o.jsx(
       T,
       {
-        ref: m,
+        ref: y,
         variant: l,
         color: e,
         size: a,
@@ -205,17 +205,18 @@ const A = i(
         isDisabled: n,
         validate: k,
         classNames: {
+          ...s.classNames,
           inputWrapper: r(
             "border-1 bg-white dark:bg-background",
             {
               "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-11 group-data-[focus=true]:bg-content1": l === "bordered"
             },
-            (I = j.classNames) == null ? void 0 : I.inputWrapper
+            (I = s.classNames) == null ? void 0 : I.inputWrapper
           )
         },
         endContent: R(),
-        type: s,
-        ...j
+        type: h,
+        ...s
       }
     ) });
   }
