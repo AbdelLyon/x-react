@@ -7,17 +7,17 @@ import {
   DropdownItem,
   DropdownProps,
   DropdownMenuProps,
-  DropdownItemProps,
 } from "@nextui-org/react";
 
 export interface DropdownSectionConfig {
-  key?: string;
+  key: React.Key;
   label?: string;
   showDivider?: boolean;
   items: DropdownItemConfig[];
 }
 
-export interface DropdownItemConfig extends DropdownItemProps {
+export interface DropdownItemConfig
+  extends Omit<DropdownSectionConfig, "children"> {
   label: string;
   key: string;
   endContent?: React.ReactNode;
