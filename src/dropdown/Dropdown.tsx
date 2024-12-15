@@ -13,6 +13,7 @@ import {
 export interface DropdownItemConfig {
   key: string;
   label: string;
+  href?: string;
   isReadOnly?: boolean;
   className?: string;
   startContent?: React.ReactNode;
@@ -31,7 +32,7 @@ interface Props extends Omit<DropdownProps, "trigger" | "children"> {
   trigger: React.ReactNode;
   sections: DropdownSectionConfig[];
   dropdownMenuProps?: DropdownMenuProps;
-  onItemPress?: (key: string) => void;
+  onItemPress?: (item: DropdownItemConfig) => void;
 }
 
 export const Dropdown = forwardRef<HTMLDivElement, Props>(
@@ -39,9 +40,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
     { trigger, sections, dropdownMenuProps, onItemPress, classNames, ...props },
     ref,
   ) => {
-    const handleItemPress = (key: string) => {
+    const handleItemPress = (item: DropdownItemConfig) => {
       if (onItemPress) {
-        onItemPress(key);
+        onItemPress(item);
       }
     };
 
@@ -69,7 +70,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
                 return (
                   <DropdownItem
                     key={key}
-                    onPress={() => handleItemPress(key)}
+                    onPress={() => handleItemPress(item)}
                     {...remainingProps}
                   >
                     {label}

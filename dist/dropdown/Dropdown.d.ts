@@ -2,6 +2,7 @@ import { DropdownProps, DropdownMenuProps } from '@nextui-org/react';
 export interface DropdownItemConfig {
     key: string;
     label: string;
+    href?: string;
     isReadOnly?: boolean;
     className?: string;
     startContent?: React.ReactNode;
@@ -18,7 +19,7 @@ interface Props extends Omit<DropdownProps, "trigger" | "children"> {
     trigger: React.ReactNode;
     sections: DropdownSectionConfig[];
     dropdownMenuProps?: DropdownMenuProps;
-    onItemPress?: (key: string) => void;
+    onItemPress?: (item: DropdownItemConfig) => void;
 }
 export declare const Dropdown: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};

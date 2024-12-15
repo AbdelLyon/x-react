@@ -25,8 +25,8 @@ const u = c(
             {
               showDivider: r.showDivider,
               "aria-label": r.label,
-              children: r.items.map((t) => {
-                const { key: s, label: w, ...b } = t;
+              children: r.items.map((s) => {
+                const { key: t, label: w, ...b } = s;
                 return /* @__PURE__ */ o.jsx(
                   j,
                   {
@@ -34,7 +34,7 @@ const u = c(
                     ...b,
                     children: w
                   },
-                  s
+                  t
                 );
               })
             },
