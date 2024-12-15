@@ -7,7 +7,7 @@ import {
   PopoverContentProps,
 } from "@nextui-org/react";
 
-interface Props extends Omit<PopoverProps, "content"> {
+interface Props extends Omit<PopoverProps, "content" | "children"> {
   trigger: React.ReactNode;
   content: React.ReactNode;
   contentClassName?: string;
