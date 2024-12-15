@@ -121,6 +121,7 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
           isDisabled={isDisabled}
           validate={combinedValidate}
           classNames={{
+            ...props.classNames,
             inputWrapper: cn(
               "border-1 bg-white dark:bg-background",
               {
@@ -129,7 +130,6 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
               },
               props.classNames?.inputWrapper,
             ),
-            ...props.classNames,
           }}
           endContent={endContent()}
           type={inputType}

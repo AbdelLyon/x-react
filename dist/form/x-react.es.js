@@ -205,14 +205,14 @@ const A = i(
         isDisabled: n,
         validate: k,
         classNames: {
+          ...s.classNames,
           inputWrapper: r(
             "border-1 bg-white dark:bg-background",
             {
               "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-11 group-data-[focus=true]:bg-content1": l === "bordered"
             },
             (I = s.classNames) == null ? void 0 : I.inputWrapper
-          ),
-          ...s.classNames
+          )
         },
         endContent: R(),
         type: h,
