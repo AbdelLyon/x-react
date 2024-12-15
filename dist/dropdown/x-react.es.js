@@ -1,54 +1,49 @@
 /* empty css                */
-import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as D } from "react";
-import { Dropdown as h, DropdownTrigger as u, DropdownMenu as f, DropdownSection as x, DropdownItem as g } from "@nextui-org/react";
-const j = D(
-  ({ trigger: d, sections: s, dropdownMenuProps: a, onItemPress: e, classNames: i, ...p }, t) => {
-    const l = (r) => {
-      e && e(r);
-    };
-    return /* @__PURE__ */ o.jsxs(
-      h,
-      {
-        ref: t,
-        showArrow: !0,
-        classNames: {
-          base: "before:bg-default-200",
-          content: "p-0 border border-divider bg-background",
-          ...i
-        },
-        ...p,
-        children: [
-          /* @__PURE__ */ o.jsx(u, { children: d }),
-          /* @__PURE__ */ o.jsx(f, { className: "p-3", ...a, children: s.map((r) => /* @__PURE__ */ o.jsx(
-            x,
-            {
-              showDivider: r.showDivider,
-              "aria-label": r.label,
-              children: r.items.map((n) => {
-                const { key: m, label: w, ...b } = n;
-                return /* @__PURE__ */ o.jsx(
-                  g,
-                  {
-                    itemType: "button",
-                    onPress: (c) => {
-                      l(n), c.continuePropagation();
-                    },
-                    ...b,
-                    children: w
+import { j as r } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as b } from "react";
+import { Dropdown as c, DropdownTrigger as h, DropdownMenu as D, DropdownSection as f, DropdownItem as u } from "@nextui-org/react";
+const x = b(
+  ({ trigger: n, sections: d, dropdownMenuProps: s, classNames: a, ...i }, p) => /* @__PURE__ */ r.jsxs(
+    c,
+    {
+      ref: p,
+      showArrow: !0,
+      classNames: {
+        base: "before:bg-default-200",
+        content: "p-0 border border-divider bg-background",
+        ...a
+      },
+      ...i,
+      children: [
+        /* @__PURE__ */ r.jsx(h, { children: n }),
+        /* @__PURE__ */ r.jsx(D, { className: "p-3", ...s, children: d.map((o) => /* @__PURE__ */ r.jsx(
+          f,
+          {
+            showDivider: o.showDivider,
+            "aria-label": o.label,
+            children: o.items.map((e) => {
+              const { key: t, label: l, ...m } = e;
+              return /* @__PURE__ */ r.jsx(
+                u,
+                {
+                  href: e.href,
+                  onPress: (w) => {
+                    w.continuePropagation();
                   },
-                  m
-                );
-              })
-            },
-            r.key
-          )) })
-        ]
-      }
-    );
-  }
+                  ...m,
+                  children: l
+                },
+                t
+              );
+            })
+          },
+          o.key
+        )) })
+      ]
+    }
+  )
 );
-j.displayName = "Dropdown";
+x.displayName = "Dropdown";
 export {
-  j as Dropdown
+  x as Dropdown
 };

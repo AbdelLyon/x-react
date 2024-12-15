@@ -36,15 +36,12 @@ interface Props extends Omit<DropdownProps, "trigger" | "children"> {
 }
 
 export const Dropdown = forwardRef<HTMLDivElement, Props>(
-  (
-    { trigger, sections, dropdownMenuProps, onItemPress, classNames, ...props },
-    ref,
-  ) => {
-    const handleItemPress = (item: DropdownItemConfig) => {
-      if (onItemPress) {
-        onItemPress(item);
-      }
-    };
+  ({ trigger, sections, dropdownMenuProps, classNames, ...props }, ref) => {
+    // const handleItemPress = (item: DropdownItemConfig) => {
+    //   if (onItemPress) {
+    //     onItemPress(item);
+    //   }
+    // };
 
     return (
       <DropdownRoot
@@ -70,9 +67,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
                 return (
                   <DropdownItem
                     key={key}
-                    itemType="button"
+                    href={item.href}
                     onPress={(e) => {
-                      handleItemPress(item);
+                      // handleItemPress(item);
                       e.continuePropagation();
                     }}
                     {...remainingProps}
