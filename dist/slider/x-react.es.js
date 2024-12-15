@@ -1,15 +1,15 @@
 /* empty css                */
-import { j as e } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as f } from "react";
-import { Slider as p } from "@nextui-org/react";
-import { cn as d } from "../utils/x-react.es.js";
-const x = f(
-  ({ customThumb: r, classNames: l, renderThumb: n, ...o }, t) => {
-    const s = (a) => /* @__PURE__ */ e.jsx(
+import { j as i } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as p } from "react";
+import { Slider as x } from "@nextui-org/react";
+import { cn as n } from "../utils/x-react.es.js";
+const k = p(
+  ({ customThumb: r, classNames: d, renderThumb: a, ...t }, g) => {
+    const f = (e) => /* @__PURE__ */ i.jsx(
       "div",
       {
-        ...a,
-        className: d(
+        ...e,
+        className: n(
           `
         group 
         p-1 
@@ -25,10 +25,10 @@ const x = f(
         `,
           r == null ? void 0 : r.baseClassName
         ),
-        children: /* @__PURE__ */ e.jsx(
+        children: /* @__PURE__ */ i.jsx(
           "span",
           {
-            className: d(
+            className: n(
               `
           transition-transform 
           bg-gradient-to-br 
@@ -46,27 +46,30 @@ const x = f(
           }
         )
       }
-    ), i = (r == null ? void 0 : r.renderCustomThumb) || n || s, g = (a) => (r == null ? void 0 : r.position) === "both" ? /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
-      i({ ...a, "data-position": "left" }),
-      i({ ...a, "data-position": "right" })
-    ] }) : i(a);
-    return /* @__PURE__ */ e.jsx(
-      p,
+    ), o = (r == null ? void 0 : r.renderCustomThumb) || a || f, l = (e) => (r == null ? void 0 : r.position) === "both" ? /* @__PURE__ */ i.jsxs(i.Fragment, { children: [
+      o({ ...e, "data-position": "left" }),
+      o({ ...e, "data-position": "right" })
+    ] }) : o(e);
+    return /* @__PURE__ */ i.jsx(
+      x,
       {
-        ref: t,
-        renderThumb: g,
+        ref: g,
+        renderThumb: l,
         classNames: {
-          base: "max-w-md gap-3",
-          track: d("border-s-secondary-100", "left-0"),
-          filler: d("bg-gradient-to-r from-primary to-black", "left-0"),
-          ...l
+          base: n("max-w-md gap-3", d == null ? void 0 : d.base),
+          track: n("border-s-secondary-100", d == null ? void 0 : d.track),
+          filler: n(
+            "bg-gradient-to-r from-primary to-black",
+            d == null ? void 0 : d.filler
+          ),
+          ...d
         },
-        ...o
+        ...t
       }
     );
   }
 );
-x.displayName = "Slider";
+k.displayName = "Slider";
 export {
-  x as Slider
+  k as Slider
 };

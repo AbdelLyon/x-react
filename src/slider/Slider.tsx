@@ -80,9 +80,12 @@ export const Slider = forwardRef<HTMLDivElement, GenericSliderProps>(
         ref={ref}
         renderThumb={handleRenderThumb}
         classNames={{
-          base: "max-w-md gap-3",
-          track: cn("border-s-secondary-100", "left-0"),
-          filler: cn("bg-gradient-to-r from-primary to-black", "left-0"),
+          base: cn("max-w-md gap-3", classNames?.base),
+          track: cn("border-s-secondary-100", classNames?.track),
+          filler: cn(
+            "bg-gradient-to-r from-primary to-black",
+            classNames?.filler,
+          ),
           ...classNames,
         }}
         {...props}
