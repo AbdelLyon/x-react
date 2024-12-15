@@ -1,15 +1,15 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as c } from "react";
-import { Popover as l, PopoverTrigger as p, PopoverContent as v } from "@nextui-org/react";
+import { j as t } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as p } from "react";
+import { Popover as d, PopoverTrigger as l, PopoverContent as v } from "@nextui-org/react";
 import { B as f } from "../Button-CFcBPnF9.js";
 import { cn as u } from "../utils/x-react.es.js";
-const m = c(
+const m = p(
   ({
-    trigger: e,
-    contentClassName: i,
-    popoverContentProps: a,
-    motionProps: t = {
+    trigger: i,
+    contentClassName: n,
+    popoverContentProps: r,
+    motionProps: s = {
       variants: {
         enter: {
           y: 0,
@@ -29,48 +29,45 @@ const m = c(
         }
       }
     },
-    offset: n = 10,
-    placement: s = "bottom",
-    ...o
-  }, d) => /* @__PURE__ */ r.jsxs(
-    l,
+    offset: a = 10,
+    placement: c = "bottom",
+    ...e
+  }, o) => /* @__PURE__ */ t.jsxs(
+    d,
     {
-      ref: d,
-      motionProps: t,
-      offset: n,
-      placement: s,
-      ...o,
+      ref: o,
+      motionProps: s,
+      offset: a,
+      placement: c,
+      ...e,
       children: [
-        /* @__PURE__ */ r.jsx(p, { children: e }),
-        /* @__PURE__ */ r.jsx(v, { className: i, ...a, children: o.children })
+        /* @__PURE__ */ t.jsx(l, { children: i }),
+        /* @__PURE__ */ t.jsx(v, { className: n, ...r, children: e.children })
       ]
     }
   )
 );
 m.displayName = "Popover";
-const y = c(({ trigger: e, links: i, onPress: a, ...t }, n) => {
-  const s = (o) => {
-    a && a(o);
+const y = p(({ trigger: i, links: n, onPress: r, classNameLinks: s, ...a }, c) => {
+  const e = (o) => {
+    r && r(o);
   };
-  return /* @__PURE__ */ r.jsx(
+  return /* @__PURE__ */ t.jsx(
     m,
     {
-      ref: n,
-      trigger: e,
+      ref: c,
+      trigger: i,
       classNames: {
         content: "w-40 bg-white dark:bg-content1 border border-default"
       },
-      ...t,
-      children: i.map((o) => /* @__PURE__ */ r.jsx(
+      ...a,
+      children: n.map((o) => /* @__PURE__ */ t.jsx(
         f,
         {
-          onPress: () => s(o),
+          onPress: () => e(o),
           startContent: o.icon,
-          className: u(
-            "w-full flex justify-start gap-2",
-            t.classNameLinks
-          ),
-          variant: t.variant,
+          className: u("w-full flex justify-start gap-2", s),
+          variant: a.variant,
           children: o.label
         },
         o.label

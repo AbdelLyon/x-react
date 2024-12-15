@@ -19,7 +19,7 @@ interface PopoverNavigationProps extends Omit<PropsPopover, "children"> {
 export const PopoverNavigation = forwardRef<
   HTMLDivElement,
   PopoverNavigationProps
->(({ trigger, links, onPress, ...props }, ref) => {
+>(({ trigger, links, onPress, classNameLinks, ...props }, ref) => {
   const handlePress = (link: Link) => {
     if (onPress) {
       onPress(link);
@@ -40,10 +40,7 @@ export const PopoverNavigation = forwardRef<
           key={link.label}
           onPress={() => handlePress(link)}
           startContent={link.icon}
-          className={cn(
-            "w-full flex justify-start gap-2",
-            props.classNameLinks,
-          )}
+          className={cn("w-full flex justify-start gap-2", classNameLinks)}
           variant={props.variant}
         >
           {link.label}
@@ -52,5 +49,4 @@ export const PopoverNavigation = forwardRef<
     </Popover>
   );
 });
-
 PopoverNavigation.displayName = "PopoverNavigation";
