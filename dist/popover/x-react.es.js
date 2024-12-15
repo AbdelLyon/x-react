@@ -1,11 +1,10 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as c } from "react";
-import { Popover as d, PopoverTrigger as y, PopoverContent as v } from "@nextui-org/react";
-const x = c(
+import { forwardRef as m } from "react";
+import { Popover as c, PopoverTrigger as d, PopoverContent as y } from "@nextui-org/react";
+const v = m(
   ({
-    trigger: r,
-    content: t,
+    trigger: t,
     contentClassName: i,
     popoverContentProps: e,
     motionProps: a = {
@@ -30,23 +29,23 @@ const x = c(
     },
     offset: n = 10,
     placement: p = "bottom",
-    ...s
-  }, m) => /* @__PURE__ */ o.jsxs(
-    d,
+    ...r
+  }, s) => /* @__PURE__ */ o.jsxs(
+    c,
     {
-      ref: m,
+      ref: s,
       motionProps: a,
       offset: n,
       placement: p,
-      ...s,
+      ...r,
       children: [
-        /* @__PURE__ */ o.jsx(y, { children: r }),
-        /* @__PURE__ */ o.jsx(v, { className: i, ...e, children: t })
+        /* @__PURE__ */ o.jsx(d, { children: t }),
+        /* @__PURE__ */ o.jsx(y, { className: i, ...e, children: r.children })
       ]
     }
   )
 );
-x.displayName = "Popover";
+v.displayName = "Popover";
 export {
-  x as Popover
+  v as Popover
 };

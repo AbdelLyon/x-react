@@ -7,9 +7,8 @@ import {
   PopoverContentProps,
 } from "@nextui-org/react";
 
-interface Props extends Omit<PopoverProps, "content" | "children"> {
+interface Props extends Omit<PopoverProps, "content"> {
   trigger: React.ReactNode;
-  content: React.ReactNode;
   contentClassName?: string;
   popoverContentProps?: PopoverContentProps;
 }
@@ -17,7 +16,6 @@ export const Popover = forwardRef<HTMLDivElement, Props>(
   (
     {
       trigger,
-      content,
       contentClassName,
       popoverContentProps,
       motionProps = {
@@ -56,7 +54,7 @@ export const Popover = forwardRef<HTMLDivElement, Props>(
       >
         <PopoverTrigger>{trigger}</PopoverTrigger>
         <PopoverContent className={contentClassName} {...popoverContentProps}>
-          {content}
+          {props.children}
         </PopoverContent>
       </PopoverRoot>
     );
