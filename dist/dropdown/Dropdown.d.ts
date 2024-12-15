@@ -11,7 +11,7 @@ export interface DropdownItemConfig extends Omit<DropdownSectionConfig, "childre
     endContent?: React.ReactNode;
     startContent?: React.ReactNode;
 }
-interface Props extends Omit<DropdownProps, "trigger"> {
+interface Props extends Omit<DropdownProps, "trigger" | "children"> {
     trigger: React.ReactNode;
     sections: DropdownSectionConfig[];
     dropdownMenuProps?: DropdownMenuProps;
