@@ -97,6 +97,8 @@ export const Alert = forwardRef<AlertProps, Props>(
         hideIconWrapper={hideIconWrapper}
         startContent={startContent}
         endContent={endContent}
+        onVisibleChange={handleVisibilityChange}
+        onClose={handleClose}
         closeButton={
           isClosable ? (
             <Button
