@@ -1,13 +1,14 @@
 /* empty css                */
-import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as m } from "react";
-import { Popover as c, PopoverTrigger as d, PopoverContent as y } from "@nextui-org/react";
-const v = m(
+import { j as t } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as p } from "react";
+import { Popover as l, PopoverTrigger as m, PopoverContent as u } from "@nextui-org/react";
+import { B as v } from "../Button-CFcBPnF9.js";
+const c = p(
   ({
-    trigger: t,
-    contentClassName: i,
-    popoverContentProps: e,
-    motionProps: a = {
+    trigger: e,
+    contentClassName: a,
+    popoverContentProps: r,
+    motionProps: n = {
       variants: {
         enter: {
           y: 0,
@@ -27,25 +28,55 @@ const v = m(
         }
       }
     },
-    offset: n = 10,
-    placement: p = "bottom",
-    ...r
-  }, s) => /* @__PURE__ */ o.jsxs(
-    c,
+    offset: i = 10,
+    placement: s = "bottom",
+    ...o
+  }, d) => /* @__PURE__ */ t.jsxs(
+    l,
     {
-      ref: s,
-      motionProps: a,
-      offset: n,
-      placement: p,
-      ...r,
+      ref: d,
+      motionProps: n,
+      offset: i,
+      placement: s,
+      ...o,
       children: [
-        /* @__PURE__ */ o.jsx(d, { children: t }),
-        /* @__PURE__ */ o.jsx(y, { className: i, ...e, children: r.children })
+        /* @__PURE__ */ t.jsx(m, { children: e }),
+        /* @__PURE__ */ t.jsx(u, { className: a, ...r, children: o.children })
       ]
     }
   )
 );
-v.displayName = "Popover";
+c.displayName = "Popover";
+const y = p(({ trigger: e, links: a, onpress: r, ...n }, i) => {
+  const s = (o) => {
+    r && r(o);
+  };
+  return /* @__PURE__ */ t.jsx(
+    c,
+    {
+      ref: i,
+      trigger: e,
+      classNames: {
+        content: "w-40 bg-white dark:bg-content1 border border-default"
+      },
+      ...n,
+      children: a.map((o) => /* @__PURE__ */ t.jsx(
+        v,
+        {
+          type: "button",
+          onPress: () => s(o),
+          startContent: o.icon,
+          className: "w-full border-none flex justify-start gap-2",
+          variant: "ghost",
+          children: o.label
+        },
+        o.label
+      ))
+    }
+  );
+});
+y.displayName = "PopoverNavigation";
 export {
-  v as Popover
+  c as Popover,
+  y as PopoverNavigation
 };

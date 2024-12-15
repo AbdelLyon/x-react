@@ -7,13 +7,12 @@ import {
   PopoverContentProps,
 } from "@nextui-org/react";
 
-interface Props extends Omit<PopoverProps, "content" | "children"> {
+export interface PropsPopover extends Omit<PopoverProps, "content"> {
   trigger: React.ReactNode;
   contentClassName?: string;
   popoverContentProps?: PopoverContentProps;
-  children?: React.ReactNode;
 }
-export const Popover = forwardRef<HTMLDivElement, Props>(
+export const Popover = forwardRef<HTMLDivElement, PropsPopover>(
   (
     {
       trigger,

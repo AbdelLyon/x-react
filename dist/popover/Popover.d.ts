@@ -1,9 +1,7 @@
 import { PopoverProps, PopoverContentProps } from '@nextui-org/react';
-interface Props extends Omit<PopoverProps, "content" | "children"> {
+export interface PropsPopover extends Omit<PopoverProps, "content"> {
     trigger: React.ReactNode;
     contentClassName?: string;
     popoverContentProps?: PopoverContentProps;
-    children?: React.ReactNode;
 }
-export declare const Popover: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
-export {};
+export declare const Popover: import('react').ForwardRefExoticComponent<Omit<PropsPopover, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
