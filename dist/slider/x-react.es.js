@@ -4,7 +4,7 @@ import { forwardRef as g } from "react";
 import { Slider as t } from "@nextui-org/react";
 const p = g(
   ({ customThumb: r, classNames: e, renderThumb: d, ...l }, o) => {
-    const s = (n) => /* @__PURE__ */ a.jsx(
+    const i = (n) => /* @__PURE__ */ a.jsx(
       "div",
       {
         ...n,
@@ -41,16 +41,16 @@ const p = g(
           }
         )
       }
-    ), i = (r == null ? void 0 : r.renderCustomThumb) || d || s;
+    ), s = (r == null ? void 0 : r.renderCustomThumb) || d || i;
     return /* @__PURE__ */ a.jsx(
       t,
       {
         ref: o,
-        renderThumb: i,
+        renderThumb: s,
         classNames: {
           base: "max-w-md gap-3",
           track: "border-s-secondary-100",
-          filler: "bg-gradient-to-r from-primary to-secondary-500",
+          filler: "bg-gradient-to-r from-primary to-black",
           ...e
         },
         ...l
