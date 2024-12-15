@@ -24,6 +24,7 @@ const modules = [
   "image",
   "slider",
   "progress",
+  "spiner",
 ];
 
 export default defineConfig({

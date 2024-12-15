@@ -82,6 +82,10 @@
     "./progress": {
       "import": "./dist/progress/x-react.es.js",
       "types": "./dist/progress/index.d.ts"
+    },
+    "./spiner": {
+      "import": "./dist/spiner/x-react.es.js",
+      "types": "./dist/spiner/index.d.ts"
     }
   },
   "typesVersions": {

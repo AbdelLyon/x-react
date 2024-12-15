@@ -22,6 +22,7 @@ var modules = [
     "image",
     "slider",
     "progress",
+    "spiner",
 ];
 export default defineConfig({
     plugins: [
