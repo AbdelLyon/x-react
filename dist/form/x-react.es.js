@@ -208,7 +208,7 @@ const D = w(
           inputWrapper: r(
             "border-1 bg-white dark:bg-background",
             {
-              "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-11 group-data-[focus=true]:bg-content1": l === "bordered"
+              "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12 group-data-[focus=true]:bg-content1": l === "bordered"
             },
             i == null ? void 0 : i.inputWrapper
           )
