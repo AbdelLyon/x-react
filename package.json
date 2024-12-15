@@ -78,6 +78,10 @@
     "./slider": {
       "import": "./dist/slider/x-react.es.js",
       "types": "./dist/slider/index.d.ts"
+    },
+    "./progress": {
+      "import": "./dist/progress/x-react.es.js",
+      "types": "./dist/progress/index.d.ts"
     }
   },
   "typesVersions": {

@@ -21,6 +21,7 @@ var modules = [
     "dropdown",
     "image",
     "slider",
+    "progress",
 ];
 export default defineConfig({
     plugins: [

@@ -23,6 +23,7 @@ const modules = [
   "dropdown",
   "image",
   "slider",
+  "progress",
 ];
 
 export default defineConfig({
