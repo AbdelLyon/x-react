@@ -70,6 +70,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
                 return (
                   <DropdownItem
                     key={key}
+                    itemType="button"
                     onPress={() => handleItemPress(item)}
                     {...remainingProps}
                   >
