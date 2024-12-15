@@ -1,24 +1,28 @@
 import { forwardRef } from "react";
 import { Button } from "@/button";
 import { Popover, PropsPopover } from "./Popover";
+import { VariantProps } from "@nextui-org/react";
+import { cn } from "@/utils";
 
 interface Link {
   label: string;
   href: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 interface PopoverNavigationProps extends Omit<PropsPopover, "children"> {
   links: Link[];
-  onpress?: (link: Link) => void;
+  onPress?: (link: Link) => void;
+  variant?: VariantProps<typeof Button>["variant"];
+  classNameLinks?: string;
 }
 export const PopoverNavigation = forwardRef<
   HTMLDivElement,
   PopoverNavigationProps
->(({ trigger, links, onpress, ...props }, ref) => {
+>(({ trigger, links, onPress, ...props }, ref) => {
   const handlePress = (link: Link) => {
-    if (onpress) {
-      onpress(link);
+    if (onPress) {
+      onPress(link);
     }
   };
 
@@ -34,11 +38,13 @@ export const PopoverNavigation = forwardRef<
       {links.map((link) => (
         <Button
           key={link.label}
-          type="button"
           onPress={() => handlePress(link)}
           startContent={link.icon}
-          className="w-full border-none flex justify-start gap-2"
-          variant="ghost"
+          className={cn(
+            "w-full border-none flex justify-start gap-2",
+            props.classNameLinks,
+          )}
+          variant={props.variant}
         >
           {link.label}
         </Button>

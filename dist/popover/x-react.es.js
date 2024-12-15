@@ -1,14 +1,15 @@
 /* empty css                */
 import { j as t } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as p } from "react";
-import { Popover as l, PopoverTrigger as m, PopoverContent as u } from "@nextui-org/react";
-import { B as v } from "../Button-CFcBPnF9.js";
-const c = p(
+import { forwardRef as c } from "react";
+import { Popover as l, PopoverTrigger as p, PopoverContent as v } from "@nextui-org/react";
+import { B as f } from "../Button-CFcBPnF9.js";
+import { cn as u } from "../utils/x-react.es.js";
+const m = c(
   ({
     trigger: e,
-    contentClassName: a,
-    popoverContentProps: r,
-    motionProps: n = {
+    contentClassName: i,
+    popoverContentProps: a,
+    motionProps: r = {
       variants: {
         enter: {
           y: 0,
@@ -28,46 +29,48 @@ const c = p(
         }
       }
     },
-    offset: i = 10,
+    offset: n = 10,
     placement: s = "bottom",
     ...o
   }, d) => /* @__PURE__ */ t.jsxs(
     l,
     {
       ref: d,
-      motionProps: n,
-      offset: i,
+      motionProps: r,
+      offset: n,
       placement: s,
       ...o,
       children: [
-        /* @__PURE__ */ t.jsx(m, { children: e }),
-        /* @__PURE__ */ t.jsx(u, { className: a, ...r, children: o.children })
+        /* @__PURE__ */ t.jsx(p, { children: e }),
+        /* @__PURE__ */ t.jsx(v, { className: i, ...a, children: o.children })
       ]
     }
   )
 );
-c.displayName = "Popover";
-const y = p(({ trigger: e, links: a, onpress: r, ...n }, i) => {
+m.displayName = "Popover";
+const y = c(({ trigger: e, links: i, onPress: a, ...r }, n) => {
   const s = (o) => {
-    r && r(o);
+    a && a(o);
   };
   return /* @__PURE__ */ t.jsx(
-    c,
+    m,
     {
-      ref: i,
+      ref: n,
       trigger: e,
       classNames: {
         content: "w-40 bg-white dark:bg-content1 border border-default"
       },
-      ...n,
-      children: a.map((o) => /* @__PURE__ */ t.jsx(
-        v,
+      ...r,
+      children: i.map((o) => /* @__PURE__ */ t.jsx(
+        f,
         {
-          type: "button",
           onPress: () => s(o),
           startContent: o.icon,
-          className: "w-full border-none flex justify-start gap-2",
-          variant: "ghost",
+          className: u(
+            "w-full border-none flex justify-start gap-2",
+            r.classNameLinks
+          ),
+          variant: r.variant,
           children: o.label
         },
         o.label
@@ -77,6 +80,6 @@ const y = p(({ trigger: e, links: a, onpress: r, ...n }, i) => {
 });
 y.displayName = "PopoverNavigation";
 export {
-  c as Popover,
+  m as Popover,
   y as PopoverNavigation
 };
