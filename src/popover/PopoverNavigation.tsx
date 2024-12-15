@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { Button } from "@/button";
 import { Popover, PropsPopover } from "./Popover";
 import { VariantProps } from "@nextui-org/react";
@@ -21,9 +21,12 @@ export const PopoverNavigation = forwardRef<
   HTMLDivElement,
   PopoverNavigationProps
 >(({ trigger, links, onPress, classNameLinks, ...props }, ref) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const handlePress = (link: Link) => {
     if (onPress) {
       onPress(link);
+      setIsOpen(false);
     }
   };
 
@@ -31,6 +34,7 @@ export const PopoverNavigation = forwardRef<
     <Popover
       ref={ref}
       trigger={trigger}
+      isOpen={isOpen}
       classNames={{
         content: "w-40 bg-white dark:bg-content1 border border-default",
       }}

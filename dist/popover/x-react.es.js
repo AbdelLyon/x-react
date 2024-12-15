@@ -1,16 +1,16 @@
 /* empty css                */
-import { j as t } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as m } from "react";
-import { Popover as p, PopoverTrigger as v, PopoverContent as f } from "@nextui-org/react";
-import { B as u } from "../Button-CFcBPnF9.js";
-import { cn as y } from "../utils/x-react.es.js";
-const l = m(
+import { j as e } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as p, useState as f } from "react";
+import { Popover as v, PopoverTrigger as u, PopoverContent as y } from "@nextui-org/react";
+import { B as x } from "../Button-CFcBPnF9.js";
+import { cn as P } from "../utils/x-react.es.js";
+const d = p(
   ({
-    trigger: e,
-    contentClassName: i,
+    trigger: i,
+    contentClassName: n,
     popoverContentProps: a,
-    radius: n = "sm",
-    motionProps: r = {
+    radius: s = "sm",
+    motionProps: t = {
       variants: {
         enter: {
           y: 0,
@@ -30,47 +30,49 @@ const l = m(
         }
       }
     },
-    offset: s = 10,
-    placement: c = "bottom",
-    ...o
-  }, d) => /* @__PURE__ */ t.jsxs(
-    p,
+    offset: c = 10,
+    placement: l = "bottom",
+    ...r
+  }, m) => /* @__PURE__ */ e.jsxs(
+    v,
     {
-      ref: d,
-      motionProps: r,
-      offset: s,
-      placement: c,
-      radius: n,
-      ...o,
+      ref: m,
+      motionProps: t,
+      offset: c,
+      placement: l,
+      radius: s,
+      isOpen: r.isOpen,
+      ...r,
       children: [
-        /* @__PURE__ */ t.jsx(v, { children: e }),
-        /* @__PURE__ */ t.jsx(f, { className: i, ...a, children: o.children })
+        /* @__PURE__ */ e.jsx(u, { children: i }),
+        /* @__PURE__ */ e.jsx(y, { className: n, ...a, children: r.children })
       ]
     }
   )
 );
-l.displayName = "Popover";
-const x = m(({ trigger: e, links: i, onPress: a, classNameLinks: n, ...r }, s) => {
-  const c = (o) => {
-    a && a(o);
+d.displayName = "Popover";
+const h = p(({ trigger: i, links: n, onPress: a, classNameLinks: s, ...t }, c) => {
+  const [l, r] = f(!1), m = (o) => {
+    a && (a(o), r(!1));
   };
-  return /* @__PURE__ */ t.jsx(
-    l,
+  return /* @__PURE__ */ e.jsx(
+    d,
     {
-      ref: s,
-      trigger: e,
+      ref: c,
+      trigger: i,
+      isOpen: l,
       classNames: {
         content: "w-40 bg-white dark:bg-content1 border border-default"
       },
-      ...r,
-      children: i.map((o) => /* @__PURE__ */ t.jsx(
-        u,
+      ...t,
+      children: n.map((o) => /* @__PURE__ */ e.jsx(
+        x,
         {
-          onPress: () => c(o),
+          onPress: () => m(o),
           startContent: o.icon,
-          className: y("w-full flex justify-start gap-2", n),
-          variant: r.variant,
-          color: r.color,
+          className: P("w-full flex justify-start gap-2", s),
+          variant: t.variant,
+          color: t.color,
           children: o.label
         },
         o.label
@@ -78,8 +80,8 @@ const x = m(({ trigger: e, links: i, onPress: a, classNameLinks: n, ...r }, s) =
     }
   );
 });
-x.displayName = "PopoverNavigation";
+h.displayName = "PopoverNavigation";
 export {
-  l as Popover,
-  x as PopoverNavigation
+  d as Popover,
+  h as PopoverNavigation
 };

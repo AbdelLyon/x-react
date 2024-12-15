@@ -55,6 +55,7 @@ export const Popover = forwardRef<HTMLDivElement, PropsPopover>(
         offset={offset}
         placement={placement}
         radius={radius}
+        isOpen={props.isOpen}
         {...props}
       >
         <PopoverTrigger>{trigger}</PopoverTrigger>
