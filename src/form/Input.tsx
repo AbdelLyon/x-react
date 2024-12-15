@@ -130,7 +130,6 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
                 "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-11 group-data-[focus=true]:bg-content1":
                   variant === "bordered",
               },
-
               propClassNames?.inputWrapper,
             ),
           }}
