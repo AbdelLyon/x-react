@@ -24,7 +24,7 @@ export interface DropdownSectionConfig {
   key: string;
   label?: string;
   showDivider?: boolean;
-  items?: DropdownItemConfig[];
+  items: DropdownItemConfig[];
 }
 
 interface Props extends Omit<DropdownProps, "trigger" | "children"> {
@@ -64,7 +64,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
               showDivider={section.showDivider}
               aria-label={section.label}
             >
-              {section.items?.map((item) => {
+              {section.items.map((item) => {
                 const { key, label, ...remainingProps } = item;
                 return (
                   <DropdownItem
@@ -75,7 +75,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
                     {label}
                   </DropdownItem>
                 );
-              }) || []}
+              })}
             </DropdownSection>
           ))}
         </DropdownMenu>
