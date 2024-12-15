@@ -4,7 +4,7 @@ import {
   InputProps as InputRootProps,
 } from "@nextui-org/react";
 import { cn } from "@/utils";
-import { IconEye, IconEyeOff, IconMail, IconSearch } from "@tabler/icons-react";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 interface InputWrapperProps extends Omit<InputRootProps, "children"> {
   containerClasses?: string;
@@ -95,16 +95,6 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
               <IconEyeOff className="pointer-events-none" size={20} />
             )}
           </button>
-        );
-      }
-      if (type === "email") {
-        return (
-          <IconMail className="pointer-events-none opacity-60" size={20} />
-        );
-      }
-      if (type === "search") {
-        return (
-          <IconSearch className="pointer-events-none opacity-60" size={20} />
         );
       }
     };
