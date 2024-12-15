@@ -1,97 +1,101 @@
-import { forwardRef } from "react";
-import {
-  Slider as SliderRoot,
-  SliderProps,
-  SliderRenderThumbProps,
-} from "@nextui-org/react";
-import { cn } from "@/utils";
+import { forwardRef, useState, ReactNode } from "react";
+import { Slider as NextUISlider, SliderProps } from "@nextui-org/react";
 
-interface CustomThumbConfig {
-  baseClassName?: string;
-  thumbClassName?: string;
-  renderCustomThumb?: (props: SliderRenderThumbProps) => React.ReactNode;
-  position?: "left" | "right" | "both";
+interface RangeSliderProps<T extends number[]> {
+  sliderProps?: Omit<SliderProps, "value" | "onChange">;
+
+  initialValue?: T;
+
+  formatOptions?: Intl.NumberFormatOptions;
+
+  label?: string;
+  labelPosition?: "top" | "bottom" | "none";
+
+  formatValue?: (value: T) => string;
+  renderLabel?: (value: T) => ReactNode;
+
+  onChange?: (value: T) => void;
+
+  containerClassName?: string;
+  labelClassName?: string;
 }
 
-interface GenericSliderProps extends SliderProps {
-  customThumb?: CustomThumbConfig;
-}
+export const RangeSlider = forwardRef<
+  HTMLDivElement,
+  RangeSliderProps<number[]>
+>(
+  (
+    {
+      sliderProps,
+      initialValue = [0, 100],
+      formatOptions,
+      label,
+      labelPosition = "bottom",
+      formatValue,
+      renderLabel,
+      onChange,
+      containerClassName,
+      labelClassName,
+    },
+    ref,
+  ) => {
+    const [value, setValue] = useState<number[]>(initialValue);
 
-export const Slider = forwardRef<HTMLDivElement, GenericSliderProps>(
-  ({ customThumb, classNames, renderThumb, ...props }, ref) => {
-    const defaultThumb = (thumbProps: SliderRenderThumbProps) => (
+    const handleChange = (newValue: number | number[]) => {
+      const typedValue = Array.isArray(newValue) ? newValue : [newValue];
+      setValue(typedValue);
+      onChange?.(typedValue);
+    };
+
+    const defaultFormatValue = (val: number[]) => {
+      return val
+        .map((v) =>
+          formatOptions
+            ? new Intl.NumberFormat(undefined, formatOptions).format(v)
+            : v,
+        )
+        .join(" – ");
+    };
+
+    const formattedValue = formatValue
+      ? formatValue(value)
+      : defaultFormatValue(value);
+
+    const labelContent = renderLabel
+      ? renderLabel(value)
+      : `${label}: ${formattedValue}`;
+
+    return (
       <div
-        {...thumbProps}
-        className={cn(
-          `
-        group 
-        p-1 
-        top-1/2 
-        bg-background 
-        border-small 
-        border-default-200 
-        dark:border-default-400/50 
-        shadow-medium 
-        rounded-full 
-        cursor-grab 
-        data-[dragging=true]:cursor-grabbing
-        `,
-          customThumb?.baseClassName,
-        )}
+        ref={ref}
+        className={`
+          flex flex-col gap-2 w-full h-full max-w-md 
+          items-start justify-center
+          ${containerClassName}
+        `}
       >
-        <span
-          className={cn(
-            `
-          transition-transform 
-          bg-gradient-to-br 
-          shadow-small 
-          from-primary
-          to-black
-          rounded-full 
-          w-5 
-          h-5 
-          block 
-          group-data-[dragging=true]:scale-80
-          `,
-            customThumb?.thumbClassName,
-          )}
+        {(labelPosition === "top" || labelPosition === "bottom") && (
+          <p
+            className={`
+              text-default-500 font-medium text-small
+              ${labelClassName}
+              ${labelPosition === "top" ? "order-first" : "order-last"}
+            `}
+          >
+            {labelContent}
+          </p>
+        )}
+
+        <NextUISlider
+          value={value}
+          onChange={handleChange}
+          label={label}
+          className="max-w-md"
+          formatOptions={formatOptions}
+          {...sliderProps}
         />
       </div>
     );
-
-    const thumbRenderer =
-      customThumb?.renderCustomThumb || renderThumb || defaultThumb;
-
-    const handleRenderThumb = (thumbProps: SliderRenderThumbProps) => {
-      // Support for multiple thumbs
-      if (customThumb?.position === "both") {
-        return (
-          <>
-            {thumbRenderer({ ...thumbProps, "data-position": "left" })}
-            {thumbRenderer({ ...thumbProps, "data-position": "right" })}
-          </>
-        );
-      }
-      return thumbRenderer(thumbProps);
-    };
-
-    return (
-      <SliderRoot
-        ref={ref}
-        renderThumb={handleRenderThumb}
-        classNames={{
-          base: cn("max-w-md gap-3", classNames?.base),
-          track: cn("border-s-secondary-100", classNames?.track),
-          filler: cn(
-            "bg-gradient-to-r from-primary to-black",
-            classNames?.filler,
-          ),
-          ...classNames,
-        }}
-        {...props}
-      />
-    );
   },
 );
-
-Slider.displayName = "Slider";
+RangeSlider.displayName = "RangeSlider";

@@ -1,75 +1,64 @@
 /* empty css                */
-import { j as i } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as p } from "react";
-import { Slider as x } from "@nextui-org/react";
-import { cn as n } from "../utils/x-react.es.js";
-const k = p(
-  ({ customThumb: r, classNames: d, renderThumb: a, ...t }, g) => {
-    const f = (e) => /* @__PURE__ */ i.jsx(
+import { j as o } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as $, useState as R } from "react";
+import { Slider as S } from "@nextui-org/react";
+const w = $(
+  ({
+    sliderProps: c,
+    initialValue: f = [0, 100],
+    formatOptions: a,
+    label: l,
+    labelPosition: m = "bottom",
+    formatValue: d,
+    renderLabel: u,
+    onChange: s,
+    containerClassName: i,
+    labelClassName: x
+  }, p) => {
+    const [r, n] = R(f), j = (t) => {
+      const e = Array.isArray(t) ? t : [t];
+      n(e), s == null || s(e);
+    }, y = d ? d(r) : ((t) => t.map(
+      (e) => a ? new Intl.NumberFormat(void 0, a).format(e) : e
+    ).join(" – "))(r), N = u ? u(r) : `${l}: ${y}`;
+    return /* @__PURE__ */ o.jsxs(
       "div",
       {
-        ...e,
-        className: n(
-          `
-        group 
-        p-1 
-        top-1/2 
-        bg-background 
-        border-small 
-        border-default-200 
-        dark:border-default-400/50 
-        shadow-medium 
-        rounded-full 
-        cursor-grab 
-        data-[dragging=true]:cursor-grabbing
+        ref: p,
+        className: `
+          flex flex-col gap-2 w-full h-full max-w-md 
+          items-start justify-center
+          ${i}
         `,
-          r == null ? void 0 : r.baseClassName
-        ),
-        children: /* @__PURE__ */ i.jsx(
-          "span",
-          {
-            className: n(
-              `
-          transition-transform 
-          bg-gradient-to-br 
-          shadow-small 
-          from-primary
-          to-black
-          rounded-full 
-          w-5 
-          h-5 
-          block 
-          group-data-[dragging=true]:scale-80
-          `,
-              r == null ? void 0 : r.thumbClassName
-            )
-          }
-        )
-      }
-    ), o = (r == null ? void 0 : r.renderCustomThumb) || a || f, l = (e) => (r == null ? void 0 : r.position) === "both" ? /* @__PURE__ */ i.jsxs(i.Fragment, { children: [
-      o({ ...e, "data-position": "left" }),
-      o({ ...e, "data-position": "right" })
-    ] }) : o(e);
-    return /* @__PURE__ */ i.jsx(
-      x,
-      {
-        ref: g,
-        renderThumb: l,
-        classNames: {
-          base: n("max-w-md gap-3", d == null ? void 0 : d.base),
-          track: n("border-s-secondary-100", d == null ? void 0 : d.track),
-          filler: n(
-            "bg-gradient-to-r from-primary to-black",
-            d == null ? void 0 : d.filler
+        children: [
+          (m === "top" || m === "bottom") && /* @__PURE__ */ o.jsx(
+            "p",
+            {
+              className: `
+              text-default-500 font-medium text-small
+              ${x}
+              ${m === "top" ? "order-first" : "order-last"}
+            `,
+              children: N
+            }
           ),
-          ...d
-        },
-        ...t
+          /* @__PURE__ */ o.jsx(
+            S,
+            {
+              value: r,
+              onChange: j,
+              label: l,
+              className: "max-w-md",
+              formatOptions: a,
+              ...c
+            }
+          )
+        ]
       }
     );
   }
 );
-k.displayName = "Slider";
+w.displayName = "RangeSlider";
 export {
-  k as Slider
+  w as RangeSlider
 };

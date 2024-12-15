@@ -1,2 +1,2 @@
 import "@/index.css";
-export { Slider } from "@/slider/Slider";
+export { RangeSlider } from "@/slider/Slider";
