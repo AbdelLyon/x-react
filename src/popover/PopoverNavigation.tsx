@@ -15,6 +15,7 @@ interface PopoverNavigationProps extends Omit<PropsPopover, "children"> {
   onPress?: (link: Link) => void;
   variant?: VariantProps<typeof Button>["variant"];
   classNameLinks?: string;
+  color: VariantProps<typeof Button>["color"];
 }
 export const PopoverNavigation = forwardRef<
   HTMLDivElement,
@@ -42,6 +43,7 @@ export const PopoverNavigation = forwardRef<
           startContent={link.icon}
           className={cn("w-full flex justify-start gap-2", classNameLinks)}
           variant={props.variant}
+          color={props.color}
         >
           {link.label}
         </Button>

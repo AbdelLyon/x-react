@@ -11,6 +11,7 @@ interface PopoverNavigationProps extends Omit<PropsPopover, "children"> {
     onPress?: (link: Link) => void;
     variant?: VariantProps<typeof Button>["variant"];
     classNameLinks?: string;
+    color: VariantProps<typeof Button>["color"];
 }
 export declare const PopoverNavigation: import('react').ForwardRefExoticComponent<Omit<PopoverNavigationProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};
