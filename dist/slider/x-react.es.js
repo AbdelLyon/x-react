@@ -2,12 +2,12 @@
 import { j as a } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as g } from "react";
 import { Slider as t } from "@nextui-org/react";
-const f = g(
-  ({ customThumb: r, classNames: e, renderThumb: d, ...o }, s) => {
-    const l = (i) => /* @__PURE__ */ a.jsx(
+const p = g(
+  ({ customThumb: r, classNames: e, renderThumb: d, ...l }, o) => {
+    const s = (n) => /* @__PURE__ */ a.jsx(
       "div",
       {
-        ...i,
+        ...n,
         className: `
         group 
         p-1 
@@ -29,8 +29,8 @@ const f = g(
           transition-transform 
           bg-gradient-to-br 
           shadow-small 
-          from-secondary-100 
-          to-secondary-500 
+          from-primay
+          to-black
           rounded-full 
           w-5 
           h-5 
@@ -41,24 +41,24 @@ const f = g(
           }
         )
       }
-    ), n = (r == null ? void 0 : r.renderCustomThumb) || d || l;
+    ), i = (r == null ? void 0 : r.renderCustomThumb) || d || s;
     return /* @__PURE__ */ a.jsx(
       t,
       {
-        ref: s,
-        renderThumb: n,
+        ref: o,
+        renderThumb: i,
         classNames: {
           base: "max-w-md gap-3",
           track: "border-s-secondary-100",
-          filler: "bg-gradient-to-r from-secondary-100 to-secondary-500",
+          filler: "bg-gradient-to-r from-primary to-secondary-500",
           ...e
         },
-        ...o
+        ...l
       }
     );
   }
 );
-f.displayName = "Slider";
+p.displayName = "Slider";
 export {
-  f as Slider
+  p as Slider
 };

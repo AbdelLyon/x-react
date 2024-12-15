@@ -40,8 +40,8 @@ export const Slider = forwardRef<HTMLDivElement, GenericSliderProps>(
           transition-transform 
           bg-gradient-to-br 
           shadow-small 
-          from-secondary-100 
-          to-secondary-500 
+          from-primay
+          to-black
           rounded-full 
           w-5 
           h-5 
@@ -63,7 +63,7 @@ export const Slider = forwardRef<HTMLDivElement, GenericSliderProps>(
         classNames={{
           base: "max-w-md gap-3",
           track: "border-s-secondary-100",
-          filler: "bg-gradient-to-r from-secondary-100 to-secondary-500",
+          filler: "bg-gradient-to-r from-primary to-secondary-500",
           ...classNames,
         }}
         {...props}
