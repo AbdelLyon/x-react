@@ -107,10 +107,13 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
 
     const defaultClassNames = {
       ...props.classNames,
-      inputWrapper: cn({
-        "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-white h-11 dark:bg-background group-data-[focus=true]:bg-content1":
-          variant === "bordered",
-      }),
+      inputWrapper: cn(
+        {
+          "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-white h-11 dark:bg-background group-data-[focus=true]:bg-content1":
+            variant === "bordered",
+        },
+        props.classNames?.inputWrapper,
+      ),
     };
 
     return (
