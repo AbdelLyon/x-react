@@ -69,7 +69,7 @@ export const RangeSlider = forwardRef<
       <div
         ref={ref}
         className={`
-          flex flex-col gap-2 w-full h-full max-w-md 
+          flex flex-col gap-2 w-full h-max max-w-md 
           items-start justify-center
           ${containerClassName}
         `}
