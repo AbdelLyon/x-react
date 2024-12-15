@@ -16,8 +16,7 @@ export interface DropdownSectionConfig {
   items: DropdownItemConfig[];
 }
 
-export interface DropdownItemConfig
-  extends Omit<DropdownSectionConfig, "children"> {
+export interface DropdownItemConfig extends DropdownSectionConfig {
   label: string;
   key: string;
   endContent?: React.ReactNode;
