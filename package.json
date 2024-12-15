@@ -74,6 +74,10 @@
     "./image": {
       "import": "./dist/image/x-react.es.js",
       "types": "./dist/image/index.d.ts"
+    },
+    "./slider": {
+      "import": "./dist/slider/x-react.es.js",
+      "types": "./dist/slider/index.d.ts"
     }
   },
   "typesVersions": {

@@ -20,6 +20,7 @@ var modules = [
     "popover",
     "dropdown",
     "image",
+    "slider",
 ];
 export default defineConfig({
     plugins: [
