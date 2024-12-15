@@ -9,8 +9,8 @@ const P = i(
     items: l,
     groupClasses: e,
     itemClasses: a,
-    label: b = "Select an option",
-    defaultValue: p,
+    label: p = "Select an option",
+    defaultValue: b,
     ...u
   }, x) => {
     const c = {
@@ -26,8 +26,8 @@ const P = i(
       O,
       {
         ref: x,
-        label: b,
-        defaultValue: p,
+        label: p,
+        defaultValue: b,
         ...u,
         classNames: {
           base: r(c.base, e == null ? void 0 : e.base),
@@ -76,8 +76,8 @@ const V = i(
     items: l,
     groupClasses: e,
     itemClasses: a,
-    label: b = "Select options",
-    defaultValue: p,
+    label: p = "Select options",
+    defaultValue: b,
     ...u
   }, x) => {
     const c = {
@@ -92,8 +92,8 @@ const V = i(
       z,
       {
         ref: x,
-        label: b,
-        defaultValue: p,
+        label: p,
+        defaultValue: b,
         ...u,
         classNames: {
           base: r(c.base, e == null ? void 0 : e.base),
@@ -137,21 +137,21 @@ const q = i(
     length: l = 6,
     label: e = `${l} digits OTP`,
     labelClasses: a,
-    containerClasses: b,
-    ...p
-  }, u) => /* @__PURE__ */ o.jsxs("div", { ref: u, className: r("flex flex-col", b), children: [
+    containerClasses: p,
+    ...b
+  }, u) => /* @__PURE__ */ o.jsxs("div", { ref: u, className: r("flex flex-col", p), children: [
     e && /* @__PURE__ */ o.jsx("p", { className: r("text-default-500 text-small mb-2", a), children: e }),
-    /* @__PURE__ */ o.jsx(S, { length: l, ...p })
+    /* @__PURE__ */ o.jsx(S, { length: l, ...b })
   ] })
 );
 q.displayName = "InputOtp";
-const K = i(
+const A = i(
   ({
     variant: l = "bordered",
     color: e = "default",
     size: a = "md",
-    radius: b = "md",
-    labelPlacement: p = "inside",
+    radius: p = "md",
+    labelPlacement: b = "inside",
     fullWidth: u = !0,
     isClearable: x = !1,
     isRequired: c = !1,
@@ -163,18 +163,18 @@ const K = i(
     // Passthrough props
     validate: N,
     type: w,
-    ...s
-  }, y) => {
+    ...j
+  }, m) => {
     var I;
-    const [h, G] = v(w || "text"), k = (m) => {
+    const [s, G] = v(w || "text"), k = (y) => {
       if (d) {
-        const j = d(m);
-        if (typeof j == "string")
-          return j;
-        if (j === !1)
+        const h = d(y);
+        if (typeof h == "string")
+          return h;
+        if (h === !1)
           return "Validation failed";
       }
-      return N ? N(m) : !0;
+      return N ? N(y) : !0;
     }, R = () => {
       if (w === "password")
         return /* @__PURE__ */ o.jsx(
@@ -182,8 +182,8 @@ const K = i(
           {
             className: "focus:outline-none opacity-60",
             type: "button",
-            onClick: () => G(h === "password" ? "text" : "password"),
-            children: h === "password" ? /* @__PURE__ */ o.jsx(L, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ o.jsx(W, { className: "pointer-events-none", size: 20 })
+            onClick: () => G(s === "password" ? "text" : "password"),
+            children: s === "password" ? /* @__PURE__ */ o.jsx(L, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ o.jsx(W, { className: "pointer-events-none", size: 20 })
           }
         );
       if (w === "email")
@@ -192,38 +192,39 @@ const K = i(
     return /* @__PURE__ */ o.jsx("div", { className: r("w-full", f), children: /* @__PURE__ */ o.jsx(
       T,
       {
-        ref: y,
+        ref: m,
         variant: l,
         color: e,
         size: a,
-        radius: b,
-        labelPlacement: p,
+        radius: p,
+        labelPlacement: b,
         fullWidth: u,
         isClearable: x,
         isRequired: c,
         isReadOnly: t,
         isDisabled: n,
         validate: k,
-        classNames: (s.classNames, {
+        classNames: {
           inputWrapper: r(
             "border-1 bg-white dark:bg-background",
             {
               "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-11 group-data-[focus=true]:bg-content1": l === "bordered"
             },
-            (I = s.classNames) == null ? void 0 : I.inputWrapper
+            (I = j.classNames) == null ? void 0 : I.inputWrapper
           )
-        }),
+        },
         endContent: R(),
-        type: h,
-        ...s
+        type: s,
+        ...j
       }
     ) });
   }
 );
+A.displayName = "Input";
 export {
   X as Checkbox,
   V as CheckboxGroup,
-  K as Input,
+  A as Input,
   q as InputOtp,
   P as RadioGroup
 };
