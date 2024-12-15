@@ -1,51 +1,54 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as c } from "react";
-import { Dropdown as D, DropdownTrigger as h, DropdownMenu as f, DropdownSection as x, DropdownItem as j } from "@nextui-org/react";
-const u = c(
-  ({ trigger: d, sections: n, dropdownMenuProps: a, onItemPress: e, classNames: i, ...p }, l) => {
-    const m = (r) => {
+import { forwardRef as D } from "react";
+import { Dropdown as h, DropdownTrigger as f, DropdownMenu as x, DropdownSection as j, DropdownItem as u } from "@nextui-org/react";
+const g = D(
+  ({ trigger: n, sections: a, dropdownMenuProps: i, onItemPress: e, classNames: p, ...l }, m) => {
+    const t = (r) => {
       e && e(r);
     };
     return /* @__PURE__ */ o.jsxs(
-      D,
+      h,
       {
-        ref: l,
+        ref: m,
         showArrow: !0,
         classNames: {
           base: "before:bg-default-200",
           content: "p-0 border-small border-divider bg-background",
-          ...i
+          ...p
         },
-        ...p,
+        ...l,
         children: [
-          /* @__PURE__ */ o.jsx(h, { children: d }),
-          /* @__PURE__ */ o.jsx(f, { className: "p-3", ...a, children: n.map((r) => /* @__PURE__ */ o.jsx(
-            x,
-            {
-              showDivider: r.showDivider,
-              "aria-label": r.label,
-              children: r.items.map((t) => {
-                const { key: s, label: w, ...b } = t;
-                return /* @__PURE__ */ o.jsx(
-                  j,
-                  {
-                    onPress: () => m(s),
-                    ...b,
-                    children: w
-                  },
-                  s
-                );
-              })
-            },
-            r.key
-          )) })
+          /* @__PURE__ */ o.jsx(f, { children: n }),
+          /* @__PURE__ */ o.jsx(x, { className: "p-3", ...i, children: a.map((r) => {
+            var s;
+            return /* @__PURE__ */ o.jsx(
+              j,
+              {
+                showDivider: r.showDivider,
+                "aria-label": r.label,
+                children: ((s = r.items) == null ? void 0 : s.map((w) => {
+                  const { key: d, label: b, ...c } = w;
+                  return /* @__PURE__ */ o.jsx(
+                    u,
+                    {
+                      onPress: () => t(d),
+                      ...c,
+                      children: b
+                    },
+                    d
+                  );
+                })) || []
+              },
+              r.key
+            );
+          }) })
         ]
       }
     );
   }
 );
-u.displayName = "Dropdown";
+g.displayName = "Dropdown";
 export {
-  u as Dropdown
+  g as Dropdown
 };

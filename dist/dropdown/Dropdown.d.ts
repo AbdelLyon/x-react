@@ -12,7 +12,7 @@ export interface DropdownSectionConfig {
     key: string;
     label?: string;
     showDivider?: boolean;
-    items: DropdownItemConfig[];
+    items?: DropdownItemConfig[];
 }
 interface Props extends Omit<DropdownProps, "trigger" | "children"> {
     trigger: React.ReactNode;
