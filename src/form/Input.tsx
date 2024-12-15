@@ -83,16 +83,16 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
       if (type === "password") {
         return (
           <button
-            className="focus:outline-none opacity-60"
+            className="focus:outline-none opacity-40"
             type="button"
             onClick={() =>
               setInputType(inputType === "password" ? "text" : "password")
             }
           >
             {inputType === "password" ? (
-              <IconEye className="pointer-events-none" size={20} />
+              <IconEye className="pointer-events-none" />
             ) : (
-              <IconEyeOff className="pointer-events-none" size={20} />
+              <IconEyeOff className="pointer-events-none" />
             )}
           </button>
         );

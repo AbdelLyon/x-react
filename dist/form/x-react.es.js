@@ -1,10 +1,10 @@
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as h, useState as $ } from "react";
-import { RadioGroup as E, Radio as S, CheckboxGroup as T, Checkbox as z, InputOtp as L, Input as P } from "@nextui-org/react";
+import { RadioGroup as E, Radio as S, CheckboxGroup as T, Checkbox as L, InputOtp as P, Input as W } from "@nextui-org/react";
 import { Checkbox as X } from "@nextui-org/react";
 import { cn as n } from "../utils/x-react.es.js";
-import { IconEye as W, IconEyeOff as V } from "@tabler/icons-react";
-const q = h(
+import { IconEye as V, IconEyeOff as q } from "@tabler/icons-react";
+const z = h(
   ({
     items: l,
     groupClasses: e,
@@ -70,7 +70,7 @@ const q = h(
     );
   }
 );
-q.displayName = "RadioGroup";
+z.displayName = "RadioGroup";
 const A = h(
   ({
     items: l,
@@ -102,7 +102,7 @@ const A = h(
         children: l.map((r) => {
           var f, p;
           return /* @__PURE__ */ o.jsx(
-            z,
+            L,
             {
               ...r,
               classNames: {
@@ -141,7 +141,7 @@ const B = h(
     ...b
   }, u) => /* @__PURE__ */ o.jsxs("div", { ref: u, className: n("flex flex-col", d), children: [
     e && /* @__PURE__ */ o.jsx("p", { className: n("text-default-500 text-small mb-2", a), children: e }),
-    /* @__PURE__ */ o.jsx(L, { length: l, ...b })
+    /* @__PURE__ */ o.jsx(P, { length: l, ...b })
   ] })
 );
 B.displayName = "InputOtp";
@@ -163,14 +163,14 @@ const D = h(
     // Passthrough props
     validate: N,
     type: I,
-    ...s
-  }, G) => {
-    const [i, k] = $(I || "text"), R = (y) => {
+    ...G
+  }, k) => {
+    const [j, s] = $(I || "text"), R = (y) => {
       if (p) {
-        const j = p(y);
-        if (typeof j == "string")
-          return j;
-        if (j === !1)
+        const i = p(y);
+        if (typeof i == "string")
+          return i;
+        if (i === !1)
           return "Validation failed";
       }
       return N ? N(y) : !0;
@@ -179,17 +179,17 @@ const D = h(
         return /* @__PURE__ */ o.jsx(
           "button",
           {
-            className: "focus:outline-none opacity-60",
+            className: "focus:outline-none opacity-40",
             type: "button",
-            onClick: () => k(i === "password" ? "text" : "password"),
-            children: i === "password" ? /* @__PURE__ */ o.jsx(W, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ o.jsx(V, { className: "pointer-events-none", size: 20 })
+            onClick: () => s(j === "password" ? "text" : "password"),
+            children: j === "password" ? /* @__PURE__ */ o.jsx(V, { className: "pointer-events-none" }) : /* @__PURE__ */ o.jsx(q, { className: "pointer-events-none" })
           }
         );
-    }, O = "w-full", { classNames: w, ...v } = s;
+    }, O = "w-full", { classNames: w, ...v } = G;
     return /* @__PURE__ */ o.jsx("div", { className: n(O, f), children: /* @__PURE__ */ o.jsx(
-      P,
+      W,
       {
-        ref: G,
+        ref: k,
         variant: l,
         color: e,
         size: a,
@@ -212,7 +212,7 @@ const D = h(
           )
         },
         endContent: m(),
-        type: i,
+        type: j,
         ...v
       }
     ) });
@@ -224,5 +224,5 @@ export {
   A as CheckboxGroup,
   D as Input,
   B as InputOtp,
-  q as RadioGroup
+  z as RadioGroup
 };
