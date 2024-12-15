@@ -1,40 +1,42 @@
 /* empty css                */
-import { j as e } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as w } from "react";
-import { Dropdown as m, DropdownTrigger as b, DropdownMenu as D, DropdownSection as c, DropdownItem as h } from "@nextui-org/react";
-const f = w(
-  ({ trigger: d, sections: s, dropdownMenuProps: a, onItemPress: n, classNames: t, ...p }, l) => {
-    const i = (r) => {
-      n && n(r);
+import { j as o } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as c } from "react";
+import { Dropdown as D, DropdownTrigger as h, DropdownMenu as f, DropdownSection as x, DropdownItem as j } from "@nextui-org/react";
+const u = c(
+  ({ trigger: d, sections: n, dropdownMenuProps: a, onItemPress: e, classNames: i, ...p }, l) => {
+    const m = (r) => {
+      e && e(r);
     };
-    return /* @__PURE__ */ e.jsxs(
-      m,
+    return /* @__PURE__ */ o.jsxs(
+      D,
       {
         ref: l,
         showArrow: !0,
         classNames: {
           base: "before:bg-default-200",
           content: "p-0 border-small border-divider bg-background",
-          ...t
+          ...i
         },
         ...p,
         children: [
-          /* @__PURE__ */ e.jsx(b, { children: d }),
-          /* @__PURE__ */ e.jsx(D, { className: "p-3", ...a, children: s.map((r) => /* @__PURE__ */ e.jsx(
-            c,
+          /* @__PURE__ */ o.jsx(h, { children: d }),
+          /* @__PURE__ */ o.jsx(f, { className: "p-3", ...a, children: n.map((r) => /* @__PURE__ */ o.jsx(
+            x,
             {
               showDivider: r.showDivider,
               "aria-label": r.label,
-              children: r.items.map((o) => /* @__PURE__ */ e.jsx(
-                h,
-                {
-                  onPress: () => i(o.key),
-                  endContent: o.endContent,
-                  startContent: o.startContent,
-                  ...o,
-                  children: o.label
-                }
-              ))
+              children: r.items.map((t) => {
+                const { key: s, label: w, ...b } = t;
+                return /* @__PURE__ */ o.jsx(
+                  j,
+                  {
+                    onPress: () => m(s),
+                    ...b,
+                    children: w
+                  },
+                  s
+                );
+              })
             },
             r.key
           )) })
@@ -43,7 +45,7 @@ const f = w(
     );
   }
 );
-f.displayName = "Dropdown";
+u.displayName = "Dropdown";
 export {
-  f as Dropdown
+  u as Dropdown
 };

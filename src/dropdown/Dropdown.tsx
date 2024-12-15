@@ -61,16 +61,19 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
               showDivider={section.showDivider}
               aria-label={section.label}
             >
-              {section.items.map((item) => (
-                <DropdownItem
-                  onPress={() => handleItemPress(item.key)}
-                  endContent={item.endContent}
-                  startContent={item.startContent}
-                  {...item}
-                >
-                  {item.label}
-                </DropdownItem>
-              ))}
+              {section.items.map((item) => {
+                // Destructure key separately
+                const { key, label, ...remainingProps } = item;
+                return (
+                  <DropdownItem
+                    key={key}
+                    onPress={() => handleItemPress(key)}
+                    {...remainingProps}
+                  >
+                    {label}
+                  </DropdownItem>
+                );
+              })}
             </DropdownSection>
           ))}
         </DropdownMenu>
