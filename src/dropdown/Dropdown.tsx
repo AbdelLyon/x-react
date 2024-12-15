@@ -72,7 +72,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
                   <DropdownItem
                     key={key}
                     onPress={() => {
-                      handleItemPress(item);
+                      handleItemPress({ ...item, href });
                     }}
                     {...remainingProps}
                   >
