@@ -62,6 +62,10 @@
     "./form": {
       "import": "./dist/form/x-react.es.js",
       "types": "./dist/form/index.d.ts"
+    },
+    "./popover": {
+      "import": "./dist/popover/x-react.es.js",
+      "types": "./dist/popover/index.d.ts"
     }
   },
   "typesVersions": {

@@ -19,6 +19,7 @@ const modules = [
   "card",
   "icons",
   "form",
+  "popover",
 ];
 
 export default defineConfig({

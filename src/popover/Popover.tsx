@@ -1,0 +1,66 @@
+import { forwardRef } from "react";
+import {
+  Popover as PopoverRoot,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverProps,
+  PopoverContentProps,
+} from "@nextui-org/react";
+
+interface Props extends Omit<PopoverProps, "content"> {
+  trigger: React.ReactNode;
+  content: React.ReactNode;
+  contentClassName?: string;
+  popoverContentProps?: PopoverContentProps;
+}
+export const Popover = forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      trigger,
+      content,
+      contentClassName,
+      popoverContentProps,
+      motionProps = {
+        variants: {
+          enter: {
+            y: 0,
+            opacity: 1,
+            transition: {
+              y: { duration: 0.1 },
+              opacity: { duration: 0.15 },
+            },
+          },
+          exit: {
+            y: "10%",
+            opacity: 0,
+            transition: {
+              y: { duration: 0 },
+              opacity: { duration: 0.1 },
+            },
+          },
+        },
+      },
+      offset = 10,
+      placement = "bottom",
+      ...props
+    },
+    ref,
+  ) => {
+    return (
+      <PopoverRoot
+        ref={ref}
+        motionProps={motionProps}
+        offset={offset}
+        placement={placement}
+        {...props}
+      >
+        <PopoverTrigger>{trigger}</PopoverTrigger>
+        <PopoverContent className={contentClassName} {...popoverContentProps}>
+          {content}
+        </PopoverContent>
+      </PopoverRoot>
+    );
+  },
+);
+
+Popover.displayName = "Popover";

@@ -17,6 +17,7 @@ var modules = [
     "card",
     "icons",
     "form",
+    "popover",
 ];
 export default defineConfig({
     plugins: [
