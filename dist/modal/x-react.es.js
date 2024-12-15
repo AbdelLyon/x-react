@@ -2,18 +2,18 @@
 import { j as r } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as k, useState as w } from "react";
 import { useDisclosure as B, Modal as C, ModalContent as F, ModalHeader as D, ModalBody as O, ModalFooter as q, Button as a } from "@nextui-org/react";
-import { cn as i } from "../utils/x-react.es.js";
+import { cn as s } from "../utils/x-react.es.js";
 const E = k(
   ({
-    trigger: s,
+    trigger: i,
     title: p = "Modal Title",
     footer: x,
     onAction: d,
     buttonCloseLabel: h = "Close",
     buttonActionLabel: n,
     classNames: o,
-    children: u,
-    ...c
+    children: c,
+    ...u
   }, j) => {
     const { isOpen: m, onOpen: b, onClose: l } = B(), [f, g] = w("opaque"), t = (e = "opaque") => {
       g(e), b();
@@ -30,7 +30,7 @@ const E = k(
           tabIndex: 0,
           onClick: () => t(),
           onKeyDown: M,
-          children: s
+          children: i
         }
       ),
       /* @__PURE__ */ r.jsx(
@@ -39,19 +39,19 @@ const E = k(
           ref: j,
           backdrop: f,
           classNames: {
-            closeButton: i("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
-            base: i(
-              "bg-background border border-default shadow-lg dark:shadow-none rounded-lg",
+            closeButton: s("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
+            base: s(
+              "bg-background border border-small shadow-lg dark:shadow-none rounded-lg",
               o == null ? void 0 : o.base
             ),
             ...o
           },
           isOpen: m,
           onClose: l,
-          ...c,
+          ...u,
           children: /* @__PURE__ */ r.jsx(F, { children: (e) => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
             /* @__PURE__ */ r.jsx(D, { className: "flex flex-col gap-1", children: p }),
-            /* @__PURE__ */ r.jsx(O, { children: u }),
+            /* @__PURE__ */ r.jsx(O, { children: c }),
             /* @__PURE__ */ r.jsx(q, { children: x || /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
               /* @__PURE__ */ r.jsx(
                 a,
