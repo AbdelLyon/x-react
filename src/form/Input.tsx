@@ -115,6 +115,8 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
         props.classNames?.inputWrapper,
       ),
     };
+
+    console.log(defaultClassNames);
     return (
       <div className={cn(defaultContainerClasses, containerClasses)}>
         <InputRoot
