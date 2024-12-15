@@ -164,44 +164,44 @@ const Q = w(
     validate: N,
     type: i,
     ...s
-  }, G) => {
-    var m;
-    const [h, k] = $(i || "text"), R = (y) => {
+  }, y) => {
+    var I;
+    const [h, G] = $(i || "text"), k = (m) => {
       if (d) {
-        const j = d(y);
+        const j = d(m);
         if (typeof j == "string")
           return j;
         if (j === !1)
           return "Validation failed";
       }
-      return N ? N(y) : !0;
-    }, v = () => {
+      return N ? N(m) : !0;
+    }, R = () => {
       if (i === "password")
         return /* @__PURE__ */ r.jsx(
           "button",
           {
             className: "focus:outline-none opacity-60",
             type: "button",
-            onClick: () => k(h === "password" ? "text" : "password"),
+            onClick: () => G(h === "password" ? "text" : "password"),
             children: h === "password" ? /* @__PURE__ */ r.jsx(M, { className: "pointer-events-none", size: 20 }) : /* @__PURE__ */ r.jsx(P, { className: "pointer-events-none", size: 20 })
           }
         );
       if (i === "email")
         return /* @__PURE__ */ r.jsx(V, { className: "pointer-events-none opacity-60", size: 20 });
-    }, O = "w-full", I = {
+    }, v = "w-full", O = {
       ...s.classNames,
       inputWrapper: o(
         "border-1 bg-white dark:bg-background",
         {
           "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-11 group-data-[focus=true]:bg-content1": t === "bordered"
         },
-        (m = s.classNames) == null ? void 0 : m.inputWrapper
+        (I = s.classNames) == null ? void 0 : I.inputWrapper
       )
     };
-    return console.log(I), /* @__PURE__ */ r.jsx("div", { className: o(O, f), children: /* @__PURE__ */ r.jsx(
+    return console.log(s.classNames), /* @__PURE__ */ r.jsx("div", { className: o(v, f), children: /* @__PURE__ */ r.jsx(
       W,
       {
-        ref: G,
+        ref: y,
         variant: t,
         color: e,
         size: a,
@@ -212,9 +212,9 @@ const Q = w(
         isRequired: c,
         isReadOnly: l,
         isDisabled: n,
-        validate: R,
-        classNames: I,
-        endContent: v(),
+        validate: k,
+        classNames: O,
+        endContent: R(),
         type: h,
         ...s
       }
