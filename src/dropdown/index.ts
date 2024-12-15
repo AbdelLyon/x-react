@@ -1,2 +1,2 @@
 import "@/index.css";
-export { Dropdown } from "@/dropdown/Dropdown";
+export { Dropdown, type DropdownItemConfig } from "@/dropdown/Dropdown";
