@@ -1,15 +1,16 @@
 /* empty css                */
 import { j as t } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as l } from "react";
-import { Popover as d, PopoverTrigger as p, PopoverContent as v } from "@nextui-org/react";
-import { B as f } from "../Button-CFcBPnF9.js";
-import { cn as u } from "../utils/x-react.es.js";
-const m = l(
+import { forwardRef as m } from "react";
+import { Popover as p, PopoverTrigger as v, PopoverContent as f } from "@nextui-org/react";
+import { B as u } from "../Button-CFcBPnF9.js";
+import { cn as y } from "../utils/x-react.es.js";
+const l = m(
   ({
-    trigger: i,
-    contentClassName: n,
+    trigger: e,
+    contentClassName: i,
     popoverContentProps: a,
-    motionProps: s = {
+    radius: n = "sm",
+    motionProps: r = {
       variants: {
         enter: {
           y: 0,
@@ -29,44 +30,45 @@ const m = l(
         }
       }
     },
-    offset: r = 10,
+    offset: s = 10,
     placement: c = "bottom",
-    ...e
-  }, o) => /* @__PURE__ */ t.jsxs(
-    d,
+    ...o
+  }, d) => /* @__PURE__ */ t.jsxs(
+    p,
     {
-      ref: o,
-      motionProps: s,
-      offset: r,
+      ref: d,
+      motionProps: r,
+      offset: s,
       placement: c,
-      ...e,
+      radius: n,
+      ...o,
       children: [
-        /* @__PURE__ */ t.jsx(p, { children: i }),
-        /* @__PURE__ */ t.jsx(v, { className: n, ...a, children: e.children })
+        /* @__PURE__ */ t.jsx(v, { children: e }),
+        /* @__PURE__ */ t.jsx(f, { className: i, ...a, children: o.children })
       ]
     }
   )
 );
-m.displayName = "Popover";
-const y = l(({ trigger: i, links: n, onPress: a, classNameLinks: s, ...r }, c) => {
-  const e = (o) => {
+l.displayName = "Popover";
+const x = m(({ trigger: e, links: i, onPress: a, classNameLinks: n, ...r }, s) => {
+  const c = (o) => {
     a && a(o);
   };
   return /* @__PURE__ */ t.jsx(
-    m,
+    l,
     {
-      ref: c,
-      trigger: i,
+      ref: s,
+      trigger: e,
       classNames: {
         content: "w-40 bg-white dark:bg-content1 border border-default"
       },
       ...r,
-      children: n.map((o) => /* @__PURE__ */ t.jsx(
-        f,
+      children: i.map((o) => /* @__PURE__ */ t.jsx(
+        u,
         {
-          onPress: () => e(o),
+          onPress: () => c(o),
           startContent: o.icon,
-          className: u("w-full flex justify-start gap-2", s),
+          className: y("w-full flex justify-start gap-2", n),
           variant: r.variant,
           color: r.color,
           children: o.label
@@ -76,8 +78,8 @@ const y = l(({ trigger: i, links: n, onPress: a, classNameLinks: s, ...r }, c) =
     }
   );
 });
-y.displayName = "PopoverNavigation";
+x.displayName = "PopoverNavigation";
 export {
-  m as Popover,
-  y as PopoverNavigation
+  l as Popover,
+  x as PopoverNavigation
 };

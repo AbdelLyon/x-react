@@ -7,10 +7,13 @@ import {
   PopoverContentProps,
 } from "@nextui-org/react";
 
+type radius = "none" | "sm" | "md" | "lg" | "full";
+
 export interface PropsPopover extends Omit<PopoverProps, "content"> {
   trigger: React.ReactNode;
   contentClassName?: string;
   popoverContentProps?: PopoverContentProps;
+  radius?: radius;
 }
 export const Popover = forwardRef<HTMLDivElement, PropsPopover>(
   (
@@ -18,6 +21,7 @@ export const Popover = forwardRef<HTMLDivElement, PropsPopover>(
       trigger,
       contentClassName,
       popoverContentProps,
+      radius = "sm",
       motionProps = {
         variants: {
           enter: {
@@ -50,6 +54,7 @@ export const Popover = forwardRef<HTMLDivElement, PropsPopover>(
         motionProps={motionProps}
         offset={offset}
         placement={placement}
+        radius={radius}
         {...props}
       >
         <PopoverTrigger>{trigger}</PopoverTrigger>
