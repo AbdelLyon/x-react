@@ -32,7 +32,7 @@ export const PopoverNavigation = forwardRef<
       ref={ref}
       trigger={trigger}
       classNames={{
-        content: "w-40 bg-white dark:bg-content1 border border-small",
+        content: "w-40 bg-white dark:bg-content1 border border-divider",
       }}
       {...props}
     >

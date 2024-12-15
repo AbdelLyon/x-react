@@ -1,37 +1,37 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as D } from "react";
-import { Dropdown as b, DropdownTrigger as h, DropdownMenu as f, DropdownSection as x, DropdownItem as j } from "@nextui-org/react";
-const u = D(
-  ({ trigger: n, sections: a, dropdownMenuProps: d, onItemPress: e, classNames: p, ...i }, l) => {
+import { forwardRef as c } from "react";
+import { Dropdown as D, DropdownTrigger as h, DropdownMenu as f, DropdownSection as x, DropdownItem as j } from "@nextui-org/react";
+const u = c(
+  ({ trigger: n, sections: s, dropdownMenuProps: a, onItemPress: e, classNames: i, ...p }, l) => {
     const m = (r) => {
       e && e(r);
     };
     return /* @__PURE__ */ o.jsxs(
-      b,
+      D,
       {
         ref: l,
         showArrow: !0,
         classNames: {
           base: "before:bg-default-200",
-          content: "p-0 border-small bg-background",
-          ...p
+          content: "p-0 border border-divider bg-background",
+          ...i
         },
-        ...i,
+        ...p,
         children: [
           /* @__PURE__ */ o.jsx(h, { children: n }),
-          /* @__PURE__ */ o.jsx(f, { className: "p-3", ...d, children: a.map((r) => /* @__PURE__ */ o.jsx(
+          /* @__PURE__ */ o.jsx(f, { className: "p-3", ...a, children: s.map((r) => /* @__PURE__ */ o.jsx(
             x,
             {
               showDivider: r.showDivider,
               "aria-label": r.label,
-              children: r.items.map((s) => {
-                const { key: t, label: w, ...c } = s;
+              children: r.items.map((d) => {
+                const { key: t, label: w, ...b } = d;
                 return /* @__PURE__ */ o.jsx(
                   j,
                   {
-                    onPress: () => m(s),
-                    ...c,
+                    onPress: () => m(d),
+                    ...b,
                     children: w
                   },
                   t

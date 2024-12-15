@@ -1,14 +1,14 @@
 /* empty css                */
 import { j as t } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as m } from "react";
-import { Popover as d, PopoverTrigger as v, PopoverContent as f } from "@nextui-org/react";
+import { Popover as p, PopoverTrigger as v, PopoverContent as f } from "@nextui-org/react";
 import { B as y } from "../Button-CFcBPnF9.js";
 import { cn as u } from "../utils/x-react.es.js";
-const l = m(
+const d = m(
   ({
-    trigger: e,
+    trigger: a,
     contentClassName: i,
-    popoverContentProps: a,
+    popoverContentProps: e,
     radius: n = "sm",
     motionProps: r = {
       variants: {
@@ -33,10 +33,10 @@ const l = m(
     offset: s = 10,
     placement: c = "bottom",
     ...o
-  }, p) => /* @__PURE__ */ t.jsxs(
-    d,
+  }, l) => /* @__PURE__ */ t.jsxs(
+    p,
     {
-      ref: p,
+      ref: l,
       motionProps: r,
       offset: s,
       placement: c,
@@ -44,24 +44,24 @@ const l = m(
       isOpen: o.isOpen,
       ...o,
       children: [
-        /* @__PURE__ */ t.jsx(v, { children: e }),
-        /* @__PURE__ */ t.jsx(f, { className: i, ...a, children: o.children })
+        /* @__PURE__ */ t.jsx(v, { children: a }),
+        /* @__PURE__ */ t.jsx(f, { className: i, ...e, children: o.children })
       ]
     }
   )
 );
-l.displayName = "Popover";
-const x = m(({ trigger: e, links: i, onPress: a, classNameLinks: n, ...r }, s) => {
+d.displayName = "Popover";
+const x = m(({ trigger: a, links: i, onPress: e, classNameLinks: n, ...r }, s) => {
   const c = (o) => {
-    a && a(o);
+    e && e(o);
   };
   return /* @__PURE__ */ t.jsx(
-    l,
+    d,
     {
       ref: s,
-      trigger: e,
+      trigger: a,
       classNames: {
-        content: "w-40 bg-white dark:bg-content1 border border-small"
+        content: "w-40 bg-white dark:bg-content1 border border-divider"
       },
       ...r,
       children: i.map((o) => /* @__PURE__ */ t.jsx(
@@ -81,6 +81,6 @@ const x = m(({ trigger: e, links: i, onPress: a, classNameLinks: n, ...r }, s) =
 });
 x.displayName = "PopoverNavigation";
 export {
-  l as Popover,
+  d as Popover,
   x as PopoverNavigation
 };
