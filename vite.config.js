@@ -18,6 +18,7 @@ var modules = [
     "icons",
     "form",
     "popover",
+    "dropdown",
 ];
 export default defineConfig({
     plugins: [

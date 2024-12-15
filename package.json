@@ -66,6 +66,10 @@
     "./popover": {
       "import": "./dist/popover/x-react.es.js",
       "types": "./dist/popover/index.d.ts"
+    },
+    "./dropdown": {
+      "import": "./dist/dropdown/x-react.es.js",
+      "types": "./dist/dropdown/index.d.ts"
     }
   },
   "typesVersions": {

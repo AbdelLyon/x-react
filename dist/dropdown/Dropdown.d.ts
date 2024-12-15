@@ -17,5 +17,5 @@ interface Props extends Omit<DropdownProps, "trigger"> {
     dropdownMenuProps?: DropdownMenuProps;
     onItemPress?: (key: string) => void;
 }
-declare const Dropdown: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
-export default Dropdown;
+export declare const Dropdown: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
+export {};

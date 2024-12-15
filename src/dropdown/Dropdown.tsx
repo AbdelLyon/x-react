@@ -31,7 +31,7 @@ interface Props extends Omit<DropdownProps, "trigger"> {
   onItemPress?: (key: string) => void;
 }
 
-const Dropdown = forwardRef<HTMLDivElement, Props>(
+export const Dropdown = forwardRef<HTMLDivElement, Props>(
   (
     { trigger, sections, dropdownMenuProps, onItemPress, classNames, ...props },
     ref,
@@ -80,5 +80,3 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
 );
 
 Dropdown.displayName = "Dropdown";
-
-export default Dropdown;
