@@ -71,7 +71,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
                   <DropdownItem
                     key={key}
                     itemType="button"
-                    onPress={() => handleItemPress(item)}
+                    onPress={(e) => {
+                      handleItemPress(item);
+                      e.continuePropagation();
+                    }}
                     {...remainingProps}
                   >
                     {label}
