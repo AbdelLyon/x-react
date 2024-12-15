@@ -4,8 +4,7 @@ interface Link {
     href: string;
     icon: React.ReactNode;
 }
-interface PopoverNavigationProps extends PropsPopover {
-    trigger: React.ReactNode;
+interface PopoverNavigationProps extends Omit<PropsPopover, "children"> {
     links: Link[];
     onpress?: (link: Link) => void;
 }
