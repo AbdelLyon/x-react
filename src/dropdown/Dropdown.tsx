@@ -9,21 +9,26 @@ import {
   DropdownMenuProps,
 } from "@nextui-org/react";
 
+// Interface pour les items de dropdown
+export interface DropdownItemConfig {
+  key: string;
+  label: string;
+  isReadOnly?: boolean;
+  className?: string;
+  startContent?: React.ReactNode;
+  endContent?: React.ReactNode;
+  shortcut?: string;
+}
+
+// Interface pour les sections de dropdown
 export interface DropdownSectionConfig {
-  key: React.Key;
+  key: string;
   label?: string;
   showDivider?: boolean;
   items: DropdownItemConfig[];
 }
 
-export interface DropdownItemConfig extends DropdownSectionConfig {
-  label: string;
-  key: string;
-  endContent?: React.ReactNode;
-  startContent?: React.ReactNode;
-}
-
-interface Props extends Omit<DropdownProps, "trigger" | "children"> {
+interface Props extends Omit<DropdownProps, "trigger"> {
   trigger: React.ReactNode;
   sections: DropdownSectionConfig[];
   dropdownMenuProps?: DropdownMenuProps;
@@ -61,7 +66,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
               aria-label={section.label}
             >
               {section.items.map((item) => {
-                // Destructure key separately
                 const { key, label, ...remainingProps } = item;
                 return (
                   <DropdownItem
