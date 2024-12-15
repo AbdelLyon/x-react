@@ -11,7 +11,9 @@ type SpinnerColor =
   | "success"
   | "warning"
   | "danger";
+
 type SpinnerSize = "sm" | "md" | "lg";
+
 type SpinnerLabelPosition = "left" | "right" | "bottom" | "top";
 
 interface SpinnerProps
@@ -23,21 +25,21 @@ interface SpinnerProps
   size?: SpinnerSize;
   containerClassName?: string;
   labelClassName?: string;
-  disableAnimation?: boolean;
+  disableAnimation?: boolean; // Utilisée pour des contrôles locaux
   strokeWidth?: number;
 }
+
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   (
     {
-      // Label configuration
       label,
       labelPosition = "right",
       labelColor = "foreground",
       color = "default",
       size = "md",
-      containerClassName,
-      labelClassName,
-      disableAnimation = false,
+      containerClassName = "",
+      labelClassName = "",
+      disableAnimation,
       strokeWidth = 4,
       ...props
     },
@@ -52,39 +54,32 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
         case "left":
           return "flex-row-reverse";
         case "right":
+        default:
           return "flex-row";
       }
     };
 
     const getLabelColorClass = () => {
-      if (labelColor === "foreground") return "text-foreground";
-      return `text-${labelColor}`;
+      return labelColor === "foreground"
+        ? "text-foreground"
+        : `text-${labelColor}`;
     };
 
     return (
       <div
         ref={ref}
-        className={`
-          flex items-center justify-center gap-2
-          ${getFlexDirection()}
-          ${containerClassName}
-        `}
+        className={`flex items-center justify-center gap-2 ${getFlexDirection()} ${containerClassName}`}
       >
         <NextUISpinner
           color={color}
           size={size}
-          disableAnimation={disableAnimation}
           strokeWidth={strokeWidth}
+          disableAnimation={disableAnimation}
           {...props}
         />
-
         {label && (
           <span
-            className={`
-              font-medium text-sm
-              ${getLabelColorClass()}
-              ${labelClassName}
-            `}
+            className={`font-medium text-sm ${getLabelColorClass()} ${labelClassName}`}
           >
             {label}
           </span>

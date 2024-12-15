@@ -4,15 +4,14 @@ import { forwardRef as u } from "react";
 import { Spinner as d } from "@nextui-org/react";
 const g = u(
   ({
-    // Label configuration
     label: r,
     labelPosition: s = "right",
     labelColor: t = "foreground",
     color: n = "default",
     size: o = "md",
-    containerClassName: i,
-    labelClassName: f,
-    disableAnimation: a = !1,
+    containerClassName: i = "",
+    labelClassName: f = "",
+    disableAnimation: a,
     strokeWidth: c = 4,
     ...m
   }, x) => {
@@ -25,6 +24,7 @@ const g = u(
         case "left":
           return "flex-row-reverse";
         case "right":
+        default:
           return "flex-row";
       }
     }, p = () => t === "foreground" ? "text-foreground" : `text-${t}`;
@@ -32,30 +32,22 @@ const g = u(
       "div",
       {
         ref: x,
-        className: `
-          flex items-center justify-center gap-2
-          ${l()}
-          ${i}
-        `,
+        className: `flex items-center justify-center gap-2 ${l()} ${i}`,
         children: [
           /* @__PURE__ */ e.jsx(
             d,
             {
               color: n,
               size: o,
-              disableAnimation: a,
               strokeWidth: c,
+              disableAnimation: a,
               ...m
             }
           ),
           r && /* @__PURE__ */ e.jsx(
             "span",
             {
-              className: `
-              font-medium text-sm
-              ${p()}
-              ${f}
-            `,
+              className: `font-medium text-sm ${p()} ${f}`,
               children: r
             }
           )
