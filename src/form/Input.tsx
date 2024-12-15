@@ -105,7 +105,8 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
     };
     const defaultContainerClasses = "w-full";
 
-    const borderedClassNames = {
+    const defaultClassNames = {
+      ...props.classNames,
       inputWrapper: cn({
         "border-1 data-[hover=true]:border-outline group-data-[focus=true]:border-outline bg-white h-11 dark:bg-background group-data-[focus=true]:bg-content1":
           variant === "bordered",
@@ -127,7 +128,7 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
           isReadOnly={isReadOnly}
           isDisabled={isDisabled}
           validate={combinedValidate}
-          classNames={borderedClassNames}
+          classNames={defaultClassNames}
           endContent={endContent()}
           type={inputType}
           {...props}
