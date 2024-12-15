@@ -1,16 +1,14 @@
 /* empty css                */
-import { j as t } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as m } from "react";
-import { Popover as p, PopoverTrigger as v, PopoverContent as f } from "@nextui-org/react";
-import { B as y } from "../Button-CFcBPnF9.js";
-import { cn as u } from "../utils/x-react.es.js";
-const d = m(
+import { j as r } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as c } from "react";
+import { Popover as d, PopoverTrigger as y, PopoverContent as v } from "@nextui-org/react";
+const x = c(
   ({
-    trigger: a,
+    trigger: t,
     contentClassName: i,
     popoverContentProps: e,
     radius: n = "sm",
-    motionProps: r = {
+    motionProps: a = {
       variants: {
         enter: {
           y: 0,
@@ -31,56 +29,26 @@ const d = m(
       }
     },
     offset: s = 10,
-    placement: c = "bottom",
+    placement: p = "bottom",
     ...o
-  }, l) => /* @__PURE__ */ t.jsxs(
-    p,
+  }, m) => /* @__PURE__ */ r.jsxs(
+    d,
     {
-      ref: l,
-      motionProps: r,
+      ref: m,
+      motionProps: a,
       offset: s,
-      placement: c,
+      placement: p,
       radius: n,
       isOpen: o.isOpen,
       ...o,
       children: [
-        /* @__PURE__ */ t.jsx(v, { children: a }),
-        /* @__PURE__ */ t.jsx(f, { className: i, ...e, children: o.children })
+        /* @__PURE__ */ r.jsx(y, { children: t }),
+        /* @__PURE__ */ r.jsx(v, { className: i, ...e, children: o.children })
       ]
     }
   )
 );
-d.displayName = "Popover";
-const x = m(({ trigger: a, links: i, onPress: e, classNameLinks: n, ...r }, s) => {
-  const c = (o) => {
-    e && e(o);
-  };
-  return /* @__PURE__ */ t.jsx(
-    d,
-    {
-      ref: s,
-      trigger: a,
-      classNames: {
-        content: "w-40 bg-white dark:bg-content1 border border-divider"
-      },
-      ...r,
-      children: i.map((o) => /* @__PURE__ */ t.jsx(
-        y,
-        {
-          onPress: () => c(o),
-          startContent: o.icon,
-          className: u("w-full flex justify-start gap-2", n),
-          variant: r.variant,
-          color: r.color,
-          children: o.label
-        },
-        o.label
-      ))
-    }
-  );
-});
-x.displayName = "PopoverNavigation";
+x.displayName = "Popover";
 export {
-  d as Popover,
-  x as PopoverNavigation
+  x as Popover
 };
