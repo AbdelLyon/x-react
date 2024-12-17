@@ -83,7 +83,7 @@ export const DataGrid = forwardRef<
     <NextUITable aria-label={caption} className={className} ref={ref}>
       <TableHeader columns={preparedColumns}>
         {(column) => (
-          <TableColumn key={column.key} allowsSorting={column.sortable}>
+          <TableColumn key={column.key}>
             {column.key === "checkbox" ? (
               <Checkbox
                 isSelected={isAllChecked}
