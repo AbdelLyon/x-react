@@ -81,6 +81,8 @@ export const DataGrid = forwardRef<
     })),
   ];
 
+  console.log(checkedRows.has(rows?.[0].id));
+
   return (
     <NextUITable aria-label={caption} className={className} ref={ref}>
       <TableHeader columns={preparedColumns}>
