@@ -1,12 +1,12 @@
-// useDataGridState.ts
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function useDataGridState<T extends { id: string | number }>(
   rows: T[],
   onCheckedRowsChange?: (rows: T[]) => void,
   onSort?: (column: keyof T, direction: "asc" | "desc") => void,
 ) {
-  const [checkedRowIds, setCheckedRowIds] = useState<Set<string | number>>(
+  // Changement ici: garder le Set mais le rendre accessible
+  const [checkedRows, setCheckedRows] = useState<Set<string | number>>(
     new Set(),
   );
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -19,31 +19,31 @@ export function useDataGridState<T extends { id: string | number }>(
   });
 
   useEffect(() => {
-    setIsAllChecked(checkedRowIds.size === rows.length);
-  }, [checkedRowIds, rows]);
+    setIsAllChecked(checkedRows.size === rows.length);
+  }, [checkedRows, rows]);
 
   function handleCheckboxChange(row: T) {
-    setCheckedRowIds((prev) => {
-      const newCheckedRowIds = new Set(prev);
-      if (newCheckedRowIds.has(row.id)) {
-        newCheckedRowIds.delete(row.id);
+    setCheckedRows((prev) => {
+      const newCheckedRows = new Set(prev);
+      if (newCheckedRows.has(row.id)) {
+        newCheckedRows.delete(row.id);
       } else {
-        newCheckedRowIds.add(row.id);
+        newCheckedRows.add(row.id);
       }
 
-      const selectedRows = rows.filter((r) => newCheckedRowIds.has(r.id));
+      const selectedRows = rows.filter((r) => newCheckedRows.has(r.id));
       onCheckedRowsChange?.(selectedRows);
-      return newCheckedRowIds;
+      return newCheckedRows;
     });
   }
 
   function handleSelectAll(checked: boolean) {
     if (checked) {
       const allIds = new Set(rows.map((row) => row.id));
-      setCheckedRowIds(allIds);
+      setCheckedRows(allIds);
       onCheckedRowsChange?.(rows);
     } else {
-      setCheckedRowIds(new Set());
+      setCheckedRows(new Set());
       onCheckedRowsChange?.([]);
     }
   }
@@ -53,14 +53,12 @@ export function useDataGridState<T extends { id: string | number }>(
     onSort?.(column, direction);
   }
 
-  function isRowChecked(row: T) {
-    console.log({ row, checkedRowIds });
-
-    return checkedRowIds.has(row.id);
+  function isRowChecked(row: T): boolean {
+    return checkedRows.has(row.id);
   }
 
   return {
-    checkedRows: checkedRowIds,
+    checkedRows,
     isAllChecked,
     sortConfig,
     handleCheckboxChange,
