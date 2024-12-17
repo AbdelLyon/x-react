@@ -81,8 +81,6 @@ export const DataGrid = forwardRef<
     })),
   ];
 
-  console.log(checkedRows.has(rows?.[0].id));
-
   return (
     <NextUITable aria-label={caption} className={className} ref={ref}>
       <TableHeader columns={preparedColumns}>
@@ -140,31 +138,34 @@ export const DataGrid = forwardRef<
       <TableBody items={rows}>
         {(row) => (
           <TableRow key={row.id}>
-            {(columnKey) => (
-              <TableCell>
-                {columnKey === "checkbox" ? (
-                  <Checkbox
-                    isSelected={checkedRows.has(row.id)}
-                    onValueChange={() => {
-                      handleCheckboxChange(row);
-                    }}
-                  />
-                ) : (
-                  (() => {
-                    const column = columns.find(
-                      (c) => String(c.field) === columnKey,
-                    );
-                    if (!column) return null;
+            {(columnKey) => {
+              console.log(row.id, checkedRows.has(row.id));
+              return (
+                <TableCell>
+                  {columnKey === "checkbox" ? (
+                    <Checkbox
+                      isSelected={checkedRows.has(row.id)}
+                      onValueChange={() => {
+                        handleCheckboxChange(row);
+                      }}
+                    />
+                  ) : (
+                    (() => {
+                      const column = columns.find(
+                        (c) => String(c.field) === columnKey,
+                      );
+                      if (!column) return null;
 
-                    return column.cell
-                      ? column.cell(row)
-                      : column.field
-                      ? String(row[column.field])
-                      : null;
-                  })()
-                )}
-              </TableCell>
-            )}
+                      return column.cell
+                        ? column.cell(row)
+                        : column.field
+                        ? String(row[column.field])
+                        : null;
+                    })()
+                  )}
+                </TableCell>
+              );
+            }}
           </TableRow>
         )}
       </TableBody>
