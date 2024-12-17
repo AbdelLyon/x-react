@@ -33,10 +33,9 @@ export type DataGridProps<T extends { id: string | number }> = {
   checkboxSelection?: boolean;
 };
 
-export const DataGrid = forwardRef<
-  HTMLTableElement,
-  DataGridProps<{ id: string | number }>
->(function DataGrid<T extends { id: string | number }>(
+export const DataGrid = forwardRef(function DataGrid<
+  T extends { id: string | number },
+>(
   {
     rows,
     columns,
@@ -169,4 +168,5 @@ export const DataGrid = forwardRef<
     </NextUITable>
   );
 });
+
 DataGrid.displayName = "DataGrid";
