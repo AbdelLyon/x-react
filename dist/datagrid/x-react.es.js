@@ -17,8 +17,8 @@ const U = (n, l, r) => {
     isAllChecked: b,
     sortConfig: y,
     handleCheckboxChange: (i) => {
-      o((d) => {
-        const t = new Set(d);
+      o((a) => {
+        const t = new Set(a);
         t.has(i.id) ? t.delete(i.id) : t.add(i.id);
         const S = n.filter((j) => t.has(j.id));
         return l == null || l(S), t;
@@ -26,13 +26,13 @@ const U = (n, l, r) => {
     },
     handleSelectAll: (i) => {
       if (i) {
-        const d = new Set(n.map((t) => t.id));
-        o(d), l == null || l(n);
+        const a = new Set(n.map((t) => t.id));
+        o(a), l == null || l(n);
       } else
         o(/* @__PURE__ */ new Set()), l == null || l([]);
     },
-    handleSort: (i, d) => {
-      u({ key: i, direction: d }), r == null || r(i, d);
+    handleSort: (i, a) => {
+      u({ key: i, direction: a }), r == null || r(i, a);
     },
     isRowChecked: (i) => f.has(i.id)
   };
@@ -51,11 +51,11 @@ const U = (n, l, r) => {
     handleCheckboxChange: A,
     handleSelectAll: T,
     handleSort: i,
-    isRowChecked: d
+    isRowChecked: a
   } = U(l, b, h), [t, S] = p();
   D(() => {
-    d(t);
-  }, [t]);
+    t && a(t);
+  }, [t, a]);
   const j = [
     ...y ? [
       {
@@ -64,9 +64,9 @@ const U = (n, l, r) => {
         header: ""
       }
     ] : [],
-    ...r.map((e, a) => ({
+    ...r.map((e, d) => ({
       ...e,
-      key: String(e.field || a),
+      key: String(e.field || d),
       label: e.header
     }))
   ];
@@ -75,7 +75,7 @@ const U = (n, l, r) => {
       v,
       {
         isSelected: m,
-        onValueChange: (a) => T(a)
+        onValueChange: (d) => T(d)
       }
     ) : /* @__PURE__ */ s.jsxs("div", { className: "flex items-center gap-2", children: [
       e.label,
@@ -85,11 +85,11 @@ const U = (n, l, r) => {
           className: "relative w-4 h-4 cursor-pointer",
           onClick: () => {
             var c;
-            const a = (c = r.find(
+            const d = (c = r.find(
               (k) => String(k.field) === e.key
             )) == null ? void 0 : c.field;
-            a && i(
-              a,
+            d && i(
+              d,
               x.direction === "asc" ? "desc" : "asc"
             );
           },
@@ -112,7 +112,7 @@ const U = (n, l, r) => {
         }
       )
     ] }) }, e.key) }),
-    /* @__PURE__ */ s.jsx(E, { items: l, children: (e) => /* @__PURE__ */ s.jsx(V, { children: (a) => /* @__PURE__ */ s.jsx($, { children: a === "checkbox" ? /* @__PURE__ */ s.jsx(
+    /* @__PURE__ */ s.jsx(E, { items: l, children: (e) => /* @__PURE__ */ s.jsx(V, { children: (d) => /* @__PURE__ */ s.jsx($, { children: d === "checkbox" ? /* @__PURE__ */ s.jsx(
       v,
       {
         isSelected: (t == null ? void 0 : t.id) === e.id,
@@ -122,7 +122,7 @@ const U = (n, l, r) => {
       }
     ) : (() => {
       const c = r.find(
-        (k) => String(k.field) === a
+        (k) => String(k.field) === d
       );
       return c ? c.cell ? c.cell(e) : c.field ? String(e[c.field]) : null : null;
     })() }) }, e.id) })

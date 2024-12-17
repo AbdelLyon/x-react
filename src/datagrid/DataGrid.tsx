@@ -57,11 +57,11 @@ export const DataGrid = forwardRef<
     isRowChecked,
   } = useDataGridState(rows, onCheckedRowsChange, onSort);
 
-  const [rowSelected, setRowSelected] = useState<T>();
+  const [rowSelected, setRowSelected] = useState<T | undefined>();
 
   useEffect(() => {
-    isRowChecked(rowSelected as T);
-  }, [rowSelected]);
+    if (rowSelected) isRowChecked(rowSelected as T);
+  }, [rowSelected, isRowChecked]);
 
   type ExtendedColumn = ColumnDefinition<T> & {
     key: string;
