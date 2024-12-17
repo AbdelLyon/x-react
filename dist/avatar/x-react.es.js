@@ -1,7 +1,8 @@
+/* empty css                */
 import { j as r } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as g, useMemo as j } from "react";
 import { useAvatar as u, AvatarIcon as v } from "@nextui-org/react";
-import { User as R } from "@nextui-org/react";
+import { User as y } from "@nextui-org/react";
 const k = g((f, p) => {
   const {
     src: o,
@@ -65,5 +66,5 @@ const k = g((f, p) => {
 k.displayName = "Avatar";
 export {
   k as Avatar,
-  R as User
+  y as User
 };

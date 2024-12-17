@@ -1,8 +1,9 @@
+/* empty css                */
 import { j as e } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as w } from "react";
 import { Button as x } from "@nextui-org/react";
 import { cn as r } from "../utils/x-react.es.js";
-const F = w(
+const _ = w(
   ({
     fullWidth: j = !1,
     isLoading: p = !1,
@@ -20,10 +21,10 @@ const F = w(
     },
     href: l,
     children: N,
-    target: c,
+    target: m,
     rel: h,
-    ...f
-  }, m) => {
+    ...c
+  }, f) => {
     const i = r(
       "transition-none font-normal border-1 rounded-md",
       j && "w-full",
@@ -38,21 +39,21 @@ const F = w(
     return l && a ? /* @__PURE__ */ e.jsx(
       x,
       {
-        ref: m,
-        ...f,
+        ref: f,
+        ...c,
         as: a,
         variant: t,
         className: i,
         href: l,
-        rel: c === "_blank" ? "noopener noreferrer" : h,
-        target: c,
+        rel: m === "_blank" ? "noopener noreferrer" : h,
+        target: m,
         children: /* @__PURE__ */ e.jsx(d, {})
       }
     ) : /* @__PURE__ */ e.jsx(
       x,
       {
-        ref: m,
-        ...f,
+        ref: f,
+        ...c,
         variant: t,
         className: i,
         isDisabled: b,
@@ -62,5 +63,5 @@ const F = w(
   }
 );
 export {
-  F as Button
+  _ as Button
 };

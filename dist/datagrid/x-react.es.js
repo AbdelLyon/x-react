@@ -1,35 +1,36 @@
+/* empty css                */
 import { j as s } from "../jsx-runtime-Dx-03ztt.js";
 import { Table as N, TableHeader as T, TableColumn as v, Checkbox as h, TableBody as D, TableRow as I, TableCell as E } from "@nextui-org/react";
 import { IconChevronsUp as G, IconChevronsDown as V } from "@tabler/icons-react";
 import { useState as u, useEffect as $, useCallback as m } from "react";
-function z(r, i, d) {
+function z(a, i, d) {
   const [n, f] = u(/* @__PURE__ */ new Set()), [y, p] = u(!1), [j, k] = u({
     key: null,
     direction: "asc"
   });
   $(() => {
-    p(n.size === r.length);
-  }, [n, r]);
+    p(n.size === a.length);
+  }, [n, a]);
   const c = m(
-    (a) => {
+    (r) => {
       f((x) => {
         const e = new Set(x), l = Array.from(e).find(
-          (t) => t.id === a.id
+          (t) => t.id === r.id
         );
-        return l ? e.delete(l) : e.add(a), i == null || i(Array.from(e)), e;
+        return l ? e.delete(l) : e.add(r), i == null || i(Array.from(e)), e;
       });
     },
     [i]
-  ), S = m(
-    (a) => {
-      a ? (f(new Set(r)), i == null || i(r)) : (f(/* @__PURE__ */ new Set()), i == null || i([]));
-    },
-    [r, i]
   ), o = m(
-    (a, x) => {
+    (r) => {
+      r ? (f(new Set(a)), i == null || i(a)) : (f(/* @__PURE__ */ new Set()), i == null || i([]));
+    },
+    [a, i]
+  ), S = m(
+    (r, x) => {
       k((e) => {
-        const l = e.key === a && e.direction === "asc" ? "desc" : "asc";
-        return d == null || d(a, x), { key: a, direction: l };
+        const l = e.key === r && e.direction === "asc" ? "desc" : "asc";
+        return d == null || d(r, x), { key: r, direction: l };
       });
     },
     [d]
@@ -39,12 +40,12 @@ function z(r, i, d) {
     isAllChecked: y,
     sortConfig: j,
     handleCheckboxChange: c,
-    handleSelectAll: S,
-    handleSort: o
+    handleSelectAll: o,
+    handleSort: S
   };
 }
-function q({
-  rows: r,
+function F({
+  rows: a,
   columns: i,
   caption: d,
   className: n,
@@ -56,10 +57,10 @@ function q({
     checkedRows: j,
     isAllChecked: k,
     sortConfig: c,
-    handleCheckboxChange: S,
-    handleSelectAll: o,
-    handleSort: a
-  } = z(r, f, y), x = [
+    handleCheckboxChange: o,
+    handleSelectAll: S,
+    handleSort: r
+  } = z(a, f, y), x = [
     ...p ? [
       {
         key: "checkbox",
@@ -85,7 +86,7 @@ function q({
             h,
             {
               isSelected: k,
-              onValueChange: (t) => o(t)
+              onValueChange: (t) => S(t)
             }
           ) : /* @__PURE__ */ s.jsxs("div", { className: "flex items-center gap-2", children: [
             e.label,
@@ -98,7 +99,7 @@ function q({
                   const t = (b = i.find(
                     (A) => String(A.field) === e.key
                   )) == null ? void 0 : b.field;
-                  t && a(
+                  t && r(
                     t,
                     c.direction === "asc" ? "desc" : "asc"
                   );
@@ -124,11 +125,11 @@ function q({
         e.key
       );
     } }),
-    /* @__PURE__ */ s.jsx(D, { items: r, children: (e) => /* @__PURE__ */ s.jsx(I, { children: (l) => /* @__PURE__ */ s.jsx(E, { children: l === "checkbox" ? /* @__PURE__ */ s.jsx(
+    /* @__PURE__ */ s.jsx(D, { items: a, children: (e) => /* @__PURE__ */ s.jsx(I, { children: (l) => /* @__PURE__ */ s.jsx(E, { children: l === "checkbox" ? /* @__PURE__ */ s.jsx(
       h,
       {
         isSelected: j.has(e),
-        onValueChange: () => S(e)
+        onValueChange: () => o(e)
       }
     ) : (() => {
       const t = i.find(
@@ -139,5 +140,5 @@ function q({
   ] });
 }
 export {
-  q as DataGrid
+  F as DataGrid
 };

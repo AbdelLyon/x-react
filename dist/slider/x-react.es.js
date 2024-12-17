@@ -1,3 +1,4 @@
+/* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as $, useState as R } from "react";
 import { Slider as S } from "@nextui-org/react";
@@ -11,23 +12,23 @@ const w = $(
     formatValue: d,
     renderLabel: c,
     onChange: s,
-    containerClassName: x,
-    labelClassName: i
-  }, n) => {
-    const [r, p] = R(f), j = (t) => {
+    containerClassName: i,
+    labelClassName: x
+  }, p) => {
+    const [r, n] = R(f), j = (t) => {
       const e = Array.isArray(t) ? t : [t];
-      p(e), s == null || s(e);
+      n(e), s == null || s(e);
     }, y = d ? d(r) : ((t) => t.map(
       (e) => a ? new Intl.NumberFormat(void 0, a).format(e) : e
     ).join(" – "))(r), N = c ? c(r) : `${l}: ${y}`;
     return /* @__PURE__ */ o.jsxs(
       "div",
       {
-        ref: n,
+        ref: p,
         className: `
           flex flex-col gap-2 w-full h-max max-w-md 
           items-start justify-center
-          ${x}
+          ${i}
         `,
         children: [
           (m === "top" || m === "bottom") && /* @__PURE__ */ o.jsx(
@@ -35,7 +36,7 @@ const w = $(
             {
               className: `
               text-default-500 font-medium text-small
-              ${i}
+              ${x}
               ${m === "top" ? "order-first" : "order-last"}
             `,
               children: N
