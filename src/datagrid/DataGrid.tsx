@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef } from "react";
 import {
   Table as NextUITable,
   TableHeader,
@@ -57,12 +57,6 @@ export const DataGrid = forwardRef<
     isRowChecked,
   } = useDataGridState(rows, onCheckedRowsChange, onSort);
 
-  const [rowSelected, setRowSelected] = useState<T | undefined>();
-
-  useEffect(() => {
-    if (rowSelected) isRowChecked(rowSelected as T);
-  }, [rowSelected, isRowChecked]);
-
   type ExtendedColumn = ColumnDefinition<T> & {
     key: string;
     label: React.ReactNode;
@@ -92,7 +86,7 @@ export const DataGrid = forwardRef<
           <TableColumn key={column.key}>
             {column.key === "checkbox" ? (
               <Checkbox
-                isSelected={isAllChecked}
+                checked={isAllChecked}
                 onValueChange={(checked) => handleSelectAll(checked)}
               />
             ) : (
@@ -147,10 +141,9 @@ export const DataGrid = forwardRef<
                 <TableCell>
                   {columnKey === "checkbox" ? (
                     <Checkbox
-                      isSelected={rowSelected?.id === row.id}
+                      checked={isRowChecked(row)}
                       onValueChange={() => {
                         handleCheckboxChange(row);
-                        setRowSelected(row);
                       }}
                     />
                   ) : (
