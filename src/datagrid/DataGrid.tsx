@@ -139,7 +139,10 @@ export const DataGrid = forwardRef<
         {(row) => (
           <TableRow key={row.id}>
             {(columnKey) => {
-              console.log(row.id, checkedRows.has(row.id));
+              console.log("id => ", row.id);
+
+              console.log("checkedRows => ", checkedRows);
+
               return (
                 <TableCell>
                   {columnKey === "checkbox" ? (
