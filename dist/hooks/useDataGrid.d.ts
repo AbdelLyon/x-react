@@ -1,7 +1,7 @@
 export declare const useDataGridState: <T extends {
     id: string | number;
 }>(rows: T[], onCheckedRowsChange?: (rows: T[]) => void, onSort?: (column: keyof T, direction: "asc" | "desc") => void) => {
-    checkedRows: Set<string | number>;
+    checkedRows: (string | number)[];
     isAllChecked: boolean;
     sortConfig: {
         key: keyof T | null;
@@ -10,4 +10,5 @@ export declare const useDataGridState: <T extends {
     handleCheckboxChange: (row: T) => void;
     handleSelectAll: (checked: boolean) => void;
     handleSort: (column: keyof T, direction: "asc" | "desc") => void;
+    isRowChecked: (row: T) => boolean;
 };

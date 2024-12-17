@@ -5,9 +5,7 @@ export const useDataGridState = <T extends { id: string | number }>(
   onCheckedRowsChange?: (rows: T[]) => void,
   onSort?: (column: keyof T, direction: "asc" | "desc") => void,
 ) => {
-  const [checkedRows, setCheckedRows] = useState<Set<string | number>>(
-    new Set(),
-  );
+  const [checkedRowIds, setCheckedRowIds] = useState<(string | number)[]>([]);
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [sortConfig, setSortConfig] = useState<{
     key: keyof T | null;
@@ -18,31 +16,29 @@ export const useDataGridState = <T extends { id: string | number }>(
   });
 
   useEffect(() => {
-    setIsAllChecked(checkedRows.size === rows.length);
-  }, [checkedRows, rows]);
+    setIsAllChecked(checkedRowIds.length === rows.length);
+  }, [checkedRowIds, rows]);
 
   const handleCheckboxChange = (row: T) => {
-    setCheckedRows((prev) => {
-      const newCheckedRows = new Set(prev);
-      if (newCheckedRows.has(row.id)) {
-        newCheckedRows.delete(row.id);
-      } else {
-        newCheckedRows.add(row.id);
-      }
+    setCheckedRowIds((prev) => {
+      const isChecked = prev.includes(row.id);
+      const newCheckedIds = isChecked
+        ? prev.filter((id) => id !== row.id)
+        : [...prev, row.id];
 
-      const selectedRows = rows.filter((r) => newCheckedRows.has(r.id));
+      const selectedRows = rows.filter((r) => newCheckedIds.includes(r.id));
       onCheckedRowsChange?.(selectedRows);
-      return newCheckedRows;
+      return newCheckedIds;
     });
   };
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      const allIds = new Set(rows.map((row) => row.id));
-      setCheckedRows(allIds);
+      const allIds = rows.map((row) => row.id);
+      setCheckedRowIds(allIds);
       onCheckedRowsChange?.(rows);
     } else {
-      setCheckedRows(new Set());
+      setCheckedRowIds([]);
       onCheckedRowsChange?.([]);
     }
   };
@@ -52,12 +48,17 @@ export const useDataGridState = <T extends { id: string | number }>(
     onSort?.(column, direction);
   };
 
+  const isRowChecked = (row: T): boolean => {
+    return checkedRowIds.includes(row.id);
+  };
+
   return {
-    checkedRows,
+    checkedRows: checkedRowIds,
     isAllChecked,
     sortConfig,
     handleCheckboxChange,
     handleSelectAll,
     handleSort,
+    isRowChecked,
   };
 };
