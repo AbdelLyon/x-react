@@ -22,6 +22,6 @@ export type DataGridProps<T extends {
     onSort?: (column: keyof T, direction: "asc" | "desc") => void;
     checkboxSelection?: boolean;
 };
-export declare const DataGrid: import('react').ForwardRefExoticComponent<DataGridProps<{
+export declare function DataGrid<T extends {
     id: string | number;
-}> & import('react').RefAttributes<HTMLTableElement>>;
+}>({ rows, columns, caption, className, onCheckedRowsChange, onSort, checkboxSelection, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;

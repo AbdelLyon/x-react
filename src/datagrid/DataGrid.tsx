@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import {
   Table as NextUITable,
   TableHeader,
@@ -33,20 +32,15 @@ export type DataGridProps<T extends { id: string | number }> = {
   checkboxSelection?: boolean;
 };
 
-export const DataGrid = forwardRef(function DataGrid<
-  T extends { id: string | number },
->(
-  {
-    rows,
-    columns,
-    caption,
-    className,
-    onCheckedRowsChange,
-    onSort,
-    checkboxSelection = true,
-  }: DataGridProps<T>,
-  ref: React.Ref<HTMLTableElement>,
-) {
+export function DataGrid<T extends { id: string | number }>({
+  rows,
+  columns,
+  caption,
+  className,
+  onCheckedRowsChange,
+  onSort,
+  checkboxSelection = true,
+}: DataGridProps<T>) {
   const {
     isAllChecked,
     sortConfig,
@@ -79,7 +73,7 @@ export const DataGrid = forwardRef(function DataGrid<
   ];
 
   return (
-    <NextUITable aria-label={caption} className={className} ref={ref}>
+    <NextUITable aria-label={caption} className={className}>
       <TableHeader columns={preparedColumns}>
         {(column) => (
           <TableColumn key={column.key}>
@@ -135,38 +129,34 @@ export const DataGrid = forwardRef(function DataGrid<
       <TableBody items={rows}>
         {(row) => (
           <TableRow key={row.id}>
-            {(columnKey) => {
-              return (
-                <TableCell>
-                  {columnKey === "checkbox" ? (
-                    <Checkbox
-                      checked={isRowChecked(row)}
-                      onValueChange={() => {
-                        handleCheckboxChange(row);
-                      }}
-                    />
-                  ) : (
-                    (() => {
-                      const column = columns.find(
-                        (c) => String(c.field) === columnKey,
-                      );
-                      if (!column) return null;
+            {(columnKey) => (
+              <TableCell>
+                {columnKey === "checkbox" ? (
+                  <Checkbox
+                    checked={isRowChecked(row)}
+                    onValueChange={() => {
+                      handleCheckboxChange(row);
+                    }}
+                  />
+                ) : (
+                  (() => {
+                    const column = columns.find(
+                      (c) => String(c.field) === columnKey,
+                    );
+                    if (!column) return null;
 
-                      return column.cell
-                        ? column.cell(row)
-                        : column.field
-                        ? String(row[column.field])
-                        : null;
-                    })()
-                  )}
-                </TableCell>
-              );
-            }}
+                    return column.cell
+                      ? column.cell(row)
+                      : column.field
+                      ? String(row[column.field])
+                      : null;
+                  })()
+                )}
+              </TableCell>
+            )}
           </TableRow>
         )}
       </TableBody>
     </NextUITable>
   );
-});
-
-DataGrid.displayName = "DataGrid";
+}
