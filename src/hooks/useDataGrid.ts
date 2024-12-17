@@ -54,6 +54,8 @@ export function useDataGridState<T extends { id: string | number }>(
   }
 
   function isRowChecked(row: T) {
+    console.log({ row, checkedRowIds });
+
     return checkedRowIds.has(row.id);
   }
 
