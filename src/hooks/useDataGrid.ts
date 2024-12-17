@@ -52,7 +52,6 @@ export const useDataGridState = <T extends { id: string | number }>(
     onSort?.(column, direction);
   };
 
-  console.log(checkedRows);
   const isRowChecked = (row: T): boolean => {
     return checkedRows.has(row.id);
   };

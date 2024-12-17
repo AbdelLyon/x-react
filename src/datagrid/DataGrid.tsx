@@ -55,12 +55,15 @@ export const DataGrid = forwardRef<
     handleSelectAll,
     handleSort,
     isRowChecked,
+    checkedRows,
   } = useDataGridState(rows, onCheckedRowsChange, onSort);
 
   type ExtendedColumn = ColumnDefinition<T> & {
     key: string;
     label: React.ReactNode;
   };
+
+  console.log(checkedRows);
 
   const preparedColumns: ExtendedColumn[] = [
     ...(checkboxSelection
