@@ -4,12 +4,16 @@ export type SortConfig<T> = {
 };
 export type ColumnDefinition<T> = {
     header: React.ReactNode;
-    field?: keyof T;
-    cell?: (row: T) => React.ReactNode;
     footer?: (data: T[]) => React.ReactNode;
     className?: string;
     sortable?: boolean;
-};
+} & ({
+    field: keyof T;
+    cell?: (row: T) => React.ReactNode;
+} | {
+    field?: never;
+    cell: (row: T) => React.ReactNode;
+});
 export type DataGridProps<T extends {
     id: string | number;
 }> = {
