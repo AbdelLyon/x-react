@@ -81,10 +81,7 @@ export const DataGrid = forwardRef<
 
   return (
     <NextUITable aria-label={caption} className={className} ref={ref}>
-      <TableHeader
-        columns={preparedColumns}
-        className="dark:bg-background py-2"
-      >
+      <TableHeader columns={preparedColumns}>
         {(column) => (
           <TableColumn key={column.key}>
             {column.key === "checkbox" ? (

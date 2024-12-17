@@ -1,23 +1,23 @@
 /* empty css                */
 import { j as i } from "../jsx-runtime-Dx-03ztt.js";
-import { useState as u, useEffect as N, forwardRef as T } from "react";
-import { Table as v, TableHeader as D, TableColumn as G, Checkbox as A, TableBody as I, TableRow as z, TableCell as g } from "@nextui-org/react";
-import { IconChevronUp as E, IconChevronDown as V } from "@tabler/icons-react";
-const $ = (n, l, r) => {
-  const [f, b] = u(
+import { useState as u, useEffect as T, forwardRef as v } from "react";
+import { Table as D, TableHeader as N, TableColumn as G, Checkbox as A, TableBody as I, TableRow as z, TableCell as E } from "@nextui-org/react";
+import { IconChevronUp as V, IconChevronDown as $ } from "@tabler/icons-react";
+const B = (n, l, r) => {
+  const [f, h] = u(
     /* @__PURE__ */ new Set()
-  ), [o, p] = u(!1), [h, k] = u({
+  ), [o, p] = u(!1), [b, k] = u({
     key: null,
     direction: "asc"
   });
-  return N(() => {
+  return T(() => {
     p(f.size === n.length);
   }, [f, n]), {
     checkedRows: f,
     isAllChecked: o,
-    sortConfig: h,
+    sortConfig: b,
     handleCheckboxChange: (t) => {
-      b((c) => {
+      h((c) => {
         const a = new Set(c);
         a.has(t.id) ? a.delete(t.id) : a.add(t.id);
         const e = n.filter((s) => a.has(s.id));
@@ -27,23 +27,23 @@ const $ = (n, l, r) => {
     handleSelectAll: (t) => {
       if (t) {
         const c = new Set(n.map((a) => a.id));
-        b(c), l == null || l(n);
+        h(c), l == null || l(n);
       } else
-        b(/* @__PURE__ */ new Set()), l == null || l([]);
+        h(/* @__PURE__ */ new Set()), l == null || l([]);
     },
     handleSort: (t, c) => {
       k({ key: t, direction: c }), r == null || r(t, c);
     },
     isRowChecked: (t) => f.has(t.id)
   };
-}, B = T(function({
+}, H = v(function({
   rows: l,
   columns: r,
   caption: f,
-  className: b,
+  className: h,
   onCheckedRowsChange: o,
   onSort: p,
-  checkboxSelection: h = !0
+  checkboxSelection: b = !0
 }, k) {
   const {
     isAllChecked: j,
@@ -52,8 +52,8 @@ const $ = (n, l, r) => {
     handleSelectAll: S,
     handleSort: t,
     isRowChecked: c
-  } = $(l, o, p), a = [
-    ...h ? [
+  } = B(l, o, p), a = [
+    ...b ? [
       {
         key: "checkbox",
         label: "",
@@ -66,56 +66,49 @@ const $ = (n, l, r) => {
       label: e.header
     }))
   ];
-  return /* @__PURE__ */ i.jsxs(v, { "aria-label": f, className: b, ref: k, children: [
-    /* @__PURE__ */ i.jsx(
-      D,
+  return /* @__PURE__ */ i.jsxs(D, { "aria-label": f, className: h, ref: k, children: [
+    /* @__PURE__ */ i.jsx(N, { columns: a, children: (e) => /* @__PURE__ */ i.jsx(G, { children: e.key === "checkbox" ? /* @__PURE__ */ i.jsx(
+      A,
       {
-        columns: a,
-        className: "dark:bg-background py-2",
-        children: (e) => /* @__PURE__ */ i.jsx(G, { children: e.key === "checkbox" ? /* @__PURE__ */ i.jsx(
-          A,
-          {
-            checked: j,
-            onValueChange: (s) => S(s)
-          }
-        ) : /* @__PURE__ */ i.jsxs("div", { className: "flex items-center gap-2", children: [
-          e.label,
-          e.sortable && /* @__PURE__ */ i.jsxs(
-            "div",
-            {
-              className: "relative w-4 h-4 cursor-pointer",
-              onClick: () => {
-                var d;
-                const s = (d = r.find(
-                  (y) => String(y.field) === e.key
-                )) == null ? void 0 : d.field;
-                s && t(
-                  s,
-                  x.direction === "asc" ? "desc" : "asc"
-                );
-              },
-              children: [
-                /* @__PURE__ */ i.jsx(
-                  E,
-                  {
-                    size: 16,
-                    className: `absolute -top-1 ${x.key === e.key && x.direction === "asc" ? "opacity-100" : "opacity-30"}`
-                  }
-                ),
-                /* @__PURE__ */ i.jsx(
-                  V,
-                  {
-                    size: 16,
-                    className: `absolute top-1 ${x.key === e.key && x.direction === "desc" ? "opacity-100" : "opacity-30"}`
-                  }
-                )
-              ]
-            }
-          )
-        ] }) }, e.key)
+        checked: j,
+        onValueChange: (s) => S(s)
       }
-    ),
-    /* @__PURE__ */ i.jsx(I, { items: l, children: (e) => /* @__PURE__ */ i.jsx(z, { children: (s) => /* @__PURE__ */ i.jsx(g, { children: s === "checkbox" ? /* @__PURE__ */ i.jsx(
+    ) : /* @__PURE__ */ i.jsxs("div", { className: "flex items-center gap-2", children: [
+      e.label,
+      e.sortable && /* @__PURE__ */ i.jsxs(
+        "div",
+        {
+          className: "relative w-4 h-4 cursor-pointer",
+          onClick: () => {
+            var d;
+            const s = (d = r.find(
+              (y) => String(y.field) === e.key
+            )) == null ? void 0 : d.field;
+            s && t(
+              s,
+              x.direction === "asc" ? "desc" : "asc"
+            );
+          },
+          children: [
+            /* @__PURE__ */ i.jsx(
+              V,
+              {
+                size: 16,
+                className: `absolute -top-1 ${x.key === e.key && x.direction === "asc" ? "opacity-100" : "opacity-30"}`
+              }
+            ),
+            /* @__PURE__ */ i.jsx(
+              $,
+              {
+                size: 16,
+                className: `absolute top-1 ${x.key === e.key && x.direction === "desc" ? "opacity-100" : "opacity-30"}`
+              }
+            )
+          ]
+        }
+      )
+    ] }) }, e.key) }),
+    /* @__PURE__ */ i.jsx(I, { items: l, children: (e) => /* @__PURE__ */ i.jsx(z, { children: (s) => /* @__PURE__ */ i.jsx(E, { children: s === "checkbox" ? /* @__PURE__ */ i.jsx(
       A,
       {
         checked: c(e),
@@ -131,7 +124,7 @@ const $ = (n, l, r) => {
     })() }) }, e.id) })
   ] });
 });
-B.displayName = "DataGrid";
+H.displayName = "DataGrid";
 export {
-  B as DataGrid
+  H as DataGrid
 };

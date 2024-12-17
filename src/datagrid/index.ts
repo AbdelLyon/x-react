@@ -1,2 +1,6 @@
 import "@/index.css";
-export { DataGrid } from "@/datagrid/DataGrid";
+export {
+  DataGrid,
+  type ColumnDefinition,
+  type SortConfig,
+} from "@/datagrid/DataGrid";
