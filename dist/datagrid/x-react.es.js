@@ -1,85 +1,86 @@
 /* empty css                */
 import { j as l } from "../jsx-runtime-Dx-03ztt.js";
-import { useState as S, useEffect as T, forwardRef as v } from "react";
-import { Table as A, TableHeader as D, TableColumn as N, Checkbox as I, TableBody as G, TableRow as z, TableCell as E } from "@nextui-org/react";
-import { IconChevronUp as V, IconChevronDown as $ } from "@tabler/icons-react";
-function B(f, i, r) {
-  const [x, o] = S(
+import { useState as I, useEffect as v, forwardRef as A } from "react";
+import { Table as D, TableHeader as N, TableColumn as G, Checkbox as T, TableBody as z, TableRow as E, TableCell as V } from "@nextui-org/react";
+import { IconChevronUp as $, IconChevronDown as B } from "@tabler/icons-react";
+function H(f, i, r) {
+  const [x, p] = I(
     /* @__PURE__ */ new Set()
-  ), [p, b] = S(!1), [u, y] = S({
+  ), [b, u] = I(!1), [o, h] = I({
     key: null,
     direction: "asc"
   });
-  T(() => {
-    b(x.size === f.length);
+  v(() => {
+    u(x.size === f.length);
   }, [x, f]);
-  function h(t) {
-    o((a) => {
-      const d = new Set(a);
-      d.has(t.id) ? d.delete(t.id) : d.add(t.id);
-      const e = f.filter((s) => d.has(s.id));
-      return i == null || i(e), d;
+  function y(t) {
+    p((d) => {
+      const s = new Set(d);
+      s.has(t.id) ? s.delete(t.id) : s.add(t.id);
+      const m = f.filter((e) => s.has(e.id));
+      return i == null || i(m), s;
     });
   }
   function n(t) {
     if (t) {
-      const a = new Set(f.map((d) => d.id));
-      o(a), i == null || i(f);
+      const d = new Set(f.map((s) => s.id));
+      p(d), i == null || i(f);
     } else
-      o(/* @__PURE__ */ new Set()), i == null || i([]);
+      p(/* @__PURE__ */ new Set()), i == null || i([]);
   }
-  function j(t, a) {
-    y({ key: t, direction: a }), r == null || r(t, a);
+  function j(t, d) {
+    h({ key: t, direction: d }), r == null || r(t, d);
   }
   function k(t) {
     return x.has(t.id);
   }
   return {
     checkedRows: x,
-    isAllChecked: p,
-    sortConfig: u,
-    handleCheckboxChange: h,
+    isAllChecked: b,
+    sortConfig: o,
+    handleCheckboxChange: y,
     handleSelectAll: n,
     handleSort: j,
     isRowChecked: k
   };
 }
-const H = v(function({
+const U = A(function({
   rows: i,
   columns: r,
   caption: x,
-  className: o,
-  onCheckedRowsChange: p,
-  onSort: b,
-  checkboxSelection: u = !0
-}, y) {
+  className: p,
+  onCheckedRowsChange: b,
+  onSort: u,
+  checkboxSelection: o = !0
+}, h) {
   const {
-    isAllChecked: h,
+    isAllChecked: y,
     sortConfig: n,
     handleCheckboxChange: j,
     handleSelectAll: k,
     handleSort: t,
-    isRowChecked: a
-  } = B(i, p, b), d = [
-    ...u ? [
+    isRowChecked: d,
+    checkedRows: s
+  } = H(i, b, u), m = [
+    ...o ? [
       {
         key: "checkbox",
         label: "",
         header: ""
       }
     ] : [],
-    ...r.map((e, s) => ({
+    ...r.map((e, a) => ({
       ...e,
-      key: String(e.field || s),
+      key: String(e.field || a),
       label: e.header
     }))
   ];
-  return /* @__PURE__ */ l.jsxs(A, { "aria-label": x, className: o, ref: y, children: [
-    /* @__PURE__ */ l.jsx(D, { columns: d, children: (e) => /* @__PURE__ */ l.jsx(N, { children: e.key === "checkbox" ? /* @__PURE__ */ l.jsx(
-      I,
+  return /* @__PURE__ */ l.jsxs(D, { "aria-label": x, className: p, ref: h, children: [
+    /* @__PURE__ */ l.jsx(N, { columns: m, children: (e) => /* @__PURE__ */ l.jsx(G, { children: e.key === "checkbox" ? /* @__PURE__ */ l.jsx(
+      T,
       {
-        isSelected: h,
-        onValueChange: (s) => k(s)
+        isSelected: y,
+        onValueChange: (a) => k(a)
       }
     ) : /* @__PURE__ */ l.jsxs("div", { className: "flex items-center gap-2", children: [
       e.label,
@@ -89,24 +90,24 @@ const H = v(function({
           className: "relative w-4 h-4 cursor-pointer",
           onClick: () => {
             var c;
-            const s = (c = r.find(
-              (m) => String(m.field) === e.key
+            const a = (c = r.find(
+              (S) => String(S.field) === e.key
             )) == null ? void 0 : c.field;
-            s && t(
-              s,
+            a && t(
+              a,
               n.direction === "asc" ? "desc" : "asc"
             );
           },
           children: [
             /* @__PURE__ */ l.jsx(
-              V,
+              $,
               {
                 size: 16,
                 className: `absolute -top-1 ${n.key === e.key && n.direction === "asc" ? "opacity-100" : "opacity-30"}`
               }
             ),
             /* @__PURE__ */ l.jsx(
-              $,
+              B,
               {
                 size: 16,
                 className: `absolute top-1 ${n.key === e.key && n.direction === "desc" ? "opacity-100" : "opacity-30"}`
@@ -116,23 +117,23 @@ const H = v(function({
         }
       )
     ] }) }, e.key) }),
-    /* @__PURE__ */ l.jsx(G, { items: i, children: (e) => /* @__PURE__ */ l.jsx(z, { children: (s) => /* @__PURE__ */ l.jsx(E, { children: s === "checkbox" ? /* @__PURE__ */ l.jsx(
-      I,
+    /* @__PURE__ */ l.jsx(z, { items: i, children: (e) => /* @__PURE__ */ l.jsx(E, { children: (a) => /* @__PURE__ */ l.jsx(V, { children: a === "checkbox" ? /* @__PURE__ */ l.jsx(
+      T,
       {
-        isSelected: a(e),
+        isSelected: s.has(e == null ? void 0 : e.id),
         onValueChange: () => {
-          j(e), console.log(a(e));
+          j(e), console.log(d(e));
         }
       }
     ) : (() => {
       const c = r.find(
-        (m) => String(m.field) === s
+        (S) => String(S.field) === a
       );
       return c ? c.cell ? c.cell(e) : c.field ? String(e[c.field]) : null : null;
     })() }) }, e.id) })
   ] });
 });
-H.displayName = "DataGrid";
+U.displayName = "DataGrid";
 export {
-  H as DataGrid
+  U as DataGrid
 };
