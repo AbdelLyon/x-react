@@ -85,7 +85,7 @@ function g({
             const l = (a = t.find(
               (x) => String(x.field) === e.key
             )) == null ? void 0 : a.field;
-            l && j(
+            l && l !== "actions" && j(
               l,
               d.direction === "asc" ? "desc" : "asc"
             );
@@ -121,7 +121,7 @@ function g({
       const a = t.find(
         (x) => String(x.field) === l
       );
-      return a ? a.cell ? a.cell(e) : a.field ? String(e[a.field]) : null : null;
+      return a ? a.cell ? a.cell(e) : a.field && a.field in e ? String(e[a.field]) : null : null;
     })() }) }, e.id) })
   ] });
 }

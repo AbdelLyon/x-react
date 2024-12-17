@@ -23,7 +23,7 @@ export type ColumnDefinition<T> = {
       cell?: (row: T) => React.ReactNode;
     }
   | {
-      field?: never;
+      field?: "actions";
       cell: (row: T) => React.ReactNode;
     }
 );
@@ -99,7 +99,7 @@ export function DataGrid<T extends { id: string | number }>({
                       const field = columns.find(
                         (c) => String(c.field) === column.key,
                       )?.field;
-                      if (field) {
+                      if (field && field !== "actions") {
                         handleSort(
                           field,
                           sortConfig.direction === "asc" ? "desc" : "asc",
@@ -154,8 +154,8 @@ export function DataGrid<T extends { id: string | number }>({
 
                     return column.cell
                       ? column.cell(row)
-                      : column.field
-                      ? String(row[column.field])
+                      : column.field && column.field in row
+                      ? String(row[column.field as keyof typeof row])
                       : null;
                   })()
                 )}

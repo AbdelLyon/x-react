@@ -11,7 +11,7 @@ export type ColumnDefinition<T> = {
     field: keyof T;
     cell?: (row: T) => React.ReactNode;
 } | {
-    field?: never;
+    field?: "actions";
     cell: (row: T) => React.ReactNode;
 });
 export type DataGridProps<T extends {
