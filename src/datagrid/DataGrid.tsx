@@ -143,7 +143,6 @@ export const DataGrid = forwardRef<
                     isSelected={isRowChecked(row)}
                     onValueChange={() => {
                       handleCheckboxChange(row);
-                      console.log(isRowChecked(row));
                     }}
                   />
                 ) : (
