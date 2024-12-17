@@ -1,0 +1,111 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > should match the snapshot with custom styles 1`] = `
+<DocumentFragment>
+  <button
+    class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-4 min-w-20 h-10 text-small gap-2 [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-default text-default-foreground data-[hover=true]:opacity-hover transition-none font-normal border-1 rounded-md custom-base"
+    type="button"
+  >
+    <span
+      class="custom-content"
+    >
+      Click me
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button > should match the snapshot with default props 1`] = `
+<DocumentFragment>
+  <button
+    class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-4 min-w-20 h-10 text-small gap-2 [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-default text-default-foreground data-[hover=true]:opacity-hover transition-none font-normal border-1 rounded-md"
+    type="button"
+  >
+    <span
+      class=""
+    >
+      Click me
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button > should match the snapshot with different variants 1`] = `
+<DocumentFragment>
+  <button
+    class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-4 min-w-20 h-10 text-small gap-2 opacity-disabled pointer-events-none [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-transparent border-default text-foreground data-[hover=true]:opacity-hover transition-none font-normal border-1 rounded-md w-full"
+    data-disabled="true"
+    disabled=""
+    type="button"
+  >
+    <span
+      class=""
+    >
+      Click me
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button > should match the snapshot with end content 1`] = `
+<DocumentFragment>
+  <button
+    class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-4 min-w-20 h-10 text-small gap-2 [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-default text-default-foreground data-[hover=true]:opacity-hover transition-none font-normal border-1 rounded-md"
+    type="button"
+  >
+    <span
+      class=""
+    >
+      Click me
+    </span>
+    <span
+      class="ml-2"
+    >
+      <i>
+        icon
+      </i>
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button > should match the snapshot with link props 1`] = `
+<DocumentFragment>
+  <a
+    class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-4 min-w-20 h-10 text-small gap-2 [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-default text-default-foreground data-[hover=true]:opacity-hover transition-none font-normal border-1 rounded-md"
+    href="/test"
+    rel="noopener noreferrer"
+    role="button"
+    tabindex="0"
+    target="_blank"
+  >
+    <span
+      class=""
+    >
+      Click me
+    </span>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Button > should match the snapshot with start content 1`] = `
+<DocumentFragment>
+  <button
+    class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-4 min-w-20 h-10 text-small gap-2 [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-default text-default-foreground data-[hover=true]:opacity-hover transition-none font-normal border-1 rounded-md"
+    type="button"
+  >
+    <span
+      class="mr-2"
+    >
+      <i>
+        icon
+      </i>
+    </span>
+    <span
+      class=""
+    >
+      Click me
+    </span>
+  </button>
+</DocumentFragment>
+`;

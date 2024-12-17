@@ -23,6 +23,7 @@ var modules = [
     "slider",
     "progress",
     "spiner",
+    "datagrid",
 ];
 export default defineConfig({
     plugins: [

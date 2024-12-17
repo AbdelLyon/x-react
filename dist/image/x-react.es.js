@@ -1,5 +1,4 @@
-/* empty css                */
-import { Image as e } from "@nextui-org/react";
+import { Image as o } from "@nextui-org/react";
 export {
-  e as Image
+  o as Image
 };

@@ -86,6 +86,10 @@
     "./spiner": {
       "import": "./dist/spiner/x-react.es.js",
       "types": "./dist/spiner/index.d.ts"
+    },
+    "./datagrid": {
+      "import": "./dist/datagrid/x-react.es.js",
+      "types": "./dist/datagrid/index.d.ts"
     }
   },
   "typesVersions": {
@@ -96,9 +100,9 @@
     }
   },
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "test": "vitest",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -116,6 +120,8 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@tanstack/react-query-devtools": "^5.62.7",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
@@ -125,12 +131,15 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.13.0",
+    "jsdom": "^25.0.1",
     "postcss": "^8.4.49",
     "tailwind-merge": "^2.5.5",
     "tailwindcss": "^3.4.16",
     "typescript": "~5.6.3",
     "typescript-eslint": "^8.18.0",
     "vite": "^6.0.3",
-    "vite-plugin-dts": "^4.3.0"
+    "vite-plugin-dts": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^2.1.8"
   }
 }
