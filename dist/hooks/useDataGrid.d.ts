@@ -10,5 +10,4 @@ export declare const useDataGridState: <T extends {
     handleCheckboxChange: (row: T) => void;
     handleSelectAll: (checked: boolean) => void;
     handleSort: (column: keyof T, direction: "asc" | "desc") => void;
-    isRowChecked: (row: T) => boolean;
 };

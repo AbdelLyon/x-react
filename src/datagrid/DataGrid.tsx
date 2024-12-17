@@ -54,7 +54,6 @@ export const DataGrid = forwardRef<
     handleCheckboxChange,
     handleSelectAll,
     handleSort,
-    isRowChecked,
     checkedRows,
   } = useDataGridState(rows, onCheckedRowsChange, onSort);
 
@@ -143,7 +142,7 @@ export const DataGrid = forwardRef<
               <TableCell>
                 {columnKey === "checkbox" ? (
                   <Checkbox
-                    isSelected={isRowChecked(row)}
+                    isSelected={checkedRows.has(row.id)}
                     onValueChange={() => {
                       handleCheckboxChange(row);
                     }}
