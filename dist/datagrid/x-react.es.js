@@ -1,7 +1,7 @@
 /* empty css                */
 import { j as t } from "../jsx-runtime-Dx-03ztt.js";
 import { useState as u, useEffect as T, forwardRef as v } from "react";
-import { Table as D, TableHeader as N, TableColumn as G, Checkbox as A, TableBody as I, TableRow as g, TableCell as z } from "@nextui-org/react";
+import { Table as D, TableHeader as N, TableColumn as G, Checkbox as A, TableBody as I, TableRow as z, TableCell as g } from "@nextui-org/react";
 import { IconChevronUp as E, IconChevronDown as V } from "@tabler/icons-react";
 const $ = (n, l, r) => {
   const [o, x] = u(
@@ -16,23 +16,23 @@ const $ = (n, l, r) => {
     checkedRows: o,
     isAllChecked: p,
     sortConfig: h,
-    handleCheckboxChange: (s) => {
+    handleCheckboxChange: (i) => {
       x((c) => {
-        const i = new Set(c);
-        i.has(s.id) ? i.delete(s.id) : i.add(s.id);
-        const S = n.filter((e) => i.has(e.id));
-        return l == null || l(S), i;
+        const s = new Set(c);
+        s.has(i.id) ? s.delete(i.id) : s.add(i.id);
+        const S = n.filter((e) => s.has(e.id));
+        return l == null || l(S), s;
       });
     },
-    handleSelectAll: (s) => {
-      if (s) {
-        const c = new Set(n.map((i) => i.id));
+    handleSelectAll: (i) => {
+      if (i) {
+        const c = new Set(n.map((s) => s.id));
         x(c), l == null || l(n);
       } else
         x(/* @__PURE__ */ new Set()), l == null || l([]);
     },
-    handleSort: (s, c) => {
-      y({ key: s, direction: c }), r == null || r(s, c);
+    handleSort: (i, c) => {
+      y({ key: i, direction: c }), r == null || r(i, c);
     }
   };
 }, B = v(function({
@@ -48,12 +48,10 @@ const $ = (n, l, r) => {
     isAllChecked: k,
     sortConfig: f,
     handleCheckboxChange: m,
-    handleSelectAll: s,
+    handleSelectAll: i,
     handleSort: c,
-    checkedRows: i
-  } = $(l, p, b);
-  console.log(i);
-  const S = [
+    checkedRows: s
+  } = $(l, p, b), S = [
     ...h ? [
       {
         key: "checkbox",
@@ -72,7 +70,7 @@ const $ = (n, l, r) => {
       A,
       {
         isSelected: k,
-        onValueChange: (a) => s(a)
+        onValueChange: (a) => i(a)
       }
     ) : /* @__PURE__ */ t.jsxs("div", { className: "flex items-center gap-2", children: [
       e.label,
@@ -109,12 +107,12 @@ const $ = (n, l, r) => {
         }
       )
     ] }) }, e.key) }),
-    /* @__PURE__ */ t.jsx(I, { items: l, children: (e) => /* @__PURE__ */ t.jsx(g, { children: (a) => (console.log("id => ", e.id), console.log("checkedRows => ", i), /* @__PURE__ */ t.jsx(z, { children: a === "checkbox" ? /* @__PURE__ */ t.jsx(
+    /* @__PURE__ */ t.jsx(I, { items: l, children: (e) => /* @__PURE__ */ t.jsx(z, { children: (a) => /* @__PURE__ */ t.jsx(g, { children: a === "checkbox" ? /* @__PURE__ */ t.jsx(
       A,
       {
-        isSelected: i.has(e.id),
+        isSelected: s.has(e.id),
         onValueChange: () => {
-          m(e);
+          m(e), console.log("id => ", e.id), console.log("checkedRows => ", s);
         }
       }
     ) : (() => {
@@ -122,7 +120,7 @@ const $ = (n, l, r) => {
         (j) => String(j.field) === a
       );
       return d ? d.cell ? d.cell(e) : d.field ? String(e[d.field]) : null : null;
-    })() })) }, e.id) })
+    })() }) }, e.id) })
   ] });
 });
 B.displayName = "DataGrid";

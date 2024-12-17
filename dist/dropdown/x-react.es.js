@@ -1,42 +1,42 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as h } from "react";
-import { Dropdown as D, DropdownTrigger as f, DropdownMenu as x, DropdownSection as g, DropdownItem as j } from "@nextui-org/react";
-const u = h(
-  ({ trigger: d, sections: a, dropdownMenuProps: i, onItemPress: e, classNames: p, ...l }, m) => {
-    const t = (r) => {
+import { Dropdown as D, DropdownTrigger as f, DropdownMenu as x, DropdownSection as j, DropdownItem as u } from "@nextui-org/react";
+const g = h(
+  ({ trigger: n, sections: s, dropdownMenuProps: a, onItemPress: e, classNames: i, ...p }, l) => {
+    const m = (r) => {
       e && e(r);
     };
     return /* @__PURE__ */ o.jsxs(
       D,
       {
-        ref: m,
+        ref: l,
         showArrow: !0,
         classNames: {
           base: "before:bg-default-200",
           content: "p-0 border border-divider bg-background",
-          ...p
+          ...i
         },
-        ...l,
+        ...p,
         children: [
-          /* @__PURE__ */ o.jsx(f, { children: d }),
-          /* @__PURE__ */ o.jsx(x, { className: "p-3", ...i, children: a.map((r) => /* @__PURE__ */ o.jsx(
-            g,
+          /* @__PURE__ */ o.jsx(f, { children: n }),
+          /* @__PURE__ */ o.jsx(x, { className: "p-3", ...a, children: s.map((r) => /* @__PURE__ */ o.jsx(
+            j,
             {
               showDivider: r.showDivider,
               "aria-label": r.label,
-              children: r.items.map((n) => {
-                const { key: w, label: c, href: s, ...b } = n;
-                return console.log(s), /* @__PURE__ */ o.jsx(
-                  j,
+              children: r.items.map((d) => {
+                const { key: t, label: w, href: b, ...c } = d;
+                return /* @__PURE__ */ o.jsx(
+                  u,
                   {
                     onPress: () => {
-                      t({ ...n, href: s });
+                      m({ ...d, href: b });
                     },
-                    ...b,
-                    children: c
+                    ...c,
+                    children: w
                   },
-                  w
+                  t
                 );
               })
             },
@@ -47,7 +47,7 @@ const u = h(
     );
   }
 );
-u.displayName = "Dropdown";
+g.displayName = "Dropdown";
 export {
-  u as Dropdown
+  g as Dropdown
 };

@@ -62,8 +62,6 @@ export const DataGrid = forwardRef<
     label: React.ReactNode;
   };
 
-  console.log(checkedRows);
-
   const preparedColumns: ExtendedColumn[] = [
     ...(checkboxSelection
       ? [
@@ -139,10 +137,6 @@ export const DataGrid = forwardRef<
         {(row) => (
           <TableRow key={row.id}>
             {(columnKey) => {
-              console.log("id => ", row.id);
-
-              console.log("checkedRows => ", checkedRows);
-
               return (
                 <TableCell>
                   {columnKey === "checkbox" ? (
@@ -150,6 +144,9 @@ export const DataGrid = forwardRef<
                       isSelected={checkedRows.has(row.id)}
                       onValueChange={() => {
                         handleCheckboxChange(row);
+                        console.log("id => ", row.id);
+
+                        console.log("checkedRows => ", checkedRows);
                       }}
                     />
                   ) : (

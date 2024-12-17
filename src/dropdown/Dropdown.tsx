@@ -67,7 +67,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
             >
               {section.items.map((item) => {
                 const { key, label, href, ...remainingProps } = item;
-                console.log(href);
                 return (
                   <DropdownItem
                     key={key}
