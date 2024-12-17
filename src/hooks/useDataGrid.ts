@@ -33,7 +33,7 @@ export function useDataGridState<T extends { id: string | number }>(
 
       const selectedRows = rows.filter((r) => newCheckedRowIds.has(r.id));
       onCheckedRowsChange?.(selectedRows);
-
+      console.log("New checked rows:", selectedRows);
       return newCheckedRowIds;
     });
   }
