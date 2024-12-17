@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import {
   Table as NextUITable,
   TableHeader,
@@ -7,7 +8,7 @@ import {
   TableCell,
   Checkbox,
 } from "@nextui-org/react";
-import { IconChevronsDown, IconChevronsUp } from "@tabler/icons-react";
+import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import { useDataGridState } from "@/hooks/useDataGrid";
 
 export type SortConfig<T> = { key: keyof T | null; direction: "asc" | "desc" };
@@ -32,22 +33,28 @@ export type DataGridProps<T extends { id: string | number }> = {
   checkboxSelection?: boolean;
 };
 
-export function DataGrid<T extends { id: string | number }>({
-  rows,
-  columns,
-  caption,
-  className,
-  onCheckedRowsChange,
-  onSort,
-  checkboxSelection = true,
-}: DataGridProps<T>) {
+export const DataGrid = forwardRef<
+  HTMLTableElement,
+  DataGridProps<{ id: string | number }>
+>(function DataGrid<T extends { id: string | number }>(
+  {
+    rows,
+    columns,
+    caption,
+    className,
+    onCheckedRowsChange,
+    onSort,
+    checkboxSelection = true,
+  }: DataGridProps<T>,
+  ref: React.Ref<HTMLTableElement>,
+) {
   const {
-    checkedRows,
     isAllChecked,
     sortConfig,
     handleCheckboxChange,
     handleSelectAll,
     handleSort,
+    isRowChecked,
   } = useDataGridState(rows, onCheckedRowsChange, onSort);
 
   type ExtendedColumn = ColumnDefinition<T> & {
@@ -73,7 +80,7 @@ export function DataGrid<T extends { id: string | number }>({
   ];
 
   return (
-    <NextUITable aria-label={caption} className={className}>
+    <NextUITable aria-label={caption} className={className} ref={ref}>
       <TableHeader columns={preparedColumns}>
         {(column) => (
           <TableColumn
@@ -108,7 +115,7 @@ export function DataGrid<T extends { id: string | number }>({
                       }
                     }}
                   >
-                    <IconChevronsUp
+                    <IconChevronUp
                       className={`absolute -top-1 ${
                         sortConfig.key === column.key &&
                         sortConfig.direction === "asc"
@@ -116,7 +123,7 @@ export function DataGrid<T extends { id: string | number }>({
                           : "opacity-30"
                       }`}
                     />
-                    <IconChevronsDown
+                    <IconChevronDown
                       className={`absolute top-1 ${
                         sortConfig.key === column.key &&
                         sortConfig.direction === "desc"
@@ -139,7 +146,7 @@ export function DataGrid<T extends { id: string | number }>({
               <TableCell>
                 {columnKey === "checkbox" ? (
                   <Checkbox
-                    isSelected={checkedRows.has(row)}
+                    isSelected={isRowChecked(row)}
                     onValueChange={() => handleCheckboxChange(row)}
                   />
                 ) : (
@@ -163,4 +170,5 @@ export function DataGrid<T extends { id: string | number }>({
       </TableBody>
     </NextUITable>
   );
-}
+});
+DataGrid.displayName = "DataGrid";

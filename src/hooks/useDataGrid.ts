@@ -1,11 +1,14 @@
-import { useState, useEffect, useCallback } from "react";
+// useDataGridState.ts
+import { useState, useEffect } from "react";
 
 export function useDataGridState<T extends { id: string | number }>(
   rows: T[],
   onCheckedRowsChange?: (rows: T[]) => void,
   onSort?: (column: keyof T, direction: "asc" | "desc") => void,
 ) {
-  const [checkedRows, setCheckedRows] = useState<Set<T>>(new Set());
+  const [checkedRowIds, setCheckedRowIds] = useState<Set<string | number>>(
+    new Set(),
+  );
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [sortConfig, setSortConfig] = useState<{
     key: keyof T | null;
@@ -16,62 +19,52 @@ export function useDataGridState<T extends { id: string | number }>(
   });
 
   useEffect(() => {
-    setIsAllChecked(checkedRows.size === rows.length);
-  }, [checkedRows, rows]);
+    setIsAllChecked(checkedRowIds.size === rows.length);
+  }, [checkedRowIds, rows]);
 
-  const handleCheckboxChange = useCallback(
-    (row: T) => {
-      setCheckedRows((prev) => {
-        const newCheckedRows = new Set(prev);
-        const existingRow = Array.from(newCheckedRows).find(
-          (r) => r.id === row.id,
-        );
-
-        if (existingRow) {
-          newCheckedRows.delete(existingRow);
-        } else {
-          newCheckedRows.add(row);
-        }
-        onCheckedRowsChange?.(Array.from(newCheckedRows));
-
-        return newCheckedRows;
-      });
-    },
-    [onCheckedRowsChange],
-  );
-
-  const handleSelectAll = useCallback(
-    (checked: boolean) => {
-      if (checked) {
-        setCheckedRows(new Set(rows));
-        onCheckedRowsChange?.(rows);
+  function handleCheckboxChange(row: T) {
+    setCheckedRowIds((prev) => {
+      const newCheckedRowIds = new Set(prev);
+      if (newCheckedRowIds.has(row.id)) {
+        newCheckedRowIds.delete(row.id);
       } else {
-        setCheckedRows(new Set());
-        onCheckedRowsChange?.([]);
+        newCheckedRowIds.add(row.id);
       }
-    },
-    [rows, onCheckedRowsChange],
-  );
-  const handleSort = useCallback(
-    (column: keyof T, direction: "asc" | "desc") => {
-      setSortConfig((prev) => {
-        const newDirection =
-          prev.key === column && prev.direction === "asc" ? "desc" : "asc";
 
-        onSort?.(column, direction);
+      const selectedRows = rows.filter((r) => newCheckedRowIds.has(r.id));
+      onCheckedRowsChange?.(selectedRows);
 
-        return { key: column, direction: newDirection };
-      });
-    },
-    [onSort],
-  );
+      return newCheckedRowIds;
+    });
+  }
+
+  function handleSelectAll(checked: boolean) {
+    if (checked) {
+      const allIds = new Set(rows.map((row) => row.id));
+      setCheckedRowIds(allIds);
+      onCheckedRowsChange?.(rows);
+    } else {
+      setCheckedRowIds(new Set());
+      onCheckedRowsChange?.([]);
+    }
+  }
+
+  function handleSort(column: keyof T, direction: "asc" | "desc") {
+    setSortConfig({ key: column, direction });
+    onSort?.(column, direction);
+  }
+
+  function isRowChecked(row: T) {
+    return checkedRowIds.has(row.id);
+  }
 
   return {
-    checkedRows,
+    checkedRows: checkedRowIds,
     isAllChecked,
     sortConfig,
     handleCheckboxChange,
     handleSelectAll,
     handleSort,
+    isRowChecked,
   };
 }
