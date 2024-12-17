@@ -1,6 +1,6 @@
-export declare function useDataGridState<T extends {
+export declare const useDataGridState: <T extends {
     id: string | number;
-}>(rows: T[], onCheckedRowsChange?: (rows: T[]) => void, onSort?: (column: keyof T, direction: "asc" | "desc") => void): {
+}>(rows: T[], onCheckedRowsChange?: (rows: T[]) => void, onSort?: (column: keyof T, direction: "asc" | "desc") => void) => {
     checkedRows: Set<string | number>;
     isAllChecked: boolean;
     sortConfig: {

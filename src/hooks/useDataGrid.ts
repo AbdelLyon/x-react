@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 
-export function useDataGridState<T extends { id: string | number }>(
+export const useDataGridState = <T extends { id: string | number }>(
   rows: T[],
   onCheckedRowsChange?: (rows: T[]) => void,
   onSort?: (column: keyof T, direction: "asc" | "desc") => void,
-) {
-  // Changement ici: garder le Set mais le rendre accessible
+) => {
   const [checkedRows, setCheckedRows] = useState<Set<string | number>>(
     new Set(),
   );
@@ -22,7 +21,7 @@ export function useDataGridState<T extends { id: string | number }>(
     setIsAllChecked(checkedRows.size === rows.length);
   }, [checkedRows, rows]);
 
-  function handleCheckboxChange(row: T) {
+  const handleCheckboxChange = (row: T) => {
     setCheckedRows((prev) => {
       const newCheckedRows = new Set(prev);
       if (newCheckedRows.has(row.id)) {
@@ -35,9 +34,9 @@ export function useDataGridState<T extends { id: string | number }>(
       onCheckedRowsChange?.(selectedRows);
       return newCheckedRows;
     });
-  }
+  };
 
-  function handleSelectAll(checked: boolean) {
+  const handleSelectAll = (checked: boolean) => {
     if (checked) {
       const allIds = new Set(rows.map((row) => row.id));
       setCheckedRows(allIds);
@@ -46,17 +45,17 @@ export function useDataGridState<T extends { id: string | number }>(
       setCheckedRows(new Set());
       onCheckedRowsChange?.([]);
     }
-  }
+  };
 
-  function handleSort(column: keyof T, direction: "asc" | "desc") {
+  const handleSort = (column: keyof T, direction: "asc" | "desc") => {
     setSortConfig({ key: column, direction });
     onSort?.(column, direction);
-  }
+  };
 
   console.log(checkedRows);
-  function isRowChecked(row: T): boolean {
+  const isRowChecked = (row: T): boolean => {
     return checkedRows.has(row.id);
-  }
+  };
 
   return {
     checkedRows,
@@ -67,4 +66,4 @@ export function useDataGridState<T extends { id: string | number }>(
     handleSort,
     isRowChecked,
   };
-}
+};
