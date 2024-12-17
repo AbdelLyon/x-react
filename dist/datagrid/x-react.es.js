@@ -6,12 +6,12 @@ import { IconChevronUp as V, IconChevronDown as $ } from "@tabler/icons-react";
 function B(f, i, r) {
   const [x, o] = S(
     /* @__PURE__ */ new Set()
-  ), [p, u] = S(!1), [b, y] = S({
+  ), [p, b] = S(!1), [u, y] = S({
     key: null,
     direction: "asc"
   });
   T(() => {
-    u(x.size === f.length);
+    b(x.size === f.length);
   }, [x, f]);
   function h(t) {
     o((a) => {
@@ -37,7 +37,7 @@ function B(f, i, r) {
   return {
     checkedRows: x,
     isAllChecked: p,
-    sortConfig: b,
+    sortConfig: u,
     handleCheckboxChange: h,
     handleSelectAll: n,
     handleSort: j,
@@ -50,8 +50,8 @@ const H = v(function({
   caption: x,
   className: o,
   onCheckedRowsChange: p,
-  onSort: u,
-  checkboxSelection: b = !0
+  onSort: b,
+  checkboxSelection: u = !0
 }, y) {
   const {
     isAllChecked: h,
@@ -60,8 +60,8 @@ const H = v(function({
     handleSelectAll: k,
     handleSort: t,
     isRowChecked: a
-  } = B(i, p, u), d = [
-    ...b ? [
+  } = B(i, p, b), d = [
+    ...u ? [
       {
         key: "checkbox",
         label: "",
@@ -116,18 +116,20 @@ const H = v(function({
         }
       )
     ] }) }, e.key) }),
-    /* @__PURE__ */ l.jsx(G, { items: i, children: (e) => /* @__PURE__ */ l.jsx(z, { children: (s) => (console.log(a(e)), /* @__PURE__ */ l.jsx(E, { children: s === "checkbox" ? /* @__PURE__ */ l.jsx(
+    /* @__PURE__ */ l.jsx(G, { items: i, children: (e) => /* @__PURE__ */ l.jsx(z, { children: (s) => /* @__PURE__ */ l.jsx(E, { children: s === "checkbox" ? /* @__PURE__ */ l.jsx(
       I,
       {
         isSelected: a(e),
-        onValueChange: () => j(e)
+        onValueChange: () => {
+          j(e), console.log(a(e));
+        }
       }
     ) : (() => {
       const c = r.find(
         (m) => String(m.field) === s
       );
       return c ? c.cell ? c.cell(e) : c.field ? String(e[c.field]) : null : null;
-    })() })) }, e.id) })
+    })() }) }, e.id) })
   ] });
 });
 H.displayName = "DataGrid";
