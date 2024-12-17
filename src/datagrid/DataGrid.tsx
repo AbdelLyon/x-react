@@ -83,15 +83,7 @@ export const DataGrid = forwardRef<
     <NextUITable aria-label={caption} className={className} ref={ref}>
       <TableHeader columns={preparedColumns}>
         {(column) => (
-          <TableColumn
-            key={column.key}
-            allowsSorting={column.sortable}
-            className={
-              column.key === "checkbox"
-                ? ""
-                : columns.find((c) => String(c.field) === column.key)?.className
-            }
-          >
+          <TableColumn key={column.key} allowsSorting={column.sortable}>
             {column.key === "checkbox" ? (
               <Checkbox
                 isSelected={isAllChecked}
@@ -116,6 +108,7 @@ export const DataGrid = forwardRef<
                     }}
                   >
                     <IconChevronUp
+                      size={16}
                       className={`absolute -top-1 ${
                         sortConfig.key === column.key &&
                         sortConfig.direction === "asc"
@@ -124,6 +117,7 @@ export const DataGrid = forwardRef<
                       }`}
                     />
                     <IconChevronDown
+                      size={16}
                       className={`absolute top-1 ${
                         sortConfig.key === column.key &&
                         sortConfig.direction === "desc"
