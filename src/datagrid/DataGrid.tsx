@@ -136,29 +136,33 @@ export const DataGrid = forwardRef<
       <TableBody items={rows}>
         {(row) => (
           <TableRow key={row.id}>
-            {(columnKey) => (
-              <TableCell>
-                {columnKey === "checkbox" ? (
-                  <Checkbox
-                    isSelected={isRowChecked(row)}
-                    onValueChange={() => handleCheckboxChange(row)}
-                  />
-                ) : (
-                  (() => {
-                    const column = columns.find(
-                      (c) => String(c.field) === columnKey,
-                    );
-                    if (!column) return null;
+            {(columnKey) => {
+              console.log(isRowChecked(row));
 
-                    return column.cell
-                      ? column.cell(row)
-                      : column.field
-                      ? String(row[column.field])
-                      : null;
-                  })()
-                )}
-              </TableCell>
-            )}
+              return (
+                <TableCell>
+                  {columnKey === "checkbox" ? (
+                    <Checkbox
+                      isSelected={isRowChecked(row)}
+                      onValueChange={() => handleCheckboxChange(row)}
+                    />
+                  ) : (
+                    (() => {
+                      const column = columns.find(
+                        (c) => String(c.field) === columnKey,
+                      );
+                      if (!column) return null;
+
+                      return column.cell
+                        ? column.cell(row)
+                        : column.field
+                        ? String(row[column.field])
+                        : null;
+                    })()
+                  )}
+                </TableCell>
+              );
+            }}
           </TableRow>
         )}
       </TableBody>

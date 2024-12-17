@@ -1,57 +1,57 @@
 /* empty css                */
 import { j as l } from "../jsx-runtime-Dx-03ztt.js";
-import { useState as S, useEffect as N, forwardRef as T } from "react";
-import { Table as v, TableHeader as A, TableColumn as D, Checkbox as I, TableBody as G, TableRow as z, TableCell as E } from "@nextui-org/react";
+import { useState as S, useEffect as T, forwardRef as v } from "react";
+import { Table as A, TableHeader as D, TableColumn as N, Checkbox as I, TableBody as G, TableRow as z, TableCell as E } from "@nextui-org/react";
 import { IconChevronUp as V, IconChevronDown as $ } from "@tabler/icons-react";
 function B(f, i, r) {
-  const [o, x] = S(
+  const [x, o] = S(
     /* @__PURE__ */ new Set()
-  ), [p, b] = S(!1), [u, y] = S({
+  ), [p, u] = S(!1), [b, y] = S({
     key: null,
     direction: "asc"
   });
-  N(() => {
-    b(o.size === f.length);
-  }, [o, f]);
+  T(() => {
+    u(x.size === f.length);
+  }, [x, f]);
   function h(t) {
-    x((c) => {
-      const a = new Set(c);
-      a.has(t.id) ? a.delete(t.id) : a.add(t.id);
-      const e = f.filter((s) => a.has(s.id));
-      return i == null || i(e), console.log("New checked rows:", e), a;
+    o((a) => {
+      const d = new Set(a);
+      d.has(t.id) ? d.delete(t.id) : d.add(t.id);
+      const e = f.filter((s) => d.has(s.id));
+      return i == null || i(e), d;
     });
   }
   function n(t) {
     if (t) {
-      const c = new Set(f.map((a) => a.id));
-      x(c), i == null || i(f);
+      const a = new Set(f.map((d) => d.id));
+      o(a), i == null || i(f);
     } else
-      x(/* @__PURE__ */ new Set()), i == null || i([]);
+      o(/* @__PURE__ */ new Set()), i == null || i([]);
   }
-  function j(t, c) {
-    y({ key: t, direction: c }), r == null || r(t, c);
+  function j(t, a) {
+    y({ key: t, direction: a }), r == null || r(t, a);
   }
   function k(t) {
-    return o.has(t.id);
+    return x.has(t.id);
   }
   return {
-    checkedRows: o,
+    checkedRows: x,
     isAllChecked: p,
-    sortConfig: u,
+    sortConfig: b,
     handleCheckboxChange: h,
     handleSelectAll: n,
     handleSort: j,
     isRowChecked: k
   };
 }
-const H = T(function({
+const H = v(function({
   rows: i,
   columns: r,
-  caption: o,
-  className: x,
+  caption: x,
+  className: o,
   onCheckedRowsChange: p,
-  onSort: b,
-  checkboxSelection: u = !0
+  onSort: u,
+  checkboxSelection: b = !0
 }, y) {
   const {
     isAllChecked: h,
@@ -59,9 +59,9 @@ const H = T(function({
     handleCheckboxChange: j,
     handleSelectAll: k,
     handleSort: t,
-    isRowChecked: c
-  } = B(i, p, b), a = [
-    ...u ? [
+    isRowChecked: a
+  } = B(i, p, u), d = [
+    ...b ? [
       {
         key: "checkbox",
         label: "",
@@ -74,8 +74,8 @@ const H = T(function({
       label: e.header
     }))
   ];
-  return /* @__PURE__ */ l.jsxs(v, { "aria-label": o, className: x, ref: y, children: [
-    /* @__PURE__ */ l.jsx(A, { columns: a, children: (e) => /* @__PURE__ */ l.jsx(D, { children: e.key === "checkbox" ? /* @__PURE__ */ l.jsx(
+  return /* @__PURE__ */ l.jsxs(A, { "aria-label": x, className: o, ref: y, children: [
+    /* @__PURE__ */ l.jsx(D, { columns: d, children: (e) => /* @__PURE__ */ l.jsx(N, { children: e.key === "checkbox" ? /* @__PURE__ */ l.jsx(
       I,
       {
         isSelected: h,
@@ -88,10 +88,10 @@ const H = T(function({
         {
           className: "relative w-4 h-4 cursor-pointer",
           onClick: () => {
-            var d;
-            const s = (d = r.find(
+            var c;
+            const s = (c = r.find(
               (m) => String(m.field) === e.key
-            )) == null ? void 0 : d.field;
+            )) == null ? void 0 : c.field;
             s && t(
               s,
               n.direction === "asc" ? "desc" : "asc"
@@ -116,18 +116,18 @@ const H = T(function({
         }
       )
     ] }) }, e.key) }),
-    /* @__PURE__ */ l.jsx(G, { items: i, children: (e) => /* @__PURE__ */ l.jsx(z, { children: (s) => /* @__PURE__ */ l.jsx(E, { children: s === "checkbox" ? /* @__PURE__ */ l.jsx(
+    /* @__PURE__ */ l.jsx(G, { items: i, children: (e) => /* @__PURE__ */ l.jsx(z, { children: (s) => (console.log(a(e)), /* @__PURE__ */ l.jsx(E, { children: s === "checkbox" ? /* @__PURE__ */ l.jsx(
       I,
       {
-        isSelected: c(e),
+        isSelected: a(e),
         onValueChange: () => j(e)
       }
     ) : (() => {
-      const d = r.find(
+      const c = r.find(
         (m) => String(m.field) === s
       );
-      return d ? d.cell ? d.cell(e) : d.field ? String(e[d.field]) : null : null;
-    })() }) }, e.id) })
+      return c ? c.cell ? c.cell(e) : c.field ? String(e[c.field]) : null : null;
+    })() })) }, e.id) })
   ] });
 });
 H.displayName = "DataGrid";
