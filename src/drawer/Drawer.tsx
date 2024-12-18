@@ -5,8 +5,11 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
+  useDisclosure,
+  Button,
 } from "@nextui-org/react";
-import type { DrawerProps as rawerRootProps } from "@nextui-org/react";
+import type { DrawerProps as DrawerRootProps } from "@nextui-org/react";
+import { cn } from "@/utils";
 
 export type DrawerSize =
   | "xs"
@@ -22,12 +25,20 @@ export type DrawerSize =
 export type DrawerRadius = "none" | "sm" | "md" | "lg";
 export type DrawerPlacement = "left" | "right" | "top" | "bottom";
 
-export interface DrawerProps extends Omit<rawerRootProps, "children"> {
+export interface DrawerProps
+  extends Omit<DrawerRootProps, "children" | "title"> {
+  // Trigger
+  trigger: ReactNode;
+
   // Content
-  children?: ReactNode | ((onClose: () => void) => ReactNode);
-  headerContent?: ReactNode;
-  bodyContent?: ReactNode;
-  footerContent?: ReactNode;
+  title?: ReactNode;
+  children: ReactNode;
+  footer?: ReactNode;
+
+  // Actions
+  onAction?: () => void;
+  buttonCloseLabel?: string;
+  buttonActionLabel?: string;
 
   // Styling
   classNames?: {
@@ -44,12 +55,18 @@ export interface DrawerProps extends Omit<rawerRootProps, "children"> {
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
   (
     {
+      // Trigger
+      trigger,
+
       // Content
+      title,
       children,
-      headerContent,
-      bodyContent,
-      footerContent,
-      closeButton,
+      footer,
+
+      // Actions
+      onAction,
+      buttonCloseLabel = "Close",
+      buttonActionLabel,
 
       // Appearance
       size = "md",
@@ -57,8 +74,6 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       placement = "right",
 
       // State
-      isOpen,
-      defaultOpen,
       isDismissable = true,
       isKeyboardDismissDisabled = false,
       shouldBlockScroll = true,
@@ -71,72 +86,101 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       // Styling
       classNames,
 
-      // Events
-      onOpenChange,
-      onClose,
-
       ...props
     },
     ref,
   ) => {
-    const renderContent = (onCloseCallback: () => void) => {
-      const content =
-        typeof children === "function" ? children(onCloseCallback) : children;
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
-      return (
-        <>
-          {(headerContent || content) && (
-            <DrawerHeader className={classNames?.header}>
-              {headerContent || content}
-            </DrawerHeader>
-          )}
+    const handleAction = () => {
+      onAction?.();
+      onClose();
+    };
 
-          {bodyContent && (
-            <DrawerBody className={classNames?.body}>{bodyContent}</DrawerBody>
-          )}
-
-          {footerContent && (
-            <DrawerFooter className={classNames?.footer}>
-              {footerContent}
-            </DrawerFooter>
-          )}
-        </>
-      );
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === "Enter" || event.key === " ") {
+        onOpen();
+      }
     };
 
     return (
-      <DrawerRoot
-        ref={ref}
-        // Appearance
-        size={size}
-        radius={radius}
-        placement={placement}
-        // State
-        isOpen={isOpen}
-        defaultOpen={defaultOpen}
-        isDismissable={isDismissable}
-        isKeyboardDismissDisabled={isKeyboardDismissDisabled}
-        shouldBlockScroll={shouldBlockScroll}
-        hideCloseButton={hideCloseButton}
-        disableAnimation={disableAnimation}
-        // Custom Elements
-        closeButton={closeButton}
-        // Portal
-        portalContainer={portalContainer}
-        // Styling
-        classNames={{
-          wrapper: classNames?.wrapper,
-          base: classNames?.base,
-          backdrop: classNames?.backdrop,
-          closeButton: classNames?.closeButton,
-        }}
-        // Events
-        onOpenChange={onOpenChange}
-        onClose={onClose}
-        {...props}
-      >
-        <DrawerContent>{renderContent}</DrawerContent>
-      </DrawerRoot>
+      <>
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={onOpen}
+          onKeyDown={handleKeyDown}
+        >
+          {trigger}
+        </div>
+
+        <DrawerRoot
+          ref={ref}
+          // Appearance
+          size={size}
+          radius={radius}
+          placement={placement}
+          // State
+          isOpen={isOpen}
+          isDismissable={isDismissable}
+          isKeyboardDismissDisabled={isKeyboardDismissDisabled}
+          shouldBlockScroll={shouldBlockScroll}
+          hideCloseButton={hideCloseButton}
+          disableAnimation={disableAnimation}
+          // Portal
+          portalContainer={portalContainer}
+          // Styling
+          classNames={{
+            wrapper: cn(classNames?.wrapper),
+            base: cn("bg-background", classNames?.base),
+            backdrop: classNames?.backdrop,
+            closeButton: cn("absolute right-4 top-4", classNames?.closeButton),
+          }}
+          // Events
+          onClose={onClose}
+          {...props}
+        >
+          <DrawerContent>
+            {(onClose) => (
+              <>
+                {title && (
+                  <DrawerHeader className={classNames?.header}>
+                    {title}
+                  </DrawerHeader>
+                )}
+
+                <DrawerBody className={classNames?.body}>{children}</DrawerBody>
+
+                <DrawerFooter className={classNames?.footer}>
+                  {footer || (
+                    <>
+                      <Button
+                        className="border-primary/20"
+                        color="primary"
+                        radius="sm"
+                        variant="bordered"
+                        onPress={onClose}
+                      >
+                        {buttonCloseLabel}
+                      </Button>
+
+                      {buttonActionLabel && onAction && (
+                        <Button
+                          color="primary"
+                          radius="sm"
+                          onPress={handleAction}
+                        >
+                          {buttonActionLabel}
+                        </Button>
+                      )}
+                    </>
+                  )}
+                </DrawerFooter>
+              </>
+            )}
+          </DrawerContent>
+        </DrawerRoot>
+      </>
     );
   },
 );

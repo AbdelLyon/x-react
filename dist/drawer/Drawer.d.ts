@@ -1,13 +1,16 @@
 import { ReactNode } from 'react';
-import { DrawerProps as rawerRootProps } from '@nextui-org/react';
+import { DrawerProps as DrawerRootProps } from '@nextui-org/react';
 export type DrawerSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "full";
 export type DrawerRadius = "none" | "sm" | "md" | "lg";
 export type DrawerPlacement = "left" | "right" | "top" | "bottom";
-export interface DrawerProps extends Omit<rawerRootProps, "children"> {
-    children?: ReactNode | ((onClose: () => void) => ReactNode);
-    headerContent?: ReactNode;
-    bodyContent?: ReactNode;
-    footerContent?: ReactNode;
+export interface DrawerProps extends Omit<DrawerRootProps, "children" | "title"> {
+    trigger: ReactNode;
+    title?: ReactNode;
+    children: ReactNode;
+    footer?: ReactNode;
+    onAction?: () => void;
+    buttonCloseLabel?: string;
+    buttonActionLabel?: string;
     classNames?: {
         wrapper?: string;
         base?: string;
