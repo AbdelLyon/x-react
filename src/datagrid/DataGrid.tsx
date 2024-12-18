@@ -86,7 +86,7 @@ export function DataGrid<T extends { id: string | number }>({
           <TableColumn key={column.key}>
             {column.key === "checkbox" ? (
               <Checkbox
-                isSelected={isAllChecked}
+                checked={isAllChecked}
                 onValueChange={(checked) => handleSelectAll(checked)}
               />
             ) : (
@@ -140,7 +140,7 @@ export function DataGrid<T extends { id: string | number }>({
               <TableCell>
                 {columnKey === "checkbox" ? (
                   <Checkbox
-                    checked={isRowChecked(row) ?? isAllChecked}
+                    checked={isRowChecked(row)}
                     onValueChange={() => {
                       handleCheckboxChange(row);
                     }}

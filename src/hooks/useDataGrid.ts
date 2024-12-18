@@ -18,7 +18,8 @@ export const useDataGridState = <T extends { id: string | number }>(
   });
 
   useEffect(() => {
-    setIsAllChecked(checkedRows.size === rows.length);
+    const allChecked = rows.length > 0 && checkedRows.size === rows.length;
+    setIsAllChecked(allChecked);
   }, [checkedRows, rows]);
 
   const handleCheckboxChange = (row: T) => {
@@ -38,13 +39,14 @@ export const useDataGridState = <T extends { id: string | number }>(
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      const allIds = new Set(rows.map((row) => row.id));
-      setCheckedRows(allIds);
+      const newCheckedRows = new Set(rows.map((row) => row.id));
+      setCheckedRows(newCheckedRows);
       onCheckedRowsChange?.(rows);
     } else {
       setCheckedRows(new Set());
       onCheckedRowsChange?.([]);
     }
+    setIsAllChecked(checked);
   };
 
   const handleSort = (column: keyof T, direction: "asc" | "desc") => {
