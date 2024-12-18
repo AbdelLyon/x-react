@@ -21,12 +21,11 @@ export type DataGridProps<T extends {
     columns: ColumnDefinition<T>[];
     caption?: string;
     className?: string;
-    "aria-label"?: string;
-    "aria-labelledby"?: string;
+    footerContent?: React.ReactNode;
     onCheckedRowsChange?: (rows: T[]) => void;
     onSort?: (column: keyof T, direction: "asc" | "desc") => void;
     checkboxSelection?: boolean;
 };
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, onCheckedRowsChange, onSort, checkboxSelection, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
+}>({ rows, columns, caption, className, onCheckedRowsChange, onSort, checkboxSelection, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
