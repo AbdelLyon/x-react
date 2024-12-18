@@ -80,7 +80,11 @@ export function DataGrid<T extends { id: string | number }>({
   ];
 
   return (
-    <NextUITable aria-label={caption} className={className}>
+    <NextUITable
+      aria-label={caption}
+      className={className}
+      aria-labelledby="table"
+    >
       <TableHeader columns={preparedColumns}>
         {(column) => (
           <TableColumn
