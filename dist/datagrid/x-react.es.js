@@ -6,15 +6,15 @@ import { useState as o, useEffect as E } from "react";
 const G = (c, t, n) => {
   const [r, f] = o(
     /* @__PURE__ */ new Set()
-  ), [h, b] = o(!1), [p, d] = o({
+  ), [b, h] = o(!1), [p, d] = o({
     key: null,
     direction: "asc"
   });
   return E(() => {
-    b(r.size === c.length);
+    h(r.size === c.length);
   }, [r, c]), {
     checkedRows: r,
-    isAllChecked: h,
+    isAllChecked: b,
     sortConfig: p,
     handleCheckboxChange: (i) => {
       f((e) => {
@@ -43,8 +43,8 @@ function g({
   caption: n,
   className: r,
   onCheckedRowsChange: f,
-  onSort: h,
-  checkboxSelection: b = !0
+  onSort: b,
+  checkboxSelection: h = !0
 }) {
   const {
     isAllChecked: p,
@@ -53,8 +53,8 @@ function g({
     handleSelectAll: y,
     handleSort: j,
     isRowChecked: u
-  } = G(c, f, h), i = [
-    ...b ? [
+  } = G(c, f, b), i = [
+    ...h ? [
       {
         key: "checkbox",
         label: "",
@@ -71,7 +71,7 @@ function g({
     /* @__PURE__ */ s.jsx(A, { columns: i, children: (e) => /* @__PURE__ */ s.jsx(T, { children: e.key === "checkbox" ? /* @__PURE__ */ s.jsx(
       S,
       {
-        checked: p,
+        isSelected: p,
         onValueChange: (l) => y(l)
       }
     ) : /* @__PURE__ */ s.jsxs("div", { className: "flex items-center gap-2", children: [
