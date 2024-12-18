@@ -1,0 +1,45 @@
+import { ReactNode } from 'react';
+import { DatePickerProps as DatePickerRootProps } from '@nextui-org/react';
+import { DateValue } from '@internationalized/date';
+type LabelPlacement = "inside" | "outside" | "outside-left";
+type ColorVariant = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
+type Size = "sm" | "md" | "lg";
+type Radius = "none" | "sm" | "md" | "lg" | "full";
+interface DatePickerProps extends Omit<DatePickerRootProps, "children"> {
+    value?: DateValue;
+    defaultValue?: DateValue;
+    minValue?: DateValue;
+    maxValue?: DateValue;
+    placeholder?: string;
+    label?: ReactNode;
+    description?: ReactNode;
+    errorMessage?: ReactNode;
+    labelPlacement?: LabelPlacement;
+    variant?: "flat" | "bordered" | "faded";
+    color?: ColorVariant;
+    size?: Size;
+    radius?: Radius;
+    isDisabled?: boolean;
+    isReadOnly?: boolean;
+    isInvalid?: boolean;
+    isRequired?: boolean;
+    autoFocus?: boolean;
+    isDateUnavailable?: (date: DateValue) => boolean;
+    shouldCloseOnSelect?: boolean;
+    onValueChange?: (value: DateValue | null) => void;
+    onOpenChange?: (isOpen: boolean) => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
+    className?: string;
+    classNames?: {
+        base?: string;
+        label?: string;
+        input?: string;
+        innerWrapper?: string;
+        description?: string;
+        errorMessage?: string;
+        calendar?: string;
+    };
+}
+export declare const DatePicker: import('react').ForwardRefExoticComponent<Omit<DatePickerProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
+export {};

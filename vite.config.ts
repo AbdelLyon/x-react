@@ -26,6 +26,9 @@ const modules = [
   "progress",
   "spiner",
   "datagrid",
+  "drawer",
+  "chip",
+  "datepicker",
 ];
 
 export default defineConfig({

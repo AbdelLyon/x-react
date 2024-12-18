@@ -90,6 +90,18 @@
     "./datagrid": {
       "import": "./dist/datagrid/x-react.es.js",
       "types": "./dist/datagrid/index.d.ts"
+    },
+    "./datepicker": {
+      "import": "./dist/datepicker/x-react.es.js",
+      "types": "./dist/datepicker/index.d.ts"
+    },
+    "./chip": {
+      "import": "./dist/chip/x-react.es.js",
+      "types": "./dist/chip/index.d.ts"
+    },
+    "./drawer": {
+      "import": "./dist/drawer/x-react.es.js",
+      "types": "./dist/drawer/index.d.ts"
     }
   },
   "typesVersions": {
@@ -106,11 +118,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@internationalized/date": "^3.6.0",
     "@nextui-org/react": "^2.6.8",
     "@tabler/icons-react": "^3.26.0",
     "@tanstack/react-query": "^5.62.8",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.15.0",
     "next-themes": "^0.4.4"
   },
   "peerDependencies": {
