@@ -35,10 +35,10 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
   (
     {
       trigger,
-      title = "Modal Title",
+      title,
       footer,
       onAction,
-      buttonCloseLabel = "Close",
+      buttonCloseLabel,
       buttonActionLabel,
       classNames,
       children,
@@ -106,15 +106,17 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
                 <ModalFooter>
                   {footer || (
                     <>
-                      <Button
-                        className="border-primary/20"
-                        color="primary"
-                        radius="sm"
-                        variant="bordered"
-                        onPress={onClose}
-                      >
-                        {buttonCloseLabel}
-                      </Button>
+                      {buttonCloseLabel && (
+                        <Button
+                          className="border-primary/20"
+                          color="primary"
+                          radius="sm"
+                          variant="bordered"
+                          onPress={onClose}
+                        >
+                          {buttonCloseLabel}
+                        </Button>
+                      )}
                       {buttonActionLabel && onAction && (
                         <Button
                           color="primary"
