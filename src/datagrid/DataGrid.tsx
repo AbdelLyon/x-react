@@ -83,11 +83,15 @@ export function DataGrid<T extends { id: string | number }>({
     <NextUITable aria-label={caption} className={className}>
       <TableHeader columns={preparedColumns}>
         {(column) => (
-          <TableColumn key={column.key}>
+          <TableColumn
+            key={column.key}
+            aria-label={String(column.label || column.key)}
+          >
             {column.key === "checkbox" ? (
               <Checkbox
                 isSelected={isAllChecked}
                 onValueChange={handleSelectAll}
+                aria-label="Select all rows"
               />
             ) : (
               <div className="flex items-center gap-2">
@@ -106,6 +110,8 @@ export function DataGrid<T extends { id: string | number }>({
                         );
                       }
                     }}
+                    role="button"
+                    aria-label={`Sort by ${column.label}`}
                   >
                     <IconChevronUp
                       size={16}
