@@ -1,6 +1,5 @@
-import { useDataGridState } from "@/hooks/useDataGrid";
 import {
-  Table as NextUITable,
+  Table,
   TableHeader,
   TableColumn,
   TableBody,
@@ -9,6 +8,7 @@ import {
   Checkbox,
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { useDataGridState } from "@/hooks/useDataGrid";
 
 export type SortConfig<T> = { key: keyof T | null; direction: "asc" | "desc" };
 
@@ -33,10 +33,20 @@ export type DataGridProps<T extends { id: string | number }> = {
   columns: ColumnDefinition<T>[];
   caption?: string;
   className?: string;
-  footerContent?: React.ReactNode;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
   onCheckedRowsChange?: (rows: T[]) => void;
   onSort?: (column: keyof T, direction: "asc" | "desc") => void;
   checkboxSelection?: boolean;
+};
+
+type PreparedColumn<T> = {
+  key: string;
+  label: React.ReactNode;
+  field?: keyof T | "actions";
+  cell?: (row: T) => React.ReactNode;
+  sortable?: boolean;
+  className?: string;
 };
 
 export function DataGrid<T extends { id: string | number }>({
@@ -44,6 +54,8 @@ export function DataGrid<T extends { id: string | number }>({
   columns,
   caption,
   className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   onCheckedRowsChange,
   onSort,
   checkboxSelection = true,
@@ -57,35 +69,41 @@ export function DataGrid<T extends { id: string | number }>({
     isRowSelected,
   } = useDataGridState(rows, onCheckedRowsChange, onSort);
 
-  type ExtendedColumn = ColumnDefinition<T> & {
-    key: string;
-    label: React.ReactNode;
-  };
-
-  const preparedColumns: ExtendedColumn[] = [
+  const preparedColumns: PreparedColumn<T>[] = [
     ...(checkboxSelection
       ? [
           {
             key: "checkbox",
             label: "",
-            header: "",
-          } as ExtendedColumn,
+            sortable: false,
+          },
         ]
       : []),
-    ...columns.map((col, index) => ({
+    ...columns.map((col) => ({
       ...col,
-      key: String(col.field || index),
+      key: String(col.field || `column-${col.header}`),
       label: col.header,
     })),
   ];
 
   return (
-    <NextUITable aria-label={caption} className={className}>
-      <TableHeader columns={preparedColumns}>
-        {(column) => (
+    <Table
+      aria-label={ariaLabel || caption || "Data Grid"}
+      aria-labelledby={ariaLabelledBy}
+      classNames={{
+        base: className,
+        table: "min-h-[200px]",
+      }}
+      selectionMode="multiple"
+      selectionBehavior="toggle"
+    >
+      <TableHeader>
+        {preparedColumns.map((column) => (
           <TableColumn
             key={column.key}
+            allowsSorting={column.sortable}
             aria-label={String(column.label || column.key)}
+            className={column.className}
           >
             {column.key === "checkbox" ? (
               <Checkbox
@@ -100,12 +118,9 @@ export function DataGrid<T extends { id: string | number }>({
                   <div
                     className="relative w-4 h-4 cursor-pointer"
                     onClick={() => {
-                      const field = columns.find(
-                        (c) => String(c.field) === column.key,
-                      )?.field;
-                      if (field && field !== "actions") {
+                      if (column.field && column.field !== "actions") {
                         handleSort(
-                          field,
+                          column.field,
                           sortConfig.direction === "asc" ? "desc" : "asc",
                         );
                       }
@@ -116,7 +131,7 @@ export function DataGrid<T extends { id: string | number }>({
                     <IconChevronUp
                       size={16}
                       className={`absolute -top-1 ${
-                        sortConfig.key === column.key &&
+                        sortConfig.key === column.field &&
                         sortConfig.direction === "asc"
                           ? "opacity-100"
                           : "opacity-30"
@@ -125,7 +140,7 @@ export function DataGrid<T extends { id: string | number }>({
                     <IconChevronDown
                       size={16}
                       className={`absolute top-1 ${
-                        sortConfig.key === column.key &&
+                        sortConfig.key === column.field &&
                         sortConfig.direction === "desc"
                           ? "opacity-100"
                           : "opacity-30"
@@ -136,39 +151,34 @@ export function DataGrid<T extends { id: string | number }>({
               </div>
             )}
           </TableColumn>
-        )}
+        ))}
       </TableHeader>
 
-      <TableBody items={rows}>
+      <TableBody items={rows} emptyContent="No rows to display">
         {(row) => (
           <TableRow key={row.id} aria-label={`Row ${row.id}`}>
-            {(columnKey) => (
-              <TableCell>
-                {columnKey === "checkbox" ? (
-                  <Checkbox
-                    isSelected={isRowSelected(row)}
-                    onValueChange={() => handleCheckboxChange(row)}
-                    aria-label={`Select row ${row.id}`}
-                  />
-                ) : (
-                  (() => {
-                    const column = columns.find(
-                      (c) => String(c.field) === columnKey,
-                    );
-                    if (!column) return null;
+            {(columnKey) => {
+              const column = preparedColumns.find((c) => c.key === columnKey);
 
-                    return column.cell
-                      ? column.cell(row)
-                      : column.field && column.field in row
-                      ? String(row[column.field as keyof typeof row])
-                      : null;
-                  })()
-                )}
-              </TableCell>
-            )}
+              return (
+                <TableCell>
+                  {columnKey === "checkbox" ? (
+                    <Checkbox
+                      isSelected={isRowSelected(row)}
+                      onValueChange={() => handleCheckboxChange(row)}
+                      aria-label={`Select row ${row.id}`}
+                    />
+                  ) : column?.cell ? (
+                    column.cell(row)
+                  ) : column?.field && column.field !== "actions" ? (
+                    String(row[column.field])
+                  ) : null}
+                </TableCell>
+              );
+            }}
           </TableRow>
         )}
       </TableBody>
-    </NextUITable>
+    </Table>
   );
 }
