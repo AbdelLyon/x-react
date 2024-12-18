@@ -20,15 +20,17 @@ export const useDataGridState = <T extends { id: string | number }>(
   }, [selectedRows, rows]);
 
   const handleCheckboxChange = (row: T) => {
-    setSelectedRows((prev) => {
-      const isSelected = prev.some((r) => r.id === row.id);
-      const newSelectedRows = isSelected
-        ? prev.filter((r) => r.id !== row.id)
-        : [...prev, row];
+    const isSelected = selectedRows.some((r) => r.id === row.id);
+    let newSelectedRows: T[];
 
-      onCheckedRowsChange?.(newSelectedRows);
-      return newSelectedRows;
-    });
+    if (isSelected) {
+      newSelectedRows = selectedRows.filter((r) => r.id !== row.id);
+    } else {
+      newSelectedRows = [...selectedRows, row];
+    }
+
+    setSelectedRows(newSelectedRows);
+    onCheckedRowsChange?.(newSelectedRows);
   };
 
   const handleSelectAll = (checked: boolean) => {

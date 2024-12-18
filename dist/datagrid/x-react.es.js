@@ -1,108 +1,107 @@
 /* empty css                */
-import { j as i } from "../jsx-runtime-Dx-03ztt.js";
-import { useState as h, useEffect as m } from "react";
-import { Table as g, TableHeader as A, TableColumn as T, Checkbox as u, TableBody as $, TableRow as N, TableCell as v } from "@nextui-org/react";
+import { j as a } from "../jsx-runtime-Dx-03ztt.js";
+import { useState as S, useEffect as m } from "react";
+import { Table as g, TableHeader as A, TableColumn as T, Checkbox as u, TableBody as v, TableRow as $, TableCell as N } from "@nextui-org/react";
 import { IconChevronUp as C, IconChevronDown as D } from "@tabler/icons-react";
-const I = (c, a, o) => {
-  const [n, b] = h([]), [f, x] = h(!1), [S, d] = h({
+const I = (d, s, n) => {
+  const [c, o] = S([]), [b, f] = S(!1), [x, r] = S({
     key: null,
     direction: "asc"
   });
   return m(() => {
-    x(n.length === c.length && c.length > 0);
-  }, [n, c]), {
-    selectedRows: n,
-    isAllChecked: f,
-    sortConfig: S,
-    handleCheckboxChange: (l) => {
-      b((e) => {
-        const t = e.some((r) => r.id === l.id) ? e.filter((r) => r.id !== l.id) : [...e, l];
-        return a == null || a(t), t;
-      });
+    f(c.length === d.length && d.length > 0);
+  }, [c, d]), {
+    selectedRows: c,
+    isAllChecked: b,
+    sortConfig: x,
+    handleCheckboxChange: (i) => {
+      const e = c.some((t) => t.id === i.id);
+      let l;
+      e ? l = c.filter((t) => t.id !== i.id) : l = [...c, i], o(l), s == null || s(l);
     },
-    handleSelectAll: (l) => {
-      const e = l ? [...c] : [];
-      b(e), a == null || a(e);
+    handleSelectAll: (i) => {
+      const e = i ? [...d] : [];
+      o(e), s == null || s(e);
     },
-    handleSort: (l, e) => {
-      d({ key: l, direction: e }), o == null || o(l, e);
+    handleSort: (i, e) => {
+      r({ key: i, direction: e }), n == null || n(i, e);
     },
-    isRowSelected: (l) => n.some((e) => e.id === l.id)
+    isRowSelected: (i) => c.some((e) => e.id === i.id)
   };
 };
 function H({
-  rows: c,
-  columns: a,
-  caption: o,
-  className: n,
-  onCheckedRowsChange: b,
-  onSort: f,
-  checkboxSelection: x = !0
+  rows: d,
+  columns: s,
+  caption: n,
+  className: c,
+  onCheckedRowsChange: o,
+  onSort: b,
+  checkboxSelection: f = !0
 }) {
   const {
-    isAllChecked: S,
-    sortConfig: d,
+    isAllChecked: x,
+    sortConfig: r,
     handleCheckboxChange: p,
     handleSelectAll: y,
     handleSort: j,
     isRowSelected: k
-  } = I(c, b, f), l = [
-    ...x ? [
+  } = I(d, o, b), i = [
+    ...f ? [
       {
         key: "checkbox",
         label: "",
         header: ""
       }
     ] : [],
-    ...a.map((e, s) => ({
+    ...s.map((e, l) => ({
       ...e,
-      key: String(e.field || s),
+      key: String(e.field || l),
       label: e.header
     }))
   ];
-  return /* @__PURE__ */ i.jsxs(g, { "aria-label": o, className: n, children: [
-    /* @__PURE__ */ i.jsx(A, { columns: l, children: (e) => /* @__PURE__ */ i.jsx(
+  return /* @__PURE__ */ a.jsxs(g, { "aria-label": n, className: c, children: [
+    /* @__PURE__ */ a.jsx(A, { columns: i, children: (e) => /* @__PURE__ */ a.jsx(
       T,
       {
         "aria-label": String(e.label || e.key),
-        children: e.key === "checkbox" ? /* @__PURE__ */ i.jsx(
+        children: e.key === "checkbox" ? /* @__PURE__ */ a.jsx(
           u,
           {
-            isSelected: S,
+            isSelected: x,
             onValueChange: y,
             "aria-label": "Select all rows"
           }
-        ) : /* @__PURE__ */ i.jsxs("div", { className: "flex items-center gap-2", children: [
+        ) : /* @__PURE__ */ a.jsxs("div", { className: "flex items-center gap-2", children: [
           e.label,
-          e.sortable && /* @__PURE__ */ i.jsxs(
+          e.sortable && /* @__PURE__ */ a.jsxs(
             "div",
             {
               className: "relative w-4 h-4 cursor-pointer",
               onClick: () => {
                 var t;
-                const s = (t = a.find(
-                  (r) => String(r.field) === e.key
+                const l = (t = s.find(
+                  (h) => String(h.field) === e.key
                 )) == null ? void 0 : t.field;
-                s && s !== "actions" && j(
-                  s,
-                  d.direction === "asc" ? "desc" : "asc"
+                l && l !== "actions" && j(
+                  l,
+                  r.direction === "asc" ? "desc" : "asc"
                 );
               },
               role: "button",
               "aria-label": `Sort by ${e.label}`,
               children: [
-                /* @__PURE__ */ i.jsx(
+                /* @__PURE__ */ a.jsx(
                   C,
                   {
                     size: 16,
-                    className: `absolute -top-1 ${d.key === e.key && d.direction === "asc" ? "opacity-100" : "opacity-30"}`
+                    className: `absolute -top-1 ${r.key === e.key && r.direction === "asc" ? "opacity-100" : "opacity-30"}`
                   }
                 ),
-                /* @__PURE__ */ i.jsx(
+                /* @__PURE__ */ a.jsx(
                   D,
                   {
                     size: 16,
-                    className: `absolute top-1 ${d.key === e.key && d.direction === "desc" ? "opacity-100" : "opacity-30"}`
+                    className: `absolute top-1 ${r.key === e.key && r.direction === "desc" ? "opacity-100" : "opacity-30"}`
                   }
                 )
               ]
@@ -112,7 +111,7 @@ function H({
       },
       e.key
     ) }),
-    /* @__PURE__ */ i.jsx($, { items: c, children: (e) => /* @__PURE__ */ i.jsx(N, { "aria-label": `Row ${e.id}`, children: (s) => /* @__PURE__ */ i.jsx(v, { children: s === "checkbox" ? /* @__PURE__ */ i.jsx(
+    /* @__PURE__ */ a.jsx(v, { items: d, children: (e) => /* @__PURE__ */ a.jsx($, { "aria-label": `Row ${e.id}`, children: (l) => /* @__PURE__ */ a.jsx(N, { children: l === "checkbox" ? /* @__PURE__ */ a.jsx(
       u,
       {
         isSelected: k(e),
@@ -120,8 +119,8 @@ function H({
         "aria-label": `Select row ${e.id}`
       }
     ) : (() => {
-      const t = a.find(
-        (r) => String(r.field) === s
+      const t = s.find(
+        (h) => String(h.field) === l
       );
       return t ? t.cell ? t.cell(e) : t.field && t.field in e ? String(e[t.field]) : null : null;
     })() }) }, e.id) })
