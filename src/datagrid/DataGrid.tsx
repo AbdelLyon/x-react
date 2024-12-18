@@ -1,3 +1,4 @@
+import { useDataGridState } from "@/hooks/useDataGrid";
 import {
   Table as NextUITable,
   TableHeader,
@@ -8,7 +9,6 @@ import {
   Checkbox,
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
-import { useDataGridState } from "@/hooks/useDataGrid";
 
 export type SortConfig<T> = { key: keyof T | null; direction: "asc" | "desc" };
 
@@ -54,7 +54,7 @@ export function DataGrid<T extends { id: string | number }>({
     handleCheckboxChange,
     handleSelectAll,
     handleSort,
-    isRowChecked,
+    isRowSelected,
   } = useDataGridState(rows, onCheckedRowsChange, onSort);
 
   type ExtendedColumn = ColumnDefinition<T> & {
@@ -86,8 +86,8 @@ export function DataGrid<T extends { id: string | number }>({
           <TableColumn key={column.key}>
             {column.key === "checkbox" ? (
               <Checkbox
-                checked={isAllChecked}
-                onValueChange={(checked) => handleSelectAll(checked)}
+                isSelected={isAllChecked}
+                onValueChange={handleSelectAll}
               />
             ) : (
               <div className="flex items-center gap-2">
@@ -140,10 +140,8 @@ export function DataGrid<T extends { id: string | number }>({
               <TableCell>
                 {columnKey === "checkbox" ? (
                   <Checkbox
-                    checked={isRowChecked(row)}
-                    onValueChange={() => {
-                      handleCheckboxChange(row);
-                    }}
+                    checked={isRowSelected(row)}
+                    onValueChange={() => handleCheckboxChange(row)}
                   />
                 ) : (
                   (() => {
