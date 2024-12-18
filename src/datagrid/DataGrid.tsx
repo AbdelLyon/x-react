@@ -135,13 +135,14 @@ export function DataGrid<T extends { id: string | number }>({
 
       <TableBody items={rows}>
         {(row) => (
-          <TableRow key={row.id}>
+          <TableRow key={row.id} aria-label={`Row ${row.id}`}>
             {(columnKey) => (
               <TableCell>
                 {columnKey === "checkbox" ? (
                   <Checkbox
-                    checked={isRowSelected(row)}
+                    isSelected={isRowSelected(row)}
                     onValueChange={() => handleCheckboxChange(row)}
+                    aria-label={`Select row ${row.id}`}
                   />
                 ) : (
                   (() => {
