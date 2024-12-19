@@ -1,189 +1,246 @@
-import { forwardRef, ReactNode } from "react";
+import { forwardRef, ReactNode, useState } from "react";
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
   Link,
   Button,
   NavbarProps as NextUINavbarProps,
+  NavbarContentProps,
+  NavbarBrandProps,
+  NavbarMenuProps,
+  NavbarMenuItemProps,
+  NavbarMenuToggleProps,
+  LinkProps,
+  ButtonProps,
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 
-// Types pour les items de navigation
+// Types de base pour les couleurs et variants
+type LinkColor = LinkProps["color"];
+type ButtonColor = ButtonProps["color"];
+type ButtonVariant = ButtonProps["variant"];
+
+// Type pour un élément de navigation
 interface NavItem {
   label: string;
   href: string;
   isActive?: boolean;
-  icon?: ReactNode;
-}
-
-// Types pour les boutons d'action
-interface ActionButton {
-  label: string;
-  href: string;
-  color?:
-    | "default"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "danger";
-  variant?:
-    | "flat"
-    | "solid"
-    | "bordered"
-    | "light"
-    | "ghost"
-    | "shadow"
-    | "faded";
+  color?: LinkColor;
   className?: string;
 }
 
-// Props pour la Navbar
-export interface NavbarProps extends Omit<NextUINavbarProps, "children"> {
-  // Logo et branding
-  brand?: {
-    logo?: ReactNode;
-    title?: string;
-    link?: string;
-  };
+// Type pour les boutons d'action
+interface ActionButton {
+  label: string;
+  href: string;
+  color?: ButtonColor;
+  variant?: ButtonVariant;
+  className?: string;
+  showOnMobile?: boolean;
+}
 
-  // Navigation items
-  navItems?: NavItem[];
-  hideNavItemsOnMobile?: boolean;
+// Props pour la marque/logo
+interface BrandProps {
+  logo?: ReactNode;
+  title?: string;
+  link?: string;
+  mobileOnly?: boolean;
+  props?: NavbarBrandProps;
+}
 
-  // Actions (login/signup buttons)
+// Props spécifiques à la navbar
+interface NavbarCustomProps {
+  brand?: BrandProps;
+  navigationItems?: NavItem[];
+  mobileMenuItems?: NavItem[];
   actions?: {
     loginButton?: ActionButton;
     signUpButton?: ActionButton;
-    hideLoginOnMobile?: boolean;
   };
-
-  // Personnalisation
-  classNames?: {
-    root?: string;
-    wrapper?: string;
-    brand?: string;
-    content?: string;
-    item?: string | string[];
-    link?: string;
-    button?: string;
-  };
+  showNavigationOnMobile?: boolean;
 }
 
+// Props pour les sous-composants
+interface NavbarComponentProps {
+  contentProps?: NavbarContentProps;
+  brandProps?: NavbarBrandProps;
+  menuProps?: NavbarMenuProps;
+  menuItemProps?: NavbarMenuItemProps;
+  menuToggleProps?: NavbarMenuToggleProps;
+}
+
+// Props complètes du composant
+export interface NavbarProps
+  extends Omit<NextUINavbarProps, "children">,
+    NavbarCustomProps,
+    NavbarComponentProps {}
+
+// Composant Navbar
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (
     {
-      // Props
+      // Props personnalisées
       brand,
-      navItems = [],
+      navigationItems = [],
+      mobileMenuItems = [],
       actions,
-      hideNavItemsOnMobile = true,
+      showNavigationOnMobile = false,
+
+      // Props des sous-composants
+      contentProps,
+      brandProps,
+      menuProps,
+      menuItemProps,
+      menuToggleProps,
+
+      // Props de base NextUI
+      className,
       classNames,
+      isMenuOpen: controlledMenuOpen,
+      onMenuOpenChange,
       ...props
     },
     ref,
   ) => {
-    // Classes par défaut pour les items de navbar
-    const defaultItemClasses = [
-      "flex",
-      "relative",
-      "h-full",
-      "items-center",
-      "data-[active=true]:after:content-['']",
-      "data-[active=true]:after:absolute",
-      "data-[active=true]:after:bottom-0",
-      "data-[active=true]:after:left-0",
-      "data-[active=true]:after:right-0",
-      "data-[active=true]:after:h-[2px]",
-      "data-[active=true]:after:rounded-[2px]",
-      "data-[active=true]:after:bg-primary",
-    ];
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleMenuOpenChange = (open: boolean) => {
+      setIsMenuOpen(open);
+      onMenuOpenChange?.(open);
+    };
 
     return (
-      <NextUINavbar ref={ref} className={cn(classNames?.root)} {...props}>
+      <NextUINavbar
+        ref={ref}
+        className={className}
+        classNames={classNames}
+        isMenuOpen={controlledMenuOpen ?? isMenuOpen}
+        onMenuOpenChange={handleMenuOpenChange}
+        {...props}
+      >
+        {/* Menu Toggle Mobile */}
+        <NavbarContent className="sm:hidden" justify="start" {...contentProps}>
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className={classNames?.toggle as string}
+            {...menuToggleProps}
+          />
+        </NavbarContent>
+
         {/* Brand Section */}
         {brand && (
-          <NavbarBrand className={cn(classNames?.brand)}>
-            {brand.logo}
-            {brand.title && (
-              <Link href={brand.link || "#"} className="font-bold text-inherit">
-                {brand.title}
-              </Link>
+          <NavbarContent
+            className={cn(
+              brand.mobileOnly ? "sm:hidden" : "hidden sm:flex",
+              classNames?.content,
             )}
-          </NavbarBrand>
+            justify={brand.mobileOnly ? "center" : "start"}
+            {...contentProps}
+          >
+            <NavbarBrand
+              className={classNames?.brand as string}
+              {...brandProps}
+              {...brand.props}
+            >
+              {brand.logo}
+              {brand.title && (
+                <Link
+                  href={brand.link || "#"}
+                  className="font-bold text-inherit"
+                >
+                  {brand.title}
+                </Link>
+              )}
+            </NavbarBrand>
+          </NavbarContent>
         )}
 
         {/* Navigation Items */}
-        {navItems.length > 0 && (
-          <NavbarContent
-            className={cn(
-              hideNavItemsOnMobile ? "hidden sm:flex" : "flex",
-              "gap-4",
-              classNames?.content,
-            )}
-            justify="center"
-          >
-            {navItems.map((item, index) => (
-              <NavbarItem
-                key={index}
-                isActive={item.isActive}
-                className={cn(defaultItemClasses, classNames?.item)}
+        <NavbarContent
+          className={cn(
+            "hidden sm:flex gap-4",
+            showNavigationOnMobile && "flex",
+            classNames?.content,
+          )}
+          justify="center"
+          {...contentProps}
+        >
+          {navigationItems.map((item, index) => (
+            <NavbarItem
+              key={index}
+              isActive={item.isActive}
+              className={cn(classNames?.item, item.className)}
+            >
+              <Link
+                color={item.color || (item.isActive ? "primary" : "foreground")}
+                href={item.href}
+                aria-current={item.isActive ? "page" : undefined}
               >
-                <Link
-                  color={item.isActive ? "primary" : "foreground"}
-                  href={item.href}
-                  aria-current={item.isActive ? "page" : undefined}
-                  className={classNames?.link}
-                >
-                  {item.icon}
-                  {item.label}
-                </Link>
-              </NavbarItem>
-            ))}
-          </NavbarContent>
-        )}
+                {item.label}
+              </Link>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
 
         {/* Actions Section */}
-        {actions && (
-          <NavbarContent justify="end">
-            {actions.loginButton && (
-              <NavbarItem
-                className={cn(
-                  actions.hideLoginOnMobile ? "hidden lg:flex" : "flex",
-                  classNames?.item,
-                )}
+        <NavbarContent justify="end" {...contentProps}>
+          {actions?.loginButton && (
+            <NavbarItem
+              className={cn(
+                !actions.loginButton.showOnMobile && "hidden lg:flex",
+                classNames?.item,
+              )}
+            >
+              <Link
+                href={actions.loginButton.href}
+                color={actions.loginButton.color as LinkColor}
+                className={actions.loginButton.className}
+              >
+                {actions.loginButton.label}
+              </Link>
+            </NavbarItem>
+          )}
+
+          {actions?.signUpButton && (
+            <NavbarItem>
+              <Button
+                as={Link}
+                href={actions.signUpButton.href}
+                color={actions.signUpButton.color}
+                variant={actions.signUpButton.variant}
+                className={actions.signUpButton.className}
+              >
+                {actions.signUpButton.label}
+              </Button>
+            </NavbarItem>
+          )}
+        </NavbarContent>
+
+        {/* Mobile Menu */}
+        {mobileMenuItems.length > 0 && (
+          <NavbarMenu className={classNames?.menu as string} {...menuProps}>
+            {mobileMenuItems.map((item, index) => (
+              <NavbarMenuItem
+                key={index}
+                className={cn(classNames?.menuItem, item.className)}
+                {...menuItemProps}
               >
                 <Link
-                  href={actions.loginButton.href}
-                  className={cn(
-                    classNames?.link,
-                    actions.loginButton.className,
-                  )}
+                  color={item.color || "foreground"}
+                  href={item.href}
+                  size="lg"
+                  className="w-full"
                 >
-                  {actions.loginButton.label}
+                  {item.label}
                 </Link>
-              </NavbarItem>
-            )}
-
-            {actions.signUpButton && (
-              <NavbarItem>
-                <Button
-                  as={Link}
-                  href={actions.signUpButton.href}
-                  color={actions.signUpButton.color || "primary"}
-                  variant={actions.signUpButton.variant || "flat"}
-                  className={cn(
-                    classNames?.button,
-                    actions.signUpButton.className,
-                  )}
-                >
-                  {actions.signUpButton.label}
-                </Button>
-              </NavbarItem>
-            )}
-          </NavbarContent>
+              </NavbarMenuItem>
+            ))}
+          </NavbarMenu>
         )}
       </NextUINavbar>
     );
