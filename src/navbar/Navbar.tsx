@@ -11,20 +11,24 @@ import {
   NavbarProps as NavbarRootProps,
   NavbarItem,
   NavbarMenuItem,
+  Link,
 } from "@nextui-org/react";
 import { Button, ButtonProps } from "@/button";
+
+type Color =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger";
 
 export interface NavItem {
   label: string;
   onPress?: () => void;
   isActive?: boolean;
-  color?:
-    | "default"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "danger";
+  color?: Partial<Color>;
+
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
 }
@@ -96,16 +100,13 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         >
           {navigationItems.map((item, index) => (
             <NavbarItem key={index} isActive={item.isActive}>
-              <Button
-                color={item.color || (item.isActive ? "primary" : "default")}
+              <Link
+                // color={item.color || (item.isActive ? "primary" : "default")}
                 aria-current={item.isActive ? "page" : undefined}
                 onPress={item.onPress}
-                startContent={item.startContent}
-                endContent={item.endContent}
-                {...itemProps}
               >
                 {item.label}
-              </Button>
+              </Link>
             </NavbarItem>
           ))}
         </NavbarContent>

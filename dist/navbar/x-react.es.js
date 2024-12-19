@@ -1,77 +1,73 @@
 /* empty css                */
-import { j as n } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as p } from "react";
-import { Navbar as C, NavbarContent as e, NavbarMenuToggle as m, NavbarBrand as A, NavbarItem as c, NavbarMenu as g, NavbarMenuItem as y } from "@nextui-org/react";
-import { B as i } from "../Buttons-DKd5iRbN.js";
-const w = p(
+import { j as r } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as N } from "react";
+import { Navbar as p, NavbarContent as s, NavbarMenuToggle as f, NavbarBrand as C, NavbarItem as l, Link as g, NavbarMenu as A, NavbarMenuItem as y } from "@nextui-org/react";
+import { B } from "../Buttons-DKd5iRbN.js";
+const w = N(
   ({
     // Content
-    brand: s,
-    navigationItems: j = [],
-    menuItems: x = [],
+    brand: n,
+    navigationItems: d = [],
+    menuItems: c = [],
     profile: t,
     // Props
     contentProps: o,
-    menuProps: v,
+    menuProps: j,
     // NextUI props
-    className: h,
-    classNames: u,
-    isMenuOpen: l,
-    onMenuOpenChange: b,
-    itemProps: d,
-    ...N
-  }, f) => /* @__PURE__ */ n.jsxs(
-    C,
+    className: x,
+    classNames: v,
+    isMenuOpen: i,
+    onMenuOpenChange: h,
+    itemProps: m,
+    ...b
+  }, u) => /* @__PURE__ */ r.jsxs(
+    p,
     {
-      ref: f,
-      className: h,
-      classNames: u,
-      isMenuOpen: l,
-      onMenuOpenChange: b,
-      ...N,
+      ref: u,
+      className: x,
+      classNames: v,
+      isMenuOpen: i,
+      onMenuOpenChange: h,
+      ...b,
       children: [
-        /* @__PURE__ */ n.jsxs(e, { children: [
-          /* @__PURE__ */ n.jsx(
-            m,
+        /* @__PURE__ */ r.jsxs(s, { children: [
+          /* @__PURE__ */ r.jsx(
+            f,
             {
               className: "md:hidden",
-              "aria-label": l ? "Close menu" : "Open menu"
+              "aria-label": i ? "Close menu" : "Open menu"
             }
           ),
-          s && /* @__PURE__ */ n.jsx(A, { children: s })
+          n && /* @__PURE__ */ r.jsx(C, { children: n })
         ] }),
-        /* @__PURE__ */ n.jsx(
-          e,
+        /* @__PURE__ */ r.jsx(
+          s,
           {
             className: "hidden md:flex gap-4",
             justify: "start",
             ...o,
-            children: j.map((r, a) => /* @__PURE__ */ n.jsx(c, { isActive: r.isActive, children: /* @__PURE__ */ n.jsx(
-              i,
+            children: d.map((a, e) => /* @__PURE__ */ r.jsx(l, { isActive: a.isActive, children: /* @__PURE__ */ r.jsx(
+              g,
               {
-                color: r.color || (r.isActive ? "primary" : "default"),
-                "aria-current": r.isActive ? "page" : void 0,
-                onPress: r.onPress,
-                startContent: r.startContent,
-                endContent: r.endContent,
-                ...d,
-                children: r.label
+                "aria-current": a.isActive ? "page" : void 0,
+                onPress: a.onPress,
+                children: a.label
               }
-            ) }, a))
+            ) }, e))
           }
         ),
-        /* @__PURE__ */ n.jsx(e, { justify: "end", ...o, children: t && /* @__PURE__ */ n.jsx(c, { children: t }) }),
-        /* @__PURE__ */ n.jsx(g, { ...v, children: x.map((r, a) => /* @__PURE__ */ n.jsx(y, { children: /* @__PURE__ */ n.jsx(
-          i,
+        /* @__PURE__ */ r.jsx(s, { justify: "end", ...o, children: t && /* @__PURE__ */ r.jsx(l, { children: t }) }),
+        /* @__PURE__ */ r.jsx(A, { ...j, children: c.map((a, e) => /* @__PURE__ */ r.jsx(y, { children: /* @__PURE__ */ r.jsx(
+          B,
           {
-            color: r.color || (r.isActive ? "primary" : "default"),
-            onPress: r.onPress,
-            startContent: r.startContent,
-            endContent: r.endContent,
-            ...d,
-            children: r.label
+            color: a.color || (a.isActive ? "primary" : "default"),
+            onPress: a.onPress,
+            startContent: a.startContent,
+            endContent: a.endContent,
+            ...m,
+            children: a.label
           }
-        ) }, a)) })
+        ) }, e)) })
       ]
     }
   )
