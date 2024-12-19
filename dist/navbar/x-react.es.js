@@ -1,73 +1,105 @@
 /* empty css                */
 import { j as r } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as b } from "react";
-import { Navbar as f, NavbarContent as n, NavbarMenuToggle as C, NavbarBrand as t, NavbarItem as i, Link as A, NavbarMenu as P, NavbarMenuItem as g } from "@nextui-org/react";
-import { B as y } from "../Buttons-DKd5iRbN.js";
-const B = b(
+import { forwardRef as m } from "react";
+import { Navbar as v, NavbarContent as d, NavbarMenuToggle as k, NavbarBrand as h, NavbarItem as C, Link as y, NavbarMenu as w, NavbarMenuItem as g } from "@nextui-org/react";
+import { B } from "../Buttons-DKd5iRbN.js";
+const M = m(
   ({
-    // Content
     brand: e,
-    navigationItems: c = [],
-    menuItems: d = [],
-    profile: l,
-    // Props
+    sections: t,
+    mobileMenu: c = [],
     contentProps: x,
-    menuProps: j,
-    itemProps: m,
-    // NextUI props
-    className: v,
-    classNames: h,
-    isMenuOpen: o,
-    onMenuOpenChange: N,
-    ...p
-  }, u) => /* @__PURE__ */ r.jsxs(
-    f,
-    {
-      ref: u,
-      className: v,
-      classNames: h,
-      isMenuOpen: o,
-      onMenuOpenChange: N,
-      ...p,
-      children: [
-        /* @__PURE__ */ r.jsxs(n, { className: "md:hidden", children: [
-          /* @__PURE__ */ r.jsx(
-            C,
+    menuProps: N,
+    itemProps: b,
+    onItemPress: l,
+    className: f,
+    classNames: j,
+    isMenuOpen: n,
+    onMenuOpenChange: u,
+    ...i
+  }, p) => {
+    const o = (a) => {
+      l == null || l(a);
+    };
+    return /* @__PURE__ */ r.jsxs(
+      v,
+      {
+        ref: p,
+        className: f,
+        classNames: {
+          base: "bg-background",
+          wrapper: "max-w-full",
+          ...j
+        },
+        isMenuOpen: n,
+        onMenuOpenChange: u,
+        ...i,
+        children: [
+          /* @__PURE__ */ r.jsxs(d, { className: "md:hidden", children: [
+            /* @__PURE__ */ r.jsx(
+              k,
+              {
+                "aria-label": n ? "Close menu" : "Open menu"
+              }
+            ),
+            e && /* @__PURE__ */ r.jsx(h, { children: e })
+          ] }),
+          t.map((a) => /* @__PURE__ */ r.jsxs(
+            d,
             {
-              "aria-label": o ? "Close menu" : "Open menu"
-            }
-          ),
-          e && /* @__PURE__ */ r.jsx(t, { children: e })
-        ] }),
-        /* @__PURE__ */ r.jsxs(n, { className: "hidden md:flex", children: [
-          e && /* @__PURE__ */ r.jsx(t, { children: e }),
-          c.map((a, s) => /* @__PURE__ */ r.jsx(i, { isActive: a.isActive, children: /* @__PURE__ */ r.jsx(
-            A,
+              className: [
+                a.showOnDesktop ? "hidden md:flex" : "hidden",
+                a.showOnMobile ? "flex md:hidden" : ""
+              ].join(" "),
+              justify: a.justify || "start",
+              ...x,
+              children: [
+                a.key === "brand" && e && /* @__PURE__ */ r.jsx(h, { children: e }),
+                a.items.map((s) => /* @__PURE__ */ r.jsx(
+                  C,
+                  {
+                    isActive: s.isActive,
+                    className: s.className,
+                    children: /* @__PURE__ */ r.jsxs(
+                      y,
+                      {
+                        color: s.linkColor || "foreground",
+                        href: s.href,
+                        onPress: () => o(s),
+                        children: [
+                          s.startContent,
+                          s.label,
+                          s.endContent
+                        ]
+                      }
+                    )
+                  },
+                  s.key
+                ))
+              ]
+            },
+            a.key
+          )),
+          /* @__PURE__ */ r.jsx(w, { ...N, children: c.map((a) => /* @__PURE__ */ r.jsx(g, { children: /* @__PURE__ */ r.jsxs(
+            B,
             {
-              "aria-current": a.isActive ? "page" : void 0,
-              onPress: a.onPress,
-              children: a.label
+              color: a.buttonColor || "default",
+              onPress: () => o(a),
+              className: "w-full",
+              ...b,
+              children: [
+                a.startContent,
+                a.label,
+                a.endContent
+              ]
             }
-          ) }, s))
-        ] }),
-        /* @__PURE__ */ r.jsx(n, { justify: "end", ...x, children: l && /* @__PURE__ */ r.jsx(i, { children: l }) }),
-        /* @__PURE__ */ r.jsx(P, { ...j, children: d.map((a, s) => /* @__PURE__ */ r.jsx(g, { children: /* @__PURE__ */ r.jsx(
-          y,
-          {
-            color: a.color || (a.isActive ? "primary" : "default"),
-            onPress: a.onPress,
-            startContent: a.startContent,
-            endContent: a.endContent,
-            className: "w-full",
-            ...m,
-            children: a.label
-          }
-        ) }, s)) })
-      ]
-    }
-  )
+          ) }, a.key)) })
+        ]
+      }
+    );
+  }
 );
-B.displayName = "Navbar";
+M.displayName = "Navbar";
 export {
-  B as Navbar
+  M as Navbar
 };

@@ -1,2 +1,2 @@
 import "@/index.css";
-export { Navbar, type NavbarProps, type NavItem } from "@/navbar/Navbar";
+export { Navbar, type NavItem } from "@/navbar/Navbar";
