@@ -1,12 +1,12 @@
 /* empty css                */
 import { j as n } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as p } from "react";
-import { Navbar as C, NavbarContent as s, NavbarMenuToggle as m, NavbarBrand as A, NavbarItem as c, NavbarMenu as g, NavbarMenuItem as y } from "@nextui-org/react";
+import { Navbar as C, NavbarContent as e, NavbarMenuToggle as m, NavbarBrand as A, NavbarItem as c, NavbarMenu as g, NavbarMenuItem as y } from "@nextui-org/react";
 import { B as i } from "../Buttons-DKd5iRbN.js";
 const w = p(
   ({
     // Content
-    brand: e,
+    brand: s,
     navigationItems: j = [],
     menuItems: x = [],
     profile: t,
@@ -30,20 +30,20 @@ const w = p(
       onMenuOpenChange: b,
       ...N,
       children: [
-        /* @__PURE__ */ n.jsxs(s, { children: [
+        /* @__PURE__ */ n.jsxs(e, { children: [
           /* @__PURE__ */ n.jsx(
             m,
             {
-              className: "sm:hidden",
+              className: "md:hidden",
               "aria-label": l ? "Close menu" : "Open menu"
             }
           ),
-          e && /* @__PURE__ */ n.jsx(A, { children: e })
+          s && /* @__PURE__ */ n.jsx(A, { children: s })
         ] }),
         /* @__PURE__ */ n.jsx(
-          s,
+          e,
           {
-            className: "hidden sm:flex gap-4",
+            className: "hidden md:flex gap-4",
             justify: "start",
             ...o,
             children: j.map((r, a) => /* @__PURE__ */ n.jsx(c, { isActive: r.isActive, children: /* @__PURE__ */ n.jsx(
@@ -60,7 +60,7 @@ const w = p(
             ) }, a))
           }
         ),
-        /* @__PURE__ */ n.jsx(s, { justify: "end", ...o, children: t && /* @__PURE__ */ n.jsx(c, { children: t }) }),
+        /* @__PURE__ */ n.jsx(e, { justify: "end", ...o, children: t && /* @__PURE__ */ n.jsx(c, { children: t }) }),
         /* @__PURE__ */ n.jsx(g, { ...v, children: x.map((r, a) => /* @__PURE__ */ n.jsx(y, { children: /* @__PURE__ */ n.jsx(
           i,
           {

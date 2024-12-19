@@ -80,7 +80,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
           {/* Mobile Menu Toggle */}
 
           <NavbarMenuToggle
-            className="sm:hidden"
+            className="md:hidden"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           />
 
@@ -90,7 +90,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
         {/* Navigation Items - Desktop */}
         <NavbarContent
-          className="hidden sm:flex gap-4"
+          className="hidden md:flex gap-4"
           justify="start"
           {...contentProps}
         >
