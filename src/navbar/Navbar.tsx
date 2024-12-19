@@ -94,7 +94,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {/* Desktop Content */}
         <NavbarContent
           className="hidden sm:flex gap-4"
-          justify="center"
+          justify="end"
           {...contentProps}
         >
           {brand && <NavbarBrand>{brand}</NavbarBrand>}

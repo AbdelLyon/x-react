@@ -13,19 +13,19 @@ const w = b(
     contentProps: l,
     menuProps: m,
     // NextUI props
-    className: t,
-    classNames: v,
+    className: v,
+    classNames: N,
     isMenuOpen: c,
-    onMenuOpenChange: N,
+    onMenuOpenChange: t,
     ...u
   }, f) => /* @__PURE__ */ r.jsxs(
     p,
     {
       ref: f,
-      className: t,
-      classNames: v,
+      className: v,
+      classNames: N,
       isMenuOpen: c,
-      onMenuOpenChange: N,
+      onMenuOpenChange: t,
       ...u,
       children: [
         /* @__PURE__ */ r.jsx(a, { className: "sm:hidden", justify: "start", children: /* @__PURE__ */ r.jsx(
@@ -47,7 +47,7 @@ const w = b(
           a,
           {
             className: "hidden sm:flex gap-4",
-            justify: "center",
+            justify: "end",
             ...l,
             children: [
               e && /* @__PURE__ */ r.jsx(o, { children: e }),
