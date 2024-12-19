@@ -9,115 +9,102 @@ import {
   NavbarMenuToggle,
   NavbarProps as NextUINavbarProps,
 } from "@nextui-org/react";
-import { cn } from "@/utils";
 
 export interface NavbarProps extends Omit<NextUINavbarProps, "children"> {
-  // Content
-  brand?: ReactNode;
-  startContent?: ReactNode;
-  centerContent?: ReactNode;
-  endContent?: ReactNode;
+  // Mobile Content
+  mobileBrand?: ReactNode;
+  mobileContent?: ReactNode;
   menuContent?: ReactNode;
+
+  // Desktop Content
+  desktopBrand?: ReactNode;
+  desktopContent?: ReactNode;
+  endContent?: ReactNode;
 
   // Props
   contentProps?: NavbarContentProps;
   menuProps?: NavbarMenuProps;
-
-  // Breakpoints for responsive
-  mobileBreakpoint?: "sm" | "md" | "lg" | "xl" | "2xl";
-  showMenuButton?: boolean;
 }
 
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (
     {
-      // Content
-      brand,
-      startContent,
-      centerContent,
-      endContent,
+      // Mobile Content
+      mobileBrand,
+      mobileContent,
       menuContent,
+
+      // Desktop Content
+      desktopBrand,
+      desktopContent,
+      endContent,
 
       // Props
       contentProps,
       menuProps,
-      mobileBreakpoint = "md",
-      showMenuButton = true,
 
       // NextUI props
       className,
       classNames,
+      isMenuOpen,
+      onMenuOpenChange,
       ...props
     },
     ref,
   ) => {
-    const breakpoint = {
-      sm: "sm:flex",
-      md: "md:flex",
-      lg: "lg:flex",
-      xl: "xl:flex",
-      "2xl": "2xl:flex",
-    }[mobileBreakpoint];
-
     return (
       <NextUINavbar
         ref={ref}
         className={className}
         classNames={classNames}
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={onMenuOpenChange}
         {...props}
       >
-        {/* Menu Toggle */}
-        {showMenuButton && (
-          <NavbarContent className={cn(`${breakpoint}:hidden`)} justify="start">
-            <NavbarMenuToggle />
-          </NavbarContent>
-        )}
+        {/* Mobile Menu Toggle */}
+        <NavbarContent className="sm:hidden" justify="start">
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          />
+        </NavbarContent>
 
-        {/* Brand - Always visible */}
-        {brand && <NavbarBrand>{brand}</NavbarBrand>}
-
-        {/* Start Content */}
-        {startContent && (
+        {/* Mobile Brand */}
+        {mobileBrand && (
           <NavbarContent
-            className={cn("hidden", breakpoint, classNames?.content)}
-            justify="start"
-            {...contentProps}
-          >
-            {startContent}
-          </NavbarContent>
-        )}
-
-        {/* Center Content */}
-        {centerContent && (
-          <NavbarContent
-            className={cn("hidden", breakpoint, classNames?.content)}
+            className="sm:hidden pr-3"
             justify="center"
             {...contentProps}
           >
-            {centerContent}
+            <NavbarBrand>{mobileBrand}</NavbarBrand>
           </NavbarContent>
         )}
 
-        {/* End Content */}
+        {/* Mobile Content */}
+        {mobileContent && (
+          <NavbarContent className="sm:hidden" {...contentProps}>
+            {mobileContent}
+          </NavbarContent>
+        )}
+
+        {/* Desktop Content */}
+        <NavbarContent
+          className="hidden sm:flex gap-4"
+          justify="center"
+          {...contentProps}
+        >
+          {desktopBrand && <NavbarBrand>{desktopBrand}</NavbarBrand>}
+          {desktopContent}
+        </NavbarContent>
+
+        {/* End Content - Both Mobile & Desktop */}
         {endContent && (
-          <NavbarContent
-            className={cn("hidden", breakpoint, classNames?.content)}
-            justify="end"
-            {...contentProps}
-          >
+          <NavbarContent justify="end" {...contentProps}>
             {endContent}
           </NavbarContent>
         )}
 
-        {/* Mobile Menu */}
-        {showMenuButton && menuContent && (
-          <NavbarMenu
-            className={cn(`${breakpoint}:hidden`, classNames?.menu)}
-            {...menuProps}
-          >
-            {menuContent}
-          </NavbarMenu>
-        )}
+        {/* Menu Content - Mobile Only */}
+        {menuContent && <NavbarMenu {...menuProps}>{menuContent}</NavbarMenu>}
       </NextUINavbar>
     );
   },

@@ -1,84 +1,71 @@
 /* empty css                */
-import { j as i } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as g } from "react";
-import { Navbar as $, NavbarContent as f, NavbarMenuToggle as R, NavbarBrand as k, NavbarMenu as m } from "@nextui-org/react";
-import { cn as x } from "../utils/x-react.es.js";
-const E = g(
+import { j as a } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as b } from "react";
+import { Navbar as t, NavbarContent as r, NavbarMenuToggle as p, NavbarBrand as x, NavbarMenu as y } from "@nextui-org/react";
+const g = b(
   ({
-    // Content
-    brand: n,
-    startContent: t,
-    centerContent: h,
-    endContent: o,
-    menuContent: e,
+    // Mobile Content
+    mobileBrand: e,
+    mobileContent: i,
+    menuContent: d,
+    // Desktop Content
+    desktopBrand: l,
+    desktopContent: c,
+    endContent: j,
     // Props
-    contentProps: j,
-    menuProps: v,
-    mobileBreakpoint: p = "md",
-    showMenuButton: b = !0,
+    contentProps: s,
+    menuProps: h,
     // NextUI props
-    className: u,
-    classNames: r,
-    ...l
-  }, y) => {
-    const d = {
-      sm: "sm:flex",
-      md: "md:flex",
-      lg: "lg:flex",
-      xl: "xl:flex",
-      "2xl": "2xl:flex"
-    }[p];
-    return /* @__PURE__ */ i.jsxs(
-      $,
-      {
-        ref: y,
-        className: u,
-        classNames: r,
-        ...l,
-        children: [
-          b && /* @__PURE__ */ i.jsx(f, { className: x(`${d}:hidden`), justify: "start", children: /* @__PURE__ */ i.jsx(R, {}) }),
-          n && /* @__PURE__ */ i.jsx(k, { children: n }),
-          t && /* @__PURE__ */ i.jsx(
-            f,
-            {
-              className: x("hidden", d, r == null ? void 0 : r.content),
-              justify: "start",
-              ...j,
-              children: t
-            }
-          ),
-          h && /* @__PURE__ */ i.jsx(
-            f,
-            {
-              className: x("hidden", d, r == null ? void 0 : r.content),
-              justify: "center",
-              ...j,
-              children: h
-            }
-          ),
-          o && /* @__PURE__ */ i.jsx(
-            f,
-            {
-              className: x("hidden", d, r == null ? void 0 : r.content),
-              justify: "end",
-              ...j,
-              children: o
-            }
-          ),
-          b && e && /* @__PURE__ */ i.jsx(
-            m,
-            {
-              className: x(`${d}:hidden`, r == null ? void 0 : r.menu),
-              ...v,
-              children: e
-            }
-          )
-        ]
-      }
-    );
-  }
+    className: N,
+    classNames: f,
+    isMenuOpen: m,
+    onMenuOpenChange: n,
+    ...u
+  }, v) => /* @__PURE__ */ a.jsxs(
+    t,
+    {
+      ref: v,
+      className: N,
+      classNames: f,
+      isMenuOpen: m,
+      onMenuOpenChange: n,
+      ...u,
+      children: [
+        /* @__PURE__ */ a.jsx(r, { className: "sm:hidden", justify: "start", children: /* @__PURE__ */ a.jsx(
+          p,
+          {
+            "aria-label": m ? "Close menu" : "Open menu"
+          }
+        ) }),
+        e && /* @__PURE__ */ a.jsx(
+          r,
+          {
+            className: "sm:hidden pr-3",
+            justify: "center",
+            ...s,
+            children: /* @__PURE__ */ a.jsx(x, { children: e })
+          }
+        ),
+        i && /* @__PURE__ */ a.jsx(r, { className: "sm:hidden", ...s, children: i }),
+        /* @__PURE__ */ a.jsxs(
+          r,
+          {
+            className: "hidden sm:flex gap-4",
+            justify: "center",
+            ...s,
+            children: [
+              l && /* @__PURE__ */ a.jsx(x, { children: l }),
+              c
+            ]
+          }
+        ),
+        j && /* @__PURE__ */ a.jsx(r, { justify: "end", ...s, children: j }),
+        d && /* @__PURE__ */ a.jsx(y, { ...h, children: d })
+      ]
+    }
+  )
 );
-E.displayName = "Navbar";
+g.displayName = "Navbar";
 export {
-  E as Navbar
+  g as Navbar
 };
