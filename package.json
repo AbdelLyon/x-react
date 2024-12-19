@@ -102,6 +102,10 @@
     "./drawer": {
       "import": "./dist/drawer/x-react.es.js",
       "types": "./dist/drawer/index.d.ts"
+    },
+    "./navbar": {
+      "import": "./dist/navbar/x-react.es.js",
+      "types": "./dist/navbar/index.d.ts"
     }
   },
   "typesVersions": {

@@ -29,6 +29,7 @@ const modules = [
   "drawer",
   "chip",
   "datepicker",
+  "navbar",
 ];
 
 export default defineConfig({
