@@ -41,7 +41,6 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
   contentProps?: NavbarContentProps;
   menuProps?: NavbarMenuProps;
 }
-
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (
     {
@@ -73,31 +72,24 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         onMenuOpenChange={onMenuOpenChange}
         {...props}
       >
-        {/* Mobile Menu Toggle */}
-        <NavbarContent className="md:hidden" justify="start">
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          />
+        <NavbarContent>
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <NavbarMenuToggle
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            />
+          </div>
+
+          {/* Brand - Mobile & Desktop */}
+          {brand && <NavbarBrand>{brand}</NavbarBrand>}
         </NavbarContent>
 
-        {/* Mobile Brand */}
-        {brand && (
-          <NavbarContent
-            className="md:hidden pr-3"
-            justify="center"
-            {...contentProps}
-          >
-            <NavbarBrand>{brand}</NavbarBrand>
-          </NavbarContent>
-        )}
-
-        {/* Desktop Content */}
+        {/* Navigation Items - Desktop */}
         <NavbarContent
           className="hidden md:flex gap-4"
           justify="start"
           {...contentProps}
         >
-          {brand && <NavbarBrand>{brand}</NavbarBrand>}
           {navigationItems.map((item, index) => (
             <NavbarItem key={index} isActive={item.isActive}>
               <Link
@@ -135,5 +127,3 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     );
   },
 );
-
-Navbar.displayName = "Navbar";
