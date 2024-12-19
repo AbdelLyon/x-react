@@ -1,68 +1,74 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as b } from "react";
-import { Navbar as f, NavbarContent as e, NavbarMenuToggle as p, NavbarBrand as g, NavbarItem as c, Link as d, NavbarMenu as A, NavbarMenuItem as y } from "@nextui-org/react";
-const M = b(
+import { j as n } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as p } from "react";
+import { Navbar as C, NavbarContent as e, NavbarMenuToggle as m, NavbarBrand as A, NavbarItem as c, NavbarMenu as g, NavbarMenuItem as y } from "@nextui-org/react";
+import { B as i } from "../Buttons-DKd5iRbN.js";
+const w = p(
   ({
     // Content
-    brand: l,
+    brand: s,
     navigationItems: j = [],
     menuItems: x = [],
-    profile: n,
+    profile: t,
     // Props
-    contentProps: i,
+    contentProps: o,
     menuProps: v,
     // NextUI props
     className: h,
-    classNames: m,
-    isMenuOpen: o,
-    onMenuOpenChange: t,
-    ...u
-  }, N) => /* @__PURE__ */ r.jsxs(
-    f,
+    classNames: u,
+    isMenuOpen: d,
+    onMenuOpenChange: b,
+    itemProps: l,
+    ...N
+  }, f) => /* @__PURE__ */ n.jsxs(
+    C,
     {
-      ref: N,
+      ref: f,
       className: h,
-      classNames: m,
-      isMenuOpen: o,
-      onMenuOpenChange: t,
-      ...u,
+      classNames: u,
+      isMenuOpen: d,
+      onMenuOpenChange: b,
+      ...N,
       children: [
-        /* @__PURE__ */ r.jsxs(e, { children: [
-          /* @__PURE__ */ r.jsx("div", { className: "md:hidden", children: /* @__PURE__ */ r.jsx(
-            p,
+        /* @__PURE__ */ n.jsxs(e, { children: [
+          /* @__PURE__ */ n.jsx("div", { className: "md:hidden", children: /* @__PURE__ */ n.jsx(
+            m,
             {
-              "aria-label": o ? "Close menu" : "Open menu"
+              "aria-label": d ? "Close menu" : "Open menu"
             }
           ) }),
-          l && /* @__PURE__ */ r.jsx(g, { children: l })
+          s && /* @__PURE__ */ n.jsx(A, { children: s })
         ] }),
-        /* @__PURE__ */ r.jsx(
+        /* @__PURE__ */ n.jsx(
           e,
           {
             className: "hidden md:flex gap-4",
             justify: "start",
-            ...i,
-            children: j.map((s, a) => /* @__PURE__ */ r.jsx(c, { isActive: s.isActive, children: /* @__PURE__ */ r.jsx(
-              d,
+            ...o,
+            children: j.map((r, a) => /* @__PURE__ */ n.jsx(c, { isActive: r.isActive, children: /* @__PURE__ */ n.jsx(
+              i,
               {
-                color: s.color || (s.isActive ? "primary" : "foreground"),
-                "aria-current": s.isActive ? "page" : void 0,
-                onPress: s.onPress,
-                children: s.label
+                color: r.color || (r.isActive ? "primary" : "default"),
+                "aria-current": r.isActive ? "page" : void 0,
+                onPress: r.onPress,
+                startContent: r.startContent,
+                endContent: r.endContent,
+                ...l,
+                children: r.label
               }
             ) }, a))
           }
         ),
-        /* @__PURE__ */ r.jsx(e, { justify: "end", ...i, children: n && /* @__PURE__ */ r.jsx(c, { children: n }) }),
-        /* @__PURE__ */ r.jsx(A, { ...v, children: x.map((s, a) => /* @__PURE__ */ r.jsx(y, { children: /* @__PURE__ */ r.jsx(
-          d,
+        /* @__PURE__ */ n.jsx(e, { justify: "end", ...o, children: t && /* @__PURE__ */ n.jsx(c, { children: t }) }),
+        /* @__PURE__ */ n.jsx(g, { ...v, children: x.map((r, a) => /* @__PURE__ */ n.jsx(y, { children: /* @__PURE__ */ n.jsx(
+          i,
           {
-            color: s.color || (s.isActive ? "primary" : "foreground"),
-            onPress: s.onPress,
-            size: "lg",
-            className: "w-full",
-            children: s.label
+            color: r.color || (r.isActive ? "primary" : "default"),
+            onPress: r.onPress,
+            startContent: r.startContent,
+            endContent: r.endContent,
+            ...l,
+            children: r.label
           }
         ) }, a)) })
       ]
@@ -70,5 +76,5 @@ const M = b(
   )
 );
 export {
-  M as Navbar
+  w as Navbar
 };

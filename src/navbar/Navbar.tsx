@@ -10,21 +10,23 @@ import {
   NavbarMenuToggle,
   NavbarProps as NavbarRootProps,
   NavbarItem,
-  Link,
   NavbarMenuItem,
 } from "@nextui-org/react";
+import { Button, ButtonProps } from "@/button";
 
 export interface NavItem {
   label: string;
   onPress?: () => void;
   isActive?: boolean;
   color?:
-    | "foreground"
+    | "default"
     | "primary"
     | "secondary"
     | "success"
     | "warning"
     | "danger";
+  startContent?: React.ReactNode;
+  endContent?: React.ReactNode;
 }
 
 export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
@@ -40,6 +42,7 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
   // Props
   contentProps?: NavbarContentProps;
   menuProps?: NavbarMenuProps;
+  itemProps?: ButtonProps;
 }
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (
@@ -59,6 +62,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
       classNames,
       isMenuOpen,
       onMenuOpenChange,
+      itemProps,
       ...props
     },
     ref,
@@ -92,13 +96,16 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         >
           {navigationItems.map((item, index) => (
             <NavbarItem key={index} isActive={item.isActive}>
-              <Link
-                color={item.color || (item.isActive ? "primary" : "foreground")}
+              <Button
+                color={item.color || (item.isActive ? "primary" : "default")}
                 aria-current={item.isActive ? "page" : undefined}
                 onPress={item.onPress}
+                startContent={item.startContent}
+                endContent={item.endContent}
+                {...itemProps}
               >
                 {item.label}
-              </Link>
+              </Button>
             </NavbarItem>
           ))}
         </NavbarContent>
@@ -112,14 +119,15 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         <NavbarMenu {...menuProps}>
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={index}>
-              <Link
-                color={item.color || (item.isActive ? "primary" : "foreground")}
+              <Button
+                color={item.color || (item.isActive ? "primary" : "default")}
                 onPress={item.onPress}
-                size="lg"
-                className="w-full"
+                startContent={item.startContent}
+                endContent={item.endContent}
+                {...itemProps}
               >
                 {item.label}
-              </Link>
+              </Button>
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
