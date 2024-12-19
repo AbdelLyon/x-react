@@ -1,12 +1,16 @@
 import { ReactNode } from 'react';
-import { NavbarContentProps, NavbarMenuProps, NavbarProps as NextUINavbarProps } from '@nextui-org/react';
-export interface NavbarProps extends Omit<NextUINavbarProps, "children"> {
-    mobileBrand?: ReactNode;
-    mobileContent?: ReactNode;
-    menuContent?: ReactNode;
-    desktopBrand?: ReactNode;
-    desktopContent?: ReactNode;
-    endContent?: ReactNode;
+import { NavbarContentProps, NavbarMenuProps, NavbarProps as NavbarRootProps } from '@nextui-org/react';
+export interface NavItem {
+    label: string;
+    onPress?: () => void;
+    isActive?: boolean;
+    color?: "foreground" | "primary" | "secondary" | "success" | "warning" | "danger";
+}
+export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
+    brand?: ReactNode;
+    navigationItems?: NavItem[];
+    menuItems?: NavItem[];
+    profile?: ReactNode;
     contentProps?: NavbarContentProps;
     menuProps?: NavbarMenuProps;
 }

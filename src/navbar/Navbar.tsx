@@ -1,25 +1,41 @@
+// Navbar.tsx
 import { forwardRef, ReactNode } from "react";
 import {
-  Navbar as NextUINavbar,
+  Navbar as NavbarRoot,
   NavbarBrand,
   NavbarContent,
   NavbarContentProps,
   NavbarMenu,
   NavbarMenuProps,
   NavbarMenuToggle,
-  NavbarProps as NextUINavbarProps,
+  NavbarProps as NavbarRootProps,
+  NavbarItem,
+  Link,
+  NavbarMenuItem,
 } from "@nextui-org/react";
 
-export interface NavbarProps extends Omit<NextUINavbarProps, "children"> {
-  // Mobile Content
-  mobileBrand?: ReactNode;
-  mobileContent?: ReactNode;
-  menuContent?: ReactNode;
+export interface NavItem {
+  label: string;
+  onPress?: () => void;
+  isActive?: boolean;
+  color?:
+    | "foreground"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "danger";
+}
 
-  // Desktop Content
-  desktopBrand?: ReactNode;
-  desktopContent?: ReactNode;
-  endContent?: ReactNode;
+export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
+  // Branding
+  brand?: ReactNode;
+
+  // Navigation Items
+  navigationItems?: NavItem[];
+  menuItems?: NavItem[];
+
+  profile?: ReactNode;
 
   // Props
   contentProps?: NavbarContentProps;
@@ -29,15 +45,11 @@ export interface NavbarProps extends Omit<NextUINavbarProps, "children"> {
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (
     {
-      // Mobile Content
-      mobileBrand,
-      mobileContent,
-      menuContent,
-
-      // Desktop Content
-      desktopBrand,
-      desktopContent,
-      endContent,
+      // Content
+      brand,
+      navigationItems = [],
+      menuItems = [],
+      profile,
 
       // Props
       contentProps,
@@ -53,7 +65,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     ref,
   ) => {
     return (
-      <NextUINavbar
+      <NavbarRoot
         ref={ref}
         className={className}
         classNames={classNames}
@@ -69,20 +81,13 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         </NavbarContent>
 
         {/* Mobile Brand */}
-        {mobileBrand && (
+        {brand && (
           <NavbarContent
             className="sm:hidden pr-3"
             justify="center"
             {...contentProps}
           >
-            <NavbarBrand>{mobileBrand}</NavbarBrand>
-          </NavbarContent>
-        )}
-
-        {/* Mobile Content */}
-        {mobileContent && (
-          <NavbarContent className="sm:hidden" {...contentProps}>
-            {mobileContent}
+            <NavbarBrand>{brand}</NavbarBrand>
           </NavbarContent>
         )}
 
@@ -92,20 +97,41 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
           justify="center"
           {...contentProps}
         >
-          {desktopBrand && <NavbarBrand>{desktopBrand}</NavbarBrand>}
-          {desktopContent}
+          {brand && <NavbarBrand>{brand}</NavbarBrand>}
+          {navigationItems.map((item, index) => (
+            <NavbarItem key={index} isActive={item.isActive}>
+              <Link
+                color={item.color || (item.isActive ? "primary" : "foreground")}
+                aria-current={item.isActive ? "page" : undefined}
+                onPress={item.onPress}
+              >
+                {item.label}
+              </Link>
+            </NavbarItem>
+          ))}
         </NavbarContent>
 
-        {/* End Content - Both Mobile & Desktop */}
-        {endContent && (
-          <NavbarContent justify="end" {...contentProps}>
-            {endContent}
-          </NavbarContent>
-        )}
+        {/* Actions */}
+        <NavbarContent justify="end" {...contentProps}>
+          {profile && <NavbarItem>{profile}</NavbarItem>}
+        </NavbarContent>
 
-        {/* Menu Content - Mobile Only */}
-        {menuContent && <NavbarMenu {...menuProps}>{menuContent}</NavbarMenu>}
-      </NextUINavbar>
+        {/* Mobile Menu */}
+        <NavbarMenu {...menuProps}>
+          {menuItems.map((item, index) => (
+            <NavbarMenuItem key={index}>
+              <Link
+                color={item.color || "foreground"}
+                onPress={item.onPress}
+                size="lg"
+                className="w-full"
+              >
+                {item.label}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
+      </NavbarRoot>
     );
   },
 );

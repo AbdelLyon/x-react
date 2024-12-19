@@ -1,71 +1,84 @@
 /* empty css                */
-import { j as a } from "../jsx-runtime-Dx-03ztt.js";
+import { j as r } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as b } from "react";
-import { Navbar as t, NavbarContent as r, NavbarMenuToggle as p, NavbarBrand as x, NavbarMenu as y } from "@nextui-org/react";
-const g = b(
+import { Navbar as p, NavbarContent as a, NavbarMenuToggle as g, NavbarBrand as o, NavbarItem as d, Link as j, NavbarMenu as y, NavbarMenuItem as A } from "@nextui-org/react";
+const w = b(
   ({
-    // Mobile Content
-    mobileBrand: e,
-    mobileContent: i,
-    menuContent: d,
-    // Desktop Content
-    desktopBrand: l,
-    desktopContent: c,
-    endContent: j,
+    // Content
+    brand: e,
+    navigationItems: x = [],
+    menuItems: h = [],
+    profile: n,
     // Props
-    contentProps: s,
-    menuProps: h,
+    contentProps: l,
+    menuProps: m,
     // NextUI props
-    className: N,
-    classNames: f,
-    isMenuOpen: m,
-    onMenuOpenChange: n,
+    className: t,
+    classNames: v,
+    isMenuOpen: c,
+    onMenuOpenChange: N,
     ...u
-  }, v) => /* @__PURE__ */ a.jsxs(
-    t,
+  }, f) => /* @__PURE__ */ r.jsxs(
+    p,
     {
-      ref: v,
-      className: N,
-      classNames: f,
-      isMenuOpen: m,
-      onMenuOpenChange: n,
+      ref: f,
+      className: t,
+      classNames: v,
+      isMenuOpen: c,
+      onMenuOpenChange: N,
       ...u,
       children: [
-        /* @__PURE__ */ a.jsx(r, { className: "sm:hidden", justify: "start", children: /* @__PURE__ */ a.jsx(
-          p,
+        /* @__PURE__ */ r.jsx(a, { className: "sm:hidden", justify: "start", children: /* @__PURE__ */ r.jsx(
+          g,
           {
-            "aria-label": m ? "Close menu" : "Open menu"
+            "aria-label": c ? "Close menu" : "Open menu"
           }
         ) }),
-        e && /* @__PURE__ */ a.jsx(
-          r,
+        e && /* @__PURE__ */ r.jsx(
+          a,
           {
             className: "sm:hidden pr-3",
             justify: "center",
-            ...s,
-            children: /* @__PURE__ */ a.jsx(x, { children: e })
+            ...l,
+            children: /* @__PURE__ */ r.jsx(o, { children: e })
           }
         ),
-        i && /* @__PURE__ */ a.jsx(r, { className: "sm:hidden", ...s, children: i }),
-        /* @__PURE__ */ a.jsxs(
-          r,
+        /* @__PURE__ */ r.jsxs(
+          a,
           {
             className: "hidden sm:flex gap-4",
             justify: "center",
-            ...s,
+            ...l,
             children: [
-              l && /* @__PURE__ */ a.jsx(x, { children: l }),
-              c
+              e && /* @__PURE__ */ r.jsx(o, { children: e }),
+              x.map((s, i) => /* @__PURE__ */ r.jsx(d, { isActive: s.isActive, children: /* @__PURE__ */ r.jsx(
+                j,
+                {
+                  color: s.color || (s.isActive ? "primary" : "foreground"),
+                  "aria-current": s.isActive ? "page" : void 0,
+                  onPress: s.onPress,
+                  children: s.label
+                }
+              ) }, i))
             ]
           }
         ),
-        j && /* @__PURE__ */ a.jsx(r, { justify: "end", ...s, children: j }),
-        d && /* @__PURE__ */ a.jsx(y, { ...h, children: d })
+        /* @__PURE__ */ r.jsx(a, { justify: "end", ...l, children: n && /* @__PURE__ */ r.jsx(d, { children: n }) }),
+        /* @__PURE__ */ r.jsx(y, { ...m, children: h.map((s, i) => /* @__PURE__ */ r.jsx(A, { children: /* @__PURE__ */ r.jsx(
+          j,
+          {
+            color: s.color || "foreground",
+            onPress: s.onPress,
+            size: "lg",
+            className: "w-full",
+            children: s.label
+          }
+        ) }, i)) })
       ]
     }
   )
 );
-g.displayName = "Navbar";
+w.displayName = "Navbar";
 export {
-  g as Navbar
+  w as Navbar
 };
