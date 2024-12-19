@@ -37,10 +37,10 @@ export type ColumnDefinition<T> = {
 
 export interface DataGridComponentProps<T> {
   tableProps?: TableProps;
-  tableHeaderProps?: Omit<TableHeaderProps<T>, "columns">;
-  tableBodyProps?: Omit<TableBodyProps<T>, "items">;
-  tableRowProps?: TableRowProps;
-  tableCellProps?: TableCellProps;
+  tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
+  tableBodyProps?: Omit<TableBodyProps<T>, "items" | "children">;
+  tableRowProps?: Omit<TableRowProps | undefined, "children">;
+  tableCellProps?: Omit<TableCellProps | undefined, "children">;
   tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }
 
