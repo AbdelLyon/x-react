@@ -8,6 +8,7 @@ export interface NavbarProps extends Omit<NextUINavbarProps, "children"> {
     menuContent?: ReactNode;
     contentProps?: NavbarContentProps;
     menuProps?: NavbarMenuProps;
-    showMenuOnMobile?: boolean;
+    mobileBreakpoint?: "sm" | "md" | "lg" | "xl" | "2xl";
+    showMenuButton?: boolean;
 }
 export declare const Navbar: import('react').ForwardRefExoticComponent<Omit<NavbarProps, "ref"> & import('react').RefAttributes<HTMLElement>>;

@@ -12,14 +12,20 @@ import {
 import { cn } from "@/utils";
 
 export interface NavbarProps extends Omit<NextUINavbarProps, "children"> {
+  // Content
   brand?: ReactNode;
   startContent?: ReactNode;
   centerContent?: ReactNode;
   endContent?: ReactNode;
   menuContent?: ReactNode;
+
+  // Props
   contentProps?: NavbarContentProps;
   menuProps?: NavbarMenuProps;
-  showMenuOnMobile?: boolean;
+
+  // Breakpoints for responsive
+  mobileBreakpoint?: "sm" | "md" | "lg" | "xl" | "2xl";
+  showMenuButton?: boolean;
 }
 
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
@@ -35,7 +41,8 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
       // Props
       contentProps,
       menuProps,
-      showMenuOnMobile = true,
+      mobileBreakpoint = "md",
+      showMenuButton = true,
 
       // NextUI props
       className,
@@ -44,6 +51,14 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     },
     ref,
   ) => {
+    const breakpoint = {
+      sm: "sm:flex",
+      md: "md:flex",
+      lg: "lg:flex",
+      xl: "xl:flex",
+      "2xl": "2xl:flex",
+    }[mobileBreakpoint];
+
     return (
       <NextUINavbar
         ref={ref}
@@ -52,19 +67,19 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {...props}
       >
         {/* Menu Toggle */}
-        {showMenuOnMobile && (
-          <NavbarContent className="sm:hidden" justify="start">
+        {showMenuButton && (
+          <NavbarContent className={cn(`${breakpoint}:hidden`)} justify="start">
             <NavbarMenuToggle />
           </NavbarContent>
         )}
 
-        {/* Brand */}
+        {/* Brand - Always visible */}
         {brand && <NavbarBrand>{brand}</NavbarBrand>}
 
         {/* Start Content */}
         {startContent && (
           <NavbarContent
-            className={cn("hidden sm:flex", classNames?.content)}
+            className={cn("hidden", breakpoint, classNames?.content)}
             justify="start"
             {...contentProps}
           >
@@ -75,7 +90,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {/* Center Content */}
         {centerContent && (
           <NavbarContent
-            className={cn("hidden sm:flex", classNames?.content)}
+            className={cn("hidden", breakpoint, classNames?.content)}
             justify="center"
             {...contentProps}
           >
@@ -86,7 +101,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {/* End Content */}
         {endContent && (
           <NavbarContent
-            className={cn("hidden sm:flex", classNames?.content)}
+            className={cn("hidden", breakpoint, classNames?.content)}
             justify="end"
             {...contentProps}
           >
@@ -95,8 +110,13 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         )}
 
         {/* Mobile Menu */}
-        {showMenuOnMobile && menuContent && (
-          <NavbarMenu {...menuProps}>{menuContent}</NavbarMenu>
+        {showMenuButton && menuContent && (
+          <NavbarMenu
+            className={cn(`${breakpoint}:hidden`, classNames?.menu)}
+            {...menuProps}
+          >
+            {menuContent}
+          </NavbarMenu>
         )}
       </NextUINavbar>
     );
