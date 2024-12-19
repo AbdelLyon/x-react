@@ -78,11 +78,11 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
       >
         <NavbarContent>
           {/* Mobile Menu Toggle */}
-          <div className="md:hidden">
-            <NavbarMenuToggle
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            />
-          </div>
+
+          <NavbarMenuToggle
+            className="sm:hidden"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          />
 
           {/* Brand - Mobile & Desktop */}
           {brand && <NavbarBrand>{brand}</NavbarBrand>}
@@ -90,7 +90,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
         {/* Navigation Items - Desktop */}
         <NavbarContent
-          className="hidden md:flex gap-4"
+          className="hidden sm:flex gap-4"
           justify="start"
           {...contentProps}
         >
