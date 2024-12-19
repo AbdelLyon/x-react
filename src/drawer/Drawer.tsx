@@ -6,10 +6,10 @@ import {
   DrawerBody,
   DrawerFooter,
   useDisclosure,
-  Button,
 } from "@nextui-org/react";
 import type { DrawerProps as DrawerRootProps } from "@nextui-org/react";
 import { cn } from "@/utils";
+import { Button, type ButtonProps } from "@/button";
 
 export type DrawerSize =
   | "xs"
@@ -50,6 +50,7 @@ export interface DrawerProps
     footer?: string;
     closeButton?: string;
   };
+  buttonProps?: ButtonProps;
 }
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
@@ -86,6 +87,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       // Styling
       classNames,
 
+      buttonProps = {},
       ...props
     },
     ref,
@@ -154,20 +156,22 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                 <DrawerFooter className={classNames?.footer}>
                   {footer || (
                     <>
-                      <Button
-                        className="border-primary/20"
-                        color="primary"
-                        radius="sm"
-                        variant="bordered"
-                        onPress={onClose}
-                      >
-                        {buttonCloseLabel}
-                      </Button>
+                      {buttonCloseLabel && (
+                        <Button
+                          className="border-primary/20"
+                          color={buttonProps.color || "primary"}
+                          radius={buttonProps.radius || "sm"}
+                          variant={buttonProps.variant || "bordered"}
+                          onPress={onClose}
+                        >
+                          {buttonCloseLabel}
+                        </Button>
+                      )}
 
                       {buttonActionLabel && onAction && (
                         <Button
-                          color="primary"
-                          radius="sm"
+                          color={buttonProps.color || "primary"}
+                          radius={buttonProps.radius || "sm"}
                           onPress={handleAction}
                         >
                           {buttonActionLabel}

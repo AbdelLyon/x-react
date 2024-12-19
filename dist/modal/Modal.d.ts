@@ -1,4 +1,5 @@
-import { ModalProps as ModalPropsRoot, SlotsToClasses } from '@nextui-org/react';
+import { ModalProps as ModalPropsRoot } from '@nextui-org/react';
+import { ButtonProps } from '../button';
 interface Props extends Omit<Partial<ModalPropsRoot>, "title"> {
     trigger: React.ReactNode;
     title?: React.ReactNode;
@@ -7,7 +8,7 @@ interface Props extends Omit<Partial<ModalPropsRoot>, "title"> {
     onAction?: () => void;
     buttonCloseLabel?: string;
     buttonActionLabel?: string;
-    classNames?: SlotsToClasses<"footer" | "backdrop" | "base" | "body" | "header" | "closeButton" | "wrapper">;
+    buttonProps?: ButtonProps;
 }
 export declare const Modal: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};

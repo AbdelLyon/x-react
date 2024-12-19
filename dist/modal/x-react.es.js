@@ -1,76 +1,81 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as k, useState as w } from "react";
-import { useDisclosure as B, Modal as F, ModalContent as D, ModalHeader as O, ModalBody as q, ModalFooter as v, Button as a } from "@nextui-org/react";
-import { cn as s } from "../utils/x-react.es.js";
-const C = k(
+import { j as e } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as w, useState as b } from "react";
+import { useDisclosure as F, Modal as v, ModalContent as D, ModalHeader as O, ModalBody as q, ModalFooter as C } from "@nextui-org/react";
+import { cn as t } from "../utils/x-react.es.js";
+import { B as x } from "../Buttons-DKd5iRbN.js";
+const E = w(
   ({
-    trigger: p,
-    title: x,
-    footer: h,
-    onAction: d,
-    buttonCloseLabel: n,
-    buttonActionLabel: t,
-    classNames: o,
-    children: c,
-    ...u
-  }, j) => {
-    const { isOpen: m, onOpen: f, onClose: i } = B(), [g, y] = w("opaque"), l = (e = "opaque") => {
-      y(e), f();
-    }, b = () => {
-      d == null || d(), i();
-    }, M = (e) => {
-      (e.key === "Enter" || e.key === " ") && l();
+    trigger: h,
+    title: j,
+    footer: u,
+    onAction: a,
+    buttonCloseLabel: d,
+    buttonActionLabel: l,
+    children: p,
+    buttonProps: s = {},
+    ...o
+  }, f) => {
+    var i, m;
+    const { isOpen: g, onOpen: y, onClose: n } = F(), [M, k] = b("opaque"), c = (r = "opaque") => {
+      k(r), y();
+    }, N = () => {
+      a == null || a(), n();
+    }, B = (r) => {
+      (r.key === "Enter" || r.key === " ") && c();
     };
-    return /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
-      /* @__PURE__ */ r.jsx(
+    return /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
+      /* @__PURE__ */ e.jsx(
         "div",
         {
           role: "button",
           tabIndex: 0,
-          onClick: () => l(),
-          onKeyDown: M,
-          children: p
+          onClick: () => c(),
+          onKeyDown: B,
+          children: h
         }
       ),
-      /* @__PURE__ */ r.jsx(
-        F,
+      /* @__PURE__ */ e.jsx(
+        v,
         {
-          ref: j,
-          backdrop: g,
+          ref: f,
+          backdrop: M,
           classNames: {
-            closeButton: s("absolute right-4 top-4", o == null ? void 0 : o.closeButton),
-            base: s(
-              "bg-background border border-divider shadow-lg dark:shadow-none rounded-lg",
-              o == null ? void 0 : o.base
+            closeButton: t(
+              "absolute right-4 top-4",
+              (i = o.classNames) == null ? void 0 : i.closeButton
             ),
-            ...o
+            base: t(
+              "bg-background border border-divider shadow-lg dark:shadow-none rounded-lg",
+              (m = o.classNames) == null ? void 0 : m.base
+            ),
+            ...o.classNames
           },
-          isOpen: m,
-          onClose: i,
-          ...u,
-          children: /* @__PURE__ */ r.jsx(D, { children: (e) => /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
-            /* @__PURE__ */ r.jsx(O, { className: "flex flex-col gap-1", children: x }),
-            /* @__PURE__ */ r.jsx(q, { children: c }),
-            /* @__PURE__ */ r.jsx(v, { children: h || /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
-              n && /* @__PURE__ */ r.jsx(
-                a,
+          isOpen: g,
+          onClose: n,
+          ...o,
+          children: /* @__PURE__ */ e.jsx(D, { children: (r) => /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
+            /* @__PURE__ */ e.jsx(O, { className: "flex flex-col gap-1", children: j }),
+            /* @__PURE__ */ e.jsx(q, { children: p }),
+            /* @__PURE__ */ e.jsx(C, { children: u || /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
+              d && /* @__PURE__ */ e.jsx(
+                x,
                 {
                   className: "border-primary/20",
-                  color: "primary",
-                  radius: "sm",
-                  variant: "bordered",
-                  onPress: e,
-                  children: n
+                  color: s.color || "primary",
+                  radius: s.radius || "sm",
+                  variant: s.variant || "bordered",
+                  onPress: r,
+                  children: d
                 }
               ),
-              t && d && /* @__PURE__ */ r.jsx(
-                a,
+              l && a && /* @__PURE__ */ e.jsx(
+                x,
                 {
-                  color: "primary",
-                  radius: "sm",
-                  onPress: b,
-                  children: t
+                  color: s.color || "primary",
+                  radius: s.radius || "sm",
+                  onPress: N,
+                  children: l
                 }
               )
             ] }) })
@@ -80,7 +85,7 @@ const C = k(
     ] });
   }
 );
-C.displayName = "Modal";
+E.displayName = "Modal";
 export {
-  C as Modal
+  E as Modal
 };

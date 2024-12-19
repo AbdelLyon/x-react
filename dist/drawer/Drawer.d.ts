@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { DrawerProps as DrawerRootProps } from '@nextui-org/react';
+import { ButtonProps } from '../button';
 export type DrawerSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "full";
 export type DrawerRadius = "none" | "sm" | "md" | "lg";
 export type DrawerPlacement = "left" | "right" | "top" | "bottom";
@@ -20,5 +21,6 @@ export interface DrawerProps extends Omit<DrawerRootProps, "children" | "title">
         footer?: string;
         closeButton?: string;
     };
+    buttonProps?: ButtonProps;
 }
 export declare const Drawer: import('react').ForwardRefExoticComponent<Omit<DrawerProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;

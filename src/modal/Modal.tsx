@@ -5,13 +5,12 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Button,
   useDisclosure,
   ModalProps as ModalPropsRoot,
 } from "@nextui-org/react";
-import { SlotsToClasses } from "@nextui-org/react";
 
 import { cn } from "@/utils";
+import { Button, ButtonProps } from "@/button";
 
 interface Props extends Omit<Partial<ModalPropsRoot>, "title"> {
   trigger: React.ReactNode;
@@ -21,15 +20,7 @@ interface Props extends Omit<Partial<ModalPropsRoot>, "title"> {
   onAction?: () => void;
   buttonCloseLabel?: string;
   buttonActionLabel?: string;
-  classNames?: SlotsToClasses<
-    | "footer"
-    | "backdrop"
-    | "base"
-    | "body"
-    | "header"
-    | "closeButton"
-    | "wrapper"
-  >;
+  buttonProps?: ButtonProps;
 }
 export const Modal = forwardRef<HTMLDivElement, Props>(
   (
@@ -40,9 +31,9 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
       onAction,
       buttonCloseLabel,
       buttonActionLabel,
-      classNames,
       children,
-      ...modalProps
+      buttonProps = {},
+      ...props
     },
     ref,
   ) => {
@@ -83,16 +74,19 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
           ref={ref}
           backdrop={backdrop}
           classNames={{
-            closeButton: cn("absolute right-4 top-4", classNames?.closeButton),
+            closeButton: cn(
+              "absolute right-4 top-4",
+              props.classNames?.closeButton,
+            ),
             base: cn(
               "bg-background border border-divider shadow-lg dark:shadow-none rounded-lg",
-              classNames?.base,
+              props.classNames?.base,
             ),
-            ...classNames,
+            ...props.classNames,
           }}
           isOpen={isOpen}
           onClose={onClose}
-          {...modalProps}
+          {...props}
         >
           <ModalContent>
             {(onClose) => (
@@ -109,18 +103,19 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
                       {buttonCloseLabel && (
                         <Button
                           className="border-primary/20"
-                          color="primary"
-                          radius="sm"
-                          variant="bordered"
+                          color={buttonProps.color || "primary"}
+                          radius={buttonProps.radius || "sm"}
+                          variant={buttonProps.variant || "bordered"}
                           onPress={onClose}
                         >
                           {buttonCloseLabel}
                         </Button>
                       )}
+
                       {buttonActionLabel && onAction && (
                         <Button
-                          color="primary"
-                          radius="sm"
+                          color={buttonProps.color || "primary"}
+                          radius={buttonProps.radius || "sm"}
                           onPress={handleAction}
                         >
                           {buttonActionLabel}
