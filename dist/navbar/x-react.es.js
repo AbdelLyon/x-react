@@ -10,12 +10,12 @@ const M = b(
     menuItems: x = [],
     profile: n,
     // Props
-    contentProps: o,
+    contentProps: i,
     menuProps: v,
     // NextUI props
     className: h,
     classNames: m,
-    isMenuOpen: i,
+    isMenuOpen: o,
     onMenuOpenChange: t,
     ...u
   }, N) => /* @__PURE__ */ r.jsxs(
@@ -24,7 +24,7 @@ const M = b(
       ref: N,
       className: h,
       classNames: m,
-      isMenuOpen: i,
+      isMenuOpen: o,
       onMenuOpenChange: t,
       ...u,
       children: [
@@ -32,7 +32,7 @@ const M = b(
           /* @__PURE__ */ r.jsx("div", { className: "md:hidden", children: /* @__PURE__ */ r.jsx(
             p,
             {
-              "aria-label": i ? "Close menu" : "Open menu"
+              "aria-label": o ? "Close menu" : "Open menu"
             }
           ) }),
           l && /* @__PURE__ */ r.jsx(g, { children: l })
@@ -42,7 +42,7 @@ const M = b(
           {
             className: "hidden md:flex gap-4",
             justify: "start",
-            ...o,
+            ...i,
             children: j.map((s, a) => /* @__PURE__ */ r.jsx(c, { isActive: s.isActive, children: /* @__PURE__ */ r.jsx(
               d,
               {
@@ -54,11 +54,11 @@ const M = b(
             ) }, a))
           }
         ),
-        /* @__PURE__ */ r.jsx(e, { justify: "end", ...o, children: n && /* @__PURE__ */ r.jsx(c, { children: n }) }),
+        /* @__PURE__ */ r.jsx(e, { justify: "end", ...i, children: n && /* @__PURE__ */ r.jsx(c, { children: n }) }),
         /* @__PURE__ */ r.jsx(A, { ...v, children: x.map((s, a) => /* @__PURE__ */ r.jsx(y, { children: /* @__PURE__ */ r.jsx(
           d,
           {
-            color: s.color || "foreground",
+            color: s.color || (s.isActive ? "primary" : "foreground"),
             onPress: s.onPress,
             size: "lg",
             className: "w-full",

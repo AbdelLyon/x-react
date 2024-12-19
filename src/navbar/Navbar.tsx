@@ -113,7 +113,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={index}>
               <Link
-                color={item.color || "foreground"}
+                color={item.color || (item.isActive ? "primary" : "foreground")}
                 onPress={item.onPress}
                 size="lg"
                 className="w-full"
