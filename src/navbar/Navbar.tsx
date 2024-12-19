@@ -93,7 +93,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
         {/* Desktop Content */}
         <NavbarContent
-          className="hidden sm:flex gap-4"
+          className="sm:flex gap-4"
           justify="end"
           {...contentProps}
         >
