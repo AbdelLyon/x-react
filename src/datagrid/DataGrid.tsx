@@ -1,12 +1,19 @@
 import { useDataGridState } from "@/hooks/useDataGrid";
+import { cn } from "@/utils";
 import {
-  Table as NextUITable,
+  Table as TableRoot,
   TableHeader,
   TableColumn,
   TableBody,
   TableRow,
   TableCell,
   Checkbox,
+  TableBodyProps,
+  TableProps,
+  TableHeaderProps,
+  TableRowProps,
+  TableCellProps,
+  TableColumnProps,
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 
@@ -28,7 +35,17 @@ export type ColumnDefinition<T> = {
     }
 );
 
+export interface DataGridComponentProps<T> {
+  tableProps?: TableProps;
+  tableHeaderProps?: Omit<TableHeaderProps<T>, "columns">;
+  tableBodyProps?: Omit<TableBodyProps<T>, "items">;
+  tableRowProps?: TableRowProps;
+  tableCellProps?: TableCellProps;
+  tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
+}
+
 export type DataGridProps<T extends { id: string | number }> = {
+  props?: DataGridComponentProps<T>;
   rows: T[];
   columns: ColumnDefinition<T>[];
   caption?: string;
@@ -37,8 +54,22 @@ export type DataGridProps<T extends { id: string | number }> = {
   onCheckedRowsChange?: (rows: T[]) => void;
   onSort?: (column: keyof T, direction: "asc" | "desc") => void;
   checkboxSelection?: boolean;
+  classNames?: {
+    base?: string;
+    table?: string;
+    thead?: string;
+    tbody?: string;
+    tr?: string;
+    th?: string;
+    td?: string;
+    checkbox?: string;
+    sortIcon?: string;
+    headerContent?: string;
+    cellContent?: string;
+  };
 };
 
+// Composant avec classNames
 export function DataGrid<T extends { id: string | number }>({
   rows,
   columns,
@@ -47,6 +78,8 @@ export function DataGrid<T extends { id: string | number }>({
   onCheckedRowsChange,
   onSort,
   checkboxSelection = true,
+  classNames,
+  props,
 }: DataGridProps<T>) {
   const {
     isAllChecked,
@@ -80,29 +113,45 @@ export function DataGrid<T extends { id: string | number }>({
   ];
 
   return (
-    <NextUITable
+    <TableRoot
       aria-label={caption}
-      className={className}
+      className={cn(classNames?.base, className)}
       aria-labelledby="table"
+      {...props?.tableProps}
     >
-      <TableHeader columns={preparedColumns}>
+      <TableHeader
+        columns={preparedColumns}
+        className={classNames?.thead}
+        {...props?.tableHeaderProps}
+      >
         {(column) => (
           <TableColumn
             key={column.key}
             aria-label={String(column.label || column.key)}
+            className={classNames?.th}
+            {...props?.tableColumnProps}
           >
             {column.key === "checkbox" ? (
               <Checkbox
                 isSelected={isAllChecked}
                 onValueChange={handleSelectAll}
                 aria-label="Select all rows"
+                className={classNames?.checkbox}
               />
             ) : (
-              <div className="flex items-center gap-2">
+              <div
+                className={cn(
+                  "flex items-center gap-2",
+                  classNames?.headerContent,
+                )}
+              >
                 {column.label}
                 {column.sortable && (
                   <div
-                    className="relative w-4 h-4 cursor-pointer"
+                    className={cn(
+                      "relative w-4 h-4 cursor-pointer",
+                      classNames?.sortIcon,
+                    )}
                     onClick={() => {
                       const field = columns.find(
                         (c) => String(c.field) === column.key,
@@ -143,36 +192,48 @@ export function DataGrid<T extends { id: string | number }>({
         )}
       </TableHeader>
 
-      <TableBody items={rows}>
+      <TableBody
+        items={rows}
+        className={classNames?.tbody}
+        {...props?.tableBodyProps}
+      >
         {(row) => (
-          <TableRow key={row.id} aria-label={`Row ${row.id}`}>
+          <TableRow
+            key={row.id}
+            aria-label={`Row ${row.id}`}
+            className={classNames?.tr}
+            {...props?.tableRowProps}
+          >
             {(columnKey) => (
-              <TableCell>
+              <TableCell className={classNames?.td} {...props?.tableCellProps}>
                 {columnKey === "checkbox" ? (
                   <Checkbox
                     isSelected={isRowSelected(row)}
                     onValueChange={() => handleCheckboxChange(row)}
                     aria-label={`Select row ${row.id}`}
+                    className={classNames?.checkbox}
                   />
                 ) : (
-                  (() => {
-                    const column = columns.find(
-                      (c) => String(c.field) === columnKey,
-                    );
-                    if (!column) return null;
+                  <div className={classNames?.cellContent}>
+                    {(() => {
+                      const column = columns.find(
+                        (c) => String(c.field) === columnKey,
+                      );
+                      if (!column) return null;
 
-                    return column.cell
-                      ? column.cell(row)
-                      : column.field && column.field in row
-                      ? String(row[column.field as keyof typeof row])
-                      : null;
-                  })()
+                      return column.cell
+                        ? column.cell(row)
+                        : column.field && column.field in row
+                        ? String(row[column.field as keyof typeof row])
+                        : null;
+                    })()}
+                  </div>
                 )}
               </TableCell>
             )}
           </TableRow>
         )}
       </TableBody>
-    </NextUITable>
+    </TableRoot>
   );
 }
