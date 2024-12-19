@@ -60,13 +60,13 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
       // Props
       contentProps,
       menuProps,
+      itemProps,
 
       // NextUI props
       className,
       classNames,
       isMenuOpen,
       onMenuOpenChange,
-      itemProps,
       ...props
     },
     ref,
@@ -80,28 +80,20 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         onMenuOpenChange={onMenuOpenChange}
         {...props}
       >
-        <NavbarContent>
-          {/* Mobile Menu Toggle */}
-
+        {/* Mobile Layout */}
+        <NavbarContent className="md:hidden">
           <NavbarMenuToggle
-            className="md:hidden"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           />
-
-          {/* Brand - Mobile & Desktop */}
           {brand && <NavbarBrand>{brand}</NavbarBrand>}
         </NavbarContent>
 
-        {/* Navigation Items - Desktop */}
-        <NavbarContent
-          className="hidden md:flex gap-4"
-          justify="start"
-          {...contentProps}
-        >
+        {/* Desktop Layout */}
+        <NavbarContent className="hidden md:flex">
+          {brand && <NavbarBrand>{brand}</NavbarBrand>}
           {navigationItems.map((item, index) => (
             <NavbarItem key={index} isActive={item.isActive}>
               <Link
-                // color={item.color || (item.isActive ? "primary" : "default")}
                 aria-current={item.isActive ? "page" : undefined}
                 onPress={item.onPress}
               >
@@ -111,7 +103,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
           ))}
         </NavbarContent>
 
-        {/* Actions */}
+        {/* Actions - Always visible */}
         <NavbarContent justify="end" {...contentProps}>
           {profile && <NavbarItem>{profile}</NavbarItem>}
         </NavbarContent>
@@ -125,6 +117,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                 onPress={item.onPress}
                 startContent={item.startContent}
                 endContent={item.endContent}
+                className="w-full"
                 {...itemProps}
               >
                 {item.label}
@@ -136,3 +129,5 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     );
   },
 );
+
+Navbar.displayName = "Navbar";
