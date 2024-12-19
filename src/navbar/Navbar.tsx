@@ -74,7 +74,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {...props}
       >
         {/* Mobile Menu Toggle */}
-        <NavbarContent className="sm:hidden" justify="start">
+        <NavbarContent className="md:hidden" justify="start">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           />
@@ -83,7 +83,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {/* Mobile Brand */}
         {brand && (
           <NavbarContent
-            className="sm:hidden pr-3"
+            className="md:hidden pr-3"
             justify="center"
             {...contentProps}
           >
@@ -93,8 +93,8 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
         {/* Desktop Content */}
         <NavbarContent
-          className="sm:flex gap-4"
-          justify="end"
+          className="hidden md:flex gap-4"
+          justify="start"
           {...contentProps}
         >
           {brand && <NavbarBrand>{brand}</NavbarBrand>}
