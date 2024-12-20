@@ -69,7 +69,7 @@ const R = A(
           /* @__PURE__ */ a.jsx(g, { ...f, children: t.map((r) => /* @__PURE__ */ a.jsx(
             w,
             {
-              className: C("py-2 hover:bg-default-100 rounded-md", {
+              className: C("p-2 hover:bg-default-100 rounded-md", {
                 "border-l border-primary": r.isActive
               }),
               children: /* @__PURE__ */ a.jsxs(
