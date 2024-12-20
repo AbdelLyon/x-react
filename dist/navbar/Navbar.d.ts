@@ -8,6 +8,7 @@ export interface NavItem {
     label: string;
     onPress?: () => void;
     isActive?: boolean;
+    href?: string;
     linkColor?: LinkColor;
     buttonColor?: ButtonColor;
     startContent?: React.ReactNode;
