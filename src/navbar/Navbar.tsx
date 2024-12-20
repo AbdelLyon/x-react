@@ -152,14 +152,12 @@ export const Navbar = forwardRef<HTMLElement, Props>(
           {menuItems.map((item) => (
             <NavbarMenuItem
               key={item.key}
-              className={cn(
-                "py-2 hover:bg-default-100 flex items-center gap-2 rounded-md",
-                {
-                  "border-l border-primary": item.isActive,
-                },
-              )}
+              className={cn("py-2 hover:bg-default-100 rounded-md", {
+                "border-l border-primary": item.isActive,
+              })}
             >
               <Link
+                className="flex items-center gap-2"
                 color={
                   item.linkColor || (item.isActive ? "primary" : "foreground")
                 }
