@@ -28,6 +28,7 @@ var modules = [
     "chip",
     "datepicker",
     "navbar",
+    "sidebar",
 ];
 export default defineConfig({
     plugins: [
