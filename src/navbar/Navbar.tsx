@@ -96,7 +96,6 @@ export const Navbar = forwardRef<HTMLElement, Props>(
   ) => {
     const handleItemPress = (item: NavItem) => {
       item.onPress?.();
-
       onItemPress?.(item);
       onMenuOpenChange?.(false);
     };
@@ -150,7 +149,10 @@ export const Navbar = forwardRef<HTMLElement, Props>(
         {/* Mobile Menu */}
         <NavbarMenu {...menuProps}>
           {menuItems.map((item) => (
-            <NavbarMenuItem key={item.key}>
+            <NavbarMenuItem
+              key={item.key}
+              className="py-2 hover:bg-default-100"
+            >
               <Link
                 color={
                   item.linkColor || (item.isActive ? "primary" : "foreground")

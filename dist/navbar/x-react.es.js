@@ -1,8 +1,8 @@
 /* empty css                */
 import { j as a } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as y } from "react";
+import { forwardRef as k } from "react";
 import { Navbar as A, NavbarContent as d, NavbarMenuToggle as g, NavbarBrand as v, NavbarItem as x, Link as j, NavbarMenu as w, NavbarMenuItem as C } from "@nextui-org/react";
-const R = y(
+const R = k(
   ({
     // Content
     brand: s,
@@ -20,7 +20,7 @@ const R = y(
     isMenuOpen: e,
     onMenuOpenChange: l,
     ...u
-  }, k) => {
+  }, y) => {
     const i = (r) => {
       var n;
       (n = r.onPress) == null || n.call(r), c == null || c(r), l == null || l(!1);
@@ -28,7 +28,7 @@ const R = y(
     return /* @__PURE__ */ a.jsxs(
       A,
       {
-        ref: k,
+        ref: y,
         className: h,
         classNames: {
           base: "bg-background",
@@ -65,19 +65,26 @@ const R = y(
             ) }, r.key))
           ] }),
           /* @__PURE__ */ a.jsx(d, { justify: "end", ...t, children: o && /* @__PURE__ */ a.jsx(x, { children: o }) }),
-          /* @__PURE__ */ a.jsx(w, { ...f, children: b.map((r) => /* @__PURE__ */ a.jsx(C, { children: /* @__PURE__ */ a.jsxs(
-            j,
+          /* @__PURE__ */ a.jsx(w, { ...f, children: b.map((r) => /* @__PURE__ */ a.jsx(
+            C,
             {
-              color: r.linkColor || (r.isActive ? "primary" : "foreground"),
-              "aria-current": r.isActive ? "page" : void 0,
-              onPress: () => i(r),
-              children: [
-                r.startContent,
-                r.label,
-                r.endContent
-              ]
-            }
-          ) }, r.key)) })
+              className: "py-2 hover:bg-default-100",
+              children: /* @__PURE__ */ a.jsxs(
+                j,
+                {
+                  color: r.linkColor || (r.isActive ? "primary" : "foreground"),
+                  "aria-current": r.isActive ? "page" : void 0,
+                  onPress: () => i(r),
+                  children: [
+                    r.startContent,
+                    r.label,
+                    r.endContent
+                  ]
+                }
+              )
+            },
+            r.key
+          )) })
         ]
       }
     );
