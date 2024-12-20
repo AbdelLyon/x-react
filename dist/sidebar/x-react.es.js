@@ -1,100 +1,43 @@
 /* empty css                */
-import { j as a } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as A } from "react";
-import { Navbar as g, NavbarContent as e, NavbarMenuToggle as k, NavbarBrand as x, NavbarItem as t, Link as v, NavbarMenu as m, NavbarMenuItem as w } from "@nextui-org/react";
-import { cn as C } from "../utils/x-react.es.js";
-const R = A(
-  ({
-    // Content
-    brand: s,
-    profile: c,
-    navigationItems: b = [],
-    menuItems: j = [],
-    // Props
-    contentProps: f,
-    menuProps: p,
-    // Callback
-    onItemPress: d,
-    // NextUI props
-    className: N,
-    classNames: h,
-    isMenuOpen: o,
-    onMenuOpenChange: l,
-    ...u
-  }, y) => {
-    const i = (r) => {
-      var n;
-      (n = r.onPress) == null || n.call(r), d == null || d(r), l == null || l(!1);
-    };
-    return /* @__PURE__ */ a.jsxs(
-      g,
-      {
-        ref: y,
-        className: N,
-        classNames: {
-          base: "bg-background",
-          wrapper: "max-w-full",
-          ...h
-        },
-        isMenuOpen: o,
-        onMenuOpenChange: l,
-        ...u,
-        children: [
-          /* @__PURE__ */ a.jsxs(e, { className: "md:hidden", children: [
-            /* @__PURE__ */ a.jsx(
-              k,
-              {
-                "aria-label": o ? "Close menu" : "Open menu"
-              }
-            ),
-            s && /* @__PURE__ */ a.jsx(x, { children: s })
-          ] }),
-          /* @__PURE__ */ a.jsxs(e, { className: "hidden md:flex", children: [
-            s && /* @__PURE__ */ a.jsx(x, { children: s }),
-            b.map((r) => /* @__PURE__ */ a.jsx(t, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
-              v,
-              {
-                color: r.linkColor || (r.isActive ? "primary" : "foreground"),
-                "aria-current": r.isActive ? "page" : void 0,
-                onPress: () => i(r),
-                children: [
-                  r.startContent,
-                  r.label,
-                  r.endContent
-                ]
-              }
-            ) }, r.key))
-          ] }),
-          /* @__PURE__ */ a.jsx(e, { justify: "end", ...f, children: c && /* @__PURE__ */ a.jsx(t, { children: c }) }),
-          /* @__PURE__ */ a.jsx(m, { ...p, children: j.map((r) => /* @__PURE__ */ a.jsx(
-            w,
+import { j as o } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as n } from "react";
+import { Link as t } from "@nextui-org/react";
+import { cn as f } from "../utils/x-react.es.js";
+const h = n(
+  ({ items: x = [], className: p, classNames: r, onItemClick: i }, d) => /* @__PURE__ */ o.jsx(
+    "aside",
+    {
+      ref: d,
+      className: f(
+        "fixed left-0 hidden md:flex h-screen w-[240px] flex-col bg-default-100",
+        r == null ? void 0 : r.base,
+        p
+      ),
+      children: /* @__PURE__ */ o.jsx("nav", { className: "flex flex-1 flex-col", children: x.map((e) => /* @__PURE__ */ o.jsxs(
+        t,
+        {
+          href: e.href,
+          className: f(
+            "flex items-center gap-3 px-3 h-[50px] cursor-pointer",
+            "transition-colors duration-150",
+            "hover:bg-default/40",
             {
-              className: C("p-2 hover:bg-default rounded-md", {
-                "border-l border-primary bg-default": r.isActive
-              }),
-              children: /* @__PURE__ */ a.jsxs(
-                v,
-                {
-                  className: "flex items-center gap-2",
-                  color: r.linkColor || (r.isActive ? "primary" : "foreground"),
-                  "aria-current": r.isActive ? "page" : void 0,
-                  onPress: () => i(r),
-                  children: [
-                    r.startContent,
-                    r.label,
-                    r.endContent
-                  ]
-                }
-              )
+              "bg-primary-500/20 text-primary": e.isActive
             },
-            r.key
-          )) })
-        ]
-      }
-    );
-  }
+            r == null ? void 0 : r.item
+          ),
+          onPress: () => i == null ? void 0 : i(e),
+          children: [
+            e.icon,
+            /* @__PURE__ */ o.jsx("span", { children: e.label })
+          ]
+        },
+        e.key
+      )) })
+    }
+  )
 );
-R.displayName = "Sidebar";
+h.displayName = "Sidebar";
 export {
-  R as Sidebar
+  h as Sidebar
 };
