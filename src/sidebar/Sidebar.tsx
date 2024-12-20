@@ -70,7 +70,7 @@ interface Props extends Omit<NavbarRootProps, "children"> {
   onItemPress?: (item: NavItem) => void;
 }
 
-export const Navbar = forwardRef<HTMLElement, Props>(
+export const Sidebar = forwardRef<HTMLElement, Props>(
   (
     {
       // Content
@@ -176,4 +176,4 @@ export const Navbar = forwardRef<HTMLElement, Props>(
   },
 );
 
-Navbar.displayName = "Navbar";
+Sidebar.displayName = "Sidebar";

@@ -29,5 +29,5 @@ interface Props extends Omit<NavbarRootProps, "children"> {
     menuProps?: NavbarMenuProps;
     onItemPress?: (item: NavItem) => void;
 }
-export declare const Navbar: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLElement>>;
+export declare const Sidebar: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLElement>>;
 export {};

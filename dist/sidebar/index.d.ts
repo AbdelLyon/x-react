@@ -1,1 +1,1 @@
-export { Navbar, type NavItem } from './Sidebar';
+export { Sidebar, type NavItem } from './Sidebar';
