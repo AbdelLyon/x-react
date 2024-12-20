@@ -157,7 +157,7 @@ export const Navbar = forwardRef<HTMLElement, Props>(
                 onPress={() => handleItemPress(item)}
                 startContent={item.startContent}
                 endContent={item.endContent}
-                className={cn("w-full justify-start")}
+                className={cn("w-full justify-start border-divider")}
                 variant="light"
                 {...itemProps}
               >
