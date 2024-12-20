@@ -1,61 +1,61 @@
 /* empty css                */
 import { j as a } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as C } from "react";
-import { Navbar as k, NavbarContent as e, NavbarMenuToggle as y, NavbarBrand as i, NavbarItem as v, Link as x, NavbarMenu as A, NavbarMenuItem as w } from "@nextui-org/react";
-const M = C(
+import { forwardRef as y } from "react";
+import { Navbar as A, NavbarContent as d, NavbarMenuToggle as g, NavbarBrand as v, NavbarItem as x, Link as j, NavbarMenu as w, NavbarMenuItem as C } from "@nextui-org/react";
+const R = y(
   ({
     // Content
     brand: s,
-    profile: l,
-    navigationItems: j = [],
-    menuItems: h = [],
+    profile: o,
+    navigationItems: N = [],
+    menuItems: b = [],
     // Props
-    contentProps: p,
-    menuProps: N,
+    contentProps: t,
+    menuProps: f,
     // Callback
-    onItemPress: n,
+    onItemPress: c,
     // NextUI props
-    className: b,
-    classNames: u,
-    isMenuOpen: o,
-    onMenuOpenChange: t,
-    ...f
-  }, g) => {
-    const c = (r) => {
-      var d;
-      (d = r.onPress) == null || d.call(r), n == null || n(r);
+    className: h,
+    classNames: p,
+    isMenuOpen: e,
+    onMenuOpenChange: l,
+    ...u
+  }, k) => {
+    const i = (r) => {
+      var n;
+      (n = r.onPress) == null || n.call(r), c == null || c(r), l == null || l(!1);
     };
     return /* @__PURE__ */ a.jsxs(
-      k,
+      A,
       {
-        ref: g,
-        className: b,
+        ref: k,
+        className: h,
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
-          ...u
+          ...p
         },
-        isMenuOpen: o,
-        onMenuOpenChange: t,
-        ...f,
+        isMenuOpen: e,
+        onMenuOpenChange: l,
+        ...u,
         children: [
-          /* @__PURE__ */ a.jsxs(e, { className: "md:hidden", children: [
+          /* @__PURE__ */ a.jsxs(d, { className: "md:hidden", children: [
             /* @__PURE__ */ a.jsx(
-              y,
+              g,
               {
-                "aria-label": o ? "Close menu" : "Open menu"
+                "aria-label": e ? "Close menu" : "Open menu"
               }
             ),
-            s && /* @__PURE__ */ a.jsx(i, { children: s })
+            s && /* @__PURE__ */ a.jsx(v, { children: s })
           ] }),
-          /* @__PURE__ */ a.jsxs(e, { className: "hidden md:flex", children: [
-            s && /* @__PURE__ */ a.jsx(i, { children: s }),
-            j.map((r) => /* @__PURE__ */ a.jsx(v, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
-              x,
+          /* @__PURE__ */ a.jsxs(d, { className: "hidden md:flex", children: [
+            s && /* @__PURE__ */ a.jsx(v, { children: s }),
+            N.map((r) => /* @__PURE__ */ a.jsx(x, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
+              j,
               {
                 color: r.linkColor || (r.isActive ? "primary" : "foreground"),
                 "aria-current": r.isActive ? "page" : void 0,
-                onPress: () => c(r),
+                onPress: () => i(r),
                 children: [
                   r.startContent,
                   r.label,
@@ -64,13 +64,13 @@ const M = C(
               }
             ) }, r.key))
           ] }),
-          /* @__PURE__ */ a.jsx(e, { justify: "end", ...p, children: l && /* @__PURE__ */ a.jsx(v, { children: l }) }),
-          /* @__PURE__ */ a.jsx(A, { ...N, children: h.map((r) => /* @__PURE__ */ a.jsx(w, { children: /* @__PURE__ */ a.jsxs(
-            x,
+          /* @__PURE__ */ a.jsx(d, { justify: "end", ...t, children: o && /* @__PURE__ */ a.jsx(x, { children: o }) }),
+          /* @__PURE__ */ a.jsx(w, { ...f, children: b.map((r) => /* @__PURE__ */ a.jsx(C, { children: /* @__PURE__ */ a.jsxs(
+            j,
             {
               color: r.linkColor || (r.isActive ? "primary" : "foreground"),
               "aria-current": r.isActive ? "page" : void 0,
-              onPress: () => c(r),
+              onPress: () => i(r),
               children: [
                 r.startContent,
                 r.label,
@@ -83,7 +83,7 @@ const M = C(
     );
   }
 );
-M.displayName = "Navbar";
+R.displayName = "Navbar";
 export {
-  M as Navbar
+  R as Navbar
 };

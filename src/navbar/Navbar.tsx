@@ -96,7 +96,9 @@ export const Navbar = forwardRef<HTMLElement, Props>(
   ) => {
     const handleItemPress = (item: NavItem) => {
       item.onPress?.();
+
       onItemPress?.(item);
+      onMenuOpenChange?.(false);
     };
 
     return (
