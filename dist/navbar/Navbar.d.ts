@@ -3,32 +3,32 @@ import { NavbarContentProps, NavbarMenuProps, NavbarProps as NavbarRootProps } f
 import { ButtonProps } from '../button';
 type ButtonColor = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
 type LinkColor = "foreground" | "primary" | "secondary" | "success" | "warning" | "danger";
-export interface NavItemConfig {
+export interface NavItem {
     key: string;
     label: string;
-    href?: string;
+    onPress?: () => void;
     isActive?: boolean;
     linkColor?: LinkColor;
     buttonColor?: ButtonColor;
     startContent?: React.ReactNode;
     endContent?: React.ReactNode;
-    className?: string;
 }
-export interface NavItem {
+export interface NavSectionConfig {
     key: string;
-    items: NavItemConfig[];
+    items: NavItem[];
     justify?: "start" | "center" | "end";
     showOnMobile?: boolean;
     showOnDesktop?: boolean;
 }
-interface NavbarProps extends Omit<NavbarRootProps, "children"> {
+interface Props extends Omit<NavbarRootProps, "children"> {
     brand?: ReactNode;
-    sections: NavItem[];
-    mobileMenu?: NavItemConfig[];
+    profile?: ReactNode;
+    navigationItems?: NavItem[];
+    menuItems?: NavItem[];
     contentProps?: NavbarContentProps;
     menuProps?: NavbarMenuProps;
     itemProps?: ButtonProps;
-    onItemPress?: (item: NavItemConfig) => void;
+    onItemPress?: (item: NavItem) => void;
 }
-export declare const Navbar: import('react').ForwardRefExoticComponent<Omit<NavbarProps, "ref"> & import('react').RefAttributes<HTMLElement>>;
+export declare const Navbar: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLElement>>;
 export {};
