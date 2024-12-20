@@ -152,8 +152,8 @@ export const Navbar = forwardRef<HTMLElement, Props>(
           {menuItems.map((item) => (
             <NavbarMenuItem
               key={item.key}
-              className={cn("p-2 hover:bg-default-100 rounded-md", {
-                "border-l border-primary": item.isActive,
+              className={cn("p-2 hover:bg-default rounded-md", {
+                "border-l border-primary bg-default": item.isActive,
               })}
             >
               <Link

@@ -1,33 +1,33 @@
 /* empty css                */
 import { j as a } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as A } from "react";
-import { Navbar as k, NavbarContent as d, NavbarMenuToggle as m, NavbarBrand as v, NavbarItem as x, Link as b, NavbarMenu as g, NavbarMenuItem as w } from "@nextui-org/react";
+import { Navbar as g, NavbarContent as c, NavbarMenuToggle as k, NavbarBrand as v, NavbarItem as x, Link as b, NavbarMenu as m, NavbarMenuItem as w } from "@nextui-org/react";
 import { cn as C } from "../utils/x-react.es.js";
 const R = A(
   ({
     // Content
     brand: s,
-    profile: o,
-    navigationItems: j = [],
-    menuItems: t = [],
+    profile: e,
+    navigationItems: t = [],
+    menuItems: j = [],
     // Props
     contentProps: N,
     menuProps: f,
     // Callback
-    onItemPress: c,
+    onItemPress: d,
     // NextUI props
     className: p,
     classNames: h,
-    isMenuOpen: e,
+    isMenuOpen: o,
     onMenuOpenChange: l,
     ...u
   }, y) => {
     const i = (r) => {
       var n;
-      (n = r.onPress) == null || n.call(r), c == null || c(r), l == null || l(!1);
+      (n = r.onPress) == null || n.call(r), d == null || d(r), l == null || l(!1);
     };
     return /* @__PURE__ */ a.jsxs(
-      k,
+      g,
       {
         ref: y,
         className: p,
@@ -36,22 +36,22 @@ const R = A(
           wrapper: "max-w-full",
           ...h
         },
-        isMenuOpen: e,
+        isMenuOpen: o,
         onMenuOpenChange: l,
         ...u,
         children: [
-          /* @__PURE__ */ a.jsxs(d, { className: "md:hidden", children: [
+          /* @__PURE__ */ a.jsxs(c, { className: "md:hidden", children: [
             /* @__PURE__ */ a.jsx(
-              m,
+              k,
               {
-                "aria-label": e ? "Close menu" : "Open menu"
+                "aria-label": o ? "Close menu" : "Open menu"
               }
             ),
             s && /* @__PURE__ */ a.jsx(v, { children: s })
           ] }),
-          /* @__PURE__ */ a.jsxs(d, { className: "hidden md:flex", children: [
+          /* @__PURE__ */ a.jsxs(c, { className: "hidden md:flex", children: [
             s && /* @__PURE__ */ a.jsx(v, { children: s }),
-            j.map((r) => /* @__PURE__ */ a.jsx(x, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
+            t.map((r) => /* @__PURE__ */ a.jsx(x, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
               b,
               {
                 color: r.linkColor || (r.isActive ? "primary" : "foreground"),
@@ -65,12 +65,12 @@ const R = A(
               }
             ) }, r.key))
           ] }),
-          /* @__PURE__ */ a.jsx(d, { justify: "end", ...N, children: o && /* @__PURE__ */ a.jsx(x, { children: o }) }),
-          /* @__PURE__ */ a.jsx(g, { ...f, children: t.map((r) => /* @__PURE__ */ a.jsx(
+          /* @__PURE__ */ a.jsx(c, { justify: "end", ...N, children: e && /* @__PURE__ */ a.jsx(x, { children: e }) }),
+          /* @__PURE__ */ a.jsx(m, { ...f, children: j.map((r) => /* @__PURE__ */ a.jsx(
             w,
             {
-              className: C("p-2 hover:bg-default-100 rounded-md", {
-                "border-l border-primary": r.isActive
+              className: C("p-2 hover:bg-default rounded-md", {
+                "border-l border-primary bg-default": r.isActive
               }),
               children: /* @__PURE__ */ a.jsxs(
                 b,
