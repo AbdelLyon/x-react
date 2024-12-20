@@ -12,8 +12,6 @@ import {
   NavbarMenuItem,
   Link,
 } from "@nextui-org/react";
-import { Button, ButtonProps } from "@/button";
-import { cn } from "@/utils";
 
 // Types pour les couleurs
 type ButtonColor =
@@ -66,7 +64,6 @@ interface Props extends Omit<NavbarRootProps, "children"> {
   // Props des sous-composants
   contentProps?: NavbarContentProps;
   menuProps?: NavbarMenuProps;
-  itemProps?: ButtonProps;
 
   // Callback
   onItemPress?: (item: NavItem) => void;
@@ -84,7 +81,6 @@ export const Navbar = forwardRef<HTMLElement, Props>(
       // Props
       contentProps,
       menuProps,
-      itemProps,
 
       // Callback
       onItemPress,
@@ -153,17 +149,17 @@ export const Navbar = forwardRef<HTMLElement, Props>(
         <NavbarMenu {...menuProps}>
           {menuItems.map((item) => (
             <NavbarMenuItem key={item.key}>
-              <Button
-                color={item.buttonColor || "default"}
+              <Link
+                color={
+                  item.linkColor || (item.isActive ? "primary" : "foreground")
+                }
+                aria-current={item.isActive ? "page" : undefined}
                 onPress={() => handleItemPress(item)}
-                startContent={item.startContent}
-                endContent={item.endContent}
-                className={cn("w-full justify-start border-divider")}
-                variant="light"
-                {...itemProps}
               >
+                {item.startContent}
                 {item.label}
-              </Button>
+                {item.endContent}
+              </Link>
             </NavbarMenuItem>
           ))}
         </NavbarMenu>

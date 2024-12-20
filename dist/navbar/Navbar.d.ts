@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { NavbarContentProps, NavbarMenuProps, NavbarProps as NavbarRootProps } from '@nextui-org/react';
-import { ButtonProps } from '../button';
 type ButtonColor = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
 type LinkColor = "foreground" | "primary" | "secondary" | "success" | "warning" | "danger";
 export interface NavItem {
@@ -28,7 +27,6 @@ interface Props extends Omit<NavbarRootProps, "children"> {
     menuItems?: NavItem[];
     contentProps?: NavbarContentProps;
     menuProps?: NavbarMenuProps;
-    itemProps?: ButtonProps;
     onItemPress?: (item: NavItem) => void;
 }
 export declare const Navbar: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLElement>>;
