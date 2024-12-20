@@ -12,6 +12,7 @@ import {
   NavbarMenuItem,
   Link,
 } from "@nextui-org/react";
+import { cn } from "@/utils";
 
 // Types pour les couleurs
 type ButtonColor =
@@ -151,7 +152,12 @@ export const Navbar = forwardRef<HTMLElement, Props>(
           {menuItems.map((item) => (
             <NavbarMenuItem
               key={item.key}
-              className="py-2 hover:bg-default-100"
+              className={cn(
+                "py-2 hover:bg-default-100 flex items-center gap-2 rounded-md",
+                {
+                  "border-l border-primary": item.isActive,
+                },
+              )}
             >
               <Link
                 color={
