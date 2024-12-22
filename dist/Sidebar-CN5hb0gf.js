@@ -2,7 +2,7 @@ import { j as i } from "./jsx-runtime-Dx-03ztt.js";
 import { forwardRef as u } from "react";
 import { cn as d } from "./utils/x-react.es.js";
 import { u as p } from "./useMediaQuery-A9Oq9utn.js";
-const l = u(
+const b = u(
   ({ items: x = [], classNames: r, onItemClick: t }, f) => {
     const n = p("(min-width: 1024px)"), o = p(
       "(min-width: 768px) and (max-width: 1023px)"
@@ -12,7 +12,7 @@ const l = u(
       {
         ref: f,
         className: d(
-          "fixed left-0 h-screen flex-col bg-default-100",
+          "fixed left-0 h-screen flex-col bg-[#2d3031]",
           {
             "w-[240px]": n,
             "w-[60px]": o
@@ -43,7 +43,7 @@ const l = u(
     );
   }
 );
-l.displayName = "Sidebar";
+b.displayName = "Sidebar";
 export {
-  l as S
+  b as S
 };
