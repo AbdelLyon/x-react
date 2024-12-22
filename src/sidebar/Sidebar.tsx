@@ -1,5 +1,4 @@
 import { forwardRef } from "react";
-import { Link } from "@nextui-org/react";
 import { cn } from "@/utils";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Item } from "@/types/navigation";
@@ -40,7 +39,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       >
         <nav className="flex flex-1 flex-col gap-2 p-4">
           {items.map((item) => (
-            <Link
+            <button
               key={item.key}
               className={cn(
                 "flex items-center gap-3 p-3 hover:bg-content1 rounded-md cursor-pointer",
@@ -51,12 +50,12 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
                 },
                 classNames?.item,
               )}
-              onPress={() => onItemClick?.(item)}
+              onClick={() => onItemClick?.(item)}
             >
               {item.startContent}
               {isDesktop ? item.label : null}
               {item.endContent}
-            </Link>
+            </button>
           ))}
         </nav>
       </aside>
