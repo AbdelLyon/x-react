@@ -53,7 +53,7 @@ const L = w(
                 className: u(
                   "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
-                    "border-l border-primary bg-content1 text-primary": r.isActive
+                    "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
                   d == null ? void 0 : d.item
                 ),

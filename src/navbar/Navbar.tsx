@@ -88,7 +88,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                   className={cn(
                     "p-2 hover:bg-content1 rounded-md text-foreground",
                     {
-                      "border-l border-primary bg-content1 text-primary":
+                      "border-l-2 border-primary bg-content1 text-primary":
                         item.isActive,
                     },
                     classNames?.item,
