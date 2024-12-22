@@ -21,7 +21,6 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       "(min-width: 768px) and (max-width: 1023px)",
     );
 
-    // Ne rien afficher sur mobile
     if (!isDesktop && !isTablet) {
       return null;
     }

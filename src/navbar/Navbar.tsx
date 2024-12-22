@@ -70,7 +70,6 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         onMenuOpenChange={onMenuOpenChange}
         {...props}
       >
-        {/* Mobile Layout */}
         {!isDesktop && (
           <NavbarContent>
             <NavbarMenuToggle
@@ -81,6 +80,9 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         )}
 
         {/* Actions - Always visible */}
+        <NavbarContent justify="start">
+          {brand && <NavbarBrand>{brand}</NavbarBrand>}
+        </NavbarContent>
         <NavbarContent justify="end" {...contentProps}>
           {isDesktop &&
             navigationItems.map((item) => (
