@@ -64,7 +64,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         ref={ref}
         className={className}
         classNames={{
-          base: "bg-background",
+          base: "bg-white",
           wrapper: "max-w-full",
           ...classNames,
         }}
