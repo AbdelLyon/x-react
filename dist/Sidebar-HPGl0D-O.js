@@ -3,7 +3,7 @@ import { forwardRef as u } from "react";
 import { cn as d } from "./utils/x-react.es.js";
 import { u as p } from "./useMediaQuery-A9Oq9utn.js";
 import { Link as b } from "@nextui-org/react";
-const l = u(
+const a = u(
   ({ items: x = [], classNames: r, onItemClick: t }, f) => {
     const n = p("(min-width: 1024px)"), o = p(
       "(min-width: 768px) and (max-width: 1023px)"
@@ -31,7 +31,7 @@ const l = u(
               },
               r == null ? void 0 : r.item
             ),
-            onClick: () => t == null ? void 0 : t(e),
+            onPress: () => t == null ? void 0 : t(e),
             children: [
               e.startContent,
               n ? e.label : null,
@@ -44,7 +44,7 @@ const l = u(
     );
   }
 );
-l.displayName = "Sidebar";
+a.displayName = "Sidebar";
 export {
-  l as S
+  a as S
 };

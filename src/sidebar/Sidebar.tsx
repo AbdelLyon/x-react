@@ -51,7 +51,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
                 },
                 classNames?.item,
               )}
-              onClick={() => onItemClick?.(item)}
+              onPress={() => onItemClick?.(item)}
             >
               {item.startContent}
               {isDesktop ? item.label : null}

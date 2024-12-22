@@ -110,19 +110,19 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             {menuItems.map((item) => (
               <NavbarMenuItem key={item.key}>
                 <Link
-                  aria-current={item.isActive ? "page" : undefined}
-                  onClick={() => handleItemPress(item)}
+                  key={item.key}
                   className={cn(
-                    "p-2 hover:bg-content1 text-foreground rounded-md cursor-pointer",
+                    "flex items-center gap-3 p-3 hover:bg-content1 rounded-md cursor-pointer",
                     {
-                      "border-l border-primary bg-content1 text-primary":
+                      "border-l-2 border-primary bg-content1 text-primary":
                         item.isActive,
                     },
                     classNames?.item,
                   )}
+                  onPress={() => onItemClick?.(item)}
                 >
                   {item.startContent}
-                  {item.label}
+                  {isDesktop ? item.label : null}
                   {item.endContent}
                 </Link>
               </NavbarMenuItem>
