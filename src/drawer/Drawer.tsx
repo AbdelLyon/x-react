@@ -149,6 +149,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                           radius={buttonProps.radius || "sm"}
                           variant={buttonProps.variant || "bordered"}
                           onPress={onClose}
+                          {...buttonProps}
                         >
                           {buttonCloseLabel}
                         </Button>
@@ -159,6 +160,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                           color={buttonProps.color || "primary"}
                           radius={buttonProps.radius || "sm"}
                           onPress={handleAction}
+                          {...buttonProps}
                         >
                           {buttonActionLabel}
                         </Button>

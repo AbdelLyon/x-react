@@ -102,11 +102,12 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
                     <>
                       {buttonCloseLabel && (
                         <Button
-                          className="border-primary/20"
+                          className="border-primary/40"
                           color={buttonProps.color || "primary"}
                           radius={buttonProps.radius || "sm"}
                           variant={buttonProps.variant || "bordered"}
                           onPress={onClose}
+                          {...buttonProps}
                         >
                           {buttonCloseLabel}
                         </Button>
@@ -117,6 +118,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
                           color={buttonProps.color || "primary"}
                           radius={buttonProps.radius || "sm"}
                           onPress={handleAction}
+                          {...buttonProps}
                         >
                           {buttonActionLabel}
                         </Button>

@@ -9,22 +9,22 @@ const S = $(
     // Trigger
     trigger: f,
     // Content
-    title: t,
+    title: h,
     children: D,
-    footer: u,
+    footer: y,
     // Actions
     onAction: e,
     buttonCloseLabel: p = "Close",
-    buttonActionLabel: h,
+    buttonActionLabel: t,
     // Appearance
-    size: y = "md",
-    radius: g = "lg",
+    size: g = "md",
+    radius: u = "lg",
     placement: k = "right",
     // State
     isDismissable: B = !0,
-    isKeyboardDismissDisabled: b = !1,
-    shouldBlockScroll: F = !0,
-    hideCloseButton: C = !1,
+    isKeyboardDismissDisabled: F = !1,
+    shouldBlockScroll: C = !0,
+    hideCloseButton: b = !1,
     disableAnimation: v = !1,
     // Portal
     portalContainer: E,
@@ -53,14 +53,14 @@ const S = $(
         z,
         {
           ref: O,
-          size: y,
-          radius: g,
+          size: g,
+          radius: u,
           placement: k,
           isOpen: R,
           isDismissable: B,
-          isKeyboardDismissDisabled: b,
-          shouldBlockScroll: F,
-          hideCloseButton: C,
+          isKeyboardDismissDisabled: F,
+          shouldBlockScroll: C,
+          hideCloseButton: b,
           disableAnimation: v,
           portalContainer: E,
           classNames: {
@@ -72,9 +72,9 @@ const S = $(
           onClose: j,
           ...K,
           children: /* @__PURE__ */ o.jsx(G, { children: (i) => /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
-            t && /* @__PURE__ */ o.jsx(J, { className: r == null ? void 0 : r.header, children: t }),
+            h && /* @__PURE__ */ o.jsx(J, { className: r == null ? void 0 : r.header, children: h }),
             /* @__PURE__ */ o.jsx(M, { className: r == null ? void 0 : r.body, children: D }),
-            /* @__PURE__ */ o.jsx(Q, { className: r == null ? void 0 : r.footer, children: u || /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
+            /* @__PURE__ */ o.jsx(Q, { className: r == null ? void 0 : r.footer, children: y || /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
               p && /* @__PURE__ */ o.jsx(
                 w,
                 {
@@ -83,16 +83,18 @@ const S = $(
                   radius: d.radius || "sm",
                   variant: d.variant || "bordered",
                   onPress: i,
+                  ...d,
                   children: p
                 }
               ),
-              h && e && /* @__PURE__ */ o.jsx(
+              t && e && /* @__PURE__ */ o.jsx(
                 w,
                 {
                   color: d.color || "primary",
                   radius: d.radius || "sm",
                   onPress: H,
-                  children: h
+                  ...d,
+                  children: t
                 }
               )
             ] }) })
