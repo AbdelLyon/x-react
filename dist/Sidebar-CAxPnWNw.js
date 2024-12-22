@@ -5,7 +5,7 @@ import { Link as b } from "@nextui-org/react";
 import "@tanstack/react-query";
 import "next-themes";
 import { a as l } from "./useResponsive-Bo4ImEVM.js";
-const a = x(
+const u = x(
   ({ items: d = [], classNames: r, onItemClick: o }, f) => {
     const { isDesktop: t, isTablet: n } = l();
     return !t && !n ? null : /* @__PURE__ */ p.jsx(
@@ -24,7 +24,7 @@ const a = x(
           b,
           {
             className: i(
-              "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 opacity-disabled rounded-md cursor-pointer",
+              "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 opacity-100 rounded-md cursor-pointer",
               {
                 "border-l-2 border-primary bg-content1 text-primary": e.isActive,
                 "justify-center": n
@@ -44,7 +44,7 @@ const a = x(
     );
   }
 );
-a.displayName = "Sidebar";
+u.displayName = "Sidebar";
 export {
-  a as S
+  u as S
 };
