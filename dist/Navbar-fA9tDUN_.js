@@ -1,65 +1,65 @@
 import { j as d } from "./jsx-runtime-Dx-03ztt.js";
-import { forwardRef as A } from "react";
-import { Navbar as N, NavbarContent as a, NavbarMenuToggle as R, NavbarBrand as B, NavbarItem as b, Link as v, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
-import { cn as f } from "./utils/x-react.es.js";
-import { u as L } from "./useMediaQuery-A9Oq9utn.js";
-const Q = A(
+import { forwardRef as N } from "react";
+import { Navbar as A, NavbarContent as b, NavbarMenuToggle as R, NavbarBrand as B, NavbarItem as a, Link as f, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
+import { cn as l } from "./utils/x-react.es.js";
+import { u as Q } from "./useMediaQuery-A9Oq9utn.js";
+const T = N(
   ({
-    appName: e,
-    appLogo: l,
-    profile: x,
+    appName: o,
+    appLogo: x,
+    profile: j,
     navigationItems: u = [],
     menuItems: h = [],
     contentProps: c,
     menuProps: y,
     onItemClick: t,
     className: p,
-    classNames: o,
-    isMenuOpen: j,
+    classNames: e,
+    isMenuOpen: i,
     onMenuOpenChange: s,
     ...g
   }, w) => {
-    const n = L("(min-width: 768px)"), P = (r) => {
-      var i;
-      (i = r.onPress) == null || i.call(r), t == null || t(r), s == null || s(!1);
+    const n = Q("(min-width: 768px)"), P = (r) => {
+      var v;
+      (v = r.onPress) == null || v.call(r), t == null || t(r), s == null || s(!1);
     };
     return /* @__PURE__ */ d.jsxs(
-      N,
+      A,
       {
         ref: w,
         className: p,
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
-          ...o
+          ...e
         },
-        isMenuOpen: j,
+        isMenuOpen: i,
         onMenuOpenChange: s,
         ...g,
         children: [
-          !n && /* @__PURE__ */ d.jsxs(a, { children: [
+          !n && /* @__PURE__ */ d.jsxs(b, { children: [
             /* @__PURE__ */ d.jsx(
               R,
               {
-                "aria-label": j ? "Close menu" : "Open menu"
+                "aria-label": i ? "Close menu" : "Open menu"
               }
             ),
-            e && /* @__PURE__ */ d.jsx(B, { children: e })
+            o && /* @__PURE__ */ d.jsx(B, { children: o })
           ] }),
-          n && (e || l) && /* @__PURE__ */ d.jsxs(a, { justify: "start", children: [
-            /* @__PURE__ */ d.jsx(b, { className: "w-[247px] border-r-2 border-divider", children: e }),
-            /* @__PURE__ */ d.jsx(b, { children: e })
+          n && (o || x) && /* @__PURE__ */ d.jsxs(b, { justify: "start", children: [
+            /* @__PURE__ */ d.jsx(a, { className: "w-[247px] border-r-2 border-divider", children: o }),
+            /* @__PURE__ */ d.jsx(a, { children: x })
           ] }),
-          /* @__PURE__ */ d.jsxs(a, { justify: "end", ...c, children: [
-            n && u.map((r) => /* @__PURE__ */ d.jsx(b, { children: /* @__PURE__ */ d.jsxs(
-              v,
+          /* @__PURE__ */ d.jsxs(b, { justify: "end", ...c, children: [
+            n && u.map((r) => /* @__PURE__ */ d.jsx(a, { children: /* @__PURE__ */ d.jsxs(
+              f,
               {
-                className: f(
+                className: l(
                   "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
                     "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
-                  o == null ? void 0 : o.item
+                  e == null ? void 0 : e.item
                 ),
                 onPress: () => P(r),
                 children: [
@@ -69,17 +69,17 @@ const Q = A(
                 ]
               }
             ) }, r.key)),
-            x && /* @__PURE__ */ d.jsx(b, { children: x })
+            j && /* @__PURE__ */ d.jsx(a, { children: j })
           ] }),
           !n && /* @__PURE__ */ d.jsx(D, { ...y, children: h.map((r) => /* @__PURE__ */ d.jsx(E, { children: /* @__PURE__ */ d.jsxs(
-            v,
+            f,
             {
-              className: f(
+              className: l(
                 "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-2 border-primary bg-content1 text-primary": r.isActive
                 },
-                o == null ? void 0 : o.item
+                e == null ? void 0 : e.item
               ),
               onPress: () => t == null ? void 0 : t(r),
               children: [
@@ -95,7 +95,7 @@ const Q = A(
     );
   }
 );
-Q.displayName = "Navbar";
+T.displayName = "Navbar";
 export {
-  Q as N
+  T as N
 };

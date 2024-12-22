@@ -1,7 +1,7 @@
 /* empty css                */
 import { j as s } from "../jsx-runtime-Dx-03ztt.js";
 import { u as e } from "../useMediaQuery-A9Oq9utn.js";
-import { N as p } from "../Navbar-J7cJEr2F.js";
+import { N as p } from "../Navbar-fA9tDUN_.js";
 import { S as l } from "../Sidebar-CUlo8Gad.js";
 import { cn as c } from "../utils/x-react.es.js";
 const b = ({

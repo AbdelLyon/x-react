@@ -86,7 +86,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             <NavbarItem className="w-[247px] border-r-2 border-divider">
               {appName}
             </NavbarItem>
-            <NavbarItem>{appName}</NavbarItem>
+            <NavbarItem>{appLogo}</NavbarItem>
           </NavbarContent>
         )}
 
