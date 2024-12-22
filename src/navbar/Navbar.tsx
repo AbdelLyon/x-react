@@ -109,9 +109,9 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
           <NavbarMenu {...menuProps}>
             {menuItems.map((item) => (
               <NavbarMenuItem key={item.key}>
-                <Link
+                <button
                   aria-current={item.isActive ? "page" : undefined}
-                  onPress={() => handleItemPress(item)}
+                  onClick={() => handleItemPress(item)}
                   className={cn(
                     "p-2 hover:bg-content1 rounded-md cursor-pointer",
                     {
@@ -124,7 +124,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                   {item.startContent}
                   {item.label}
                   {item.endContent}
-                </Link>
+                </button>
               </NavbarMenuItem>
             ))}
           </NavbarMenu>
