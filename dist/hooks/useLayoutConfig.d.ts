@@ -1,5 +1,5 @@
+import { NavbarProps } from '../navbar/Navbar';
 import { SidebarProps } from '../sidebar/Sidebar';
-import { NavbarProps } from '@nextui-org/react';
 interface UseLayoutConfigOptions {
     navbar?: Partial<NavbarProps>;
     sidebar?: Partial<SidebarProps>;
