@@ -119,11 +119,11 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
           </NavbarContent>
         )}
 
-        {/* Desktop Layout */}
-        {isDesktop && (
-          <NavbarContent>
-            {brand && <NavbarBrand>{brand}</NavbarBrand>}
-            {navigationItems.map((item) => (
+        {/* Actions - Always visible */}
+        <NavbarContent justify="end" {...contentProps}>
+          {profile && <NavbarItem>{profile}</NavbarItem>}
+          {isDesktop &&
+            navigationItems.map((item) => (
               <NavbarItem key={item.key} isActive={item.isActive}>
                 <Link
                   href={item.href}
@@ -139,12 +139,6 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                 </Link>
               </NavbarItem>
             ))}
-          </NavbarContent>
-        )}
-
-        {/* Actions - Always visible */}
-        <NavbarContent justify="end" {...contentProps}>
-          {profile && <NavbarItem>{profile}</NavbarItem>}
         </NavbarContent>
 
         {/* Mobile Menu */}
