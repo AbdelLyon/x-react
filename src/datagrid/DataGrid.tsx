@@ -130,7 +130,20 @@ export function DataGrid<T extends { id: string | number }>({
   ];
 
   return (
-    <TableRoot aria-label={caption} {...props?.tableProps} radius="sm">
+    <TableRoot
+      aria-label={caption}
+      classNames={{
+        wrapper: cn(
+          "bg-white bg-background",
+          props?.tableProps?.classNames?.wrapper,
+        ),
+        base: cn("bg-background", props?.tableProps?.classNames?.base),
+        table: cn("bg-background", props?.tableProps?.classNames?.table),
+        ...props?.tableProps?.classNames,
+      }}
+      {...props?.tableProps}
+      radius="sm"
+    >
       <TableHeader
         columns={preparedColumns}
         className={cn(variantClasses.header)}
