@@ -1,41 +1,41 @@
 /* empty css                */
 import { j as l } from "../jsx-runtime-Dx-03ztt.js";
-import { useState as C, useEffect as D } from "react";
+import { useState as a, useEffect as D } from "react";
 import { cn as b } from "../utils/x-react.es.js";
 import { Table as $, TableHeader as z, TableColumn as B, Checkbox as T, TableBody as E, TableRow as G, TableCell as H } from "@nextui-org/react";
 import { IconChevronUp as R, IconChevronDown as V } from "@tabler/icons-react";
-const U = (x, n, u) => {
-  const [o, k] = C([]), [j, v] = C(!1), [e, a] = C({
+const U = (x, r, u) => {
+  const [o, k] = a([]), [j, g] = a(!1), [e, v] = a({
     key: null,
     direction: "asc"
   });
   return D(() => {
-    v(o.length === x.length && x.length > 0);
+    g(o.length === x.length && x.length > 0);
   }, [o, x]), {
     selectedRows: o,
     isAllChecked: j,
     sortConfig: e,
     handleCheckboxChange: (d) => {
-      const r = o.some((h) => h.id === d.id);
+      const n = o.some((h) => h.id === d.id);
       let S;
-      r ? S = o.filter((h) => h.id !== d.id) : S = [...o, d], k(S), n == null || n(S);
+      n ? S = o.filter((h) => h.id !== d.id) : S = [...o, d], k(S), r == null || r(S);
     },
     handleSelectAll: (d) => {
-      const r = d ? [...x] : [];
-      k(r), n == null || n(r);
+      const n = d ? [...x] : [];
+      k(n), r == null || r(n);
     },
-    handleSort: (d, r) => {
-      a({ key: d, direction: r }), u == null || u(d, r);
+    handleSort: (d, n) => {
+      v({ key: d, direction: n }), u == null || u(d, n);
     },
-    isRowSelected: (d) => o.some((r) => r.id === d.id)
+    isRowSelected: (d) => o.some((n) => n.id === d.id)
   };
 }, q = {
   bordered: {
     table: "border border-divider",
-    header: "border-b border-divider",
-    column: "border-r border-divider last:border-r-0",
+    header: "bg-content1",
+    column: "",
     row: "border-b border-divider last:border-b-0",
-    cell: "border-r border-default-200 last:border-r-0"
+    cell: ""
   },
   striped: {
     table: "",
@@ -54,14 +54,14 @@ const U = (x, n, u) => {
 };
 function W({
   rows: x,
-  columns: n,
+  columns: r,
   caption: u,
   className: o,
   onCheckedRowsChange: k,
   onSort: j,
-  checkboxSelection: v = !0,
+  checkboxSelection: g = !0,
   classNames: e,
-  variant: a = "unstyled",
+  variant: v = "unstyled",
   props: i
 }) {
   const {
@@ -69,17 +69,17 @@ function W({
     sortConfig: y,
     handleCheckboxChange: P,
     handleSelectAll: d,
-    handleSort: r,
+    handleSort: n,
     isRowSelected: S
-  } = U(x, k, j), h = q[a], I = [
-    ...v ? [
+  } = U(x, k, j), h = q[v], I = [
+    ...g ? [
       {
         key: "checkbox",
         label: "",
         header: ""
       }
     ] : [],
-    ...n.map((t, f) => ({
+    ...r.map((t, f) => ({
       ...t,
       key: String(t.field || f),
       label: t.header
@@ -130,10 +130,10 @@ function W({
                           ),
                           onClick: () => {
                             var c;
-                            const f = (c = n.find(
-                              (g) => String(g.field) === t.key
+                            const f = (c = r.find(
+                              (C) => String(C.field) === t.key
                             )) == null ? void 0 : c.field;
-                            f && f !== "actions" && r(
+                            f && f !== "actions" && n(
                               f,
                               y.direction === "asc" ? "desc" : "asc"
                             );
@@ -198,8 +198,8 @@ function W({
                         className: e == null ? void 0 : e.checkbox
                       }
                     ) : /* @__PURE__ */ l.jsx("div", { className: e == null ? void 0 : e.cellContent, children: (() => {
-                      const c = n.find(
-                        (g) => String(g.field) === f
+                      const c = r.find(
+                        (C) => String(C.field) === f
                       );
                       return c ? c.cell ? c.cell(t) : c.field && c.field in t ? String(t[c.field]) : null : null;
                     })() })

@@ -78,10 +78,10 @@ export interface DataGridProps<T extends { id: string | number }> {
 const variantStyles = {
   bordered: {
     table: "border border-divider",
-    header: "border-b border-divider",
-    column: "border-r border-divider last:border-r-0",
+    header: "bg-content1",
+    column: "",
     row: "border-b border-divider last:border-b-0",
-    cell: "border-r border-default-200 last:border-r-0",
+    cell: "",
   },
   striped: {
     table: "",
