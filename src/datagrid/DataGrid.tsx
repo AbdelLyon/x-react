@@ -59,13 +59,12 @@ export interface DataGridProps<T extends { id: string | number }> {
   onSort?: (column: keyof T, direction: "asc" | "desc") => void;
   checkboxSelection?: boolean;
   classNames?: {
-    base?: string;
     table?: string;
-    thead?: string;
+    header?: string;
     tbody?: string;
-    tr?: string;
-    th?: string;
-    td?: string;
+    row?: string;
+    column?: string;
+    cell?: string;
     checkbox?: string;
     sortIcon?: string;
     headerContent?: string;
@@ -146,20 +145,20 @@ export function DataGrid<T extends { id: string | number }>({
   return (
     <TableRoot
       aria-label={caption}
-      className={cn(variantClasses.table, classNames?.base)}
+      className={cn(variantClasses.table, classNames?.table)}
       {...props?.tableProps}
       radius="sm"
     >
       <TableHeader
         columns={preparedColumns}
-        className={cn(variantClasses.header, classNames?.thead)}
+        className={cn(variantClasses.header, classNames?.header)}
         {...props?.tableHeaderProps}
       >
         {(column) => (
           <TableColumn
             key={column.key}
             aria-label={String(column.label || column.key)}
-            className={cn(variantClasses.column, classNames?.th)}
+            className={cn(variantClasses.column, classNames?.column)}
             {...props?.tableColumnProps}
           >
             {column.key === "checkbox" ? (
@@ -234,12 +233,12 @@ export function DataGrid<T extends { id: string | number }>({
           <TableRow
             key={row.id}
             aria-label={`Row ${row.id}`}
-            className={cn(variantClasses.row, classNames?.tr)}
+            className={cn(variantClasses.row, classNames?.row)}
             {...props?.tableRowProps}
           >
             {(columnKey) => (
               <TableCell
-                className={cn(variantClasses.cell, classNames?.td)}
+                className={cn(variantClasses.cell, classNames?.cell)}
                 {...props?.tableCellProps}
               >
                 {columnKey === "checkbox" ? (

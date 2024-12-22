@@ -36,13 +36,12 @@ export interface DataGridProps<T extends {
     onSort?: (column: keyof T, direction: "asc" | "desc") => void;
     checkboxSelection?: boolean;
     classNames?: {
-        base?: string;
         table?: string;
-        thead?: string;
+        header?: string;
         tbody?: string;
-        tr?: string;
-        th?: string;
-        td?: string;
+        row?: string;
+        column?: string;
+        cell?: string;
         checkbox?: string;
         sortIcon?: string;
         headerContent?: string;
