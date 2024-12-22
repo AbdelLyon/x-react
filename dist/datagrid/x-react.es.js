@@ -80,7 +80,7 @@ function O({
               z,
               {
                 "aria-label": String(t.label || t.key),
-                className: k("py-3 bg-background", e == null ? void 0 : e.th),
+                className: k("py-4 bg-background", e == null ? void 0 : e.th),
                 ...i == null ? void 0 : i.tableColumnProps,
                 children: t.key === "checkbox" ? /* @__PURE__ */ l.jsx(
                   T,
