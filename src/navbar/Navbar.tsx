@@ -82,18 +82,18 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         <NavbarContent justify="end" {...contentProps}>
           {isDesktop &&
             navigationItems.map((item) => (
-              <NavbarItem key={item.key} isActive={item.isActive}>
+              <NavbarItem
+                key={item.key}
+                className={cn(
+                  "p-2 hover:bg-content1 rounded-md",
+                  {
+                    "border-l border-primary bg-content1 text-primary":
+                      item.isActive,
+                  },
+                  classNames?.item,
+                )}
+              >
                 <Link
-                  href={item.href}
-                  className={cn(
-                    {
-                      "text-primary": item.isActive,
-                    },
-                    classNames?.item,
-                  )}
-                  color={
-                    item.linkColor || (item.isActive ? "primary" : "foreground")
-                  }
                   aria-current={item.isActive ? "page" : undefined}
                   onPress={() => handleItemPress(item)}
                 >
@@ -112,15 +112,16 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             {menuItems.map((item) => (
               <NavbarMenuItem
                 key={item.key}
-                className={cn("p-2 hover:bg-content1 rounded-md", {
-                  "border-l border-primary bg-content1": item.isActive,
-                })}
+                className={cn(
+                  "p-2 hover:bg-content1 rounded-md",
+                  {
+                    "border-l border-primary bg-content1 text-primary":
+                      item.isActive,
+                  },
+                  classNames?.item,
+                )}
               >
                 <Link
-                  className="flex items-center gap-2"
-                  color={
-                    item.linkColor || (item.isActive ? "primary" : "foreground")
-                  }
                   aria-current={item.isActive ? "page" : undefined}
                   onPress={() => handleItemPress(item)}
                 >
