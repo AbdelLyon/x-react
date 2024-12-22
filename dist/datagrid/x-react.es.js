@@ -15,23 +15,23 @@ const V = (f, r, S) => {
     selectedRows: c,
     isAllChecked: k,
     sortConfig: j,
-    handleCheckboxChange: (d) => {
-      const n = c.some((g) => g.id === d.id);
+    handleCheckboxChange: (n) => {
+      const d = c.some((g) => g.id === n.id);
       let b;
-      n ? b = c.filter((g) => g.id !== d.id) : b = [...c, d], u(b), r == null || r(b);
+      d ? b = c.filter((g) => g.id !== n.id) : b = [...c, n], u(b), r == null || r(b);
     },
-    handleSelectAll: (d) => {
-      const n = d ? [...f] : [];
-      u(n), r == null || r(n);
+    handleSelectAll: (n) => {
+      const d = n ? [...f] : [];
+      u(d), r == null || r(d);
     },
-    handleSort: (d, n) => {
-      l({ key: d, direction: n }), S == null || S(d, n);
+    handleSort: (n, d) => {
+      l({ key: n, direction: d }), S == null || S(n, d);
     },
-    isRowSelected: (d) => c.some((n) => n.id === d.id)
+    isRowSelected: (n) => c.some((d) => d.id === n.id)
   };
 }, w = {
   bordered: {
-    table: "border border-divider rounded-xl p-0 shadow-lg",
+    table: "rounded-xl shadow-lg",
     header: "bg-content2",
     column: "bg-content2 py-4",
     row: "border-b border-divider last:border-b-0 hover:bg-content2",
@@ -68,8 +68,8 @@ function O({
     sortConfig: y,
     handleCheckboxChange: A,
     handleSelectAll: P,
-    handleSort: d,
-    isRowSelected: n
+    handleSort: n,
+    isRowSelected: d
   } = V(f, c, u), b = w[j], g = [
     ...k ? [
       {
@@ -132,7 +132,7 @@ function O({
                             const x = (h = r.find(
                               (v) => String(v.field) === t.key
                             )) == null ? void 0 : h.field;
-                            x && x !== "actions" && d(
+                            x && x !== "actions" && n(
                               x,
                               y.direction === "asc" ? "desc" : "asc"
                             );
@@ -191,7 +191,7 @@ function O({
                     children: x === "checkbox" ? /* @__PURE__ */ i.jsx(
                       T,
                       {
-                        isSelected: n(t),
+                        isSelected: d(t),
                         onValueChange: () => A(t),
                         "aria-label": `Select row ${t.id}`,
                         className: e == null ? void 0 : e.checkbox

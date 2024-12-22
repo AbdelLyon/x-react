@@ -77,7 +77,7 @@ export interface DataGridProps<T extends { id: string | number }> {
 // Styles des variantes
 const variantStyles = {
   bordered: {
-    table: "border border-divider rounded-xl p-0 shadow-lg",
+    table: "rounded-xl shadow-lg",
     header: "bg-content2",
     column: "bg-content2 py-4",
     row: "border-b border-divider last:border-b-0 hover:bg-content2",
