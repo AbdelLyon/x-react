@@ -24,6 +24,9 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
   contentProps?: NavbarContentProps;
   menuProps?: NavbarMenuProps;
   onItemClick?: (item: Item) => void;
+  classNames?: {
+    item?: string;
+  };
 }
 
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
@@ -82,6 +85,12 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
               <NavbarItem key={item.key} isActive={item.isActive}>
                 <Link
                   href={item.href}
+                  className={cn(
+                    {
+                      "text-primary": item.isActive,
+                    },
+                    classNames?.item,
+                  )}
                   color={
                     item.linkColor || (item.isActive ? "primary" : "foreground")
                   }

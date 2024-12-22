@@ -48,12 +48,10 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
                 {
                   "border-l-4 border-primary bg-content1": item.isActive,
                   "justify-center": isTablet,
+                  "test-primary": item.isActive,
                 },
                 classNames?.item,
               )}
-              color={
-                item.linkColor || (item.isActive ? "primary" : "foreground")
-              }
               onPress={() => onItemClick?.(item)}
             >
               {item.startContent}

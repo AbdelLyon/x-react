@@ -9,5 +9,9 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
     contentProps?: NavbarContentProps;
     menuProps?: NavbarMenuProps;
     onItemClick?: (item: Item) => void;
+    classNames?: {
+        base?: string;
+        item?: string;
+    };
 }
 export declare const Navbar: import('react').ForwardRefExoticComponent<Omit<NavbarProps, "ref"> & import('react').RefAttributes<HTMLElement>>;
