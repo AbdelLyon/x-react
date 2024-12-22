@@ -26,7 +26,7 @@ const b = ({
               // Margin left selon présence sidebar et breakpoint
               "ml-0": !a || !m && !i,
               "ml-[90px]": a && m,
-              "ml-[240px]": a && i,
+              "ml-[270px]": a && i,
               // Padding sur les côtés selon breakpoint
               "px-4 sm:px-6 md:px-8 lg:px-12": !0
             },

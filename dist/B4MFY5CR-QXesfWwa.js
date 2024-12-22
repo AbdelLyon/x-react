@@ -1,7 +1,7 @@
 var ps = Object.defineProperty;
 var xs = (e, t, n) => t in e ? ps(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : e[t] = n;
 var qe = (e, t, n) => xs(e, typeof t != "symbol" ? t + "" : t, n);
-import { s as Vn, m as Gn, b as R, d as rr, e as U, a as m, f as W, h as oe, S as B, c as D, i as we, u as $e, j as V, k as A, l as Ne, o as ut, P as zo, n as j, D as ws, t as q, p as Ft, q as ln, r as k, v as F, w as $s, x as Rt, y as Cs, z as Ss, A as wn, F as ks, B as Es, C as Ds, E as Kt, G as Ms, H as As, I as Fs, J as or, K as Kr, L as Ts, M as qt, $ as Ro, N as Br, O as Is, Q as Ps, R as zn, T as Ls, U as Os, V as qs } from "./index-CKORcYC6.js";
+import { s as Vn, m as Gn, b as R, d as rr, e as U, a as m, f as W, h as oe, S as B, c as D, i as we, u as $e, j as V, k as A, l as Ne, o as ut, P as zo, n as j, D as ws, t as q, p as Ft, q as ln, r as k, v as F, w as $s, x as Rt, y as Cs, z as Ss, A as wn, F as ks, B as Es, C as Ds, E as Kt, G as Ms, H as As, I as Fs, J as or, K as Kr, L as Ts, M as qt, $ as Ro, N as Br, O as Is, Q as Ps, R as zn, T as Ls, U as Os, V as qs } from "./index-BEl5mWgM.js";
 var _s = (e) => e != null, zs = (e) => e.filter(_s);
 function Rs(e) {
   return (...t) => {
@@ -1861,7 +1861,7 @@ function $t() {
 }
 var Kn = /* @__PURE__ */ new Map();
 function vl(e) {
-  const { locale: t } = $t(), n = D(() => t() + (e ? Object.entries(e).sort((r, o) => r[0] < o[0] ? -1 : 1).join() : ""));
+  const { locale: t } = $t(), n = D(() => t() + Object.entries(e).sort((r, o) => r[0] < o[0] ? -1 : 1).join());
   return D(() => {
     const r = n();
     let o;

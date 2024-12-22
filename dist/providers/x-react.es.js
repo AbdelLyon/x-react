@@ -1,5 +1,5 @@
 /* empty css                */
-import { Y as a, X as i, W as t } from "../index-CKORcYC6.js";
+import { Y as a, X as i, W as t } from "../index-BEl5mWgM.js";
 export {
   a as NextUIProvider,
   i as ReactQueryProvider,

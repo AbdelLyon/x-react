@@ -5,13 +5,13 @@ var gt = (e, t, n) => t.has(e) || ht("Cannot " + n);
 var d = (e, t, n) => (gt(e, t, "read from private field"), n ? n.call(e) : t.get(e)), v = (e, t, n) => t.has(e) ? ht("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, n), p = (e, t, n, r) => (gt(e, t, "write to private field"), r ? r.call(e, n) : t.set(e, n), n);
 /* empty css               */
 import { j as fe } from "./jsx-runtime-Dx-03ztt.js";
-import { ThemeProvider as cn } from "next-themes";
-import { useQueryClient as Tt, onlineManager as Nt, QueryClient as fn, QueryClientProvider as dn } from "@tanstack/react-query";
+import { ThemeProvider as un } from "next-themes";
+import { useQueryClient as Ct, onlineManager as Tt, QueryClient as cn, QueryClientProvider as fn } from "@tanstack/react-query";
 import * as P from "react";
-import { useState as hn } from "react";
-import { NextUIProvider as gn } from "@nextui-org/react";
+import { useState as dn } from "react";
+import { NextUIProvider as hn } from "@nextui-org/react";
 const zr = ({ children: e, ...t }) => /* @__PURE__ */ fe.jsx(
-  cn,
+  un,
   {
     defaultTheme: "light",
     attribute: "class",
@@ -39,21 +39,21 @@ function yt(e) {
 function ge(e) {
   h.context = e;
 }
-var yn = (e, t) => e === t, _e = Symbol("solid-proxy"), Pt = typeof Proxy == "function", kt = Symbol("solid-track"), Be = {
-  equals: yn
-}, It = $t, j = 1, Ue = 2, Rt = {
+var gn = (e, t) => e === t, _e = Symbol("solid-proxy"), Nt = typeof Proxy == "function", Pt = Symbol("solid-track"), Be = {
+  equals: gn
+}, kt = Vt, j = 1, Ue = 2, It = {
   owned: null,
   cleanups: null,
   context: null,
   owner: null
-}, We = {}, m = null, Ze = null, mn = null, w = null, N = null, $ = null, Qe = 0;
+}, We = {}, m = null, Ze = null, yn = null, w = null, T = null, $ = null, Qe = 0;
 function K(e, t) {
-  const n = w, r = m, s = e.length === 0, i = t === void 0 ? r : t, o = s ? Rt : {
+  const n = w, r = m, s = e.length === 0, i = t === void 0 ? r : t, o = s ? It : {
     owned: null,
     cleanups: null,
     context: i ? i.context : null,
     owner: i
-  }, l = s ? e : () => e(() => T(() => ve(o)));
+  }, l = s ? e : () => e(() => C(() => ve(o)));
   m = o, w = null;
   try {
     return V(l, !0);
@@ -68,10 +68,10 @@ function E(e, t) {
     observers: null,
     observerSlots: null,
     comparator: t.equals || void 0
-  }, r = (s) => (typeof s == "function" && (s = s(n.value)), Vt(n, s));
-  return [Lt.bind(n), r];
+  }, r = (s) => (typeof s == "function" && (s = s(n.value)), Lt(n, s));
+  return [Dt.bind(n), r];
 }
-function mt(e, t, n) {
+function mn(e, t, n) {
   const r = Ge(e, t, !0, j);
   he(r);
 }
@@ -79,96 +79,94 @@ function Q(e, t, n) {
   const r = Ge(e, t, !1, j);
   he(r);
 }
-function Mt(e, t, n) {
-  It = Cn;
+function Rt(e, t, n) {
+  kt = Cn;
   const r = Ge(e, t, !1, j);
   (!n || !n.render) && (r.user = !0), $ ? $.push(r) : he(r);
 }
 function k(e, t, n) {
   n = n ? Object.assign({}, Be, n) : Be;
   const r = Ge(e, t, !0, 0);
-  return r.observers = null, r.observerSlots = null, r.comparator = n.equals || void 0, he(r), Lt.bind(r);
+  return r.observers = null, r.observerSlots = null, r.comparator = n.equals || void 0, he(r), Dt.bind(r);
 }
 function pn(e) {
   return e && typeof e == "object" && "then" in e;
 }
 function vn(e, t, n) {
   let r, s, i;
-  arguments.length === 2 && typeof t == "object" || arguments.length === 1 ? (r = !0, s = e, i = {}) : (r = e, s = t, i = {});
+  arguments.length === 1 ? (r = !0, s = e, i = {}) : (r = e, s = t, i = {});
   let o = null, l = We, a = null, u = !1, f = "initialValue" in i, c = typeof r == "function" && k(r);
-  const g = /* @__PURE__ */ new Set(), [y, S] = (i.storage || E)(i.initialValue), [C, _] = E(void 0), [B, M] = E(void 0, {
+  const g = /* @__PURE__ */ new Set(), [y, S] = (i.storage || E)(i.initialValue), [x, _] = E(void 0), [U, M] = E(void 0, {
     equals: !1
   }), [I, D] = E(f ? "ready" : "unresolved");
   h.context && (a = h.getNextContextId(), i.ssrLoadFrom === "initial" ? l = i.initialValue : h.load && h.has(a) && (l = h.load(a)));
-  function R(A, O, x, H) {
-    return o === A && (o = null, H !== void 0 && (f = !0), (A === l || O === l) && i.onHydrated && queueMicrotask(
+  function R(N, A, O, H) {
+    return o === N && (o = null, H !== void 0 && (f = !0), (N === l || A === l) && i.onHydrated && queueMicrotask(
       () => i.onHydrated(H, {
-        value: O
+        value: A
       })
-    ), l = We, ze(O, x)), O;
+    ), l = We, ze(A, O)), A;
   }
-  function ze(A, O) {
+  function ze(N, A) {
     V(() => {
-      O === void 0 && S(() => A), D(O !== void 0 ? "errored" : f ? "ready" : "unresolved"), _(O);
-      for (const x of g.keys())
-        x.decrement();
+      A === void 0 && S(() => N), D(A !== void 0 ? "errored" : f ? "ready" : "unresolved"), _(A);
+      for (const O of g.keys())
+        O.decrement();
       g.clear();
     }, !1);
   }
   function Xe() {
-    const A = An, O = y(), x = C();
-    if (x !== void 0 && !o)
-      throw x;
-    return w && !w.user && A && mt(() => {
-      B(), o && (A.resolved || g.has(A) || (A.increment(), g.add(A)));
-    }), O;
+    const N = An, A = y(), O = x();
+    if (O !== void 0 && !o)
+      throw O;
+    return w && w.user, A;
   }
-  function Ye(A = !0) {
-    if (A !== !1 && u)
+  function Ye(N = !0) {
+    if (N !== !1 && u)
       return;
     u = !1;
-    const O = c ? c() : r;
-    if (O == null || O === !1) {
-      R(o, T(y));
+    const A = c ? c() : r;
+    if (A == null || A === !1) {
+      R(o, C(y));
       return;
     }
-    const x = l !== We ? l : T(
-      () => s(O, {
+    const O = l !== We ? l : C(
+      () => s(A, {
         value: y(),
-        refetching: A
+        refetching: N
       })
     );
-    return pn(x) ? (o = x, "value" in x ? (x.status === "success" ? R(o, x.value, void 0, O) : R(o, void 0, tt(x.value), O), x) : (u = !0, queueMicrotask(() => u = !1), V(() => {
+    return pn(O) ? (o = O, "value" in O ? (O.status === "success" ? R(o, O.value, void 0, A) : R(o, void 0, tt(O.value), A), O) : (u = !0, queueMicrotask(() => u = !1), V(() => {
       D(f ? "refreshing" : "pending"), M();
-    }, !1), x.then(
-      (H) => R(x, H, void 0, O),
-      (H) => R(x, void 0, tt(H), O)
-    ))) : (R(o, x, void 0, O), x);
+    }, !1), O.then(
+      (H) => R(O, H, void 0, A),
+      (H) => R(O, void 0, tt(H), A)
+    ))) : (R(o, O, void 0, A), O);
   }
   return Object.defineProperties(Xe, {
     state: {
       get: () => I()
     },
     error: {
-      get: () => C()
+      get: () => x()
     },
     loading: {
       get() {
-        const A = I();
-        return A === "pending" || A === "refreshing";
+        const N = I();
+        return N === "pending" || N === "refreshing";
       }
     },
     latest: {
       get() {
         if (!f)
           return Xe();
-        const A = C();
-        if (A && !o)
-          throw A;
+        const N = x();
+        if (N && !o)
+          throw N;
         return y();
       }
     }
-  }), c ? mt(() => Ye(!1)) : Ye(!1), [
+  }), c ? mn(() => Ye(!1)) : Ye(!1), [
     Xe,
     {
       refetch: Ye,
@@ -179,7 +177,7 @@ function vn(e, t, n) {
 function Xr(e) {
   return V(e, !1);
 }
-function T(e) {
+function C(e) {
   if (w === null)
     return e();
   const t = w;
@@ -203,17 +201,17 @@ function Yr(e, t, n) {
       l = e();
     if (i)
       return i = !1, o;
-    const a = T(() => t(l, s, o));
+    const a = C(() => t(l, s, o));
     return s = l, a;
   };
 }
 function wn(e) {
-  Mt(() => T(e));
+  Rt(() => C(e));
 }
 function pe(e) {
   return m === null || (m.cleanups === null ? m.cleanups = [e] : m.cleanups.push(e)), e;
 }
-function pt() {
+function mt() {
   return m;
 }
 function bn(e, t) {
@@ -251,7 +249,7 @@ function es(e) {
   let t;
   return m && m.context && (t = m.context[e.id]) !== void 0 ? t : e.defaultValue;
 }
-function Dt(e) {
+function Mt(e) {
   const t = k(e), n = k(() => nt(t()));
   return n.toArray = () => {
     const r = n();
@@ -259,13 +257,13 @@ function Dt(e) {
   }, n;
 }
 var An;
-function Lt() {
+function Dt() {
   if (this.sources && this.state)
     if (this.state === j)
       he(this);
     else {
-      const e = N;
-      N = null, V(() => Fe(this), !1), N = e;
+      const e = T;
+      T = null, V(() => Fe(this), !1), T = e;
     }
   if (w) {
     const e = this.observers ? this.observers.length : 0;
@@ -273,15 +271,15 @@ function Lt() {
   }
   return this.value;
 }
-function Vt(e, t, n) {
+function Lt(e, t, n) {
   let r = e.value;
   return (!e.comparator || !e.comparator(r, t)) && (e.value = t, e.observers && e.observers.length && V(() => {
     for (let s = 0; s < e.observers.length; s += 1) {
       const i = e.observers[s], o = Ze && Ze.running;
-      o && Ze.disposed.has(i), (o ? !i.tState : !i.state) && (i.pure ? N.push(i) : $.push(i), i.observers && jt(i)), o || (i.state = j);
+      o && Ze.disposed.has(i), (o ? !i.tState : !i.state) && (i.pure ? T.push(i) : $.push(i), i.observers && $t(i)), o || (i.state = j);
     }
-    if (N.length > 1e6)
-      throw N = [], new Error();
+    if (T.length > 1e6)
+      throw T = [], new Error();
   }, !1)), t;
 }
 function he(e) {
@@ -306,7 +304,7 @@ function On(e, t, n) {
   } finally {
     w = i, m = s;
   }
-  (!e.updatedAt || e.updatedAt <= n) && (e.updatedAt != null && "observers" in e ? Vt(e, r) : e.value = r, e.updatedAt = n);
+  (!e.updatedAt || e.updatedAt <= n) && (e.updatedAt != null && "observers" in e ? Lt(e, r) : e.value = r, e.updatedAt = n);
 }
 function Ge(e, t, n, r = j, s) {
   const i = {
@@ -322,14 +320,14 @@ function Ge(e, t, n, r = j, s) {
     context: m ? m.context : null,
     pure: n
   };
-  return m === null || m !== Rt && (m.owned ? m.owned.push(i) : m.owned = [i]), i;
+  return m === null || m !== It && (m.owned ? m.owned.push(i) : m.owned = [i]), i;
 }
 function qe(e) {
   if (e.state === 0)
     return;
   if (e.state === Ue)
     return Fe(e);
-  if (e.suspense && T(e.suspense.inFallback))
+  if (e.suspense && C(e.suspense.inFallback))
     return e.suspense.effects.push(e);
   const t = [e];
   for (; (e = e.owner) && (!e.updatedAt || e.updatedAt < Qe); )
@@ -338,29 +336,29 @@ function qe(e) {
     if (e = t[n], e.state === j)
       he(e);
     else if (e.state === Ue) {
-      const r = N;
-      N = null, V(() => Fe(e, t[0]), !1), N = r;
+      const r = T;
+      T = null, V(() => Fe(e, t[0]), !1), T = r;
     }
 }
 function V(e, t) {
-  if (N)
+  if (T)
     return e();
   let n = !1;
-  t || (N = []), $ ? n = !0 : $ = [], Qe++;
+  t || (T = []), $ ? n = !0 : $ = [], Qe++;
   try {
     const r = e();
     return xn(n), r;
   } catch (r) {
-    n || ($ = null), N = null, dt(r);
+    n || ($ = null), T = null, dt(r);
   }
 }
 function xn(e) {
-  if (N && ($t(N), N = null), e)
+  if (T && (Vt(T), T = null), e)
     return;
   const t = $;
-  $ = null, t.length && V(() => It(t), !1);
+  $ = null, t.length && V(() => kt(t), !1);
 }
-function $t(e) {
+function Vt(e) {
   for (let t = 0; t < e.length; t++)
     qe(e[t]);
 }
@@ -390,10 +388,10 @@ function Fe(e, t) {
     }
   }
 }
-function jt(e) {
+function $t(e) {
   for (let t = 0; t < e.observers.length; t += 1) {
     const n = e.observers[t];
-    n.state || (n.state = Ue, n.pure ? N.push(n) : $.push(n), n.observers && jt(n));
+    n.state || (n.state = Ue, n.pure ? T.push(n) : $.push(n), n.observers && $t(n));
   }
 }
 function ve(e) {
@@ -448,10 +446,10 @@ function Tn(e, t) {
   return function(r) {
     let s;
     return Q(
-      () => s = T(() => (m.context = {
+      () => s = C(() => (m.context = {
         ...m.context,
         [e]: r.value
-      }, Dt(() => r.children))),
+      }, Mt(() => r.children))),
       void 0
     ), s;
   };
@@ -465,8 +463,8 @@ function Nn(e, t, n = {}) {
   let r = [], s = [], i = [], o = 0, l = t.length > 1 ? [] : null;
   return pe(() => Ke(i)), () => {
     let a = e() || [], u = a.length, f, c;
-    return a[kt], T(() => {
-      let y, S, C, _, B, M, I, D, R;
+    return a[Pt], C(() => {
+      let y, S, x, _, U, M, I, D, R;
       if (u === 0)
         o !== 0 && (Ke(i), i = [], r = [], s = [], o = 0, l && (l = [])), n.fallback && (r = [rt], s[0] = K((ze) => (i[0] = ze, n.fallback())), o = 1);
       else if (o === 0) {
@@ -474,24 +472,24 @@ function Nn(e, t, n = {}) {
           r[c] = a[c], s[c] = K(g);
         o = u;
       } else {
-        for (C = new Array(u), _ = new Array(u), l && (B = new Array(u)), M = 0, I = Math.min(o, u); M < I && r[M] === a[M]; M++)
+        for (x = new Array(u), _ = new Array(u), l && (U = new Array(u)), M = 0, I = Math.min(o, u); M < I && r[M] === a[M]; M++)
           ;
         for (I = o - 1, D = u - 1; I >= M && D >= M && r[I] === a[D]; I--, D--)
-          C[D] = s[I], _[D] = i[I], l && (B[D] = l[I]);
+          x[D] = s[I], _[D] = i[I], l && (U[D] = l[I]);
         for (y = /* @__PURE__ */ new Map(), S = new Array(D + 1), c = D; c >= M; c--)
           R = a[c], f = y.get(R), S[c] = f === void 0 ? -1 : f, y.set(R, c);
         for (f = M; f <= I; f++)
-          R = r[f], c = y.get(R), c !== void 0 && c !== -1 ? (C[c] = s[f], _[c] = i[f], l && (B[c] = l[f]), c = S[c], y.set(R, c)) : i[f]();
+          R = r[f], c = y.get(R), c !== void 0 && c !== -1 ? (x[c] = s[f], _[c] = i[f], l && (U[c] = l[f]), c = S[c], y.set(R, c)) : i[f]();
         for (c = M; c < u; c++)
-          c in C ? (s[c] = C[c], i[c] = _[c], l && (l[c] = B[c], l[c](c))) : s[c] = K(g);
+          c in x ? (s[c] = x[c], i[c] = _[c], l && (l[c] = U[c], l[c](c))) : s[c] = K(g);
         s = s.slice(0, o = u), r = a.slice(0);
       }
       return s;
     });
     function g(y) {
       if (i[c] = y, l) {
-        const [S, C] = E(c);
-        return l[c] = C, t(a[c], S);
+        const [S, x] = E(c);
+        return l[c] = x, t(a[c], S);
       }
       return t(a[c]);
     }
@@ -501,7 +499,7 @@ function Pn(e, t, n = {}) {
   let r = [], s = [], i = [], o = [], l = 0, a;
   return pe(() => Ke(i)), () => {
     const u = e() || [], f = u.length;
-    return u[kt], T(() => {
+    return u[Pt], C(() => {
       if (f === 0)
         return l !== 0 && (Ke(i), i = [], r = [], s = [], l = 0, o = []), n.fallback && (r = [rt], s[0] = K((g) => (i[0] = g, n.fallback())), l = 1), s;
       for (r[0] === rt && (i[0](), i = [], r = [], s = [], l = 0), a = 0; a < f; a++)
@@ -517,8 +515,8 @@ function Pn(e, t, n = {}) {
     }
   };
 }
-function _t(e, t) {
-  return T(() => e(t || {}));
+function jt(e, t) {
+  return C(() => e(t || {}));
 }
 function Me() {
   return !0;
@@ -557,13 +555,13 @@ function kn() {
       return n;
   }
 }
-function Bt(...e) {
+function _t(...e) {
   let t = !1;
   for (let o = 0; o < e.length; o++) {
     const l = e[o];
     t = t || !!l && _e in l, e[o] = typeof l == "function" ? (t = !0, k(l)) : l;
   }
-  if (Pt && t)
+  if (Nt && t)
     return new Proxy(
       {
         get(o) {
@@ -619,7 +617,7 @@ function Bt(...e) {
   return s;
 }
 function In(e, ...t) {
-  if (Pt && _e in e) {
+  if (Nt && _e in e) {
     const s = new Set(t.length > 1 ? t.flat() : t[0]), i = t.map((o) => new Proxy(
       {
         get(l) {
@@ -661,7 +659,7 @@ function In(e, ...t) {
   }
   return [...r, n];
 }
-function Ut(e) {
+function Bt(e) {
   let t, n;
   const r = (s) => {
     const i = h.context;
@@ -676,7 +674,7 @@ function Ut(e) {
     }
     let o;
     return k(
-      () => (o = t()) ? T(() => {
+      () => (o = t()) ? C(() => {
         if (!i || h.done)
           return o(s);
         const l = h.context;
@@ -692,7 +690,7 @@ var Rn = 0;
 function ts() {
   return h.context ? h.getNextContextId() : `cl-${Rn++}`;
 }
-var qt = (e) => `Stale read from <${e}>.`;
+var Ut = (e) => `Stale read from <${e}>.`;
 function ns(e) {
   const t = "fallback" in e && {
     fallback: () => e.fallback
@@ -714,11 +712,11 @@ function ss(e) {
       const r = n();
       if (r) {
         const s = e.children;
-        return typeof s == "function" && s.length > 0 ? T(
+        return typeof s == "function" && s.length > 0 ? C(
           () => s(
             t ? r : () => {
-              if (!T(n))
-                throw qt("Show");
+              if (!C(n))
+                throw Ut("Show");
               return e.when;
             }
           )
@@ -732,7 +730,7 @@ function ss(e) {
 }
 function is(e) {
   let t = !1;
-  const n = (i, o) => (t ? i[1] === o[1] : !i[1] == !o[1]) && i[2] === o[2], r = Dt(() => e.children), s = k(
+  const n = (i, o) => (t ? i[1] === o[1] : !i[1] == !o[1]) && i[2] === o[2], r = Mt(() => e.children), s = k(
     () => {
       let i = r();
       Array.isArray(i) || (i = [i]);
@@ -754,11 +752,11 @@ function is(e) {
       if (i < 0)
         return e.fallback;
       const a = l.children;
-      return typeof a == "function" && a.length > 0 ? T(
+      return typeof a == "function" && a.length > 0 ? C(
         () => a(
           t ? o : () => {
-            if (T(s)[0] !== i)
-              throw qt("Match");
+            if (C(s)[0] !== i)
+              throw Ut("Match");
             return l.when;
           }
         )
@@ -994,7 +992,7 @@ function qn(e, t, n) {
   }
 }
 var ye = "_$DX_DELEGATE";
-function Ft(e, t, n, r = {}) {
+function qt(e, t, n, r = {}) {
   let s;
   return K((i) => {
     s = i, t === document ? e() : ot(t, e(), t.firstChild ? null : void 0, n);
@@ -1014,13 +1012,13 @@ function Fn(e, t = window.document) {
   const n = t[ye] || (t[ye] = /* @__PURE__ */ new Set());
   for (let r = 0, s = e.length; r < s; r++) {
     const i = e[r];
-    n.has(i) || (n.add(i), t.addEventListener(i, Kt));
+    n.has(i) || (n.add(i), t.addEventListener(i, Ft));
   }
 }
 function as(e = window.document) {
   if (e[ye]) {
     for (let t of e[ye].keys())
-      e.removeEventListener(t, Kt);
+      e.removeEventListener(t, Ft);
     delete e[ye];
   }
 }
@@ -1050,11 +1048,11 @@ function zn(e, t, n = {}) {
   let i, o;
   for (i = 0, o = s.length; i < o; i++) {
     const l = s[i];
-    !l || l === "undefined" || t[l] || (vt(e, l, !1), delete n[l]);
+    !l || l === "undefined" || t[l] || (pt(e, l, !1), delete n[l]);
   }
   for (i = 0, o = r.length; i < o; i++) {
     const l = r[i], a = !!t[l];
-    !l || l === "undefined" || n[l] === a || !a || (vt(e, l, !0), n[l] = a);
+    !l || l === "undefined" || n[l] === a || !a || (pt(e, l, !0), n[l] = a);
   }
   return n;
 }
@@ -1079,7 +1077,7 @@ function Yn(e, t = {}, n, r) {
   ), Q(() => typeof t.ref == "function" && Wn(t.ref, e)), Q(() => Zn(e, t, n, !0, s, !0)), s;
 }
 function Wn(e, t, n) {
-  return T(() => e(t, n));
+  return C(() => e(t, n));
 }
 function ot(e, t, n, r) {
   if (n !== void 0 && !r && (r = []), typeof t != "function")
@@ -1092,13 +1090,13 @@ function Zn(e, t, n, r, s = {}, i = !1) {
     if (!(o in t)) {
       if (o === "children")
         continue;
-      s[o] = wt(e, o, null, s[o], n, i, t);
+      s[o] = vt(e, o, null, s[o], n, i, t);
     }
   for (const o in t) {
     if (o === "children")
       continue;
     const l = t[o];
-    s[o] = wt(e, o, l, s[o], n, i, t);
+    s[o] = vt(e, o, l, s[o], n, i, t);
   }
 }
 function Jn(e) {
@@ -1111,12 +1109,12 @@ function G(e) {
 function er(e) {
   return e.toLowerCase().replace(/-([a-z])/g, (t, n) => n.toUpperCase());
 }
-function vt(e, t, n) {
+function pt(e, t, n) {
   const r = t.trim().split(/\s+/);
   for (let s = 0, i = r.length; s < i; s++)
     e.classList.toggle(r[s], n);
 }
-function wt(e, t, n, r, s, i, o) {
+function vt(e, t, n, r, s, i, o) {
   let l, a, u, f, c;
   if (t === "style")
     return Xn(e, n, r);
@@ -1155,7 +1153,7 @@ function wt(e, t, n, r, s, i, o) {
   }
   return n;
 }
-function Kt(e) {
+function Ft(e) {
   if (h.registry && h.events && h.events.find(([a, u]) => u === e))
     return;
   let t = e.target;
@@ -1250,7 +1248,7 @@ function we(e, t, n, r, s) {
       if (a.length === 0) {
         if (n = z(e, n, r), l)
           return n;
-      } else u ? n.length === 0 ? bt(e, a, r) : qn(e, n, a) : (n && z(e), bt(e, a));
+      } else u ? n.length === 0 ? wt(e, a, r) : qn(e, n, a) : (n && z(e), wt(e, a));
       n = a;
     } else if (t.nodeType) {
       if (i && t.parentNode)
@@ -1292,7 +1290,7 @@ function lt(e, t, n, r) {
   }
   return s;
 }
-function bt(e, t, n = null) {
+function wt(e, t, n = null) {
   for (let r = 0, s = t.length; r < s; r++)
     e.insertBefore(t[r], n);
 }
@@ -1318,21 +1316,21 @@ function tr() {
   return h.getNextContextId();
 }
 var nr = "http://www.w3.org/2000/svg";
-function Qt(e, t = !1) {
+function Kt(e, t = !1) {
   return t ? document.createElementNS(nr, e) : document.createElement(e);
 }
 function us(e) {
-  const { useShadow: t } = e, n = document.createTextNode(""), r = () => e.mount || document.body, s = pt();
+  const { useShadow: t } = e, n = document.createTextNode(""), r = () => e.mount || document.body, s = mt();
   let i, o = !!h.context;
-  return Mt(
+  return Rt(
     () => {
-      o && (pt().user = o = !1), i || (i = bn(s, () => k(() => e.children)));
+      o && (mt().user = o = !1), i || (i = bn(s, () => k(() => e.children)));
       const l = r();
       if (l instanceof HTMLHeadElement) {
         const [a, u] = E(!1), f = () => u(!0);
         K((c) => ot(l, () => a() ? c() : i(), null)), pe(f);
       } else {
-        const a = Qt(e.isSVG ? "g" : "div", e.isSVG), u = t && a.attachShadow ? a.attachShadow({
+        const a = Kt(e.isSVG ? "g" : "div", e.isSVG), u = t && a.attachShadow ? a.attachShadow({
           mode: "open"
         }) : a;
         Object.defineProperty(a, "_$host", {
@@ -1355,9 +1353,9 @@ function cs(e) {
     const s = r();
     switch (typeof s) {
       case "function":
-        return T(() => s(n));
+        return C(() => s(n));
       case "string":
-        const i = Bn.has(s), o = h.context ? Jn() : Qt(s, i);
+        const i = Bn.has(s), o = h.context ? Jn() : Kt(s, i);
         return Yn(o, n, i), o;
     }
   });
@@ -1378,7 +1376,7 @@ var rr = class {
   clear() {
     this.keyToValue.clear(), this.valueToKey.clear();
   }
-}, Gt = class {
+}, Qt = class {
   constructor(e) {
     this.generateIdentifier = e, this.kv = new rr();
   }
@@ -1394,7 +1392,7 @@ var rr = class {
   getValue(e) {
     return this.kv.getByKey(e);
   }
-}, sr = class extends Gt {
+}, sr = class extends Qt {
   constructor() {
     super((e) => e.name), this.classToAllowedProps = /* @__PURE__ */ new Map();
   }
@@ -1430,7 +1428,7 @@ function de(e, t) {
 function je(e, t) {
   return e.indexOf(t) !== -1;
 }
-function St(e, t) {
+function bt(e, t) {
   for (let n = 0; n < e.length; n++) {
     const r = e[n];
     if (t(r))
@@ -1450,7 +1448,7 @@ var lr = class {
   findByName(e) {
     return this.transfomers[e];
   }
-}, ar = (e) => Object.prototype.toString.call(e).slice(8, -1), Ht = (e) => typeof e > "u", ur = (e) => e === null, be = (e) => typeof e != "object" || e === null || e === Object.prototype ? !1 : Object.getPrototypeOf(e) === null ? !0 : Object.getPrototypeOf(e) === Object.prototype, at = (e) => be(e) && Object.keys(e).length === 0, U = (e) => Array.isArray(e), cr = (e) => typeof e == "string", fr = (e) => typeof e == "number" && !isNaN(e), dr = (e) => typeof e == "boolean", hr = (e) => e instanceof RegExp, Se = (e) => e instanceof Map, Ee = (e) => e instanceof Set, zt = (e) => ar(e) === "Symbol", gr = (e) => e instanceof Date && !isNaN(e.valueOf()), yr = (e) => e instanceof Error, Et = (e) => typeof e == "number" && isNaN(e), mr = (e) => dr(e) || ur(e) || Ht(e) || fr(e) || cr(e) || zt(e), pr = (e) => typeof e == "bigint", vr = (e) => e === 1 / 0 || e === -1 / 0, wr = (e) => ArrayBuffer.isView(e) && !(e instanceof DataView), br = (e) => e instanceof URL, Xt = (e) => e.replace(/\./g, "\\."), et = (e) => e.map(String).map(Xt).join("."), me = (e) => {
+}, ar = (e) => Object.prototype.toString.call(e).slice(8, -1), Gt = (e) => typeof e > "u", ur = (e) => e === null, be = (e) => typeof e != "object" || e === null || e === Object.prototype ? !1 : Object.getPrototypeOf(e) === null ? !0 : Object.getPrototypeOf(e) === Object.prototype, at = (e) => be(e) && Object.keys(e).length === 0, B = (e) => Array.isArray(e), cr = (e) => typeof e == "string", fr = (e) => typeof e == "number" && !isNaN(e), dr = (e) => typeof e == "boolean", hr = (e) => e instanceof RegExp, Se = (e) => e instanceof Map, Ee = (e) => e instanceof Set, Ht = (e) => ar(e) === "Symbol", gr = (e) => e instanceof Date && !isNaN(e.valueOf()), yr = (e) => e instanceof Error, St = (e) => typeof e == "number" && isNaN(e), mr = (e) => dr(e) || ur(e) || Gt(e) || fr(e) || cr(e) || Ht(e), pr = (e) => typeof e == "bigint", vr = (e) => e === 1 / 0 || e === -1 / 0, wr = (e) => ArrayBuffer.isView(e) && !(e instanceof DataView), br = (e) => e instanceof URL, zt = (e) => e.replace(/\./g, "\\."), et = (e) => e.map(String).map(zt).join("."), me = (e) => {
   const t = [];
   let n = "";
   for (let s = 0; s < e.length; s++) {
@@ -1476,8 +1474,8 @@ function L(e, t, n, r) {
     untransform: r
   };
 }
-var Yt = [
-  L(Ht, "undefined", () => null, () => {
+var Xt = [
+  L(Gt, "undefined", () => null, () => {
   }),
   L(pr, "bigint", (e) => e.toString(), (e) => typeof BigInt < "u" ? BigInt(e) : e),
   L(gr, "Date", (e) => e.toISOString(), (e) => new Date(e)),
@@ -1508,7 +1506,7 @@ var Yt = [
     (e) => new Set(e)
   ),
   L(Se, "map", (e) => [...e.entries()], (e) => new Map(e)),
-  L((e) => Et(e) || vr(e), "number", (e) => Et(e) ? "NaN" : e > 0 ? "Infinity" : "-Infinity", Number),
+  L((e) => St(e) || vr(e), "number", (e) => St(e) ? "NaN" : e > 0 ? "Infinity" : "-Infinity", Number),
   L((e) => e === 0 && 1 / e === -1 / 0, "number", () => "-0", Number),
   L(br, "URL", (e) => e.toString(), (e) => new URL(e))
 ];
@@ -1520,7 +1518,7 @@ function He(e, t, n, r) {
     untransform: r
   };
 }
-var Wt = He((e, t) => zt(e) ? !!t.symbolRegistry.getIdentifier(e) : !1, (e, t) => ["symbol", t.symbolRegistry.getIdentifier(e)], (e) => e.description, (e, t, n) => {
+var Yt = He((e, t) => Ht(e) ? !!t.symbolRegistry.getIdentifier(e) : !1, (e, t) => ["symbol", t.symbolRegistry.getIdentifier(e)], (e) => e.description, (e, t, n) => {
   const r = n.symbolRegistry.getValue(t[1]);
   if (!r)
     throw new Error("Trying to deserialize unknown symbol");
@@ -1535,16 +1533,16 @@ var Wt = He((e, t) => zt(e) ? !!t.symbolRegistry.getIdentifier(e) : !1, (e, t) =
   Float32Array,
   Float64Array,
   Uint8ClampedArray
-].reduce((e, t) => (e[t.name] = t, e), {}), Zt = He(wr, (e) => ["typed-array", e.constructor.name], (e) => [...e], (e, t) => {
+].reduce((e, t) => (e[t.name] = t, e), {}), Wt = He(wr, (e) => ["typed-array", e.constructor.name], (e) => [...e], (e, t) => {
   const n = Sr[t[1]];
   if (!n)
     throw new Error("Trying to deserialize unknown typed array");
   return new n(e);
 });
-function Jt(e, t) {
+function Zt(e, t) {
   return e != null && e.constructor ? !!t.classRegistry.getIdentifier(e.constructor) : !1;
 }
-var en = He(Jt, (e, t) => ["class", t.classRegistry.getIdentifier(e.constructor)], (e, t) => {
+var Jt = He(Zt, (e, t) => ["class", t.classRegistry.getIdentifier(e.constructor)], (e, t) => {
   const n = t.classRegistry.getAllowedProps(e.constructor);
   if (!n)
     return { ...e };
@@ -1557,44 +1555,44 @@ var en = He(Jt, (e, t) => ["class", t.classRegistry.getIdentifier(e.constructor)
   if (!r)
     throw new Error("Trying to deserialize unknown class - check https://github.com/blitz-js/superjson/issues/116#issuecomment-773996564");
   return Object.assign(Object.create(r.prototype), e);
-}), tn = He((e, t) => !!t.customTransformerRegistry.findApplicable(e), (e, t) => ["custom", t.customTransformerRegistry.findApplicable(e).name], (e, t) => t.customTransformerRegistry.findApplicable(e).serialize(e), (e, t, n) => {
+}), en = He((e, t) => !!t.customTransformerRegistry.findApplicable(e), (e, t) => ["custom", t.customTransformerRegistry.findApplicable(e).name], (e, t) => t.customTransformerRegistry.findApplicable(e).serialize(e), (e, t, n) => {
   const r = n.customTransformerRegistry.findByName(t[1]);
   if (!r)
     throw new Error("Trying to deserialize unknown custom value");
   return r.deserialize(e);
-}), Er = [en, Wt, tn, Zt], At = (e, t) => {
-  const n = St(Er, (s) => s.isApplicable(e, t));
+}), Er = [Jt, Yt, en, Wt], Et = (e, t) => {
+  const n = bt(Er, (s) => s.isApplicable(e, t));
   if (n)
     return {
       value: n.transform(e, t),
       type: n.annotation(e, t)
     };
-  const r = St(Yt, (s) => s.isApplicable(e, t));
+  const r = bt(Xt, (s) => s.isApplicable(e, t));
   if (r)
     return {
       value: r.transform(e, t),
       type: r.annotation
     };
-}, nn = {};
-Yt.forEach((e) => {
-  nn[e.annotation] = e;
+}, tn = {};
+Xt.forEach((e) => {
+  tn[e.annotation] = e;
 });
 var Ar = (e, t, n) => {
-  if (U(t))
+  if (B(t))
     switch (t[0]) {
       case "symbol":
-        return Wt.untransform(e, t, n);
+        return Yt.untransform(e, t, n);
       case "class":
-        return en.untransform(e, t, n);
+        return Jt.untransform(e, t, n);
       case "custom":
-        return tn.untransform(e, t, n);
+        return en.untransform(e, t, n);
       case "typed-array":
-        return Zt.untransform(e, t, n);
+        return Wt.untransform(e, t, n);
       default:
         throw new Error("Unknown transformation: " + t);
     }
   else {
-    const r = nn[t];
+    const r = tn[t];
     if (!r)
       throw new Error("Unknown transformation: " + t);
     return r.untransform(e, n);
@@ -1605,7 +1603,7 @@ var Ar = (e, t, n) => {
     n.next(), t--;
   return n.next().value;
 };
-function rn(e) {
+function nn(e) {
   if (je(e, "__proto__"))
     throw new Error("__proto__ is not allowed as a property");
   if (je(e, "prototype"))
@@ -1614,7 +1612,7 @@ function rn(e) {
     throw new Error("constructor is not allowed as a property");
 }
 var Or = (e, t) => {
-  rn(t);
+  nn(t);
   for (let n = 0; n < t.length; n++) {
     const r = t[n];
     if (Ee(e))
@@ -1634,12 +1632,12 @@ var Or = (e, t) => {
   }
   return e;
 }, ut = (e, t, n) => {
-  if (rn(t), t.length === 0)
+  if (nn(t), t.length === 0)
     return n(e);
   let r = e;
   for (let i = 0; i < t.length - 1; i++) {
     const o = t[i];
-    if (U(r)) {
+    if (B(r)) {
       const l = +o;
       r = r[l];
     } else if (be(r))
@@ -1662,7 +1660,7 @@ var Or = (e, t) => {
     }
   }
   const s = t[t.length - 1];
-  if (U(r) ? r[+s] = n(r[+s]) : be(r) && (r[s] = n(r[s])), Ee(r)) {
+  if (B(r) ? r[+s] = n(r[+s]) : be(r) && (r[s] = n(r[s])), Ee(r)) {
     const i = X(r, +s), o = n(i);
     i !== o && (r.delete(i), r.add(o));
   }
@@ -1685,7 +1683,7 @@ var Or = (e, t) => {
 function ct(e, t, n = []) {
   if (!e)
     return;
-  if (!U(e)) {
+  if (!B(e)) {
     de(e, (i, o) => ct(i, t, [...n, ...me(o)]));
     return;
   }
@@ -1706,7 +1704,7 @@ function Cr(e, t) {
       e = ut(e, o, () => i);
     });
   }
-  if (U(t)) {
+  if (B(t)) {
     const [r, s] = t;
     r.forEach((i) => {
       e = ut(e, me(i), () => e);
@@ -1715,7 +1713,7 @@ function Cr(e, t) {
     de(t, n);
   return e;
 }
-var Tr = (e, t) => be(e) || U(e) || Se(e) || Ee(e) || Jt(e, t);
+var Tr = (e, t) => be(e) || B(e) || Se(e) || Ee(e) || Zt(e, t);
 function Nr(e, t, n) {
   const r = n.get(e);
   r ? r.push(t) : n.set(e, [t]);
@@ -1731,7 +1729,7 @@ function Pr(e, t) {
     i.length === 0 ? r = o.map(et) : n[et(i)] = o.map(et);
   }), r ? at(n) ? [r] : [r, n] : at(n) ? void 0 : n;
 }
-var sn = (e, t, n, r, s = [], i = [], o = /* @__PURE__ */ new Map()) => {
+var rn = (e, t, n, r, s = [], i = [], o = /* @__PURE__ */ new Map()) => {
   const l = mr(e);
   if (!l) {
     Nr(e, s, t);
@@ -1742,7 +1740,7 @@ var sn = (e, t, n, r, s = [], i = [], o = /* @__PURE__ */ new Map()) => {
       } : y;
   }
   if (!Tr(e, n)) {
-    const y = At(e, n), S = y ? {
+    const y = Et(e, n), S = y ? {
       transformedValue: y.value,
       annotations: [y.type]
     } : {
@@ -1754,13 +1752,13 @@ var sn = (e, t, n, r, s = [], i = [], o = /* @__PURE__ */ new Map()) => {
     return {
       transformedValue: null
     };
-  const a = At(e, n), u = (a == null ? void 0 : a.value) ?? e, f = U(u) ? [] : {}, c = {};
+  const a = Et(e, n), u = (a == null ? void 0 : a.value) ?? e, f = B(u) ? [] : {}, c = {};
   de(u, (y, S) => {
     if (S === "__proto__" || S === "constructor" || S === "prototype")
       throw new Error(`Detected property ${S}. This is a prototype pollution risk, please remove it from your object.`);
-    const C = sn(y, t, n, r, [...s, S], [...i, e], o);
-    f[S] = C.transformedValue, U(C.annotations) ? c[S] = C.annotations : be(C.annotations) && de(C.annotations, (_, B) => {
-      c[Xt(S) + "." + B] = _;
+    const x = rn(y, t, n, r, [...s, S], [...i, e], o);
+    f[S] = x.transformedValue, B(x.annotations) ? c[S] = x.annotations : be(x.annotations) && de(x.annotations, (_, U) => {
+      c[zt(S) + "." + U] = _;
     });
   });
   const g = at(c) ? {
@@ -1772,14 +1770,14 @@ var sn = (e, t, n, r, s = [], i = [], o = /* @__PURE__ */ new Map()) => {
   };
   return l || o.set(e, g), g;
 };
-function on(e) {
+function sn(e) {
   return Object.prototype.toString.call(e).slice(8, -1);
 }
-function Ot(e) {
-  return on(e) === "Array";
+function At(e) {
+  return sn(e) === "Array";
 }
 function kr(e) {
-  if (on(e) !== "Object")
+  if (sn(e) !== "Object")
     return !1;
   const t = Object.getPrototypeOf(e);
   return !!t && t.constructor === Object && t === Object.prototype;
@@ -1794,13 +1792,13 @@ function Ir(e, t, n, r, s) {
   });
 }
 function ft(e, t = {}) {
-  if (Ot(e))
+  if (At(e))
     return e.map((s) => ft(s, t));
   if (!kr(e))
     return e;
   const n = Object.getOwnPropertyNames(e), r = Object.getOwnPropertySymbols(e);
   return [...n, ...r].reduce((s, i) => {
-    if (Ot(t.props) && !t.props.includes(i))
+    if (At(t.props) && !t.props.includes(i))
       return s;
     const o = e[i], l = ft(o, t);
     return Ir(s, i, l, e, t.nonenumerable), s;
@@ -1811,10 +1809,10 @@ var b = class {
    * @param dedupeReferentialEqualities  If true, SuperJSON will make sure only one instance of referentially equal objects are serialized and the rest are replaced with `null`.
    */
   constructor({ dedupe: e = !1 } = {}) {
-    this.classRegistry = new sr(), this.symbolRegistry = new Gt((t) => t.description ?? ""), this.customTransformerRegistry = new lr(), this.allowedErrorProps = [], this.dedupe = e;
+    this.classRegistry = new sr(), this.symbolRegistry = new Qt((t) => t.description ?? ""), this.customTransformerRegistry = new lr(), this.allowedErrorProps = [], this.dedupe = e;
   }
   serialize(e) {
-    const t = /* @__PURE__ */ new Map(), n = sn(e, t, this, this.dedupe), r = {
+    const t = /* @__PURE__ */ new Map(), n = rn(e, t, this, this.dedupe), r = {
       json: n.transformedValue
     };
     n.annotations && (r.meta = {
@@ -1891,13 +1889,13 @@ var ps = (e, t = !1) => {
     json: n
   } = Rr(e);
   return JSON.stringify(n, null, t ? 2 : void 0);
-}, De = (e) => e.state.fetchStatus !== "idle" ? 0 : e.getObserversCount() ? e.isStale() ? 2 : 1 : 3, Mr = (e, t) => e.queryHash.localeCompare(t.queryHash), ln = (e, t) => e.state.dataUpdatedAt < t.state.dataUpdatedAt ? 1 : -1, Dr = (e, t) => De(e) === De(t) ? ln(e, t) : De(e) > De(t) ? 1 : -1, vs = {
+}, De = (e) => e.state.fetchStatus !== "idle" ? 0 : e.getObserversCount() ? e.isStale() ? 2 : 1 : 3, Mr = (e, t) => e.queryHash.localeCompare(t.queryHash), on = (e, t) => e.state.dataUpdatedAt < t.state.dataUpdatedAt ? 1 : -1, Dr = (e, t) => De(e) === De(t) ? on(e, t) : De(e) > De(t) ? 1 : -1, vs = {
   status: Dr,
   "query hash": Mr,
-  "last updated": ln
-}, Le = (e) => e.state.isPaused ? 0 : e.state.status === "error" ? 2 : e.state.status === "pending" ? 1 : 3, an = (e, t) => e.state.submittedAt < t.state.submittedAt ? 1 : -1, Lr = (e, t) => Le(e) === Le(t) ? an(e, t) : Le(e) > Le(t) ? 1 : -1, ws = {
+  "last updated": on
+}, Le = (e) => e.state.isPaused ? 0 : e.state.status === "error" ? 2 : e.state.status === "pending" ? 1 : 3, ln = (e, t) => e.state.submittedAt < t.state.submittedAt ? 1 : -1, Lr = (e, t) => Le(e) === Le(t) ? ln(e, t) : Le(e) > Le(t) ? 1 : -1, ws = {
   status: Lr,
-  "last updated": an
+  "last updated": ln
 }, bs = (e) => e * parseFloat(getComputedStyle(document.documentElement).fontSize), Ss = () => {
   const [e, t] = E("dark");
   return wn(() => {
@@ -1968,12 +1966,12 @@ var ps = (e, t = !1) => {
     return n[r] = $e(n[r], s), n;
   }
   return e;
-}, un = (e, t) => {
+}, an = (e, t) => {
   if (!e || document.querySelector("#_goober") || (t == null ? void 0 : t.querySelector("#_goober")))
     return;
   const r = document.createElement("style"), s = document.createTextNode("");
   r.appendChild(s), r.id = "_goober", r.setAttribute("nonce", e), t ? t.appendChild(r) : document.head.appendChild(r);
-}, Y, Ae, Oe, xe, q, Ce, W, Z, J, ee, te, ne, Te, xt, Vr = (xt = class {
+}, Y, Ae, Oe, xe, q, Ce, W, Z, J, ee, te, ne, Te, Ot, Vr = (Ot = class {
   constructor(e) {
     v(this, Y);
     v(this, Ae);
@@ -2020,10 +2018,10 @@ var ps = (e, t = !1) => {
   mount(e) {
     if (d(this, q))
       throw new Error("Devtools is already mounted");
-    const t = Ft(() => {
+    const t = qt(() => {
       const n = this, [r] = d(this, Z), [s] = d(this, J), [i] = d(this, ee), [o] = d(this, te), [l] = d(this, Y);
       let a;
-      return d(this, ne) ? a = d(this, ne) : (a = Ut(() => import("./HO4MOOFI-AbAWO2wF.js")), p(this, ne, a)), un(d(this, Ce), d(this, W)), _t(a, Bt({
+      return d(this, ne) ? a = d(this, ne) : (a = Bt(() => import("./HO4MOOFI-Crns7z-5.js")), p(this, ne, a)), an(d(this, Ce), d(this, W)), jt(a, _t({
         get queryFlavor() {
           return d(n, Oe);
         },
@@ -2062,7 +2060,7 @@ var ps = (e, t = !1) => {
       throw new Error("Devtools is not mounted");
     (e = d(this, Te)) == null || e.call(this), p(this, q, !1);
   }
-}, Y = new WeakMap(), Ae = new WeakMap(), Oe = new WeakMap(), xe = new WeakMap(), q = new WeakMap(), Ce = new WeakMap(), W = new WeakMap(), Z = new WeakMap(), J = new WeakMap(), ee = new WeakMap(), te = new WeakMap(), ne = new WeakMap(), Te = new WeakMap(), xt), re, Ne, Pe, ke, F, Ie, se, ie, oe, le, ae, ue, ce, Re, Ct, $r = (Ct = class {
+}, Y = new WeakMap(), Ae = new WeakMap(), Oe = new WeakMap(), xe = new WeakMap(), q = new WeakMap(), Ce = new WeakMap(), W = new WeakMap(), Z = new WeakMap(), J = new WeakMap(), ee = new WeakMap(), te = new WeakMap(), ne = new WeakMap(), Te = new WeakMap(), Ot), re, Ne, Pe, ke, F, Ie, se, ie, oe, le, ae, ue, ce, Re, xt, $r = (xt = class {
   constructor(e) {
     v(this, re);
     v(this, Ne);
@@ -2114,10 +2112,10 @@ var ps = (e, t = !1) => {
   mount(e) {
     if (d(this, F))
       throw new Error("Devtools is already mounted");
-    const t = Ft(() => {
+    const t = qt(() => {
       const n = this, [r] = d(this, ie), [s] = d(this, oe), [i] = d(this, le), [o] = d(this, ae), [l] = d(this, re), [a] = d(this, ue);
       let u;
-      return d(this, ce) ? u = d(this, ce) : (u = Ut(() => import("./HUY7CZI3-BXrf5uB2.js")), p(this, ce, u)), un(d(this, Ie), d(this, se)), _t(u, Bt({
+      return d(this, ce) ? u = d(this, ce) : (u = Bt(() => import("./HUY7CZI3-BVRDuDy9.js")), p(this, ce, u)), an(d(this, Ie), d(this, se)), jt(u, _t({
         get queryFlavor() {
           return d(n, Pe);
         },
@@ -2159,9 +2157,9 @@ var ps = (e, t = !1) => {
       throw new Error("Devtools is not mounted");
     (e = d(this, Re)) == null || e.call(this), p(this, F, !1);
   }
-}, re = new WeakMap(), Ne = new WeakMap(), Pe = new WeakMap(), ke = new WeakMap(), F = new WeakMap(), Ie = new WeakMap(), se = new WeakMap(), ie = new WeakMap(), oe = new WeakMap(), le = new WeakMap(), ae = new WeakMap(), ue = new WeakMap(), ce = new WeakMap(), Re = new WeakMap(), Ct);
+}, re = new WeakMap(), Ne = new WeakMap(), Pe = new WeakMap(), ke = new WeakMap(), F = new WeakMap(), Ie = new WeakMap(), se = new WeakMap(), ie = new WeakMap(), oe = new WeakMap(), le = new WeakMap(), ae = new WeakMap(), ue = new WeakMap(), ce = new WeakMap(), Re = new WeakMap(), xt);
 function jr(e) {
-  const t = Tt(e.client), n = P.useRef(null), {
+  const t = Ct(e.client), n = P.useRef(null), {
     buttonPosition: r,
     position: s,
     initialIsOpen: i,
@@ -2173,7 +2171,7 @@ function jr(e) {
       client: t,
       queryFlavor: "React Query",
       version: "5",
-      onlineManager: Nt,
+      onlineManager: Tt,
       buttonPosition: r,
       position: s,
       initialIsOpen: i,
@@ -2197,12 +2195,12 @@ function jr(e) {
   }), [u]), /* @__PURE__ */ fe.jsx("div", { className: "tsqd-parent-container", ref: n });
 }
 function _r(e) {
-  const t = Tt(e.client), n = P.useRef(null), { errorTypes: r, styleNonce: s, shadowDOMTarget: i } = e, [o] = P.useState(
+  const t = Ct(e.client), n = P.useRef(null), { errorTypes: r, styleNonce: s, shadowDOMTarget: i } = e, [o] = P.useState(
     new $r({
       client: t,
       queryFlavor: "React Query",
       version: "5",
-      onlineManager: Nt,
+      onlineManager: Tt,
       buttonPosition: "bottom-left",
       position: "bottom",
       initialIsOpen: !0,
@@ -2238,28 +2236,28 @@ const Es = ({
   children: e,
   config: t
 }) => {
-  const [n] = hn(
-    () => new fn({
+  const [n] = dn(
+    () => new cn({
       ...t
     })
   );
-  return /* @__PURE__ */ fe.jsxs(dn, { client: n, children: [
+  return /* @__PURE__ */ fe.jsxs(fn, { client: n, children: [
     e,
     /* @__PURE__ */ fe.jsx(Br, { initialIsOpen: !1 })
   ] });
 }, As = (e) => {
   const { children: t, ...n } = e;
-  return /* @__PURE__ */ fe.jsx(gn, { ...n, children: t });
+  return /* @__PURE__ */ fe.jsx(hn, { ...n, children: t });
 };
 export {
-  kt as $,
+  Pt as $,
   ps as A,
   Xr as B,
   as as C,
   cs as D,
-  T as E,
+  C as E,
   ns as F,
-  mt as G,
+  mn as G,
   Rr as H,
   rs as I,
   Ve as J,
@@ -2278,12 +2276,12 @@ export {
   zr as W,
   Es as X,
   As as Y,
-  _t as a,
+  jt as a,
   E as b,
   k as c,
   Fn as d,
-  Mt as e,
-  Bt as f,
+  Rt as e,
+  _t as f,
   Ss as g,
   In as h,
   Jr as i,
