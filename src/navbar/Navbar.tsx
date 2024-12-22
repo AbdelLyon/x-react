@@ -81,13 +81,14 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
           </NavbarContent>
         )}
 
-        {isDesktop && (
+        {isDesktop && (appName || appLogo) && (
           <NavbarContent
             justify="start"
             className="w-[270px] flex justify-between"
           >
-            {appName && <NavbarBrand>{appName}</NavbarBrand>}
-            {appLogo && <NavbarBrand>{appLogo}</NavbarBrand>}
+            <NavbarBrand>
+              {appName} {appLogo}
+            </NavbarBrand>
           </NavbarContent>
         )}
 
