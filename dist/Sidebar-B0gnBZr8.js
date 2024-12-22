@@ -24,7 +24,7 @@ const b = x(
           a,
           {
             className: i(
-              "flex items-center gap-3 p-3 text-[#ECEDEE] data-[hover-true]:text-foreground data-[hover-true]:bg-content1 rounded-md cursor-pointer",
+              "flex items-center gap-3 p-3 text-[#ECEDEE] data-[hover=true]:text-foreground data-[hover=true]:bg-content1 rounded-md cursor-pointer",
               {
                 "border-l-2 border-primary bg-content1 text-primary": e.isActive,
                 "justify-center": n
