@@ -43,7 +43,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             <Link
               key={item.key}
               className={cn(
-                "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
+                "flex items-center gap-3 p-3  text-[#ECEDEE] hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-4 border-primary bg-content1 text-primary":
                     item.isActive,
