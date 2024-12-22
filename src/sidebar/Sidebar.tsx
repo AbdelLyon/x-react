@@ -1,24 +1,17 @@
-import { forwardRef, ReactNode } from "react";
+import { forwardRef } from "react";
 import { Link } from "@nextui-org/react";
 import { cn } from "@/utils";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-
-export interface SidebarItem {
-  key: string;
-  label: string;
-  icon: ReactNode;
-  href?: string;
-  isActive?: boolean;
-}
+import { Item } from "@/types/navigation";
 
 export interface SidebarProps {
-  items?: SidebarItem[];
+  items?: Item[];
   className?: string;
   classNames?: {
     base?: string;
     item?: string;
   };
-  onItemClick?: (item: SidebarItem) => void;
+  onItemClick?: (item: Item) => void;
 }
 
 export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
@@ -61,7 +54,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
               onPress={() => onItemClick?.(item)}
               title={isTablet ? item.label : undefined}
             >
-              {item.icon}
+              {item.startContent}
               {isDesktop && <span>{item.label}</span>}
             </Link>
           ))}

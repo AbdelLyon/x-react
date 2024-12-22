@@ -5,26 +5,15 @@ import {
   Button,
   ButtonProps,
 } from "@nextui-org/react";
-
-type AlertColor =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-
-type AlertVariant = "solid" | "bordered" | "flat" | "faded";
-
-type AlertRadius = "none" | "sm" | "md" | "lg" | "full";
+import { Color, Radius, Variant } from "@/types/types";
 
 interface Props {
   title?: string;
   icon?: React.ReactNode;
   description?: React.ReactNode;
-  color?: AlertColor;
-  variant?: AlertVariant;
-  radius?: AlertRadius;
+  color?: Color;
+  variant?: Variant;
+  radius?: Radius;
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   isVisible?: boolean;

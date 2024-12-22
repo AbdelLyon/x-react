@@ -1,18 +1,11 @@
-import { ReactNode } from 'react';
-export interface SidebarItem {
-    key: string;
-    label: string;
-    icon: ReactNode;
-    href?: string;
-    isActive?: boolean;
-}
+import { Item } from '../types/navigation';
 export interface SidebarProps {
-    items?: SidebarItem[];
+    items?: Item[];
     className?: string;
     classNames?: {
         base?: string;
         item?: string;
     };
-    onItemClick?: (item: SidebarItem) => void;
+    onItemClick?: (item: Item) => void;
 }
 export declare const Sidebar: import('react').ForwardRefExoticComponent<SidebarProps & import('react').RefAttributes<HTMLDivElement>>;

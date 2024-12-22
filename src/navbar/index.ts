@@ -1,2 +1,3 @@
 import "@/index.css";
-export { Navbar, type NavItem } from "@/navbar/Navbar";
+export { Navbar } from "@/navbar/Navbar";
+export type { Item } from "@/types/navigation";

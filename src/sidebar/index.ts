@@ -1,2 +1,3 @@
 import "@/index.css";
-export { Sidebar, type SidebarItem } from "@/sidebar/Sidebar";
+export { Sidebar } from "@/sidebar/Sidebar";
+export type { Item } from "@/types/navigation";

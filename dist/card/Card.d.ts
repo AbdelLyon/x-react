@@ -1,8 +1,9 @@
 import { ButtonProps } from '@nextui-org/react';
+import { Radius, Shadow } from '../types/types';
 interface GenericCardProps extends Partial<ButtonProps> {
     children?: React.ReactNode | React.ReactNode[];
-    shadow?: "none" | "sm" | "md" | "lg";
-    radius?: "none" | "sm" | "md" | "lg";
+    shadow?: Shadow;
+    radius?: Radius;
     fullWidth?: boolean;
     isHoverable?: boolean;
     isPressable?: boolean;

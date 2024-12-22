@@ -1,1 +1,2 @@
-export { Sidebar, type SidebarItem } from './Sidebar';
+export { Sidebar } from './Sidebar';
+export type { Item } from '../types/navigation';

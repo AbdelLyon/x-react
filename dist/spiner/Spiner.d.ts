@@ -1,9 +1,8 @@
 import { SpinnerProps as NextUISpinnerProps } from '@nextui-org/react';
-type SpinnerColor = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
-type SpinnerSize = "sm" | "md" | "lg";
+import { Color, Size } from '../types/types';
 interface SpinnerProps extends Omit<NextUISpinnerProps, "label" | "labelColor"> {
-    color?: SpinnerColor;
-    size?: SpinnerSize;
+    color?: Color;
+    size?: Size;
     disableAnimation?: boolean;
     strokeWidth?: number;
 }

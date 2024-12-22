@@ -4,17 +4,9 @@ import {
   DatePickerProps as DatePickerRootProps,
 } from "@nextui-org/react";
 import { DateValue } from "@internationalized/date";
+import { Color, Radius, Size } from "@/types/types";
 
 type LabelPlacement = "inside" | "outside" | "outside-left";
-type ColorVariant =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-type Size = "sm" | "md" | "lg";
-type Radius = "none" | "sm" | "md" | "lg" | "full";
 
 interface DatePickerProps extends Omit<DatePickerRootProps, "children"> {
   // Values
@@ -32,7 +24,7 @@ interface DatePickerProps extends Omit<DatePickerRootProps, "children"> {
 
   // Appearance
   variant?: "flat" | "bordered" | "faded";
-  color?: ColorVariant;
+  color?: Color;
   size?: Size;
   radius?: Radius;
 

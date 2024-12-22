@@ -3,21 +3,13 @@ import {
   CircularProgress as NextUICircularProgress,
   CircularProgressProps as NextUICircularProgressProps,
 } from "@nextui-org/react";
-
-type CircularProgressColor =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-type CircularProgressSize = "sm" | "md" | "lg";
+import { Color, Size } from "@/types/types";
 
 interface CircularProgressProps
   extends Omit<NextUICircularProgressProps, "color" | "size"> {
   // Appearance
-  color?: CircularProgressColor;
-  size?: CircularProgressSize;
+  color?: Color;
+  size?: Size;
   strokeWidth?: number;
 
   // Content

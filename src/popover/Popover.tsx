@@ -6,14 +6,13 @@ import {
   PopoverProps,
   PopoverContentProps,
 } from "@nextui-org/react";
-
-type radius = "none" | "sm" | "md" | "lg" | "full";
+import { Radius } from "@/types/types";
 
 export interface PropsPopover extends Omit<PopoverProps, "content"> {
   trigger: React.ReactNode;
   contentClassName?: string;
   popoverContentProps?: PopoverContentProps;
-  radius?: radius;
+  radius?: Radius;
 }
 
 export const Popover = forwardRef<HTMLDivElement, PropsPopover>(

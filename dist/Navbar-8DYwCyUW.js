@@ -1,29 +1,29 @@
-import { j as a } from "./jsx-runtime-Dx-03ztt.js";
-import { forwardRef as k } from "react";
-import { Navbar as A, NavbarContent as t, NavbarMenuToggle as g, NavbarBrand as w, NavbarItem as v, Link as b, NavbarMenu as m, NavbarMenuItem as C } from "@nextui-org/react";
+import { j as s } from "./jsx-runtime-Dx-03ztt.js";
+import { forwardRef as A } from "react";
+import { Navbar as g, NavbarContent as i, NavbarMenuToggle as w, NavbarBrand as P, NavbarItem as v, Link as b, NavbarMenu as k, NavbarMenuItem as m } from "@nextui-org/react";
 import { cn as R } from "./utils/x-react.es.js";
 import { u as B } from "./useMediaQuery-A9Oq9utn.js";
-const D = k(
+const D = A(
   ({
-    brand: c,
-    profile: e,
+    brand: l,
+    profile: c,
     navigationItems: x = [],
     menuItems: p = [],
     contentProps: N,
     menuProps: f,
-    onItemPress: o,
+    onItemClick: o,
     className: j,
     classNames: u,
     isMenuOpen: d,
-    onMenuOpenChange: s,
+    onMenuOpenChange: a,
     ...h
   }, y) => {
-    const l = B("(min-width: 768px)"), n = (r) => {
-      var i;
-      (i = r.onPress) == null || i.call(r), o == null || o(r), s == null || s(!1);
+    const e = B("(min-width: 768px)"), n = (r) => {
+      var t;
+      (t = r.onPress) == null || t.call(r), o == null || o(r), a == null || a(!1);
     };
-    return /* @__PURE__ */ a.jsxs(
-      A,
+    return /* @__PURE__ */ s.jsxs(
+      g,
       {
         ref: y,
         className: j,
@@ -33,20 +33,20 @@ const D = k(
           ...u
         },
         isMenuOpen: d,
-        onMenuOpenChange: s,
+        onMenuOpenChange: a,
         ...h,
         children: [
-          !l && /* @__PURE__ */ a.jsxs(t, { children: [
-            /* @__PURE__ */ a.jsx(
-              g,
+          !e && /* @__PURE__ */ s.jsxs(i, { children: [
+            /* @__PURE__ */ s.jsx(
+              w,
               {
                 "aria-label": d ? "Close menu" : "Open menu"
               }
             ),
-            c && /* @__PURE__ */ a.jsx(w, { children: c })
+            l && /* @__PURE__ */ s.jsx(P, { children: l })
           ] }),
-          /* @__PURE__ */ a.jsxs(t, { justify: "end", ...N, children: [
-            l && x.map((r) => /* @__PURE__ */ a.jsx(v, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
+          /* @__PURE__ */ s.jsxs(i, { justify: "end", ...N, children: [
+            e && x.map((r) => /* @__PURE__ */ s.jsx(v, { isActive: r.isActive, children: /* @__PURE__ */ s.jsxs(
               b,
               {
                 href: r.href,
@@ -60,15 +60,15 @@ const D = k(
                 ]
               }
             ) }, r.key)),
-            e && /* @__PURE__ */ a.jsx(v, { children: e })
+            c && /* @__PURE__ */ s.jsx(v, { children: c })
           ] }),
-          !l && /* @__PURE__ */ a.jsx(m, { ...f, children: p.map((r) => /* @__PURE__ */ a.jsx(
-            C,
+          !e && /* @__PURE__ */ s.jsx(k, { ...f, children: p.map((r) => /* @__PURE__ */ s.jsx(
+            m,
             {
               className: R("p-2 hover:bg-content1 rounded-md", {
                 "border-l border-primary bg-content1": r.isActive
               }),
-              children: /* @__PURE__ */ a.jsxs(
+              children: /* @__PURE__ */ s.jsxs(
                 b,
                 {
                   className: "flex items-center gap-2",

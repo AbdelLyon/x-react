@@ -1,45 +1,3 @@
-// hooks/useMediaQuery.ts
-
-// types/navbar.ts
-export type ButtonColor =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-
-export type LinkColor =
-  | "foreground"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-
-export interface NavItem {
-  key: string;
-  label?: string;
-  onPress?: () => void;
-  isActive?: boolean;
-  href?: string;
-  linkColor?: LinkColor;
-  buttonColor?: ButtonColor;
-  startContent?: React.ReactNode;
-  endContent?: React.ReactNode;
-}
-
-export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
-  brand?: ReactNode;
-  profile?: ReactNode;
-  navigationItems?: NavItem[];
-  menuItems?: NavItem[];
-  contentProps?: NavbarContentProps;
-  menuProps?: NavbarMenuProps;
-  onItemPress?: (item: NavItem) => void;
-}
-
-// components/Navbar/Navbar.tsx
 import { forwardRef, ReactNode } from "react";
 import {
   Navbar as NavbarRoot,
@@ -56,18 +14,16 @@ import {
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { Item } from "@/types/navigation";
 
-// Configuration des items
-export interface NavItem {
-  key: string;
-  label?: string;
-  onPress?: () => void;
-  isActive?: boolean;
-  href?: string;
-  linkColor?: LinkColor;
-  buttonColor?: ButtonColor;
-  startContent?: React.ReactNode;
-  endContent?: React.ReactNode;
+export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
+  brand?: ReactNode;
+  profile?: ReactNode;
+  navigationItems?: Item[];
+  menuItems?: Item[];
+  contentProps?: NavbarContentProps;
+  menuProps?: NavbarMenuProps;
+  onItemClick?: (item: Item) => void;
 }
 
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
@@ -79,7 +35,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
       menuItems = [],
       contentProps,
       menuProps,
-      onItemPress,
+      onItemClick,
       className,
       classNames,
       isMenuOpen,
@@ -90,9 +46,9 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   ) => {
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
-    const handleItemPress = (item: NavItem) => {
+    const handleItemPress = (item: Item) => {
       item.onPress?.();
-      onItemPress?.(item);
+      onItemClick?.(item);
       onMenuOpenChange?.(false);
     };
 

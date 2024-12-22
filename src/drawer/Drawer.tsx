@@ -11,20 +11,6 @@ import type { DrawerProps as DrawerRootProps } from "@nextui-org/react";
 import { cn } from "@/utils";
 import { Button, type ButtonProps } from "@/button";
 
-export type DrawerSize =
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "4xl"
-  | "5xl"
-  | "full";
-export type DrawerRadius = "none" | "sm" | "md" | "lg";
-export type DrawerPlacement = "left" | "right" | "top" | "bottom";
-
 export interface DrawerProps
   extends Omit<DrawerRootProps, "children" | "title"> {
   // Trigger

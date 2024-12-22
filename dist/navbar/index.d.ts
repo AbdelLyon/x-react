@@ -1,1 +1,2 @@
-export { Navbar, type NavItem } from './Navbar';
+export { Navbar } from './Navbar';
+export type { Item } from '../types/navigation';
