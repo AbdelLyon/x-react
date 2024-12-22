@@ -16,9 +16,9 @@ const U = (x, r, u) => {
     isAllChecked: j,
     sortConfig: e,
     handleCheckboxChange: (d) => {
-      const n = o.some((h) => h.id === d.id);
+      const n = o.some((c) => c.id === d.id);
       let S;
-      n ? S = o.filter((h) => h.id !== d.id) : S = [...o, d], k(S), r == null || r(S);
+      n ? S = o.filter((c) => c.id !== d.id) : S = [...o, d], k(S), r == null || r(S);
     },
     handleSelectAll: (d) => {
       const n = d ? [...x] : [];
@@ -32,15 +32,15 @@ const U = (x, r, u) => {
 }, q = {
   bordered: {
     table: "border border-divider",
-    header: "bg-content1",
-    column: "",
+    header: "bg-content2",
+    column: "bg-content2 py-2",
     row: "border-b border-divider last:border-b-0",
     cell: ""
   },
   striped: {
     table: "",
     header: "bg-content2",
-    column: "",
+    column: "bg-content2 py-2",
     row: "even:bg-default-50",
     cell: ""
   },
@@ -71,7 +71,7 @@ function W({
     handleSelectAll: d,
     handleSort: n,
     isRowSelected: S
-  } = U(x, k, j), h = q[v], I = [
+  } = U(x, k, j), c = q[v], I = [
     ...g ? [
       {
         key: "checkbox",
@@ -89,20 +89,20 @@ function W({
     $,
     {
       "aria-label": u,
-      className: b(h.table, e == null ? void 0 : e.base, o),
+      className: b(c.table, e == null ? void 0 : e.base, o),
       ...i == null ? void 0 : i.tableProps,
       children: [
         /* @__PURE__ */ l.jsx(
           z,
           {
             columns: I,
-            className: b(h.header, e == null ? void 0 : e.thead),
+            className: b(c.header, e == null ? void 0 : e.thead),
             ...i == null ? void 0 : i.tableHeaderProps,
             children: (t) => /* @__PURE__ */ l.jsx(
               B,
               {
                 "aria-label": String(t.label || t.key),
-                className: b("py-4", h.column, e == null ? void 0 : e.th),
+                className: b("py-4", c.column, e == null ? void 0 : e.th),
                 ...i == null ? void 0 : i.tableColumnProps,
                 children: t.key === "checkbox" ? /* @__PURE__ */ l.jsx(
                   T,
@@ -129,10 +129,10 @@ function W({
                             e == null ? void 0 : e.sortIcon
                           ),
                           onClick: () => {
-                            var c;
-                            const f = (c = r.find(
+                            var h;
+                            const f = (h = r.find(
                               (C) => String(C.field) === t.key
-                            )) == null ? void 0 : c.field;
+                            )) == null ? void 0 : h.field;
                             f && f !== "actions" && n(
                               f,
                               y.direction === "asc" ? "desc" : "asc"
@@ -182,12 +182,12 @@ function W({
               G,
               {
                 "aria-label": `Row ${t.id}`,
-                className: b(h.row, e == null ? void 0 : e.tr),
+                className: b(c.row, e == null ? void 0 : e.tr),
                 ...i == null ? void 0 : i.tableRowProps,
                 children: (f) => /* @__PURE__ */ l.jsx(
                   H,
                   {
-                    className: b(h.cell, e == null ? void 0 : e.td),
+                    className: b(c.cell, e == null ? void 0 : e.td),
                     ...i == null ? void 0 : i.tableCellProps,
                     children: f === "checkbox" ? /* @__PURE__ */ l.jsx(
                       T,
@@ -198,10 +198,10 @@ function W({
                         className: e == null ? void 0 : e.checkbox
                       }
                     ) : /* @__PURE__ */ l.jsx("div", { className: e == null ? void 0 : e.cellContent, children: (() => {
-                      const c = r.find(
+                      const h = r.find(
                         (C) => String(C.field) === f
                       );
-                      return c ? c.cell ? c.cell(t) : c.field && c.field in t ? String(t[c.field]) : null : null;
+                      return h ? h.cell ? h.cell(t) : h.field && h.field in t ? String(t[h.field]) : null : null;
                     })() })
                   }
                 )
