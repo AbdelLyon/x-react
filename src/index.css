@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 p {
-  color: #1d2020;
+  color: #222425;
 }
 
 body:focus {
