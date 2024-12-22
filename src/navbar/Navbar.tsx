@@ -152,7 +152,6 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                 })}
               >
                 <Link
-                  href={item.href}
                   className="flex items-center gap-2"
                   color={
                     item.linkColor || (item.isActive ? "primary" : "foreground")

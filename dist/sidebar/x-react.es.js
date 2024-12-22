@@ -1,5 +1,5 @@
 /* empty css                */
-import { S as e } from "../Sidebar-Bd8W2JNW.js";
+import { S as e } from "../Sidebar-BRTH_2CD.js";
 export {
   e as Sidebar
 };

@@ -50,7 +50,6 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
           {items.map((item) => (
             <Link
               key={item.key}
-              href={item.href}
               className={cn(
                 "flex items-center gap-3 p-3 hover:bg-content1 rounded-md transition-colors",
                 {
