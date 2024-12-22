@@ -14,8 +14,8 @@ const u = b(
         className: d(
           "fixed left-0 h-screen flex-col bg-[#191b1d]",
           {
-            "w-[240px]": n,
-            "w-[60px]": o
+            "w-[270px]": n,
+            "w-[100px]": o
           },
           r == null ? void 0 : r.base
         ),

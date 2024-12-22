@@ -31,8 +31,8 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
         className={cn(
           "fixed left-0 h-screen flex-col bg-[#191b1d]",
           {
-            "w-[240px]": isDesktop,
-            "w-[60px]": isTablet,
+            "w-[270px]": isDesktop,
+            "w-[100px]": isTablet,
           },
           classNames?.base,
         )}
