@@ -1,67 +1,74 @@
 import { j as d } from "./jsx-runtime-Dx-03ztt.js";
-import { forwardRef as N } from "react";
-import { Navbar as R, NavbarContent as a, NavbarMenuToggle as B, NavbarBrand as b, NavbarItem as i, Link as u, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
-import { cn as h } from "./utils/x-react.es.js";
+import { forwardRef as A } from "react";
+import { Navbar as R, NavbarContent as a, NavbarMenuToggle as B, NavbarBrand as x, NavbarItem as l, Link as u, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
+import { cn as v } from "./utils/x-react.es.js";
 import { u as Q } from "./useMediaQuery-A9Oq9utn.js";
-const T = N(
+const T = A(
   ({
-    appName: n,
-    appLogo: x,
+    appName: s,
+    appLogo: b,
     profile: j,
-    navigationItems: l = [],
+    navigationItems: h = [],
     menuItems: y = [],
     contentProps: c,
     menuProps: p,
     onItemClick: e,
-    className: g,
+    className: w,
     classNames: t,
-    isMenuOpen: v,
-    onMenuOpenChange: o,
-    ...w
+    isMenuOpen: f,
+    onMenuOpenChange: n,
+    ...g
   }, P) => {
-    const s = Q("(min-width: 768px)"), A = (r) => {
-      var f;
-      (f = r.onPress) == null || f.call(r), e == null || e(r), o == null || o(!1);
+    const o = Q("(min-width: 768px)"), N = (r) => {
+      var i;
+      (i = r.onPress) == null || i.call(r), e == null || e(r), n == null || n(!1);
     };
     return /* @__PURE__ */ d.jsxs(
       R,
       {
         ref: P,
-        className: g,
+        className: w,
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
           ...t
         },
-        isMenuOpen: v,
-        onMenuOpenChange: o,
-        ...w,
+        isMenuOpen: f,
+        onMenuOpenChange: n,
+        ...g,
         children: [
-          !s && /* @__PURE__ */ d.jsxs(a, { children: [
+          !o && /* @__PURE__ */ d.jsxs(a, { children: [
             /* @__PURE__ */ d.jsx(
               B,
               {
-                "aria-label": v ? "Close menu" : "Open menu"
+                "aria-label": f ? "Close menu" : "Open menu"
               }
             ),
-            n && /* @__PURE__ */ d.jsx(b, { children: n })
+            s && /* @__PURE__ */ d.jsx(x, { children: s })
           ] }),
-          /* @__PURE__ */ d.jsxs(a, { justify: "start", children: [
-            n && /* @__PURE__ */ d.jsx(b, { children: n }),
-            x && /* @__PURE__ */ d.jsx(b, { children: x })
-          ] }),
+          o && /* @__PURE__ */ d.jsxs(
+            a,
+            {
+              justify: "start",
+              className: "w-[270px] flex justify-between",
+              children: [
+                s && /* @__PURE__ */ d.jsx(x, { children: s }),
+                b && /* @__PURE__ */ d.jsx(x, { children: b })
+              ]
+            }
+          ),
           /* @__PURE__ */ d.jsxs(a, { justify: "end", ...c, children: [
-            s && l.map((r) => /* @__PURE__ */ d.jsx(i, { children: /* @__PURE__ */ d.jsxs(
+            o && h.map((r) => /* @__PURE__ */ d.jsx(l, { children: /* @__PURE__ */ d.jsxs(
               u,
               {
-                className: h(
+                className: v(
                   "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
                     "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
                   t == null ? void 0 : t.item
                 ),
-                onPress: () => A(r),
+                onPress: () => N(r),
                 children: [
                   r.startContent,
                   r.label,
@@ -69,12 +76,12 @@ const T = N(
                 ]
               }
             ) }, r.key)),
-            j && /* @__PURE__ */ d.jsx(i, { children: j })
+            j && /* @__PURE__ */ d.jsx(l, { children: j })
           ] }),
-          !s && /* @__PURE__ */ d.jsx(D, { ...p, children: y.map((r) => /* @__PURE__ */ d.jsx(E, { children: /* @__PURE__ */ d.jsxs(
+          !o && /* @__PURE__ */ d.jsx(D, { ...p, children: y.map((r) => /* @__PURE__ */ d.jsx(E, { children: /* @__PURE__ */ d.jsxs(
             u,
             {
-              className: h(
+              className: v(
                 "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-2 border-primary bg-content1 text-primary": r.isActive

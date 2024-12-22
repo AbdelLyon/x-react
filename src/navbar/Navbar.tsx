@@ -81,11 +81,16 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
           </NavbarContent>
         )}
 
-        {/* Actions - Always visible */}
-        <NavbarContent justify="start">
-          {appName && <NavbarBrand>{appName}</NavbarBrand>}
-          {appLogo && <NavbarBrand>{appLogo}</NavbarBrand>}
-        </NavbarContent>
+        {isDesktop && (
+          <NavbarContent
+            justify="start"
+            className="w-[270px] flex justify-between"
+          >
+            {appName && <NavbarBrand>{appName}</NavbarBrand>}
+            {appLogo && <NavbarBrand>{appLogo}</NavbarBrand>}
+          </NavbarContent>
+        )}
+
         <NavbarContent justify="end" {...contentProps}>
           {isDesktop &&
             navigationItems.map((item) => (
