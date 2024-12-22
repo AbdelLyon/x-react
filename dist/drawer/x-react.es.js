@@ -84,7 +84,7 @@ const _ = S(
                   variant: (i == null ? void 0 : i.variant) || "bordered",
                   onPress: j,
                   className: w(
-                    "border-primary/20",
+                    "border-primary/50",
                     i == null ? void 0 : i.className
                   ),
                   ...i,

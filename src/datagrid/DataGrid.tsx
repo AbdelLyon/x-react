@@ -128,7 +128,7 @@ export function DataGrid<T extends { id: string | number }>({
           <TableColumn
             key={column.key}
             aria-label={String(column.label || column.key)}
-            className={classNames?.th}
+            className={cn("py-6 bg-background", classNames?.th)}
             {...props?.tableColumnProps}
           >
             {column.key === "checkbox" ? (

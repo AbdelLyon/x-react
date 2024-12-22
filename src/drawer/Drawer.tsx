@@ -151,7 +151,8 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                           variant={buttonCloseProps?.variant || "bordered"}
                           onPress={onClose}
                           className={cn(
-                            "border-primary/20",
+                            "border-primary/50",
+
                             buttonCloseProps?.className,
                           )}
                           {...buttonCloseProps}
