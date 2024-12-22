@@ -26,7 +26,7 @@ const l = u(
             className: d(
               "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
               {
-                "border-l-4 border-primary bg-content1 text-primary": e.isActive,
+                "border-l-2 border-primary bg-content1 text-primary": e.isActive,
                 "justify-center": o
               },
               r == null ? void 0 : r.item
