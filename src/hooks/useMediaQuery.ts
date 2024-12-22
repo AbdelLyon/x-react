@@ -1,15 +1,10 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 
 export interface UseMediaQueryOptions {
-  /** Whether to get initial value in effect. Defaults to true */
   getInitialValueInEffect?: boolean;
-  /** Custom initial value before media query is evaluated */
   initialValue?: boolean;
 }
 
-/**
- * Safely attaches media query listener
- */
 function attachMediaListener(
   query: MediaQueryList,
   callback: (event: MediaQueryListEvent) => void,
@@ -18,9 +13,6 @@ function attachMediaListener(
   return () => query.removeEventListener("change", callback);
 }
 
-/**
- * Gets initial media query value with SSR support
- */
 function getInitialValue(query: string, initialValue?: boolean): boolean {
   if (typeof initialValue === "boolean") {
     return initialValue;
@@ -38,12 +30,6 @@ function getInitialValue(query: string, initialValue?: boolean): boolean {
   return false;
 }
 
-/**
- * React hook to track viewport changes using MediaQuery
- * @param query - Media query string to evaluate
- * @param options - Configuration options
- * @returns boolean indicating if the media query matches
- */
 export function useMediaQuery(
   query: string,
   options: UseMediaQueryOptions = {},
@@ -57,8 +43,6 @@ export function useMediaQuery(
   );
 
   const queryRef = useRef<MediaQueryList | null>(null);
-
-  // Memoize the callback to prevent unnecessary effect triggers
   const handleChange = useCallback((event: MediaQueryListEvent) => {
     setMatches(event.matches);
   }, []);
@@ -70,7 +54,6 @@ export function useMediaQuery(
 
     try {
       queryRef.current = window.matchMedia(query);
-      // Update initial value in effect if needed
       if (getInitialValueInEffect) {
         setMatches(queryRef.current.matches);
       }
@@ -84,3 +67,9 @@ export function useMediaQuery(
 
   return matches;
 }
+
+/**
+ * React hook to track viewport breakpoints and custom media queries
+ * @param customQuery - Optional custom media query to evaluate
+ * @returns Object with breakpoints status and custom query match if provided
+ */

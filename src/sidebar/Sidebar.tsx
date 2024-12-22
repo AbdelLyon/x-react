@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import { cn } from "@/utils";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Item } from "@/types/navigation";
 import { Link } from "@nextui-org/react";
+import { useResponsive } from "@/hooks";
 
 export interface SidebarProps {
   items?: Item[];
@@ -16,10 +16,7 @@ export interface SidebarProps {
 
 export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
   ({ items = [], classNames, onItemClick }, ref) => {
-    const isDesktop = useMediaQuery("(min-width: 1024px)");
-    const isTablet = useMediaQuery(
-      "(min-width: 768px) and (max-width: 1023px)",
-    );
+    const { isDesktop, isTablet } = useResponsive();
 
     if (!isDesktop && !isTablet) {
       return null;

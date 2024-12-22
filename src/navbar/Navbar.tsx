@@ -13,8 +13,8 @@ import {
   Link,
 } from "@nextui-org/react";
 import { cn } from "@/utils";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Item } from "@/types/navigation";
+import { useResponsive } from "@/hooks";
 
 export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
   appName?: ReactNode;
@@ -51,7 +51,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     },
     ref,
   ) => {
-    const isDesktop = useMediaQuery("(min-width: 768px)");
+    const { isDesktop, isMobile } = useResponsive();
 
     const handleItemPress = (item: Item) => {
       item.onPress?.();
@@ -72,7 +72,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         onMenuOpenChange={onMenuOpenChange}
         {...props}
       >
-        {!isDesktop && (
+        {isMobile && (
           <NavbarContent>
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}

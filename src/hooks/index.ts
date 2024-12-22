@@ -6,3 +6,4 @@ export {
 } from "@/hooks/useMediaQuery";
 
 export { useLayoutConfig } from "@/hooks/useLayoutConfig";
+export { useResponsive } from "@/hooks/useResponsive";
