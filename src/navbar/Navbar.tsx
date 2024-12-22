@@ -84,7 +84,6 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             navigationItems.map((item) => (
               <NavbarItem key={item.key}>
                 <Link
-                  aria-current={item.isActive ? "page" : undefined}
                   className={cn(
                     "p-2 hover:bg-content1 rounded-md text-foreground",
                     {
