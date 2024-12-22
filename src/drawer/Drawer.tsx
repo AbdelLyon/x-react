@@ -35,6 +35,8 @@ export interface DrawerProps
     body?: string;
     footer?: string;
     closeButton?: string;
+    buttonClose?: string;
+    buttonAction?: string;
   };
   buttonProps?: ButtonProps;
 }
@@ -144,12 +146,14 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                     <>
                       {buttonCloseLabel && (
                         <Button
-                          className="border-primary/20"
                           color={buttonProps.color || "primary"}
                           radius={buttonProps.radius || "sm"}
                           variant={buttonProps.variant || "bordered"}
                           onPress={onClose}
-                          {...buttonProps}
+                          className={cn(
+                            "border-primary/20",
+                            classNames?.buttonClose,
+                          )}
                         >
                           {buttonCloseLabel}
                         </Button>
@@ -160,7 +164,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                           color={buttonProps.color || "primary"}
                           radius={buttonProps.radius || "sm"}
                           onPress={handleAction}
-                          {...buttonProps}
+                          className={classNames?.buttonAction}
                         >
                           {buttonActionLabel}
                         </Button>

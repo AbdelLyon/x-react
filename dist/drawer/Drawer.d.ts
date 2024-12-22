@@ -17,6 +17,8 @@ export interface DrawerProps extends Omit<DrawerRootProps, "children" | "title">
         body?: string;
         footer?: string;
         closeButton?: string;
+        buttonClose?: string;
+        buttonAction?: string;
     };
     buttonProps?: ButtonProps;
 }
