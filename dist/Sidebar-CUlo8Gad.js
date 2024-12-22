@@ -16,7 +16,7 @@ const a = u(
           "fixed left-0 h-screen flex-col bg-[#191b1d]",
           {
             "w-[270px]": n,
-            "w-[100px]": o
+            "w-[90px]": o
           },
           r == null ? void 0 : r.base
         ),

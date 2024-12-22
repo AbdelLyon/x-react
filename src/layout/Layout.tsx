@@ -43,7 +43,7 @@ export const Layout = ({
               "pt-16": hasNavbar,
               // Margin left selon présence sidebar et breakpoint
               "ml-0": !hasSidebar || (!isTablet && !isDesktop),
-              "ml-[60px]": hasSidebar && isTablet,
+              "ml-[90px]": hasSidebar && isTablet,
               "ml-[240px]": hasSidebar && isDesktop,
               // Padding sur les côtés selon breakpoint
               "px-4 sm:px-6 md:px-8 lg:px-12": true,

@@ -1,5 +1,5 @@
 /* empty css                */
-import { S as e } from "../Sidebar-HPGl0D-O.js";
+import { S as e } from "../Sidebar-CUlo8Gad.js";
 export {
   e as Sidebar
 };

@@ -33,7 +33,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
           "fixed left-0 h-screen flex-col bg-[#191b1d]",
           {
             "w-[270px]": isDesktop,
-            "w-[100px]": isTablet,
+            "w-[90px]": isTablet,
           },
           classNames?.base,
         )}

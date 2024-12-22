@@ -2,7 +2,7 @@
 import { j as s } from "../jsx-runtime-Dx-03ztt.js";
 import { u as e } from "../useMediaQuery-A9Oq9utn.js";
 import { N as p } from "../Navbar-DeBTmaNH.js";
-import { S as l } from "../Sidebar-HPGl0D-O.js";
+import { S as l } from "../Sidebar-CUlo8Gad.js";
 import { cn as c } from "../utils/x-react.es.js";
 const b = ({
   children: n,
@@ -25,7 +25,7 @@ const b = ({
               "pt-16": r,
               // Margin left selon présence sidebar et breakpoint
               "ml-0": !a || !m && !i,
-              "ml-[60px]": a && m,
+              "ml-[90px]": a && m,
               "ml-[240px]": a && i,
               // Padding sur les côtés selon breakpoint
               "px-4 sm:px-6 md:px-8 lg:px-12": !0
