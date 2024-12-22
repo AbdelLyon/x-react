@@ -5,7 +5,7 @@ import { cn as o } from "../utils/x-react.es.js";
 import { Table as D, TableHeader as $, TableColumn as z, Checkbox as T, TableBody as B, TableRow as E, TableCell as G } from "@nextui-org/react";
 import { IconChevronUp as H, IconChevronDown as R } from "@tabler/icons-react";
 const V = (x, r, S) => {
-  const [c, g] = C([]), [k, e] = C(!1), [j, n] = C({
+  const [c, g] = C([]), [k, e] = C(!1), [j, l] = C({
     key: null,
     direction: "asc"
   });
@@ -15,37 +15,37 @@ const V = (x, r, S) => {
     selectedRows: c,
     isAllChecked: k,
     sortConfig: j,
-    handleCheckboxChange: (l) => {
-      const d = c.some((u) => u.id === l.id);
+    handleCheckboxChange: (n) => {
+      const d = c.some((u) => u.id === n.id);
       let b;
-      d ? b = c.filter((u) => u.id !== l.id) : b = [...c, l], g(b), r == null || r(b);
+      d ? b = c.filter((u) => u.id !== n.id) : b = [...c, n], g(b), r == null || r(b);
     },
-    handleSelectAll: (l) => {
-      const d = l ? [...x] : [];
+    handleSelectAll: (n) => {
+      const d = n ? [...x] : [];
       g(d), r == null || r(d);
     },
-    handleSort: (l, d) => {
-      n({ key: l, direction: d }), S == null || S(l, d);
+    handleSort: (n, d) => {
+      l({ key: n, direction: d }), S == null || S(n, d);
     },
-    isRowSelected: (l) => c.some((d) => d.id === l.id)
+    isRowSelected: (n) => c.some((d) => d.id === n.id)
   };
 }, U = {
   bordered: {
-    table: "rounded-none",
+    table: "rounded-t-lg",
     header: "bg-content2",
     column: "bg-content2 py-4",
     row: "border-b border-divider last:border-b-0 hover:bg-content2",
     cell: ""
   },
   striped: {
-    table: "rounded-none",
+    table: "rounded-t-lg",
     header: "bg-content2",
     column: "bg-content2 py-4",
     row: "even:bg-content2",
     cell: ""
   },
   unstyled: {
-    table: "rounded-none",
+    table: "rounded-t-lg",
     header: "bg-content2",
     column: "bg-content2 py-4",
     row: "hover:bg-content2",
@@ -61,14 +61,14 @@ function Q({
   checkboxSelection: k = !0,
   classNames: e,
   variant: j = "unstyled",
-  props: n
+  props: l
 }) {
   const {
     isAllChecked: a,
     sortConfig: y,
     handleCheckboxChange: A,
     handleSelectAll: P,
-    handleSort: l,
+    handleSort: n,
     isRowSelected: d
   } = V(x, c, g), b = U[j], u = [
     ...k ? [
@@ -89,7 +89,7 @@ function Q({
     {
       "aria-label": S,
       className: o(b.table, e == null ? void 0 : e.base),
-      ...n == null ? void 0 : n.tableProps,
+      ...l == null ? void 0 : l.tableProps,
       radius: "none",
       children: [
         /* @__PURE__ */ i.jsx(
@@ -97,13 +97,13 @@ function Q({
           {
             columns: u,
             className: o(b.header, e == null ? void 0 : e.thead),
-            ...n == null ? void 0 : n.tableHeaderProps,
+            ...l == null ? void 0 : l.tableHeaderProps,
             children: (t) => /* @__PURE__ */ i.jsx(
               z,
               {
                 "aria-label": String(t.label || t.key),
                 className: o(b.column, e == null ? void 0 : e.th),
-                ...n == null ? void 0 : n.tableColumnProps,
+                ...l == null ? void 0 : l.tableColumnProps,
                 children: t.key === "checkbox" ? /* @__PURE__ */ i.jsx(
                   T,
                   {
@@ -133,7 +133,7 @@ function Q({
                             const f = (h = r.find(
                               (v) => String(v.field) === t.key
                             )) == null ? void 0 : h.field;
-                            f && f !== "actions" && l(
+                            f && f !== "actions" && n(
                               f,
                               y.direction === "asc" ? "desc" : "asc"
                             );
@@ -177,18 +177,18 @@ function Q({
           {
             items: x,
             className: o(e == null ? void 0 : e.tbody),
-            ...n == null ? void 0 : n.tableBodyProps,
+            ...l == null ? void 0 : l.tableBodyProps,
             children: (t) => /* @__PURE__ */ i.jsx(
               E,
               {
                 "aria-label": `Row ${t.id}`,
                 className: o(b.row, e == null ? void 0 : e.tr),
-                ...n == null ? void 0 : n.tableRowProps,
+                ...l == null ? void 0 : l.tableRowProps,
                 children: (f) => /* @__PURE__ */ i.jsx(
                   G,
                   {
                     className: o(b.cell, e == null ? void 0 : e.td),
-                    ...n == null ? void 0 : n.tableCellProps,
+                    ...l == null ? void 0 : l.tableCellProps,
                     children: f === "checkbox" ? /* @__PURE__ */ i.jsx(
                       T,
                       {
