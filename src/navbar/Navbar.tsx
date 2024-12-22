@@ -1,7 +1,6 @@
 import { forwardRef, ReactNode } from "react";
 import {
   Navbar as NavbarRoot,
-  NavbarBrand,
   NavbarContent,
   NavbarContentProps,
   NavbarMenu,
@@ -51,7 +50,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     },
     ref,
   ) => {
-    const { isDesktop, isMobile } = useResponsive();
+    const { isDesktop, isMobile, isTablet } = useResponsive();
 
     const handleItemPress = (item: Item) => {
       item.onPress?.();
@@ -77,18 +76,21 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             />
-            {appLogo && <NavbarBrand>{appLogo}</NavbarBrand>}
           </NavbarContent>
         )}
 
-        {isDesktop && (appName || appLogo) && (
-          <NavbarContent justify="start">
-            <NavbarItem className="w-[247px] border-r-2 border-divider">
-              {appName}
-            </NavbarItem>
-            <NavbarItem>{appLogo}</NavbarItem>
-          </NavbarContent>
-        )}
+        {isDesktop ||
+          (isTablet && (appName || appLogo) && (
+            <NavbarContent justify="start">
+              {!isTablet && (
+                <NavbarItem className="w-[247px] border-r-2 border-divider">
+                  {appName}
+                </NavbarItem>
+              )}
+
+              <NavbarItem>{appLogo}</NavbarItem>
+            </NavbarContent>
+          ))}
 
         <NavbarContent justify="end" {...contentProps}>
           {isDesktop &&
