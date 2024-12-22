@@ -1,65 +1,65 @@
 import { j as d } from "./jsx-runtime-Dx-03ztt.js";
-import { forwardRef as N } from "react";
-import { Navbar as A, NavbarContent as b, NavbarMenuToggle as R, NavbarBrand as B, NavbarItem as a, Link as v, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
-import { cn as l } from "./utils/x-react.es.js";
+import { forwardRef as A } from "react";
+import { Navbar as N, NavbarContent as a, NavbarMenuToggle as R, NavbarBrand as B, NavbarItem as b, Link as v, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
+import { cn as f } from "./utils/x-react.es.js";
 import { u as L } from "./useMediaQuery-A9Oq9utn.js";
-const Q = N(
+const Q = A(
   ({
-    appName: s,
-    appLogo: f,
+    appName: e,
+    appLogo: l,
     profile: x,
     navigationItems: u = [],
-    menuItems: c = [],
-    contentProps: h,
+    menuItems: h = [],
+    contentProps: c,
     menuProps: y,
-    onItemClick: o,
+    onItemClick: t,
     className: p,
-    classNames: e,
+    classNames: o,
     isMenuOpen: j,
-    onMenuOpenChange: t,
+    onMenuOpenChange: s,
     ...g
   }, w) => {
     const n = L("(min-width: 768px)"), P = (r) => {
       var i;
-      (i = r.onPress) == null || i.call(r), o == null || o(r), t == null || t(!1);
+      (i = r.onPress) == null || i.call(r), t == null || t(r), s == null || s(!1);
     };
     return /* @__PURE__ */ d.jsxs(
-      A,
+      N,
       {
         ref: w,
         className: p,
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
-          ...e
+          ...o
         },
         isMenuOpen: j,
-        onMenuOpenChange: t,
+        onMenuOpenChange: s,
         ...g,
         children: [
-          !n && /* @__PURE__ */ d.jsxs(b, { children: [
+          !n && /* @__PURE__ */ d.jsxs(a, { children: [
             /* @__PURE__ */ d.jsx(
               R,
               {
                 "aria-label": j ? "Close menu" : "Open menu"
               }
             ),
-            s && /* @__PURE__ */ d.jsx(B, { children: s })
+            e && /* @__PURE__ */ d.jsx(B, { children: e })
           ] }),
-          n && (s || f) && /* @__PURE__ */ d.jsxs(b, { justify: "start", className: "gap-0", children: [
-            /* @__PURE__ */ d.jsx(a, { className: "w-[250px] border-r-2 border-divider", children: s }),
-            /* @__PURE__ */ d.jsx(a, { children: s })
+          n && (e || l) && /* @__PURE__ */ d.jsxs(a, { justify: "start", children: [
+            /* @__PURE__ */ d.jsx(b, { className: "w-[250px] border-r-2 border-divider", children: e }),
+            /* @__PURE__ */ d.jsx(b, { children: e })
           ] }),
-          /* @__PURE__ */ d.jsxs(b, { justify: "end", ...h, children: [
-            n && u.map((r) => /* @__PURE__ */ d.jsx(a, { children: /* @__PURE__ */ d.jsxs(
+          /* @__PURE__ */ d.jsxs(a, { justify: "end", ...c, children: [
+            n && u.map((r) => /* @__PURE__ */ d.jsx(b, { children: /* @__PURE__ */ d.jsxs(
               v,
               {
-                className: l(
+                className: f(
                   "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
                     "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
-                  e == null ? void 0 : e.item
+                  o == null ? void 0 : o.item
                 ),
                 onPress: () => P(r),
                 children: [
@@ -69,19 +69,19 @@ const Q = N(
                 ]
               }
             ) }, r.key)),
-            x && /* @__PURE__ */ d.jsx(a, { children: x })
+            x && /* @__PURE__ */ d.jsx(b, { children: x })
           ] }),
-          !n && /* @__PURE__ */ d.jsx(D, { ...y, children: c.map((r) => /* @__PURE__ */ d.jsx(E, { children: /* @__PURE__ */ d.jsxs(
+          !n && /* @__PURE__ */ d.jsx(D, { ...y, children: h.map((r) => /* @__PURE__ */ d.jsx(E, { children: /* @__PURE__ */ d.jsxs(
             v,
             {
-              className: l(
+              className: f(
                 "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-2 border-primary bg-content1 text-primary": r.isActive
                 },
-                e == null ? void 0 : e.item
+                o == null ? void 0 : o.item
               ),
-              onPress: () => o == null ? void 0 : o(r),
+              onPress: () => t == null ? void 0 : t(r),
               children: [
                 r.startContent,
                 r.label,
