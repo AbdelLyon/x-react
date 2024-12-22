@@ -60,16 +60,3 @@ export const Tooltip = ({
     </TooltipRoot>
   );
 };
-// // Exemple d'utilisation
-// import { Button } from "@nextui-org/react";
-
-// export const Example = () => {
-//   return (
-//     <Tooltip
-//       trigger={<Button>Hover me</Button>}
-//       content="Tooltip content"
-//       color="primary"
-//       showArrow
-//     />
-//   );
-// };

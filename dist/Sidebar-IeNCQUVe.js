@@ -1,14 +1,14 @@
 import { j as o } from "./jsx-runtime-Dx-03ztt.js";
 import { forwardRef as a } from "react";
-import { cn as d } from "./utils/x-react.es.js";
+import { cn as l } from "./utils/x-react.es.js";
 import { Link as b } from "@nextui-org/react";
 import "@tanstack/react-query";
 import "next-themes";
 import { a as s } from "./useResponsive-Bo4ImEVM.js";
 /* empty css               */
-import { T as u } from "./Tooltip-BVlWH2NE.js";
-const c = a(
-  ({ items: f = [], classNames: e, onItemClick: n }, l) => {
+import { T as c } from "./Tooltip-BVlWH2NE.js";
+const u = a(
+  ({ items: d = [], classNames: e, onItemClick: n }, f) => {
     const { isDesktop: i, isTablet: t } = s();
     if (!i && !t)
       return null;
@@ -16,7 +16,7 @@ const c = a(
       const p = /* @__PURE__ */ o.jsxs(
         b,
         {
-          className: d(
+          className: l(
             "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
             {
               "border-l-2 border-primary bg-content1 text-primary": r.isActive,
@@ -34,13 +34,14 @@ const c = a(
         r.key
       );
       return t ? /* @__PURE__ */ o.jsx(
-        u,
+        c,
         {
           trigger: p,
           content: r.label,
           placement: "right",
           delay: 0,
-          closeDelay: 0
+          closeDelay: 0,
+          className: "bg-black/80 text-white"
         },
         r.key
       ) : p;
@@ -48,8 +49,8 @@ const c = a(
     return /* @__PURE__ */ o.jsx(
       "aside",
       {
-        ref: l,
-        className: d(
+        ref: f,
+        className: l(
           "fixed left-0 h-screen flex-col bg-[#191b1d]",
           {
             "w-[270px]": i,
@@ -57,12 +58,12 @@ const c = a(
           },
           e == null ? void 0 : e.base
         ),
-        children: /* @__PURE__ */ o.jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: f.map(x) })
+        children: /* @__PURE__ */ o.jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: d.map(x) })
       }
     );
   }
 );
-c.displayName = "Sidebar";
+u.displayName = "Sidebar";
 export {
-  c as S
+  u as S
 };

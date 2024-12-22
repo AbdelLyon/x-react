@@ -53,6 +53,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             placement="right"
             delay={0}
             closeDelay={0}
+            className="bg-black/80 text-white"
           />
         );
       }
