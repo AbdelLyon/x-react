@@ -31,16 +31,16 @@ const U = (x, r, u) => {
   };
 }, q = {
   bordered: {
-    table: "border border-divider",
+    table: "border border-divider rounded-lg",
     header: "bg-content2",
-    column: "bg-content2 py-3",
+    column: "bg-content2 py-4",
     row: "border-b border-divider last:border-b-0",
     cell: ""
   },
   striped: {
     table: "",
     header: "bg-content2",
-    column: "bg-content2 py-3",
+    column: "bg-content2 py-4",
     row: "even:bg-default-50",
     cell: ""
   },
