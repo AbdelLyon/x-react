@@ -1,37 +1,37 @@
 import { j as d } from "./jsx-runtime-Dx-03ztt.js";
-import { forwardRef as A } from "react";
-import { Navbar as N, NavbarContent as x, NavbarMenuToggle as R, NavbarBrand as B, NavbarItem as a, Link as f, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
-import { cn as i } from "./utils/x-react.es.js";
+import { forwardRef as N } from "react";
+import { Navbar as A, NavbarContent as x, NavbarMenuToggle as R, NavbarBrand as B, NavbarItem as a, Link as v, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
+import { cn as f } from "./utils/x-react.es.js";
 import { u as L } from "./useMediaQuery-A9Oq9utn.js";
-const Q = A(
+const Q = N(
   ({
-    appName: s,
-    appLogo: l,
+    appName: o,
+    appLogo: i,
     profile: b,
     navigationItems: u = [],
-    menuItems: h = [],
-    contentProps: c,
+    menuItems: c = [],
+    contentProps: h,
     menuProps: y,
-    onItemClick: o,
+    onItemClick: t,
     className: p,
-    classNames: t,
+    classNames: s,
     isMenuOpen: j,
     onMenuOpenChange: e,
     ...g
   }, w) => {
     const n = L("(min-width: 768px)"), P = (r) => {
-      var v;
-      (v = r.onPress) == null || v.call(r), o == null || o(r), e == null || e(!1);
+      var l;
+      (l = r.onPress) == null || l.call(r), t == null || t(r), e == null || e(!1);
     };
     return /* @__PURE__ */ d.jsxs(
-      N,
+      A,
       {
         ref: w,
         className: p,
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
-          ...t
+          ...s
         },
         isMenuOpen: j,
         onMenuOpenChange: e,
@@ -44,22 +44,22 @@ const Q = A(
                 "aria-label": j ? "Close menu" : "Open menu"
               }
             ),
-            s && /* @__PURE__ */ d.jsx(B, { children: s })
+            o && /* @__PURE__ */ d.jsx(B, { children: o })
           ] }),
-          n && (s || l) && /* @__PURE__ */ d.jsxs(x, { justify: "start", children: [
-            /* @__PURE__ */ d.jsx(a, { className: "w-[270px]", children: s }),
-            /* @__PURE__ */ d.jsx(a, { children: s })
+          n && (o || i) && /* @__PURE__ */ d.jsxs(x, { justify: "start", className: "gap-0", children: [
+            /* @__PURE__ */ d.jsx(a, { className: "w-[270px]", children: o }),
+            /* @__PURE__ */ d.jsx(a, { children: o })
           ] }),
-          /* @__PURE__ */ d.jsxs(x, { justify: "end", ...c, children: [
+          /* @__PURE__ */ d.jsxs(x, { justify: "end", ...h, children: [
             n && u.map((r) => /* @__PURE__ */ d.jsx(a, { children: /* @__PURE__ */ d.jsxs(
-              f,
+              v,
               {
-                className: i(
+                className: f(
                   "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
                     "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
-                  t == null ? void 0 : t.item
+                  s == null ? void 0 : s.item
                 ),
                 onPress: () => P(r),
                 children: [
@@ -71,17 +71,17 @@ const Q = A(
             ) }, r.key)),
             b && /* @__PURE__ */ d.jsx(a, { children: b })
           ] }),
-          !n && /* @__PURE__ */ d.jsx(D, { ...y, children: h.map((r) => /* @__PURE__ */ d.jsx(E, { children: /* @__PURE__ */ d.jsxs(
-            f,
+          !n && /* @__PURE__ */ d.jsx(D, { ...y, children: c.map((r) => /* @__PURE__ */ d.jsx(E, { children: /* @__PURE__ */ d.jsxs(
+            v,
             {
-              className: i(
+              className: f(
                 "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-2 border-primary bg-content1 text-primary": r.isActive
                 },
-                t == null ? void 0 : t.item
+                s == null ? void 0 : s.item
               ),
-              onPress: () => o == null ? void 0 : o(r),
+              onPress: () => t == null ? void 0 : t(r),
               children: [
                 r.startContent,
                 r.label,
