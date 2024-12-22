@@ -38,12 +38,12 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
           classNames?.base,
         )}
       >
-        <nav className="flex flex-1 flex-col gap-2 p-4">
+        <nav className="flex flex-1 flex-col gap-2 p-4 ">
           {items.map((item) => (
             <Link
               key={item.key}
               className={cn(
-                "flex items-center gap-3 p-3  text-[#ECEDEE] hover:bg-content1 rounded-md cursor-pointer",
+                "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text:text-foreground dark:hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-4 border-primary bg-content1 text-primary":
                     item.isActive,

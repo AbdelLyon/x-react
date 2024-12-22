@@ -1,18 +1,18 @@
 import { j as i } from "./jsx-runtime-Dx-03ztt.js";
-import { forwardRef as b } from "react";
-import { cn as p } from "./utils/x-react.es.js";
-import { u as d } from "./useMediaQuery-A9Oq9utn.js";
-import { Link as l } from "@nextui-org/react";
-const u = b(
+import { forwardRef as u } from "react";
+import { cn as d } from "./utils/x-react.es.js";
+import { u as p } from "./useMediaQuery-A9Oq9utn.js";
+import { Link as a } from "@nextui-org/react";
+const b = u(
   ({ items: x = [], classNames: r, onItemClick: t }, f) => {
-    const n = d("(min-width: 1024px)"), o = d(
+    const n = p("(min-width: 1024px)"), o = p(
       "(min-width: 768px) and (max-width: 1023px)"
     );
     return !n && !o ? null : /* @__PURE__ */ i.jsx(
       "aside",
       {
         ref: f,
-        className: p(
+        className: d(
           "fixed left-0 h-screen flex-col bg-[#191b1d]",
           {
             "w-[270px]": n,
@@ -20,11 +20,11 @@ const u = b(
           },
           r == null ? void 0 : r.base
         ),
-        children: /* @__PURE__ */ i.jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: x.map((e) => /* @__PURE__ */ i.jsxs(
-          l,
+        children: /* @__PURE__ */ i.jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4 ", children: x.map((e) => /* @__PURE__ */ i.jsxs(
+          a,
           {
-            className: p(
-              "flex items-center gap-3 p-3  text-[#ECEDEE] hover:bg-content1 rounded-md cursor-pointer",
+            className: d(
+              "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text:text-foreground dark:hover:bg-content1 rounded-md cursor-pointer",
               {
                 "border-l-4 border-primary bg-content1 text-primary": e.isActive,
                 "justify-center": o
@@ -44,7 +44,7 @@ const u = b(
     );
   }
 );
-u.displayName = "Sidebar";
+b.displayName = "Sidebar";
 export {
-  u as S
+  b as S
 };
