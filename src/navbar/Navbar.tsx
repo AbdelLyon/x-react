@@ -122,7 +122,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                   onPress={() => onItemClick?.(item)}
                 >
                   {item.startContent}
-                  {isDesktop ? item.label : null}
+                  {item.label}
                   {item.endContent}
                 </Link>
               </NavbarMenuItem>

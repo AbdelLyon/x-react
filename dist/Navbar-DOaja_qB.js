@@ -9,14 +9,14 @@ const L = w(
     profile: s,
     navigationItems: f = [],
     menuItems: i = [],
-    contentProps: l,
-    menuProps: y,
+    contentProps: y,
+    menuProps: c,
     onItemClick: o,
-    className: c,
+    className: h,
     classNames: d,
     isMenuOpen: b,
     onMenuOpenChange: e,
-    ...h
+    ...l
   }, g) => {
     const t = E("(min-width: 768px)"), N = (r) => {
       var x;
@@ -26,7 +26,7 @@ const L = w(
       P,
       {
         ref: g,
-        className: c,
+        className: h,
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
@@ -34,7 +34,7 @@ const L = w(
         },
         isMenuOpen: b,
         onMenuOpenChange: e,
-        ...h,
+        ...l,
         children: [
           !t && /* @__PURE__ */ a.jsxs(p, { children: [
             /* @__PURE__ */ a.jsx(
@@ -45,7 +45,7 @@ const L = w(
             ),
             n && /* @__PURE__ */ a.jsx(R, { children: n })
           ] }),
-          /* @__PURE__ */ a.jsxs(p, { justify: "end", ...l, children: [
+          /* @__PURE__ */ a.jsxs(p, { justify: "end", ...y, children: [
             t && f.map((r) => /* @__PURE__ */ a.jsx(v, { children: /* @__PURE__ */ a.jsxs(
               j,
               {
@@ -67,7 +67,7 @@ const L = w(
             ) }, r.key)),
             s && /* @__PURE__ */ a.jsx(v, { children: s })
           ] }),
-          !t && /* @__PURE__ */ a.jsx(B, { ...y, children: i.map((r) => /* @__PURE__ */ a.jsx(D, { children: /* @__PURE__ */ a.jsxs(
+          !t && /* @__PURE__ */ a.jsx(B, { ...c, children: i.map((r) => /* @__PURE__ */ a.jsx(D, { children: /* @__PURE__ */ a.jsxs(
             j,
             {
               className: u(
@@ -80,7 +80,7 @@ const L = w(
               onPress: () => o == null ? void 0 : o(r),
               children: [
                 r.startContent,
-                t ? r.label : null,
+                r.label,
                 r.endContent
               ]
             },
