@@ -4,14 +4,14 @@ import { useState as C, useEffect as I } from "react";
 import { cn as o } from "../utils/x-react.es.js";
 import { Table as D, TableHeader as $, TableColumn as z, Checkbox as T, TableBody as B, TableRow as E, TableCell as G } from "@nextui-org/react";
 import { IconChevronUp as H, IconChevronDown as R } from "@tabler/icons-react";
-const V = (x, r, S) => {
+const V = (f, r, S) => {
   const [c, g] = C([]), [k, e] = C(!1), [j, n] = C({
     key: null,
     direction: "asc"
   });
   return I(() => {
-    e(c.length === x.length && x.length > 0);
-  }, [c, x]), {
+    e(c.length === f.length && f.length > 0);
+  }, [c, f]), {
     selectedRows: c,
     isAllChecked: k,
     sortConfig: j,
@@ -21,7 +21,7 @@ const V = (x, r, S) => {
       d ? b = c.filter((u) => u.id !== l.id) : b = [...c, l], g(b), r == null || r(b);
     },
     handleSelectAll: (l) => {
-      const d = l ? [...x] : [];
+      const d = l ? [...f] : [];
       g(d), r == null || r(d);
     },
     handleSort: (l, d) => {
@@ -34,26 +34,26 @@ const V = (x, r, S) => {
     table: "rounded-none",
     header: "bg-content2",
     column: "bg-content2 py-4",
-    row: "border-b border-divider last:border-b-0 hover:bg-content2",
+    row: "py-4 border-b border-divider last:border-b-0 hover:bg-content2",
     cell: ""
   },
   striped: {
     table: "rounded-none",
     header: "bg-content2",
     column: "bg-content2 py-4",
-    row: "even:bg-content2",
+    row: "py-4 even:bg-content2",
     cell: ""
   },
   unstyled: {
     table: "rounded-none",
     header: "bg-content2",
     column: "bg-content2 py-4",
-    row: "hover:bg-content2",
+    row: "py-4 hover:bg-content2",
     cell: ""
   }
 };
 function Q({
-  rows: x,
+  rows: f,
   columns: r,
   caption: S,
   onCheckedRowsChange: c,
@@ -65,12 +65,12 @@ function Q({
 }) {
   const {
     isAllChecked: a,
-    sortConfig: y,
+    sortConfig: x,
     handleCheckboxChange: A,
     handleSelectAll: P,
     handleSort: l,
     isRowSelected: d
-  } = V(x, c, g), b = U[j], u = [
+  } = V(f, c, g), b = U[j], u = [
     ...k ? [
       {
         key: "checkbox",
@@ -78,9 +78,9 @@ function Q({
         header: ""
       }
     ] : [],
-    ...r.map((t, f) => ({
+    ...r.map((t, y) => ({
       ...t,
-      key: String(t.field || f),
+      key: String(t.field || y),
       label: t.header
     }))
   ];
@@ -130,12 +130,12 @@ function Q({
                           ),
                           onClick: () => {
                             var h;
-                            const f = (h = r.find(
+                            const y = (h = r.find(
                               (v) => String(v.field) === t.key
                             )) == null ? void 0 : h.field;
-                            f && f !== "actions" && l(
-                              f,
-                              y.direction === "asc" ? "desc" : "asc"
+                            y && y !== "actions" && l(
+                              y,
+                              x.direction === "asc" ? "desc" : "asc"
                             );
                           },
                           role: "button",
@@ -147,7 +147,7 @@ function Q({
                                 size: 16,
                                 className: o(
                                   "absolute -top-1",
-                                  y.key === t.key && y.direction === "asc" ? "opacity-100" : "opacity-30"
+                                  x.key === t.key && x.direction === "asc" ? "opacity-100" : "opacity-30"
                                 )
                               }
                             ),
@@ -157,7 +157,7 @@ function Q({
                                 size: 16,
                                 className: o(
                                   "absolute top-1",
-                                  y.key === t.key && y.direction === "desc" ? "opacity-100" : "opacity-30"
+                                  x.key === t.key && x.direction === "desc" ? "opacity-100" : "opacity-30"
                                 )
                               }
                             )
@@ -175,7 +175,7 @@ function Q({
         /* @__PURE__ */ i.jsx(
           B,
           {
-            items: x,
+            items: f,
             className: o(e == null ? void 0 : e.tbody),
             ...n == null ? void 0 : n.tableBodyProps,
             children: (t) => /* @__PURE__ */ i.jsx(
@@ -184,12 +184,12 @@ function Q({
                 "aria-label": `Row ${t.id}`,
                 className: o(b.row, e == null ? void 0 : e.tr),
                 ...n == null ? void 0 : n.tableRowProps,
-                children: (f) => /* @__PURE__ */ i.jsx(
+                children: (y) => /* @__PURE__ */ i.jsx(
                   G,
                   {
                     className: o(b.cell, e == null ? void 0 : e.td),
                     ...n == null ? void 0 : n.tableCellProps,
-                    children: f === "checkbox" ? /* @__PURE__ */ i.jsx(
+                    children: y === "checkbox" ? /* @__PURE__ */ i.jsx(
                       T,
                       {
                         isSelected: d(t),
@@ -199,7 +199,7 @@ function Q({
                       }
                     ) : /* @__PURE__ */ i.jsx("div", { className: e == null ? void 0 : e.cellContent, children: (() => {
                       const h = r.find(
-                        (v) => String(v.field) === f
+                        (v) => String(v.field) === y
                       );
                       return h ? h.cell ? h.cell(t) : h.field && h.field in t ? String(t[h.field]) : null : null;
                     })() })
