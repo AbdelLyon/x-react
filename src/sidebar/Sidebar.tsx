@@ -52,9 +52,9 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
               key={item.key}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 p-3 hover:bg-default rounded-md transition-colors",
+                "flex items-center gap-3 p-3 hover:bg-content1 rounded-md transition-colors",
                 {
-                  "border-l-4 border-primary bg-default": item.isActive,
+                  "border-l-4 border-primary bg-content1": item.isActive,
                   "justify-center": isTablet,
                 },
                 classNames?.item,

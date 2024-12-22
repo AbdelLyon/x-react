@@ -1,22 +1,22 @@
 import { j as a } from "./jsx-runtime-Dx-03ztt.js";
 import { forwardRef as k } from "react";
-import { Navbar as A, NavbarContent as v, NavbarMenuToggle as g, NavbarBrand as w, NavbarItem as b, Link as f, NavbarMenu as C, NavbarMenuItem as m } from "@nextui-org/react";
+import { Navbar as A, NavbarContent as t, NavbarMenuToggle as g, NavbarBrand as w, NavbarItem as v, Link as b, NavbarMenu as C, NavbarMenuItem as m } from "@nextui-org/react";
 import { cn as R } from "./utils/x-react.es.js";
 import { u as B } from "./useMediaQuery-A9Oq9utn.js";
 const D = k(
   ({
-    brand: e,
-    profile: c,
-    navigationItems: t = [],
-    menuItems: x = [],
+    brand: c,
+    profile: e,
+    navigationItems: x = [],
+    menuItems: f = [],
     contentProps: p,
     menuProps: N,
     onItemPress: o,
     className: j,
-    classNames: u,
+    classNames: h,
     isMenuOpen: d,
     onMenuOpenChange: s,
-    ...h
+    ...u
   }, y) => {
     const l = B("(min-width: 768px)"), n = (r) => {
       var i;
@@ -30,24 +30,24 @@ const D = k(
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
-          ...u
+          ...h
         },
         isMenuOpen: d,
         onMenuOpenChange: s,
-        ...h,
+        ...u,
         children: [
-          !l && /* @__PURE__ */ a.jsxs(v, { children: [
+          !l && /* @__PURE__ */ a.jsxs(t, { children: [
             /* @__PURE__ */ a.jsx(
               g,
               {
                 "aria-label": d ? "Close menu" : "Open menu"
               }
             ),
-            e && /* @__PURE__ */ a.jsx(w, { children: e })
+            c && /* @__PURE__ */ a.jsx(w, { children: c })
           ] }),
-          /* @__PURE__ */ a.jsxs(v, { justify: "end", ...p, children: [
-            l && t.map((r) => /* @__PURE__ */ a.jsx(b, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
-              f,
+          /* @__PURE__ */ a.jsxs(t, { justify: "end", ...p, children: [
+            l && x.map((r) => /* @__PURE__ */ a.jsx(v, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
+              b,
               {
                 href: r.href,
                 color: r.linkColor || (r.isActive ? "primary" : "foreground"),
@@ -60,16 +60,16 @@ const D = k(
                 ]
               }
             ) }, r.key)),
-            c && /* @__PURE__ */ a.jsx(b, { children: c })
+            e && /* @__PURE__ */ a.jsx(v, { children: e })
           ] }),
-          !l && /* @__PURE__ */ a.jsx(C, { ...N, children: x.map((r) => /* @__PURE__ */ a.jsx(
+          !l && /* @__PURE__ */ a.jsx(C, { ...N, children: f.map((r) => /* @__PURE__ */ a.jsx(
             m,
             {
-              className: R("p-2 hover:bg-default rounded-md", {
-                "border-l border-primary bg-default": r.isActive
+              className: R("p-2 hover:bg-content1 rounded-md", {
+                "border-l border-primary bg-content1": r.isActive
               }),
               children: /* @__PURE__ */ a.jsxs(
-                f,
+                b,
                 {
                   href: r.href,
                   className: "flex items-center gap-2",

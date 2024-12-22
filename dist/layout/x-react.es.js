@@ -1,8 +1,8 @@
 /* empty css                */
 import { j as s } from "../jsx-runtime-Dx-03ztt.js";
 import { u as e } from "../useMediaQuery-A9Oq9utn.js";
-import { N as p } from "../Navbar-V-aKda-V.js";
-import { S as l } from "../Sidebar-z69vClZt.js";
+import { N as p } from "../Navbar-DG3tY8IB.js";
+import { S as l } from "../Sidebar-Bd8W2JNW.js";
 import { cn as c } from "../utils/x-react.es.js";
 const b = ({
   children: n,
