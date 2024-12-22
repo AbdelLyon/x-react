@@ -15,7 +15,7 @@ export const Tooltip = ({
   content,
   size = "md",
   color = "default",
-  radius = "md",
+  radius = "sm",
   shadow = "sm",
   placement = "top",
   delay = 0,
