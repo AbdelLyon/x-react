@@ -1,3 +1,45 @@
+// hooks/useMediaQuery.ts
+
+// types/navbar.ts
+export type ButtonColor =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger";
+
+export type LinkColor =
+  | "foreground"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "danger";
+
+export interface NavItem {
+  key: string;
+  label: string;
+  onPress?: () => void;
+  isActive?: boolean;
+  href?: string;
+  linkColor?: LinkColor;
+  buttonColor?: ButtonColor;
+  startContent?: React.ReactNode;
+  endContent?: React.ReactNode;
+}
+
+export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
+  brand?: ReactNode;
+  profile?: ReactNode;
+  navigationItems?: NavItem[];
+  menuItems?: NavItem[];
+  contentProps?: NavbarContentProps;
+  menuProps?: NavbarMenuProps;
+  onItemPress?: (item: NavItem) => void;
+}
+
+// components/Navbar/Navbar.tsx
 import { forwardRef, ReactNode } from "react";
 import {
   Navbar as NavbarRoot,
@@ -13,22 +55,7 @@ import {
   Link,
 } from "@nextui-org/react";
 import { cn } from "@/utils";
-
-// Types pour les couleurs
-type ButtonColor =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-type LinkColor =
-  | "foreground"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // Configuration des items
 export interface NavItem {
@@ -43,50 +70,16 @@ export interface NavItem {
   endContent?: React.ReactNode;
 }
 
-// Configuration des sections
-export interface NavSectionConfig {
-  key: string;
-  items: NavItem[];
-  justify?: "start" | "center" | "end";
-  showOnMobile?: boolean;
-  showOnDesktop?: boolean;
-}
-
-// Props du composant
-interface Props extends Omit<NavbarRootProps, "children"> {
-  // Branding & Profile
-  brand?: ReactNode;
-  profile?: ReactNode;
-
-  // Navigation
-  navigationItems?: NavItem[];
-  menuItems?: NavItem[];
-
-  // Props des sous-composants
-  contentProps?: NavbarContentProps;
-  menuProps?: NavbarMenuProps;
-
-  // Callback
-  onItemPress?: (item: NavItem) => void;
-}
-
-export const Navbar = forwardRef<HTMLElement, Props>(
+export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (
     {
-      // Content
       brand,
       profile,
       navigationItems = [],
       menuItems = [],
-
-      // Props
       contentProps,
       menuProps,
-
-      // Callback
       onItemPress,
-
-      // NextUI props
       className,
       classNames,
       isMenuOpen,
@@ -95,6 +88,8 @@ export const Navbar = forwardRef<HTMLElement, Props>(
     },
     ref,
   ) => {
+    const isDesktop = useMediaQuery("(min-width: 768px)");
+
     const handleItemPress = (item: NavItem) => {
       item.onPress?.();
       onItemPress?.(item);
@@ -115,32 +110,37 @@ export const Navbar = forwardRef<HTMLElement, Props>(
         {...props}
       >
         {/* Mobile Layout */}
-        <NavbarContent className="md:hidden">
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          />
-          {brand && <NavbarBrand>{brand}</NavbarBrand>}
-        </NavbarContent>
+        {!isDesktop && (
+          <NavbarContent>
+            <NavbarMenuToggle
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            />
+            {brand && <NavbarBrand>{brand}</NavbarBrand>}
+          </NavbarContent>
+        )}
 
         {/* Desktop Layout */}
-        <NavbarContent className="hidden md:flex">
-          {brand && <NavbarBrand>{brand}</NavbarBrand>}
-          {navigationItems.map((item) => (
-            <NavbarItem key={item.key} isActive={item.isActive}>
-              <Link
-                color={
-                  item.linkColor || (item.isActive ? "primary" : "foreground")
-                }
-                aria-current={item.isActive ? "page" : undefined}
-                onPress={() => handleItemPress(item)}
-              >
-                {item.startContent}
-                {item.label}
-                {item.endContent}
-              </Link>
-            </NavbarItem>
-          ))}
-        </NavbarContent>
+        {isDesktop && (
+          <NavbarContent>
+            {brand && <NavbarBrand>{brand}</NavbarBrand>}
+            {navigationItems.map((item) => (
+              <NavbarItem key={item.key} isActive={item.isActive}>
+                <Link
+                  href={item.href}
+                  color={
+                    item.linkColor || (item.isActive ? "primary" : "foreground")
+                  }
+                  aria-current={item.isActive ? "page" : undefined}
+                  onPress={() => handleItemPress(item)}
+                >
+                  {item.startContent}
+                  {item.label}
+                  {item.endContent}
+                </Link>
+              </NavbarItem>
+            ))}
+          </NavbarContent>
+        )}
 
         {/* Actions - Always visible */}
         <NavbarContent justify="end" {...contentProps}>
@@ -148,29 +148,32 @@ export const Navbar = forwardRef<HTMLElement, Props>(
         </NavbarContent>
 
         {/* Mobile Menu */}
-        <NavbarMenu {...menuProps}>
-          {menuItems.map((item) => (
-            <NavbarMenuItem
-              key={item.key}
-              className={cn("p-2 hover:bg-default rounded-md", {
-                "border-l border-primary bg-default": item.isActive,
-              })}
-            >
-              <Link
-                className="flex items-center gap-2"
-                color={
-                  item.linkColor || (item.isActive ? "primary" : "foreground")
-                }
-                aria-current={item.isActive ? "page" : undefined}
-                onPress={() => handleItemPress(item)}
+        {!isDesktop && (
+          <NavbarMenu {...menuProps}>
+            {menuItems.map((item) => (
+              <NavbarMenuItem
+                key={item.key}
+                className={cn("p-2 hover:bg-default rounded-md", {
+                  "border-l border-primary bg-default": item.isActive,
+                })}
               >
-                {item.startContent}
-                {item.label}
-                {item.endContent}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </NavbarMenu>
+                <Link
+                  href={item.href}
+                  className="flex items-center gap-2"
+                  color={
+                    item.linkColor || (item.isActive ? "primary" : "foreground")
+                  }
+                  aria-current={item.isActive ? "page" : undefined}
+                  onPress={() => handleItemPress(item)}
+                >
+                  {item.startContent}
+                  {item.label}
+                  {item.endContent}
+                </Link>
+              </NavbarMenuItem>
+            ))}
+          </NavbarMenu>
+        )}
       </NavbarRoot>
     );
   },

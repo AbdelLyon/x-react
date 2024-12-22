@@ -1,5 +1,7 @@
 export * from "@tanstack/react-query";
-import { u as m } from "../useTheme-ery4R1ul.js";
+import { u } from "../useTheme-ery4R1ul.js";
+import { u as s } from "../useMediaQuery-A9Oq9utn.js";
 export {
-  m as useTheme
+  s as useMediaQuery,
+  u as useTheme
 };

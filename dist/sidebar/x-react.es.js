@@ -1,43 +1,36 @@
 /* empty css                */
-import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as n } from "react";
-import { Link as t } from "@nextui-org/react";
+import { j as e } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as i } from "react";
+import { Link as p } from "@nextui-org/react";
 import { cn as f } from "../utils/x-react.es.js";
-const h = n(
-  ({ items: x = [], className: p, classNames: r, onItemClick: i }, d) => /* @__PURE__ */ o.jsx(
+const n = i(
+  ({ items: a = [], className: l, classNames: d, onItemClick: o }, x) => /* @__PURE__ */ e.jsx(
     "aside",
     {
-      ref: d,
+      ref: x,
       className: f(
         "fixed left-0 hidden md:flex h-screen w-[240px] flex-col bg-default-100",
-        r == null ? void 0 : r.base,
-        p
+        d == null ? void 0 : d.base,
+        l
       ),
-      children: /* @__PURE__ */ o.jsx("nav", { className: "flex flex-1 flex-col", children: x.map((e) => /* @__PURE__ */ o.jsxs(
-        t,
+      children: /* @__PURE__ */ e.jsx("nav", { className: "flex flex-1 flex-col", children: a.map((r) => /* @__PURE__ */ e.jsxs(
+        p,
         {
-          href: e.href,
-          className: f(
-            "flex items-center gap-3 px-3 h-[50px] cursor-pointer",
-            "transition-colors duration-150",
-            "hover:bg-default/40",
-            {
-              "bg-primary-500/20 text-primary": e.isActive
-            },
-            r == null ? void 0 : r.item
-          ),
-          onPress: () => i == null ? void 0 : i(e),
+          className: f("p-2 hover:bg-default rounded-md", {
+            "border-l border-primary bg-default": r.isActive
+          }),
+          onPress: () => o == null ? void 0 : o(r),
           children: [
-            e.icon,
-            /* @__PURE__ */ o.jsx("span", { children: e.label })
+            r.icon,
+            /* @__PURE__ */ e.jsx("span", { children: r.label })
           ]
         },
-        e.key
+        r.key
       )) })
     }
   )
 );
-h.displayName = "Sidebar";
+n.displayName = "Sidebar";
 export {
-  h as Sidebar
+  n as Sidebar
 };

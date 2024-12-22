@@ -35,16 +35,9 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(
           {items.map((item) => (
             <Link
               key={item.key}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 px-3 h-[50px] cursor-pointer",
-                "transition-colors duration-150",
-                "hover:bg-default/40",
-                {
-                  "bg-primary-500/20 text-primary": item.isActive,
-                },
-                classNames?.item,
-              )}
+              className={cn("p-2 hover:bg-default rounded-md", {
+                "border-l border-primary bg-default": item.isActive,
+              })}
               onPress={() => onItemClick?.(item)}
             >
               {item.icon}
