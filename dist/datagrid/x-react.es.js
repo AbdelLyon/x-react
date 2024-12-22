@@ -1,28 +1,28 @@
 /* empty css                */
 import { j as l } from "../jsx-runtime-Dx-03ztt.js";
-import { useState as a, useEffect as D } from "react";
+import { useState as C, useEffect as D } from "react";
 import { cn as b } from "../utils/x-react.es.js";
 import { Table as $, TableHeader as z, TableColumn as B, Checkbox as T, TableBody as E, TableRow as G, TableCell as H } from "@nextui-org/react";
 import { IconChevronUp as R, IconChevronDown as V } from "@tabler/icons-react";
-const U = (x, r, u) => {
-  const [o, k] = a([]), [j, g] = a(!1), [e, v] = a({
+const U = (f, r, u) => {
+  const [o, g] = C([]), [k, j] = C(!1), [e, v] = C({
     key: null,
     direction: "asc"
   });
   return D(() => {
-    g(o.length === x.length && x.length > 0);
-  }, [o, x]), {
+    j(o.length === f.length && f.length > 0);
+  }, [o, f]), {
     selectedRows: o,
-    isAllChecked: j,
+    isAllChecked: k,
     sortConfig: e,
     handleCheckboxChange: (d) => {
       const n = o.some((c) => c.id === d.id);
       let S;
-      n ? S = o.filter((c) => c.id !== d.id) : S = [...o, d], k(S), r == null || r(S);
+      n ? S = o.filter((c) => c.id !== d.id) : S = [...o, d], g(S), r == null || r(S);
     },
     handleSelectAll: (d) => {
-      const n = d ? [...x] : [];
-      k(n), r == null || r(n);
+      const n = d ? [...f] : [];
+      g(n), r == null || r(n);
     },
     handleSort: (d, n) => {
       v({ key: d, direction: n }), u == null || u(d, n);
@@ -34,54 +34,54 @@ const U = (x, r, u) => {
     table: "border border-divider rounded-lg",
     header: "bg-content2",
     column: "bg-content2 py-4",
-    row: "border-b border-divider last:border-b-0",
+    row: "border-b border-divider last:border-b-0 hover:opacity-80",
     cell: ""
   },
   striped: {
     table: "",
     header: "bg-content2",
     column: "bg-content2 py-4",
-    row: "even:bg-default-50",
+    row: "even:bg-content2 hover:opacity-80",
     cell: ""
   },
   unstyled: {
     table: "",
-    header: "",
-    column: "",
-    row: "",
+    header: "bg-content2",
+    column: "bg-content2 py-4",
+    row: "hover:opacity-80",
     cell: ""
   }
 };
 function W({
-  rows: x,
+  rows: f,
   columns: r,
   caption: u,
   className: o,
-  onCheckedRowsChange: k,
-  onSort: j,
-  checkboxSelection: g = !0,
+  onCheckedRowsChange: g,
+  onSort: k,
+  checkboxSelection: j = !0,
   classNames: e,
   variant: v = "unstyled",
   props: i
 }) {
   const {
     isAllChecked: A,
-    sortConfig: y,
+    sortConfig: x,
     handleCheckboxChange: P,
     handleSelectAll: d,
     handleSort: n,
     isRowSelected: S
-  } = U(x, k, j), c = q[v], I = [
-    ...g ? [
+  } = U(f, g, k), c = q[v], I = [
+    ...j ? [
       {
         key: "checkbox",
         label: "",
         header: ""
       }
     ] : [],
-    ...r.map((t, f) => ({
+    ...r.map((t, y) => ({
       ...t,
-      key: String(t.field || f),
+      key: String(t.field || y),
       label: t.header
     }))
   ];
@@ -91,6 +91,7 @@ function W({
       "aria-label": u,
       className: b(c.table, e == null ? void 0 : e.base, o),
       ...i == null ? void 0 : i.tableProps,
+      radius: "lg",
       children: [
         /* @__PURE__ */ l.jsx(
           z,
@@ -130,12 +131,12 @@ function W({
                           ),
                           onClick: () => {
                             var h;
-                            const f = (h = r.find(
-                              (C) => String(C.field) === t.key
+                            const y = (h = r.find(
+                              (a) => String(a.field) === t.key
                             )) == null ? void 0 : h.field;
-                            f && f !== "actions" && n(
-                              f,
-                              y.direction === "asc" ? "desc" : "asc"
+                            y && y !== "actions" && n(
+                              y,
+                              x.direction === "asc" ? "desc" : "asc"
                             );
                           },
                           role: "button",
@@ -147,7 +148,7 @@ function W({
                                 size: 16,
                                 className: b(
                                   "absolute -top-1",
-                                  y.key === t.key && y.direction === "asc" ? "opacity-100" : "opacity-30"
+                                  x.key === t.key && x.direction === "asc" ? "opacity-100" : "opacity-30"
                                 )
                               }
                             ),
@@ -157,7 +158,7 @@ function W({
                                 size: 16,
                                 className: b(
                                   "absolute top-1",
-                                  y.key === t.key && y.direction === "desc" ? "opacity-100" : "opacity-30"
+                                  x.key === t.key && x.direction === "desc" ? "opacity-100" : "opacity-30"
                                 )
                               }
                             )
@@ -175,7 +176,7 @@ function W({
         /* @__PURE__ */ l.jsx(
           E,
           {
-            items: x,
+            items: f,
             className: b(e == null ? void 0 : e.tbody),
             ...i == null ? void 0 : i.tableBodyProps,
             children: (t) => /* @__PURE__ */ l.jsx(
@@ -184,12 +185,12 @@ function W({
                 "aria-label": `Row ${t.id}`,
                 className: b(c.row, e == null ? void 0 : e.tr),
                 ...i == null ? void 0 : i.tableRowProps,
-                children: (f) => /* @__PURE__ */ l.jsx(
+                children: (y) => /* @__PURE__ */ l.jsx(
                   H,
                   {
                     className: b(c.cell, e == null ? void 0 : e.td),
                     ...i == null ? void 0 : i.tableCellProps,
-                    children: f === "checkbox" ? /* @__PURE__ */ l.jsx(
+                    children: y === "checkbox" ? /* @__PURE__ */ l.jsx(
                       T,
                       {
                         isSelected: S(t),
@@ -199,7 +200,7 @@ function W({
                       }
                     ) : /* @__PURE__ */ l.jsx("div", { className: e == null ? void 0 : e.cellContent, children: (() => {
                       const h = r.find(
-                        (C) => String(C.field) === f
+                        (a) => String(a.field) === y
                       );
                       return h ? h.cell ? h.cell(t) : h.field && h.field in t ? String(t[h.field]) : null : null;
                     })() })

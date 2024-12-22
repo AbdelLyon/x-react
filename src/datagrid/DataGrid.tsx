@@ -80,21 +80,21 @@ const variantStyles = {
     table: "border border-divider rounded-lg",
     header: "bg-content2",
     column: "bg-content2 py-4",
-    row: "border-b border-divider last:border-b-0",
+    row: "border-b border-divider last:border-b-0 hover:opacity-80",
     cell: "",
   },
   striped: {
     table: "",
     header: "bg-content2",
     column: "bg-content2 py-4",
-    row: "even:bg-default-50",
+    row: "even:bg-content2 hover:opacity-80",
     cell: "",
   },
   unstyled: {
     table: "",
-    header: "",
-    column: "",
-    row: "",
+    header: "bg-content2",
+    column: "bg-content2 py-4",
+    row: "hover:opacity-80",
     cell: "",
   },
 };
@@ -149,6 +149,7 @@ export function DataGrid<T extends { id: string | number }>({
       aria-label={caption}
       className={cn(variantClasses.table, classNames?.base, className)}
       {...props?.tableProps}
+      radius="lg"
     >
       <TableHeader
         columns={preparedColumns}
