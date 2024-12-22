@@ -9,6 +9,8 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
     contentProps?: NavbarContentProps;
     menuProps?: NavbarMenuProps;
     onItemClick?: (item: Item) => void;
+    isMenuOpen?: boolean;
+    onMenuOpenChange?: (isOpen: boolean) => void;
     classNames?: {
         item?: string;
     };
