@@ -42,7 +42,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             <button
               key={item.key}
               className={cn(
-                "flex items-center gap-3 p-3 hover:bg-content1 rounded-md cursor-pointer",
+                "flex items-center gap-3 p-3 text-default hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-4 border-primary bg-content1 text-primary":
                     item.isActive,
