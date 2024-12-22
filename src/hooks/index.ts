@@ -4,3 +4,5 @@ export {
   useMediaQuery,
   type UseMediaQueryOptions,
 } from "@/hooks/useMediaQuery";
+
+export { useLayoutConfig } from "@/hooks/useLayoutConfig";

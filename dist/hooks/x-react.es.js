@@ -1,7 +1,21 @@
 export * from "@tanstack/react-query";
 import { u } from "../useTheme-ery4R1ul.js";
-import { u as s } from "../useMediaQuery-A9Oq9utn.js";
+import { u as f } from "../useMediaQuery-A9Oq9utn.js";
+const r = (o = {}) => {
+  const { navbar: e, sidebar: a } = o;
+  return {
+    navbar: e ? {
+      className: "fixed top-0 z-40",
+      ...e
+    } : void 0,
+    sidebar: a ? {
+      className: "fixed z-30",
+      ...a
+    } : void 0
+  };
+};
 export {
-  s as useMediaQuery,
+  r as useLayoutConfig,
+  f as useMediaQuery,
   u as useTheme
 };
