@@ -1,20 +1,20 @@
 import { j as t } from "./jsx-runtime-Dx-03ztt.js";
 import { forwardRef as a } from "react";
 import { cn as d } from "./utils/x-react.es.js";
-import { Link as b } from "@nextui-org/react";
+import { Link as s } from "@nextui-org/react";
 import "@tanstack/react-query";
 import "next-themes";
-import { a as s } from "./useResponsive-Bo4ImEVM.js";
+import { a as b } from "./useResponsive-Bo4ImEVM.js";
 /* empty css               */
 import { T as u } from "./Tooltip-BVlWH2NE.js";
 const c = a(
   ({ items: f = [], classNames: e, onItemClick: n }, l) => {
-    const { isDesktop: i, isTablet: o } = s();
+    const { isDesktop: i, isTablet: o } = b();
     if (!i && !o)
       return null;
     const x = (r) => {
       const p = /* @__PURE__ */ t.jsxs(
-        b,
+        s,
         {
           className: d(
             "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
@@ -51,7 +51,7 @@ const c = a(
       {
         ref: l,
         className: d(
-          "fixed left-0 h-screen flex-col bg-[#191b1d]",
+          "fixed left-0 h-screen flex-col bg-[#27292a]",
           {
             "w-[270px]": i,
             "w-[90px]": o

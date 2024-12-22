@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:focus {
+p {
+  color: #1d2020;
+}
+
+body:focus {
   outline: none;
 }
