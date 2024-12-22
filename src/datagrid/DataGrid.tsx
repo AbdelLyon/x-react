@@ -59,15 +59,8 @@ export interface DataGridProps<T extends { id: string | number }> {
   onSort?: (column: keyof T, direction: "asc" | "desc") => void;
   checkboxSelection?: boolean;
   classNames?: {
-    table?: string;
-    header?: string;
-    tbody?: string;
-    row?: string;
-    column?: string;
-    cell?: string;
     checkbox?: string;
     sortIcon?: string;
-    headerContent?: string;
     cellContent?: string;
   };
   variant?: "bordered" | "striped" | "unstyled";
@@ -76,25 +69,19 @@ export interface DataGridProps<T extends { id: string | number }> {
 // Styles des variantes
 const variantStyles = {
   bordered: {
-    table: "rounded-none",
     header: "bg-content2 border border-divider",
     column: "bg-content2 py-4",
     row: "py-4 border-b border-divider last:border-b-0 hover:bg-content2",
-    cell: "",
   },
   striped: {
-    table: "rounded-none",
     header: "bg-content2 border border-divider",
     column: "bg-content2 py-4",
     row: "py-4 even:bg-content2",
-    cell: "",
   },
   unstyled: {
-    table: "rounded-none",
     header: "bg-content2 border border-divider",
     column: "bg-content2 py-4",
     row: "py-4 hover:bg-content2",
-    cell: "",
   },
 };
 
@@ -143,22 +130,17 @@ export function DataGrid<T extends { id: string | number }>({
   ];
 
   return (
-    <TableRoot
-      aria-label={caption}
-      className={cn(variantClasses.table, classNames?.table)}
-      {...props?.tableProps}
-      radius="sm"
-    >
+    <TableRoot aria-label={caption} {...props?.tableProps} radius="sm">
       <TableHeader
         columns={preparedColumns}
-        className={cn(variantClasses.header, classNames?.header)}
+        className={cn(variantClasses.header)}
         {...props?.tableHeaderProps}
       >
         {(column) => (
           <TableColumn
             key={column.key}
             aria-label={String(column.label || column.key)}
-            className={cn(variantClasses.column, classNames?.column)}
+            className={cn(variantClasses.column)}
             {...props?.tableColumnProps}
           >
             {column.key === "checkbox" ? (
@@ -169,17 +151,12 @@ export function DataGrid<T extends { id: string | number }>({
                 className={classNames?.checkbox}
               />
             ) : (
-              <div
-                className={cn(
-                  "flex items-center gap-2",
-                  classNames?.headerContent,
-                )}
-              >
+              <div className={cn("flex items-center gap-2")}>
                 {column.label}
                 {column.sortable && (
                   <div
                     className={cn(
-                      "relative w-4 h-4 cursor-pointer",
+                      "relative size-4 cursor-pointer",
                       classNames?.sortIcon,
                     )}
                     onClick={() => {
@@ -224,23 +201,16 @@ export function DataGrid<T extends { id: string | number }>({
         )}
       </TableHeader>
 
-      <TableBody
-        items={rows}
-        className={cn(classNames?.tbody)}
-        {...props?.tableBodyProps}
-      >
+      <TableBody items={rows} {...props?.tableBodyProps}>
         {(row) => (
           <TableRow
             key={row.id}
             aria-label={`Row ${row.id}`}
-            className={cn(variantClasses.row, classNames?.row)}
+            className={cn(variantClasses.row)}
             {...props?.tableRowProps}
           >
             {(columnKey) => (
-              <TableCell
-                className={cn(variantClasses.cell, classNames?.cell)}
-                {...props?.tableCellProps}
-              >
+              <TableCell {...props?.tableCellProps}>
                 {columnKey === "checkbox" ? (
                   <Checkbox
                     isSelected={isRowSelected(row)}
