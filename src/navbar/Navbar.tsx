@@ -17,7 +17,8 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Item } from "@/types/navigation";
 
 export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
-  brand?: ReactNode;
+  appName?: ReactNode;
+  appLogo?: ReactNode;
   profile?: ReactNode;
   navigationItems?: Item[];
   menuItems?: Item[];
@@ -34,7 +35,8 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (
     {
-      brand,
+      appName,
+      appLogo,
       profile,
       navigationItems = [],
       menuItems = [],
@@ -75,13 +77,14 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             />
-            {brand && <NavbarBrand>{brand}</NavbarBrand>}
+            {appName && <NavbarBrand>{appName}</NavbarBrand>}
           </NavbarContent>
         )}
 
         {/* Actions - Always visible */}
         <NavbarContent justify="start">
-          {brand && <NavbarBrand>{brand}</NavbarBrand>}
+          {appName && <NavbarBrand>{appName}</NavbarBrand>}
+          {appLogo && <NavbarBrand>{appLogo}</NavbarBrand>}
         </NavbarContent>
         <NavbarContent justify="end" {...contentProps}>
           {isDesktop &&
