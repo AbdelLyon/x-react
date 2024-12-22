@@ -32,22 +32,22 @@ const V = (f, r, S) => {
 }, U = {
   bordered: {
     table: "rounded-none",
-    header: "bg-content2",
-    column: "bg-content2 py-4 border border-divider",
+    header: "bg-content2 border border-divider",
+    column: "bg-content2 py-4",
     row: "py-4 border-b border-divider last:border-b-0 hover:bg-content2",
     cell: ""
   },
   striped: {
     table: "rounded-none",
-    header: "bg-content2",
-    column: "bg-content2 py-4 border border-divider",
+    header: "bg-content2 border border-divider",
+    column: "bg-content2 py-4",
     row: "py-4 even:bg-content2",
     cell: ""
   },
   unstyled: {
     table: "rounded-none",
-    header: "bg-content2",
-    column: "bg-content2 py-4 border border-divider",
+    header: "bg-content2 border border-divider",
+    column: "bg-content2 py-4",
     row: "py-4 hover:bg-content2",
     cell: ""
   }
