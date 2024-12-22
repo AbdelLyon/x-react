@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-p {
-  color: #222425;
-}
-
-body:focus {
+html:focus {
   outline: none;
 }
