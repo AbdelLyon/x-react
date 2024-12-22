@@ -1,27 +1,27 @@
 import { j as d } from "./jsx-runtime-Dx-03ztt.js";
 import { forwardRef as N } from "react";
-import { Navbar as A, NavbarContent as x, NavbarMenuToggle as R, NavbarBrand as B, NavbarItem as a, Link as v, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
-import { cn as f } from "./utils/x-react.es.js";
+import { Navbar as A, NavbarContent as b, NavbarMenuToggle as R, NavbarBrand as B, NavbarItem as a, Link as v, NavbarMenu as D, NavbarMenuItem as E } from "@nextui-org/react";
+import { cn as l } from "./utils/x-react.es.js";
 import { u as L } from "./useMediaQuery-A9Oq9utn.js";
 const Q = N(
   ({
-    appName: o,
-    appLogo: i,
-    profile: b,
+    appName: s,
+    appLogo: f,
+    profile: x,
     navigationItems: u = [],
     menuItems: c = [],
     contentProps: h,
     menuProps: y,
-    onItemClick: t,
+    onItemClick: o,
     className: p,
-    classNames: s,
+    classNames: e,
     isMenuOpen: j,
-    onMenuOpenChange: e,
+    onMenuOpenChange: t,
     ...g
   }, w) => {
     const n = L("(min-width: 768px)"), P = (r) => {
-      var l;
-      (l = r.onPress) == null || l.call(r), t == null || t(r), e == null || e(!1);
+      var i;
+      (i = r.onPress) == null || i.call(r), o == null || o(r), t == null || t(!1);
     };
     return /* @__PURE__ */ d.jsxs(
       A,
@@ -31,35 +31,35 @@ const Q = N(
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
-          ...s
+          ...e
         },
         isMenuOpen: j,
-        onMenuOpenChange: e,
+        onMenuOpenChange: t,
         ...g,
         children: [
-          !n && /* @__PURE__ */ d.jsxs(x, { children: [
+          !n && /* @__PURE__ */ d.jsxs(b, { children: [
             /* @__PURE__ */ d.jsx(
               R,
               {
                 "aria-label": j ? "Close menu" : "Open menu"
               }
             ),
-            o && /* @__PURE__ */ d.jsx(B, { children: o })
+            s && /* @__PURE__ */ d.jsx(B, { children: s })
           ] }),
-          n && (o || i) && /* @__PURE__ */ d.jsxs(x, { justify: "start", className: "gap-0", children: [
-            /* @__PURE__ */ d.jsx(a, { className: "w-[270px]", children: o }),
-            /* @__PURE__ */ d.jsx(a, { children: o })
+          n && (s || f) && /* @__PURE__ */ d.jsxs(b, { justify: "start", className: "gap-0", children: [
+            /* @__PURE__ */ d.jsx(a, { className: "w-[250px] border-r-2 border-divider", children: s }),
+            /* @__PURE__ */ d.jsx(a, { children: s })
           ] }),
-          /* @__PURE__ */ d.jsxs(x, { justify: "end", ...h, children: [
+          /* @__PURE__ */ d.jsxs(b, { justify: "end", ...h, children: [
             n && u.map((r) => /* @__PURE__ */ d.jsx(a, { children: /* @__PURE__ */ d.jsxs(
               v,
               {
-                className: f(
+                className: l(
                   "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
                     "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
-                  s == null ? void 0 : s.item
+                  e == null ? void 0 : e.item
                 ),
                 onPress: () => P(r),
                 children: [
@@ -69,19 +69,19 @@ const Q = N(
                 ]
               }
             ) }, r.key)),
-            b && /* @__PURE__ */ d.jsx(a, { children: b })
+            x && /* @__PURE__ */ d.jsx(a, { children: x })
           ] }),
           !n && /* @__PURE__ */ d.jsx(D, { ...y, children: c.map((r) => /* @__PURE__ */ d.jsx(E, { children: /* @__PURE__ */ d.jsxs(
             v,
             {
-              className: f(
+              className: l(
                 "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-2 border-primary bg-content1 text-primary": r.isActive
                 },
-                s == null ? void 0 : s.item
+                e == null ? void 0 : e.item
               ),
-              onPress: () => t == null ? void 0 : t(r),
+              onPress: () => o == null ? void 0 : o(r),
               children: [
                 r.startContent,
                 r.label,
