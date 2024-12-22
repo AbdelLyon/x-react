@@ -1,8 +1,9 @@
 import { forwardRef } from "react";
 import { cn } from "@/utils";
 import { Item } from "@/types/navigation";
-import { Link, Tooltip } from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
 import { useResponsive } from "@/hooks";
+import { Tooltip } from "@/tooltip";
 
 export interface SidebarProps {
   items?: Item[];
@@ -46,14 +47,13 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       if (isTablet) {
         return (
           <Tooltip
+            trigger={linkContent}
             key={item.key}
             content={item.label}
             placement="right"
             delay={0}
             closeDelay={0}
-          >
-            {linkContent}
-          </Tooltip>
+          />
         );
       }
 

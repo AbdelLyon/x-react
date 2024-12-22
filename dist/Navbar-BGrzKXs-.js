@@ -12,32 +12,32 @@ const z = A(
     profile: x,
     navigationItems: h = [],
     menuItems: u = [],
-    contentProps: y,
-    menuProps: c,
-    onItemClick: d,
-    className: w,
-    classNames: t,
+    contentProps: c,
+    menuProps: y,
+    onItemClick: t,
+    className: g,
+    classNames: d,
     isMenuOpen: i,
     onMenuOpenChange: o,
-    ...g
+    ...w
   }, N) => {
     const { isDesktop: j, isMobile: p, isTablet: P } = q(), R = (r) => {
       var v;
-      (v = r.onPress) == null || v.call(r), d == null || d(r), o == null || o(!1);
+      (v = r.onPress) == null || v.call(r), t == null || t(r), o == null || o(!1);
     };
     return /* @__PURE__ */ e.jsxs(
       T,
       {
         ref: N,
-        className: w,
+        className: g,
         classNames: {
-          base: "bg-white",
+          base: "bg-white dark:bg-background",
           wrapper: "max-w-full",
-          ...t
+          ...d
         },
         isMenuOpen: i,
         onMenuOpenChange: o,
-        ...g,
+        ...w,
         children: [
           p && /* @__PURE__ */ e.jsx(a, { children: /* @__PURE__ */ e.jsx(
             D,
@@ -49,7 +49,7 @@ const z = A(
             !P && /* @__PURE__ */ e.jsx(s, { className: "w-[247px] border-r-2 border-divider", children: b }),
             /* @__PURE__ */ e.jsx(s, { children: n })
           ] }),
-          /* @__PURE__ */ e.jsxs(a, { justify: "end", ...y, children: [
+          /* @__PURE__ */ e.jsxs(a, { justify: "end", ...c, children: [
             j && h.map((r) => /* @__PURE__ */ e.jsx(s, { children: /* @__PURE__ */ e.jsxs(
               l,
               {
@@ -58,7 +58,7 @@ const z = A(
                   {
                     "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
-                  t == null ? void 0 : t.item
+                  d == null ? void 0 : d.item
                 ),
                 onPress: () => R(r),
                 children: [
@@ -70,7 +70,7 @@ const z = A(
             ) }, r.key)),
             x && /* @__PURE__ */ e.jsx(s, { children: x })
           ] }),
-          !j && /* @__PURE__ */ e.jsx(E, { ...c, children: u.map((r) => /* @__PURE__ */ e.jsx($, { children: /* @__PURE__ */ e.jsxs(
+          !j && /* @__PURE__ */ e.jsx(E, { ...y, children: u.map((r) => /* @__PURE__ */ e.jsx($, { children: /* @__PURE__ */ e.jsxs(
             l,
             {
               className: f(
@@ -78,9 +78,9 @@ const z = A(
                 {
                   "border-l-2 border-primary bg-content1 text-primary": r.isActive
                 },
-                t == null ? void 0 : t.item
+                d == null ? void 0 : d.item
               ),
-              onPress: () => d == null ? void 0 : d(r),
+              onPress: () => t == null ? void 0 : t(r),
               children: [
                 r.startContent,
                 r.label,

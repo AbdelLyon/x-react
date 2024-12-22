@@ -1,17 +1,19 @@
-import { j as n } from "./jsx-runtime-Dx-03ztt.js";
+import { j as o } from "./jsx-runtime-Dx-03ztt.js";
 import { forwardRef as a } from "react";
 import { cn as d } from "./utils/x-react.es.js";
-import { Link as b, Tooltip as u } from "@nextui-org/react";
+import { Link as b } from "@nextui-org/react";
 import "@tanstack/react-query";
 import "next-themes";
-import { a as c } from "./useResponsive-Bo4ImEVM.js";
-const s = a(
-  ({ items: l = [], classNames: e, onItemClick: o }, f) => {
-    const { isDesktop: i, isTablet: t } = c();
+import { a as s } from "./useResponsive-Bo4ImEVM.js";
+/* empty css               */
+import { T as u } from "./Tooltip-CtZeqM0I.js";
+const c = a(
+  ({ items: f = [], classNames: e, onItemClick: n }, l) => {
+    const { isDesktop: i, isTablet: t } = s();
     if (!i && !t)
       return null;
     const x = (r) => {
-      const p = /* @__PURE__ */ n.jsxs(
+      const p = /* @__PURE__ */ o.jsxs(
         b,
         {
           className: d(
@@ -22,7 +24,7 @@ const s = a(
             },
             e == null ? void 0 : e.item
           ),
-          onPress: () => o == null ? void 0 : o(r),
+          onPress: () => n == null ? void 0 : n(r),
           children: [
             r.startContent,
             i ? r.label : null,
@@ -31,22 +33,22 @@ const s = a(
         },
         r.key
       );
-      return t ? /* @__PURE__ */ n.jsx(
+      return t ? /* @__PURE__ */ o.jsx(
         u,
         {
+          trigger: p,
           content: r.label,
           placement: "right",
           delay: 0,
-          closeDelay: 0,
-          children: p
+          closeDelay: 0
         },
         r.key
       ) : p;
     };
-    return /* @__PURE__ */ n.jsx(
+    return /* @__PURE__ */ o.jsx(
       "aside",
       {
-        ref: f,
+        ref: l,
         className: d(
           "fixed left-0 h-screen flex-col bg-[#191b1d]",
           {
@@ -55,12 +57,12 @@ const s = a(
           },
           e == null ? void 0 : e.base
         ),
-        children: /* @__PURE__ */ n.jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: l.map(x) })
+        children: /* @__PURE__ */ o.jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: f.map(x) })
       }
     );
   }
 );
-s.displayName = "Sidebar";
+c.displayName = "Sidebar";
 export {
-  s as S
+  c as S
 };
