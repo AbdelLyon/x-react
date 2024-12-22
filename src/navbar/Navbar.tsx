@@ -19,7 +19,7 @@ export type LinkColor =
 
 export interface NavItem {
   key: string;
-  label: string;
+  label?: string;
   onPress?: () => void;
   isActive?: boolean;
   href?: string;
@@ -60,7 +60,7 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 // Configuration des items
 export interface NavItem {
   key: string;
-  label: string;
+  label?: string;
   onPress?: () => void;
   isActive?: boolean;
   href?: string;
@@ -121,7 +121,6 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
         {/* Actions - Always visible */}
         <NavbarContent justify="end" {...contentProps}>
-          {profile && <NavbarItem>{profile}</NavbarItem>}
           {isDesktop &&
             navigationItems.map((item) => (
               <NavbarItem key={item.key} isActive={item.isActive}>
@@ -139,6 +138,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                 </Link>
               </NavbarItem>
             ))}
+          {profile && <NavbarItem>{profile}</NavbarItem>}
         </NavbarContent>
 
         {/* Mobile Menu */}

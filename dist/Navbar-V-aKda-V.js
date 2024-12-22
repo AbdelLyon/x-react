@@ -46,7 +46,6 @@ const D = k(
             e && /* @__PURE__ */ a.jsx(w, { children: e })
           ] }),
           /* @__PURE__ */ a.jsxs(v, { justify: "end", ...p, children: [
-            c && /* @__PURE__ */ a.jsx(b, { children: c }),
             l && t.map((r) => /* @__PURE__ */ a.jsx(b, { isActive: r.isActive, children: /* @__PURE__ */ a.jsxs(
               f,
               {
@@ -60,7 +59,8 @@ const D = k(
                   r.endContent
                 ]
               }
-            ) }, r.key))
+            ) }, r.key)),
+            c && /* @__PURE__ */ a.jsx(b, { children: c })
           ] }),
           !l && /* @__PURE__ */ a.jsx(C, { ...N, children: x.map((r) => /* @__PURE__ */ a.jsx(
             m,

@@ -4,7 +4,7 @@ export type ButtonColor = "default" | "primary" | "secondary" | "success" | "war
 export type LinkColor = "foreground" | "primary" | "secondary" | "success" | "warning" | "danger";
 export interface NavItem {
     key: string;
-    label: string;
+    label?: string;
     onPress?: () => void;
     isActive?: boolean;
     href?: string;
@@ -24,7 +24,7 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
 }
 export interface NavItem {
     key: string;
-    label: string;
+    label?: string;
     onPress?: () => void;
     isActive?: boolean;
     href?: string;
