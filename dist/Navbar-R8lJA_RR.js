@@ -6,21 +6,21 @@ import { u as B } from "./useMediaQuery-A9Oq9utn.js";
 const D = w(
   ({
     brand: n,
-    profile: b,
+    profile: s,
     navigationItems: l = [],
     menuItems: u = [],
     contentProps: f,
     menuProps: h,
-    onItemClick: t,
+    onItemClick: d,
     className: y,
     classNames: o,
-    isMenuOpen: s,
-    onMenuOpenChange: d,
+    isMenuOpen: b,
+    onMenuOpenChange: t,
     ...g
   }, N) => {
     const e = B("(min-width: 768px)"), i = (r) => {
       var v;
-      (v = r.onPress) == null || v.call(r), t == null || t(r), d == null || d(!1);
+      (v = r.onPress) == null || v.call(r), d == null || d(r), t == null || t(!1);
     };
     return /* @__PURE__ */ a.jsxs(
       A,
@@ -32,23 +32,24 @@ const D = w(
           wrapper: "max-w-full",
           ...o
         },
-        isMenuOpen: s,
-        onMenuOpenChange: d,
+        isMenuOpen: b,
+        onMenuOpenChange: t,
         ...g,
         children: [
           !e && /* @__PURE__ */ a.jsxs(x, { children: [
             /* @__PURE__ */ a.jsx(
               P,
               {
-                "aria-label": s ? "Close menu" : "Open menu"
+                "aria-label": b ? "Close menu" : "Open menu"
               }
             ),
             n && /* @__PURE__ */ a.jsx(R, { children: n })
           ] }),
           /* @__PURE__ */ a.jsxs(x, { justify: "end", ...f, children: [
-            e && l.map((r) => /* @__PURE__ */ a.jsx(
-              p,
+            e && l.map((r) => /* @__PURE__ */ a.jsx(p, { children: /* @__PURE__ */ a.jsxs(
+              c,
               {
+                "aria-current": r.isActive ? "page" : void 0,
                 className: j(
                   "p-2 hover:bg-content1 rounded-md",
                   {
@@ -56,48 +57,35 @@ const D = w(
                   },
                   o == null ? void 0 : o.item
                 ),
-                children: /* @__PURE__ */ a.jsxs(
-                  c,
-                  {
-                    "aria-current": r.isActive ? "page" : void 0,
-                    onPress: () => i(r),
-                    children: [
-                      r.startContent,
-                      r.label,
-                      r.endContent
-                    ]
-                  }
-                )
-              },
-              r.key
-            )),
-            b && /* @__PURE__ */ a.jsx(p, { children: b })
+                onPress: () => i(r),
+                children: [
+                  r.startContent,
+                  r.label,
+                  r.endContent
+                ]
+              }
+            ) }, r.key)),
+            s && /* @__PURE__ */ a.jsx(p, { children: s })
           ] }),
-          !e && /* @__PURE__ */ a.jsx(k, { ...h, children: u.map((r) => /* @__PURE__ */ a.jsx(
-            m,
+          !e && /* @__PURE__ */ a.jsx(k, { ...h, children: u.map((r) => /* @__PURE__ */ a.jsx(m, { children: /* @__PURE__ */ a.jsxs(
+            c,
             {
+              "aria-current": r.isActive ? "page" : void 0,
+              onPress: () => i(r),
               className: j(
-                "p-2 hover:bg-content1 rounded-md",
+                "p-2 hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l border-primary bg-content1 text-primary": r.isActive
                 },
                 o == null ? void 0 : o.item
               ),
-              children: /* @__PURE__ */ a.jsxs(
-                c,
-                {
-                  "aria-current": r.isActive ? "page" : void 0,
-                  onPress: () => i(r),
-                  children: [
-                    r.startContent,
-                    r.label,
-                    r.endContent
-                  ]
-                }
-              )
-            },
-            r.key
-          )) })
+              children: [
+                r.startContent,
+                r.label,
+                r.endContent
+              ]
+            }
+          ) }, r.key)) })
         ]
       }
     );

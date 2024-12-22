@@ -82,19 +82,17 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         <NavbarContent justify="end" {...contentProps}>
           {isDesktop &&
             navigationItems.map((item) => (
-              <NavbarItem
-                key={item.key}
-                className={cn(
-                  "p-2 hover:bg-content1 rounded-md",
-                  {
-                    "border-l border-primary bg-content1 text-primary":
-                      item.isActive,
-                  },
-                  classNames?.item,
-                )}
-              >
+              <NavbarItem key={item.key}>
                 <Link
                   aria-current={item.isActive ? "page" : undefined}
+                  className={cn(
+                    "p-2 hover:bg-content1 rounded-md",
+                    {
+                      "border-l border-primary bg-content1 text-primary":
+                        item.isActive,
+                    },
+                    classNames?.item,
+                  )}
                   onPress={() => handleItemPress(item)}
                 >
                   {item.startContent}
@@ -110,20 +108,18 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {!isDesktop && (
           <NavbarMenu {...menuProps}>
             {menuItems.map((item) => (
-              <NavbarMenuItem
-                key={item.key}
-                className={cn(
-                  "p-2 hover:bg-content1 rounded-md",
-                  {
-                    "border-l border-primary bg-content1 text-primary":
-                      item.isActive,
-                  },
-                  classNames?.item,
-                )}
-              >
+              <NavbarMenuItem key={item.key}>
                 <Link
                   aria-current={item.isActive ? "page" : undefined}
                   onPress={() => handleItemPress(item)}
+                  className={cn(
+                    "p-2 hover:bg-content1 rounded-md cursor-pointer",
+                    {
+                      "border-l border-primary bg-content1 text-primary":
+                        item.isActive,
+                    },
+                    classNames?.item,
+                  )}
                 >
                   {item.startContent}
                   {item.label}

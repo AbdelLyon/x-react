@@ -15,7 +15,7 @@ export interface SidebarProps {
 }
 
 export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
-  ({ items = [], className, classNames, onItemClick }, ref) => {
+  ({ items = [], classNames, onItemClick }, ref) => {
     const isDesktop = useMediaQuery("(min-width: 1024px)");
     const isTablet = useMediaQuery(
       "(min-width: 768px) and (max-width: 1023px)",
@@ -36,7 +36,6 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             "w-[60px]": isTablet,
           },
           classNames?.base,
-          className,
         )}
       >
         <nav className="flex flex-1 flex-col gap-2 p-4">
@@ -44,7 +43,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             <Link
               key={item.key}
               className={cn(
-                "flex items-center gap-3 p-3 hover:bg-content1 rounded-md",
+                "flex items-center gap-3 p-3 hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-4 border-primary bg-content1 text-primary":
                     item.isActive,
