@@ -1,61 +1,61 @@
 import { j as o } from "./jsx-runtime-Dx-03ztt.js";
-import { forwardRef as N } from "react";
-import { Navbar as w, NavbarContent as x, NavbarMenuToggle as A, NavbarBrand as P, NavbarItem as p, Link as k, NavbarMenu as R, NavbarMenuItem as m } from "@nextui-org/react";
-import { cn as c } from "./utils/x-react.es.js";
+import { forwardRef as w } from "react";
+import { Navbar as A, NavbarContent as v, NavbarMenuToggle as P, NavbarBrand as k, NavbarItem as p, Link as c, NavbarMenu as R, NavbarMenuItem as m } from "@nextui-org/react";
+import { cn as j } from "./utils/x-react.es.js";
 import { u as B } from "./useMediaQuery-A9Oq9utn.js";
-const D = N(
+const D = w(
   ({
-    brand: e,
+    brand: n,
     profile: b,
-    navigationItems: j = [],
-    menuItems: l = [],
-    contentProps: u,
-    menuProps: f,
+    navigationItems: l = [],
+    menuItems: u = [],
+    contentProps: f,
+    menuProps: h,
     onItemClick: d,
-    className: h,
-    classNames: a,
+    className: y,
+    classNames: t,
     isMenuOpen: s,
-    onMenuOpenChange: t,
-    ...y
-  }, g) => {
-    const n = B("(min-width: 768px)"), i = (r) => {
-      var v;
-      (v = r.onPress) == null || v.call(r), d == null || d(r), t == null || t(!1);
+    onMenuOpenChange: a,
+    ...g
+  }, N) => {
+    const e = B("(min-width: 768px)"), i = (r) => {
+      var x;
+      (x = r.onPress) == null || x.call(r), d == null || d(r), a == null || a(!1);
     };
     return /* @__PURE__ */ o.jsxs(
-      w,
+      A,
       {
-        ref: g,
-        className: h,
+        ref: N,
+        className: y,
         classNames: {
           base: "bg-background",
           wrapper: "max-w-full",
-          ...a
+          ...t
         },
         isMenuOpen: s,
-        onMenuOpenChange: t,
-        ...y,
+        onMenuOpenChange: a,
+        ...g,
         children: [
-          !n && /* @__PURE__ */ o.jsxs(x, { children: [
+          !e && /* @__PURE__ */ o.jsxs(v, { children: [
             /* @__PURE__ */ o.jsx(
-              A,
+              P,
               {
                 "aria-label": s ? "Close menu" : "Open menu"
               }
             ),
-            e && /* @__PURE__ */ o.jsx(P, { children: e })
+            n && /* @__PURE__ */ o.jsx(k, { children: n })
           ] }),
-          /* @__PURE__ */ o.jsxs(x, { justify: "end", ...u, children: [
-            n && j.map((r) => /* @__PURE__ */ o.jsx(p, { children: /* @__PURE__ */ o.jsxs(
-              k,
+          /* @__PURE__ */ o.jsxs(v, { justify: "end", ...f, children: [
+            e && l.map((r) => /* @__PURE__ */ o.jsx(p, { children: /* @__PURE__ */ o.jsxs(
+              c,
               {
                 "aria-current": r.isActive ? "page" : void 0,
-                className: c(
-                  "p-2 hover:bg-content1 rounded-md",
+                className: j(
+                  "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
                     "border-l border-primary bg-content1 text-primary": r.isActive
                   },
-                  a == null ? void 0 : a.item
+                  t == null ? void 0 : t.item
                 ),
                 onPress: () => i(r),
                 children: [
@@ -67,17 +67,17 @@ const D = N(
             ) }, r.key)),
             b && /* @__PURE__ */ o.jsx(p, { children: b })
           ] }),
-          !n && /* @__PURE__ */ o.jsx(R, { ...f, children: l.map((r) => /* @__PURE__ */ o.jsx(m, { children: /* @__PURE__ */ o.jsxs(
-            "button",
+          !e && /* @__PURE__ */ o.jsx(R, { ...h, children: u.map((r) => /* @__PURE__ */ o.jsx(m, { children: /* @__PURE__ */ o.jsxs(
+            c,
             {
               "aria-current": r.isActive ? "page" : void 0,
               onClick: () => i(r),
-              className: c(
-                "p-2 hover:bg-content1 rounded-md cursor-pointer",
+              className: j(
+                "p-2 hover:bg-content1 text-foreground rounded-md cursor-pointer",
                 {
                   "border-l border-primary bg-content1 text-primary": r.isActive
                 },
-                a == null ? void 0 : a.item
+                t == null ? void 0 : t.item
               ),
               children: [
                 r.startContent,
