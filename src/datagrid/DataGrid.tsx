@@ -148,7 +148,7 @@ export function DataGrid<T extends { id: string | number }>({
       aria-label={caption}
       className={cn(variantClasses.table, classNames?.base)}
       {...props?.tableProps}
-      radius="md"
+      radius="sm"
     >
       <TableHeader
         columns={preparedColumns}
