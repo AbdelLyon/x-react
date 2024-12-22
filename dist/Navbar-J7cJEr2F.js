@@ -47,7 +47,7 @@ const Q = A(
             e && /* @__PURE__ */ d.jsx(B, { children: e })
           ] }),
           n && (e || l) && /* @__PURE__ */ d.jsxs(a, { justify: "start", children: [
-            /* @__PURE__ */ d.jsx(b, { className: "w-[245px] border-r-2 border-divider", children: e }),
+            /* @__PURE__ */ d.jsx(b, { className: "w-[247px] border-r-2 border-divider", children: e }),
             /* @__PURE__ */ d.jsx(b, { children: e })
           ] }),
           /* @__PURE__ */ d.jsxs(a, { justify: "end", ...c, children: [
