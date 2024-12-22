@@ -2,7 +2,7 @@
 import { j as s } from "../jsx-runtime-Dx-03ztt.js";
 import { u as e } from "../useMediaQuery-A9Oq9utn.js";
 import { N as p } from "../Navbar-8DYwCyUW.js";
-import { S as l } from "../Sidebar-au6sqhsF.js";
+import { S as l } from "../Sidebar-CWh05c8u.js";
 import { cn as c } from "../utils/x-react.es.js";
 const b = ({
   children: n,

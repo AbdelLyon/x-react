@@ -51,11 +51,14 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
                 },
                 classNames?.item,
               )}
+              color={
+                item.linkColor || (item.isActive ? "primary" : "foreground")
+              }
               onPress={() => onItemClick?.(item)}
-              title={isTablet ? item.label : undefined}
             >
               {item.startContent}
-              {isDesktop && <span>{item.label}</span>}
+              {isDesktop ? item.label : null}
+              {item.endContent}
             </Link>
           ))}
         </nav>
