@@ -79,14 +79,14 @@ const variantStyles = {
   bordered: {
     table: "border border-divider",
     header: "bg-content2",
-    column: "bg-content2 py-2",
+    column: "bg-content2 py-3",
     row: "border-b border-divider last:border-b-0",
     cell: "",
   },
   striped: {
     table: "",
     header: "bg-content2",
-    column: "bg-content2 py-2",
+    column: "bg-content2 py-3",
     row: "even:bg-default-50",
     cell: "",
   },
@@ -159,7 +159,7 @@ export function DataGrid<T extends { id: string | number }>({
           <TableColumn
             key={column.key}
             aria-label={String(column.label || column.key)}
-            className={cn("py-4", variantClasses.column, classNames?.th)}
+            className={cn(variantClasses.column, classNames?.th)}
             {...props?.tableColumnProps}
           >
             {column.key === "checkbox" ? (

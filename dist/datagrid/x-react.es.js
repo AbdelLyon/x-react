@@ -33,14 +33,14 @@ const U = (x, r, u) => {
   bordered: {
     table: "border border-divider",
     header: "bg-content2",
-    column: "bg-content2 py-2",
+    column: "bg-content2 py-3",
     row: "border-b border-divider last:border-b-0",
     cell: ""
   },
   striped: {
     table: "",
     header: "bg-content2",
-    column: "bg-content2 py-2",
+    column: "bg-content2 py-3",
     row: "even:bg-default-50",
     cell: ""
   },
@@ -102,7 +102,7 @@ function W({
               B,
               {
                 "aria-label": String(t.label || t.key),
-                className: b("py-4", c.column, e == null ? void 0 : e.th),
+                className: b(c.column, e == null ? void 0 : e.th),
                 ...i == null ? void 0 : i.tableColumnProps,
                 children: t.key === "checkbox" ? /* @__PURE__ */ l.jsx(
                   T,
