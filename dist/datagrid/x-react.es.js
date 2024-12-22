@@ -31,7 +31,7 @@ const V = (x, r, S) => {
   };
 }, U = {
   bordered: {
-    table: "border border-divider rounded-lg",
+    table: "border border-divider",
     header: "bg-content2",
     column: "bg-content2 py-4",
     row: "border-b border-divider last:border-b-0 hover:bg-content2",
