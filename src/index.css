@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-html:focus {
+p {
+  color: #1d1f20;
+}
+
+body:focus {
   outline: none;
 }

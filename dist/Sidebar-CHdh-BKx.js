@@ -51,7 +51,7 @@ const c = a(
       {
         ref: l,
         className: p(
-          "fixed left-0 h-screen flex-col bg-[#232525] border-r border-divider",
+          "fixed left-0 h-screen flex-col bg-[#1d1f20] border-r border-divider",
           {
             "w-[270px]": i,
             "w-[90px]": o
