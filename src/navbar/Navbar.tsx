@@ -77,7 +77,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             />
-            {appName && <NavbarBrand>{appName}</NavbarBrand>}
+            {appLogo && <NavbarBrand>{appLogo}</NavbarBrand>}
           </NavbarContent>
         )}
 
