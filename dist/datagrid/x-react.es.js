@@ -90,6 +90,7 @@ function Q({
       "aria-label": S,
       className: o(b.table, e == null ? void 0 : e.base),
       ...n == null ? void 0 : n.tableProps,
+      radius: "none",
       children: [
         /* @__PURE__ */ i.jsx(
           $,
