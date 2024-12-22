@@ -2,8 +2,8 @@ import { j as i } from "./jsx-runtime-Dx-03ztt.js";
 import { forwardRef as u } from "react";
 import { cn as d } from "./utils/x-react.es.js";
 import { u as p } from "./useMediaQuery-A9Oq9utn.js";
-import { Link as a } from "@nextui-org/react";
-const b = u(
+import { Link as b } from "@nextui-org/react";
+const l = u(
   ({ items: x = [], classNames: r, onItemClick: t }, f) => {
     const n = p("(min-width: 1024px)"), o = p(
       "(min-width: 768px) and (max-width: 1023px)"
@@ -21,10 +21,10 @@ const b = u(
           r == null ? void 0 : r.base
         ),
         children: /* @__PURE__ */ i.jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4 ", children: x.map((e) => /* @__PURE__ */ i.jsxs(
-          a,
+          b,
           {
             className: d(
-              "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text:text-foreground dark:hover:bg-content1 rounded-md cursor-pointer",
+              "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
               {
                 "border-l-4 border-primary bg-content1 text-primary": e.isActive,
                 "justify-center": o
@@ -44,7 +44,7 @@ const b = u(
     );
   }
 );
-b.displayName = "Sidebar";
+l.displayName = "Sidebar";
 export {
-  b as S
+  l as S
 };
