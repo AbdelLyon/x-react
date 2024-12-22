@@ -19,13 +19,13 @@ export interface DataGridComponentProps<T> {
     tableProps?: TableProps;
     tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
     tableBodyProps?: Omit<TableBodyProps<T>, "items" | "children">;
-    tableRowProps?: Omit<TableRowProps | undefined, "children">;
-    tableCellProps?: Omit<TableCellProps | undefined, "children">;
+    tableRowProps?: Omit<TableRowProps, "children">;
+    tableCellProps?: Omit<TableCellProps, "children">;
     tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }
-export type DataGridProps<T extends {
+export interface DataGridProps<T extends {
     id: string | number;
-}> = {
+}> {
     props?: DataGridComponentProps<T>;
     rows: T[];
     columns: ColumnDefinition<T>[];
@@ -48,7 +48,8 @@ export type DataGridProps<T extends {
         headerContent?: string;
         cellContent?: string;
     };
-};
+    variant?: "bordered" | "striped" | "unstyled";
+}
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, className, onCheckedRowsChange, onSort, checkboxSelection, classNames, props, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
+}>({ rows, columns, caption, className, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;

@@ -53,6 +53,10 @@ module.exports = {
               DEFAULT: "#282b2e",
               foreground: "#000000",
             },
+            content2: {
+              DEFAULT: "#242729",
+              foreground: "#000000",
+            },
           },
         },
       },

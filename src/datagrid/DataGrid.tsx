@@ -17,7 +17,11 @@ import {
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 
-export type SortConfig<T> = { key: keyof T | null; direction: "asc" | "desc" };
+// Types
+export type SortConfig<T> = {
+  key: keyof T | null;
+  direction: "asc" | "desc";
+};
 
 export type ColumnDefinition<T> = {
   header: React.ReactNode;
@@ -39,12 +43,12 @@ export interface DataGridComponentProps<T> {
   tableProps?: TableProps;
   tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
   tableBodyProps?: Omit<TableBodyProps<T>, "items" | "children">;
-  tableRowProps?: Omit<TableRowProps | undefined, "children">;
-  tableCellProps?: Omit<TableCellProps | undefined, "children">;
+  tableRowProps?: Omit<TableRowProps, "children">;
+  tableCellProps?: Omit<TableCellProps, "children">;
   tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }
 
-export type DataGridProps<T extends { id: string | number }> = {
+export interface DataGridProps<T extends { id: string | number }> {
   props?: DataGridComponentProps<T>;
   rows: T[];
   columns: ColumnDefinition<T>[];
@@ -67,9 +71,34 @@ export type DataGridProps<T extends { id: string | number }> = {
     headerContent?: string;
     cellContent?: string;
   };
+  variant?: "bordered" | "striped" | "unstyled";
+}
+
+// Styles des variantes
+const variantStyles = {
+  bordered: {
+    table: "border border-divider",
+    header: "border-b border-divider",
+    column: "border-r border-divider last:border-r-0",
+    row: "border-b border-divider last:border-b-0",
+    cell: "border-r border-default-200 last:border-r-0",
+  },
+  striped: {
+    table: "",
+    header: "bg-content2",
+    column: "",
+    row: "even:bg-default-50",
+    cell: "",
+  },
+  unstyled: {
+    table: "",
+    header: "",
+    column: "",
+    row: "",
+    cell: "",
+  },
 };
 
-// Composant avec classNames
 export function DataGrid<T extends { id: string | number }>({
   rows,
   columns,
@@ -79,6 +108,7 @@ export function DataGrid<T extends { id: string | number }>({
   onSort,
   checkboxSelection = true,
   classNames,
+  variant = "unstyled",
   props,
 }: DataGridProps<T>) {
   const {
@@ -94,6 +124,8 @@ export function DataGrid<T extends { id: string | number }>({
     key: string;
     label: React.ReactNode;
   };
+
+  const variantClasses = variantStyles[variant];
 
   const preparedColumns: ExtendedColumn[] = [
     ...(checkboxSelection
@@ -115,20 +147,19 @@ export function DataGrid<T extends { id: string | number }>({
   return (
     <TableRoot
       aria-label={caption}
-      className={cn(classNames?.base, className)}
-      aria-labelledby="table"
+      className={cn(variantClasses.table, classNames?.base, className)}
       {...props?.tableProps}
     >
       <TableHeader
         columns={preparedColumns}
-        className={classNames?.thead}
+        className={cn(variantClasses.header, classNames?.thead)}
         {...props?.tableHeaderProps}
       >
         {(column) => (
           <TableColumn
             key={column.key}
             aria-label={String(column.label || column.key)}
-            className={cn("py-4 bg-background", classNames?.th)}
+            className={cn("py-4", variantClasses.column, classNames?.th)}
             {...props?.tableColumnProps}
           >
             {column.key === "checkbox" ? (
@@ -168,21 +199,23 @@ export function DataGrid<T extends { id: string | number }>({
                   >
                     <IconChevronUp
                       size={16}
-                      className={`absolute -top-1 ${
+                      className={cn(
+                        "absolute -top-1",
                         sortConfig.key === column.key &&
-                        sortConfig.direction === "asc"
+                          sortConfig.direction === "asc"
                           ? "opacity-100"
-                          : "opacity-30"
-                      }`}
+                          : "opacity-30",
+                      )}
                     />
                     <IconChevronDown
                       size={16}
-                      className={`absolute top-1 ${
+                      className={cn(
+                        "absolute top-1",
                         sortConfig.key === column.key &&
-                        sortConfig.direction === "desc"
+                          sortConfig.direction === "desc"
                           ? "opacity-100"
-                          : "opacity-30"
-                      }`}
+                          : "opacity-30",
+                      )}
                     />
                   </div>
                 )}
@@ -194,18 +227,21 @@ export function DataGrid<T extends { id: string | number }>({
 
       <TableBody
         items={rows}
-        className={classNames?.tbody}
+        className={cn(classNames?.tbody)}
         {...props?.tableBodyProps}
       >
         {(row) => (
           <TableRow
             key={row.id}
             aria-label={`Row ${row.id}`}
-            className={classNames?.tr}
+            className={cn(variantClasses.row, classNames?.tr)}
             {...props?.tableRowProps}
           >
             {(columnKey) => (
-              <TableCell className={classNames?.td} {...props?.tableCellProps}>
+              <TableCell
+                className={cn(variantClasses.cell, classNames?.td)}
+                {...props?.tableCellProps}
+              >
                 {columnKey === "checkbox" ? (
                   <Checkbox
                     isSelected={isRowSelected(row)}
