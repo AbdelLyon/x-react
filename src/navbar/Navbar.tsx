@@ -112,7 +112,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                 <Link
                   key={item.key}
                   className={cn(
-                    "flex items-center gap-3 p-3 hover:bg-content1 rounded-md cursor-pointer",
+                    "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                     {
                       "border-l-2 border-primary bg-content1 text-primary":
                         item.isActive,

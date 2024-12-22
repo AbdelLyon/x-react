@@ -7,8 +7,8 @@ const L = w(
   ({
     brand: n,
     profile: s,
-    navigationItems: i = [],
-    menuItems: f = [],
+    navigationItems: f = [],
+    menuItems: i = [],
     contentProps: l,
     menuProps: y,
     onItemClick: o,
@@ -46,7 +46,7 @@ const L = w(
             n && /* @__PURE__ */ a.jsx(R, { children: n })
           ] }),
           /* @__PURE__ */ a.jsxs(p, { justify: "end", ...l, children: [
-            t && i.map((r) => /* @__PURE__ */ a.jsx(v, { children: /* @__PURE__ */ a.jsxs(
+            t && f.map((r) => /* @__PURE__ */ a.jsx(v, { children: /* @__PURE__ */ a.jsxs(
               j,
               {
                 "aria-current": r.isActive ? "page" : void 0,
@@ -67,11 +67,11 @@ const L = w(
             ) }, r.key)),
             s && /* @__PURE__ */ a.jsx(v, { children: s })
           ] }),
-          !t && /* @__PURE__ */ a.jsx(B, { ...y, children: f.map((r) => /* @__PURE__ */ a.jsx(D, { children: /* @__PURE__ */ a.jsxs(
+          !t && /* @__PURE__ */ a.jsx(B, { ...y, children: i.map((r) => /* @__PURE__ */ a.jsx(D, { children: /* @__PURE__ */ a.jsxs(
             j,
             {
               className: u(
-                "flex items-center gap-3 p-3 hover:bg-content1 rounded-md cursor-pointer",
+                "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                 {
                   "border-l-2 border-primary bg-content1 text-primary": r.isActive
                 },
