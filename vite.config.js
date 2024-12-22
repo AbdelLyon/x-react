@@ -30,6 +30,7 @@ var modules = [
     "navbar",
     "sidebar",
     "layout",
+    "tooltip",
 ];
 export default defineConfig({
     plugins: [

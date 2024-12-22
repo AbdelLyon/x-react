@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { cn } from "@/utils";
 import { Item } from "@/types/navigation";
-import { Link } from "@nextui-org/react";
+import { Link, Tooltip } from "@nextui-org/react";
 import { useResponsive } from "@/hooks";
 
 export interface SidebarProps {
@@ -22,6 +22,44 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       return null;
     }
 
+    const renderLink = (item: Item) => {
+      const linkContent = (
+        <Link
+          key={item.key}
+          className={cn(
+            "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
+            {
+              "border-l-2 border-primary bg-content1 text-primary":
+                item.isActive,
+              "justify-center": isTablet,
+            },
+            classNames?.item,
+          )}
+          onPress={() => onItemClick?.(item)}
+        >
+          {item.startContent}
+          {isDesktop ? item.label : null}
+          {item.endContent}
+        </Link>
+      );
+
+      if (isTablet) {
+        return (
+          <Tooltip
+            key={item.key}
+            content={item.label}
+            placement="right"
+            delay={0}
+            closeDelay={0}
+          >
+            {linkContent}
+          </Tooltip>
+        );
+      }
+
+      return linkContent;
+    };
+
     return (
       <aside
         ref={ref}
@@ -34,26 +72,8 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
           classNames?.base,
         )}
       >
-        <nav className="flex flex-1 flex-col gap-2 p-4 ">
-          {items.map((item) => (
-            <Link
-              key={item.key}
-              className={cn(
-                "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 opacity-100 rounded-md cursor-pointer",
-                {
-                  "border-l-2 border-primary bg-content1 text-primary":
-                    item.isActive,
-                  "justify-center": isTablet,
-                },
-                classNames?.item,
-              )}
-              onPress={() => onItemClick?.(item)}
-            >
-              {item.startContent}
-              {isDesktop ? item.label : null}
-              {item.endContent}
-            </Link>
-          ))}
+        <nav className="flex flex-1 flex-col gap-2 p-4">
+          {items.map(renderLink)}
         </nav>
       </aside>
     );
