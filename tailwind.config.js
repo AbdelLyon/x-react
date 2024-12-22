@@ -22,7 +22,7 @@ module.exports = {
             },
 
             background: {
-              DEFAULT: "#fdfdfd",
+              DEFAULT: "#fefefe",
               foreground: "#000000",
             },
             primary: {
@@ -38,7 +38,7 @@ module.exports = {
         dark: {
           colors: {
             background: {
-              DEFAULT: "#1f2224",
+              DEFAULT: "#252728",
               foreground: "#ffffff",
             },
             primary: {
@@ -50,12 +50,16 @@ module.exports = {
               foreground: "#ffffff",
             },
             content1: {
-              DEFAULT: "#282b2e",
+              DEFAULT: "#2c2f30",
               foreground: "#000000",
             },
 
             content2: {
-              DEFAULT: "#242729",
+              DEFAULT: "#272a2b",
+              foreground: "#000000",
+            },
+            divider: {
+              DEFAULT: "#83837c",
               foreground: "#000000",
             },
           },
