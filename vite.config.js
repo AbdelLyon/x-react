@@ -29,6 +29,7 @@ var modules = [
     "datepicker",
     "navbar",
     "sidebar",
+    "layout",
 ];
 export default defineConfig({
     plugins: [

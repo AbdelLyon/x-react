@@ -11,7 +11,7 @@ export interface SidebarItem {
   isActive?: boolean;
 }
 
-interface Props {
+export interface SidebarProps {
   items?: SidebarItem[];
   className?: string;
   classNames?: {
@@ -21,7 +21,7 @@ interface Props {
   onItemClick?: (item: SidebarItem) => void;
 }
 
-export const Sidebar = forwardRef<HTMLDivElement, Props>(
+export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
   ({ items = [], className, classNames, onItemClick }, ref) => {
     const isDesktop = useMediaQuery("(min-width: 1024px)");
     const isTablet = useMediaQuery(

@@ -6,7 +6,7 @@ export interface SidebarItem {
     href?: string;
     isActive?: boolean;
 }
-interface Props {
+export interface SidebarProps {
     items?: SidebarItem[];
     className?: string;
     classNames?: {
@@ -15,5 +15,4 @@ interface Props {
     };
     onItemClick?: (item: SidebarItem) => void;
 }
-export declare const Sidebar: import('react').ForwardRefExoticComponent<Props & import('react').RefAttributes<HTMLDivElement>>;
-export {};
+export declare const Sidebar: import('react').ForwardRefExoticComponent<SidebarProps & import('react').RefAttributes<HTMLDivElement>>;
