@@ -34,11 +34,10 @@ export interface DrawerProps
     header?: string;
     body?: string;
     footer?: string;
-    closeButton?: string;
-    buttonClose?: string;
-    buttonAction?: string;
+    closeX?: string;
   };
-  buttonProps?: ButtonProps;
+  buttonCloseProps?: ButtonProps;
+  buttonActionProps?: ButtonProps;
 }
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
@@ -75,7 +74,8 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       // Styling
       classNames,
 
-      buttonProps = {},
+      buttonActionProps,
+      buttonCloseProps,
       ...props
     },
     ref,
@@ -124,7 +124,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
             wrapper: cn(classNames?.wrapper),
             base: cn("bg-background", classNames?.base),
             backdrop: classNames?.backdrop,
-            closeButton: cn("absolute right-4 top-4", classNames?.closeButton),
+            closeButton: cn("absolute right-4 top-4", classNames?.closeX),
           }}
           // Events
           onClose={onClose}
@@ -146,14 +146,15 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                     <>
                       {buttonCloseLabel && (
                         <Button
-                          color={buttonProps.color || "primary"}
-                          radius={buttonProps.radius || "sm"}
-                          variant={buttonProps.variant || "bordered"}
+                          color={buttonCloseProps?.color || "primary"}
+                          radius={buttonCloseProps?.radius || "sm"}
+                          variant={buttonCloseProps?.variant || "bordered"}
                           onPress={onClose}
                           className={cn(
                             "border-primary/20",
-                            classNames?.buttonClose,
+                            buttonCloseProps?.className,
                           )}
+                          {...buttonCloseProps}
                         >
                           {buttonCloseLabel}
                         </Button>
@@ -161,10 +162,10 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
                       {buttonActionLabel && onAction && (
                         <Button
-                          color={buttonProps.color || "primary"}
-                          radius={buttonProps.radius || "sm"}
+                          color={buttonActionProps?.color || "primary"}
+                          radius={buttonActionProps?.radius || "sm"}
                           onPress={handleAction}
-                          className={classNames?.buttonAction}
+                          {...buttonActionProps}
                         >
                           {buttonActionLabel}
                         </Button>

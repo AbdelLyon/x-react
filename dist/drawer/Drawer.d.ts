@@ -16,10 +16,9 @@ export interface DrawerProps extends Omit<DrawerRootProps, "children" | "title">
         header?: string;
         body?: string;
         footer?: string;
-        closeButton?: string;
-        buttonClose?: string;
-        buttonAction?: string;
+        closeX?: string;
     };
-    buttonProps?: ButtonProps;
+    buttonCloseProps?: ButtonProps;
+    buttonActionProps?: ButtonProps;
 }
 export declare const Drawer: import('react').ForwardRefExoticComponent<Omit<DrawerProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;

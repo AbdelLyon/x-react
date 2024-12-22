@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 
 import { cn } from "@/utils";
-import { Button, ButtonProps } from "@/button";
+import { Button, type ButtonProps } from "@/button";
 
 interface Props extends Omit<Partial<ModalPropsRoot>, "title"> {
   trigger: React.ReactNode;
@@ -20,7 +20,8 @@ interface Props extends Omit<Partial<ModalPropsRoot>, "title"> {
   onAction?: () => void;
   buttonCloseLabel?: string;
   buttonActionLabel?: string;
-  buttonProps?: ButtonProps;
+  buttonCloseProps?: ButtonProps;
+  buttonActionProps?: ButtonProps;
 }
 export const Modal = forwardRef<HTMLDivElement, Props>(
   (
@@ -32,7 +33,8 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
       buttonCloseLabel,
       buttonActionLabel,
       children,
-      buttonProps = {},
+      buttonCloseProps,
+      buttonActionProps,
       ...props
     },
     ref,
@@ -103,11 +105,11 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
                       {buttonCloseLabel && (
                         <Button
                           className="border-primary/40"
-                          color={buttonProps.color || "primary"}
-                          radius={buttonProps.radius || "sm"}
-                          variant={buttonProps.variant || "bordered"}
+                          color={buttonCloseProps?.color || "primary"}
+                          radius={buttonCloseProps?.radius || "sm"}
+                          variant={buttonCloseProps?.variant || "bordered"}
                           onPress={onClose}
-                          {...buttonProps}
+                          {...buttonCloseProps}
                         >
                           {buttonCloseLabel}
                         </Button>
@@ -115,10 +117,10 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
 
                       {buttonActionLabel && onAction && (
                         <Button
-                          color={buttonProps.color || "primary"}
-                          radius={buttonProps.radius || "sm"}
+                          color={buttonActionProps?.color || "primary"}
+                          radius={buttonActionProps?.radius || "sm"}
                           onPress={handleAction}
-                          {...buttonProps}
+                          {...buttonActionProps}
                         >
                           {buttonActionLabel}
                         </Button>

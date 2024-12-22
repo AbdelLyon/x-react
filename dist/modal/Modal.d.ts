@@ -8,7 +8,8 @@ interface Props extends Omit<Partial<ModalPropsRoot>, "title"> {
     onAction?: () => void;
     buttonCloseLabel?: string;
     buttonActionLabel?: string;
-    buttonProps?: ButtonProps;
+    buttonCloseProps?: ButtonProps;
+    buttonActionProps?: ButtonProps;
 }
 export declare const Modal: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};
