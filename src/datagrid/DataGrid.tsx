@@ -103,7 +103,6 @@ export function DataGrid<T extends { id: string | number }>({
   rows,
   columns,
   caption,
-  className,
   onCheckedRowsChange,
   onSort,
   checkboxSelection = true,
@@ -147,7 +146,7 @@ export function DataGrid<T extends { id: string | number }>({
   return (
     <TableRoot
       aria-label={caption}
-      className={cn(variantClasses.table, classNames?.base, className)}
+      className={cn(variantClasses.table, classNames?.base)}
       {...props?.tableProps}
       radius="lg"
     >

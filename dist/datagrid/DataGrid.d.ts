@@ -52,4 +52,4 @@ export interface DataGridProps<T extends {
 }
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, className, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
+}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
