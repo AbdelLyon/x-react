@@ -1,24 +1,12 @@
-import { CircularProgressProps as NextUICircularProgressProps } from '@nextui-org/react';
-import { Color, Size } from '../types/types';
-interface CircularProgressProps extends Omit<NextUICircularProgressProps, "color" | "size"> {
-    color?: Color;
-    size?: Size;
-    strokeWidth?: number;
-    label?: string;
-    valueLabel?: React.ReactNode;
-    showValueLabel?: boolean;
-    formatOptions?: Intl.NumberFormatOptions;
-    value?: number;
-    minValue?: number;
-    maxValue?: number;
-    isIndeterminate?: boolean;
-    isStriped?: boolean;
+import { CircularProgressProps as CircularProgressRootProps } from '@nextui-org/react';
+interface AdditionalCircularProgressProps {
     autoIncrement?: boolean;
     incrementInterval?: number;
     incrementStep?: number;
-    className?: string;
-    classNames?: Partial<Record<"base" | "svgWrapper" | "svg" | "track" | "indicator" | "label" | "value" | "labelWrapper", string>>;
     onValueChange?: (value: number) => void;
+}
+interface CircularProgressProps extends Omit<CircularProgressRootProps, "classNames">, AdditionalCircularProgressProps {
+    classNames?: CircularProgressRootProps["classNames"];
 }
 export declare const CircularProgress: import('react').ForwardRefExoticComponent<Omit<CircularProgressProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};

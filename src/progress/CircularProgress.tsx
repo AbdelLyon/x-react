@@ -1,54 +1,35 @@
 import { forwardRef, useEffect, useCallback, useState } from "react";
 import {
-  CircularProgress as NextUICircularProgress,
-  CircularProgressProps as NextUICircularProgressProps,
+  CircularProgress as CircularProgressRoot,
+  CircularProgressProps as CircularProgressRootProps,
 } from "@nextui-org/react";
-import { Color, Size } from "@/types/types";
 
-interface CircularProgressProps
-  extends Omit<NextUICircularProgressProps, "color" | "size"> {
-  // Appearance
-  color?: Color;
-  size?: Size;
-  strokeWidth?: number;
-
-  // Content
-  label?: string;
-  valueLabel?: React.ReactNode;
-  showValueLabel?: boolean;
-  formatOptions?: Intl.NumberFormatOptions;
-
-  // Behavior
-  value?: number;
-  minValue?: number;
-  maxValue?: number;
-  isIndeterminate?: boolean;
-  isStriped?: boolean;
-
-  // Auto-increment functionality
+interface AdditionalCircularProgressProps {
   autoIncrement?: boolean;
   incrementInterval?: number;
   incrementStep?: number;
-
-  // Styling
-  className?: string;
-  classNames?: Partial<
-    Record<
-      | "base"
-      | "svgWrapper"
-      | "svg"
-      | "track"
-      | "indicator"
-      | "label"
-      | "value"
-      | "labelWrapper",
-      string
-    >
-  >;
-
-  // Callback
   onValueChange?: (value: number) => void;
 }
+
+interface CircularProgressProps
+  extends Omit<CircularProgressRootProps, "classNames">,
+    AdditionalCircularProgressProps {
+  classNames?: CircularProgressRootProps["classNames"];
+}
+
+const defaultProps = {
+  color: "primary",
+  size: "md",
+  strokeWidth: 3,
+  showValueLabel: false,
+  formatOptions: { style: "percent" } as const,
+  value: 0,
+  minValue: 0,
+  maxValue: 100,
+  autoIncrement: false,
+  incrementInterval: 500,
+  incrementStep: 10,
+} as const;
 
 export const CircularProgress = forwardRef<
   HTMLDivElement,
@@ -56,42 +37,25 @@ export const CircularProgress = forwardRef<
 >(
   (
     {
-      // Appearance
-      color = "primary",
-      size = "md",
-      strokeWidth = 3,
-
-      // Content
-      label,
-      valueLabel,
-      showValueLabel = false,
-      formatOptions = { style: "percent" },
-
-      // Behavior
-      value = 0,
-      minValue = 0,
-      maxValue = 100,
-      isIndeterminate = false,
-      isStriped = false,
-
-      // Auto-increment
-      autoIncrement = false,
-      incrementInterval = 500,
-      incrementStep = 10,
-
-      // Styling
-      className,
-      classNames,
-
-      // Callback
+      // Auto-increment props
+      autoIncrement = defaultProps.autoIncrement,
+      incrementInterval = defaultProps.incrementInterval,
+      incrementStep = defaultProps.incrementStep,
       onValueChange,
-      ...props
+
+      // NextUI props
+      value = defaultProps.value,
+      minValue = defaultProps.minValue,
+      maxValue = defaultProps.maxValue,
+      formatOptions = defaultProps.formatOptions,
+      valueLabel,
+      classNames,
+      ...nextUIProps
     },
     ref,
   ) => {
     const [currentValue, setCurrentValue] = useState(value);
 
-    // Handle auto-increment
     useEffect(() => {
       if (!autoIncrement) {
         setCurrentValue(value);
@@ -117,37 +81,25 @@ export const CircularProgress = forwardRef<
       onValueChange,
     ]);
 
-    // Format value label
-    const renderValueLabel = useCallback(() => {
+    const getValueLabel = useCallback(() => {
       if (valueLabel) return valueLabel;
 
       const percentage = (currentValue - minValue) / (maxValue - minValue);
       return new Intl.NumberFormat(undefined, formatOptions).format(percentage);
     }, [currentValue, valueLabel, minValue, maxValue, formatOptions]);
 
+    const progressProps = {
+      ...nextUIProps,
+      value: currentValue,
+      minValue,
+      maxValue,
+      formatOptions,
+      valueLabel: getValueLabel(),
+      classNames,
+    };
+
     return (
-      <NextUICircularProgress
-        ref={ref}
-        // Appearance
-        color={color}
-        size={size}
-        strokeWidth={strokeWidth}
-        // Content
-        aria-label={label}
-        label={label}
-        valueLabel={renderValueLabel()}
-        showValueLabel={showValueLabel}
-        // Behavior
-        value={currentValue}
-        minValue={minValue}
-        maxValue={maxValue}
-        isIndeterminate={isIndeterminate}
-        isStriped={isStriped}
-        // Styling
-        className={className}
-        classNames={classNames}
-        {...props}
-      />
+      <CircularProgressRoot ref={ref} {...defaultProps} {...progressProps} />
     );
   },
 );
