@@ -1,15 +1,12 @@
-import { forwardRef, ReactNode } from "react";
-import {
-  Button as NextUIButton,
-  ButtonProps as NextUIButtonProps,
-} from "@nextui-org/react";
+import type { AnchorHTMLAttributes, ComponentType, ReactNode } from "react";
+import { forwardRef } from "react";
+import type { ButtonProps as ButtonRootProps } from "@nextui-org/react";
+import { Button as ButtonRoot } from "@nextui-org/react";
 
 import { cn } from "@/utils";
 
-export interface ButtonProps extends NextUIButtonProps {
-  LinkComponent?: React.ComponentType<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>
-  >;
+export interface ButtonProps extends ButtonRootProps {
+  LinkComponent?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
   customStyles?: {
     base?: string;
     beforeContent?: string;
@@ -51,25 +48,37 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
     );
 
-    const Content = (): ReactNode => (
-      <>
-        {startContent && (
-          <span className={cn("mr-2", customStyles.beforeContent)}>
-            {startContent}
-          </span>
-        )}
-        <span className={customStyles.content}>{children}</span>
-        {endContent && (
-          <span className={cn("ml-2", customStyles.afterContent)}>
-            {endContent}
-          </span>
-        )}
-      </>
-    );
+    const Content = (): ReactNode => {
+      const hasStartContent =
+        startContent !== null && startContent !== undefined;
+      const hasEndContent = endContent !== null && endContent !== undefined;
 
-    if (href && LinkComponent) {
       return (
-        <NextUIButton
+        <>
+          {hasStartContent && (
+            <span className={cn("mr-2", customStyles.beforeContent)}>
+              {startContent}
+            </span>
+          )}
+          <span className={customStyles.content}>{children}</span>
+          {hasEndContent && (
+            <span className={cn("ml-2", customStyles.afterContent)}>
+              {endContent}
+            </span>
+          )}
+        </>
+      );
+    };
+
+    const hasValidLink =
+      typeof href === "string" &&
+      href.length > 0 &&
+      LinkComponent !== null &&
+      LinkComponent !== undefined;
+
+    if (hasValidLink) {
+      return (
+        <ButtonRoot
           ref={ref}
           {...props}
           as={LinkComponent}
@@ -80,12 +89,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           target={target}
         >
           <Content />
-        </NextUIButton>
+        </ButtonRoot>
       );
     }
 
     return (
-      <NextUIButton
+      <ButtonRoot
         ref={ref}
         {...props}
         variant={variant}
@@ -93,7 +102,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         isDisabled={isDisabled}
       >
         <Content />
-      </NextUIButton>
+      </ButtonRoot>
     );
   },
 );
+
+Button.displayName = "Button";

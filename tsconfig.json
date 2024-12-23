@@ -32,7 +32,9 @@
   },
   "include": [
     "src",
-    "./index.ts"
+    "./index.ts",
+    "./vite.config.ts",
+    "./vite.config.d.ts"
   ],
   "references": [
     {

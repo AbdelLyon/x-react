@@ -1,12 +1,13 @@
 import { forwardRef } from "react";
+import type {
+  DropdownProps,
+  DropdownMenuProps} from "@nextui-org/react";
 import {
   Dropdown as DropdownRoot,
   DropdownTrigger,
   DropdownMenu,
   DropdownSection,
-  DropdownItem,
-  DropdownProps,
-  DropdownMenuProps,
+  DropdownItem
 } from "@nextui-org/react";
 
 // Interface pour les items de dropdown

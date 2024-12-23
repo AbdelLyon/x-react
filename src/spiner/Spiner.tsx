@@ -1,9 +1,10 @@
 import { forwardRef } from "react";
+import type {
+  SpinnerProps as NextUISpinnerProps} from "@nextui-org/react";
 import {
-  Spinner as NextUISpinner,
-  SpinnerProps as NextUISpinnerProps,
+  Spinner as NextUISpinner
 } from "@nextui-org/react";
-import { Color, Size } from "@/types/types";
+import type { Color, Size } from "@/types/types";
 
 interface SpinnerProps
   extends Omit<NextUISpinnerProps, "label" | "labelColor"> {

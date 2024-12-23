@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
-import { ButtonGroup, ButtonGroupProps, ButtonProps } from "@nextui-org/react";
+import type { ButtonGroupProps, ButtonProps } from "@nextui-org/react";
+import { ButtonGroup } from "@nextui-org/react";
 import { Button } from "./Button";
 
 export type ButtonsProps = ButtonGroupProps & {

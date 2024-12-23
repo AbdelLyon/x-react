@@ -1,8 +1,10 @@
+import type { ReactNode } from "react";
 import { forwardRef } from "react";
+import type {
+  TabsProps as NextUITabsProps} from "@nextui-org/react";
 import {
   Tabs as TabsRoot,
-  Tab,
-  TabsProps as NextUITabsProps,
+  Tab
 } from "@nextui-org/react";
 
 export interface TabItem {
@@ -52,11 +54,11 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
     },
     ref,
   ) => {
-    const handleSelectionChange = (key: React.Key) => {
+    const handleSelectionChange = (key: React.Key): void => {
       onTabChange?.(key.toString());
     };
 
-    const defaultContent = (item: TabItem) => item.content;
+    const defaultContent = (item: TabItem): ReactNode => item.content;
     const contentRenderer = renderTabContent || defaultContent;
 
     return (

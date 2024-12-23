@@ -1,5 +1,7 @@
-import { forwardRef, useState, ReactNode } from "react";
-import { Slider as SliderRoot, SliderProps } from "@nextui-org/react";
+import type { ReactNode } from "react";
+import { forwardRef, useState } from "react";
+import type { SliderProps } from "@nextui-org/react";
+import { Slider as SliderRoot } from "@nextui-org/react";
 
 type LabelPosition = "top" | "bottom" | "none";
 
@@ -44,7 +46,7 @@ const LabelComponent = ({
   content: ReactNode;
   className?: string;
 }): ReactNode => {
-  if (position === "none") return null;
+  if (position === "none") {return null;}
 
   return (
     <p

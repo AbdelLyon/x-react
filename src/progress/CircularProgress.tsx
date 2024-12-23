@@ -1,8 +1,7 @@
-import { forwardRef, ReactNode, useEffect, useState } from "react";
-import {
-  CircularProgress as CircularProgressRoot,
-  CircularProgressProps as CircularProgressRootProps,
-} from "@nextui-org/react";
+import type { ReactNode } from "react";
+import { forwardRef, useEffect, useState } from "react";
+import type { CircularProgressProps as CircularProgressRootProps } from "@nextui-org/react";
+import { CircularProgress as CircularProgressRoot } from "@nextui-org/react";
 
 interface AdditionalCircularProgressProps {
   autoIncrement?: boolean;
@@ -87,7 +86,9 @@ export const CircularProgress = forwardRef<
     ]);
 
     const getValueLabel = (): ReactNode => {
-      if (valueLabel) return valueLabel;
+      if (valueLabel !== null && valueLabel !== undefined) {
+        return valueLabel;
+      }
 
       const percentage = (currentValue - minValue) / (maxValue - minValue);
       return new Intl.NumberFormat(undefined, formatOptions).format(percentage);

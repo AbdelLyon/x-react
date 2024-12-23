@@ -1,5 +1,5 @@
-import { NavbarProps } from "@/navbar/Navbar";
-import { SidebarProps } from "@/sidebar/Sidebar";
+import type { NavbarProps } from "@/navbar/Navbar";
+import type { SidebarProps } from "@/sidebar/Sidebar";
 
 interface UseLayoutConfigOptions {
   navbar?: Partial<NavbarProps>;

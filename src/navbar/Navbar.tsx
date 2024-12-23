@@ -1,18 +1,21 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
+import type {
+  NavbarContentProps,
+  NavbarMenuProps,
+  NavbarProps as NavbarRootProps,
+} from "@nextui-org/react";
 import {
   Navbar as NavbarRoot,
   NavbarContent,
-  NavbarContentProps,
   NavbarMenu,
-  NavbarMenuProps,
   NavbarMenuToggle,
-  NavbarProps as NavbarRootProps,
   NavbarItem,
   NavbarMenuItem,
   Link,
 } from "@nextui-org/react";
 import { cn } from "@/utils";
-import { Item } from "@/types/navigation";
+import type { Item } from "@/types/navigation";
 import { useResponsive } from "@/hooks";
 
 export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
@@ -74,20 +77,19 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {isMobile && (
           <NavbarContent>
             <NavbarMenuToggle
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-label={isMenuOpen === true ? "Close menu" : "Open menu"}
             />
           </NavbarContent>
         )}
 
-        {!isMobile && (appName || appLogo) && (
+        {!isMobile && (appName !== null || appLogo !== null) && (
           <NavbarContent justify="start">
-            {!isTablet && (
+            {!isTablet && appName !== null && (
               <NavbarItem className="w-[247px] border-r-2 border-default-200">
                 {appName}
               </NavbarItem>
             )}
-
-            <NavbarItem>{appLogo}</NavbarItem>
+            {appLogo !== null && <NavbarItem>{appLogo}</NavbarItem>}
           </NavbarContent>
         )}
 
@@ -112,7 +114,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                 </Link>
               </NavbarItem>
             ))}
-          {profile && <NavbarItem>{profile}</NavbarItem>}
+          {profile !== null && <NavbarItem>{profile}</NavbarItem>}
         </NavbarContent>
 
         {/* Mobile Menu */}

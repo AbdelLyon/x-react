@@ -1,5 +1,14 @@
 import { useDataGridState } from "@/hooks/useDataGrid";
 import { cn } from "@/utils";
+import type {
+  TableBodyProps,
+  TableProps,
+  TableHeaderProps,
+  TableRowProps,
+  TableCellProps,
+  TableColumnProps,
+} from "@nextui-org/react";
+import type { Key } from "react";
 import {
   Table as TableRoot,
   TableHeader,
@@ -8,15 +17,9 @@ import {
   TableRow,
   TableCell,
   Checkbox,
-  TableBodyProps,
-  TableProps,
-  TableHeaderProps,
-  TableRowProps,
-  TableCellProps,
-  TableColumnProps,
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
-import { JSX } from "react";
+import type { JSX } from "react";
 
 // Types
 export type SortConfig<T> = {
@@ -67,7 +70,6 @@ export interface DataGridProps<T extends { id: string | number }> {
   variant?: "bordered" | "striped" | "unstyled";
 }
 
-// Styles des variantes
 const variantStyles = {
   bordered: {
     header: "bg-content2 border border-default-200",
@@ -84,7 +86,62 @@ const variantStyles = {
     column: "bg-content2 py-4",
     row: "py-4 hover:bg-content2",
   },
+} as const;
+
+type ExtendedColumn<T> = ColumnDefinition<T> & {
+  key: string;
+  label: React.ReactNode;
 };
+
+function getColumnAriaLabel<T extends object>(
+  column: ExtendedColumn<T>,
+): string {
+  if (typeof column.label === "string" && column.label.length > 0) {
+    return column.label;
+  }
+  if (typeof column.key === "string" && column.key.length > 0) {
+    return column.key;
+  }
+  return "Column";
+}
+
+function getSortAriaLabel(label: React.ReactNode): string {
+  if (typeof label === "string" && label.length > 0) {
+    return `Sort by ${label}`;
+  }
+  return "Sort column";
+}
+
+function getCellContent<T extends object>(
+  columnKey: Key,
+  row: T,
+  columns: ColumnDefinition<T>[],
+): React.ReactNode {
+  const column = columns.find(
+    (c) => typeof c.field === "string" && String(c.field) === String(columnKey),
+  );
+
+  if (column === undefined) {
+    return null;
+  }
+
+  if (column.cell !== undefined) {
+    return column.cell(row);
+  }
+
+  if (
+    typeof column.field === "string" &&
+    column.field.length > 0 &&
+    column.field in row
+  ) {
+    const value = row[column.field as keyof T];
+    return typeof value === "string" || typeof value === "number"
+      ? String(value)
+      : null;
+  }
+
+  return null;
+}
 
 export function DataGrid<T extends { id: string | number }>({
   rows,
@@ -110,32 +167,50 @@ export function DataGrid<T extends { id: string | number }>({
     onSort,
   });
 
-  type ExtendedColumn = ColumnDefinition<T> & {
-    key: string;
-    label: React.ReactNode;
-  };
-
   const variantClasses = variantStyles[variant];
 
-  const preparedColumns: ExtendedColumn[] = [
-    ...(checkboxSelection
+  const preparedColumns: ExtendedColumn<T>[] = [
+    ...(checkboxSelection === true
       ? [
           {
             key: "checkbox",
             label: "",
             header: "",
-          } as ExtendedColumn,
+          } as ExtendedColumn<T>,
         ]
       : []),
     ...columns.map((col, index) => ({
       ...col,
-      key: String(col.field || index),
+      key: typeof col.field === "string" ? String(col.field) : String(index),
       label: col.header,
     })),
   ];
 
+  const handleColumnSort = (column: ExtendedColumn<T>): void => {
+    const matchingColumn = columns.find(
+      (c) =>
+        typeof c.field === "string" &&
+        c.field.length > 0 &&
+        String(c.field) === column.key,
+    );
+
+    const columnField = matchingColumn?.field;
+
+    if (
+      columnField !== undefined &&
+      columnField !== null &&
+      columnField !== "actions"
+    ) {
+      handleSort(columnField, sortConfig.direction === "asc" ? "desc" : "asc");
+    }
+  };
+
   return (
-    <TableRoot aria-label={caption} {...props?.tableProps} radius="sm">
+    <TableRoot
+      aria-label={typeof caption === "string" ? caption : undefined}
+      {...props?.tableProps}
+      radius="sm"
+    >
       <TableHeader
         columns={preparedColumns}
         className={cn(variantClasses.header)}
@@ -144,7 +219,7 @@ export function DataGrid<T extends { id: string | number }>({
         {(column) => (
           <TableColumn
             key={column.key}
-            aria-label={String(column.label || column.key)}
+            aria-label={getColumnAriaLabel(column)}
             className={cn(variantClasses.column)}
             {...props?.tableColumnProps}
           >
@@ -158,25 +233,15 @@ export function DataGrid<T extends { id: string | number }>({
             ) : (
               <div className={cn("flex items-center gap-2")}>
                 {column.label}
-                {column.sortable && (
+                {column.sortable === true && (
                   <div
                     className={cn(
                       "relative size-4 cursor-pointer",
                       classNames?.sortIcon,
                     )}
-                    onClick={() => {
-                      const field = columns.find(
-                        (c) => String(c.field) === column.key,
-                      )?.field;
-                      if (field && field !== "actions") {
-                        handleSort(
-                          field,
-                          sortConfig.direction === "asc" ? "desc" : "asc",
-                        );
-                      }
-                    }}
+                    onClick={() => handleColumnSort(column)}
                     role="button"
-                    aria-label={`Sort by ${column.label}`}
+                    aria-label={getSortAriaLabel(column.label)}
                   >
                     <IconChevronUp
                       size={16}
@@ -225,18 +290,7 @@ export function DataGrid<T extends { id: string | number }>({
                   />
                 ) : (
                   <div className={classNames?.cellContent}>
-                    {(() => {
-                      const column = columns.find(
-                        (c) => String(c.field) === columnKey,
-                      );
-                      if (!column) return null;
-
-                      return column.cell
-                        ? column.cell(row)
-                        : column.field && column.field in row
-                          ? String(row[column.field as keyof typeof row])
-                          : null;
-                    })()}
+                    {getCellContent(columnKey, row, columns)}
                   </div>
                 )}
               </TableCell>

@@ -1,7 +1,8 @@
-import { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
+import type {
+  TooltipProps as TooltipPropsRoot} from "@nextui-org/react";
 import {
-  Tooltip as TooltipRoot,
-  TooltipProps as TooltipPropsRoot,
+  Tooltip as TooltipRoot
 } from "@nextui-org/react";
 
 export interface TooltipProps
@@ -32,7 +33,7 @@ export const Tooltip = ({
   isDisabled = false,
   disableAnimation = false,
   ...props
-}: TooltipProps) => {
+}: TooltipProps): JSX.Element => {
   return (
     <TooltipRoot
       content={content}

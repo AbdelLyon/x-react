@@ -1,4 +1,5 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef, isValidElement } from "react";
 import {
   Drawer as DrawerRoot,
   DrawerContent,
@@ -6,77 +7,40 @@ import {
   DrawerBody,
   DrawerFooter,
   useDisclosure,
+  type DrawerProps as DrawerRootProps,
 } from "@nextui-org/react";
-import type { DrawerProps as DrawerRootProps } from "@nextui-org/react";
 import { cn } from "@/utils";
 import { Button, type ButtonProps } from "@/button";
 
-export interface DrawerProps
-  extends Omit<DrawerRootProps, "children" | "title"> {
-  // Trigger
+interface AdditionalDrawerProps {
   trigger: ReactNode;
-
-  // Content
   title?: ReactNode;
   children: ReactNode;
   footer?: ReactNode;
-
-  // Actions
-  onAction?: () => void;
   buttonCloseLabel?: string;
   buttonActionLabel?: string;
-
-  // Styling
-  classNames?: {
-    wrapper?: string;
-    base?: string;
-    backdrop?: string;
-    header?: string;
-    body?: string;
-    footer?: string;
-    closeX?: string;
-  };
+  onAction?: () => void;
   buttonCloseProps?: ButtonProps;
   buttonActionProps?: ButtonProps;
 }
 
+type DrawerProps = Omit<DrawerRootProps, keyof AdditionalDrawerProps> &
+  AdditionalDrawerProps;
+
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
   (
     {
-      // Trigger
       trigger,
-
-      // Content
       title,
       children,
       footer,
-
-      // Actions
-      onAction,
       buttonCloseLabel = "Close",
       buttonActionLabel,
-
-      // Appearance
-      size = "md",
-      radius = "lg",
-      placement = "right",
-
-      // State
-      isDismissable = true,
-      isKeyboardDismissDisabled = false,
-      shouldBlockScroll = true,
-      hideCloseButton = false,
-      disableAnimation = false,
-
-      // Portal
-      portalContainer,
-
-      // Styling
-      classNames,
-
-      buttonActionProps,
+      onAction,
       buttonCloseProps,
-      ...props
+      buttonActionProps,
+      classNames,
+      ...nextUIProps
     },
     ref,
   ) => {
@@ -95,6 +59,75 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       }
     };
 
+    const renderButtons = (): ReactNode => {
+      const hasValidCloseLabel =
+        typeof buttonCloseLabel === "string" && buttonCloseLabel.length > 0;
+
+      const hasValidActionButton =
+        typeof buttonActionLabel === "string" &&
+        buttonActionLabel.length > 0 &&
+        onAction !== undefined;
+
+      return (
+        <>
+          {hasValidCloseLabel && (
+            <Button
+              color={buttonCloseProps?.color || "primary"}
+              radius={buttonCloseProps?.radius || "sm"}
+              variant={buttonCloseProps?.variant || "bordered"}
+              onPress={onClose}
+              className={cn("border-primary/50", buttonCloseProps?.className)}
+              {...buttonCloseProps}
+            >
+              {buttonCloseLabel}
+            </Button>
+          )}
+
+          {hasValidActionButton && (
+            <Button
+              color={buttonActionProps?.color || "primary"}
+              radius={buttonActionProps?.radius || "sm"}
+              onPress={handleAction}
+              {...buttonActionProps}
+            >
+              {buttonActionLabel}
+            </Button>
+          )}
+        </>
+      );
+    };
+
+    const hasValidTitle =
+      title !== undefined &&
+      title !== null &&
+      (typeof title === "string" || isValidElement(title));
+
+    const hasValidFooter =
+      footer !== undefined &&
+      footer !== null &&
+      (typeof footer === "string" || isValidElement(footer));
+
+    const drawerClassNames = {
+      ...classNames,
+      wrapper:
+        typeof classNames?.wrapper === "string" ? classNames.wrapper : "",
+      base: cn(
+        "bg-background",
+        typeof classNames?.base === "string" ? classNames.base : "",
+      ),
+      backdrop:
+        typeof classNames?.backdrop === "string" ? classNames.backdrop : "",
+      closeButton: cn(
+        "absolute right-4 top-4",
+        typeof classNames?.closeButton === "string"
+          ? classNames.closeButton
+          : "",
+      ),
+      header: typeof classNames?.header === "string" ? classNames.header : "",
+      body: typeof classNames?.body === "string" ? classNames.body : "",
+      footer: typeof classNames?.footer === "string" ? classNames.footer : "",
+    };
+
     return (
       <>
         <div
@@ -108,73 +141,26 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
         <DrawerRoot
           ref={ref}
-          // Appearance
-          size={size}
-          radius={radius}
-          placement={placement}
-          // State
           isOpen={isOpen}
-          isDismissable={isDismissable}
-          isKeyboardDismissDisabled={isKeyboardDismissDisabled}
-          shouldBlockScroll={shouldBlockScroll}
-          hideCloseButton={hideCloseButton}
-          disableAnimation={disableAnimation}
-          // Portal
-          portalContainer={portalContainer}
-          // Styling
-          classNames={{
-            wrapper: cn(classNames?.wrapper),
-            base: cn("bg-background", classNames?.base),
-            backdrop: classNames?.backdrop,
-            closeButton: cn("absolute right-4 top-4", classNames?.closeX),
-          }}
-          // Events
           onClose={onClose}
-          {...props}
+          classNames={drawerClassNames}
+          {...nextUIProps}
         >
           <DrawerContent>
-            {(onClose) => (
+            {() => (
               <>
-                {title && (
-                  <DrawerHeader className={classNames?.header}>
+                {hasValidTitle && (
+                  <DrawerHeader className={drawerClassNames.header}>
                     {title}
                   </DrawerHeader>
                 )}
 
-                <DrawerBody className={classNames?.body}>{children}</DrawerBody>
+                <DrawerBody className={drawerClassNames.body}>
+                  {children}
+                </DrawerBody>
 
-                <DrawerFooter className={classNames?.footer}>
-                  {footer || (
-                    <>
-                      {buttonCloseLabel && (
-                        <Button
-                          color={buttonCloseProps?.color || "primary"}
-                          radius={buttonCloseProps?.radius || "sm"}
-                          variant={buttonCloseProps?.variant || "bordered"}
-                          onPress={onClose}
-                          className={cn(
-                            "border-primary/50",
-
-                            buttonCloseProps?.className,
-                          )}
-                          {...buttonCloseProps}
-                        >
-                          {buttonCloseLabel}
-                        </Button>
-                      )}
-
-                      {buttonActionLabel && onAction && (
-                        <Button
-                          color={buttonActionProps?.color || "primary"}
-                          radius={buttonActionProps?.radius || "sm"}
-                          onPress={handleAction}
-                          {...buttonActionProps}
-                        >
-                          {buttonActionLabel}
-                        </Button>
-                      )}
-                    </>
-                  )}
+                <DrawerFooter className={drawerClassNames.footer}>
+                  {hasValidFooter ? footer : renderButtons()}
                 </DrawerFooter>
               </>
             )}

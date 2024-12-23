@@ -1,6 +1,7 @@
 import { Button } from "@/button";
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
+import type { JSX } from "react";
 
 describe("Button", () => {
   it("should match the snapshot with default props", () => {
@@ -28,7 +29,7 @@ describe("Button", () => {
   it("should match the snapshot with link props", () => {
     const MockLinkComponent = (
       props: React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    ) => <a {...props} />;
+    ): JSX.Element => <a {...props} />;
     const { asFragment } = render(
       <Button href="/test" LinkComponent={MockLinkComponent} target="_blank">
         Click me

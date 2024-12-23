@@ -1,9 +1,10 @@
 import { forwardRef } from "react";
+import type {
+  RadioGroupProps,
+  RadioProps} from "@nextui-org/react";
 import {
   RadioGroup as RadioGroupRoot,
-  Radio,
-  RadioGroupProps,
-  RadioProps,
+  Radio
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 

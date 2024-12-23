@@ -1,4 +1,4 @@
-import { Color, LinkColor } from "./types";
+import type { Color, LinkColor } from "./types";
 
 export interface Item {
   key: string;

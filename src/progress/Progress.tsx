@@ -1,8 +1,7 @@
-import { forwardRef, ReactNode } from "react";
-import {
-  Progress as ProgressRoor,
-  ProgressProps as ProgressRootProps,
-} from "@nextui-org/react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
+import type { ProgressProps as ProgressRootProps } from "@nextui-org/react";
+import { Progress as ProgressRoor } from "@nextui-org/react";
 
 interface AdditionalProgressProps {
   label?: ReactNode;
@@ -30,19 +29,16 @@ const defaultProps = {
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   (
     {
-      // Custom props
       label,
       labelPosition = "top",
       containerClassName,
       labelClassName,
-      // NextUI props
       value = 0,
       maxValue = 100,
       formatOptions = defaultProps.formatOptions,
       valueLabel,
       showValueLabel = defaultProps.showValueLabel,
       classNames,
-      // Rest of NextUI props
       ...nextUIProps
     },
     ref,
@@ -53,7 +49,10 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
         formatOptions,
       ).format(value / maxValue);
 
-      return valueLabel?.toString() || formattedValue;
+      if (typeof valueLabel === "string" && valueLabel.trim() !== "") {
+        return valueLabel;
+      }
+      return formattedValue;
     };
 
     const labelComponent =
@@ -62,11 +61,11 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
           className={`
       flex items-center justify-between
       text-small font-medium text-default-500
-      ${labelClassName}
+      ${labelClassName ?? ""}
       ${labelPosition === "top" ? "order-first" : "order-last"}
     `}
         >
-          {label && <span>{label}</span>}
+          {label !== null && <span>{label}</span>}
           {showValueLabel && <span>{getValueLabel()}</span>}
         </div>
       );
@@ -79,14 +78,14 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       ...nextUIProps,
       classNames: {
         ...classNames,
-        base: `w-full ${classNames?.base || ""}`,
+        base: `w-full ${typeof classNames?.base === "string" && classNames?.base}`,
       },
     };
 
     return (
       <div
         ref={ref}
-        className={`flex w-full max-w-md flex-col gap-2 ${containerClassName || ""}`}
+        className={`flex w-full max-w-md flex-col gap-2 ${containerClassName}`}
       >
         {labelComponent}
         <ProgressRoor {...defaultProps} {...progressProps} />

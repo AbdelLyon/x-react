@@ -1,5 +1,6 @@
 import { Avatar } from "@/avatar";
 import { render } from "@testing-library/react";
+import type { JSX } from "react";
 import { describe, it, expect } from "vitest";
 
 describe("Avatar", () => {
@@ -19,7 +20,7 @@ describe("Avatar", () => {
   });
 
   it("should render custom fallback component", () => {
-    const CustomFallback = () => <div>Custom Fallback</div>;
+    const CustomFallback = (): JSX.Element => <div>Custom Fallback</div>;
 
     const { getByText } = render(
       <Avatar fallback={<CustomFallback />} showFallback />,
@@ -47,7 +48,7 @@ describe("Avatar", () => {
   });
 
   it("should match snapshot with custom fallback", () => {
-    const CustomFallback = () => <div>Custom Fallback</div>;
+    const CustomFallback = (): JSX.Element => <div>Custom Fallback</div>;
 
     const { asFragment } = render(
       <Avatar fallback={<CustomFallback />} showFallback />,
