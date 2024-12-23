@@ -1,8 +1,8 @@
 /* empty css                */
 import { j as l } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as I, useState as b, useEffect as S, useCallback as h } from "react";
-import { Progress as k, CircularProgress as v } from "@nextui-org/react";
-const j = {
+import { forwardRef as b, useState as v, useEffect as S } from "react";
+import { Progress as h, CircularProgress as z } from "@nextui-org/react";
+const w = {
   size: "md",
   color: "primary",
   radius: "full",
@@ -10,69 +10,69 @@ const j = {
   maxValue: 100,
   formatOptions: { style: "percent" },
   showValueLabel: !0
-}, z = I(
+}, E = b(
   ({
     // Custom props
-    label: f,
-    labelPosition: p = "top",
-    containerClassName: u,
-    labelClassName: o,
+    label: c,
+    labelPosition: i = "top",
+    containerClassName: m,
+    labelClassName: e,
     // NextUI props
-    value: n = 0,
+    value: s = 0,
     maxValue: r = 100,
-    formatOptions: t = j.formatOptions,
-    valueLabel: s,
-    showValueLabel: c = j.showValueLabel,
-    classNames: i,
+    formatOptions: t = w.formatOptions,
+    valueLabel: o,
+    showValueLabel: a = w.showValueLabel,
+    classNames: n,
     // Rest of NextUI props
     ...d
   }, x) => {
-    const m = () => {
-      const g = new Intl.NumberFormat(
+    const f = () => {
+      const P = new Intl.NumberFormat(
         void 0,
         t
-      ).format(n / r);
-      return (s == null ? void 0 : s.toString()) || g;
-    }, a = p === "none" ? null : /* @__PURE__ */ l.jsxs(
+      ).format(s / r);
+      return (o == null ? void 0 : o.toString()) || P;
+    }, p = i === "none" ? null : /* @__PURE__ */ l.jsxs(
       "div",
       {
         className: `
       flex items-center justify-between
       text-small font-medium text-default-500
-      ${o}
-      ${p === "top" ? "order-first" : "order-last"}
+      ${e}
+      ${i === "top" ? "order-first" : "order-last"}
     `,
         children: [
-          f && /* @__PURE__ */ l.jsx("span", { children: f }),
-          c && /* @__PURE__ */ l.jsx("span", { children: m() })
+          c && /* @__PURE__ */ l.jsx("span", { children: c }),
+          a && /* @__PURE__ */ l.jsx("span", { children: f() })
         ]
       }
-    ), P = {
-      value: n,
+    ), y = {
+      value: s,
       maxValue: r,
       formatOptions: t,
-      showValueLabel: c,
+      showValueLabel: a,
       ...d,
       classNames: {
-        ...i,
-        base: `w-full ${(i == null ? void 0 : i.base) || ""}`
+        ...n,
+        base: `w-full ${(n == null ? void 0 : n.base) || ""}`
       }
     };
     return /* @__PURE__ */ l.jsxs(
       "div",
       {
         ref: x,
-        className: `flex w-full max-w-md flex-col gap-2 ${u || ""}`,
+        className: `flex w-full max-w-md flex-col gap-2 ${m || ""}`,
         children: [
-          a,
-          /* @__PURE__ */ l.jsx(k, { ...j, ...P })
+          p,
+          /* @__PURE__ */ l.jsx(h, { ...w, ...y })
         ]
       }
     );
   }
 );
-z.displayName = "Progress";
-const e = {
+E.displayName = "Progress";
+const u = {
   color: "primary",
   size: "md",
   strokeWidth: 3,
@@ -80,66 +80,69 @@ const e = {
   formatOptions: { style: "percent" },
   value: 0,
   minValue: 0,
-  maxValue: 100,
+  maxValue: 100
+}, j = {
   autoIncrement: !1,
   incrementInterval: 500,
   incrementStep: 10
-}, C = I(
+}, F = b(
   ({
     // Auto-increment props
-    autoIncrement: f = e.autoIncrement,
-    incrementInterval: p = e.incrementInterval,
-    incrementStep: u = e.incrementStep,
-    onValueChange: o,
+    autoIncrement: c = j.autoIncrement,
+    incrementInterval: i = j.incrementInterval,
+    incrementStep: m = j.incrementStep,
+    onValueChange: e,
     // NextUI props
-    value: n = e.value,
-    minValue: r = e.minValue,
-    maxValue: t = e.maxValue,
-    formatOptions: s = e.formatOptions,
-    valueLabel: c,
-    classNames: i,
+    value: s = u.value,
+    minValue: r = u.minValue,
+    maxValue: t = u.maxValue,
+    formatOptions: o = u.formatOptions,
+    valueLabel: a,
+    classNames: n,
     ...d
   }, x) => {
-    const [m, a] = b(n);
+    const [f, p] = v(s);
     S(() => {
-      if (!f) {
-        a(n);
+      if (!c) {
+        p(s);
         return;
       }
-      const w = setInterval(() => {
-        a((y) => {
-          const $ = y >= t ? r : y + u;
-          return o == null || o($), $;
+      const g = setInterval(() => {
+        p((I) => {
+          const $ = I >= t ? r : I + m;
+          return e == null || e($), $;
         });
-      }, p);
-      return () => clearInterval(w);
+      }, i);
+      return () => clearInterval(g);
     }, [
-      f,
-      n,
-      p,
-      u,
+      c,
+      s,
+      i,
+      m,
       t,
       r,
-      o
+      e
     ]);
-    const P = h(() => {
-      if (c) return c;
-      const w = (m - r) / (t - r);
-      return new Intl.NumberFormat(void 0, s).format(w);
-    }, [m, c, r, t, s]), g = {
+    const P = {
       ...d,
-      value: m,
+      ...u,
+      ref: x,
+      value: f,
       minValue: r,
       maxValue: t,
-      formatOptions: s,
-      valueLabel: P(),
-      classNames: i
+      formatOptions: o,
+      valueLabel: (() => {
+        if (a) return a;
+        const g = (f - r) / (t - r);
+        return new Intl.NumberFormat(void 0, o).format(g);
+      })(),
+      classNames: n
     };
-    return /* @__PURE__ */ l.jsx(v, { ref: x, ...e, ...g });
+    return /* @__PURE__ */ l.jsx(z, { ...P });
   }
 );
-C.displayName = "CircularProgress";
+F.displayName = "CircularProgress";
 export {
-  C as CircularProgress,
-  z as Progress
+  F as CircularProgress,
+  E as Progress
 };

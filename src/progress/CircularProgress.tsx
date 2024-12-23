@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useCallback, useState } from "react";
+import { forwardRef, ReactNode, useEffect, useState } from "react";
 import {
   CircularProgress as CircularProgressRoot,
   CircularProgressProps as CircularProgressRootProps,
@@ -11,11 +11,10 @@ interface AdditionalCircularProgressProps {
   onValueChange?: (value: number) => void;
 }
 
-interface CircularProgressProps
-  extends Omit<CircularProgressRootProps, "classNames">,
-    AdditionalCircularProgressProps {
-  classNames?: CircularProgressRootProps["classNames"];
-}
+type CircularProgressProps = Omit<CircularProgressRootProps, "classNames"> &
+  AdditionalCircularProgressProps & {
+    classNames?: CircularProgressRootProps["classNames"];
+  };
 
 const defaultProps = {
   color: "primary",
@@ -26,6 +25,9 @@ const defaultProps = {
   value: 0,
   minValue: 0,
   maxValue: 100,
+} as const;
+
+const defaultIncrementProps = {
   autoIncrement: false,
   incrementInterval: 500,
   incrementStep: 10,
@@ -38,9 +40,9 @@ export const CircularProgress = forwardRef<
   (
     {
       // Auto-increment props
-      autoIncrement = defaultProps.autoIncrement,
-      incrementInterval = defaultProps.incrementInterval,
-      incrementStep = defaultProps.incrementStep,
+      autoIncrement = defaultIncrementProps.autoIncrement,
+      incrementInterval = defaultIncrementProps.incrementInterval,
+      incrementStep = defaultIncrementProps.incrementStep,
       onValueChange,
 
       // NextUI props
@@ -81,15 +83,17 @@ export const CircularProgress = forwardRef<
       onValueChange,
     ]);
 
-    const getValueLabel = useCallback(() => {
+    const getValueLabel = (): ReactNode => {
       if (valueLabel) return valueLabel;
 
       const percentage = (currentValue - minValue) / (maxValue - minValue);
       return new Intl.NumberFormat(undefined, formatOptions).format(percentage);
-    }, [currentValue, valueLabel, minValue, maxValue, formatOptions]);
+    };
 
-    const progressProps = {
+    const circularProgressProps = {
       ...nextUIProps,
+      ...defaultProps,
+      ref,
       value: currentValue,
       minValue,
       maxValue,
@@ -98,9 +102,7 @@ export const CircularProgress = forwardRef<
       classNames,
     };
 
-    return (
-      <CircularProgressRoot ref={ref} {...defaultProps} {...progressProps} />
-    );
+    return <CircularProgressRoot {...circularProgressProps} />;
   },
 );
 
