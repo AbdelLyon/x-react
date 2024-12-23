@@ -40,7 +40,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
     { trigger, sections, dropdownMenuProps, onItemPress, classNames, ...props },
     ref,
   ) => {
-    const handleItemPress = (item: DropdownItemConfig) => {
+    const handleItemPress = (item: DropdownItemConfig): void => {
       if (onItemPress) {
         onItemPress(item);
       }

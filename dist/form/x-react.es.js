@@ -180,7 +180,7 @@ const H = N(
         return /* @__PURE__ */ o.jsx(
           "button",
           {
-            className: "focus:outline-none opacity-40",
+            className: "opacity-40 focus:outline-none",
             type: "button",
             onClick: () => $(s === "password" ? "text" : "password"),
             children: s === "password" ? /* @__PURE__ */ o.jsx(z, { className: "pointer-events-none" }) : /* @__PURE__ */ o.jsx(A, { className: "pointer-events-none" })

@@ -1,56 +1,67 @@
 /* empty css                */
-import { j as o } from "../jsx-runtime-Dx-03ztt.js";
+import { j as a } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as $, useState as R } from "react";
 import { Slider as S } from "@nextui-org/react";
-const w = $(
+const w = (e, r) => e.map(
+  (t) => r ? new Intl.NumberFormat(void 0, r).format(t) : t
+).join(" – "), b = ({
+  position: e,
+  content: r,
+  className: t
+}) => e === "none" ? null : /* @__PURE__ */ a.jsx(
+  "p",
+  {
+    className: `
+     text-small font-medium text-default-500
+     ${t}
+     ${e === "top" ? "order-first" : "order-last"}
+   `,
+    children: r
+  }
+), h = $(
   ({
-    sliderProps: u,
-    initialValue: f = [0, 100],
-    formatOptions: a,
+    sliderProps: e,
+    initialValue: r = [0, 100],
+    formatOptions: t,
     label: l,
-    labelPosition: m = "bottom",
-    formatValue: d,
-    renderLabel: c,
-    onChange: s,
-    containerClassName: i,
+    labelPosition: c = "bottom",
+    formatValue: n,
+    renderLabel: d,
+    onChange: o,
+    containerClassName: u,
     labelClassName: x
-  }, p) => {
-    const [r, n] = R(f), j = (t) => {
-      const e = Array.isArray(t) ? t : [t];
-      n(e), s == null || s(e);
-    }, y = d ? d(r) : ((t) => t.map(
-      (e) => a ? new Intl.NumberFormat(void 0, a).format(e) : e
-    ).join(" – "))(r), N = c ? c(r) : `${l}: ${y}`;
-    return /* @__PURE__ */ o.jsxs(
+  }, f) => {
+    const [s, p] = R(r), j = (m) => {
+      const i = Array.isArray(m) ? m : [m];
+      p(i), o == null || o(i);
+    }, N = n ? n(s) : w(s, t), y = d ? d(s) : `${l}: ${N}`;
+    return /* @__PURE__ */ a.jsxs(
       "div",
       {
-        ref: p,
+        ref: f,
         className: `
-          flex flex-col gap-2 w-full h-max max-w-md 
-          items-start justify-center
-          ${i}
-        `,
+     flex h-max w-full max-w-md flex-col items-start 
+     justify-center gap-2
+     ${u}
+   `,
         children: [
-          (m === "top" || m === "bottom") && /* @__PURE__ */ o.jsx(
-            "p",
+          /* @__PURE__ */ a.jsx(
+            b,
             {
-              className: `
-              text-default-500 font-medium text-small
-              ${x}
-              ${m === "top" ? "order-first" : "order-last"}
-            `,
-              children: N
+              position: c,
+              content: y,
+              className: x
             }
           ),
-          /* @__PURE__ */ o.jsx(
+          /* @__PURE__ */ a.jsx(
             S,
             {
-              value: r,
+              value: s,
               onChange: j,
               label: l,
               className: "max-w-md",
-              formatOptions: a,
-              ...u
+              formatOptions: t,
+              ...e
             }
           )
         ]
@@ -58,7 +69,7 @@ const w = $(
     );
   }
 );
-w.displayName = "RangeSlider";
+h.displayName = "RangeSlider";
 export {
-  w as RangeSlider
+  h as RangeSlider
 };

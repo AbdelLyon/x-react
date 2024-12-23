@@ -1,6 +1,6 @@
 export * from "@tanstack/react-query";
 import { u } from "../useTheme-ery4R1ul.js";
-import { u as n, a as f } from "../useResponsive-Bo4ImEVM.js";
+import { u as n, a as f } from "../useResponsive-C97V3nlv.js";
 const o = (a = {}) => {
   const { navbar: e, sidebar: s } = a;
   return {

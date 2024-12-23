@@ -16,6 +16,7 @@ import {
   TableColumnProps,
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { JSX } from "react";
 
 // Types
 export type SortConfig<T> = {
@@ -95,7 +96,7 @@ export function DataGrid<T extends { id: string | number }>({
   classNames,
   variant = "unstyled",
   props,
-}: DataGridProps<T>) {
+}: DataGridProps<T>): JSX.Element {
   const {
     isAllChecked,
     sortConfig,
@@ -103,7 +104,11 @@ export function DataGrid<T extends { id: string | number }>({
     handleSelectAll,
     handleSort,
     isRowSelected,
-  } = useDataGridState(rows, onCheckedRowsChange, onSort);
+  } = useDataGridState({
+    rows,
+    onCheckedRowsChange,
+    onSort,
+  });
 
   type ExtendedColumn = ColumnDefinition<T> & {
     key: string;
@@ -229,8 +234,8 @@ export function DataGrid<T extends { id: string | number }>({
                       return column.cell
                         ? column.cell(row)
                         : column.field && column.field in row
-                        ? String(row[column.field as keyof typeof row])
-                        : null;
+                          ? String(row[column.field as keyof typeof row])
+                          : null;
                     })()}
                   </div>
                 )}

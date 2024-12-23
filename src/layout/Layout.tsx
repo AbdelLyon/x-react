@@ -11,13 +11,14 @@ import { Navbar, NavbarProps } from "@/navbar/Navbar";
 import { Sidebar, SidebarProps } from "@/sidebar/Sidebar";
 
 import { cn } from "@/utils";
+import { JSX } from "react";
 
 export const Layout = ({
   children,
   navbar,
   sidebar,
   className,
-}: LayoutProps) => {
+}: LayoutProps): JSX.Element => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
 

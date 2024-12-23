@@ -1,35 +1,38 @@
 /* empty css                */
 import { j as i } from "../jsx-runtime-Dx-03ztt.js";
 import { useState as j, useEffect as T } from "react";
-import { cn as h } from "../utils/x-react.es.js";
+import { cn as f } from "../utils/x-react.es.js";
 import { Table as m, TableHeader as I, TableColumn as z, Checkbox as P, TableBody as D, TableRow as $, TableCell as B } from "@nextui-org/react";
 import { IconChevronUp as E, IconChevronDown as G } from "@tabler/icons-react";
-const H = (f, r, x) => {
-  const [a, S] = j([]), [g, l] = j(!1), [k, t] = j({
-    key: null,
-    direction: "asc"
-  });
+const H = {
+  key: null,
+  direction: "asc"
+}, R = ({
+  rows: o,
+  onCheckedRowsChange: d,
+  onSort: x
+}) => {
+  const [a, u] = j([]), [g, l] = j(!1), [s, t] = j(H);
   return T(() => {
-    l(a.length === f.length && f.length > 0);
-  }, [a, f]), {
+    l(a.length === o.length && o.length > 0);
+  }, [a, o]), {
     selectedRows: a,
     isAllChecked: g,
-    sortConfig: k,
+    sortConfig: s,
     handleCheckboxChange: (n) => {
-      const d = a.some((u) => u.id === n.id);
-      let b;
-      d ? b = a.filter((u) => u.id !== n.id) : b = [...a, n], S(b), r == null || r(b);
+      const y = a.some((S) => S.id === n.id) ? a.filter((S) => S.id !== n.id) : [...a, n];
+      u(y), d == null || d(y);
     },
     handleSelectAll: (n) => {
-      const d = n ? [...f] : [];
-      S(d), r == null || r(d);
+      const r = n ? [...o] : [];
+      u(r), d == null || d(r);
     },
-    handleSort: (n, d) => {
-      t({ key: n, direction: d }), x == null || x(n, d);
+    handleSort: (n, r) => {
+      t({ key: n, direction: r }), x == null || x(n, r);
     },
-    isRowSelected: (n) => a.some((d) => d.id === n.id)
+    isRowSelected: (n) => a.some((r) => r.id === n.id)
   };
-}, R = {
+}, V = {
   bordered: {
     header: "bg-content2 border border-default-200",
     column: "bg-content2 py-4",
@@ -46,25 +49,29 @@ const H = (f, r, x) => {
     row: "py-4 hover:bg-content2"
   }
 };
-function M({
-  rows: f,
-  columns: r,
+function O({
+  rows: o,
+  columns: d,
   caption: x,
   onCheckedRowsChange: a,
-  onSort: S,
+  onSort: u,
   checkboxSelection: g = !0,
   classNames: l,
-  variant: k = "unstyled",
+  variant: s = "unstyled",
   props: t
 }) {
   const {
     isAllChecked: v,
-    sortConfig: y,
+    sortConfig: h,
     handleCheckboxChange: C,
     handleSelectAll: A,
     handleSort: n,
-    isRowSelected: d
-  } = H(f, a, S), b = R[k], u = [
+    isRowSelected: r
+  } = R({
+    rows: o,
+    onCheckedRowsChange: a,
+    onSort: u
+  }), y = V[s], S = [
     ...g ? [
       {
         key: "checkbox",
@@ -72,9 +79,9 @@ function M({
         header: ""
       }
     ] : [],
-    ...r.map((e, o) => ({
+    ...d.map((e, b) => ({
       ...e,
-      key: String(e.field || o),
+      key: String(e.field || b),
       label: e.header
     }))
   ];
@@ -82,14 +89,14 @@ function M({
     /* @__PURE__ */ i.jsx(
       I,
       {
-        columns: u,
-        className: h(b.header),
+        columns: S,
+        className: f(y.header),
         ...t == null ? void 0 : t.tableHeaderProps,
         children: (e) => /* @__PURE__ */ i.jsx(
           z,
           {
             "aria-label": String(e.label || e.key),
-            className: h(b.column),
+            className: f(y.column),
             ...t == null ? void 0 : t.tableColumnProps,
             children: e.key === "checkbox" ? /* @__PURE__ */ i.jsx(
               P,
@@ -99,23 +106,23 @@ function M({
                 "aria-label": "Select all rows",
                 className: l == null ? void 0 : l.checkbox
               }
-            ) : /* @__PURE__ */ i.jsxs("div", { className: h("flex items-center gap-2"), children: [
+            ) : /* @__PURE__ */ i.jsxs("div", { className: f("flex items-center gap-2"), children: [
               e.label,
               e.sortable && /* @__PURE__ */ i.jsxs(
                 "div",
                 {
-                  className: h(
+                  className: f(
                     "relative size-4 cursor-pointer",
                     l == null ? void 0 : l.sortIcon
                   ),
                   onClick: () => {
                     var c;
-                    const o = (c = r.find(
-                      (s) => String(s.field) === e.key
+                    const b = (c = d.find(
+                      (k) => String(k.field) === e.key
                     )) == null ? void 0 : c.field;
-                    o && o !== "actions" && n(
-                      o,
-                      y.direction === "asc" ? "desc" : "asc"
+                    b && b !== "actions" && n(
+                      b,
+                      h.direction === "asc" ? "desc" : "asc"
                     );
                   },
                   role: "button",
@@ -125,9 +132,9 @@ function M({
                       E,
                       {
                         size: 16,
-                        className: h(
+                        className: f(
                           "absolute -top-1",
-                          y.key === e.key && y.direction === "asc" ? "opacity-100" : "opacity-30"
+                          h.key === e.key && h.direction === "asc" ? "opacity-100" : "opacity-30"
                         )
                       }
                     ),
@@ -135,9 +142,9 @@ function M({
                       G,
                       {
                         size: 16,
-                        className: h(
+                        className: f(
                           "absolute top-1",
-                          y.key === e.key && y.direction === "desc" ? "opacity-100" : "opacity-30"
+                          h.key === e.key && h.direction === "desc" ? "opacity-100" : "opacity-30"
                         )
                       }
                     )
@@ -150,23 +157,23 @@ function M({
         )
       }
     ),
-    /* @__PURE__ */ i.jsx(D, { items: f, ...t == null ? void 0 : t.tableBodyProps, children: (e) => /* @__PURE__ */ i.jsx(
+    /* @__PURE__ */ i.jsx(D, { items: o, ...t == null ? void 0 : t.tableBodyProps, children: (e) => /* @__PURE__ */ i.jsx(
       $,
       {
         "aria-label": `Row ${e.id}`,
-        className: h(b.row),
+        className: f(y.row),
         ...t == null ? void 0 : t.tableRowProps,
-        children: (o) => /* @__PURE__ */ i.jsx(B, { ...t == null ? void 0 : t.tableCellProps, children: o === "checkbox" ? /* @__PURE__ */ i.jsx(
+        children: (b) => /* @__PURE__ */ i.jsx(B, { ...t == null ? void 0 : t.tableCellProps, children: b === "checkbox" ? /* @__PURE__ */ i.jsx(
           P,
           {
-            isSelected: d(e),
+            isSelected: r(e),
             onValueChange: () => C(e),
             "aria-label": `Select row ${e.id}`,
             className: l == null ? void 0 : l.checkbox
           }
         ) : /* @__PURE__ */ i.jsx("div", { className: l == null ? void 0 : l.cellContent, children: (() => {
-          const c = r.find(
-            (s) => String(s.field) === o
+          const c = d.find(
+            (k) => String(k.field) === b
           );
           return c ? c.cell ? c.cell(e) : c.field && c.field in e ? String(e[c.field]) : null : null;
         })() }) })
@@ -176,5 +183,5 @@ function M({
   ] });
 }
 export {
-  M as DataGrid
+  O as DataGrid
 };

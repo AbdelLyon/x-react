@@ -56,13 +56,13 @@ export const Alert = forwardRef<AlertProps, Props>(
     },
     ref,
   ) => {
-    const handleVisibilityChange = (visible: boolean) => {
+    const handleVisibilityChange = (visible: boolean): void => {
       if (onVisibleChange) {
         onVisibleChange(visible);
       }
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
       if (onClose) {
         onClose();
       }

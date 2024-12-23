@@ -4,121 +4,93 @@ import {
   ProgressProps as NextUIProgressProps,
 } from "@nextui-org/react";
 
-type ProgressSize = "sm" | "md" | "lg";
-type ProgressColor =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-type ProgressRadius = "none" | "sm" | "md" | "lg" | "full";
-
-interface ProgressProps extends NextUIProgressProps {
-  // Label configuration
+interface AdditionalProgressProps {
   label?: ReactNode;
   labelPosition?: "top" | "bottom" | "none";
-
-  // Size and appearance
-  size?: ProgressSize;
-  color?: ProgressColor;
-  radius?: ProgressRadius;
-
-  // Value and formatting
-  value?: number;
-  minValue?: number;
-  maxValue?: number;
-  formatOptions?: Intl.NumberFormatOptions;
-  valueLabel?: ReactNode;
-  showValueLabel?: boolean;
-
-  isIndeterminate?: boolean;
-  isStriped?: boolean;
-  isDisabled?: boolean;
-  disableAnimation?: boolean;
-
   containerClassName?: string;
   labelClassName?: string;
-  classNames?: Partial<
-    Record<
-      "base" | "labelWrapper" | "label" | "track" | "value" | "indicator",
-      string
-    >
-  >;
 }
+
+interface ProgressProps extends NextUIProgressProps, AdditionalProgressProps {}
+
+const defaultProps = {
+  labelPosition: "top" as const,
+  size: "md" as const,
+  color: "primary" as const,
+  radius: "full" as const,
+  minValue: 0,
+  maxValue: 100,
+  formatOptions: { style: "percent" } as Intl.NumberFormatOptions,
+  showValueLabel: true,
+  isIndeterminate: false,
+  isStriped: false,
+  isDisabled: false,
+  disableAnimation: false,
+};
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   (
     {
       label,
-      labelPosition = "top",
-      size = "md",
-      color = "primary",
-      radius = "full",
-      value = 0,
-      minValue = 0,
-      maxValue = 100,
-      formatOptions = { style: "percent" },
-      valueLabel,
-      showValueLabel = true,
-      isIndeterminate = false,
-      isStriped = false,
-      isDisabled = false,
-      disableAnimation = false,
+      labelPosition = defaultProps.labelPosition,
       containerClassName,
       labelClassName,
+      value = 0,
+      maxValue = defaultProps.maxValue,
+      formatOptions = defaultProps.formatOptions,
+      valueLabel,
+      showValueLabel = defaultProps.showValueLabel,
       classNames,
       ...props
     },
     ref,
   ) => {
-    const defaultValueLabel = () => {
+    const getValueLabel = (): string => {
       const formattedValue = new Intl.NumberFormat(
         undefined,
         formatOptions,
       ).format(value / maxValue);
 
-      return valueLabel || formattedValue;
+      return valueLabel?.toString() || formattedValue;
+    };
+
+    const renderLabel = (): ReactNode => {
+      if (labelPosition === "none") return null;
+
+      return (
+        <div
+          className={`
+          flex items-center justify-between
+          text-small font-medium text-default-500
+          ${labelClassName}
+          ${labelPosition === "top" ? "order-first" : "order-last"}
+        `}
+        >
+          {label && <span>{label}</span>}
+          {showValueLabel && <span>{getValueLabel()}</span>}
+        </div>
+      );
     };
 
     return (
       <div
         ref={ref}
         className={`
-          flex flex-col gap-2 w-full max-w-md
-          ${containerClassName}
-        `}
+        flex w-full max-w-md flex-col gap-2
+        ${containerClassName}
+      `}
       >
-        {(labelPosition === "top" || labelPosition === "bottom") && (
-          <div
-            className={`
-              text-default-500 font-medium text-small
-              flex justify-between items-center
-              ${labelClassName}
-              ${labelPosition === "top" ? "order-first" : "order-last"}
-            `}
-          >
-            {label && <span>{label}</span>}
-            {showValueLabel && <span>{defaultValueLabel()}</span>}
-          </div>
-        )}
+        {renderLabel()}
 
         <NextUIProgress
+          {...defaultProps}
+          {...props}
           value={value}
-          minValue={minValue}
           maxValue={maxValue}
-          size={size}
-          color={color}
-          radius={radius}
-          isIndeterminate={isIndeterminate}
-          isStriped={isStriped}
-          isDisabled={isDisabled}
-          disableAnimation={disableAnimation}
           classNames={{
             ...classNames,
             base: `w-full ${classNames?.base || ""}`,
           }}
-          {...props}
         />
       </div>
     );

@@ -3,12 +3,10 @@ interface Breakpoints {
     isTablet: boolean;
     isMobile: boolean;
 }
-export declare const useResponsive: (customQuery?: string) => {
-    isDesktop: boolean;
-    isTablet: boolean;
-    isMobile: boolean;
-    matches: boolean | undefined;
+interface ResponsiveHook extends Breakpoints {
+    matches?: boolean;
     getBreakpoint: () => keyof Breakpoints;
     isBreakpoint: (breakpoint: keyof Breakpoints) => boolean;
-};
+}
+export declare const useResponsive: (customQuery?: string) => ResponsiveHook;
 export {};

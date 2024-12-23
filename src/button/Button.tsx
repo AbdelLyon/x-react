@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, ReactNode } from "react";
 import {
   Button as NextUIButton,
   ButtonProps as NextUIButtonProps,
@@ -51,7 +51,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
     );
 
-    const Content = () => (
+    const Content = (): ReactNode => (
       <>
         {startContent && (
           <span className={cn("mr-2", customStyles.beforeContent)}>

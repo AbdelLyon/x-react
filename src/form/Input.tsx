@@ -1,10 +1,12 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, ReactNode, useState } from "react";
 import {
   Input as InputRoot,
   InputProps as InputRootProps,
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
+
+type ValidationError = string | string[];
 
 interface InputWrapperProps extends Omit<InputRootProps, "children"> {
   containerClasses?: string;
@@ -61,7 +63,9 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
   ) => {
     const [inputType, setInputType] = useState(type || "text");
 
-    const combinedValidate = (value: string) => {
+    const combinedValidate = (
+      value: string,
+    ): ValidationError | true | null | undefined => {
       if (customValidation) {
         const customResult = customValidation(value);
         if (typeof customResult === "string") {
@@ -79,11 +83,11 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
       return true;
     };
 
-    const endContent = () => {
+    const endContent = (): ReactNode => {
       if (type === "password") {
         return (
           <button
-            className="focus:outline-none opacity-40"
+            className="opacity-40 focus:outline-none"
             type="button"
             onClick={() =>
               setInputType(inputType === "password" ? "text" : "password")

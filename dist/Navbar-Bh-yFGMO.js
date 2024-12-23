@@ -4,7 +4,7 @@ import { Navbar as T, NavbarContent as a, NavbarMenuToggle as D, NavbarItem as s
 import { cn as v } from "./utils/x-react.es.js";
 import "@tanstack/react-query";
 import "next-themes";
-import { a as q } from "./useResponsive-Bo4ImEVM.js";
+import { a as q } from "./useResponsive-C97V3nlv.js";
 const z = A(
   ({
     appName: b,

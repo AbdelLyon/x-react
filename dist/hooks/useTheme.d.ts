@@ -1,4 +1,6 @@
-export declare const useTheme: () => {
-    setTheme: import('react').Dispatch<import('react').SetStateAction<string>>;
+interface ThemeHook {
+    setTheme: (theme: string) => void;
     theme: string | undefined;
-};
+}
+export declare const useTheme: () => ThemeHook;
+export {};

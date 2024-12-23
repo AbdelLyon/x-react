@@ -1,4 +1,5 @@
 import { TableBodyProps, TableProps, TableHeaderProps, TableRowProps, TableCellProps, TableColumnProps } from '@nextui-org/react';
+import { JSX } from 'react';
 export type SortConfig<T> = {
     key: keyof T | null;
     direction: "asc" | "desc";
@@ -44,4 +45,4 @@ export interface DataGridProps<T extends {
 }
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
+}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): JSX.Element;

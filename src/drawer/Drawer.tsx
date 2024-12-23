@@ -82,12 +82,14 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
   ) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleAction = () => {
+    const handleAction = (): void => {
       onAction?.();
       onClose();
     };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleKeyDown = (
+      event: React.KeyboardEvent<HTMLDivElement>,
+    ): void => {
       if (event.key === "Enter" || event.key === " ") {
         onOpen();
       }

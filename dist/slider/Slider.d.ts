@@ -1,16 +1,21 @@
 import { ReactNode } from 'react';
 import { SliderProps } from '@nextui-org/react';
-interface RangeSliderProps<T extends number[]> {
-    sliderProps?: Omit<SliderProps, "value" | "onChange">;
-    initialValue?: T;
+type LabelPosition = "top" | "bottom" | "none";
+interface FormatConfig {
     formatOptions?: Intl.NumberFormatOptions;
-    label?: string;
-    labelPosition?: "top" | "bottom" | "none";
-    formatValue?: (value: T) => string;
-    renderLabel?: (value: T) => ReactNode;
-    onChange?: (value: T) => void;
+    formatValue?: (value: number[]) => string;
+    renderLabel?: (value: number[]) => ReactNode;
+}
+interface StyleProps {
     containerClassName?: string;
     labelClassName?: string;
 }
-export declare const RangeSlider: import('react').ForwardRefExoticComponent<RangeSliderProps<number[]> & import('react').RefAttributes<HTMLDivElement>>;
+interface RangeSliderProps extends FormatConfig, StyleProps {
+    sliderProps?: Omit<SliderProps, "value" | "onChange">;
+    initialValue?: number[];
+    label?: string;
+    labelPosition?: LabelPosition;
+    onChange?: (value: number[]) => void;
+}
+export declare const RangeSlider: import('react').ForwardRefExoticComponent<RangeSliderProps & import('react').RefAttributes<HTMLDivElement>>;
 export {};

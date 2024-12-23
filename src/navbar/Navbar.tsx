@@ -52,7 +52,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   ) => {
     const { isDesktop, isMobile, isTablet } = useResponsive();
 
-    const handleItemPress = (item: Item) => {
+    const handleItemPress = (item: Item): void => {
       item.onPress?.();
       onItemClick?.(item);
       onMenuOpenChange?.(false);

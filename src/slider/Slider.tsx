@@ -1,29 +1,64 @@
 import { forwardRef, useState, ReactNode } from "react";
-import { Slider as NextUISlider, SliderProps } from "@nextui-org/react";
+import { Slider as SliderRoot, SliderProps } from "@nextui-org/react";
 
-interface RangeSliderProps<T extends number[]> {
-  sliderProps?: Omit<SliderProps, "value" | "onChange">;
+type LabelPosition = "top" | "bottom" | "none";
 
-  initialValue?: T;
-
+interface FormatConfig {
   formatOptions?: Intl.NumberFormatOptions;
+  formatValue?: (value: number[]) => string;
+  renderLabel?: (value: number[]) => ReactNode;
+}
 
-  label?: string;
-  labelPosition?: "top" | "bottom" | "none";
-
-  formatValue?: (value: T) => string;
-  renderLabel?: (value: T) => ReactNode;
-
-  onChange?: (value: T) => void;
-
+interface StyleProps {
   containerClassName?: string;
   labelClassName?: string;
 }
 
-export const RangeSlider = forwardRef<
-  HTMLDivElement,
-  RangeSliderProps<number[]>
->(
+interface RangeSliderProps extends FormatConfig, StyleProps {
+  sliderProps?: Omit<SliderProps, "value" | "onChange">;
+  initialValue?: number[];
+  label?: string;
+  labelPosition?: LabelPosition;
+  onChange?: (value: number[]) => void;
+}
+
+const defaultFormatValue = (
+  value: number[],
+  formatOptions?: Intl.NumberFormatOptions,
+): string => {
+  return value
+    .map((v) =>
+      formatOptions
+        ? new Intl.NumberFormat(undefined, formatOptions).format(v)
+        : v,
+    )
+    .join(" – ");
+};
+
+const LabelComponent = ({
+  position,
+  content,
+  className,
+}: {
+  position: LabelPosition;
+  content: ReactNode;
+  className?: string;
+}): ReactNode => {
+  if (position === "none") return null;
+
+  return (
+    <p
+      className={`
+     text-small font-medium text-default-500
+     ${className}
+     ${position === "top" ? "order-first" : "order-last"}
+   `}
+    >
+      {content}
+    </p>
+  );
+};
+export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
   (
     {
       sliderProps,
@@ -41,25 +76,15 @@ export const RangeSlider = forwardRef<
   ) => {
     const [value, setValue] = useState<number[]>(initialValue);
 
-    const handleChange = (newValue: number | number[]) => {
+    const handleChange = (newValue: number | number[]): void => {
       const typedValue = Array.isArray(newValue) ? newValue : [newValue];
       setValue(typedValue);
       onChange?.(typedValue);
     };
 
-    const defaultFormatValue = (val: number[]) => {
-      return val
-        .map((v) =>
-          formatOptions
-            ? new Intl.NumberFormat(undefined, formatOptions).format(v)
-            : v,
-        )
-        .join(" – ");
-    };
-
     const formattedValue = formatValue
       ? formatValue(value)
-      : defaultFormatValue(value);
+      : defaultFormatValue(value, formatOptions);
 
     const labelContent = renderLabel
       ? renderLabel(value)
@@ -69,24 +94,18 @@ export const RangeSlider = forwardRef<
       <div
         ref={ref}
         className={`
-          flex flex-col gap-2 w-full h-max max-w-md 
-          items-start justify-center
-          ${containerClassName}
-        `}
+     flex h-max w-full max-w-md flex-col items-start 
+     justify-center gap-2
+     ${containerClassName}
+   `}
       >
-        {(labelPosition === "top" || labelPosition === "bottom") && (
-          <p
-            className={`
-              text-default-500 font-medium text-small
-              ${labelClassName}
-              ${labelPosition === "top" ? "order-first" : "order-last"}
-            `}
-          >
-            {labelContent}
-          </p>
-        )}
+        <LabelComponent
+          position={labelPosition}
+          content={labelContent}
+          className={labelClassName}
+        />
 
-        <NextUISlider
+        <SliderRoot
           value={value}
           onChange={handleChange}
           label={label}
@@ -98,4 +117,5 @@ export const RangeSlider = forwardRef<
     );
   },
 );
+
 RangeSlider.displayName = "RangeSlider";

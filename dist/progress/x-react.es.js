@@ -1,78 +1,76 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as I, useState as R, useEffect as k, useCallback as C } from "react";
-import { Progress as L, CircularProgress as q } from "@nextui-org/react";
-const z = I(
+import { forwardRef as I, useState as h, useEffect as k, useCallback as z } from "react";
+import { Progress as A, CircularProgress as C } from "@nextui-org/react";
+const i = {
+  labelPosition: "top",
+  size: "md",
+  color: "primary",
+  radius: "full",
+  minValue: 0,
+  maxValue: 100,
+  formatOptions: { style: "percent" },
+  showValueLabel: !0,
+  isIndeterminate: !1,
+  isStriped: !1,
+  isDisabled: !1,
+  disableAnimation: !1
+}, D = I(
   ({
-    label: d,
-    labelPosition: f = "top",
-    size: j = "md",
-    color: i = "primary",
-    radius: l = "full",
-    value: p = 0,
-    minValue: a = 0,
-    maxValue: s = 100,
-    formatOptions: t = { style: "percent" },
-    valueLabel: e,
-    showValueLabel: w = !0,
-    isIndeterminate: y = !1,
-    isStriped: n = !1,
-    isDisabled: u = !1,
-    disableAnimation: m = !1,
-    containerClassName: P,
-    labelClassName: $,
+    label: n,
+    labelPosition: l = i.labelPosition,
+    containerClassName: x,
+    labelClassName: f,
+    value: e = 0,
+    maxValue: a = i.maxValue,
+    formatOptions: d = i.formatOptions,
+    valueLabel: s,
+    showValueLabel: t = i.showValueLabel,
     classNames: r,
-    ...b
-  }, g) => {
+    ...w
+  }, P) => {
     const c = () => {
-      const x = new Intl.NumberFormat(
+      const u = new Intl.NumberFormat(
         void 0,
-        t
-      ).format(p / s);
-      return e || x;
-    };
+        d
+      ).format(e / a);
+      return (s == null ? void 0 : s.toString()) || u;
+    }, p = () => l === "none" ? null : /* @__PURE__ */ o.jsxs(
+      "div",
+      {
+        className: `
+          flex items-center justify-between
+          text-small font-medium text-default-500
+          ${f}
+          ${l === "top" ? "order-first" : "order-last"}
+        `,
+        children: [
+          n && /* @__PURE__ */ o.jsx("span", { children: n }),
+          t && /* @__PURE__ */ o.jsx("span", { children: c() })
+        ]
+      }
+    );
     return /* @__PURE__ */ o.jsxs(
       "div",
       {
-        ref: g,
+        ref: P,
         className: `
-          flex flex-col gap-2 w-full max-w-md
-          ${P}
-        `,
+        flex w-full max-w-md flex-col gap-2
+        ${x}
+      `,
         children: [
-          (f === "top" || f === "bottom") && /* @__PURE__ */ o.jsxs(
-            "div",
-            {
-              className: `
-              text-default-500 font-medium text-small
-              flex justify-between items-center
-              ${$}
-              ${f === "top" ? "order-first" : "order-last"}
-            `,
-              children: [
-                d && /* @__PURE__ */ o.jsx("span", { children: d }),
-                w && /* @__PURE__ */ o.jsx("span", { children: c() })
-              ]
-            }
-          ),
+          p(),
           /* @__PURE__ */ o.jsx(
-            L,
+            A,
             {
-              value: p,
-              minValue: a,
-              maxValue: s,
-              size: j,
-              color: i,
-              radius: l,
-              isIndeterminate: y,
-              isStriped: n,
-              isDisabled: u,
-              disableAnimation: m,
+              ...i,
+              ...w,
+              value: e,
+              maxValue: a,
               classNames: {
                 ...r,
                 base: `w-full ${(r == null ? void 0 : r.base) || ""}`
-              },
-              ...b
+              }
             }
           )
         ]
@@ -80,87 +78,87 @@ const z = I(
     );
   }
 );
-z.displayName = "Progress";
-const A = I(
+D.displayName = "Progress";
+const O = I(
   ({
     // Appearance
-    color: d = "primary",
-    size: f = "md",
-    strokeWidth: j = 3,
+    color: n = "primary",
+    size: l = "md",
+    strokeWidth: x = 3,
     // Content
-    label: i,
-    valueLabel: l,
-    showValueLabel: p = !1,
-    formatOptions: a = { style: "percent" },
+    label: f,
+    valueLabel: e,
+    showValueLabel: a = !1,
+    formatOptions: d = { style: "percent" },
     // Behavior
     value: s = 0,
     minValue: t = 0,
-    maxValue: e = 100,
+    maxValue: r = 100,
     isIndeterminate: w = !1,
-    isStriped: y = !1,
+    isStriped: P = !1,
     // Auto-increment
-    autoIncrement: n = !1,
-    incrementInterval: u = 500,
-    incrementStep: m = 10,
+    autoIncrement: c = !1,
+    incrementInterval: p = 500,
+    incrementStep: u = 10,
     // Styling
-    className: P,
-    classNames: $,
+    className: E,
+    classNames: F,
     // Callback
-    onValueChange: r,
-    ...b
-  }, g) => {
-    const [c, x] = R(s);
+    onValueChange: m,
+    ...N
+  }, R) => {
+    const [j, g] = h(s);
     k(() => {
-      if (!n) {
-        x(s);
+      if (!c) {
+        g(s);
         return;
       }
-      const v = setInterval(() => {
-        x((E) => {
-          const F = E >= e ? t : E + m;
-          return r == null || r(F), F;
+      const b = setInterval(() => {
+        g((y) => {
+          const $ = y >= r ? t : y + u;
+          return m == null || m($), $;
         });
-      }, u);
-      return () => clearInterval(v);
+      }, p);
+      return () => clearInterval(b);
     }, [
-      n,
+      c,
       s,
+      p,
       u,
-      m,
-      e,
+      r,
       t,
-      r
+      m
     ]);
-    const N = C(() => {
-      if (l) return l;
-      const v = (c - t) / (e - t);
-      return new Intl.NumberFormat(void 0, a).format(v);
-    }, [c, l, t, e, a]);
+    const S = z(() => {
+      if (e) return e;
+      const b = (j - t) / (r - t);
+      return new Intl.NumberFormat(void 0, d).format(b);
+    }, [j, e, t, r, d]);
     return /* @__PURE__ */ o.jsx(
-      q,
+      C,
       {
-        ref: g,
-        color: d,
-        size: f,
-        strokeWidth: j,
-        "aria-label": i,
-        label: i,
-        valueLabel: N(),
-        showValueLabel: p,
-        value: c,
+        ref: R,
+        color: n,
+        size: l,
+        strokeWidth: x,
+        "aria-label": f,
+        label: f,
+        valueLabel: S(),
+        showValueLabel: a,
+        value: j,
         minValue: t,
-        maxValue: e,
+        maxValue: r,
         isIndeterminate: w,
-        isStriped: y,
-        className: P,
-        classNames: $,
-        ...b
+        isStriped: P,
+        className: E,
+        classNames: F,
+        ...N
       }
     );
   }
 );
-A.displayName = "CircularProgress";
+O.displayName = "CircularProgress";
 export {
-  A as CircularProgress,
-  z as Progress
+  O as CircularProgress,
+  D as Progress
 };
