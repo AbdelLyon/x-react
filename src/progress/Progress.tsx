@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode } from "react";
 import {
-  Progress as NextUIProgress,
-  ProgressProps as NextUIProgressProps,
+  Progress as ProgressRoot,
+  ProgressProps as ProgressRootProps,
 } from "@nextui-org/react";
 
 interface AdditionalProgressProps {
@@ -11,15 +11,15 @@ interface AdditionalProgressProps {
   labelClassName?: string;
 }
 
-interface ProgressProps extends NextUIProgressProps, AdditionalProgressProps {}
+interface ProgressProps extends ProgressRootProps, AdditionalProgressProps {}
 
 const defaultProps = {
-  size: "md" as const,
-  color: "primary" as const,
-  radius: "full" as const,
+  size: "md",
+  color: "primary",
+  radius: "full",
   minValue: 0,
   maxValue: 100,
-  formatOptions: { style: "percent" } as Intl.NumberFormatOptions,
+  formatOptions: { style: "percent" } as const,
   showValueLabel: true,
   isIndeterminate: false,
   isStriped: false,
@@ -30,19 +30,17 @@ const defaultProps = {
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   (
     {
-      // Props spécifiques au composant
       label,
       labelPosition = "top",
       containerClassName,
       labelClassName,
-      // Props NextUI
       value = 0,
-      maxValue = defaultProps.maxValue,
+      maxValue = 100,
       formatOptions = defaultProps.formatOptions,
       valueLabel,
       showValueLabel = defaultProps.showValueLabel,
       classNames,
-      ...props
+      ...nextUIProps
     },
     ref,
   ) => {
@@ -59,27 +57,16 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       labelPosition === "none" ? null : (
         <div
           className={`
-        flex items-center justify-between
-        text-small font-medium text-default-500
-        ${labelClassName}
-        ${labelPosition === "top" ? "order-first" : "order-last"}
-      `}
+     flex items-center justify-between
+     text-small font-medium text-default-500
+     ${labelClassName}
+     ${labelPosition === "top" ? "order-first" : "order-last"}
+   `}
         >
           {label && <span>{label}</span>}
           {showValueLabel && <span>{getValueLabel()}</span>}
         </div>
       );
-
-    const progressProps = {
-      ...defaultProps,
-      ...props,
-      value,
-      maxValue,
-      classNames: {
-        ...classNames,
-        base: `w-full ${classNames?.base || ""}`,
-      },
-    };
 
     return (
       <div
@@ -87,7 +74,16 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
         className={`flex w-full max-w-md flex-col gap-2 ${containerClassName || ""}`}
       >
         {labelComponent}
-        <NextUIProgress {...progressProps} />
+        <ProgressRoot
+          {...defaultProps}
+          {...nextUIProps}
+          value={value}
+          maxValue={maxValue}
+          classNames={{
+            ...classNames,
+            base: `w-full ${classNames?.base || ""}`,
+          }}
+        />
       </div>
     );
   },

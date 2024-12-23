@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
-import { ProgressProps as NextUIProgressProps } from '@nextui-org/react';
+import { ProgressProps as ProgressRootProps } from '@nextui-org/react';
 interface AdditionalProgressProps {
     label?: ReactNode;
     labelPosition?: "top" | "bottom" | "none";
     containerClassName?: string;
     labelClassName?: string;
 }
-interface ProgressProps extends NextUIProgressProps, AdditionalProgressProps {
+interface ProgressProps extends ProgressRootProps, AdditionalProgressProps {
 }
 export declare const Progress: import('react').ForwardRefExoticComponent<Omit<ProgressProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};

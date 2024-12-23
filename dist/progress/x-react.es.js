@@ -1,8 +1,8 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as C, useState as S, useEffect as h, useCallback as k } from "react";
+import { forwardRef as I, useState as S, useEffect as h, useCallback as k } from "react";
 import { Progress as z, CircularProgress as A } from "@nextui-org/react";
-const u = {
+const g = {
   size: "md",
   color: "primary",
   radius: "full",
@@ -14,109 +14,110 @@ const u = {
   isStriped: !1,
   isDisabled: !1,
   disableAnimation: !1
-}, D = C(
+}, D = I(
   ({
-    // Props spécifiques au composant
     label: i,
-    labelPosition: n = "top",
-    containerClassName: x,
-    labelClassName: f,
-    // Props NextUI
+    labelPosition: f = "top",
+    containerClassName: u,
+    labelClassName: n,
     value: e = 0,
-    maxValue: l = u.maxValue,
-    formatOptions: a = u.formatOptions,
+    maxValue: l = 100,
+    formatOptions: d = g.formatOptions,
     valueLabel: t,
-    showValueLabel: s = u.showValueLabel,
+    showValueLabel: s = g.showValueLabel,
     classNames: r,
-    ...w
-  }, j) => {
-    const d = () => {
-      const P = new Intl.NumberFormat(
+    ...x
+  }, w) => {
+    const a = () => {
+      const p = new Intl.NumberFormat(
         void 0,
-        a
+        d
       ).format(e / l);
-      return (t == null ? void 0 : t.toString()) || P;
-    }, c = n === "none" ? null : /* @__PURE__ */ o.jsxs(
+      return (t == null ? void 0 : t.toString()) || p;
+    }, c = f === "none" ? null : /* @__PURE__ */ o.jsxs(
       "div",
       {
         className: `
-        flex items-center justify-between
-        text-small font-medium text-default-500
-        ${f}
-        ${n === "top" ? "order-first" : "order-last"}
-      `,
+     flex items-center justify-between
+     text-small font-medium text-default-500
+     ${n}
+     ${f === "top" ? "order-first" : "order-last"}
+   `,
         children: [
           i && /* @__PURE__ */ o.jsx("span", { children: i }),
-          s && /* @__PURE__ */ o.jsx("span", { children: d() })
+          s && /* @__PURE__ */ o.jsx("span", { children: a() })
         ]
       }
-    ), p = {
-      ...u,
-      ...w,
-      value: e,
-      maxValue: l,
-      classNames: {
-        ...r,
-        base: `w-full ${(r == null ? void 0 : r.base) || ""}`
-      }
-    };
+    );
     return /* @__PURE__ */ o.jsxs(
       "div",
       {
-        ref: j,
-        className: `flex w-full max-w-md flex-col gap-2 ${x || ""}`,
+        ref: w,
+        className: `flex w-full max-w-md flex-col gap-2 ${u || ""}`,
         children: [
           c,
-          /* @__PURE__ */ o.jsx(z, { ...p })
+          /* @__PURE__ */ o.jsx(
+            z,
+            {
+              ...g,
+              ...x,
+              value: e,
+              maxValue: l,
+              classNames: {
+                ...r,
+                base: `w-full ${(r == null ? void 0 : r.base) || ""}`
+              }
+            }
+          )
         ]
       }
     );
   }
 );
 D.displayName = "Progress";
-const O = C(
+const O = I(
   ({
     // Appearance
     color: i = "primary",
-    size: n = "md",
-    strokeWidth: x = 3,
+    size: f = "md",
+    strokeWidth: u = 3,
     // Content
-    label: f,
+    label: n,
     valueLabel: e,
     showValueLabel: l = !1,
-    formatOptions: a = { style: "percent" },
+    formatOptions: d = { style: "percent" },
     // Behavior
     value: t = 0,
     minValue: s = 0,
     maxValue: r = 100,
-    isIndeterminate: w = !1,
-    isStriped: j = !1,
+    isIndeterminate: x = !1,
+    isStriped: w = !1,
     // Auto-increment
-    autoIncrement: d = !1,
+    autoIncrement: a = !1,
     incrementInterval: c = 500,
     incrementStep: p = 10,
     // Styling
-    className: P,
+    className: C,
     classNames: E,
     // Callback
     onValueChange: m,
     ...F
   }, N) => {
-    const [g, b] = S(t);
+    const [j, y] = S(t);
     h(() => {
-      if (!d) {
-        b(t);
+      if (!a) {
+        y(t);
         return;
       }
-      const y = setInterval(() => {
-        b(($) => {
-          const I = $ >= r ? s : $ + p;
-          return m == null || m(I), I;
+      const P = setInterval(() => {
+        y((b) => {
+          const $ = b >= r ? s : b + p;
+          return m == null || m($), $;
         });
       }, c);
-      return () => clearInterval(y);
+      return () => clearInterval(P);
     }, [
-      d,
+      a,
       t,
       c,
       p,
@@ -126,26 +127,26 @@ const O = C(
     ]);
     const R = k(() => {
       if (e) return e;
-      const y = (g - s) / (r - s);
-      return new Intl.NumberFormat(void 0, a).format(y);
-    }, [g, e, s, r, a]);
+      const P = (j - s) / (r - s);
+      return new Intl.NumberFormat(void 0, d).format(P);
+    }, [j, e, s, r, d]);
     return /* @__PURE__ */ o.jsx(
       A,
       {
         ref: N,
         color: i,
-        size: n,
-        strokeWidth: x,
-        "aria-label": f,
-        label: f,
+        size: f,
+        strokeWidth: u,
+        "aria-label": n,
+        label: n,
         valueLabel: R(),
         showValueLabel: l,
-        value: g,
+        value: j,
         minValue: s,
         maxValue: r,
-        isIndeterminate: w,
-        isStriped: j,
-        className: P,
+        isIndeterminate: x,
+        isStriped: w,
+        className: C,
         classNames: E,
         ...F
       }
