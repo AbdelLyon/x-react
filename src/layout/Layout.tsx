@@ -7,11 +7,13 @@ export interface LayoutProps {
 
 // components/Layout/Layout.tsx
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Navbar, NavbarProps } from "@/navbar/Navbar";
-import { Sidebar, SidebarProps } from "@/sidebar/Sidebar";
+import type { NavbarProps } from "@/navbar/Navbar";
+import { Navbar } from "@/navbar/Navbar";
+import type { SidebarProps } from "@/sidebar/Sidebar";
+import { Sidebar } from "@/sidebar/Sidebar";
 
 import { cn } from "@/utils";
-import { JSX } from "react";
+import type { JSX } from "react";
 
 export const Layout = ({
   children,

@@ -1,4 +1,6 @@
-import { forwardRef, JSX, useState } from "react";
+import type { JSX } from "react";
+import { forwardRef, isValidElement, useState } from "react";
+import type { ModalProps as ModalPropsRoot } from "@nextui-org/react";
 import {
   Modal as ModalRoot,
   ModalContent,
@@ -6,7 +8,6 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  ModalProps as ModalPropsRoot,
 } from "@nextui-org/react";
 
 import { cn } from "@/utils";
@@ -34,12 +35,12 @@ interface ModalProps extends ModalBaseProps, ModalButtonProps {}
 const defaultClassNames = {
   closeButton: "absolute right-4 top-4",
   base: "bg-background border border-default-200 shadow-lg dark:shadow-none rounded-lg",
-};
+} as const;
 
 const defaultButtonProps = {
   color: "primary" as const,
   radius: "sm" as const,
-};
+} as const;
 
 const ModalButtons = ({
   buttonCloseLabel,
@@ -54,9 +55,17 @@ const ModalButtons = ({
     onClose();
   };
 
+  const hasValidCloseLabel =
+    typeof buttonCloseLabel === "string" && buttonCloseLabel.length > 0;
+
+  const hasValidActionButton =
+    typeof buttonActionLabel === "string" &&
+    buttonActionLabel.length > 0 &&
+    onAction !== undefined;
+
   return (
     <>
-      {buttonCloseLabel && (
+      {hasValidCloseLabel && (
         <Button
           className={cn("border-primary/50", buttonCloseProps?.className)}
           variant={buttonCloseProps?.variant || "bordered"}
@@ -68,7 +77,7 @@ const ModalButtons = ({
         </Button>
       )}
 
-      {buttonActionLabel && onAction && (
+      {hasValidActionButton && (
         <Button
           onPress={handleAction}
           {...defaultButtonProps}
@@ -113,6 +122,11 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       }
     };
 
+    const hasValidFooter =
+      footer !== undefined &&
+      footer !== null &&
+      (typeof footer === "string" || isValidElement(footer));
+
     return (
       <>
         <div
@@ -149,7 +163,9 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 <ModalBody>{children}</ModalBody>
 
                 <ModalFooter>
-                  {footer || (
+                  {hasValidFooter ? (
+                    footer
+                  ) : (
                     <ModalButtons
                       buttonCloseLabel={buttonCloseLabel}
                       buttonActionLabel={buttonActionLabel}

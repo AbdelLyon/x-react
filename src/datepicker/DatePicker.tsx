@@ -1,10 +1,12 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
+import type {
+  DatePickerProps as DatePickerRootProps} from "@nextui-org/react";
 import {
-  DatePicker as DatePickerRoot,
-  DatePickerProps as DatePickerRootProps,
+  DatePicker as DatePickerRoot
 } from "@nextui-org/react";
-import { DateValue } from "@internationalized/date";
-import { Color, Radius, Size } from "@/types/types";
+import type { DateValue } from "@internationalized/date";
+import type { Color, Radius, Size } from "@/types/types";
 
 type LabelPlacement = "inside" | "outside" | "outside-left";
 

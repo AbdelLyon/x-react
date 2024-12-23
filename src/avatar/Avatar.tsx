@@ -1,5 +1,7 @@
-import { forwardRef, useMemo } from "react";
-import { AvatarIcon, AvatarProps, useAvatar } from "@nextui-org/react";
+import type { ReactElement } from "react";
+import { forwardRef } from "react";
+import type { AvatarProps } from "@nextui-org/react";
+import { AvatarIcon, useAvatar } from "@nextui-org/react";
 
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
   const {
@@ -19,12 +21,20 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
     ...props,
   });
 
-  const fallback = useMemo(() => {
-    if (!showFallback && src) return null;
+  const getFallback = (): ReactElement | null => {
+    const shouldShowImage = typeof src === "string" && src.length > 0;
+    if (!showFallback && shouldShowImage) {
+      return null;
+    }
 
-    const ariaLabel = alt || name || "avatar";
+    const ariaLabel =
+      typeof alt === "string" && alt.length > 0
+        ? alt
+        : typeof name === "string" && name.length > 0
+          ? name
+          : "avatar";
 
-    if (fallbackComponent) {
+    if (fallbackComponent !== null && fallbackComponent !== undefined) {
       return (
         <div
           aria-label={ariaLabel}
@@ -36,15 +46,21 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
       );
     }
 
-    return name ? (
-      <span
-        aria-label={ariaLabel}
-        className={slots.name({ class: classNames?.name })}
-        role="img"
-      >
-        {getInitials(name)}
-      </span>
-    ) : (
+    const hasName = typeof name === "string" && name.length > 0;
+
+    if (hasName) {
+      return (
+        <span
+          aria-label={ariaLabel}
+          className={slots.name({ class: classNames?.name })}
+          role="img"
+        >
+          {getInitials(name)}
+        </span>
+      );
+    }
+
+    return (
       <span
         aria-label={ariaLabel}
         className={slots.icon({ class: classNames?.icon })}
@@ -53,22 +69,13 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
         {icon}
       </span>
     );
-  }, [
-    showFallback,
-    src,
-    fallbackComponent,
-    name,
-    classNames,
-    slots,
-    alt,
-    icon,
-    getInitials,
-  ]);
+  };
+  const shouldShowImage = typeof src === "string" && src.length > 0;
 
   return (
     <div {...getAvatarProps()}>
-      {src && <img {...getImageProps()} alt={alt} />}
-      {fallback}
+      {shouldShowImage && <img {...getImageProps()} alt={alt} />}
+      {getFallback()}
     </div>
   );
 });

@@ -1,6 +1,7 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import { cn } from "@/utils";
-import { Item } from "@/types/navigation";
+import type { Item } from "@/types/navigation";
 import { Link } from "@nextui-org/react";
 import { useResponsive } from "@/hooks";
 import { Tooltip } from "@/tooltip";
@@ -23,7 +24,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       return null;
     }
 
-    const renderLink = (item: Item) => {
+    const renderLink = (item: Item): JSX.Element => {
       const linkContent = (
         <Link
           key={item.key}

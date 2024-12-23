@@ -22,11 +22,19 @@ export const useResponsive = (customQuery?: string): ResponsiveHook => {
   const isTablet = useMediaQuery(MEDIA_QUERIES.tablet);
   const isMobile = !isDesktop && !isTablet;
 
-  const customMatch = useMediaQuery(customQuery || "");
+  const customMatch = useMediaQuery(
+    typeof customQuery === "string" && customQuery.length > 0
+      ? customQuery
+      : "",
+  );
 
   const getBreakpoint = (): keyof Breakpoints => {
-    if (isDesktop) return "isDesktop";
-    if (isTablet) return "isTablet";
+    if (isDesktop === true) {
+      return "isDesktop";
+    }
+    if (isTablet === true) {
+      return "isTablet";
+    }
     return "isMobile";
   };
 
@@ -36,14 +44,17 @@ export const useResponsive = (customQuery?: string): ResponsiveHook => {
       isTablet,
       isMobile,
     };
-    return breakpoints[breakpoint];
+    return breakpoints[breakpoint] === true;
   };
+
+  const hasValidCustomQuery =
+    typeof customQuery === "string" && customQuery.length > 0;
 
   return {
     isDesktop,
     isTablet,
     isMobile,
-    matches: customQuery ? customMatch : undefined,
+    matches: hasValidCustomQuery ? customMatch : undefined,
     getBreakpoint,
     isBreakpoint,
   };

@@ -1,12 +1,13 @@
 import { forwardRef } from "react";
+import type {
+  PopoverProps,
+  PopoverContentProps} from "@nextui-org/react";
 import {
   Popover as PopoverRoot,
   PopoverTrigger,
-  PopoverContent,
-  PopoverProps,
-  PopoverContentProps,
+  PopoverContent
 } from "@nextui-org/react";
-import { Radius } from "@/types/types";
+import type { Radius } from "@/types/types";
 
 export interface PropsPopover extends Omit<PopoverProps, "content"> {
   trigger: React.ReactNode;

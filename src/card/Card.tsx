@@ -1,12 +1,12 @@
 import { forwardRef } from "react";
+import type { ButtonProps } from "@nextui-org/react";
 import {
   Card as NextUICard,
   CardHeader,
   CardBody,
   CardFooter,
-  ButtonProps,
 } from "@nextui-org/react";
-import { Radius, Shadow } from "@/types/types";
+import type { Radius, Shadow } from "@/types/types";
 
 interface GenericCardProps extends Partial<ButtonProps> {
   children?: React.ReactNode | React.ReactNode[];
@@ -52,6 +52,9 @@ export const Card = forwardRef<HTMLDivElement, GenericCardProps>(
     },
     ref,
   ) => {
+    const hasHeader = header !== null && header !== undefined;
+    const hasFooter = footer !== null && footer !== undefined;
+
     return (
       <NextUICard
         ref={ref}
@@ -73,13 +76,13 @@ export const Card = forwardRef<HTMLDivElement, GenericCardProps>(
         onPressChange={onPressChange}
         onPressUp={onPressUp}
       >
-        {header && (
+        {hasHeader && (
           <CardHeader className={classNames?.header}>{header}</CardHeader>
         )}
 
         <CardBody className={classNames?.body}>{children}</CardBody>
 
-        {footer && (
+        {hasFooter && (
           <CardFooter className={classNames?.footer}>{footer}</CardFooter>
         )}
       </NextUICard>

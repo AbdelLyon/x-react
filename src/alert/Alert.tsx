@@ -1,11 +1,7 @@
 import { forwardRef } from "react";
-import {
-  AlertProps,
-  Alert as AlertRoot,
-  Button,
-  ButtonProps,
-} from "@nextui-org/react";
-import { Color, Radius, Variant } from "@/types/types";
+import type { AlertProps, ButtonProps } from "@nextui-org/react";
+import { Alert as AlertRoot, Button } from "@nextui-org/react";
+import type { Color, Radius, Variant } from "@/types/types";
 
 interface Props {
   title?: string;

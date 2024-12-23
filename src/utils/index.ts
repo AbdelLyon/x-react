@@ -1,9 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export function cn(...inputs: ClassValue[]) {
+export const cn = (...inputs: ClassValue[]): string => {
   return twMerge(clsx(inputs));
-}
+};
 
 export const capitalizeFirstLetter = (str: string): string =>
   str?.charAt(0).toUpperCase() + str?.slice(1);

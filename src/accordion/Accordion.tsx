@@ -1,11 +1,7 @@
 import { forwardRef } from "react";
-import {
-  Accordion as AccordionRoot,
-  AccordionItem,
-  AccordionProps,
-  AccordionItemProps,
-} from "@nextui-org/react";
 import { cn } from "@/utils";
+import type { AccordionProps, AccordionItemProps } from "@nextui-org/react";
+import { Accordion as AccordionRoot, AccordionItem } from "@nextui-org/react";
 
 interface ExtendedAccordionItemProps
   extends Omit<AccordionItemProps, "content"> {

@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
+import type {
+  SwitchProps as SwitchRootProp} from "@nextui-org/react";
 import {
-  Switch as NextUISwitch,
-  SwitchProps as SwitchRootProp,
+  Switch as NextUISwitch
 } from "@nextui-org/react";
 
 interface SwitchProps extends SwitchRootProp {

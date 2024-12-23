@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
-import { InputOtp as NextUIInputOtp, InputOtpProps } from "@nextui-org/react";
+import type { InputOtpProps } from "@nextui-org/react";
+import { InputOtp as NextUIInputOtp } from "@nextui-org/react";
 import { cn } from "@/utils";
 
 interface InputOtpWrapperProps extends Omit<InputOtpProps, "length"> {

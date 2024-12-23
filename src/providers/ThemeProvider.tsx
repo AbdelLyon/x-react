@@ -1,9 +1,14 @@
+import type {
+  ThemeProviderProps} from "next-themes";
 import {
-  ThemeProvider as NextThemesProvider,
-  ThemeProviderProps,
+  ThemeProvider as NextThemesProvider
 } from "next-themes";
+import type { JSX } from "react";
 
-const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
+const ThemeProvider = ({
+  children,
+  ...props
+}: ThemeProviderProps): JSX.Element => {
   return (
     <NextThemesProvider
       defaultTheme="light"
