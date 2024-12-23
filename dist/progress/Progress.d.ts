@@ -6,7 +6,8 @@ interface AdditionalProgressProps {
     containerClassName?: string;
     labelClassName?: string;
 }
-interface ProgressProps extends ProgressRootProps, AdditionalProgressProps {
+interface ProgressProps extends Omit<ProgressRootProps, "classNames">, AdditionalProgressProps {
+    classNames?: ProgressRootProps["classNames"];
 }
 export declare const Progress: import('react').ForwardRefExoticComponent<Omit<ProgressProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};

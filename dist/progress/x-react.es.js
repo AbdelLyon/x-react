@@ -1,160 +1,157 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as I, useState as S, useEffect as h, useCallback as k } from "react";
-import { Progress as z, CircularProgress as A } from "@nextui-org/react";
-const g = {
+import { forwardRef as E, useState as k, useEffect as z, useCallback as S } from "react";
+import { Progress as h, CircularProgress as q } from "@nextui-org/react";
+const y = {
   size: "md",
   color: "primary",
   radius: "full",
   minValue: 0,
   maxValue: 100,
   formatOptions: { style: "percent" },
-  showValueLabel: !0,
-  isIndeterminate: !1,
-  isStriped: !1,
-  isDisabled: !1,
-  disableAnimation: !1
-}, D = I(
+  showValueLabel: !0
+}, A = E(
   ({
-    label: i,
-    labelPosition: f = "top",
-    containerClassName: u,
-    labelClassName: n,
+    // Custom props
+    label: f,
+    labelPosition: c = "top",
+    containerClassName: a,
+    labelClassName: i,
+    // NextUI props
     value: e = 0,
-    maxValue: l = 100,
-    formatOptions: d = g.formatOptions,
-    valueLabel: t,
-    showValueLabel: s = g.showValueLabel,
+    maxValue: d = 100,
+    formatOptions: n = y.formatOptions,
+    valueLabel: s,
+    showValueLabel: t = y.showValueLabel,
     classNames: r,
+    // Rest of NextUI props
     ...x
-  }, w) => {
-    const a = () => {
-      const p = new Intl.NumberFormat(
+  }, j) => {
+    const l = () => {
+      const w = new Intl.NumberFormat(
         void 0,
-        d
-      ).format(e / l);
-      return (t == null ? void 0 : t.toString()) || p;
-    }, c = f === "none" ? null : /* @__PURE__ */ o.jsxs(
+        n
+      ).format(e / d);
+      return (s == null ? void 0 : s.toString()) || w;
+    }, p = c === "none" ? null : /* @__PURE__ */ o.jsxs(
       "div",
       {
         className: `
-     flex items-center justify-between
-     text-small font-medium text-default-500
-     ${n}
-     ${f === "top" ? "order-first" : "order-last"}
-   `,
+      flex items-center justify-between
+      text-small font-medium text-default-500
+      ${i}
+      ${c === "top" ? "order-first" : "order-last"}
+    `,
         children: [
-          i && /* @__PURE__ */ o.jsx("span", { children: i }),
-          s && /* @__PURE__ */ o.jsx("span", { children: a() })
+          f && /* @__PURE__ */ o.jsx("span", { children: f }),
+          t && /* @__PURE__ */ o.jsx("span", { children: l() })
         ]
       }
-    );
+    ), u = {
+      value: e,
+      maxValue: d,
+      formatOptions: n,
+      showValueLabel: t,
+      ...x,
+      classNames: {
+        ...r,
+        base: `w-full ${(r == null ? void 0 : r.base) || ""}`
+      }
+    };
     return /* @__PURE__ */ o.jsxs(
       "div",
       {
-        ref: w,
-        className: `flex w-full max-w-md flex-col gap-2 ${u || ""}`,
+        ref: j,
+        className: `flex w-full max-w-md flex-col gap-2 ${a || ""}`,
         children: [
-          c,
-          /* @__PURE__ */ o.jsx(
-            z,
-            {
-              ...g,
-              ...x,
-              value: e,
-              maxValue: l,
-              classNames: {
-                ...r,
-                base: `w-full ${(r == null ? void 0 : r.base) || ""}`
-              }
-            }
-          )
+          p,
+          /* @__PURE__ */ o.jsx(h, { ...y, ...u })
         ]
       }
     );
   }
 );
-D.displayName = "Progress";
-const O = I(
+A.displayName = "Progress";
+const B = E(
   ({
     // Appearance
-    color: i = "primary",
-    size: f = "md",
-    strokeWidth: u = 3,
+    color: f = "primary",
+    size: c = "md",
+    strokeWidth: a = 3,
     // Content
-    label: n,
+    label: i,
     valueLabel: e,
-    showValueLabel: l = !1,
-    formatOptions: d = { style: "percent" },
+    showValueLabel: d = !1,
+    formatOptions: n = { style: "percent" },
     // Behavior
-    value: t = 0,
-    minValue: s = 0,
+    value: s = 0,
+    minValue: t = 0,
     maxValue: r = 100,
     isIndeterminate: x = !1,
-    isStriped: w = !1,
+    isStriped: j = !1,
     // Auto-increment
-    autoIncrement: a = !1,
-    incrementInterval: c = 500,
-    incrementStep: p = 10,
+    autoIncrement: l = !1,
+    incrementInterval: p = 500,
+    incrementStep: u = 10,
     // Styling
-    className: C,
-    classNames: E,
+    className: w,
+    classNames: F,
     // Callback
     onValueChange: m,
-    ...F
+    ...I
   }, N) => {
-    const [j, y] = S(t);
-    h(() => {
-      if (!a) {
-        y(t);
+    const [P, $] = k(s);
+    z(() => {
+      if (!l) {
+        $(s);
         return;
       }
-      const P = setInterval(() => {
-        y((b) => {
-          const $ = b >= r ? s : b + p;
-          return m == null || m($), $;
+      const g = setInterval(() => {
+        $((b) => {
+          const C = b >= r ? t : b + u;
+          return m == null || m(C), C;
         });
-      }, c);
-      return () => clearInterval(P);
+      }, p);
+      return () => clearInterval(g);
     }, [
-      a,
-      t,
-      c,
-      p,
-      r,
+      l,
       s,
+      p,
+      u,
+      r,
+      t,
       m
     ]);
-    const R = k(() => {
+    const R = S(() => {
       if (e) return e;
-      const P = (j - s) / (r - s);
-      return new Intl.NumberFormat(void 0, d).format(P);
-    }, [j, e, s, r, d]);
+      const g = (P - t) / (r - t);
+      return new Intl.NumberFormat(void 0, n).format(g);
+    }, [P, e, t, r, n]);
     return /* @__PURE__ */ o.jsx(
-      A,
+      q,
       {
         ref: N,
-        color: i,
-        size: f,
-        strokeWidth: u,
-        "aria-label": n,
-        label: n,
+        color: f,
+        size: c,
+        strokeWidth: a,
+        "aria-label": i,
+        label: i,
         valueLabel: R(),
-        showValueLabel: l,
-        value: j,
-        minValue: s,
+        showValueLabel: d,
+        value: P,
+        minValue: t,
         maxValue: r,
         isIndeterminate: x,
-        isStriped: w,
-        className: C,
-        classNames: E,
-        ...F
+        isStriped: j,
+        className: w,
+        classNames: F,
+        ...I
       }
     );
   }
 );
-O.displayName = "CircularProgress";
+B.displayName = "CircularProgress";
 export {
-  O as CircularProgress,
-  D as Progress
+  B as CircularProgress,
+  A as Progress
 };
