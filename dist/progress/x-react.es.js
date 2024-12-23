@@ -1,8 +1,8 @@
 /* empty css                */
 import { j as l } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as b, useState as v, useEffect as S } from "react";
-import { Progress as h, CircularProgress as z } from "@nextui-org/react";
-const w = {
+import { forwardRef as v, useState as h, useEffect as z } from "react";
+import { Progress as E, CircularProgress as F } from "@nextui-org/react";
+const j = {
   size: "md",
   color: "primary",
   radius: "full",
@@ -10,7 +10,7 @@ const w = {
   maxValue: 100,
   formatOptions: { style: "percent" },
   showValueLabel: !0
-}, E = b(
+}, N = v(
   ({
     // Custom props
     label: c,
@@ -20,20 +20,20 @@ const w = {
     // NextUI props
     value: s = 0,
     maxValue: r = 100,
-    formatOptions: t = w.formatOptions,
+    formatOptions: t = j.formatOptions,
     valueLabel: o,
-    showValueLabel: a = w.showValueLabel,
+    showValueLabel: a = j.showValueLabel,
     classNames: n,
     // Rest of NextUI props
-    ...d
-  }, x) => {
-    const f = () => {
-      const P = new Intl.NumberFormat(
+    ...p
+  }, d) => {
+    const x = () => {
+      const f = new Intl.NumberFormat(
         void 0,
         t
       ).format(s / r);
-      return (o == null ? void 0 : o.toString()) || P;
-    }, p = i === "none" ? null : /* @__PURE__ */ l.jsxs(
+      return (o == null ? void 0 : o.toString()) || f;
+    }, P = i === "none" ? null : /* @__PURE__ */ l.jsxs(
       "div",
       {
         className: `
@@ -44,15 +44,15 @@ const w = {
     `,
         children: [
           c && /* @__PURE__ */ l.jsx("span", { children: c }),
-          a && /* @__PURE__ */ l.jsx("span", { children: f() })
+          a && /* @__PURE__ */ l.jsx("span", { children: x() })
         ]
       }
-    ), y = {
+    ), g = {
       value: s,
       maxValue: r,
       formatOptions: t,
       showValueLabel: a,
-      ...d,
+      ...p,
       classNames: {
         ...n,
         base: `w-full ${(n == null ? void 0 : n.base) || ""}`
@@ -61,17 +61,17 @@ const w = {
     return /* @__PURE__ */ l.jsxs(
       "div",
       {
-        ref: x,
+        ref: d,
         className: `flex w-full max-w-md flex-col gap-2 ${m || ""}`,
         children: [
-          p,
-          /* @__PURE__ */ l.jsx(h, { ...w, ...y })
+          P,
+          /* @__PURE__ */ l.jsx(E, { ...j, ...g })
         ]
       }
     );
   }
 );
-E.displayName = "Progress";
+N.displayName = "Progress";
 const u = {
   color: "primary",
   size: "md",
@@ -81,16 +81,16 @@ const u = {
   value: 0,
   minValue: 0,
   maxValue: 100
-}, j = {
+}, y = {
   autoIncrement: !1,
   incrementInterval: 500,
   incrementStep: 10
-}, F = b(
+}, O = v(
   ({
     // Auto-increment props
-    autoIncrement: c = j.autoIncrement,
-    incrementInterval: i = j.incrementInterval,
-    incrementStep: m = j.incrementStep,
+    autoIncrement: c = y.autoIncrement,
+    incrementInterval: i = y.incrementInterval,
+    incrementStep: m = y.incrementStep,
     onValueChange: e,
     // NextUI props
     value: s = u.value,
@@ -99,21 +99,24 @@ const u = {
     formatOptions: o = u.formatOptions,
     valueLabel: a,
     classNames: n,
-    ...d
-  }, x) => {
-    const [f, p] = v(s);
-    S(() => {
+    showValueLabel: p,
+    color: d,
+    size: x,
+    ...P
+  }, g) => {
+    const [f, I] = h(s);
+    z(() => {
       if (!c) {
-        p(s);
+        I(s);
         return;
       }
-      const g = setInterval(() => {
-        p((I) => {
-          const $ = I >= t ? r : I + m;
-          return e == null || e($), $;
+      const w = setInterval(() => {
+        I(($) => {
+          const b = $ >= t ? r : $ + m;
+          return e == null || e(b), b;
         });
       }, i);
-      return () => clearInterval(g);
+      return () => clearInterval(w);
     }, [
       c,
       s,
@@ -123,26 +126,29 @@ const u = {
       r,
       e
     ]);
-    const P = {
-      ...d,
+    const S = {
       ...u,
-      ref: x,
+      ...P,
+      ref: g,
       value: f,
       minValue: r,
       maxValue: t,
       formatOptions: o,
       valueLabel: (() => {
         if (a) return a;
-        const g = (f - r) / (t - r);
-        return new Intl.NumberFormat(void 0, o).format(g);
+        const w = (f - r) / (t - r);
+        return new Intl.NumberFormat(void 0, o).format(w);
       })(),
+      showValueLabel: p,
+      color: d,
+      size: x,
       classNames: n
     };
-    return /* @__PURE__ */ l.jsx(z, { ...P });
+    return /* @__PURE__ */ l.jsx(F, { ...S });
   }
 );
-F.displayName = "CircularProgress";
+O.displayName = "CircularProgress";
 export {
-  F as CircularProgress,
-  E as Progress
+  O as CircularProgress,
+  N as Progress
 };

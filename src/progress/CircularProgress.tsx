@@ -52,6 +52,9 @@ export const CircularProgress = forwardRef<
       formatOptions = defaultProps.formatOptions,
       valueLabel,
       classNames,
+      showValueLabel,
+      color,
+      size,
       ...nextUIProps
     },
     ref,
@@ -91,14 +94,17 @@ export const CircularProgress = forwardRef<
     };
 
     const circularProgressProps = {
-      ...nextUIProps,
       ...defaultProps,
+      ...nextUIProps,
       ref,
       value: currentValue,
       minValue,
       maxValue,
       formatOptions,
       valueLabel: getValueLabel(),
+      showValueLabel,
+      color,
+      size,
       classNames,
     };
 
