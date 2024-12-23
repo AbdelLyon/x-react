@@ -3,7 +3,7 @@ import { j as o } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as E, useState as h, useEffect as k, useCallback as z } from "react";
 import { Progress as A, CircularProgress as C } from "@nextui-org/react";
 const i = {
-  labelPosition: "top",
+  labelposition: "top",
   size: "md",
   color: "primary",
   radius: "full",
@@ -19,7 +19,7 @@ const i = {
   ({
     // Props spécifiques au composant
     label: n,
-    labelPosition: l = i.labelPosition,
+    labelposition: l = i.labelposition,
     containerClassName: x,
     labelClassName: f,
     // Props NextUI
@@ -29,8 +29,8 @@ const i = {
     valueLabel: t,
     showValueLabel: s = i.showValueLabel,
     classNames: r,
-    ...P
-  }, w) => {
+    ...w
+  }, P) => {
     const c = () => {
       const j = new Intl.NumberFormat(
         void 0,
@@ -53,7 +53,7 @@ const i = {
       }
     ), u = {
       ...i,
-      ...P,
+      ...w,
       value: e,
       maxValue: a,
       classNames: {
@@ -64,7 +64,7 @@ const i = {
     return /* @__PURE__ */ o.jsxs(
       "div",
       {
-        ref: w,
+        ref: P,
         className: `flex w-full max-w-md flex-col gap-2 ${x || ""}`,
         children: [
           p(),
@@ -90,8 +90,8 @@ const O = E(
     value: t = 0,
     minValue: s = 0,
     maxValue: r = 100,
-    isIndeterminate: P = !1,
-    isStriped: w = !1,
+    isIndeterminate: w = !1,
+    isStriped: P = !1,
     // Auto-increment
     autoIncrement: c = !1,
     incrementInterval: p = 500,
@@ -144,8 +144,8 @@ const O = E(
         value: b,
         minValue: s,
         maxValue: r,
-        isIndeterminate: P,
-        isStriped: w,
+        isIndeterminate: w,
+        isStriped: P,
         className: j,
         classNames: F,
         ...N

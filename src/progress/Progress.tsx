@@ -6,7 +6,7 @@ import {
 
 interface AdditionalProgressProps {
   label?: ReactNode;
-  labelPosition?: "top" | "bottom" | "none";
+  labelposition?: "top" | "bottom" | "none";
   containerClassName?: string;
   labelClassName?: string;
 }
@@ -14,7 +14,7 @@ interface AdditionalProgressProps {
 interface ProgressProps extends NextUIProgressProps, AdditionalProgressProps {}
 
 const defaultProps = {
-  labelPosition: "top" as const,
+  labelposition: "top" as const,
   size: "md" as const,
   color: "primary" as const,
   radius: "full" as const,
@@ -33,7 +33,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
     {
       // Props spécifiques au composant
       label,
-      labelPosition = defaultProps.labelPosition,
+      labelposition = defaultProps.labelposition,
       containerClassName,
       labelClassName,
       // Props NextUI
@@ -57,7 +57,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
     };
 
     const renderLabel = (): ReactNode => {
-      if (labelPosition === "none") return null;
+      if (labelposition === "none") return null;
 
       return (
         <div
@@ -65,7 +65,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
           flex items-center justify-between
           text-small font-medium text-default-500
           ${labelClassName}
-          ${labelPosition === "top" ? "order-first" : "order-last"}
+          ${labelposition === "top" ? "order-first" : "order-last"}
         `}
         >
           {label && <span>{label}</span>}

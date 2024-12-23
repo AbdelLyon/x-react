@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { ProgressProps as NextUIProgressProps } from '@nextui-org/react';
 interface AdditionalProgressProps {
     label?: ReactNode;
-    labelPosition?: "top" | "bottom" | "none";
+    labelposition?: "top" | "bottom" | "none";
     containerClassName?: string;
     labelClassName?: string;
 }
