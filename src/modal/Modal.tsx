@@ -1,6 +1,6 @@
 import { forwardRef, useState } from "react";
 import {
-  Modal as NextUIModal,
+  Modal as ModalRoot,
   ModalContent,
   ModalHeader,
   ModalBody,
@@ -72,7 +72,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
           {trigger}
         </div>
 
-        <NextUIModal
+        <ModalRoot
           ref={ref}
           backdrop={backdrop}
           classNames={{
@@ -134,7 +134,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
               </>
             )}
           </ModalContent>
-        </NextUIModal>
+        </ModalRoot>
       </>
     );
   },

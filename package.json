@@ -118,6 +118,10 @@
     "./tooltip": {
       "import": "./dist/tooltip/x-react.es.js",
       "types": "./dist/tooltip/index.d.ts"
+    },
+    "./tabs": {
+      "import": "./dist/tabs/x-react.es.js",
+      "types": "./dist/tabs/index.d.ts"
     }
   },
   "typesVersions": {
