@@ -6,7 +6,7 @@ import {
 
 interface AdditionalProgressProps {
   label?: ReactNode;
-  labelposition?: "top" | "bottom" | "none";
+  labelPosition?: "top" | "bottom" | "none";
   containerClassName?: string;
   labelClassName?: string;
 }
@@ -14,7 +14,6 @@ interface AdditionalProgressProps {
 interface ProgressProps extends NextUIProgressProps, AdditionalProgressProps {}
 
 const defaultProps = {
-  labelposition: "top" as const,
   size: "md" as const,
   color: "primary" as const,
   radius: "full" as const,
@@ -26,14 +25,14 @@ const defaultProps = {
   isStriped: false,
   isDisabled: false,
   disableAnimation: false,
-};
+} as const;
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   (
     {
       // Props spécifiques au composant
       label,
-      labelposition = defaultProps.labelposition,
+      labelPosition = "top",
       containerClassName,
       labelClassName,
       // Props NextUI
@@ -56,23 +55,20 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       return valueLabel?.toString() || formattedValue;
     };
 
-    const renderLabel = (): ReactNode => {
-      if (labelposition === "none") return null;
-
-      return (
+    const labelComponent =
+      labelPosition === "none" ? null : (
         <div
           className={`
-          flex items-center justify-between
-          text-small font-medium text-default-500
-          ${labelClassName}
-          ${labelposition === "top" ? "order-first" : "order-last"}
-        `}
+        flex items-center justify-between
+        text-small font-medium text-default-500
+        ${labelClassName}
+        ${labelPosition === "top" ? "order-first" : "order-last"}
+      `}
         >
           {label && <span>{label}</span>}
           {showValueLabel && <span>{getValueLabel()}</span>}
         </div>
       );
-    };
 
     const progressProps = {
       ...defaultProps,
@@ -90,7 +86,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
         ref={ref}
         className={`flex w-full max-w-md flex-col gap-2 ${containerClassName || ""}`}
       >
-        {renderLabel()}
+        {labelComponent}
         <NextUIProgress {...progressProps} />
       </div>
     );
