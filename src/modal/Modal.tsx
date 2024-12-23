@@ -81,7 +81,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
               props.classNames?.closeButton,
             ),
             base: cn(
-              "bg-background border border-divider shadow-lg dark:shadow-none rounded-lg",
+              "bg-background border border-default-200 shadow-lg dark:shadow-none rounded-lg",
               props.classNames?.base,
             ),
             ...props.classNames,

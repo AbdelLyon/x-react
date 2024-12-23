@@ -33,6 +33,8 @@ const modules = [
   "sidebar",
   "layout",
   "tooltip",
+  "tabs",
+  "scroll",
 ];
 
 export default defineConfig({

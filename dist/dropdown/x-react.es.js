@@ -1,42 +1,42 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as h } from "react";
-import { Dropdown as D, DropdownTrigger as f, DropdownMenu as x, DropdownSection as j, DropdownItem as u } from "@nextui-org/react";
-const g = h(
-  ({ trigger: n, sections: s, dropdownMenuProps: a, onItemPress: e, classNames: i, ...p }, l) => {
-    const m = (r) => {
+import { forwardRef as f } from "react";
+import { Dropdown as h, DropdownTrigger as D, DropdownMenu as u, DropdownSection as x, DropdownItem as j } from "@nextui-org/react";
+const g = f(
+  ({ trigger: s, sections: d, dropdownMenuProps: a, onItemPress: e, classNames: p, ...i }, l) => {
+    const t = (r) => {
       e && e(r);
     };
     return /* @__PURE__ */ o.jsxs(
-      D,
+      h,
       {
         ref: l,
         showArrow: !0,
         classNames: {
           base: "before:bg-default-200",
-          content: "p-0 border border-divider bg-background",
-          ...i
+          content: "p-0 border border-default-200 bg-background",
+          ...p
         },
-        ...p,
+        ...i,
         children: [
-          /* @__PURE__ */ o.jsx(f, { children: n }),
-          /* @__PURE__ */ o.jsx(x, { className: "p-3", ...a, children: s.map((r) => /* @__PURE__ */ o.jsx(
-            j,
+          /* @__PURE__ */ o.jsx(D, { children: s }),
+          /* @__PURE__ */ o.jsx(u, { className: "p-3", ...a, children: d.map((r) => /* @__PURE__ */ o.jsx(
+            x,
             {
               showDivider: r.showDivider,
               "aria-label": r.label,
-              children: r.items.map((d) => {
-                const { key: t, label: w, href: b, ...c } = d;
+              children: r.items.map((n) => {
+                const { key: m, label: w, href: b, ...c } = n;
                 return /* @__PURE__ */ o.jsx(
-                  u,
+                  j,
                   {
                     onPress: () => {
-                      m({ ...d, href: b });
+                      t({ ...n, href: b });
                     },
                     ...c,
                     children: w
                   },
-                  t
+                  m
                 );
               })
             },

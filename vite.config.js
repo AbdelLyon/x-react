@@ -5,86 +5,84 @@ import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import tailwindcss from "tailwindcss";
 var modules = [
-  "utils",
-  "button",
-  "modal",
-  "hooks",
-  "theme",
-  "providers",
-  "accordion",
-  "alert",
-  "avatar",
-  "card",
-  "icons",
-  "form",
-  "popover",
-  "dropdown",
-  "image",
-  "slider",
-  "progress",
-  "spiner",
-  "datagrid",
-  "drawer",
-  "chip",
-  "datepicker",
-  "navbar",
-  "sidebar",
-  "layout",
-  "tooltip",
-  "tabs",
+    "utils",
+    "button",
+    "modal",
+    "hooks",
+    "theme",
+    "providers",
+    "accordion",
+    "alert",
+    "avatar",
+    "card",
+    "icons",
+    "form",
+    "popover",
+    "dropdown",
+    "image",
+    "slider",
+    "progress",
+    "spiner",
+    "datagrid",
+    "drawer",
+    "chip",
+    "datepicker",
+    "navbar",
+    "sidebar",
+    "layout",
+    "tooltip",
+    "tabs",
+    "scroll",
 ];
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      exclude: ["src/shared/**/*", "src/tests/**/*", "src/ui/**/*"],
-    }),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  css: {
-    postcss: {
-      plugins: [tailwindcss],
-    },
-  },
-  build: {
-    lib: {
-      entry: Object.fromEntries(
-        modules.map(function (module) {
-          return [module, path.resolve(__dirname, "src/".concat(module))];
+    plugins: [
+        react(),
+        dts({
+            exclude: ["src/shared/**/*", "src/tests/**/*", "src/ui/**/*"],
         }),
-      ),
-      name: "x-react",
-      formats: ["es"],
-      fileName: function (format, entryName) {
-        return ""
-          .concat(entryName ? entryName + "/" : "", "x-react.")
-          .concat(format, ".js");
-      },
-    },
-    rollupOptions: {
-      external: [
-        // Peer Dependencies
-        "react",
-        "react-dom",
-        // Dependencies
-        "@nextui-org/react",
-        "@tabler/icons-react",
-        "@tanstack/react-query",
-        "@vitejs/plugin-react-swc",
-        "clsx",
-        "next-themes",
-      ],
-      output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          tailwindcss: "tailwindcss",
+    ],
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "./src"),
         },
-      },
     },
-  },
+    css: {
+        postcss: {
+            plugins: [tailwindcss],
+        },
+    },
+    build: {
+        lib: {
+            entry: Object.fromEntries(modules.map(function (module) { return [
+                module,
+                path.resolve(__dirname, "src/".concat(module)),
+            ]; })),
+            name: "x-react",
+            formats: ["es"],
+            fileName: function (format, entryName) {
+                return "".concat(entryName ? entryName + "/" : "", "x-react.").concat(format, ".js");
+            },
+        },
+        rollupOptions: {
+            external: [
+                // Peer Dependencies
+                "react",
+                "react-dom",
+                // Dependencies
+                "@nextui-org/react",
+                "@tabler/icons-react",
+                "@tanstack/react-query",
+                "@vitejs/plugin-react-swc",
+                "clsx",
+                "next-themes",
+            ],
+            output: {
+                globals: {
+                    react: "React",
+                    "react-dom": "ReactDOM",
+                    tailwindcss: "tailwindcss",
+                },
+            },
+        },
+    },
 });

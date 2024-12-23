@@ -52,7 +52,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
         showArrow
         classNames={{
           base: "before:bg-default-200",
-          content: "p-0 border border-divider bg-background",
+          content: "p-0 border border-default-200 bg-background",
           ...classNames,
         }}
         {...props}

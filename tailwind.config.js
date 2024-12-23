@@ -58,10 +58,6 @@ module.exports = {
               DEFAULT: "#272a2b",
               foreground: "#000000",
             },
-            divider: {
-              DEFAULT: "#83837c",
-              foreground: "#000000",
-            },
           },
         },
       },

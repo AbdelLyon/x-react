@@ -18,11 +18,11 @@ const G = E(
     ...l
   }, B) => {
     var j, f;
-    const { isOpen: w, onOpen: F, onClose: h } = R(), [v, D] = K("opaque"), s = (r = "opaque") => {
-      D(r), F();
-    }, O = () => {
+    const { isOpen: w, onOpen: F, onClose: h } = R(), [D, O] = K("opaque"), s = (r = "opaque") => {
+      O(r), F();
+    }, q = () => {
       m == null || m(), h();
-    }, q = (r) => {
+    }, v = (r) => {
       (r.key === "Enter" || r.key === " ") && s();
     };
     return /* @__PURE__ */ a.jsxs(a.Fragment, { children: [
@@ -32,7 +32,7 @@ const G = E(
           role: "button",
           tabIndex: 0,
           onClick: () => s(),
-          onKeyDown: q,
+          onKeyDown: v,
           children: y
         }
       ),
@@ -40,14 +40,14 @@ const G = E(
         H,
         {
           ref: B,
-          backdrop: v,
+          backdrop: D,
           classNames: {
             closeButton: c(
               "absolute right-4 top-4",
               (j = l.classNames) == null ? void 0 : j.closeButton
             ),
             base: c(
-              "bg-background border border-divider shadow-lg dark:shadow-none rounded-lg",
+              "bg-background border border-default-200 shadow-lg dark:shadow-none rounded-lg",
               (f = l.classNames) == null ? void 0 : f.base
             ),
             ...l.classNames
@@ -79,7 +79,7 @@ const G = E(
                 {
                   color: (e == null ? void 0 : e.color) || "primary",
                   radius: (e == null ? void 0 : e.radius) || "sm",
-                  onPress: O,
+                  onPress: q,
                   ...e,
                   children: x
                 }

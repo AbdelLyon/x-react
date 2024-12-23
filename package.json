@@ -122,6 +122,10 @@
     "./tabs": {
       "import": "./dist/tabs/x-react.es.js",
       "types": "./dist/tabs/index.d.ts"
+    },
+    "./scroll": {
+      "import": "./dist/scroll/x-react.es.js",
+      "types": "./dist/scroll/index.d.ts"
     }
   },
   "typesVersions": {

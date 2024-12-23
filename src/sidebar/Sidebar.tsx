@@ -53,7 +53,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             placement="right"
             delay={0}
             closeDelay={0}
-            className="border border-divider"
+            className="border border-default-200"
           />
         );
       }
@@ -65,7 +65,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       <aside
         ref={ref}
         className={cn(
-          "fixed left-0 h-screen flex-col bg-[#212324] border-r border-divider",
+          "fixed left-0 h-screen flex-col bg-[#212324] border-r border-default-200",
           {
             "w-[270px]": isDesktop,
             "w-[90px]": isTablet,
