@@ -1,6 +1,6 @@
 /* empty css                */
 import { j as o } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as I, useState as h, useEffect as k, useCallback as z } from "react";
+import { forwardRef as E, useState as h, useEffect as k, useCallback as z } from "react";
 import { Progress as A, CircularProgress as C } from "@nextui-org/react";
 const i = {
   labelPosition: "top",
@@ -15,26 +15,28 @@ const i = {
   isStriped: !1,
   isDisabled: !1,
   disableAnimation: !1
-}, D = I(
+}, D = E(
   ({
+    // Props spécifiques au composant
     label: n,
     labelPosition: l = i.labelPosition,
     containerClassName: x,
     labelClassName: f,
+    // Props NextUI
     value: e = 0,
     maxValue: a = i.maxValue,
     formatOptions: d = i.formatOptions,
-    valueLabel: s,
-    showValueLabel: t = i.showValueLabel,
+    valueLabel: t,
+    showValueLabel: s = i.showValueLabel,
     classNames: r,
-    ...w
-  }, P) => {
+    ...P
+  }, w) => {
     const c = () => {
-      const u = new Intl.NumberFormat(
+      const j = new Intl.NumberFormat(
         void 0,
         d
       ).format(e / a);
-      return (s == null ? void 0 : s.toString()) || u;
+      return (t == null ? void 0 : t.toString()) || j;
     }, p = () => l === "none" ? null : /* @__PURE__ */ o.jsxs(
       "div",
       {
@@ -46,40 +48,34 @@ const i = {
         `,
         children: [
           n && /* @__PURE__ */ o.jsx("span", { children: n }),
-          t && /* @__PURE__ */ o.jsx("span", { children: c() })
+          s && /* @__PURE__ */ o.jsx("span", { children: c() })
         ]
       }
-    );
+    ), u = {
+      ...i,
+      ...P,
+      value: e,
+      maxValue: a,
+      classNames: {
+        ...r,
+        base: `w-full ${(r == null ? void 0 : r.base) || ""}`
+      }
+    };
     return /* @__PURE__ */ o.jsxs(
       "div",
       {
-        ref: P,
-        className: `
-        flex w-full max-w-md flex-col gap-2
-        ${x}
-      `,
+        ref: w,
+        className: `flex w-full max-w-md flex-col gap-2 ${x || ""}`,
         children: [
           p(),
-          /* @__PURE__ */ o.jsx(
-            A,
-            {
-              ...i,
-              ...w,
-              value: e,
-              maxValue: a,
-              classNames: {
-                ...r,
-                base: `w-full ${(r == null ? void 0 : r.base) || ""}`
-              }
-            }
-          )
+          /* @__PURE__ */ o.jsx(A, { ...u })
         ]
       }
     );
   }
 );
 D.displayName = "Progress";
-const O = I(
+const O = E(
   ({
     // Appearance
     color: n = "primary",
@@ -91,49 +87,49 @@ const O = I(
     showValueLabel: a = !1,
     formatOptions: d = { style: "percent" },
     // Behavior
-    value: s = 0,
-    minValue: t = 0,
+    value: t = 0,
+    minValue: s = 0,
     maxValue: r = 100,
-    isIndeterminate: w = !1,
-    isStriped: P = !1,
+    isIndeterminate: P = !1,
+    isStriped: w = !1,
     // Auto-increment
     autoIncrement: c = !1,
     incrementInterval: p = 500,
     incrementStep: u = 10,
     // Styling
-    className: E,
+    className: j,
     classNames: F,
     // Callback
     onValueChange: m,
     ...N
   }, R) => {
-    const [j, g] = h(s);
+    const [b, y] = h(t);
     k(() => {
       if (!c) {
-        g(s);
+        y(t);
         return;
       }
-      const b = setInterval(() => {
-        g((y) => {
-          const $ = y >= r ? t : y + u;
-          return m == null || m($), $;
+      const g = setInterval(() => {
+        y(($) => {
+          const I = $ >= r ? s : $ + u;
+          return m == null || m(I), I;
         });
       }, p);
-      return () => clearInterval(b);
+      return () => clearInterval(g);
     }, [
       c,
-      s,
+      t,
       p,
       u,
       r,
-      t,
+      s,
       m
     ]);
     const S = z(() => {
       if (e) return e;
-      const b = (j - t) / (r - t);
-      return new Intl.NumberFormat(void 0, d).format(b);
-    }, [j, e, t, r, d]);
+      const g = (b - s) / (r - s);
+      return new Intl.NumberFormat(void 0, d).format(g);
+    }, [b, e, s, r, d]);
     return /* @__PURE__ */ o.jsx(
       C,
       {
@@ -145,12 +141,12 @@ const O = I(
         label: f,
         valueLabel: S(),
         showValueLabel: a,
-        value: j,
-        minValue: t,
+        value: b,
+        minValue: s,
         maxValue: r,
-        isIndeterminate: w,
-        isStriped: P,
-        className: E,
+        isIndeterminate: P,
+        isStriped: w,
+        className: j,
         classNames: F,
         ...N
       }

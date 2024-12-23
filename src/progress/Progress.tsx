@@ -31,10 +31,12 @@ const defaultProps = {
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   (
     {
+      // Props spécifiques au composant
       label,
       labelPosition = defaultProps.labelPosition,
       containerClassName,
       labelClassName,
+      // Props NextUI
       value = 0,
       maxValue = defaultProps.maxValue,
       formatOptions = defaultProps.formatOptions,
@@ -72,26 +74,24 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       );
     };
 
+    const progressProps = {
+      ...defaultProps,
+      ...props,
+      value,
+      maxValue,
+      classNames: {
+        ...classNames,
+        base: `w-full ${classNames?.base || ""}`,
+      },
+    };
+
     return (
       <div
         ref={ref}
-        className={`
-        flex w-full max-w-md flex-col gap-2
-        ${containerClassName}
-      `}
+        className={`flex w-full max-w-md flex-col gap-2 ${containerClassName || ""}`}
       >
         {renderLabel()}
-
-        <NextUIProgress
-          {...defaultProps}
-          {...props}
-          value={value}
-          maxValue={maxValue}
-          classNames={{
-            ...classNames,
-            base: `w-full ${classNames?.base || ""}`,
-          }}
-        />
+        <NextUIProgress {...progressProps} />
       </div>
     );
   },
