@@ -1,5 +1,5 @@
 import { ClassValue } from 'clsx';
-export declare function cn(...inputs: ClassValue[]): string;
+export declare const cn: (...inputs: ClassValue[]) => string;
 export declare const capitalizeFirstLetter: (str: string) => string;
 export declare const concatenateWithSpace: (...strings: (string | undefined)[]) => string;
 export declare const startsWith: (str: string, prefix: string) => boolean;

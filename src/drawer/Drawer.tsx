@@ -24,7 +24,7 @@ interface AdditionalDrawerProps {
   buttonActionProps?: ButtonProps;
 }
 
-type DrawerProps = Omit<DrawerRootProps, keyof AdditionalDrawerProps> &
+export type DrawerProps = Omit<DrawerRootProps, keyof AdditionalDrawerProps> &
   AdditionalDrawerProps;
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(

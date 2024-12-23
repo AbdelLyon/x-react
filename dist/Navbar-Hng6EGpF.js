@@ -1,56 +1,56 @@
-import { j as e } from "./jsx-runtime-Dx-03ztt.js";
+import { j as t } from "./jsx-runtime-Dx-03ztt.js";
 import { forwardRef as A } from "react";
 import { Navbar as T, NavbarContent as a, NavbarMenuToggle as D, NavbarItem as s, Link as f, NavbarMenu as E, NavbarMenuItem as $ } from "@nextui-org/react";
 import { cn as v } from "./utils/x-react.es.js";
 import "@tanstack/react-query";
 import "next-themes";
-import { a as q } from "./useResponsive-C97V3nlv.js";
+import { a as q } from "./useResponsive-C48eFL5T.js";
 const z = A(
   ({
-    appName: b,
-    appLogo: n,
-    profile: x,
-    navigationItems: u = [],
-    menuItems: h = [],
+    appName: n,
+    appLogo: b,
+    profile: l,
+    navigationItems: h = [],
+    menuItems: p = [],
     contentProps: c,
     menuProps: y,
     onItemClick: d,
     className: g,
-    classNames: t,
-    isMenuOpen: j,
+    classNames: e,
+    isMenuOpen: x,
     onMenuOpenChange: o,
     ...w
-  }, N) => {
-    const { isDesktop: i, isMobile: l, isTablet: P } = q(), R = (r) => {
-      var p;
-      (p = r.onPress) == null || p.call(r), d == null || d(r), o == null || o(!1);
+  }, P) => {
+    const { isDesktop: u, isMobile: j, isTablet: N } = q(), R = (r) => {
+      var i;
+      (i = r.onPress) == null || i.call(r), d == null || d(r), o == null || o(!1);
     };
-    return /* @__PURE__ */ e.jsxs(
+    return /* @__PURE__ */ t.jsxs(
       T,
       {
-        ref: N,
+        ref: P,
         className: g,
         classNames: {
           base: "bg-white dark:bg-background",
           wrapper: "max-w-full",
-          ...t
+          ...e
         },
-        isMenuOpen: j,
+        isMenuOpen: x,
         onMenuOpenChange: o,
         ...w,
         children: [
-          l && /* @__PURE__ */ e.jsx(a, { children: /* @__PURE__ */ e.jsx(
+          j && /* @__PURE__ */ t.jsx(a, { children: /* @__PURE__ */ t.jsx(
             D,
             {
-              "aria-label": j ? "Close menu" : "Open menu"
+              "aria-label": x === !0 ? "Close menu" : "Open menu"
             }
           ) }),
-          !l && (b || n) && /* @__PURE__ */ e.jsxs(a, { justify: "start", children: [
-            !P && /* @__PURE__ */ e.jsx(s, { className: "w-[247px] border-r-2 border-default-200", children: b }),
-            /* @__PURE__ */ e.jsx(s, { children: n })
+          !j && (n !== null || b !== null) && /* @__PURE__ */ t.jsxs(a, { justify: "start", children: [
+            !N && n !== null && /* @__PURE__ */ t.jsx(s, { className: "w-[247px] border-r-2 border-default-200", children: n }),
+            b !== null && /* @__PURE__ */ t.jsx(s, { children: b })
           ] }),
-          /* @__PURE__ */ e.jsxs(a, { justify: "end", ...c, children: [
-            i && u.map((r) => /* @__PURE__ */ e.jsx(s, { children: /* @__PURE__ */ e.jsxs(
+          /* @__PURE__ */ t.jsxs(a, { justify: "end", ...c, children: [
+            u && h.map((r) => /* @__PURE__ */ t.jsx(s, { children: /* @__PURE__ */ t.jsxs(
               f,
               {
                 className: v(
@@ -58,7 +58,7 @@ const z = A(
                   {
                     "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
-                  t == null ? void 0 : t.item
+                  e == null ? void 0 : e.item
                 ),
                 onPress: () => R(r),
                 children: [
@@ -68,9 +68,9 @@ const z = A(
                 ]
               }
             ) }, r.key)),
-            x && /* @__PURE__ */ e.jsx(s, { children: x })
+            l !== null && /* @__PURE__ */ t.jsx(s, { children: l })
           ] }),
-          !i && /* @__PURE__ */ e.jsx(E, { ...y, children: h.map((r) => /* @__PURE__ */ e.jsx($, { children: /* @__PURE__ */ e.jsxs(
+          !u && /* @__PURE__ */ t.jsx(E, { ...y, children: p.map((r) => /* @__PURE__ */ t.jsx($, { children: /* @__PURE__ */ t.jsxs(
             f,
             {
               className: v(
@@ -78,7 +78,7 @@ const z = A(
                 {
                   "border-l-2 border-primary bg-content1 text-primary": r.isActive
                 },
-                t == null ? void 0 : t.item
+                e == null ? void 0 : e.item
               ),
               onPress: () => d == null ? void 0 : d(r),
               children: [

@@ -3,7 +3,9 @@ import { j as e } from "../jsx-runtime-Dx-03ztt.js";
 import { IconSunFilled as r, IconMoonFilled as i } from "@tabler/icons-react";
 import { cn as m } from "../utils/x-react.es.js";
 import { u as l } from "../useTheme-ery4R1ul.js";
-const k = ({ className: o }) => {
+const k = ({
+  className: o
+}) => {
   const { setTheme: s, theme: t } = l(), n = () => {
     s(t === "light" ? "dark" : "light");
   };

@@ -2256,11 +2256,7 @@ const c = (e) => {
       "font-size": ["leading"]
     }
   };
-}, Ne = /* @__PURE__ */ me(Le);
-function We(...e) {
-  return Ne(te(e));
-}
-const Ue = (e) => (e == null ? void 0 : e.charAt(0).toUpperCase()) + (e == null ? void 0 : e.slice(1)), Ve = (...e) => e == null ? void 0 : e.filter(Boolean).join(" "), Oe = (e, r) => e == null ? void 0 : e.startsWith(r), _e = (e, r) => e == null ? void 0 : e.endsWith(r), $e = (e) => e == null ? void 0 : e.toLowerCase(), Be = (e) => e == null ? void 0 : e.toUpperCase(), Fe = (e) => e == null ? void 0 : e.trim(), qe = (e) => e == null ? void 0 : e.split("").reverse().join("");
+}, Ne = /* @__PURE__ */ me(Le), We = (...e) => Ne(te(e)), Ue = (e) => (e == null ? void 0 : e.charAt(0).toUpperCase()) + (e == null ? void 0 : e.slice(1)), Ve = (...e) => e == null ? void 0 : e.filter(Boolean).join(" "), Oe = (e, r) => e == null ? void 0 : e.startsWith(r), _e = (e, r) => e == null ? void 0 : e.endsWith(r), $e = (e) => e == null ? void 0 : e.toLowerCase(), Be = (e) => e == null ? void 0 : e.toUpperCase(), Fe = (e) => e == null ? void 0 : e.trim(), qe = (e) => e == null ? void 0 : e.split("").reverse().join("");
 export {
   Ue as capitalizeFirstLetter,
   We as cn,

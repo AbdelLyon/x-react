@@ -4,7 +4,7 @@ import { cn as d } from "./utils/x-react.es.js";
 import { Link as b } from "@nextui-org/react";
 import "@tanstack/react-query";
 import "next-themes";
-import { a as s } from "./useResponsive-C97V3nlv.js";
+import { a as s } from "./useResponsive-C48eFL5T.js";
 /* empty css               */
 import { T as u } from "./Tooltip-BVlWH2NE.js";
 const c = a(

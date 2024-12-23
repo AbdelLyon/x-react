@@ -1,3 +1,4 @@
-export declare const ToggleTheme: ({ className }: {
+import { JSX } from 'react';
+export declare const ToggleTheme: ({ className, }: {
     className?: string;
-}) => import("react/jsx-runtime").JSX.Element;
+}) => JSX.Element;

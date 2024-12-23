@@ -1,59 +1,62 @@
 /* empty css                */
-import { j as d } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as H } from "react";
-import { Card as $, CardHeader as g, CardBody as k, CardFooter as q } from "@nextui-org/react";
-const v = H(
+import { j as o } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as $ } from "react";
+import { Card as a, CardHeader as g, CardBody as k, CardFooter as q } from "@nextui-org/react";
+const z = $(
   ({
-    children: t,
-    shadow: e = "none",
+    children: n,
+    shadow: t = "none",
     radius: i = "md",
-    fullWidth: n = !1,
+    fullWidth: e = !1,
     isHoverable: p = !1,
     isPressable: x = !1,
     isBlurred: C = !1,
     isFooterBlurred: j = !1,
-    isDisabled: h = !1,
-    disableAnimation: y = !1,
+    isDisabled: l = !1,
+    disableAnimation: h = !1,
     disableRipple: u = !1,
-    allowTextSelectionOnPress: R = !1,
+    allowTextSelectionOnPress: y = !1,
     classNames: r,
-    header: o,
+    header: d,
     footer: f,
-    onPress: b,
-    onPressStart: l,
-    onPressEnd: w,
-    onPressChange: B,
-    onPressUp: E
-  }, F) => /* @__PURE__ */ d.jsxs(
-    $,
-    {
-      ref: F,
-      shadow: e,
-      radius: i,
-      fullWidth: n,
-      isHoverable: p,
-      isPressable: x,
-      isBlurred: C,
-      isFooterBlurred: j,
-      isDisabled: h,
-      disableAnimation: y,
-      disableRipple: u,
-      allowTextSelectionOnPress: R,
-      classNames: r,
-      onPress: b,
-      onPressStart: l,
-      onPressEnd: w,
-      onPressChange: B,
-      onPressUp: E,
-      children: [
-        o && /* @__PURE__ */ d.jsx(g, { className: r == null ? void 0 : r.header, children: o }),
-        /* @__PURE__ */ d.jsx(k, { className: r == null ? void 0 : r.body, children: t }),
-        f && /* @__PURE__ */ d.jsx(q, { className: r == null ? void 0 : r.footer, children: f })
-      ]
-    }
-  )
+    onPress: v,
+    onPressStart: F,
+    onPressEnd: H,
+    onPressChange: R,
+    onPressUp: b
+  }, w) => {
+    const B = d != null, E = f != null;
+    return /* @__PURE__ */ o.jsxs(
+      a,
+      {
+        ref: w,
+        shadow: t,
+        radius: i,
+        fullWidth: e,
+        isHoverable: p,
+        isPressable: x,
+        isBlurred: C,
+        isFooterBlurred: j,
+        isDisabled: l,
+        disableAnimation: h,
+        disableRipple: u,
+        allowTextSelectionOnPress: y,
+        classNames: r,
+        onPress: v,
+        onPressStart: F,
+        onPressEnd: H,
+        onPressChange: R,
+        onPressUp: b,
+        children: [
+          B && /* @__PURE__ */ o.jsx(g, { className: r == null ? void 0 : r.header, children: d }),
+          /* @__PURE__ */ o.jsx(k, { className: r == null ? void 0 : r.body, children: n }),
+          E && /* @__PURE__ */ o.jsx(q, { className: r == null ? void 0 : r.footer, children: f })
+        ]
+      }
+    );
+  }
 );
-v.displayName = "Card";
+z.displayName = "Card";
 export {
-  v as Card
+  z as Card
 };
