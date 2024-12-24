@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useDataGridState } from "@/hooks/useDataGrid";
+import { cn } from "@/utils";
 import type {
   TableBodyProps,
   TableProps,
@@ -8,6 +9,7 @@ import type {
   TableColumnProps,
   PaginationProps,
 } from "@nextui-org/react";
+import { useState, type Key } from "react";
 import {
   Table as TableRoot,
   TableHeader,
@@ -19,12 +21,9 @@ import {
   Pagination,
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
-import { useDataGridState } from "@/hooks/useDataGrid";
-import { cn } from "@/utils";
-import type { Key } from "react";
 import type { JSX } from "react";
 
-// Types existants
+// Types
 export interface SortConfig<T> {
   key: keyof T | null;
   direction: "asc" | "desc";
@@ -49,6 +48,13 @@ interface ActionColumn<T> extends ColumnBase<T> {
 
 export type ColumnDefinition<T> = FieldColumn<T> | ActionColumn<T>;
 
+interface PaginationState {
+  page: number;
+  lastPage: number;
+  total: number;
+  itemsPerPage: number;
+}
+
 interface DataGridComponentProps<T> {
   tableProps?: TableProps;
   tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
@@ -56,14 +62,6 @@ interface DataGridComponentProps<T> {
   tableRowProps?: Omit<TableRowProps, "children">;
   tableCellProps?: Omit<TableCellProps, "children">;
   tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
-}
-
-// Nouvelles interfaces pour la pagination
-interface PaginationState {
-  page: number;
-  lastPage: number;
-  total: number;
-  itemsPerPage: number;
 }
 
 interface DataGridProps<T extends { id: string | number }> {
@@ -173,12 +171,12 @@ export function DataGrid<T extends { id: string | number }>({
   checkboxSelection = true,
   classNames,
   variant = "unstyled",
-  props,
   isPaginated = false,
   initialPage = 1,
   itemsPerPage = 10,
   onPageChange,
   paginationProps,
+  props,
 }: DataGridProps<T>): JSX.Element {
   const [currentPage, setCurrentPage] = useState(initialPage);
 
@@ -204,7 +202,6 @@ export function DataGrid<T extends { id: string | number }>({
       page,
     });
   };
-
   const {
     isAllChecked,
     sortConfig,
@@ -221,7 +218,7 @@ export function DataGrid<T extends { id: string | number }>({
   const variantClasses = variantStyles[variant];
 
   const preparedColumns: ExtendedColumn<T>[] = [
-    ...(checkboxSelection
+    ...(checkboxSelection === true
       ? [
           {
             key: "checkbox",
@@ -285,7 +282,7 @@ export function DataGrid<T extends { id: string | number }>({
               ) : (
                 <div className={cn("flex items-center gap-2")}>
                   {column.label}
-                  {column.sortable !== undefined && column.sortable && (
+                  {column.sortable === true && (
                     <div
                       className={cn(
                         "relative size-4 cursor-pointer",
@@ -323,7 +320,7 @@ export function DataGrid<T extends { id: string | number }>({
           )}
         </TableHeader>
 
-        <TableBody items={displayedRows} {...props?.tableBodyProps}>
+        <TableBody items={rows} {...props?.tableBodyProps}>
           {(row) => (
             <TableRow
               key={row.id}
@@ -351,7 +348,6 @@ export function DataGrid<T extends { id: string | number }>({
           )}
         </TableBody>
       </TableRoot>
-
       {isPaginated && total > 0 && (
         <Pagination
           total={lastPage}

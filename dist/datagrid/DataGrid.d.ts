@@ -19,6 +19,12 @@ interface ActionColumn<T> extends ColumnBase<T> {
     cell: (row: T) => React.ReactNode;
 }
 export type ColumnDefinition<T> = FieldColumn<T> | ActionColumn<T>;
+interface PaginationState {
+    page: number;
+    lastPage: number;
+    total: number;
+    itemsPerPage: number;
+}
 interface DataGridComponentProps<T> {
     tableProps?: TableProps;
     tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
@@ -26,12 +32,6 @@ interface DataGridComponentProps<T> {
     tableRowProps?: Omit<TableRowProps, "children">;
     tableCellProps?: Omit<TableCellProps, "children">;
     tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
-}
-interface PaginationState {
-    page: number;
-    lastPage: number;
-    total: number;
-    itemsPerPage: number;
 }
 interface DataGridProps<T extends {
     id: string | number;
@@ -60,5 +60,5 @@ interface DataGridProps<T extends {
 }
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, isPaginated, initialPage, itemsPerPage, onPageChange, paginationProps, }: DataGridProps<T>): JSX.Element;
+}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, isPaginated, initialPage, itemsPerPage, onPageChange, paginationProps, props, }: DataGridProps<T>): JSX.Element;
 export {};
