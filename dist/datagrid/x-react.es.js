@@ -222,7 +222,7 @@ function ae({
         total: I,
         page: a,
         onChange: G,
-        className: y("self-center", i == null ? void 0 : i.pagination),
+        className: y("self-start", i == null ? void 0 : i.pagination),
         showControls: !0,
         color: "primary",
         size: "sm",

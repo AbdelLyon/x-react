@@ -357,7 +357,7 @@ export function DataGrid<T extends { id: string | number }>({
           total={lastPage}
           page={currentPage}
           onChange={handlePageChange}
-          className={cn("self-center", classNames?.pagination)}
+          className={cn("self-start", classNames?.pagination)}
           showControls
           color="primary"
           size="sm"
