@@ -41,8 +41,8 @@ const H = {
 }) => {
   const f = L[i], d = o ? e + 1 : e;
   return /* @__PURE__ */ t.jsxs(P, { radius: "sm", "aria-label": "Loading data", className: a, children: [
-    /* @__PURE__ */ t.jsx(z, { className: b(f.header), children: Array(d).fill(null).map((g, u) => /* @__PURE__ */ t.jsx(D, { className: b(f.column), children: u === 0 && o ? /* @__PURE__ */ t.jsx(k, { className: "size-4 rounded-sm" }) : /* @__PURE__ */ t.jsx(k, { className: "h-4 w-24 rounded-sm" }) }, u)) }),
-    /* @__PURE__ */ t.jsx(I, { children: Array(r).fill(null).map((g, u) => /* @__PURE__ */ t.jsx(G, { className: b(f.row), children: Array(d).fill(null).map((n, j) => /* @__PURE__ */ t.jsx(R, { children: j === 0 && o ? /* @__PURE__ */ t.jsx(k, { className: "size-4 rounded-sm" }) : /* @__PURE__ */ t.jsx(k, { className: "h-4 w-full max-w-[200px] rounded-sm" }) }, j)) }, u)) })
+    /* @__PURE__ */ t.jsx(z, { className: b(f.header), children: Array(d).fill(null).map((g, u) => /* @__PURE__ */ t.jsx(D, { className: b(f.column), children: u === 0 && o ? /* @__PURE__ */ t.jsx(k, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(k, { className: "h-4 w-24 rounded-md" }) }, u)) }),
+    /* @__PURE__ */ t.jsx(I, { children: Array(r).fill(null).map((g, u) => /* @__PURE__ */ t.jsx(G, { className: b(f.row), children: Array(d).fill(null).map((n, j) => /* @__PURE__ */ t.jsx(R, { children: j === 0 && o ? /* @__PURE__ */ t.jsx(k, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(k, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, j)) }, u)) })
   ] });
 }, L = {
   bordered: {

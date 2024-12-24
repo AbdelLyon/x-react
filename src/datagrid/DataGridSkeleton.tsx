@@ -37,9 +37,9 @@ export const DataGridSkeleton = ({
           .map((_, index) => (
             <TableColumn key={index} className={cn(variantClasses.column)}>
               {index === 0 && checkboxSelection ? (
-                <Skeleton className="size-4 rounded-sm" />
+                <Skeleton className="size-4 rounded-md" />
               ) : (
-                <Skeleton className="h-4 w-24 rounded-sm" />
+                <Skeleton className="h-4 w-24 rounded-md" />
               )}
             </TableColumn>
           ))}
@@ -55,9 +55,9 @@ export const DataGridSkeleton = ({
                 .map((_, colIndex) => (
                   <TableCell key={colIndex}>
                     {colIndex === 0 && checkboxSelection ? (
-                      <Skeleton className="size-4 rounded-sm" />
+                      <Skeleton className="size-4 rounded-md" />
                     ) : (
-                      <Skeleton className="h-4 w-full max-w-[200px] rounded-sm" />
+                      <Skeleton className="h-4 w-full max-w-[200px] rounded-md" />
                     )}
                   </TableCell>
                 ))}
