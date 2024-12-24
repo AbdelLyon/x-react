@@ -7,9 +7,8 @@ import type {
   TableRowProps,
   TableCellProps,
   TableColumnProps,
-  PaginationProps,
 } from "@nextui-org/react";
-import { useState, type Key } from "react";
+import type { Key } from "react";
 import {
   Table as TableRoot,
   TableHeader,
@@ -18,7 +17,6 @@ import {
   TableRow,
   TableCell,
   Checkbox,
-  Pagination,
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
@@ -48,13 +46,6 @@ interface ActionColumn<T> extends ColumnBase<T> {
 
 export type ColumnDefinition<T> = FieldColumn<T> | ActionColumn<T>;
 
-interface PaginationState {
-  page: number;
-  lastPage: number;
-  total: number;
-  itemsPerPage: number;
-}
-
 interface DataGridComponentProps<T> {
   tableProps?: TableProps;
   tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
@@ -78,15 +69,8 @@ interface DataGridProps<T extends { id: string | number }> {
     checkbox?: string;
     sortIcon?: string;
     cellContent?: string;
-    pagination?: string;
   };
   variant?: "bordered" | "striped" | "unstyled";
-  // Nouvelles props pagination
-  isPaginated?: boolean;
-  initialPage?: number;
-  itemsPerPage?: number;
-  onPageChange?: (state: PaginationState) => void;
-  paginationProps?: Omit<PaginationProps, "page" | "total" | "onChange">;
 }
 
 const variantStyles = {
@@ -171,37 +155,8 @@ export function DataGrid<T extends { id: string | number }>({
   checkboxSelection = true,
   classNames,
   variant = "unstyled",
-  isPaginated = false,
-  initialPage = 1,
-  itemsPerPage = 10,
-  onPageChange,
-  paginationProps,
   props,
 }: DataGridProps<T>): JSX.Element {
-  const [currentPage, setCurrentPage] = useState(initialPage);
-
-  // Calcul pagination
-  const total = rows.length;
-  const lastPage = Math.ceil(total / itemsPerPage);
-  const paginationState: PaginationState = {
-    page: currentPage,
-    lastPage,
-    total,
-    itemsPerPage,
-  };
-
-  // Filtrage des lignes pour pagination
-  const start = (currentPage - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
-  const displayedRows = isPaginated ? rows.slice(start, end) : rows;
-
-  const handlePageChange = (page: number): void => {
-    setCurrentPage(page);
-    onPageChange?.({
-      ...paginationState,
-      page,
-    });
-  };
   const {
     isAllChecked,
     sortConfig,
@@ -210,7 +165,7 @@ export function DataGrid<T extends { id: string | number }>({
     handleSort,
     isRowSelected,
   } = useDataGridState({
-    rows: displayedRows,
+    rows,
     onCheckedRowsChange,
     onSort,
   });
@@ -254,112 +209,98 @@ export function DataGrid<T extends { id: string | number }>({
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <TableRoot
-        aria-label={typeof caption === "string" ? caption : undefined}
-        {...props?.tableProps}
-        radius="sm"
+    <TableRoot
+      aria-label={typeof caption === "string" ? caption : undefined}
+      {...props?.tableProps}
+      radius="sm"
+    >
+      <TableHeader
+        columns={preparedColumns}
+        className={cn(variantClasses.header)}
+        {...props?.tableHeaderProps}
       >
-        <TableHeader
-          columns={preparedColumns}
-          className={cn(variantClasses.header)}
-          {...props?.tableHeaderProps}
-        >
-          {(column) => (
-            <TableColumn
-              key={column.key}
-              aria-label={getColumnAriaLabel(column)}
-              className={cn(variantClasses.column)}
-              {...props?.tableColumnProps}
-            >
-              {column.key === "checkbox" ? (
-                <Checkbox
-                  isSelected={isAllChecked}
-                  onValueChange={handleSelectAll}
-                  aria-label="Select all rows"
-                  className={classNames?.checkbox}
-                />
-              ) : (
-                <div className={cn("flex items-center gap-2")}>
-                  {column.label}
-                  {column.sortable === true && (
-                    <div
+        {(column) => (
+          <TableColumn
+            key={column.key}
+            aria-label={getColumnAriaLabel(column)}
+            className={cn(variantClasses.column)}
+            {...props?.tableColumnProps}
+          >
+            {column.key === "checkbox" ? (
+              <Checkbox
+                isSelected={isAllChecked}
+                onValueChange={handleSelectAll}
+                aria-label="Select all rows"
+                className={classNames?.checkbox}
+              />
+            ) : (
+              <div className={cn("flex items-center gap-2")}>
+                {column.label}
+                {column.sortable === true && (
+                  <div
+                    className={cn(
+                      "relative size-4 cursor-pointer",
+                      classNames?.sortIcon,
+                    )}
+                    onClick={() => handleColumnSort(column)}
+                    role="button"
+                    aria-label={getSortAriaLabel(column.label)}
+                  >
+                    <IconChevronUp
+                      size={16}
                       className={cn(
-                        "relative size-4 cursor-pointer",
-                        classNames?.sortIcon,
+                        "absolute -top-1",
+                        sortConfig.key === column.key &&
+                          sortConfig.direction === "asc"
+                          ? "opacity-100"
+                          : "opacity-30",
                       )}
-                      onClick={() => handleColumnSort(column)}
-                      role="button"
-                      aria-label={getSortAriaLabel(column.label)}
-                    >
-                      <IconChevronUp
-                        size={16}
-                        className={cn(
-                          "absolute -top-1",
-                          sortConfig.key === column.key &&
-                            sortConfig.direction === "asc"
-                            ? "opacity-100"
-                            : "opacity-30",
-                        )}
-                      />
-                      <IconChevronDown
-                        size={16}
-                        className={cn(
-                          "absolute top-1",
-                          sortConfig.key === column.key &&
-                            sortConfig.direction === "desc"
-                            ? "opacity-100"
-                            : "opacity-30",
-                        )}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-            </TableColumn>
-          )}
-        </TableHeader>
-
-        <TableBody items={rows} {...props?.tableBodyProps}>
-          {(row) => (
-            <TableRow
-              key={row.id}
-              aria-label={`Row ${row.id}`}
-              className={cn(variantClasses.row)}
-              {...props?.tableRowProps}
-            >
-              {(columnKey) => (
-                <TableCell {...props?.tableCellProps}>
-                  {columnKey === "checkbox" ? (
-                    <Checkbox
-                      isSelected={isRowSelected(row)}
-                      onValueChange={() => handleCheckboxChange(row)}
-                      aria-label={`Select row ${row.id}`}
-                      className={classNames?.checkbox}
                     />
-                  ) : (
-                    <div className={classNames?.cellContent}>
-                      {getCellContent(columnKey, row, columns)}
-                    </div>
-                  )}
-                </TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </TableRoot>
-      {isPaginated && total > 0 && (
-        <Pagination
-          total={lastPage}
-          page={currentPage}
-          onChange={handlePageChange}
-          className={cn("self-start", classNames?.pagination)}
-          showControls
-          color="primary"
-          size="sm"
-          {...paginationProps}
-        />
-      )}
-    </div>
+                    <IconChevronDown
+                      size={16}
+                      className={cn(
+                        "absolute top-1",
+                        sortConfig.key === column.key &&
+                          sortConfig.direction === "desc"
+                          ? "opacity-100"
+                          : "opacity-30",
+                      )}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </TableColumn>
+        )}
+      </TableHeader>
+
+      <TableBody items={rows} {...props?.tableBodyProps}>
+        {(row) => (
+          <TableRow
+            key={row.id}
+            aria-label={`Row ${row.id}`}
+            className={cn(variantClasses.row)}
+            {...props?.tableRowProps}
+          >
+            {(columnKey) => (
+              <TableCell {...props?.tableCellProps}>
+                {columnKey === "checkbox" ? (
+                  <Checkbox
+                    isSelected={isRowSelected(row)}
+                    onValueChange={() => handleCheckboxChange(row)}
+                    aria-label={`Select row ${row.id}`}
+                    className={classNames?.checkbox}
+                  />
+                ) : (
+                  <div className={classNames?.cellContent}>
+                    {getCellContent(columnKey, row, columns)}
+                  </div>
+                )}
+              </TableCell>
+            )}
+          </TableRow>
+        )}
+      </TableBody>
+    </TableRoot>
   );
 }
