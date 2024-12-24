@@ -286,7 +286,7 @@ export function DataGrid<T extends { id: string | number }>({
               <TableCell {...props?.tableCellProps}>
                 {columnKey === "checkbox" ? (
                   <Checkbox
-                    isSelected={isRowSelected(row)}
+                    checked={isRowSelected(row)}
                     onValueChange={() => handleCheckboxChange(row)}
                     aria-label={`Select row ${row.id}`}
                     className={classNames?.checkbox}
