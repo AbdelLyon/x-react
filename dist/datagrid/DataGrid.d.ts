@@ -47,6 +47,23 @@ interface DataGridProps<T extends {
     variant?: "bordered" | "striped" | "unstyled";
     isLoading?: boolean;
 }
+export declare const GRIDVARIANT: {
+    readonly bordered: {
+        readonly header: "bg-content2 border border-default-200";
+        readonly column: "bg-content2 py-4 h-12";
+        readonly row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2";
+    };
+    readonly striped: {
+        readonly header: "bg-content2 border border-default-200";
+        readonly column: "bg-content2 py-4 h-12";
+        readonly row: "py-4 even:bg-content2";
+    };
+    readonly unstyled: {
+        readonly header: "bg-content2 border border-default-200";
+        readonly column: "bg-content2 py-4 h-12";
+        readonly row: "py-4 hover:bg-content2";
+    };
+};
 export declare function DataGrid<T extends {
     id: string | number;
 }>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, isLoading, props, }: DataGridProps<T>): JSX.Element;

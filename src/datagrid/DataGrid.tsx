@@ -75,20 +75,20 @@ interface DataGridProps<T extends { id: string | number }> {
   isLoading?: boolean;
 }
 
-const variantStyles = {
+export const GRIDVARIANT = {
   bordered: {
     header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4",
+    column: "bg-content2 py-4 h-12",
     row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2",
   },
   striped: {
     header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4",
+    column: "bg-content2 py-4 h-12",
     row: "py-4 even:bg-content2",
   },
   unstyled: {
     header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4",
+    column: "bg-content2 py-4 h-12",
     row: "py-4 hover:bg-content2",
   },
 } as const;
@@ -179,12 +179,12 @@ export function DataGrid<T extends { id: string | number }>({
         columns={columns.length}
         checkboxSelection={checkboxSelection}
         variant={variant}
-        rows={10}
+        rows={rows.length}
       />
     );
   }
 
-  const variantClasses = variantStyles[variant];
+  const variantClasses = GRIDVARIANT[variant];
 
   const preparedColumns: ExtendedColumn<T>[] = [
     ...(checkboxSelection === true
