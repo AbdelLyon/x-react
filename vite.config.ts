@@ -35,6 +35,7 @@ const modules = [
   "tooltip",
   "tabs",
   "scroll",
+  "pagination",
 ];
 
 export default defineConfig({

@@ -126,6 +126,10 @@
     "./scroll": {
       "import": "./dist/scroll/x-react.es.js",
       "types": "./dist/scroll/index.d.ts"
+    },
+    "./pagination": {
+      "import": "./dist/pagination/x-react.es.js",
+      "types": "./dist/pagination/index.d.ts"
     }
   },
   "typesVersions": {

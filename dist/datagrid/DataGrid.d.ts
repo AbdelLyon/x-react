@@ -1,4 +1,4 @@
-import { TableBodyProps, TableProps, TableHeaderProps, TableRowProps, TableCellProps, TableColumnProps } from '@nextui-org/react';
+import { TableBodyProps, TableProps, TableHeaderProps, TableRowProps, TableCellProps, TableColumnProps, PaginationProps } from '@nextui-org/react';
 import { JSX } from 'react';
 export interface SortConfig<T> {
     key: keyof T | null;
@@ -27,6 +27,12 @@ interface DataGridComponentProps<T> {
     tableCellProps?: Omit<TableCellProps, "children">;
     tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }
+interface PaginationState {
+    page: number;
+    lastPage: number;
+    total: number;
+    itemsPerPage: number;
+}
 interface DataGridProps<T extends {
     id: string | number;
 }> {
@@ -43,10 +49,16 @@ interface DataGridProps<T extends {
         checkbox?: string;
         sortIcon?: string;
         cellContent?: string;
+        pagination?: string;
     };
     variant?: "bordered" | "striped" | "unstyled";
+    isPaginated?: boolean;
+    initialPage?: number;
+    itemsPerPage?: number;
+    onPageChange?: (state: PaginationState) => void;
+    paginationProps?: Omit<PaginationProps, "page" | "total" | "onChange">;
 }
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): JSX.Element;
+}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, isPaginated, initialPage, itemsPerPage, onPageChange, paginationProps, }: DataGridProps<T>): JSX.Element;
 export {};

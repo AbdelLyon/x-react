@@ -33,6 +33,7 @@ var modules = [
     "tooltip",
     "tabs",
     "scroll",
+    "pagination",
 ];
 export default defineConfig({
     plugins: [
