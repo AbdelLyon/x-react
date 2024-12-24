@@ -16,17 +16,17 @@ export type ColumnDefinition<T> = {
     field?: "actions";
     cell: (row: T) => React.ReactNode;
 });
-export type DataGridComponentProps<T> = {
+export interface DataGridComponentProps<T> {
     tableProps?: TableProps;
     tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
     tableBodyProps?: Omit<TableBodyProps<T>, "items" | "children">;
     tableRowProps?: Omit<TableRowProps, "children">;
     tableCellProps?: Omit<TableCellProps, "children">;
     tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
-};
-export type DataGridProps<T extends {
+}
+export interface DataGridProps<T extends {
     id: string | number;
-}> = {
+}> {
     props?: DataGridComponentProps<T>;
     rows: T[];
     columns: ColumnDefinition<T>[];
@@ -37,12 +37,20 @@ export type DataGridProps<T extends {
     onSort?: (column: keyof T, direction: "asc" | "desc") => void;
     checkboxSelection?: boolean;
     classNames?: {
+        base?: string;
+        table?: string;
+        thead?: string;
+        tbody?: string;
+        tr?: string;
+        th?: string;
+        td?: string;
         checkbox?: string;
         sortIcon?: string;
+        headerContent?: string;
         cellContent?: string;
     };
     variant?: "bordered" | "striped" | "unstyled";
-};
+}
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): JSX.Element;
+}>({ rows, columns, caption, className, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): JSX.Element;

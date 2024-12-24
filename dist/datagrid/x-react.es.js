@@ -1,206 +1,222 @@
 /* empty css                */
-import { j as d } from "../jsx-runtime-Dx-03ztt.js";
-import { useState as v, useEffect as m } from "react";
-import { cn as u } from "../utils/x-react.es.js";
-import { Table as I, TableHeader as z, TableColumn as D, Checkbox as P, TableBody as $, TableRow as B, TableCell as E } from "@nextui-org/react";
-import { IconChevronUp as G, IconChevronDown as H } from "@tabler/icons-react";
-const L = {
+import { j as i } from "../jsx-runtime-Dx-03ztt.js";
+import { useState as C, useEffect as D } from "react";
+import { cn as b } from "../utils/x-react.es.js";
+import { Table as $, TableHeader as z, TableColumn as B, Checkbox as T, TableBody as E, TableRow as G, TableCell as H } from "@nextui-org/react";
+import { IconChevronUp as R, IconChevronDown as V } from "@tabler/icons-react";
+const U = {
   key: null,
   direction: "asc"
-}, R = ({
-  rows: t,
-  onCheckedRowsChange: n,
-  onSort: b
+}, q = ({
+  rows: x,
+  onCheckedRowsChange: r,
+  onSort: S
 }) => {
-  const [i, a] = v([]), [S, r] = v(!1), [x, l] = v(L);
-  return m(() => {
-    r(i.length === t.length && t.length > 0);
-  }, [i, t]), {
-    selectedRows: i,
-    isAllChecked: S,
-    sortConfig: x,
-    handleCheckboxChange: (o) => {
-      const g = i.some((h) => h.id === o.id) ? i.filter((h) => h.id !== o.id) : [...i, o];
-      a(g), n == null || n(g);
+  const [o, y] = C([]), [k, j] = C(!1), [e, g] = C(U);
+  return D(() => {
+    j(o.length === x.length && x.length > 0);
+  }, [o, x]), {
+    selectedRows: o,
+    isAllChecked: k,
+    sortConfig: e,
+    handleCheckboxChange: (d) => {
+      const a = o.some((f) => f.id === d.id) ? o.filter((f) => f.id !== d.id) : [...o, d];
+      y(a), r == null || r(a);
     },
-    handleSelectAll: (o) => {
-      const c = o ? [...t] : [];
-      a(c), n == null || n(c);
+    handleSelectAll: (d) => {
+      const n = d ? [...x] : [];
+      y(n), r == null || r(n);
     },
-    handleSort: (o, c) => {
-      l({ key: o, direction: c }), b == null || b(o, c);
+    handleSort: (d, n) => {
+      g({ key: d, direction: n }), S == null || S(d, n);
     },
-    isRowSelected: (o) => i.some((c) => c.id === o.id)
+    isRowSelected: (d) => o.some((n) => n.id === d.id)
   };
-}, V = {
+}, F = {
   bordered: {
-    header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4",
-    row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2"
+    table: "border border-default-200",
+    header: "border-b border-default-200",
+    column: "border-r border-default-200 last:border-r-0",
+    row: "border-b border-default-200 last:border-b-0",
+    cell: "border-r border-default-200 last:border-r-0"
   },
   striped: {
-    header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4",
-    row: "py-4 even:bg-content2"
+    table: "",
+    header: "bg-default-100",
+    column: "",
+    row: "even:bg-default-50",
+    cell: ""
   },
   unstyled: {
-    header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4",
-    row: "py-4 hover:bg-content2"
+    table: "",
+    header: "",
+    column: "",
+    row: "",
+    cell: ""
   }
 };
-function F(t) {
-  return typeof t.label == "string" && t.label.length > 0 ? t.label : typeof t.key == "string" && t.key.length > 0 ? t.key : "Column";
-}
-function U(t) {
-  return typeof t == "string" && t.length > 0 ? `Sort by ${t}` : "Sort column";
-}
-function q(t, n, b) {
-  const i = b.find(
-    (a) => typeof a.field == "string" && String(a.field) === String(t)
-  );
-  if (i === void 0)
-    return null;
-  if (i.cell !== void 0)
-    return i.cell(n);
-  if (typeof i.field == "string" && i.field.length > 0 && i.field in n) {
-    const a = n[i.field];
-    return typeof a == "string" || typeof a == "number" ? String(a) : null;
-  }
-  return null;
-}
-function Y({
-  rows: t,
-  columns: n,
-  caption: b,
-  onCheckedRowsChange: i,
-  onSort: a,
-  checkboxSelection: S = !0,
-  classNames: r,
-  variant: x = "unstyled",
+function X({
+  rows: x,
+  columns: r,
+  caption: S,
+  className: o,
+  onCheckedRowsChange: y,
+  onSort: k,
+  checkboxSelection: j = !0,
+  classNames: e,
+  variant: g = "unstyled",
   props: l
 }) {
   const {
-    isAllChecked: j,
-    sortConfig: y,
-    handleCheckboxChange: C,
-    handleSelectAll: A,
-    handleSort: o,
-    isRowSelected: c
-  } = R({
-    rows: t,
-    onCheckedRowsChange: i,
-    onSort: a
-  }), g = V[x], h = [
-    ...S === !0 ? [
+    isAllChecked: A,
+    sortConfig: u,
+    handleCheckboxChange: P,
+    handleSelectAll: d,
+    handleSort: n,
+    isRowSelected: a
+  } = q({ rows: x, onCheckedRowsChange: y, onSort: k }), f = F[g], I = [
+    ...j ? [
       {
         key: "checkbox",
         label: "",
         header: ""
       }
     ] : [],
-    ...n.map((e, f) => ({
-      ...e,
-      key: typeof e.field == "string" ? String(e.field) : String(f),
-      label: e.header
+    ...r.map((t, c) => ({
+      ...t,
+      key: String(t.field ?? c),
+      label: t.header
     }))
-  ], T = (e) => {
-    const f = n.find(
-      (k) => typeof k.field == "string" && k.field.length > 0 && String(k.field) === e.key
-    ), s = f == null ? void 0 : f.field;
-    s != null && s !== "actions" && o(s, y.direction === "asc" ? "desc" : "asc");
-  };
-  return /* @__PURE__ */ d.jsxs(
-    I,
+  ];
+  return /* @__PURE__ */ i.jsxs(
+    $,
     {
-      "aria-label": typeof b == "string" ? b : void 0,
+      "aria-label": S,
+      className: b(f.table, e == null ? void 0 : e.base, o),
       ...l == null ? void 0 : l.tableProps,
-      radius: "sm",
       children: [
-        /* @__PURE__ */ d.jsx(
+        /* @__PURE__ */ i.jsx(
           z,
           {
-            columns: h,
-            className: u(g.header),
+            columns: I,
+            className: b(f.header, e == null ? void 0 : e.thead),
             ...l == null ? void 0 : l.tableHeaderProps,
-            children: (e) => /* @__PURE__ */ d.jsx(
-              D,
+            children: (t) => /* @__PURE__ */ i.jsx(
+              B,
               {
-                "aria-label": F(e),
-                className: u(g.column),
+                "aria-label": String(t.label || t.key),
+                className: b("py-4", f.column, e == null ? void 0 : e.th),
                 ...l == null ? void 0 : l.tableColumnProps,
-                children: e.key === "checkbox" ? /* @__PURE__ */ d.jsx(
-                  P,
+                children: t.key === "checkbox" ? /* @__PURE__ */ i.jsx(
+                  T,
                   {
-                    isSelected: j,
-                    onValueChange: A,
+                    isSelected: A,
+                    onValueChange: d,
                     "aria-label": "Select all rows",
-                    className: r == null ? void 0 : r.checkbox
+                    className: e == null ? void 0 : e.checkbox
                   }
-                ) : /* @__PURE__ */ d.jsxs("div", { className: u("flex items-center gap-2"), children: [
-                  e.label,
-                  e.sortable === !0 && /* @__PURE__ */ d.jsxs(
-                    "div",
-                    {
-                      className: u(
-                        "relative size-4 cursor-pointer",
-                        r == null ? void 0 : r.sortIcon
-                      ),
-                      onClick: () => T(e),
-                      role: "button",
-                      "aria-label": U(e.label),
-                      children: [
-                        /* @__PURE__ */ d.jsx(
-                          G,
-                          {
-                            size: 16,
-                            className: u(
-                              "absolute -top-1",
-                              y.key === e.key && y.direction === "asc" ? "opacity-100" : "opacity-30"
+                ) : /* @__PURE__ */ i.jsxs(
+                  "div",
+                  {
+                    className: b(
+                      "flex items-center gap-2",
+                      e == null ? void 0 : e.headerContent
+                    ),
+                    children: [
+                      t.label,
+                      t.sortable && /* @__PURE__ */ i.jsxs(
+                        "div",
+                        {
+                          className: b(
+                            "relative w-4 h-4 cursor-pointer",
+                            e == null ? void 0 : e.sortIcon
+                          ),
+                          onClick: () => {
+                            var h;
+                            const c = (h = r.find(
+                              (v) => String(v.field) === t.key
+                            )) == null ? void 0 : h.field;
+                            c && c !== "actions" && n(
+                              c,
+                              u.direction === "asc" ? "desc" : "asc"
+                            );
+                          },
+                          role: "button",
+                          "aria-label": `Sort by ${t.label}`,
+                          children: [
+                            /* @__PURE__ */ i.jsx(
+                              R,
+                              {
+                                size: 16,
+                                className: b(
+                                  "absolute -top-1",
+                                  u.key === t.key && u.direction === "asc" ? "opacity-100" : "opacity-30"
+                                )
+                              }
+                            ),
+                            /* @__PURE__ */ i.jsx(
+                              V,
+                              {
+                                size: 16,
+                                className: b(
+                                  "absolute top-1",
+                                  u.key === t.key && u.direction === "desc" ? "opacity-100" : "opacity-30"
+                                )
+                              }
                             )
-                          }
-                        ),
-                        /* @__PURE__ */ d.jsx(
-                          H,
-                          {
-                            size: 16,
-                            className: u(
-                              "absolute top-1",
-                              y.key === e.key && y.direction === "desc" ? "opacity-100" : "opacity-30"
-                            )
-                          }
-                        )
-                      ]
-                    }
-                  )
-                ] })
+                          ]
+                        }
+                      )
+                    ]
+                  }
+                )
               },
-              e.key
+              t.key
             )
           }
         ),
-        /* @__PURE__ */ d.jsx($, { items: t, ...l == null ? void 0 : l.tableBodyProps, children: (e) => /* @__PURE__ */ d.jsx(
-          B,
+        /* @__PURE__ */ i.jsx(
+          E,
           {
-            "aria-label": `Row ${e.id}`,
-            className: u(g.row),
-            ...l == null ? void 0 : l.tableRowProps,
-            children: (f) => /* @__PURE__ */ d.jsx(E, { ...l == null ? void 0 : l.tableCellProps, children: f === "checkbox" ? /* @__PURE__ */ d.jsx(
-              P,
+            items: x,
+            className: b(e == null ? void 0 : e.tbody),
+            ...l == null ? void 0 : l.tableBodyProps,
+            children: (t) => /* @__PURE__ */ i.jsx(
+              G,
               {
-                isSelected: c(e),
-                onValueChange: () => C(e),
-                "aria-label": `Select row ${e.id}`,
-                className: r == null ? void 0 : r.checkbox
-              }
-            ) : /* @__PURE__ */ d.jsx("div", { className: r == null ? void 0 : r.cellContent, children: q(f, e, n) }) })
-          },
-          e.id
-        ) })
+                "aria-label": `Row ${t.id}`,
+                className: b(f.row, e == null ? void 0 : e.tr),
+                ...l == null ? void 0 : l.tableRowProps,
+                children: (c) => /* @__PURE__ */ i.jsx(
+                  H,
+                  {
+                    className: b(f.cell, e == null ? void 0 : e.td),
+                    ...l == null ? void 0 : l.tableCellProps,
+                    children: c === "checkbox" ? /* @__PURE__ */ i.jsx(
+                      T,
+                      {
+                        isSelected: a(t),
+                        onValueChange: () => P(t),
+                        "aria-label": `Select row ${t.id}`,
+                        className: e == null ? void 0 : e.checkbox
+                      }
+                    ) : /* @__PURE__ */ i.jsx("div", { className: e == null ? void 0 : e.cellContent, children: (() => {
+                      const h = r.find(
+                        (v) => String(v.field) === c
+                      );
+                      return h ? h.cell ? h.cell(t) : h.field && h.field in t ? String(t[h.field]) : null : null;
+                    })() })
+                  }
+                )
+              },
+              t.id
+            )
+          }
+        )
       ]
     }
   );
 }
 export {
-  Y as DataGrid
+  X as DataGrid
 };
