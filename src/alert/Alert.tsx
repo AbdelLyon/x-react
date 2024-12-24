@@ -1,13 +1,12 @@
 import { forwardRef } from "react";
 import type { AlertProps, ButtonProps } from "@nextui-org/react";
 import { Alert as AlertRoot, Button } from "@nextui-org/react";
-import type { Color, Radius, Variant } from "@/types/types";
+import type { Radius, Variant } from "@/types/types";
 
 interface Props {
   title?: string;
   icon?: React.ReactNode;
   description?: React.ReactNode;
-  color?: Color;
   variant?: Variant;
   radius?: Radius;
   startContent?: React.ReactNode;
@@ -35,9 +34,6 @@ export const Alert = forwardRef<AlertProps, Props>(
       title,
       icon,
       description,
-      color = "default",
-      variant = "flat",
-      radius = "md",
       startContent,
       endContent,
       isVisible = true,
@@ -73,9 +69,6 @@ export const Alert = forwardRef<AlertProps, Props>(
       <AlertRoot
         {...props}
         ref={ref}
-        color={color}
-        variant={variant}
-        radius={radius}
         title={title}
         icon={hideIcon ? undefined : icon}
         isClosable={isClosable}

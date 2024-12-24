@@ -1,10 +1,9 @@
 import { AlertProps, ButtonProps } from '@nextui-org/react';
-import { Color, Radius, Variant } from '../types/types';
+import { Radius, Variant } from '../types/types';
 interface Props {
     title?: string;
     icon?: React.ReactNode;
     description?: React.ReactNode;
-    color?: Color;
     variant?: Variant;
     radius?: Radius;
     startContent?: React.ReactNode;

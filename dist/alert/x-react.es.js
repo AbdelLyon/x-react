@@ -1,65 +1,59 @@
 /* empty css                */
-import { j as l } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as B } from "react";
-import { Alert as C, Button as R } from "@nextui-org/react";
-const w = B(
+import { j as s } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as v } from "react";
+import { Alert as g, Button as y } from "@nextui-org/react";
+const B = v(
   ({
-    title: s,
+    title: l,
     icon: n,
     description: a,
-    color: f = "default",
-    variant: m = "flat",
-    radius: d = "md",
-    startContent: u,
-    endContent: c,
-    isVisible: p = !0,
-    isClosable: t = !1,
-    hideIcon: h = !1,
-    hideIconWrapper: x = !1,
-    closeButtonProps: j,
-    onClose: e,
-    onVisibleChange: r,
-    classNames: A,
-    ...v
-  }, g) => {
-    const o = (y) => {
-      r && r(y);
+    startContent: f,
+    endContent: m,
+    isVisible: d = !0,
+    isClosable: e = !1,
+    hideIcon: c = !1,
+    hideIconWrapper: p = !1,
+    closeButtonProps: u,
+    onClose: r,
+    onVisibleChange: t,
+    classNames: h,
+    ...x
+  }, j) => {
+    const o = (A) => {
+      t && t(A);
     }, i = () => {
-      e && e(), o(!1);
+      r && r(), o(!1);
     };
-    return p ? /* @__PURE__ */ l.jsx(
-      C,
+    return d ? /* @__PURE__ */ s.jsx(
+      g,
       {
-        ...v,
-        ref: g,
-        color: f,
-        variant: m,
-        radius: d,
-        title: s,
-        icon: h ? void 0 : n,
-        isClosable: t,
-        hideIconWrapper: x,
-        startContent: u,
-        endContent: c,
+        ...x,
+        ref: j,
+        title: l,
+        icon: c ? void 0 : n,
+        isClosable: e,
+        hideIconWrapper: p,
+        startContent: f,
+        endContent: m,
         onVisibleChange: o,
         onClose: i,
-        closeButton: t ? /* @__PURE__ */ l.jsx(
-          R,
+        closeButton: e ? /* @__PURE__ */ s.jsx(
+          y,
           {
             size: "sm",
             variant: "light",
-            ...j,
+            ...u,
             onPress: i,
             children: "Close"
           }
         ) : void 0,
-        classNames: A,
+        classNames: h,
         children: a
       }
     ) : null;
   }
 );
-w.displayName = "Alert";
+B.displayName = "Alert";
 export {
-  w as Alert
+  B as Alert
 };
