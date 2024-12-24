@@ -45,8 +45,9 @@ interface DataGridProps<T extends {
         cellContent?: string;
     };
     variant?: "bordered" | "striped" | "unstyled";
+    isLoading?: boolean;
 }
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): JSX.Element;
+}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, isLoading, props, }: DataGridProps<T>): JSX.Element;
 export {};

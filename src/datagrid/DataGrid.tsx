@@ -20,6 +20,7 @@ import {
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
+import { DataGridSkeleton } from "./DataGridSkeleton";
 
 // Types
 export interface SortConfig<T> {
@@ -71,6 +72,7 @@ interface DataGridProps<T extends { id: string | number }> {
     cellContent?: string;
   };
   variant?: "bordered" | "striped" | "unstyled";
+  isLoading?: boolean;
 }
 
 const variantStyles = {
@@ -155,6 +157,7 @@ export function DataGrid<T extends { id: string | number }>({
   checkboxSelection = true,
   classNames,
   variant = "unstyled",
+  isLoading = false,
   props,
 }: DataGridProps<T>): JSX.Element {
   const {
@@ -169,6 +172,17 @@ export function DataGrid<T extends { id: string | number }>({
     onCheckedRowsChange,
     onSort,
   });
+
+  if (isLoading) {
+    return (
+      <DataGridSkeleton
+        columns={columns.length}
+        checkboxSelection={checkboxSelection}
+        variant={variant}
+        rows={10}
+      />
+    );
+  }
 
   const variantClasses = variantStyles[variant];
 
