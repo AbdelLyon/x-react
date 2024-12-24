@@ -1,35 +1,32 @@
 import { TableBodyProps, TableProps, TableHeaderProps, TableRowProps, TableCellProps, TableColumnProps } from '@nextui-org/react';
 import { JSX } from 'react';
-export interface SortConfig<T> {
+export type SortConfig<T> = {
     key: keyof T | null;
     direction: "asc" | "desc";
-}
-interface ColumnBase<T> {
+};
+export type ColumnDefinition<T> = {
     header: React.ReactNode;
     footer?: (data: T[]) => React.ReactNode;
     className?: string;
     sortable?: boolean;
-}
-interface FieldColumn<T> extends ColumnBase<T> {
+} & ({
     field: keyof T;
     cell?: (row: T) => React.ReactNode;
-}
-interface ActionColumn<T> extends ColumnBase<T> {
+} | {
     field?: "actions";
     cell: (row: T) => React.ReactNode;
-}
-export type ColumnDefinition<T> = FieldColumn<T> | ActionColumn<T>;
-interface DataGridComponentProps<T> {
+});
+export type DataGridComponentProps<T> = {
     tableProps?: TableProps;
     tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
     tableBodyProps?: Omit<TableBodyProps<T>, "items" | "children">;
     tableRowProps?: Omit<TableRowProps, "children">;
     tableCellProps?: Omit<TableCellProps, "children">;
     tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
-}
-interface DataGridProps<T extends {
+};
+export type DataGridProps<T extends {
     id: string | number;
-}> {
+}> = {
     props?: DataGridComponentProps<T>;
     rows: T[];
     columns: ColumnDefinition<T>[];
@@ -45,8 +42,7 @@ interface DataGridProps<T extends {
         cellContent?: string;
     };
     variant?: "bordered" | "striped" | "unstyled";
-}
+};
 export declare function DataGrid<T extends {
     id: string | number;
 }>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, props, }: DataGridProps<T>): JSX.Element;
-export {};

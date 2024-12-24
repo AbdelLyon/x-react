@@ -20,8 +20,8 @@ const L = {
     isAllChecked: S,
     sortConfig: x,
     handleCheckboxChange: (o) => {
-      const h = i.some((g) => g.id === o.id) ? i.filter((g) => g.id !== o.id) : [...i, o];
-      a(h), n == null || n(h);
+      const g = i.some((h) => h.id === o.id) ? i.filter((h) => h.id !== o.id) : [...i, o];
+      a(g), n == null || n(g);
     },
     handleSelectAll: (o) => {
       const c = o ? [...t] : [];
@@ -91,7 +91,7 @@ function Y({
     rows: t,
     onCheckedRowsChange: i,
     onSort: a
-  }), h = V[x], g = [
+  }), g = V[x], h = [
     ...S === !0 ? [
       {
         key: "checkbox",
@@ -120,14 +120,14 @@ function Y({
         /* @__PURE__ */ d.jsx(
           z,
           {
-            columns: g,
-            className: u(h.header),
+            columns: h,
+            className: u(g.header),
             ...l == null ? void 0 : l.tableHeaderProps,
             children: (e) => /* @__PURE__ */ d.jsx(
               D,
               {
                 "aria-label": F(e),
-                className: u(h.column),
+                className: u(g.column),
                 ...l == null ? void 0 : l.tableColumnProps,
                 children: e.key === "checkbox" ? /* @__PURE__ */ d.jsx(
                   P,
@@ -183,12 +183,12 @@ function Y({
           B,
           {
             "aria-label": `Row ${e.id}`,
-            className: u(h.row),
+            className: u(g.row),
             ...l == null ? void 0 : l.tableRowProps,
             children: (f) => /* @__PURE__ */ d.jsx(E, { ...l == null ? void 0 : l.tableCellProps, children: f === "checkbox" ? /* @__PURE__ */ d.jsx(
               P,
               {
-                checked: c(e),
+                isSelected: c(e),
                 onValueChange: () => C(e),
                 "aria-label": `Select row ${e.id}`,
                 className: r == null ? void 0 : r.checkbox
