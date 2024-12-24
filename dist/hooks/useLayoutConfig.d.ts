@@ -1,11 +1,10 @@
-import { NavbarProps } from '../navbar/Navbar';
-import { SidebarProps } from '../sidebar/Sidebar';
-type UseLayoutConfigOptions = {
-    navbar?: Partial<NavbarProps>;
-    sidebar?: Partial<SidebarProps>;
+type UseLayoutConfigOptions<T> = {
+    navbar?: Partial<T>;
+    sidebar?: Partial<T>;
 };
-export declare const useLayoutConfig: (options?: UseLayoutConfigOptions) => {
-    navbar: Partial<NavbarProps> | undefined;
-    sidebar: Partial<SidebarProps> | undefined;
+type LayoutConfig<T> = {
+    navbar?: Partial<T>;
+    sidebar?: Partial<T>;
 };
+export declare const useLayoutConfig: <T extends object>(options?: UseLayoutConfigOptions<T>) => LayoutConfig<T>;
 export {};
