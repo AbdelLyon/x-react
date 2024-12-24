@@ -8,11 +8,11 @@ import {
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 
-interface CheckboxItemProps extends Omit<CheckboxProps, "children"> {
+type CheckboxItemProps = {
   label?: React.ReactNode;
-}
+} & Omit<CheckboxProps, "children">
 
-interface CheckboxWrapperProps extends Omit<CheckboxGroupProps, "children"> {
+type CheckboxWrapperProps = {
   items: CheckboxItemProps[];
   groupClasses?: {
     base?: string;
@@ -23,7 +23,7 @@ interface CheckboxWrapperProps extends Omit<CheckboxGroupProps, "children"> {
     label?: string;
     wrapper?: string;
   };
-}
+} & Omit<CheckboxGroupProps, "children">
 
 const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxWrapperProps>(
   (

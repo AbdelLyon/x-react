@@ -3,19 +3,16 @@ import type { ButtonGroupProps, ButtonProps } from "@nextui-org/react";
 import { ButtonGroup } from "@nextui-org/react";
 import { Button } from "./Button";
 
-export type ButtonsProps = ButtonGroupProps & {
+export interface ButtonsProps extends ButtonGroupProps {
   buttons: Array<{
     key: string | number;
     label: React.ReactNode;
     buttonProps?: ButtonProps;
   }>;
-};
+}
 
-export const Buttons = forwardRef(
-  (
-    { buttons, ...props }: ButtonsProps,
-    ref: React.ForwardedRef<HTMLDivElement>,
-  ) => {
+export const Buttons = forwardRef<HTMLDivElement, ButtonsProps>(
+  ({ buttons, ...props }, ref) => {
     return (
       <ButtonGroup ref={ref} {...props}>
         {buttons.map(({ key, label, buttonProps }) => (

@@ -3,7 +3,7 @@ import { forwardRef, useEffect, useState } from "react";
 import type { CircularProgressProps as CircularProgressRootProps } from "@nextui-org/react";
 import { CircularProgress as CircularProgressRoot } from "@nextui-org/react";
 
-interface AdditionalCircularProgressProps {
+type AdditionalCircularProgressProps = {
   autoIncrement?: boolean;
   incrementInterval?: number;
   incrementStep?: number;

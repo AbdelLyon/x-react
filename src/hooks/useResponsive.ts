@@ -1,16 +1,16 @@
 import { useMediaQuery } from "./useMediaQuery";
 
-interface Breakpoints {
+type Breakpoints = {
   isDesktop: boolean;
   isTablet: boolean;
   isMobile: boolean;
 }
 
-interface ResponsiveHook extends Breakpoints {
+type ResponsiveHook = {
   matches?: boolean;
   getBreakpoint: () => keyof Breakpoints;
   isBreakpoint: (breakpoint: keyof Breakpoints) => boolean;
-}
+} & Breakpoints
 
 const MEDIA_QUERIES = {
   desktop: "(min-width: 1024px)",

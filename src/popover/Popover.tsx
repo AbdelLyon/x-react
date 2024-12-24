@@ -9,12 +9,12 @@ import {
 } from "@nextui-org/react";
 import type { Radius } from "@/types/types";
 
-export interface PropsPopover extends Omit<PopoverProps, "content"> {
+export type PropsPopover = {
   trigger: React.ReactNode;
   contentClassName?: string;
   popoverContentProps?: PopoverContentProps;
   radius?: Radius;
-}
+} & Omit<PopoverProps, "content">
 
 export const Popover = forwardRef<HTMLDivElement, PropsPopover>(
   (

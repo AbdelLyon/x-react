@@ -22,28 +22,31 @@ import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 
 // Types
-export type SortConfig<T> = {
+export interface SortConfig<T> {
   key: keyof T | null;
   direction: "asc" | "desc";
-};
+}
 
-export type ColumnDefinition<T> = {
+interface ColumnBase<T> {
   header: React.ReactNode;
   footer?: (data: T[]) => React.ReactNode;
   className?: string;
   sortable?: boolean;
-} & (
-  | {
-      field: keyof T;
-      cell?: (row: T) => React.ReactNode;
-    }
-  | {
-      field?: "actions";
-      cell: (row: T) => React.ReactNode;
-    }
-);
+}
 
-export interface DataGridComponentProps<T> {
+interface FieldColumn<T> extends ColumnBase<T> {
+  field: keyof T;
+  cell?: (row: T) => React.ReactNode;
+}
+
+interface ActionColumn<T> extends ColumnBase<T> {
+  field?: "actions";
+  cell: (row: T) => React.ReactNode;
+}
+
+export type ColumnDefinition<T> = FieldColumn<T> | ActionColumn<T>;
+
+interface DataGridComponentProps<T> {
   tableProps?: TableProps;
   tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
   tableBodyProps?: Omit<TableBodyProps<T>, "items" | "children">;
@@ -52,7 +55,7 @@ export interface DataGridComponentProps<T> {
   tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }
 
-export interface DataGridProps<T extends { id: string | number }> {
+interface DataGridProps<T extends { id: string | number }> {
   props?: DataGridComponentProps<T>;
   rows: T[];
   columns: ColumnDefinition<T>[];

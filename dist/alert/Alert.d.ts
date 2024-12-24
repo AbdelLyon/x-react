@@ -1,20 +1,8 @@
 import { AlertProps, ButtonProps } from '@nextui-org/react';
-import { Radius, Variant } from '../types/types';
-interface Props {
-    title?: string;
-    icon?: React.ReactNode;
-    description?: React.ReactNode;
-    variant?: Variant;
-    radius?: Radius;
-    startContent?: React.ReactNode;
-    endContent?: React.ReactNode;
-    isVisible?: boolean;
-    isClosable?: boolean;
-    hideIcon?: boolean;
-    hideIconWrapper?: boolean;
+interface Props extends AlertProps {
     closeButtonProps?: ButtonProps;
-    onClose?: () => void;
     onVisibleChange?: (isVisible: boolean) => void;
+    onClose?: () => void;
     classNames?: {
         base?: string;
         title?: string;
@@ -24,5 +12,5 @@ interface Props {
         closeButton?: string;
     };
 }
-export declare const Alert: import('react').ForwardRefExoticComponent<Props & import('react').RefAttributes<AlertProps>>;
+export declare const Alert: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
 export {};

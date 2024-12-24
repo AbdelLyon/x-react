@@ -1,6 +1,6 @@
 import { useTheme as useNextTheme } from "next-themes";
 
-interface ThemeHook {
+type ThemeHook = {
   setTheme: (theme: string) => void;
   theme: string | undefined;
 }

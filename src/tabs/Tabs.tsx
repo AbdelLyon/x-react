@@ -1,11 +1,7 @@
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import type {
-  TabsProps as NextUITabsProps} from "@nextui-org/react";
-import {
-  Tabs as TabsRoot,
-  Tab
-} from "@nextui-org/react";
+import type { TabsProps as NextUITabsProps } from "@nextui-org/react";
+import { Tabs as TabsRoot, Tab } from "@nextui-org/react";
 
 export interface TabItem {
   key: string;

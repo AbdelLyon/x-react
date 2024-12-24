@@ -22,17 +22,11 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
   });
 
   const getFallback = (): ReactElement | null => {
-    const shouldShowImage = typeof src === "string" && src.length > 0;
-    if (!showFallback && shouldShowImage) {
+    if (!showFallback && src !== null) {
       return null;
     }
 
-    const ariaLabel =
-      typeof alt === "string" && alt.length > 0
-        ? alt
-        : typeof name === "string" && name.length > 0
-          ? name
-          : "avatar";
+    const ariaLabel = alt ? alt : name !== null ? name : "avatar";
 
     if (fallbackComponent !== null && fallbackComponent !== undefined) {
       return (
@@ -46,9 +40,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
       );
     }
 
-    const hasName = typeof name === "string" && name.length > 0;
-
-    if (hasName) {
+    if (name !== null && name !== undefined) {
       return (
         <span
           aria-label={ariaLabel}
@@ -70,11 +62,10 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
       </span>
     );
   };
-  const shouldShowImage = typeof src === "string" && src.length > 0;
 
   return (
     <div {...getAvatarProps()}>
-      {shouldShowImage && <img {...getImageProps()} alt={alt} />}
+      {src !== null && <img {...getImageProps()} alt={alt} />}
       {getFallback()}
     </div>
   );

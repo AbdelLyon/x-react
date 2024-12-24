@@ -1,9 +1,6 @@
 import { forwardRef } from "react";
-import type {
-  SpinnerProps as NextUISpinnerProps} from "@nextui-org/react";
-import {
-  Spinner as NextUISpinner
-} from "@nextui-org/react";
+import type { SpinnerProps as NextUISpinnerProps } from "@nextui-org/react";
+import { Spinner as NextUISpinner } from "@nextui-org/react";
 import type { Color, Size } from "@/types/types";
 
 interface SpinnerProps

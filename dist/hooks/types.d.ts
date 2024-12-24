@@ -7,7 +7,7 @@ export type Query<DataResponse, PayloadRequest> = {
     search?: Partial<PayloadRequest>;
     enabled?: boolean;
 };
-export interface Mutation<DataResponse, PayloadRequest> {
+export type Mutation<DataResponse, PayloadRequest> = {
     request: (variables: PayloadRequest) => Promise<DataResponse>;
     options?: UseMutationOptions[];
-}
+};

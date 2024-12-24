@@ -1,7 +1,7 @@
-export interface UseMediaQueryOptions {
+export type UseMediaQueryOptions = {
     getInitialValueInEffect?: boolean;
     initialValue?: boolean;
-}
+};
 export declare function useMediaQuery(query: string, options?: UseMediaQueryOptions): boolean;
 /**
  * React hook to track viewport breakpoints and custom media queries

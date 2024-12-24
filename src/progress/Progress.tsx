@@ -3,18 +3,16 @@ import { forwardRef } from "react";
 import type { ProgressProps as ProgressRootProps } from "@nextui-org/react";
 import { Progress as ProgressRoor } from "@nextui-org/react";
 
-interface AdditionalProgressProps {
+type AdditionalProgressProps = {
   label?: ReactNode;
   labelPosition?: "top" | "bottom" | "none";
   containerClassName?: string;
   labelClassName?: string;
 }
 
-interface ProgressProps
-  extends Omit<ProgressRootProps, "classNames">,
-    AdditionalProgressProps {
+type ProgressProps = {
   classNames?: ProgressRootProps["classNames"];
-}
+} & Omit<ProgressRootProps, "classNames"> & AdditionalProgressProps
 
 const defaultProps = {
   size: "md",
@@ -78,7 +76,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       ...nextUIProps,
       classNames: {
         ...classNames,
-        base: `w-full ${typeof classNames?.base === "string" && classNames?.base}`,
+        base: `w-full ${typeof classNames?.base === "string" && classNames.base}`,
       },
     };
 

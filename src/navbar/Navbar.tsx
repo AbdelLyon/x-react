@@ -18,7 +18,7 @@ import { cn } from "@/utils";
 import type { Item } from "@/types/navigation";
 import { useResponsive } from "@/hooks";
 
-export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
+export type NavbarProps = {
   appName?: ReactNode;
   appLogo?: ReactNode;
   profile?: ReactNode;
@@ -32,7 +32,7 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
   classNames?: {
     item?: string;
   };
-}
+} & Omit<NavbarRootProps, "children">
 
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (

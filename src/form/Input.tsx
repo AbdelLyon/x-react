@@ -1,44 +1,17 @@
-import type { ReactNode} from "react";
 import { forwardRef, useState } from "react";
-import type {
-  InputProps as InputRootProps} from "@nextui-org/react";
-import {
-  Input as InputRoot
-} from "@nextui-org/react";
+import type { InputProps as InputRootProps } from "@nextui-org/react";
+import { Input as InputRoot } from "@nextui-org/react";
 import { cn } from "@/utils";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 type ValidationError = string | string[];
 
-interface InputWrapperProps extends Omit<InputRootProps, "children"> {
+type InputProps = InputRootProps & {
   containerClasses?: string;
   customValidation?: (value: string) => boolean | string;
-  type:
-    | "button"
-    | "checkbox"
-    | "color"
-    | "date"
-    | "datetime-local"
-    | "email"
-    | "file"
-    | "hidden"
-    | "image"
-    | "month"
-    | "number"
-    | "password"
-    | "radio"
-    | "range"
-    | "reset"
-    | "search"
-    | "submit"
-    | "tel"
-    | "text"
-    | "time"
-    | "url"
-    | "week";
-}
+};
 
-export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       variant = "bordered",
@@ -51,19 +24,15 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
       isRequired = false,
       isReadOnly = false,
       isDisabled = false,
-
-      // Custom props
       containerClasses,
       customValidation,
-
-      // Passthrough props
       validate,
       type,
       ...props
     },
     ref,
   ) => {
-    const [inputType, setInputType] = useState(type || "text");
+    const [inputType, setInputType] = useState(type);
 
     const combinedValidate = (
       value: string,
@@ -73,43 +42,34 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
         if (typeof customResult === "string") {
           return customResult;
         }
-        if (customResult === false) {
+        if (customResult) {
           return "Validation failed";
         }
       }
-
-      if (validate) {
-        return validate(value);
-      }
-
-      return true;
+      return validate?.(value) ?? true;
     };
 
-    const endContent = (): ReactNode => {
-      if (type === "password") {
-        return (
-          <button
-            className="opacity-40 focus:outline-none"
-            type="button"
-            onClick={() =>
-              setInputType(inputType === "password" ? "text" : "password")
-            }
-          >
-            {inputType === "password" ? (
-              <IconEye className="pointer-events-none" />
-            ) : (
-              <IconEyeOff className="pointer-events-none" />
-            )}
-          </button>
-        );
-      }
-    };
-    const defaultContainerClasses = "w-full";
+    const endContent =
+      type === "password" ? (
+        <button
+          className="opacity-40 focus:outline-none"
+          type="button"
+          onClick={() =>
+            setInputType(inputType === "password" ? "text" : "password")
+          }
+        >
+          {inputType === "password" ? (
+            <IconEye className="pointer-events-none" />
+          ) : (
+            <IconEyeOff className="pointer-events-none" />
+          )}
+        </button>
+      ) : undefined;
 
     const { classNames: propClassNames, ...restProps } = props;
 
     return (
-      <div className={cn(defaultContainerClasses, containerClasses)}>
+      <div className={cn("w-full", containerClasses)}>
         <InputRoot
           ref={ref}
           variant={variant}
@@ -134,7 +94,7 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
               propClassNames?.inputWrapper,
             ),
           }}
-          endContent={endContent()}
+          endContent={endContent}
           type={inputType}
           {...restProps}
         />

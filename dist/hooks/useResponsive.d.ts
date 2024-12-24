@@ -1,12 +1,12 @@
-interface Breakpoints {
+type Breakpoints = {
     isDesktop: boolean;
     isTablet: boolean;
     isMobile: boolean;
-}
-interface ResponsiveHook extends Breakpoints {
+};
+type ResponsiveHook = {
     matches?: boolean;
     getBreakpoint: () => keyof Breakpoints;
     isBreakpoint: (breakpoint: keyof Breakpoints) => boolean;
-}
+} & Breakpoints;
 export declare const useResponsive: (customQuery?: string) => ResponsiveHook;
 export {};

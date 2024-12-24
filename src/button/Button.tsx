@@ -2,7 +2,6 @@ import type { AnchorHTMLAttributes, ComponentType, ReactNode } from "react";
 import { forwardRef } from "react";
 import type { ButtonProps as ButtonRootProps } from "@nextui-org/react";
 import { Button as ButtonRoot } from "@nextui-org/react";
-
 import { cn } from "@/utils";
 
 export interface ButtonProps extends ButtonRootProps {
@@ -48,27 +47,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
     );
 
-    const Content = (): ReactNode => {
-      const hasStartContent =
-        startContent !== null && startContent !== undefined;
-      const hasEndContent = endContent !== null && endContent !== undefined;
-
-      return (
-        <>
-          {hasStartContent && (
-            <span className={cn("mr-2", customStyles.beforeContent)}>
-              {startContent}
-            </span>
-          )}
-          <span className={customStyles.content}>{children}</span>
-          {hasEndContent && (
-            <span className={cn("ml-2", customStyles.afterContent)}>
-              {endContent}
-            </span>
-          )}
-        </>
-      );
-    };
+    const Content = (): ReactNode => (
+      <>
+        {startContent !== null && (
+          <span className={cn("mr-2", customStyles.beforeContent)}>
+            {startContent}
+          </span>
+        )}
+        <span className={customStyles.content}>{children}</span>
+        {endContent !== null && (
+          <span className={cn("ml-2", customStyles.afterContent)}>
+            {endContent}
+          </span>
+        )}
+      </>
+    );
 
     const hasValidLink =
       typeof href === "string" &&

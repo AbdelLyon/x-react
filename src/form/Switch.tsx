@@ -5,10 +5,10 @@ import {
   Switch as NextUISwitch
 } from "@nextui-org/react";
 
-interface SwitchProps extends SwitchRootProp {
+type SwitchProps = {
   width?: string | number;
   height?: string | number;
-}
+} & SwitchRootProp
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   ({ width, height, style, ...props }, ref) => {

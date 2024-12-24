@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { NavbarContentProps, NavbarMenuProps, NavbarProps as NavbarRootProps } from '@nextui-org/react';
 import { Item } from '../types/navigation';
-export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
+export type NavbarProps = {
     appName?: ReactNode;
     appLogo?: ReactNode;
     profile?: ReactNode;
@@ -15,5 +15,5 @@ export interface NavbarProps extends Omit<NavbarRootProps, "children"> {
     classNames?: {
         item?: string;
     };
-}
+} & Omit<NavbarRootProps, "children">;
 export declare const Navbar: import('react').ForwardRefExoticComponent<Omit<NavbarProps, "ref"> & import('react').RefAttributes<HTMLElement>>;

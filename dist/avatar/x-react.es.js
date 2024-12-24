@@ -1,62 +1,61 @@
 /* empty css                */
-import { j as t } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as x } from "react";
-import { useAvatar as v, AvatarIcon as j } from "@nextui-org/react";
-import { User as S } from "@nextui-org/react";
-const k = x((i, c) => {
+import { j as r } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as v } from "react";
+import { useAvatar as x, AvatarIcon as g } from "@nextui-org/react";
+import { User as P } from "@nextui-org/react";
+const j = v((s, c) => {
   const {
-    src: e,
-    icon: g = /* @__PURE__ */ t.jsx(j, {}),
-    alt: l,
+    src: i,
+    icon: m = /* @__PURE__ */ r.jsx(g, {}),
+    alt: n,
     classNames: a,
     slots: o,
-    name: r,
-    showFallback: m,
-    fallback: n,
-    getInitials: f,
-    getAvatarProps: p,
-    getImageProps: h
-  } = v({
+    name: l,
+    showFallback: f,
+    fallback: t,
+    getInitials: p,
+    getAvatarProps: u,
+    getImageProps: b
+  } = x({
     ref: c,
-    ...i
+    ...s
   }), d = () => {
-    const b = typeof e == "string" && e.length > 0;
-    if (!m && b)
+    if (!f && i !== null)
       return null;
-    const s = typeof l == "string" && l.length > 0 ? l : typeof r == "string" && r.length > 0 ? r : "avatar";
-    return n != null ? /* @__PURE__ */ t.jsx(
+    const e = n || (l !== null ? l : "avatar");
+    return t != null ? /* @__PURE__ */ r.jsx(
       "div",
       {
-        "aria-label": s,
+        "aria-label": e,
         className: o.fallback({ class: a == null ? void 0 : a.fallback }),
         role: "img",
-        children: n
+        children: t
       }
-    ) : typeof r == "string" && r.length > 0 ? /* @__PURE__ */ t.jsx(
+    ) : l != null ? /* @__PURE__ */ r.jsx(
       "span",
       {
-        "aria-label": s,
+        "aria-label": e,
         className: o.name({ class: a == null ? void 0 : a.name }),
         role: "img",
-        children: f(r)
+        children: p(l)
       }
-    ) : /* @__PURE__ */ t.jsx(
+    ) : /* @__PURE__ */ r.jsx(
       "span",
       {
-        "aria-label": s,
+        "aria-label": e,
         className: o.icon({ class: a == null ? void 0 : a.icon }),
         role: "img",
-        children: g
+        children: m
       }
     );
-  }, u = typeof e == "string" && e.length > 0;
-  return /* @__PURE__ */ t.jsxs("div", { ...p(), children: [
-    u && /* @__PURE__ */ t.jsx("img", { ...h(), alt: l }),
+  };
+  return /* @__PURE__ */ r.jsxs("div", { ...u(), children: [
+    i !== null && /* @__PURE__ */ r.jsx("img", { ...b(), alt: n }),
     d()
   ] });
 });
-k.displayName = "Avatar";
+j.displayName = "Avatar";
 export {
-  k as Avatar,
-  S as User
+  j as Avatar,
+  P as User
 };

@@ -1,5 +1,5 @@
 import { Color, LinkColor } from './types';
-export interface Item {
+export type Item = {
     key: string;
     label?: string;
     onPress?: () => void;
@@ -9,4 +9,4 @@ export interface Item {
     buttonColor?: Color;
     startContent?: React.ReactNode;
     endContent?: React.ReactNode;
-}
+};

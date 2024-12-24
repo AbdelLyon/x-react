@@ -3,8 +3,6 @@ import { forwardRef, useState } from "react";
 import type { SliderProps } from "@nextui-org/react";
 import { Slider as SliderRoot } from "@nextui-org/react";
 
-type LabelPosition = "top" | "bottom" | "none";
-
 interface FormatConfig {
   formatOptions?: Intl.NumberFormatOptions;
   formatValue?: (value: number[]) => string;
@@ -20,8 +18,14 @@ interface RangeSliderProps extends FormatConfig, StyleProps {
   sliderProps?: Omit<SliderProps, "value" | "onChange">;
   initialValue?: number[];
   label?: string;
-  labelPosition?: LabelPosition;
+  labelPosition?: "top" | "bottom" | "none";
   onChange?: (value: number[]) => void;
+}
+
+interface LabelProps {
+  position: "top" | "bottom" | "none";
+  content: ReactNode;
+  className?: string;
 }
 
 const defaultFormatValue = (
@@ -41,25 +45,20 @@ const LabelComponent = ({
   position,
   content,
   className,
-}: {
-  position: LabelPosition;
-  content: ReactNode;
-  className?: string;
-}): ReactNode => {
-  if (position === "none") {return null;}
+}: LabelProps): ReactNode => {
+  if (position === "none") {
+    return null;
+  }
 
   return (
     <p
-      className={`
-     text-small font-medium text-default-500
-     ${className}
-     ${position === "top" ? "order-first" : "order-last"}
-   `}
+      className={`text-small font-medium text-default-500 ${className} ${position === "top" ? "order-first" : "order-last"}`}
     >
       {content}
     </p>
   );
 };
+
 export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
   (
     {
@@ -87,7 +86,6 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
     const formattedValue = formatValue
       ? formatValue(value)
       : defaultFormatValue(value, formatOptions);
-
     const labelContent = renderLabel
       ? renderLabel(value)
       : `${label}: ${formattedValue}`;
@@ -95,18 +93,13 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
     return (
       <div
         ref={ref}
-        className={`
-     flex h-max w-full max-w-md flex-col items-start 
-     justify-center gap-2
-     ${containerClassName}
-   `}
+        className={`flex h-max w-full max-w-md flex-col items-start justify-center gap-2 ${containerClassName}`}
       >
         <LabelComponent
           position={labelPosition}
           content={labelContent}
           className={labelClassName}
         />
-
         <SliderRoot
           value={value}
           onChange={handleChange}

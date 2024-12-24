@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { SliderProps } from '@nextui-org/react';
-type LabelPosition = "top" | "bottom" | "none";
 interface FormatConfig {
     formatOptions?: Intl.NumberFormatOptions;
     formatValue?: (value: number[]) => string;
@@ -14,7 +13,7 @@ interface RangeSliderProps extends FormatConfig, StyleProps {
     sliderProps?: Omit<SliderProps, "value" | "onChange">;
     initialValue?: number[];
     label?: string;
-    labelPosition?: LabelPosition;
+    labelPosition?: "top" | "bottom" | "none";
     onChange?: (value: number[]) => void;
 }
 export declare const RangeSlider: import('react').ForwardRefExoticComponent<RangeSliderProps & import('react').RefAttributes<HTMLDivElement>>;

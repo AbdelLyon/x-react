@@ -6,23 +6,23 @@ export const cn = (...inputs: ClassValue[]): string => {
 };
 
 export const capitalizeFirstLetter = (str: string): string =>
-  str?.charAt(0).toUpperCase() + str?.slice(1);
+  str.charAt(0).toUpperCase() + str.slice(1);
 
 export const concatenateWithSpace = (
   ...strings: (string | undefined)[]
-): string => strings?.filter(Boolean).join(" ");
+): string => strings.filter(Boolean).join(" ");
 
 export const startsWith = (str: string, prefix: string): boolean =>
-  str?.startsWith(prefix);
+  str.startsWith(prefix);
 
 export const endsWith = (str: string, suffix: string): boolean =>
-  str?.endsWith(suffix);
+  str.endsWith(suffix);
 
-export const toLowerCase = (str: string): string => str?.toLowerCase();
+export const toLowerCase = (str: string): string => str.toLowerCase();
 
-export const toUpperCase = (str: string): string => str?.toUpperCase();
+export const toUpperCase = (str: string): string => str.toUpperCase();
 
-export const trim = (str: string): string => str?.trim();
+export const trim = (str: string): string => str.trim();
 
 export const reverse = (str: string): string =>
-  str?.split("").reverse().join("");
+  str.split("").reverse().join("");

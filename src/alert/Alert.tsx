@@ -1,23 +1,11 @@
 import { forwardRef } from "react";
 import type { AlertProps, ButtonProps } from "@nextui-org/react";
 import { Alert as AlertRoot, Button } from "@nextui-org/react";
-import type { Radius, Variant } from "@/types/types";
 
-interface Props {
-  title?: string;
-  icon?: React.ReactNode;
-  description?: React.ReactNode;
-  variant?: Variant;
-  radius?: Radius;
-  startContent?: React.ReactNode;
-  endContent?: React.ReactNode;
-  isVisible?: boolean;
-  isClosable?: boolean;
-  hideIcon?: boolean;
-  hideIconWrapper?: boolean;
+interface Props extends AlertProps {
   closeButtonProps?: ButtonProps;
-  onClose?: () => void;
   onVisibleChange?: (isVisible: boolean) => void;
+  onClose?: () => void;
   classNames?: {
     base?: string;
     title?: string;
@@ -28,57 +16,40 @@ interface Props {
   };
 }
 
-export const Alert = forwardRef<AlertProps, Props>(
+export const Alert = forwardRef<HTMLDivElement, Props>(
   (
     {
-      title,
-      icon,
-      description,
-      startContent,
-      endContent,
-      isVisible = true,
-      isClosable = false,
-      hideIcon = false,
-      hideIconWrapper = false,
-      closeButtonProps,
-      onClose,
       onVisibleChange,
-      classNames,
-      ...props
+      onClose,
+      isVisible = true,
+      closeButtonProps,
+      isClosable = false,
+      ...otherProps
     },
     ref,
   ) => {
     const handleVisibilityChange = (visible: boolean): void => {
-      if (onVisibleChange) {
-        onVisibleChange(visible);
-      }
+      onVisibleChange?.(visible);
     };
 
     const handleClose = (): void => {
-      if (onClose) {
-        onClose();
-      }
+      onClose?.();
       handleVisibilityChange(false);
     };
 
-    if (!isVisible) {
+    if (isVisible === false) {
       return null;
     }
 
     return (
       <AlertRoot
-        {...props}
+        {...otherProps}
         ref={ref}
-        title={title}
-        icon={hideIcon ? undefined : icon}
         isClosable={isClosable}
-        hideIconWrapper={hideIconWrapper}
-        startContent={startContent}
-        endContent={endContent}
         onVisibleChange={handleVisibilityChange}
         onClose={handleClose}
         closeButton={
-          isClosable ? (
+          isClosable !== null ? (
             <Button
               size="sm"
               variant="light"
@@ -87,12 +58,9 @@ export const Alert = forwardRef<AlertProps, Props>(
             >
               Close
             </Button>
-          ) : undefined
+          ) : null
         }
-        classNames={classNames}
-      >
-        {description}
-      </AlertRoot>
+      />
     );
   },
 );

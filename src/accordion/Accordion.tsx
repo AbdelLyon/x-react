@@ -26,6 +26,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
       }),
       title: "text-lg font-semibold",
     };
+
     return (
       <AccordionRoot
         ref={ref}

@@ -1,10 +1,10 @@
 import { CircularProgressProps as CircularProgressRootProps } from '@nextui-org/react';
-interface AdditionalCircularProgressProps {
+type AdditionalCircularProgressProps = {
     autoIncrement?: boolean;
     incrementInterval?: number;
     incrementStep?: number;
     onValueChange?: (value: number) => void;
-}
+};
 type CircularProgressProps = Omit<CircularProgressRootProps, "classNames"> & AdditionalCircularProgressProps & {
     classNames?: CircularProgressRootProps["classNames"];
 };

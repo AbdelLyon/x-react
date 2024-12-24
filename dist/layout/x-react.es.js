@@ -21,13 +21,10 @@ const b = ({
           className: c(
             "flex-1 px-4 transition-all duration-200",
             {
-              // Padding top si navbar présente
               "pt-16": r,
-              // Margin left selon présence sidebar et breakpoint
               "ml-0": !a || !m && !i,
               "ml-[90px]": a && m,
               "ml-[270px]": a && i,
-              // Padding sur les côtés selon breakpoint
               "px-4 sm:px-6 md:px-8 lg:px-12": !0
             },
             x

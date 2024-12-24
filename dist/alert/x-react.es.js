@@ -1,59 +1,44 @@
 /* empty css                */
-import { j as s } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as v } from "react";
-import { Alert as g, Button as y } from "@nextui-org/react";
-const B = v(
+import { j as m } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as n } from "react";
+import { Alert as p, Button as c } from "@nextui-org/react";
+const d = n(
   ({
-    title: l,
-    icon: n,
-    description: a,
-    startContent: f,
-    endContent: m,
-    isVisible: d = !0,
-    isClosable: e = !1,
-    hideIcon: c = !1,
-    hideIconWrapper: p = !1,
-    closeButtonProps: u,
-    onClose: r,
     onVisibleChange: t,
-    classNames: h,
-    ...x
-  }, j) => {
-    const o = (A) => {
-      t && t(A);
-    }, i = () => {
-      r && r(), o(!1);
+    onClose: r,
+    isVisible: a = !0,
+    closeButtonProps: f,
+    isClosable: l = !1,
+    ...o
+  }, u) => {
+    const e = (i) => {
+      t == null || t(i);
+    }, s = () => {
+      r == null || r(), e(!1);
     };
-    return d ? /* @__PURE__ */ s.jsx(
-      g,
+    return a === !1 ? null : /* @__PURE__ */ m.jsx(
+      p,
       {
-        ...x,
-        ref: j,
-        title: l,
-        icon: c ? void 0 : n,
-        isClosable: e,
-        hideIconWrapper: p,
-        startContent: f,
-        endContent: m,
-        onVisibleChange: o,
-        onClose: i,
-        closeButton: e ? /* @__PURE__ */ s.jsx(
-          y,
+        ...o,
+        ref: u,
+        isClosable: l,
+        onVisibleChange: e,
+        onClose: s,
+        closeButton: l !== null ? /* @__PURE__ */ m.jsx(
+          c,
           {
             size: "sm",
             variant: "light",
-            ...u,
-            onPress: i,
+            ...f,
+            onPress: s,
             children: "Close"
           }
-        ) : void 0,
-        classNames: h,
-        children: a
+        ) : null
       }
-    ) : null;
+    );
   }
 );
-B.displayName = "Alert";
+d.displayName = "Alert";
 export {
-  B as Alert
+  d as Alert
 };

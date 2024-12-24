@@ -1,106 +1,123 @@
 /* empty css                */
-import { j as a } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as V, useState as D, isValidElement as E } from "react";
-import { useDisclosure as O, Modal as q, ModalContent as K, ModalHeader as R, ModalBody as H, ModalFooter as I } from "@nextui-org/react";
-import { cn as h } from "../utils/x-react.es.js";
-import { B as u } from "../Buttons-BlHNPx1T.js";
-const y = {
+import { j as o } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as m, useState as q, useCallback as M, isValidElement as H } from "react";
+import { useDisclosure as I, Modal as S, ModalContent as $, ModalHeader as z, ModalBody as G, ModalFooter as J } from "@nextui-org/react";
+import { cn as n } from "../utils/x-react.es.js";
+import { B as k } from "../Buttons-DECBa93a.js";
+const x = {
   closeButton: "absolute right-4 top-4",
-  base: "bg-background border border-default-200 shadow-lg dark:shadow-none rounded-lg"
-}, B = {
+  base: "bg-background border border-default-200 shadow-lg dark:shadow-none rounded-lg",
+  header: "flex flex-col gap-1",
+  footer: "flex justify-end gap-2"
+}, b = {
   color: "primary",
   radius: "sm"
-}, S = ({
-  buttonCloseLabel: d,
-  buttonActionLabel: r,
+}, w = (d) => d != null && (typeof d == "string" || H(d)), V = (d) => typeof d == "string" && d.length > 0, L = ({
+  buttonCloseLabel: d = "Close",
+  buttonActionLabel: i,
   buttonCloseProps: e,
-  buttonActionProps: i,
-  onAction: s,
+  buttonActionProps: y,
+  onAction: t,
   onClose: l
 }) => {
-  const t = () => {
-    s == null || s(), l();
-  }, o = typeof d == "string" && d.length > 0, m = typeof r == "string" && r.length > 0 && s !== void 0;
-  return /* @__PURE__ */ a.jsxs(a.Fragment, { children: [
-    o && /* @__PURE__ */ a.jsx(
-      u,
+  const j = async () => {
+    try {
+      await (t == null ? void 0 : t()), l();
+    } catch (a) {
+      console.error("Modal action failed:", a);
+    }
+  }, c = V(d), g = V(i) && t !== void 0;
+  return /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
+    c && /* @__PURE__ */ o.jsx(
+      k,
       {
-        className: h("border-primary/50", e == null ? void 0 : e.className),
-        variant: (e == null ? void 0 : e.variant) || "bordered",
+        className: n("border-primary/50", e == null ? void 0 : e.className),
+        variant: (e == null ? void 0 : e.variant) ?? "bordered",
         onPress: l,
-        ...B,
+        ...b,
         ...e,
         children: d
       }
     ),
-    m && /* @__PURE__ */ a.jsx(
-      u,
+    g && /* @__PURE__ */ o.jsx(
+      k,
       {
-        onPress: t,
-        ...B,
-        ...i,
-        children: r
+        onPress: j,
+        ...b,
+        ...y,
+        children: i
       }
     )
   ] });
-}, $ = V(
+}, Q = m(
   ({
     trigger: d,
-    title: r,
+    title: i,
     footer: e,
-    children: i,
-    onAction: s,
+    children: y,
+    onAction: t,
     buttonCloseLabel: l,
-    buttonActionLabel: t,
-    buttonCloseProps: o,
-    buttonActionProps: m,
-    ...n
-  }, M) => {
-    var j, f;
-    const { isOpen: N, onOpen: p, onClose: x } = O(), [k, w] = D("opaque"), g = (c = "opaque") => {
-      w(c), p();
-    }, F = (c) => {
-      (c.key === "Enter" || c.key === " ") && g();
-    }, v = e != null && (typeof e == "string" || E(e));
-    return /* @__PURE__ */ a.jsxs(a.Fragment, { children: [
-      /* @__PURE__ */ a.jsx(
+    buttonActionLabel: j,
+    buttonCloseProps: c,
+    buttonActionProps: g,
+    defaultBackdrop: a = "opaque",
+    onOpenChange: v,
+    classNames: r,
+    ...D
+  }, F) => {
+    const { isOpen: E, onOpen: u, onClose: B } = I({
+      onChange: v
+    }), [O, K] = q(a), p = M(
+      (h = a) => {
+        K(h), u();
+      },
+      [a, u]
+    ), R = M(
+      (h) => {
+        (h.key === "Enter" || h.key === " ") && (h.preventDefault(), p());
+      },
+      [p]
+    ), f = {
+      closeButton: n(x.closeButton, r == null ? void 0 : r.closeButton),
+      base: n(x.base, r == null ? void 0 : r.base),
+      header: n(x.header, r == null ? void 0 : r.header),
+      body: n(r == null ? void 0 : r.body),
+      footer: n(x.footer, r == null ? void 0 : r.footer),
+      backdrop: n(r == null ? void 0 : r.backdrop)
+    };
+    return /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
+      /* @__PURE__ */ o.jsx(
         "div",
         {
           role: "button",
           tabIndex: 0,
-          onClick: () => g(),
-          onKeyDown: F,
+          onClick: () => p(),
+          onKeyDown: R,
+          className: "inline-block",
           children: d
         }
       ),
-      /* @__PURE__ */ a.jsx(
-        q,
+      /* @__PURE__ */ o.jsx(
+        S,
         {
-          ref: M,
-          backdrop: k,
-          classNames: {
-            closeButton: h(
-              y.closeButton,
-              (j = n.classNames) == null ? void 0 : j.closeButton
-            ),
-            base: h(y.base, (f = n.classNames) == null ? void 0 : f.base),
-            ...n.classNames
-          },
-          isOpen: N,
-          onClose: x,
-          ...n,
-          children: /* @__PURE__ */ a.jsx(K, { children: () => /* @__PURE__ */ a.jsxs(a.Fragment, { children: [
-            /* @__PURE__ */ a.jsx(R, { className: "flex flex-col gap-1", children: r }),
-            /* @__PURE__ */ a.jsx(H, { children: i }),
-            /* @__PURE__ */ a.jsx(I, { children: v ? e : /* @__PURE__ */ a.jsx(
-              S,
+          ref: F,
+          backdrop: O,
+          classNames: f,
+          isOpen: E,
+          onClose: B,
+          ...D,
+          children: /* @__PURE__ */ o.jsx($, { children: () => /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
+            w(i) && /* @__PURE__ */ o.jsx(z, { className: f.header, children: i }),
+            /* @__PURE__ */ o.jsx(G, { className: f.body, children: y }),
+            /* @__PURE__ */ o.jsx(J, { className: f.footer, children: w(e) ? e : /* @__PURE__ */ o.jsx(
+              L,
               {
                 buttonCloseLabel: l,
-                buttonActionLabel: t,
-                buttonCloseProps: o,
-                buttonActionProps: m,
-                onAction: s,
-                onClose: x
+                buttonActionLabel: j,
+                buttonCloseProps: c,
+                buttonActionProps: g,
+                onAction: t,
+                onClose: B
               }
             ) })
           ] }) })
@@ -109,7 +126,7 @@ const y = {
     ] });
   }
 );
-$.displayName = "Modal";
+Q.displayName = "Modal";
 export {
-  $ as Modal
+  Q as Modal
 };

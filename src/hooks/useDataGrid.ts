@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 
 type Id = string | number;
 
-interface DataRow {
+type DataRow = {
   id: Id;
 }
 
-interface SortConfig<T> {
+type SortConfig<T> = {
   key: keyof T | null;
   direction: "asc" | "desc";
 }
 
-interface DataGridState<T> {
+type DataGridState<T> = {
   selectedRows: T[];
   isAllChecked: boolean;
   sortConfig: SortConfig<T>;
@@ -21,7 +21,7 @@ interface DataGridState<T> {
   isRowSelected: (row: T) => boolean;
 }
 
-interface DataGridHookProps<T> {
+type DataGridHookProps<T> = {
   rows: T[];
   onCheckedRowsChange?: (rows: T[]) => void;
   onSort?: (column: keyof T, direction: "asc" | "desc") => void;

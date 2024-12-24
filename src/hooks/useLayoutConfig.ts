@@ -1,7 +1,7 @@
 import type { NavbarProps } from "@/navbar/Navbar";
 import type { SidebarProps } from "@/sidebar/Sidebar";
 
-interface UseLayoutConfigOptions {
+type UseLayoutConfigOptions = {
   navbar?: Partial<NavbarProps>;
   sidebar?: Partial<SidebarProps>;
 }

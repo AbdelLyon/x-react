@@ -1,11 +1,8 @@
 import type { JSX, ReactNode } from "react";
-import type {
-  TooltipProps as TooltipPropsRoot} from "@nextui-org/react";
-import {
-  Tooltip as TooltipRoot
-} from "@nextui-org/react";
+import type { TooltipProps as TooltipPropsRoot } from "@nextui-org/react";
+import { Tooltip as TooltipRoot } from "@nextui-org/react";
 
-export interface TooltipProps
+interface TooltipProps
   extends Omit<TooltipPropsRoot, "content" | "children" | "trigger"> {
   trigger: ReactNode;
   content: ReactNode;

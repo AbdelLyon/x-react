@@ -8,11 +8,11 @@ import {
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 
-interface RadioItemProps extends Omit<RadioProps, "children"> {
+type RadioItemProps = {
   label?: React.ReactNode;
-}
+} & Omit<RadioProps, "children">
 
-interface RadioWrapperProps extends Omit<RadioGroupProps, "children"> {
+type RadioWrapperProps = {
   items: RadioItemProps[];
   groupClasses?: {
     base?: string;
@@ -24,7 +24,7 @@ interface RadioWrapperProps extends Omit<RadioGroupProps, "children"> {
     wrapper?: string;
     control?: string;
   };
-}
+} & Omit<RadioGroupProps, "children">
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioWrapperProps>(
   (

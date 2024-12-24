@@ -52,9 +52,6 @@ export const Card = forwardRef<HTMLDivElement, GenericCardProps>(
     },
     ref,
   ) => {
-    const hasHeader = header !== null && header !== undefined;
-    const hasFooter = footer !== null && footer !== undefined;
-
     return (
       <NextUICard
         ref={ref}
@@ -76,13 +73,11 @@ export const Card = forwardRef<HTMLDivElement, GenericCardProps>(
         onPressChange={onPressChange}
         onPressUp={onPressUp}
       >
-        {hasHeader && (
+        {header !== null && (
           <CardHeader className={classNames?.header}>{header}</CardHeader>
         )}
-
         <CardBody className={classNames?.body}>{children}</CardBody>
-
-        {hasFooter && (
+        {footer !== null && (
           <CardFooter className={classNames?.footer}>{footer}</CardFooter>
         )}
       </NextUICard>

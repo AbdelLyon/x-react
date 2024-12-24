@@ -1,6 +1,6 @@
 import type { Color, LinkColor } from "./types";
 
-export interface Item {
+export type Item = {
   key: string;
   label?: string;
   onPress?: () => void;

@@ -11,11 +11,7 @@ const w = (e, r) => e.map(
 }) => e === "none" ? null : /* @__PURE__ */ a.jsx(
   "p",
   {
-    className: `
-     text-small font-medium text-default-500
-     ${t}
-     ${e === "top" ? "order-first" : "order-last"}
-   `,
+    className: `text-small font-medium text-default-500 ${t} ${e === "top" ? "order-first" : "order-last"}`,
     children: r
   }
 ), h = $(
@@ -39,11 +35,7 @@ const w = (e, r) => e.map(
       "div",
       {
         ref: f,
-        className: `
-     flex h-max w-full max-w-md flex-col items-start 
-     justify-center gap-2
-     ${u}
-   `,
+        className: `flex h-max w-full max-w-md flex-col items-start justify-center gap-2 ${u}`,
         children: [
           /* @__PURE__ */ a.jsx(
             b,

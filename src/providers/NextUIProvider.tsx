@@ -6,9 +6,9 @@ import {
 import type { JSX} from "react";
 import { type ReactNode } from "react";
 
-interface AppProviderProps extends ProviderProps {
+type AppProviderProps = {
   children: ReactNode;
-}
+} & ProviderProps
 
 export const NextUIProvider = (props: AppProviderProps): JSX.Element => {
   const { children, ...rest } = props;

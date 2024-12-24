@@ -12,6 +12,16 @@ import {
 import { cn } from "@/utils";
 import { Button, type ButtonProps } from "@/button";
 
+interface DrawerClassNames {
+  wrapper?: string;
+  base?: string;
+  backdrop?: string;
+  closeButton?: string;
+  header?: string;
+  body?: string;
+  footer?: string;
+}
+
 interface AdditionalDrawerProps {
   trigger: ReactNode;
   title?: ReactNode;
@@ -19,13 +29,22 @@ interface AdditionalDrawerProps {
   footer?: ReactNode;
   buttonCloseLabel?: string;
   buttonActionLabel?: string;
-  onAction?: () => void;
+  onAction?: () => void | Promise<void>;
   buttonCloseProps?: ButtonProps;
   buttonActionProps?: ButtonProps;
+  classNames?: DrawerClassNames;
 }
 
 export type DrawerProps = Omit<DrawerRootProps, keyof AdditionalDrawerProps> &
   AdditionalDrawerProps;
+
+const isValidNodeContent = (content: unknown): boolean =>
+  content !== undefined &&
+  content !== null &&
+  (typeof content === "string" || isValidElement(content));
+
+const isValidButtonLabel = (label: unknown): label is string =>
+  typeof label === "string" && label.length > 0;
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
   (
@@ -39,42 +58,47 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       onAction,
       buttonCloseProps,
       buttonActionProps,
-      classNames,
+      classNames = {},
       ...nextUIProps
     },
     ref,
   ) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleAction = (): void => {
-      onAction?.();
-      onClose();
+    const handleAction = async (): Promise<void> => {
+      try {
+        await onAction?.();
+        onClose();
+      } catch (error) {
+        console.error("Action failed:", error);
+      }
     };
 
     const handleKeyDown = (
       event: React.KeyboardEvent<HTMLDivElement>,
     ): void => {
       if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
         onOpen();
       }
     };
 
     const renderButtons = (): ReactNode => {
-      const hasValidCloseLabel =
-        typeof buttonCloseLabel === "string" && buttonCloseLabel.length > 0;
-
+      const hasValidCloseLabel = isValidButtonLabel(buttonCloseLabel);
       const hasValidActionButton =
-        typeof buttonActionLabel === "string" &&
-        buttonActionLabel.length > 0 &&
-        onAction !== undefined;
+        isValidButtonLabel(buttonActionLabel) && onAction !== undefined;
+
+      const defaultButtonProps = {
+        color: "primary" as const,
+        radius: "sm" as const,
+      };
 
       return (
-        <>
+        <div className="flex justify-end gap-2">
           {hasValidCloseLabel && (
             <Button
-              color={buttonCloseProps?.color || "primary"}
-              radius={buttonCloseProps?.radius || "sm"}
-              variant={buttonCloseProps?.variant || "bordered"}
+              {...defaultButtonProps}
+              variant="bordered"
               onPress={onClose}
               className={cn("border-primary/50", buttonCloseProps?.className)}
               {...buttonCloseProps}
@@ -85,47 +109,25 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
           {hasValidActionButton && (
             <Button
-              color={buttonActionProps?.color || "primary"}
-              radius={buttonActionProps?.radius || "sm"}
+              {...defaultButtonProps}
               onPress={handleAction}
               {...buttonActionProps}
             >
               {buttonActionLabel}
             </Button>
           )}
-        </>
+        </div>
       );
     };
 
-    const hasValidTitle =
-      title !== undefined &&
-      title !== null &&
-      (typeof title === "string" || isValidElement(title));
-
-    const hasValidFooter =
-      footer !== undefined &&
-      footer !== null &&
-      (typeof footer === "string" || isValidElement(footer));
-
     const drawerClassNames = {
-      ...classNames,
-      wrapper:
-        typeof classNames?.wrapper === "string" ? classNames.wrapper : "",
-      base: cn(
-        "bg-background",
-        typeof classNames?.base === "string" ? classNames.base : "",
-      ),
-      backdrop:
-        typeof classNames?.backdrop === "string" ? classNames.backdrop : "",
-      closeButton: cn(
-        "absolute right-4 top-4",
-        typeof classNames?.closeButton === "string"
-          ? classNames.closeButton
-          : "",
-      ),
-      header: typeof classNames?.header === "string" ? classNames.header : "",
-      body: typeof classNames?.body === "string" ? classNames.body : "",
-      footer: typeof classNames?.footer === "string" ? classNames.footer : "",
+      wrapper: cn(classNames.wrapper),
+      base: cn("bg-background", classNames.base),
+      backdrop: cn(classNames.backdrop),
+      closeButton: cn("absolute right-4 top-4", classNames.closeButton),
+      header: cn(classNames.header),
+      body: cn(classNames.body),
+      footer: cn(classNames.footer),
     };
 
     return (
@@ -135,6 +137,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
           tabIndex={0}
           onClick={onOpen}
           onKeyDown={handleKeyDown}
+          className="inline-block"
         >
           {trigger}
         </div>
@@ -149,7 +152,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
           <DrawerContent>
             {() => (
               <>
-                {hasValidTitle && (
+                {isValidNodeContent(title) && (
                   <DrawerHeader className={drawerClassNames.header}>
                     {title}
                   </DrawerHeader>
@@ -160,7 +163,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                 </DrawerBody>
 
                 <DrawerFooter className={drawerClassNames.footer}>
-                  {hasValidFooter ? footer : renderButtons()}
+                  {isValidNodeContent(footer) ? footer : renderButtons()}
                 </DrawerFooter>
               </>
             )}

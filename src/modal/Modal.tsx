@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { forwardRef, isValidElement, useState } from "react";
+import { forwardRef, isValidElement, useState, useCallback } from "react";
 import type { ModalProps as ModalPropsRoot } from "@nextui-org/react";
 import {
   Modal as ModalRoot,
@@ -15,26 +15,43 @@ import { Button, type ButtonProps } from "@/button";
 
 type Backdrop = ModalPropsRoot["backdrop"];
 
-interface ModalBaseProps extends Omit<Partial<ModalPropsRoot>, "title"> {
+interface ModalClassNames {
+  wrapper?: string;
+  base?: string;
+  backdrop?: string;
+  header?: string;
+  body?: string;
+  footer?: string;
+  closeButton?: string;
+}
+
+interface ModalBaseProps {
   trigger: React.ReactNode;
   title?: React.ReactNode;
   footer?: React.ReactNode;
   children: React.ReactNode;
+  classNames?: ModalClassNames;
+  onOpenChange?: (isOpen: boolean) => void;
+  defaultBackdrop?: Backdrop;
 }
 
 interface ModalButtonProps {
-  onAction?: () => void;
+  onAction?: () => void | Promise<void>;
   buttonCloseLabel?: string;
   buttonActionLabel?: string;
   buttonCloseProps?: ButtonProps;
   buttonActionProps?: ButtonProps;
 }
 
-interface ModalProps extends ModalBaseProps, ModalButtonProps {}
+export type ModalProps = Omit<Partial<ModalPropsRoot>, keyof ModalBaseProps> &
+  ModalBaseProps &
+  ModalButtonProps;
 
 const defaultClassNames = {
   closeButton: "absolute right-4 top-4",
   base: "bg-background border border-default-200 shadow-lg dark:shadow-none rounded-lg",
+  header: "flex flex-col gap-1",
+  footer: "flex justify-end gap-2",
 } as const;
 
 const defaultButtonProps = {
@@ -42,33 +59,45 @@ const defaultButtonProps = {
   radius: "sm" as const,
 } as const;
 
+const isValidContent = (content: unknown): boolean =>
+  content !== undefined &&
+  content !== null &&
+  (typeof content === "string" || isValidElement(content));
+
+const isValidButtonLabel = (label: unknown): label is string =>
+  typeof label === "string" && label.length > 0;
+
+interface ModalButtonsProps extends ModalButtonProps {
+  onClose: () => void;
+}
+
 const ModalButtons = ({
-  buttonCloseLabel,
+  buttonCloseLabel = "Close",
   buttonActionLabel,
   buttonCloseProps,
   buttonActionProps,
   onAction,
   onClose,
-}: ModalButtonProps & { onClose: () => void }): JSX.Element => {
-  const handleAction = (): void => {
-    onAction?.();
-    onClose();
+}: ModalButtonsProps): JSX.Element => {
+  const handleAction = async (): Promise<void> => {
+    try {
+      await onAction?.();
+      onClose();
+    } catch (error) {
+      console.error("Modal action failed:", error);
+    }
   };
 
-  const hasValidCloseLabel =
-    typeof buttonCloseLabel === "string" && buttonCloseLabel.length > 0;
-
+  const hasValidCloseLabel = isValidButtonLabel(buttonCloseLabel);
   const hasValidActionButton =
-    typeof buttonActionLabel === "string" &&
-    buttonActionLabel.length > 0 &&
-    onAction !== undefined;
+    isValidButtonLabel(buttonActionLabel) && onAction !== undefined;
 
   return (
     <>
       {hasValidCloseLabel && (
         <Button
           className={cn("border-primary/50", buttonCloseProps?.className)}
-          variant={buttonCloseProps?.variant || "bordered"}
+          variant={buttonCloseProps?.variant ?? "bordered"}
           onPress={onClose}
           {...defaultButtonProps}
           {...buttonCloseProps}
@@ -102,30 +131,44 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       buttonActionLabel,
       buttonCloseProps,
       buttonActionProps,
+      defaultBackdrop = "opaque",
+      onOpenChange,
+      classNames,
       ...props
     },
     ref,
   ) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [backdrop, setBackdrop] = useState<Backdrop>("opaque");
+    const { isOpen, onOpen, onClose } = useDisclosure({
+      onChange: onOpenChange,
+    });
+    const [backdrop, setBackdrop] = useState<Backdrop>(defaultBackdrop);
 
-    const handleOpen = (backdropType: Backdrop = "opaque"): void => {
-      setBackdrop(backdropType);
-      onOpen();
+    const handleOpen = useCallback(
+      (backdropType: Backdrop = defaultBackdrop): void => {
+        setBackdrop(backdropType);
+        onOpen();
+      },
+      [defaultBackdrop, onOpen],
+    );
+
+    const handleKeyDown = useCallback(
+      (event: React.KeyboardEvent<HTMLDivElement>): void => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          handleOpen();
+        }
+      },
+      [handleOpen],
+    );
+
+    const modalClassNames = {
+      closeButton: cn(defaultClassNames.closeButton, classNames?.closeButton),
+      base: cn(defaultClassNames.base, classNames?.base),
+      header: cn(defaultClassNames.header, classNames?.header),
+      body: cn(classNames?.body),
+      footer: cn(defaultClassNames.footer, classNames?.footer),
+      backdrop: cn(classNames?.backdrop),
     };
-
-    const handleKeyDown = (
-      event: React.KeyboardEvent<HTMLDivElement>,
-    ): void => {
-      if (event.key === "Enter" || event.key === " ") {
-        handleOpen();
-      }
-    };
-
-    const hasValidFooter =
-      footer !== undefined &&
-      footer !== null &&
-      (typeof footer === "string" || isValidElement(footer));
 
     return (
       <>
@@ -134,6 +177,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           tabIndex={0}
           onClick={() => handleOpen()}
           onKeyDown={handleKeyDown}
+          className="inline-block"
         >
           {trigger}
         </div>
@@ -141,14 +185,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         <ModalRoot
           ref={ref}
           backdrop={backdrop}
-          classNames={{
-            closeButton: cn(
-              defaultClassNames.closeButton,
-              props.classNames?.closeButton,
-            ),
-            base: cn(defaultClassNames.base, props.classNames?.base),
-            ...props.classNames,
-          }}
+          classNames={modalClassNames}
           isOpen={isOpen}
           onClose={onClose}
           {...props}
@@ -156,14 +193,18 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           <ModalContent>
             {() => (
               <>
-                <ModalHeader className="flex flex-col gap-1">
-                  {title}
-                </ModalHeader>
+                {isValidContent(title) && (
+                  <ModalHeader className={modalClassNames.header}>
+                    {title}
+                  </ModalHeader>
+                )}
 
-                <ModalBody>{children}</ModalBody>
+                <ModalBody className={modalClassNames.body}>
+                  {children}
+                </ModalBody>
 
-                <ModalFooter>
-                  {hasValidFooter ? (
+                <ModalFooter className={modalClassNames.footer}>
+                  {isValidContent(footer) ? (
                     footer
                   ) : (
                     <ModalButtons

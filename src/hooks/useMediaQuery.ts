@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 
-export interface UseMediaQueryOptions {
+export type UseMediaQueryOptions = {
   getInitialValueInEffect?: boolean;
   initialValue?: boolean;
 }

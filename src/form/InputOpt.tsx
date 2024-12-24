@@ -3,12 +3,12 @@ import type { InputOtpProps } from "@nextui-org/react";
 import { InputOtp as NextUIInputOtp } from "@nextui-org/react";
 import { cn } from "@/utils";
 
-interface InputOtpWrapperProps extends Omit<InputOtpProps, "length"> {
+type InputOtpWrapperProps = {
   length?: number;
   label?: string;
   labelClasses?: string;
   containerClasses?: string;
-}
+} & Omit<InputOtpProps, "length">
 
 export const InputOtp = forwardRef<HTMLDivElement, InputOtpWrapperProps>(
   (
