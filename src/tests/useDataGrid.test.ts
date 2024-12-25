@@ -2,14 +2,14 @@ import { useDataGridState } from "@/hooks/useDataGrid";
 import { renderHook, act } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-interface TestRow {
+interface Row {
   id: number;
   name: string;
   age: number;
 }
 
 describe("useDataGridState", () => {
-  const mockRows: TestRow[] = [
+  const rows: Row[] = [
     { id: 1, name: "Alice", age: 25 },
     { id: 2, name: "Bob", age: 30 },
     { id: 3, name: "Charlie", age: 35 },
@@ -17,7 +17,7 @@ describe("useDataGridState", () => {
 
   describe("État initial", () => {
     it("devrait initialiser avec les valeurs par défaut", () => {
-      const { result } = renderHook(() => useDataGridState({ rows: mockRows }));
+      const { result } = renderHook(() => useDataGridState({ rows }));
 
       expect(result.current.selectedRows).toHaveLength(0);
       expect(result.current.isAllChecked).toBe(false);
@@ -30,65 +30,65 @@ describe("useDataGridState", () => {
 
   describe("Sélection des lignes", () => {
     it("devrait sélectionner une ligne", () => {
-      const onCheckedRowsChange = vi.fn();
+      const onSelectionChange = vi.fn();
       const { result } = renderHook(() =>
-        useDataGridState({ rows: mockRows, onCheckedRowsChange }),
+        useDataGridState({ rows, onSelectionChange }),
       );
 
       act(() => {
-        result.current.handleCheckboxChange(mockRows[0]);
+        result.current.handleSelectionChange(rows[0]);
       });
 
-      expect(result.current.selectedRows).toEqual([mockRows[0]]);
+      expect(result.current.selectedRows).toEqual([rows[0]]);
       expect(result.current.isAllChecked).toBe(false);
-      expect(onCheckedRowsChange).toHaveBeenCalledWith([mockRows[0]]);
-      expect(result.current.isRowSelected(mockRows[0])).toBe(true);
+      expect(onSelectionChange).toHaveBeenCalledWith([rows[0]]);
+      expect(result.current.isRowSelected(rows[0])).toBe(true);
     });
 
     it("devrait désélectionner une ligne", () => {
-      const onCheckedRowsChange = vi.fn();
+      const onSelectionChange = vi.fn();
       const { result } = renderHook(() =>
-        useDataGridState({ rows: mockRows, onCheckedRowsChange }),
+        useDataGridState({ rows, onSelectionChange }),
       );
 
       // Sélection
       act(() => {
-        result.current.handleCheckboxChange(mockRows[0]);
+        result.current.handleSelectionChange(rows[0]);
       });
 
       // Désélection
       act(() => {
-        result.current.handleCheckboxChange(mockRows[0]);
+        result.current.handleSelectionChange(rows[0]);
       });
 
       expect(result.current.selectedRows).toEqual([]);
       expect(result.current.isAllChecked).toBe(false);
-      expect(onCheckedRowsChange).toHaveBeenLastCalledWith([]);
-      expect(result.current.isRowSelected(mockRows[0])).toBe(false);
+      expect(onSelectionChange).toHaveBeenLastCalledWith([]);
+      expect(result.current.isRowSelected(rows[0])).toBe(false);
     });
 
     it("devrait sélectionner toutes les lignes", () => {
-      const onCheckedRowsChange = vi.fn();
+      const onSelectionChange = vi.fn();
       const { result } = renderHook(() =>
-        useDataGridState({ rows: mockRows, onCheckedRowsChange }),
+        useDataGridState({ rows, onSelectionChange }),
       );
 
       act(() => {
         result.current.handleSelectAll(true);
       });
 
-      expect(result.current.selectedRows).toEqual(mockRows);
+      expect(result.current.selectedRows).toEqual(rows);
       expect(result.current.isAllChecked).toBe(true);
-      expect(onCheckedRowsChange).toHaveBeenCalledWith(mockRows);
-      mockRows.forEach((row) => {
+      expect(onSelectionChange).toHaveBeenCalledWith(rows);
+      rows.forEach((row) => {
         expect(result.current.isRowSelected(row)).toBe(true);
       });
     });
 
     it("devrait désélectionner toutes les lignes", () => {
-      const onCheckedRowsChange = vi.fn();
+      const onSelectionChange = vi.fn();
       const { result } = renderHook(() =>
-        useDataGridState({ rows: mockRows, onCheckedRowsChange }),
+        useDataGridState({ rows, onSelectionChange }),
       );
 
       // Sélection de toutes les lignes
@@ -103,8 +103,8 @@ describe("useDataGridState", () => {
 
       expect(result.current.selectedRows).toEqual([]);
       expect(result.current.isAllChecked).toBe(false);
-      expect(onCheckedRowsChange).toHaveBeenLastCalledWith([]);
-      mockRows.forEach((row) => {
+      expect(onSelectionChange).toHaveBeenLastCalledWith([]);
+      rows.forEach((row) => {
         expect(result.current.isRowSelected(row)).toBe(false);
       });
     });
@@ -112,20 +112,20 @@ describe("useDataGridState", () => {
 
   describe("Tri", () => {
     it("devrait mettre à jour la configuration de tri", () => {
-      const onSort = vi.fn();
+      const onSortChange = vi.fn();
       const { result } = renderHook(() =>
-        useDataGridState({ rows: mockRows, onSort }),
+        useDataGridState({ rows, onSortChange }),
       );
 
       act(() => {
-        result.current.handleSort("age", "desc");
+        result.current.handleSortChange("age", "desc");
       });
 
       expect(result.current.sortConfig).toEqual({
         key: "age",
         direction: "desc",
       });
-      expect(onSort).toHaveBeenCalledWith("age", "desc");
+      expect(onSortChange).toHaveBeenCalledWith("age", "desc");
     });
   });
 
@@ -146,7 +146,7 @@ describe("useDataGridState", () => {
     it("devrait gérer le changement dynamique des lignes", () => {
       const { result, rerender } = renderHook(
         ({ rows }) => useDataGridState({ rows }),
-        { initialProps: { rows: mockRows } },
+        { initialProps: { rows } },
       );
 
       // Sélection de toutes les lignes
@@ -157,27 +157,25 @@ describe("useDataGridState", () => {
       expect(result.current.selectedRows).toHaveLength(3);
 
       // Mise à jour avec moins de lignes
-      rerender({ rows: mockRows.slice(0, 2) });
+      rerender({ rows: rows.slice(0, 2) });
 
       expect(result.current.isAllChecked).toBe(false);
     });
     it("devrait maintenir la sélection lors de réordonnements", () => {
-      const { result, rerender } = renderHook(() =>
-        useDataGridState({ rows: mockRows }),
-      );
+      const { result, rerender } = renderHook(() => useDataGridState({ rows }));
 
       // Sélection d'une ligne
       act(() => {
-        result.current.handleCheckboxChange(mockRows[0]);
+        result.current.handleSelectionChange(rows[0]);
       });
 
       // Réordonner les lignes
-      const reorderedRows = [...mockRows].reverse();
+      const reorderedRows = [...rows].reverse();
       rerender({ rows: reorderedRows });
 
       // La sélection doit être maintenue par l'ID
-      expect(result.current.selectedRows).toEqual([mockRows[0]]);
-      expect(result.current.isRowSelected(mockRows[0])).toBe(true);
+      expect(result.current.selectedRows).toEqual([rows[0]]);
+      expect(result.current.isRowSelected(rows[0])).toBe(true);
     });
   });
 });

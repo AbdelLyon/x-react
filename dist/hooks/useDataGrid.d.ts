@@ -10,19 +10,19 @@ type DataGridState<T> = {
     selectedRows: T[];
     isAllChecked: boolean;
     sortConfig: SortConfig<T>;
-    handleCheckboxChange: (row: T) => void;
+    handleSelectionChange: (row: T) => void;
     handleSelectAll: (checked: boolean) => void;
-    handleSort: (column: keyof T, direction: "asc" | "desc") => void;
+    handleSortChange: (column: keyof T, direction: "asc" | "desc") => void;
     isRowSelected: (row: T) => boolean;
 };
 type DataGridHookProps<T> = {
     rows: T[];
-    onCheckedRowsChange?: (rows: T[]) => void;
-    onSort?: (column: keyof T, direction: "asc" | "desc") => void;
+    onSelectionChange?: (rows: T[]) => void;
+    onSortChange?: (column: keyof T, direction: "asc" | "desc") => void;
 };
 export declare const initialSortConfig: {
     readonly key: null;
     readonly direction: "asc";
 };
-export declare const useDataGridState: <T extends DataRow>({ rows, onCheckedRowsChange, onSort, }: DataGridHookProps<T>) => DataGridState<T>;
+export declare const useDataGridState: <T extends DataRow>({ rows, onSelectionChange, onSortChange, }: DataGridHookProps<T>) => DataGridState<T>;
 export {};
