@@ -4,12 +4,12 @@ type Id = string | number;
 
 type DataRow = {
   id: Id;
-}
+};
 
-type SortConfig<T> = {
+export type SortConfig<T> = {
   key: keyof T | null;
   direction: "asc" | "desc";
-}
+};
 
 type DataGridState<T> = {
   selectedRows: T[];
@@ -19,15 +19,15 @@ type DataGridState<T> = {
   handleSelectAll: (checked: boolean) => void;
   handleSort: (column: keyof T, direction: "asc" | "desc") => void;
   isRowSelected: (row: T) => boolean;
-}
+};
 
 type DataGridHookProps<T> = {
   rows: T[];
   onCheckedRowsChange?: (rows: T[]) => void;
   onSort?: (column: keyof T, direction: "asc" | "desc") => void;
-}
+};
 
-const initialSortConfig = {
+export const initialSortConfig = {
   key: null,
   direction: "asc",
 } as const;

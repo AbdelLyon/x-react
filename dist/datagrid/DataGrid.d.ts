@@ -1,5 +1,9 @@
-import { Key, JSX } from 'react';
-import { TableProps, TableHeaderProps, TableBodyProps, TableRowProps, TableCellProps, TableColumnProps, SortDescriptor } from '@nextui-org/react';
+import { TableBodyProps, TableProps, TableHeaderProps, TableRowProps, TableCellProps, TableColumnProps } from '@nextui-org/react';
+import { JSX } from 'react';
+export interface SortConfig<T> {
+    key: keyof T | null;
+    direction: "asc" | "desc";
+}
 interface ColumnBase<T> {
     header: React.ReactNode;
     footer?: (data: T[]) => React.ReactNode;
@@ -23,48 +27,44 @@ interface DataGridComponentProps<T> {
     tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }
 interface DataGridProps<T extends {
-    id: Key;
-}> extends Omit<TableProps, "onSelectionChange"> {
+    id: string | number;
+}> extends TableProps {
     childrenProps?: DataGridComponentProps<T>;
     rows: T[];
     columns: ColumnDefinition<T>[];
     className?: string;
-    onSelectionChange?: (keys: T[]) => void;
-    onSortChange?: (descriptor: SortDescriptor) => void;
+    footerContent?: React.ReactNode;
+    onCheckedRowsChange?: (rows: T[]) => void;
+    onSort?: (column: keyof T, direction: "asc" | "desc") => void;
     onEndReached?: () => void;
     isFetching?: boolean;
-    selectionMode?: "single" | "multiple" | "none";
+    checkboxSelection?: boolean;
     classNames?: {
-        wrapper?: string;
-        table?: string;
-        thead?: string;
-        tbody?: string;
-        tr?: string;
-        th?: string;
-        td?: string;
+        checkbox?: string;
         sortIcon?: string;
+        cellContent?: string;
     };
-    variant?: "bordered" | "striped" | "flat";
+    variant?: "bordered" | "striped" | "unstyled";
     isLoading?: boolean;
 }
-export declare const GRIDVARIANTS: {
-    readonly bordered: {
-        readonly header: "bg-content2 border border-default-200";
-        readonly column: "bg-content2 py-4 h-12";
-        readonly row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2 h-12";
+export declare const GRID_VARIANTS: {
+    bordered: {
+        header: string;
+        column: string;
+        row: string;
     };
-    readonly striped: {
-        readonly header: "bg-content2 border border-default-200";
-        readonly column: "bg-content2 py-4 h-12";
-        readonly row: "py-4 even:bg-content2 h-12";
+    striped: {
+        header: string;
+        column: string;
+        row: string;
     };
-    readonly flat: {
-        readonly header: "bg-content2 border border-default-200";
-        readonly column: "bg-content2 py-4 h-12";
-        readonly row: "py-4 hover:bg-content2 h-12";
+    unstyled: {
+        header: string;
+        column: string;
+        row: string;
     };
 };
 export declare function DataGrid<T extends {
-    id: Key;
-}>({ rows, columns, onEndReached, onSelectionChange, onSortChange, selectionMode, classNames, variant, isLoading, childrenProps, ...props }: DataGridProps<T>): JSX.Element;
+    id: string | number;
+}>({ rows, columns, onEndReached, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, isLoading, childrenProps, ...props }: DataGridProps<T>): JSX.Element;
 export {};
