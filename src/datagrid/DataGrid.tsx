@@ -396,12 +396,13 @@ interface DataGridComponentProps<T> {
   tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }
 
-interface DataGridProps<T extends { id: Key }> extends TableProps {
+interface DataGridProps<T extends { id: Key }>
+  extends Omit<TableProps, "onSelectionChange"> {
   childrenProps?: DataGridComponentProps<T>;
   rows: T[];
   columns: ColumnDefinition<T>[];
   className?: string;
-  onSelectionChange?: (selection: Selection) => void;
+  onSelectionChange?: (keys: T[]) => void;
   onSortChange?: (descriptor: SortDescriptor) => void;
   onEndReached?: () => void;
   isFetching?: boolean;
@@ -494,6 +495,15 @@ export function DataGrid<T extends { id: Key }>({
 
   const variantClasses = GRIDVARIANTS[variant];
 
+  const handleSelectionChange = (selection: Selection): void => {
+    if (onSelectionChange) {
+      const selectedRows = rows.filter(
+        (row) => selection === "all" || (selection as Set<Key>).has(row.id),
+      );
+      onSelectionChange(selectedRows);
+    }
+  };
+
   const preparedColumns = columns.map((col, index) => ({
     ...col,
     key: typeof col.field === "string" ? String(col.field) : String(index),
@@ -504,16 +514,8 @@ export function DataGrid<T extends { id: Key }>({
     <Table
       aria-label="DataGrid"
       selectionMode={selectionMode}
-      onSelectionChange={onSelectionChange}
+      onSelectionChange={handleSelectionChange}
       onSortChange={onSortChange}
-      classNames={{
-        wrapper: cn("p-0", classNames?.wrapper),
-        thead: cn("sticky top-0 z-10", classNames?.thead),
-        tbody: classNames?.tbody,
-        tr: classNames?.tr,
-        th: classNames?.th,
-        td: classNames?.td,
-      }}
       {...props}
     >
       <TableHeader

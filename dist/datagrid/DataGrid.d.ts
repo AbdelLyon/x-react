@@ -1,5 +1,5 @@
 import { Key, JSX } from 'react';
-import { TableProps, TableHeaderProps, TableBodyProps, TableRowProps, TableCellProps, TableColumnProps, Selection, SortDescriptor } from '@nextui-org/react';
+import { TableProps, TableHeaderProps, TableBodyProps, TableRowProps, TableCellProps, TableColumnProps, SortDescriptor } from '@nextui-org/react';
 interface ColumnBase<T> {
     header: React.ReactNode;
     footer?: (data: T[]) => React.ReactNode;
@@ -24,12 +24,12 @@ interface DataGridComponentProps<T> {
 }
 interface DataGridProps<T extends {
     id: Key;
-}> extends TableProps {
+}> extends Omit<TableProps, "onSelectionChange"> {
     childrenProps?: DataGridComponentProps<T>;
     rows: T[];
     columns: ColumnDefinition<T>[];
     className?: string;
-    onSelectionChange?: (selection: Selection) => void;
+    onSelectionChange?: (keys: T[]) => void;
     onSortChange?: (descriptor: SortDescriptor) => void;
     onEndReached?: () => void;
     isFetching?: boolean;
