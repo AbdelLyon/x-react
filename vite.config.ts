@@ -36,6 +36,7 @@ const modules = [
   "tabs",
   "pagination",
   "typography",
+  "HOC",
 ];
 
 export default defineConfig({
