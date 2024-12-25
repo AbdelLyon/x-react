@@ -1,114 +1,100 @@
 import { useEffect, useState } from "react";
 
-// types/grid.ts
-export type Id = string | number;
-export type DataRow = { id: Id };
-export type SortDirection = "asc" | "desc";
+// types.ts
+type Id = string | number;
+type Row = { id: Id };
+type SortDirection = "asc" | "desc";
 
-export type SortConfig<T> = {
+interface SortConfig<T> {
   key: keyof T | null;
   direction: SortDirection;
-};
+}
 
-export type SelectionState<T> = {
-  checkedRows: Set<T>;
-  isAllChecked: boolean;
-};
+interface SelectionState<T> {
+  selectedRows: Set<T>;
+  isAllSelected: boolean;
+}
 
-export type SelectionActions<T> = {
-  handleSelectionChange: (row: T, checked: boolean) => void;
+interface SelectionActions<T> {
+  handleRowSelect: (row: T) => void;
   handleSelectAll: (checked: boolean) => void;
-};
+}
 
-export type SortState<T> = {
+interface SortState<T> {
   sortConfig: SortConfig<T>;
-};
+  handleSort: (column: keyof T, direction: SortDirection) => void;
+}
 
-export type SortActions<T> = {
-  handleSortChange: (column: keyof T, direction: SortDirection) => void;
-};
-
-export type DataGridHookProps<T> = {
+interface GridProps<T> {
   rows: T[];
   onSelectionChange?: (rows: T[]) => void;
   onSortChange?: (column: keyof T, direction: SortDirection) => void;
-};
+}
 
-export type DataGridState<T> = SelectionState<T> &
-  SelectionActions<T> &
-  SortState<T> &
-  SortActions<T>;
+type GridState<T> = SelectionState<T> & SelectionActions<T> & SortState<T>;
 
-// hooks/useSelection.ts
-export const useSelection = <T extends DataRow>({
+export const useSelection = <T extends Row>({
   rows,
   onSelectionChange,
-}: Pick<
-  DataGridHookProps<T>,
-  "rows" | "onSelectionChange"
->): SelectionState<T> & SelectionActions<T> => {
-  const [checkedRows, setCheckedRows] = useState<Set<T>>(new Set());
-  const [isAllChecked, setIsAllChecked] = useState(false);
+}: Pick<GridProps<T>, "rows" | "onSelectionChange">): SelectionState<T> &
+  SelectionActions<T> => {
+  const [selectedRows, setSelectedRows] = useState<Set<T>>(new Set());
+  const [isAllSelected, setIsAllSelected] = useState(false);
 
   useEffect(() => {
-    setIsAllChecked(checkedRows.size === rows.length);
-  }, [checkedRows, rows]);
+    setIsAllSelected(selectedRows.size === rows.length);
+  }, [selectedRows, rows]);
 
-  const handleSelectionChange = (row: T, checked: boolean): void => {
-    setCheckedRows((prev) => {
-      const newChecked = new Set(prev);
-      if (checked) {
-        newChecked.delete(row);
+  const handleRowSelect = (row: T): void => {
+    setSelectedRows((prev) => {
+      const next = new Set(prev);
+      if (next.has(row)) {
+        next.delete(row);
       } else {
-        newChecked.add(row);
+        next.add(row);
       }
-
-      onSelectionChange?.(Array.from(newChecked));
-      return newChecked;
+      onSelectionChange?.(Array.from(next));
+      return next;
     });
   };
 
   const handleSelectAll = (checked: boolean): void => {
-    const newChecked = checked ? new Set(rows) : new Set<T>();
-    setCheckedRows(newChecked);
-    onSelectionChange?.(Array.from(newChecked));
+    const next = checked ? new Set(rows) : new Set<T>();
+    setSelectedRows(next);
+    onSelectionChange?.(Array.from(next));
   };
 
   return {
-    isAllChecked,
-    checkedRows,
-    handleSelectionChange,
+    selectedRows,
+    isAllSelected,
+    handleRowSelect,
     handleSelectAll,
   };
 };
 
-// hooks/useSort.ts
-export const initialSortConfig = { key: null, direction: "asc" as const };
-
-export const useSort = <T extends DataRow>({
+// useSort.ts
+export const useSort = <T extends Row>({
   onSortChange,
-}: Pick<DataGridHookProps<T>, "onSortChange">): SortState<T> &
-  SortActions<T> => {
-  const [sortConfig, setSortConfig] =
-    useState<SortConfig<T>>(initialSortConfig);
+}: Pick<GridProps<T>, "onSortChange">): SortState<T> => {
+  const [sortConfig, setSortConfig] = useState<SortConfig<T>>({
+    key: null,
+    direction: "asc",
+  });
 
-  const handleSortChange = (
-    column: keyof T,
-    direction: SortDirection,
-  ): void => {
+  const handleSort = (column: keyof T, direction: SortDirection): void => {
     setSortConfig({ key: column, direction });
     onSortChange?.(column, direction);
   };
 
-  return { sortConfig, handleSortChange };
+  return { sortConfig, handleSort };
 };
 
-// hooks/useDataGridState.ts
-export const useDataGridState = <T extends DataRow>({
-  rows,
-  onSelectionChange,
-  onSortChange,
-}: DataGridHookProps<T>): DataGridState<T> => ({
-  ...useSelection({ rows, onSelectionChange }),
-  ...useSort({ onSortChange }),
-});
+// useGridState.ts
+export const useGridState = <T extends Row>(
+  props: GridProps<T>,
+): GridState<T> => {
+  return {
+    ...useSelection(props),
+    ...useSort(props),
+  };
+};

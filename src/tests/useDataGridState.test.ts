@@ -1,8 +1,4 @@
-import {
-  useDataGridState,
-  useSelection,
-  useSort,
-} from "@/hooks/useDataGridState";
+import { useGridState, useSelection, useSort } from "@/hooks/useDataGridState";
 import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
@@ -14,18 +10,18 @@ describe("useSelection", () => {
 
   it("devrait initialiser avec une sélection vide", () => {
     const { result } = renderHook(() => useSelection({ rows: mockRows }));
-    expect(result.current.checkedRows).toHaveLength(0);
-    expect(result.current.isAllChecked).toBe(false);
+    expect(result.current.selectedRows).toHaveLength(0);
+    expect(result.current.isAllSelected).toBe(false);
   });
 
   it("devrait gérer la sélection d'une seule ligne", () => {
     const { result } = renderHook(() => useSelection({ rows: mockRows }));
 
     act(() => {
-      result.current.handleSelectionChange(mockRows[0], true);
+      result.current.handleRowSelect(mockRows[0]);
     });
 
-    expect(result.current.checkedRows).toHaveLength(1);
+    expect(result.current.selectedRows).toHaveLength(1);
     // expect(result.current.checkedRows[0]).toEqual(mockRows[0]);
   });
 
@@ -36,19 +32,19 @@ describe("useSelection", () => {
       result.current.handleSelectAll(true);
     });
 
-    expect(result.current.checkedRows).toHaveLength(mockRows.length);
-    expect(result.current.isAllChecked).toBe(true);
+    expect(result.current.selectedRows).toHaveLength(mockRows.length);
+    expect(result.current.isAllSelected).toBe(true);
   });
 
   it("devrait gérer le basculement de la sélection d'une ligne", () => {
     const { result } = renderHook(() => useSelection({ rows: mockRows }));
 
     act(() => {
-      result.current.handleSelectionChange(mockRows[0], true);
-      result.current.handleSelectionChange(mockRows[0], false);
+      result.current.handleRowSelect(mockRows[0]);
+      result.current.handleRowSelect(mockRows[0]);
     });
 
-    expect(result.current.checkedRows).toHaveLength(0);
+    expect(result.current.selectedRows).toHaveLength(0);
   });
 });
 
@@ -62,7 +58,7 @@ describe("useSort", () => {
     const { result } = renderHook(() => useSort({}));
 
     act(() => {
-      result.current.handleSortChange("id", "desc");
+      result.current.handleSort("id", "desc");
     });
 
     expect(result.current.sortConfig).toEqual({ key: "id", direction: "desc" });
@@ -73,7 +69,7 @@ describe("useSort", () => {
     const { result } = renderHook(() => useSort({ onSortChange }));
 
     act(() => {
-      result.current.handleSortChange("id", "asc");
+      result.current.handleSort("id", "asc");
     });
 
     expect(onSortChange).toHaveBeenCalledWith("id", "asc");
@@ -84,12 +80,12 @@ describe("useDataGridState", () => {
   const mockRows = [{ id: 1 }, { id: 2 }];
 
   it("devrait combiner les états de sélection et de tri", () => {
-    const { result } = renderHook(() => useDataGridState({ rows: mockRows }));
+    const { result } = renderHook(() => useGridState({ rows: mockRows }));
 
     expect(result.current).toHaveProperty("selectedRows");
     expect(result.current).toHaveProperty("sortConfig");
-    expect(result.current).toHaveProperty("handleSelectionChange");
-    expect(result.current).toHaveProperty("handleSortChange");
+    expect(result.current).toHaveProperty("handleRowSelect");
+    expect(result.current).toHaveProperty("handleSort");
   });
 
   it("devrait gérer les callbacks", () => {
@@ -97,7 +93,7 @@ describe("useDataGridState", () => {
     const onSortChange = vi.fn();
 
     const { result } = renderHook(() =>
-      useDataGridState({
+      useGridState({
         rows: mockRows,
         onSelectionChange,
         onSortChange,
@@ -105,8 +101,8 @@ describe("useDataGridState", () => {
     );
 
     act(() => {
-      result.current.handleSelectionChange(mockRows[0], true);
-      result.current.handleSortChange("id", "desc");
+      result.current.handleRowSelect(mockRows[0]);
+      result.current.handleSort("id", "desc");
     });
 
     expect(onSelectionChange).toHaveBeenCalled();

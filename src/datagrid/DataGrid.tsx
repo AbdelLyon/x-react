@@ -1,4 +1,4 @@
-import { useDataGridState } from "@/hooks/useDataGridState";
+import { useGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
 import { useEffect, type Key } from "react";
 import {
@@ -82,16 +82,16 @@ export function DataGrid<T extends { id: string | number }>({
   variant = "unstyled",
   isLoading = false,
   childrenProps,
-  selectedRows,
   ...props
 }: DataGridProps<T>): JSX.Element {
   const {
-    isAllChecked,
     sortConfig,
-    handleSelectionChange,
+    handleRowSelect,
+    handleSort,
     handleSelectAll,
-    handleSortChange,
-  } = useDataGridState({
+    isAllSelected,
+    selectedRows,
+  } = useGridState({
     rows,
     onSelectionChange,
     onSortChange,
@@ -153,14 +153,9 @@ export function DataGrid<T extends { id: string | number }>({
       columnField !== null &&
       columnField !== "actions"
     ) {
-      handleSortChange(
-        columnField,
-        sortConfig.direction === "asc" ? "desc" : "asc",
-      );
+      handleSort(columnField, sortConfig.direction === "asc" ? "desc" : "asc");
     }
   };
-
-  console.log(selectedRows);
 
   return (
     <TableRoot aria-label="data-grid" aria-labelledby="data-grid" {...props}>
@@ -181,7 +176,7 @@ export function DataGrid<T extends { id: string | number }>({
           >
             {column.key === "checkbox" && showSelectionCheckboxes ? (
               <Checkbox
-                isSelected={isAllChecked}
+                isSelected={isAllSelected}
                 onValueChange={handleSelectAll}
                 aria-label="Select all rows"
                 className={classNames?.checkbox}
@@ -241,10 +236,8 @@ export function DataGrid<T extends { id: string | number }>({
                   <TableCell {...childrenProps?.tableCellProps}>
                     {columnKey === "checkbox" && showSelectionCheckboxes ? (
                       <Checkbox
-                        isSelected={selectedRows?.includes(row)}
-                        onValueChange={(checked) =>
-                          handleSelectionChange(row, checked)
-                        }
+                        isSelected={selectedRows?.has(row)}
+                        onValueChange={() => handleRowSelect?.(row)}
                         aria-label={`Select row ${row.id}`}
                         className={classNames?.checkbox}
                       />
