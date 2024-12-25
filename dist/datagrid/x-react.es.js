@@ -346,7 +346,8 @@ function ue({
         children: (j) => /* @__PURE__ */ s.jsx(E, { ...a == null ? void 0 : a.tableCellProps, children: j === "checkbox" && u ? /* @__PURE__ */ s.jsx(
           $,
           {
-            checked: C.length === e.length || b,
+            checked: b,
+            isSelected: C.length === e.length,
             onChange: () => {
               p(l), h(l);
             },
