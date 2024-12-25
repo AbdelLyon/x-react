@@ -338,7 +338,7 @@ function de({
         children: (S) => /* @__PURE__ */ a.jsx(H, { ...s == null ? void 0 : s.tableCellProps, children: S === "checkbox" && u ? /* @__PURE__ */ a.jsx(
           z,
           {
-            isSelected: h(n),
+            checked: h(n),
             onValueChange: () => c(n),
             "aria-label": `Select row ${n.id}`,
             className: i == null ? void 0 : i.checkbox
