@@ -11,16 +11,6 @@ export type SortConfig<T> = {
   direction: "asc" | "desc";
 };
 
-type DataGridState<T> = {
-  selectedRows: T[];
-  isAllChecked: boolean;
-  sortConfig: SortConfig<T>;
-  handleSelectionChange: (row: T) => void;
-  handleSelectAll: (checked: boolean) => void;
-  handleSortChange: (column: keyof T, direction: "asc" | "desc") => void;
-  isRowSelected: (row: T) => boolean;
-};
-
 type DataGridHookProps<T> = {
   rows: T[];
   onSelectionChange?: (rows: T[]) => void;
@@ -31,6 +21,21 @@ export const initialSortConfig = {
   key: null,
   direction: "asc",
 } as const;
+
+export type SelectionAction<T> = {
+  row: T;
+  isSelected?: boolean;
+};
+
+type DataGridState<T> = {
+  selectedRows: T[];
+  isAllChecked: boolean;
+  sortConfig: SortConfig<T>;
+  handleSelectionChange: (action: SelectionAction<T>) => void;
+  handleSelectAll: (checked: boolean) => void;
+  handleSortChange: (column: keyof T, direction: "asc" | "desc") => void;
+  isRowSelected: (row: T) => boolean;
+};
 
 export const useDataGridState = <T extends DataRow>({
   rows,
@@ -46,16 +51,18 @@ export const useDataGridState = <T extends DataRow>({
     setIsAllChecked(selectedRows.length === rows.length && rows.length > 0);
   }, [selectedRows, rows]);
 
-  const handleSelectionChange = (row: T): void => {
-    const isSelected = selectedRows.some((r) => r.id === row.id);
-    const newSelectedRows = isSelected
-      ? selectedRows.filter((r) => r.id !== row.id)
-      : [...selectedRows, row];
+  const handleSelectionChange = (action: SelectionAction<T>): void => {
+    const { row, isSelected } = action;
+    const rowIsSelected = selectedRows.some((r) => r.id === row.id);
+
+    const newSelectedRows =
+      isSelected === true || (isSelected !== false && !rowIsSelected)
+        ? [...selectedRows.filter((r) => r.id !== row.id), row]
+        : selectedRows.filter((r) => r.id !== row.id);
 
     setSelectedRows(newSelectedRows);
     onSelectionChange?.(newSelectedRows);
   };
-
   const handleSelectAll = (checked: boolean): void => {
     const newSelectedRows = checked ? [...rows] : [];
     setSelectedRows(newSelectedRows);
