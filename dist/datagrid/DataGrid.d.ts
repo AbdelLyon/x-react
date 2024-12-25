@@ -50,17 +50,17 @@ interface DataGridProps<T extends {
 }
 export declare const GRIDVARIANT: {
     readonly bordered: {
-        readonly header: "bg-content2 border border-default-200 sticky top-0 z-10 ";
+        readonly header: "bg-content2 border border-default-200";
         readonly column: "bg-content2 py-4 h-12";
         readonly row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2 h-12";
     };
     readonly striped: {
-        readonly header: "bg-content2 border border-default-200 sticky top-0 z-10 ";
+        readonly header: "bg-content2 border border-default-200";
         readonly column: "bg-content2 py-4 h-12";
         readonly row: "py-4 even:bg-content2 h-12";
     };
     readonly unstyled: {
-        readonly header: "bg-content2 border border-default-200 sticky top-0 z-10 ";
+        readonly header: "bg-content2 border border-default-200";
         readonly column: "bg-content2 py-4 h-12";
         readonly row: "py-4 hover:bg-content2 h-12";
     };
