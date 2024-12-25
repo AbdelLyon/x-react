@@ -47,18 +47,16 @@ export const useDataGridState = <T extends DataRow>({
   }, [selectedRows, rows]);
 
   const handleSelectionChange = (row: T): void => {
-    let newSelectedRows: T[];
+    setSelectedRows((prev) => {
+      const isSelected = prev.some((r) => r.id === row.id);
+      const newSelectedRows = isSelected
+        ? prev.filter((r) => r.id !== row.id)
+        : [...prev, row];
 
-    if (selectedRows.some((r) => r.id === row.id)) {
-      newSelectedRows = selectedRows.filter((r) => r.id !== row.id);
-    } else {
-      newSelectedRows = [...selectedRows, row];
-    }
-
-    setSelectedRows(newSelectedRows);
-    onSelectionChange?.(newSelectedRows);
+      onSelectionChange?.(newSelectedRows);
+      return newSelectedRows;
+    });
   };
-
   const handleSelectAll = (checked: boolean): void => {
     const newSelectedRows = checked ? [...rows] : [];
     setSelectedRows(newSelectedRows);
