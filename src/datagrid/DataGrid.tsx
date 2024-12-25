@@ -1,8 +1,8 @@
-import { useGridState } from "@/hooks/useDataGridState";
+import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
 import { useEffect, type Key } from "react";
 import {
-  Table as TableRoot,
+  Table as DataTable,
   TableHeader,
   TableColumn,
   TableBody,
@@ -21,30 +21,26 @@ import type {
 } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
 
-function getColumnAriaLabel<T extends object>(
+const getColumnLabel = <T extends object>(
   column: ExtendedColumn<T>,
-): string {
-  if (typeof column.label === "string" && column.label.length > 0) {
-    return column.label;
-  }
-  if (typeof column.key === "string" && column.key.length > 0) {
-    return column.key;
-  }
-  return "Column";
-}
+): string => {
+  return typeof column.label === "string" && column.label.length > 0
+    ? column.label
+    : typeof column.key === "string" && column.key.length > 0
+      ? column.key
+      : "Column";
+};
 
-function getSortAriaLabel(label: React.ReactNode): string {
-  if (typeof label === "string" && label.length > 0) {
-    return `Sort by ${label}`;
-  }
-  return "Sort column";
-}
-
-function getCellContent<T extends object>(
+const getSortLabel = (label: React.ReactNode): string => {
+  return typeof label === "string" && label.length > 0
+    ? `Sort by ${label}`
+    : "Sort column";
+};
+const getCellValue = <T extends object>(
   columnKey: Key,
   row: T,
   columns: ColumnDefinition<T>[],
-): React.ReactNode {
+): React.ReactNode => {
   const column = columns.find(
     (c) => typeof c.field === "string" && String(c.field) === String(columnKey),
   );
@@ -69,7 +65,7 @@ function getCellContent<T extends object>(
   }
 
   return null;
-}
+};
 
 export function DataGrid<T extends { id: string | number }>({
   rows,
@@ -85,22 +81,19 @@ export function DataGrid<T extends { id: string | number }>({
   ...props
 }: DataGridProps<T>): JSX.Element {
   const {
-    sortConfig,
-    handleRowSelect,
-    handleSort,
-    handleSelectAll,
-    isAllSelected,
+    allRowsSelected,
+    sortConfiguration,
+    toggleAllRowsSelection,
+    toggleRowSelection,
+    updateSort,
     selectedRows,
-  } = useGridState({
+  } = useDataGridState({
     rows,
     onSelectionChange,
     onSortChange,
   });
 
-  const { inView } = useInView({
-    threshold: 0.5,
-    rootMargin: "100px",
-  });
+  const { inView } = useInView({ threshold: 0.5, rootMargin: "100px" });
 
   useEffect(() => {
     if (inView) {
@@ -138,7 +131,7 @@ export function DataGrid<T extends { id: string | number }>({
     })),
   ];
 
-  const handleColumnSort = (column: ExtendedColumn<T>): void => {
+  const handleSort = (column: ExtendedColumn<T>): void => {
     const matchingColumn = columns.find(
       (c) =>
         typeof c.field === "string" &&
@@ -153,15 +146,16 @@ export function DataGrid<T extends { id: string | number }>({
       columnField !== null &&
       columnField !== "actions"
     ) {
-      handleSort(columnField, sortConfig.direction === "asc" ? "desc" : "asc");
+      updateSort(
+        columnField,
+        sortConfiguration.direction === "asc" ? "desc" : "asc",
+      );
     }
   };
 
   return (
-    <TableRoot aria-label="data-grid" aria-labelledby="data-grid" {...props}>
+    <DataTable aria-label="data-grid" {...props}>
       <TableHeader
-        aria-label="data-grid-header"
-        aria-labelledby="data-grid-header"
         columns={preparedColumns}
         className={cn(variantClasses.header)}
         {...childrenProps?.tableHeaderProps}
@@ -169,37 +163,33 @@ export function DataGrid<T extends { id: string | number }>({
         {(column) => (
           <TableColumn
             key={column.key}
-            aria-labelledby={column.key}
-            aria-label={getColumnAriaLabel(column)}
+            aria-label={getColumnLabel(column)}
             className={cn(variantClasses.column)}
             {...childrenProps?.tableColumnProps}
           >
             {column.key === "checkbox" && showSelectionCheckboxes ? (
               <Checkbox
-                isSelected={isAllSelected}
-                onValueChange={handleSelectAll}
+                isSelected={allRowsSelected}
+                onValueChange={toggleAllRowsSelection}
                 aria-label="Select all rows"
                 className={classNames?.checkbox}
               />
             ) : (
-              <div className={cn("flex items-center gap-2")}>
+              <div className="flex items-center gap-2">
                 {column.label}
-                {column.sortable === true && (
+                {column.sortable !== false && (
                   <div
-                    className={cn(
-                      "relative size-4 cursor-pointer",
-                      classNames?.sortIcon,
-                    )}
-                    onClick={() => handleColumnSort(column)}
+                    className={cn("relative size-4 cursor-pointer")}
+                    onClick={() => handleSort(column)}
                     role="button"
-                    aria-label={getSortAriaLabel(column.label)}
+                    aria-label={getSortLabel(column.label)}
                   >
                     <IconChevronUp
                       size={16}
                       className={cn(
                         "absolute -top-1",
-                        sortConfig.key === column.key &&
-                          sortConfig.direction === "asc"
+                        sortConfiguration.key === column.key &&
+                          sortConfiguration.direction === "asc"
                           ? "opacity-100"
                           : "opacity-30",
                       )}
@@ -208,8 +198,8 @@ export function DataGrid<T extends { id: string | number }>({
                       size={16}
                       className={cn(
                         "absolute top-1",
-                        sortConfig.key === column.key &&
-                          sortConfig.direction === "desc"
+                        sortConfiguration.key === column.key &&
+                          sortConfiguration.direction === "desc"
                           ? "opacity-100"
                           : "opacity-30",
                       )}
@@ -222,37 +212,31 @@ export function DataGrid<T extends { id: string | number }>({
         )}
       </TableHeader>
       <TableBody items={rows} {...childrenProps?.tableBodyProps}>
-        {(row: T) => {
-          return (
-            <TableRow
-              key={row.id}
-              aria-label={`Row ${row.id}`}
-              aria-labelledby={`Row ${row.id}`}
-              className={cn(variantClasses.row)}
-              {...childrenProps?.tableRowProps}
-            >
-              {(columnKey) => {
-                return (
-                  <TableCell {...childrenProps?.tableCellProps}>
-                    {columnKey === "checkbox" && showSelectionCheckboxes ? (
-                      <Checkbox
-                        isSelected={selectedRows?.has(row)}
-                        onValueChange={() => handleRowSelect?.(row)}
-                        aria-label={`Select row ${row.id}`}
-                        className={classNames?.checkbox}
-                      />
-                    ) : (
-                      <div className={classNames?.cellContent}>
-                        {getCellContent(columnKey, row, columns)}
-                      </div>
-                    )}
-                  </TableCell>
-                );
-              }}
-            </TableRow>
-          );
-        }}
+        {(row: T) => (
+          <TableRow
+            key={row.id}
+            className={cn(variantClasses.row)}
+            {...childrenProps?.tableRowProps}
+          >
+            {(columnKey) => (
+              <TableCell {...childrenProps?.tableCellProps}>
+                {columnKey === "checkbox" && showSelectionCheckboxes ? (
+                  <Checkbox
+                    isSelected={selectedRows?.has(row)}
+                    onValueChange={() => toggleRowSelection?.(row)}
+                    aria-label={`Select row ${row.id}`}
+                    className={classNames?.checkbox}
+                  />
+                ) : (
+                  <div className={classNames?.cellContent}>
+                    {getCellValue(columnKey, row, columns)}
+                  </div>
+                )}
+              </TableCell>
+            )}
+          </TableRow>
+        )}
       </TableBody>
-    </TableRoot>
+    </DataTable>
   );
 }

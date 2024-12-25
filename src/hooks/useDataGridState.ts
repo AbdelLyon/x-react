@@ -5,96 +5,99 @@ type Id = string | number;
 type Row = { id: Id };
 type SortDirection = "asc" | "desc";
 
-interface SortConfig<T> {
+interface SortConfiguration<T> {
   key: keyof T | null;
   direction: SortDirection;
 }
 
 interface SelectionState<T> {
   selectedRows: Set<T>;
-  isAllSelected: boolean;
+  allRowsSelected: boolean;
 }
 
 interface SelectionActions<T> {
-  handleRowSelect: (row: T) => void;
-  handleSelectAll: (checked: boolean) => void;
+  toggleRowSelection: (row: T) => void;
+  toggleAllRowsSelection: (selectAll: boolean) => void;
 }
 
-interface SortState<T> {
-  sortConfig: SortConfig<T>;
-  handleSort: (column: keyof T, direction: SortDirection) => void;
+interface SortingState<T> {
+  sortConfiguration: SortConfiguration<T>;
+  updateSort: (column: keyof T, direction: SortDirection) => void;
 }
 
 interface GridProps<T> {
   rows: T[];
-  onSelectionChange?: (rows: T[]) => void;
+  onSelectionChange?: (selectedRows: T[]) => void;
   onSortChange?: (column: keyof T, direction: SortDirection) => void;
 }
 
-type GridState<T> = SelectionState<T> & SelectionActions<T> & SortState<T>;
+type GridState<T> = SelectionState<T> & SelectionActions<T> & SortingState<T>;
 
-export const useSelection = <T extends Row>({
+// useSelectionState.ts
+export const useSelectionState = <T extends Row>({
   rows,
   onSelectionChange,
 }: Pick<GridProps<T>, "rows" | "onSelectionChange">): SelectionState<T> &
   SelectionActions<T> => {
   const [selectedRows, setSelectedRows] = useState<Set<T>>(new Set());
-  const [isAllSelected, setIsAllSelected] = useState(false);
+  const [allRowsSelected, setAllRowsSelected] = useState(false);
 
   useEffect(() => {
-    setIsAllSelected(selectedRows.size === rows.length);
+    setAllRowsSelected(selectedRows.size === rows.length);
   }, [selectedRows, rows]);
 
-  const handleRowSelect = (row: T): void => {
-    setSelectedRows((prev) => {
-      const next = new Set(prev);
-      if (next.has(row)) {
-        next.delete(row);
+  const toggleRowSelection = (row: T): void => {
+    setSelectedRows((previousSelection) => {
+      const updatedSelection = new Set(previousSelection);
+      if (updatedSelection.has(row)) {
+        updatedSelection.delete(row);
       } else {
-        next.add(row);
+        updatedSelection.add(row);
       }
-      onSelectionChange?.(Array.from(next));
-      return next;
+      onSelectionChange?.(Array.from(updatedSelection));
+      return updatedSelection;
     });
   };
 
-  const handleSelectAll = (checked: boolean): void => {
-    const next = checked ? new Set(rows) : new Set<T>();
-    setSelectedRows(next);
-    onSelectionChange?.(Array.from(next));
+  const toggleAllRowsSelection = (selectAll: boolean): void => {
+    const updatedSelection = selectAll ? new Set(rows) : new Set<T>();
+    setSelectedRows(updatedSelection);
+    onSelectionChange?.(Array.from(updatedSelection));
   };
 
   return {
     selectedRows,
-    isAllSelected,
-    handleRowSelect,
-    handleSelectAll,
+    allRowsSelected,
+    toggleRowSelection,
+    toggleAllRowsSelection,
   };
 };
 
-// useSort.ts
-export const useSort = <T extends Row>({
+// useSortingState.ts
+export const useSortingState = <T extends Row>({
   onSortChange,
-}: Pick<GridProps<T>, "onSortChange">): SortState<T> => {
-  const [sortConfig, setSortConfig] = useState<SortConfig<T>>({
+}: Pick<GridProps<T>, "onSortChange">): SortingState<T> => {
+  const [sortConfiguration, setSortConfiguration] = useState<
+    SortConfiguration<T>
+  >({
     key: null,
     direction: "asc",
   });
 
-  const handleSort = (column: keyof T, direction: SortDirection): void => {
-    setSortConfig({ key: column, direction });
+  const updateSort = (column: keyof T, direction: SortDirection): void => {
+    setSortConfiguration({ key: column, direction });
     onSortChange?.(column, direction);
   };
 
-  return { sortConfig, handleSort };
+  return { sortConfiguration, updateSort };
 };
 
 // useGridState.ts
-export const useGridState = <T extends Row>(
+export const useDataGridState = <T extends Row>(
   props: GridProps<T>,
 ): GridState<T> => {
   return {
-    ...useSelection(props),
-    ...useSort(props),
+    ...useSelectionState(props),
+    ...useSortingState(props),
   };
 };
