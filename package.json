@@ -133,7 +133,7 @@
     },
     "./HOC": {
       "import": "./dist/HOC/x-react.es.js",
-      "types": "./dist/HOC/index.d.,ts"
+      "types": "./dist/HOC/index.d.ts"
     }
   },
   "typesVersions": {

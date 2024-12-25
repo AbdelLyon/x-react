@@ -1,2 +1,2 @@
 import "@/index.css";
-export { withLoading } from "@/HOC/withLoading";
+export { WithLoading } from "@/HOC/WithLoading";

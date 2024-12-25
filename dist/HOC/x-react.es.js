@@ -7,5 +7,5 @@ const d = (t, i = () => /* @__PURE__ */ n.jsx("div", { children: "Loading..." })
   return o ? /* @__PURE__ */ n.jsx(i, {}) : /* @__PURE__ */ n.jsx(t, { ...r });
 };
 export {
-  d as withLoading
+  d as WithLoading
 };

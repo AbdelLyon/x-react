@@ -5,7 +5,7 @@ interface WithLoadingProps {
   loading: boolean;
 }
 
-export const withLoading = <T extends object>(
+export const WithLoading = <T extends object>(
   WrappedComponent: ComponentType<T>,
   LoadingComponent: ComponentType = () => <div>Loading...</div>,
 ) => {
