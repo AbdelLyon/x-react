@@ -79,17 +79,17 @@ interface DataGridProps<T extends { id: string | number }> {
 
 export const GRIDVARIANT = {
   bordered: {
-    header: "bg-content2 border border-default-200",
+    header: "bg-content2 border border-default-200 sticky top-0 z-10 ",
     column: "bg-content2 py-4 h-12",
     row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2 h-12",
   },
   striped: {
-    header: "bg-content2 border border-default-200",
+    header: "bg-content2 border border-default-200 sticky top-0 z-10 ",
     column: "bg-content2 py-4 h-12",
     row: "py-4 even:bg-content2 h-12",
   },
   unstyled: {
-    header: "bg-content2 border border-default-200",
+    header: "bg-content2 border border-default-200 sticky top-0 z-10 ",
     column: "bg-content2 py-4 h-12",
     row: "py-4 hover:bg-content2 h-12",
   },
@@ -240,6 +240,9 @@ export function DataGrid<T extends { id: string | number }>({
       aria-label="data-grid"
       aria-labelledby="data-grid"
       {...props?.tableProps}
+      classNames={{
+        wrapper: cn("p-0", props?.tableProps?.classNames?.wrapper),
+      }}
       radius="sm"
     >
       <TableHeader
@@ -304,11 +307,7 @@ export function DataGrid<T extends { id: string | number }>({
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody
-        items={rows}
-        {...props?.tableBodyProps}
-        className="max-h-96 overflow-auto"
-      >
+      <TableBody items={rows} {...props?.tableBodyProps}>
         {(row: T) => {
           return (
             <TableRow
