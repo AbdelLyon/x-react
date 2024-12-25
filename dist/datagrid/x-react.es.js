@@ -2,8 +2,8 @@
 import { j as a } from "../jsx-runtime-Dx-03ztt.js";
 import * as k from "react";
 import { useState as V, useEffect as D } from "react";
-import { cn as v } from "../utils/x-react.es.js";
-import { Table as B, TableHeader as G, TableColumn as M, Skeleton as C, TableBody as L, TableRow as O, TableCell as H, Checkbox as z } from "@nextui-org/react";
+import { cn as h } from "../utils/x-react.es.js";
+import { Table as B, TableHeader as G, TableColumn as M, Skeleton as w, TableBody as L, TableRow as O, TableCell as H, Checkbox as z } from "@nextui-org/react";
 import { IconChevronUp as F, IconChevronDown as U } from "@tabler/icons-react";
 const W = {
   key: null,
@@ -20,18 +20,18 @@ const W = {
     selectedRows: i,
     isAllChecked: u,
     sortConfig: d,
-    handleSelectionChange: (g) => {
-      const { row: c, isSelected: R } = g, x = i.some((b) => b.id === c.id), j = R === !0 || R !== !1 && !x ? [...i.filter((b) => b.id !== c.id), c] : i.filter((b) => b.id !== c.id);
-      o(j), t == null || t(j);
+    handleSelectionChange: (c) => {
+      const m = i.some((v) => v.id === c.id) ? i.filter((v) => v.id !== c.id) : [...i, c];
+      o(m), t == null || t(m);
     },
-    handleSelectAll: (g) => {
-      const c = g ? [...e] : [];
-      o(c), t == null || t(c);
+    handleSelectAll: (c) => {
+      const b = c ? [...e] : [];
+      o(b), t == null || t(b);
     },
-    handleSortChange: (g, c) => {
-      f({ key: g, direction: c }), l == null || l(g, c);
+    handleSortChange: (c, b) => {
+      f({ key: c, direction: b }), l == null || l(c, b);
     },
-    isRowSelected: (g) => i.some((c) => c.id === g.id)
+    isRowSelected: (c) => i.some((b) => b.id === c.id)
   };
 }, J = ({
   columns: e = 5,
@@ -42,8 +42,8 @@ const W = {
 }) => {
   const u = E[i], n = l ? e + 1 : e;
   return /* @__PURE__ */ a.jsxs(B, { radius: "sm", "aria-label": "Loading data", className: o, children: [
-    /* @__PURE__ */ a.jsx(G, { className: v(u.header), children: Array(n).fill(null).map((d, f) => /* @__PURE__ */ a.jsx(M, { className: v(u.column), children: f === 0 && l ? /* @__PURE__ */ a.jsx(C, { className: "size-4 rounded-md" }) : /* @__PURE__ */ a.jsx(C, { className: "h-4 w-24 rounded-md" }) }, f)) }),
-    /* @__PURE__ */ a.jsx(L, { children: Array(t).fill(null).map((d, f) => /* @__PURE__ */ a.jsx(O, { className: v(u.row), children: Array(n).fill(null).map((s, y) => /* @__PURE__ */ a.jsx(H, { children: y === 0 && l ? /* @__PURE__ */ a.jsx(C, { className: "size-4 rounded-md" }) : /* @__PURE__ */ a.jsx(C, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, y)) }, f)) })
+    /* @__PURE__ */ a.jsx(G, { className: h(u.header), children: Array(n).fill(null).map((d, f) => /* @__PURE__ */ a.jsx(M, { className: h(u.column), children: f === 0 && l ? /* @__PURE__ */ a.jsx(w, { className: "size-4 rounded-md" }) : /* @__PURE__ */ a.jsx(w, { className: "h-4 w-24 rounded-md" }) }, f)) }),
+    /* @__PURE__ */ a.jsx(L, { children: Array(t).fill(null).map((d, f) => /* @__PURE__ */ a.jsx(O, { className: h(u.row), children: Array(n).fill(null).map((s, g) => /* @__PURE__ */ a.jsx(H, { children: g === 0 && l ? /* @__PURE__ */ a.jsx(w, { className: "size-4 rounded-md" }) : /* @__PURE__ */ a.jsx(w, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, g)) }, f)) })
   ] });
 };
 var _ = /* @__PURE__ */ new Map(), I = /* @__PURE__ */ new WeakMap(), $ = 0, Q = void 0;
@@ -64,9 +64,9 @@ function Z(e) {
     const u = new IntersectionObserver((n) => {
       n.forEach((d) => {
         var f;
-        const s = d.isIntersecting && o.some((y) => d.intersectionRatio >= y);
-        e.trackVisibility && typeof d.isVisible > "u" && (d.isVisible = s), (f = i.get(d.target)) == null || f.forEach((y) => {
-          y(s, d);
+        const s = d.isIntersecting && o.some((g) => d.intersectionRatio >= g);
+        e.trackVisibility && typeof d.isVisible > "u" && (d.isVisible = s), (f = i.get(d.target)) == null || f.forEach((g) => {
+          g(s, d);
         });
       });
     }, e);
@@ -109,22 +109,22 @@ function N({
   fallbackInView: f,
   onChange: s
 } = {}) {
-  var y;
-  const [m, h] = k.useState(null), g = k.useRef(s), [c, R] = k.useState({
+  var g;
+  const [p, x] = k.useState(null), c = k.useRef(s), [b, m] = k.useState({
     inView: !!d,
     entry: void 0
   });
-  g.current = s, k.useEffect(
+  c.current = s, k.useEffect(
     () => {
-      if (n || !m) return;
-      let S;
-      return S = K(
-        m,
-        (w, r) => {
-          R({
-            inView: w,
+      if (n || !p) return;
+      let j;
+      return j = K(
+        p,
+        (A, r) => {
+          m({
+            inView: A,
             entry: r
-          }), g.current && g.current(w, r), r.isIntersecting && u && S && (S(), S = void 0);
+          }), c.current && c.current(A, r), r.isIntersecting && u && j && (j(), j = void 0);
         },
         {
           root: o,
@@ -137,7 +137,7 @@ function N({
         },
         f
       ), () => {
-        S && S();
+        j && j();
       };
     },
     // We break the rule here, because we aren't including the actual `threshold` variable
@@ -145,7 +145,7 @@ function N({
     [
       // If the threshold is an array, convert it to a string, so it won't change between renders.
       Array.isArray(e) ? e.toString() : e,
-      m,
+      p,
       o,
       i,
       u,
@@ -155,13 +155,13 @@ function N({
       t
     ]
   );
-  const x = (y = c.entry) == null ? void 0 : y.target, j = k.useRef(void 0);
-  !m && x && !u && !n && j.current !== x && (j.current = x, R({
+  const v = (g = b.entry) == null ? void 0 : g.target, R = k.useRef(void 0);
+  !p && v && !u && !n && R.current !== v && (R.current = v, m({
     inView: !!d,
     entry: void 0
   }));
-  const b = [h, c.inView, c.entry];
-  return b.ref = b[0], b.inView = b[1], b.entry = b[2], b;
+  const y = [x, b.inView, b.entry];
+  return y.ref = y[0], y.inView = y[1], y.entry = y[2], y;
 }
 const E = {
   bordered: {
@@ -211,26 +211,26 @@ function de({
   variant: d = "unstyled",
   isLoading: f = !1,
   childrenProps: s,
-  ...y
+  ...g
 }) {
   const {
-    isAllChecked: m,
-    sortConfig: h,
-    handleSelectionChange: g,
-    handleSelectAll: c,
-    handleSortChange: R,
-    isRowSelected: x
+    isAllChecked: p,
+    sortConfig: x,
+    handleSelectionChange: c,
+    handleSelectAll: b,
+    handleSortChange: m,
+    isRowSelected: v
   } = q({
     rows: e,
     onSelectionChange: i,
     onSortChange: o
-  }), { inView: j } = N({
+  }), { inView: R } = N({
     threshold: 0.5,
     rootMargin: "100px"
   });
   if (D(() => {
-    j && (l == null || l());
-  }, [j, l]), f)
+    R && (l == null || l());
+  }, [R, l]), f)
     return /* @__PURE__ */ a.jsx(
       J,
       {
@@ -240,7 +240,7 @@ function de({
         rows: e.length
       }
     );
-  const b = E[d], S = [
+  const y = E[d], j = [
     ...u === !0 ? [
       {
         key: "checkbox",
@@ -248,54 +248,54 @@ function de({
         header: ""
       }
     ] : [],
-    ...t.map((r, p) => ({
+    ...t.map((r, S) => ({
       ...r,
-      key: typeof r.field == "string" ? String(r.field) : String(p),
+      key: typeof r.field == "string" ? String(r.field) : String(S),
       label: r.header
     }))
-  ], w = (r) => {
-    const p = t.find(
+  ], A = (r) => {
+    const S = t.find(
       (T) => typeof T.field == "string" && T.field.length > 0 && String(T.field) === r.key
-    ), A = p == null ? void 0 : p.field;
-    A != null && A !== "actions" && R(
-      A,
-      h.direction === "asc" ? "desc" : "asc"
+    ), C = S == null ? void 0 : S.field;
+    C != null && C !== "actions" && m(
+      C,
+      x.direction === "asc" ? "desc" : "asc"
     );
   };
-  return /* @__PURE__ */ a.jsxs(B, { "aria-label": "data-grid", "aria-labelledby": "data-grid", ...y, children: [
+  return /* @__PURE__ */ a.jsxs(B, { "aria-label": "data-grid", "aria-labelledby": "data-grid", ...g, children: [
     /* @__PURE__ */ a.jsx(
       G,
       {
         "aria-label": "data-grid-header",
         "aria-labelledby": "data-grid-header",
-        columns: S,
-        className: v(b.header),
+        columns: j,
+        className: h(y.header),
         ...s == null ? void 0 : s.tableHeaderProps,
         children: (r) => /* @__PURE__ */ a.jsx(
           M,
           {
             "aria-labelledby": r.key,
             "aria-label": P(r),
-            className: v(b.column),
+            className: h(y.column),
             ...s == null ? void 0 : s.tableColumnProps,
             children: r.key === "checkbox" && u ? /* @__PURE__ */ a.jsx(
               z,
               {
-                isSelected: m,
-                onValueChange: c,
+                isSelected: p,
+                onValueChange: b,
                 "aria-label": "Select all rows",
                 className: n == null ? void 0 : n.checkbox
               }
-            ) : /* @__PURE__ */ a.jsxs("div", { className: v("flex items-center gap-2"), children: [
+            ) : /* @__PURE__ */ a.jsxs("div", { className: h("flex items-center gap-2"), children: [
               r.label,
               r.sortable === !0 && /* @__PURE__ */ a.jsxs(
                 "div",
                 {
-                  className: v(
+                  className: h(
                     "relative size-4 cursor-pointer",
                     n == null ? void 0 : n.sortIcon
                   ),
-                  onClick: () => w(r),
+                  onClick: () => A(r),
                   role: "button",
                   "aria-label": ee(r.label),
                   children: [
@@ -303,9 +303,9 @@ function de({
                       F,
                       {
                         size: 16,
-                        className: v(
+                        className: h(
                           "absolute -top-1",
-                          h.key === r.key && h.direction === "asc" ? "opacity-100" : "opacity-30"
+                          x.key === r.key && x.direction === "asc" ? "opacity-100" : "opacity-30"
                         )
                       }
                     ),
@@ -313,9 +313,9 @@ function de({
                       U,
                       {
                         size: 16,
-                        className: v(
+                        className: h(
                           "absolute top-1",
-                          h.key === r.key && h.direction === "desc" ? "opacity-100" : "opacity-30"
+                          x.key === r.key && x.direction === "desc" ? "opacity-100" : "opacity-30"
                         )
                       }
                     )
@@ -333,20 +333,18 @@ function de({
       {
         "aria-label": `Row ${r.id}`,
         "aria-labelledby": `Row ${r.id}`,
-        className: v(b.row),
+        className: h(y.row),
         ...s == null ? void 0 : s.tableRowProps,
-        children: (p) => /* @__PURE__ */ a.jsx(H, { ...s == null ? void 0 : s.tableCellProps, children: p === "checkbox" && u ? /* @__PURE__ */ a.jsx(
+        children: (S) => /* @__PURE__ */ a.jsx(H, { ...s == null ? void 0 : s.tableCellProps, children: S === "checkbox" && u ? /* @__PURE__ */ a.jsx(
           z,
           {
-            checked: x(r),
-            onValueChange: () => g({
-              row: r,
-              isSelected: !x(r)
-            }),
+            checked: v(r),
+            isSelected: v(r),
+            onValueChange: () => c(r),
             "aria-label": `Select row ${r.id}`,
             className: n == null ? void 0 : n.checkbox
           }
-        ) : /* @__PURE__ */ a.jsx("div", { className: n == null ? void 0 : n.cellContent, children: te(p, r, t) }) })
+        ) : /* @__PURE__ */ a.jsx("div", { className: n == null ? void 0 : n.cellContent, children: te(S, r, t) }) })
       },
       r.id
     ) })

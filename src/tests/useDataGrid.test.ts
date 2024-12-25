@@ -36,10 +36,7 @@ describe("useDataGridState", () => {
       );
 
       act(() => {
-        result.current.handleSelectionChange({
-          row: rows[0],
-          isSelected: true,
-        });
+        result.current.handleSelectionChange(rows[0]);
       });
 
       expect(result.current.selectedRows).toEqual([rows[0]]);
@@ -56,18 +53,12 @@ describe("useDataGridState", () => {
 
       // Sélection
       act(() => {
-        result.current.handleSelectionChange({
-          row: rows[0],
-          isSelected: true,
-        });
+        result.current.handleSelectionChange(rows[0]);
       });
 
       // Désélection
       act(() => {
-        result.current.handleSelectionChange({
-          row: rows[0],
-          isSelected: false,
-        });
+        result.current.handleSelectionChange(rows[0]);
       });
 
       expect(result.current.selectedRows).toEqual([]);
@@ -175,10 +166,7 @@ describe("useDataGridState", () => {
 
       // Sélection d'une ligne
       act(() => {
-        result.current.handleSelectionChange({
-          row: rows[0],
-          isSelected: true,
-        });
+        result.current.handleSelectionChange(rows[0]);
       });
 
       // Réordonner les lignes
