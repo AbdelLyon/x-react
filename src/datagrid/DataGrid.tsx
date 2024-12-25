@@ -8,7 +8,7 @@ import type {
   TableCellProps,
   TableColumnProps,
 } from "@nextui-org/react";
-import type { Key } from "react";
+import { useEffect, type Key } from "react";
 import {
   Table as TableRoot,
   TableHeader,
@@ -21,6 +21,7 @@ import {
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
+import { useInView } from "react-intersection-observer";
 
 // Types
 export interface SortConfig<T> {
@@ -64,6 +65,8 @@ interface DataGridProps<T extends { id: string | number }> {
   footerContent?: React.ReactNode;
   onCheckedRowsChange?: (rows: T[]) => void;
   onSort?: (column: keyof T, direction: "asc" | "desc") => void;
+  onEndReached?: () => void;
+  isFetching?: boolean;
   checkboxSelection?: boolean;
   classNames?: {
     checkbox?: string;
@@ -150,7 +153,7 @@ function getCellContent<T extends object>(
 export function DataGrid<T extends { id: string | number }>({
   rows,
   columns,
-
+  onEndReached,
   onCheckedRowsChange,
   onSort,
   checkboxSelection = true,
@@ -171,6 +174,17 @@ export function DataGrid<T extends { id: string | number }>({
     onCheckedRowsChange,
     onSort,
   });
+
+  const { inView } = useInView({
+    threshold: 0.5,
+    rootMargin: "100px",
+  });
+
+  useEffect(() => {
+    if (inView) {
+      onEndReached?.();
+    }
+  }, [inView, onEndReached]);
 
   if (isLoading) {
     return (
@@ -292,32 +306,34 @@ export function DataGrid<T extends { id: string | number }>({
       </TableHeader>
 
       <TableBody items={rows} {...props?.tableBodyProps}>
-        {(row) => (
-          <TableRow
-            key={row.id}
-            aria-label={`Row ${row.id}`}
-            aria-labelledby={`Row ${row.id}`}
-            className={cn(variantClasses.row)}
-            {...props?.tableRowProps}
-          >
-            {(columnKey) => (
-              <TableCell {...props?.tableCellProps}>
-                {columnKey === "checkbox" ? (
-                  <Checkbox
-                    checked={isRowSelected(row)}
-                    onValueChange={() => handleCheckboxChange(row)}
-                    aria-label={`Select row ${row.id}`}
-                    className={classNames?.checkbox}
-                  />
-                ) : (
-                  <div className={classNames?.cellContent}>
-                    {getCellContent(columnKey, row, columns)}
-                  </div>
-                )}
-              </TableCell>
-            )}
-          </TableRow>
-        )}
+        {(row: T) => {
+          return (
+            <TableRow
+              key={row.id}
+              aria-label={`Row ${row.id}`}
+              aria-labelledby={`Row ${row.id}`}
+              className={cn(variantClasses.row)}
+              {...props?.tableRowProps}
+            >
+              {(columnKey) => (
+                <TableCell {...props?.tableCellProps}>
+                  {columnKey === "checkbox" ? (
+                    <Checkbox
+                      isSelected={isRowSelected(row)}
+                      onValueChange={() => handleCheckboxChange(row)}
+                      aria-label={`Select row ${row.id}`}
+                      className={classNames?.checkbox}
+                    />
+                  ) : (
+                    <div className={classNames?.cellContent}>
+                      {getCellContent(columnKey, row, columns)}
+                    </div>
+                  )}
+                </TableCell>
+              )}
+            </TableRow>
+          );
+        }}
       </TableBody>
     </TableRoot>
   );
