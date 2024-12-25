@@ -173,6 +173,7 @@ export function DataGrid<T extends { id: string | number }>({
     handleSelectAll,
     handleSortChange,
     isChecked,
+    selectedRows,
     handelSelectRow,
   } = useDataGridState({
     rows,
@@ -321,7 +322,7 @@ export function DataGrid<T extends { id: string | number }>({
                 <TableCell {...childrenProps?.tableCellProps}>
                   {columnKey === "checkbox" && showSelectionCheckboxes ? (
                     <Checkbox
-                      checked={isChecked}
+                      checked={selectedRows.length === rows.length || isChecked}
                       onChange={() => {
                         handleSelectionChange(row);
                         handelSelectRow(row);
