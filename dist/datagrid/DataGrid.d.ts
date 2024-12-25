@@ -28,7 +28,7 @@ interface DataGridComponentProps<T> {
 }
 interface DataGridProps<T extends {
     id: string | number;
-}> extends Omit<TableProps, "onSelectionChange" | "onSortChange"> {
+}> extends Omit<TableProps, "onSelectionChange" | "onSortChange" | "showSelectionCheckboxes"> {
     childrenProps?: DataGridComponentProps<T>;
     rows: T[];
     columns: ColumnDefinition<T>[];
@@ -38,7 +38,7 @@ interface DataGridProps<T extends {
     onSortChange?: (column: keyof T, direction: "asc" | "desc") => void;
     onEndReached?: () => void;
     isFetching?: boolean;
-    checkboxSelection?: boolean;
+    showSelectionCheckboxes?: boolean;
     classNames?: {
         checkbox?: string;
         sortIcon?: string;
@@ -66,5 +66,5 @@ export declare const GRID_VARIANTS: {
 };
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, onEndReached, onSelectionChange, onSortChange, checkboxSelection, classNames, variant, isLoading, childrenProps, ...props }: DataGridProps<T>): JSX.Element;
+}>({ rows, columns, onEndReached, onSelectionChange, onSortChange, showSelectionCheckboxes, classNames, variant, isLoading, childrenProps, ...props }: DataGridProps<T>): JSX.Element;
 export {};
