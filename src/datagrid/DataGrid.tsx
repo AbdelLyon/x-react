@@ -95,7 +95,6 @@ export function DataGrid<T extends { id: string | number }>({
     rows,
     onSelectionChange,
     onSortChange,
-    selectedRows,
   });
 
   const { inView } = useInView({
@@ -243,11 +242,9 @@ export function DataGrid<T extends { id: string | number }>({
                     {columnKey === "checkbox" && showSelectionCheckboxes ? (
                       <Checkbox
                         isSelected={selectedRows?.includes(row)}
-                        onValueChange={(checked) => {
-                          if (checked) {
-                            handleSelectionChange(row, checked);
-                          }
-                        }}
+                        onValueChange={(checked) =>
+                          handleSelectionChange(row, checked)
+                        }
                         aria-label={`Select row ${row.id}`}
                         className={classNames?.checkbox}
                       />

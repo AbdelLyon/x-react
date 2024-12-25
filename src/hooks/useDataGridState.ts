@@ -10,7 +10,8 @@ export type SortConfig<T> = {
   direction: SortDirection;
 };
 
-export type SelectionState = {
+export type SelectionState<T> = {
+  checkedRows: Set<T>;
   isAllChecked: boolean;
 };
 
@@ -31,10 +32,9 @@ export type DataGridHookProps<T> = {
   rows: T[];
   onSelectionChange?: (rows: T[]) => void;
   onSortChange?: (column: keyof T, direction: SortDirection) => void;
-  selectedRows?: T[];
 };
 
-export type DataGridState<T> = SelectionState &
+export type DataGridState<T> = SelectionState<T> &
   SelectionActions<T> &
   SortState<T> &
   SortActions<T>;
@@ -43,35 +43,45 @@ export type DataGridState<T> = SelectionState &
 export const useSelection = <T extends DataRow>({
   rows,
   onSelectionChange,
-  selectedRows = [],
-}: Pick<DataGridHookProps<T>, "rows" | "onSelectionChange"> & {
-  selectedRows?: T[];
-}): SelectionState & SelectionActions<T> => {
+}: Pick<
+  DataGridHookProps<T>,
+  "rows" | "onSelectionChange"
+>): SelectionState<T> & SelectionActions<T> => {
+  const [checkedRows, setCheckedRows] = useState<Set<T>>(new Set());
   const [isAllChecked, setIsAllChecked] = useState(false);
 
   useEffect(() => {
-    setIsAllChecked(selectedRows.length === rows.length);
-  }, [selectedRows, rows]);
+    setIsAllChecked(checkedRows.size === rows.length);
+  }, [checkedRows, rows]);
 
   const handleSelectionChange = (row: T, checked: boolean): void => {
-    if (checked) {
-      onSelectionChange?.([...selectedRows, row]);
-    } else {
-      onSelectionChange?.(selectedRows.filter((r) => r.id !== row.id));
-    }
+    setCheckedRows((prev) => {
+      const newChecked = new Set(prev);
+      if (checked) {
+        newChecked.delete(row);
+      } else {
+        newChecked.add(row);
+      }
+
+      onSelectionChange?.(Array.from(newChecked));
+      return newChecked;
+    });
   };
 
   const handleSelectAll = (checked: boolean): void => {
-    const newChecked = checked ? rows : [];
-    onSelectionChange?.(newChecked);
+    const newChecked = checked ? new Set(rows) : new Set<T>();
+    setCheckedRows(newChecked);
+    onSelectionChange?.(Array.from(newChecked));
   };
 
   return {
     isAllChecked,
+    checkedRows,
     handleSelectionChange,
     handleSelectAll,
   };
 };
+
 // hooks/useSort.ts
 export const initialSortConfig = { key: null, direction: "asc" as const };
 
