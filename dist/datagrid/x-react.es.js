@@ -133,7 +133,7 @@ function ee({
   onChange: a
 } = {}) {
   var c;
-  const [y, h] = m.useState(null), p = m.useRef(a), [k, A] = m.useState({
+  const [y, h] = m.useState(null), p = m.useRef(a), [S, A] = m.useState({
     inView: !!f,
     entry: void 0
   });
@@ -178,12 +178,12 @@ function ee({
       t
     ]
   );
-  const j = (c = k.entry) == null ? void 0 : c.target, S = m.useRef(void 0);
-  !y && j && !s && !i && S.current !== j && (S.current = j, A({
+  const j = (c = S.entry) == null ? void 0 : c.target, k = m.useRef(void 0);
+  !y && j && !s && !i && k.current !== j && (k.current = j, A({
     inView: !!f,
     entry: void 0
   }));
-  const b = [h, k.inView, k.entry];
+  const b = [h, S.inView, S.entry];
   return b.ref = b[0], b.inView = b[1], b.entry = b[2], b;
 }
 function te(e) {
@@ -223,20 +223,20 @@ function ue({
     isAllChecked: y,
     sortConfig: h,
     handleSelectionChange: p,
-    handleSelectAll: k,
+    handleSelectAll: S,
     handleSortChange: A,
     checkedRows: j
   } = Q({
     rows: e,
     onSelectionChange: l,
     onSortChange: o
-  }), { inView: S } = ee({
+  }), { inView: k } = ee({
     threshold: 0.5,
     rootMargin: "100px"
   });
   if (D(() => {
-    S && (r == null || r());
-  }, [S, r]), u)
+    k && (r == null || r());
+  }, [k, r]), u)
     return /* @__PURE__ */ d.jsx(
       X,
       {
@@ -288,7 +288,7 @@ function ue({
               _,
               {
                 isSelected: y,
-                onValueChange: k,
+                onValueChange: S,
                 "aria-label": "Select all rows",
                 className: i == null ? void 0 : i.checkbox
               }
@@ -344,7 +344,7 @@ function ue({
         children: (x) => (console.log(j.has(n)), /* @__PURE__ */ d.jsx(H, { ...a == null ? void 0 : a.tableCellProps, children: x === "checkbox" && s ? /* @__PURE__ */ d.jsx(
           _,
           {
-            checked: j.has(n),
+            isSelected: j.has(n),
             onValueChange: () => {
               p(n);
             },

@@ -241,7 +241,7 @@ export function DataGrid<T extends { id: string | number }>({
                   <TableCell {...childrenProps?.tableCellProps}>
                     {columnKey === "checkbox" && showSelectionCheckboxes ? (
                       <Checkbox
-                        checked={checkedRows.has(row)}
+                        isSelected={checkedRows.has(row)}
                         onValueChange={() => {
                           handleSelectionChange(row);
                         }}
