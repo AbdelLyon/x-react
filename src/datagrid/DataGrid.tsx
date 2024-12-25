@@ -22,7 +22,6 @@ import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import { useInView } from "react-intersection-observer";
-import { Scroll } from "@/layout";
 
 // Types
 export interface SortConfig<T> {
@@ -305,42 +304,40 @@ export function DataGrid<T extends { id: string | number }>({
           </TableColumn>
         )}
       </TableHeader>
-      <Scroll visibility="bottom">
-        <TableBody
-          items={rows}
-          {...props?.tableBodyProps}
-          className="max-h-96 overflow-auto"
-        >
-          {(row: T) => {
-            return (
-              <TableRow
-                key={row.id}
-                aria-label={`Row ${row.id}`}
-                aria-labelledby={`Row ${row.id}`}
-                className={cn(variantClasses.row)}
-                {...props?.tableRowProps}
-              >
-                {(columnKey) => (
-                  <TableCell {...props?.tableCellProps}>
-                    {columnKey === "checkbox" ? (
-                      <Checkbox
-                        isSelected={isRowSelected(row)}
-                        onValueChange={() => handleCheckboxChange(row)}
-                        aria-label={`Select row ${row.id}`}
-                        className={classNames?.checkbox}
-                      />
-                    ) : (
-                      <div className={classNames?.cellContent}>
-                        {getCellContent(columnKey, row, columns)}
-                      </div>
-                    )}
-                  </TableCell>
-                )}
-              </TableRow>
-            );
-          }}
-        </TableBody>
-      </Scroll>
+      <TableBody
+        items={rows}
+        {...props?.tableBodyProps}
+        className="max-h-96 overflow-auto"
+      >
+        {(row: T) => {
+          return (
+            <TableRow
+              key={row.id}
+              aria-label={`Row ${row.id}`}
+              aria-labelledby={`Row ${row.id}`}
+              className={cn(variantClasses.row)}
+              {...props?.tableRowProps}
+            >
+              {(columnKey) => (
+                <TableCell {...props?.tableCellProps}>
+                  {columnKey === "checkbox" ? (
+                    <Checkbox
+                      isSelected={isRowSelected(row)}
+                      onValueChange={() => handleCheckboxChange(row)}
+                      aria-label={`Select row ${row.id}`}
+                      className={classNames?.checkbox}
+                    />
+                  ) : (
+                    <div className={classNames?.cellContent}>
+                      {getCellContent(columnKey, row, columns)}
+                    </div>
+                  )}
+                </TableCell>
+              )}
+            </TableRow>
+          );
+        }}
+      </TableBody>
     </TableRoot>
   );
 }
