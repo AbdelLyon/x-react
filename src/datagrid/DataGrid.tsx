@@ -234,24 +234,28 @@ export function DataGrid<T extends { id: string | number }>({
               className={cn(variantClasses.row)}
               {...childrenProps?.tableRowProps}
             >
-              {(columnKey) => (
-                <TableCell {...childrenProps?.tableCellProps}>
-                  {columnKey === "checkbox" && showSelectionCheckboxes ? (
-                    <Checkbox
-                      checked={checkedRows.has(row)}
-                      onValueChange={() => {
-                        handleSelectionChange(row);
-                      }}
-                      aria-label={`Select row ${row.id}`}
-                      className={classNames?.checkbox}
-                    />
-                  ) : (
-                    <div className={classNames?.cellContent}>
-                      {getCellContent(columnKey, row, columns)}
-                    </div>
-                  )}
-                </TableCell>
-              )}
+              {(columnKey) => {
+                console.log(checkedRows.has(row));
+
+                return (
+                  <TableCell {...childrenProps?.tableCellProps}>
+                    {columnKey === "checkbox" && showSelectionCheckboxes ? (
+                      <Checkbox
+                        checked={checkedRows.has(row)}
+                        onValueChange={() => {
+                          handleSelectionChange(row);
+                        }}
+                        aria-label={`Select row ${row.id}`}
+                        className={classNames?.checkbox}
+                      />
+                    ) : (
+                      <div className={classNames?.cellContent}>
+                        {getCellContent(columnKey, row, columns)}
+                      </div>
+                    )}
+                  </TableCell>
+                );
+              }}
             </TableRow>
           );
         }}
