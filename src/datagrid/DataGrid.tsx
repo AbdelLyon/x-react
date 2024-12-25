@@ -175,7 +175,7 @@ export function DataGrid<T extends { id: string | number }>({
     onSort,
   });
 
-  const { inView } = useInView({
+  const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "100px",
   });
@@ -311,30 +311,32 @@ export function DataGrid<T extends { id: string | number }>({
       <TableBody items={rows} {...props?.tableBodyProps}>
         {(row: T) => {
           return (
-            <TableRow
-              key={row.id}
-              aria-label={`Row ${row.id}`}
-              aria-labelledby={`Row ${row.id}`}
-              className={cn(variantClasses.row)}
-              {...props?.tableRowProps}
-            >
-              {(columnKey) => (
-                <TableCell {...props?.tableCellProps}>
-                  {columnKey === "checkbox" ? (
-                    <Checkbox
-                      isSelected={isRowSelected(row)}
-                      onValueChange={() => handleCheckboxChange(row)}
-                      aria-label={`Select row ${row.id}`}
-                      className={classNames?.checkbox}
-                    />
-                  ) : (
-                    <div className={classNames?.cellContent}>
-                      {getCellContent(columnKey, row, columns)}
-                    </div>
-                  )}
-                </TableCell>
-              )}
-            </TableRow>
+            <div ref={ref}>
+              <TableRow
+                key={row.id}
+                aria-label={`Row ${row.id}`}
+                aria-labelledby={`Row ${row.id}`}
+                className={cn(variantClasses.row)}
+                {...props?.tableRowProps}
+              >
+                {(columnKey) => (
+                  <TableCell {...props?.tableCellProps}>
+                    {columnKey === "checkbox" ? (
+                      <Checkbox
+                        isSelected={isRowSelected(row)}
+                        onValueChange={() => handleCheckboxChange(row)}
+                        aria-label={`Select row ${row.id}`}
+                        className={classNames?.checkbox}
+                      />
+                    ) : (
+                      <div className={classNames?.cellContent}>
+                        {getCellContent(columnKey, row, columns)}
+                      </div>
+                    )}
+                  </TableCell>
+                )}
+              </TableRow>
+            </div>
           );
         }}
       </TableBody>
