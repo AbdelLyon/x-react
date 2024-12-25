@@ -8,13 +8,12 @@ export type SortConfig<T> = {
     direction: SortDirection;
 };
 export type SelectionState<T> = {
-    selectedRows: T[];
+    checkedRows: Set<T>;
     isAllChecked: boolean;
 };
 export type SelectionActions<T> = {
     handleSelectionChange: (row: T) => void;
     handleSelectAll: (checked: boolean) => void;
-    isChecked: (row: T) => boolean;
 };
 export type SortState<T> = {
     sortConfig: SortConfig<T>;

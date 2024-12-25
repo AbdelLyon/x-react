@@ -11,14 +11,13 @@ export type SortConfig<T> = {
 };
 
 export type SelectionState<T> = {
-  selectedRows: T[];
+  checkedRows: Set<T>;
   isAllChecked: boolean;
 };
 
 export type SelectionActions<T> = {
   handleSelectionChange: (row: T) => void;
   handleSelectAll: (checked: boolean) => void;
-  isChecked: (row: T) => boolean;
 };
 
 export type SortState<T> = {
@@ -48,45 +47,39 @@ export const useSelection = <T extends DataRow>({
   DataGridHookProps<T>,
   "rows" | "onSelectionChange"
 >): SelectionState<T> & SelectionActions<T> => {
-  const [state, setState] = useState<SelectionState<T>>({
-    selectedRows: [],
-    isAllChecked: false,
-  });
+  const [checkedRows, setCheckedRows] = useState<Set<T>>(new Set());
+  const [isAllChecked, setIsAllChecked] = useState(false);
 
   useEffect(() => {
-    const allChecked =
-      state.selectedRows.length === rows.length && rows.length > 0;
-    setState((prev) => ({
-      ...prev,
-      isAllChecked: allChecked,
-      isChecked: allChecked,
-    }));
-  }, [state.selectedRows, rows]);
+    setIsAllChecked(checkedRows.size === rows.length);
+  }, [checkedRows, rows]);
 
   const handleSelectionChange = (row: T): void => {
-    setState((prev) => {
-      const newSelectedRows = prev.selectedRows.some((r) => r.id === row.id)
-        ? prev.selectedRows.filter((r) => r.id !== row.id)
-        : [...prev.selectedRows, row];
-      onSelectionChange?.(newSelectedRows);
-      return { ...prev, selectedRows: newSelectedRows };
+    setCheckedRows((prev) => {
+      const newChecked = new Set(prev);
+      const existing = Array.from(newChecked).find((r) => r.id === row.id);
+      if (existing) {
+        newChecked.delete(existing);
+      } else {
+        newChecked.add(row);
+      }
+      onSelectionChange?.(Array.from(newChecked));
+      return newChecked;
     });
   };
 
   const handleSelectAll = (checked: boolean): void => {
-    const newSelectedRows = checked ? [...rows] : [];
-    setState((prev) => ({
-      ...prev,
-      selectedRows: newSelectedRows,
-      isChecked: checked,
-    }));
-    onSelectionChange?.(newSelectedRows);
+    const newChecked = checked ? new Set(rows) : new Set<T>();
+    setCheckedRows(newChecked);
+    onSelectionChange?.(Array.from(newChecked));
   };
 
-  const isChecked = (row: T): boolean =>
-    state.selectedRows.some((r) => r.id === row.id);
-
-  return { ...state, handleSelectionChange, handleSelectAll, isChecked };
+  return {
+    isAllChecked,
+    checkedRows,
+    handleSelectionChange,
+    handleSelectAll,
+  };
 };
 
 // hooks/useSort.ts
