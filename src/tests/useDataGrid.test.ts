@@ -42,7 +42,7 @@ describe("useDataGridState", () => {
       expect(result.current.selectedRows).toEqual([rows[0]]);
       expect(result.current.isAllChecked).toBe(false);
       expect(onSelectionChange).toHaveBeenCalledWith([rows[0]]);
-      expect(result.current.isRowSelected(rows[0])).toBe(true);
+      expect(result.current.handelSelectRow(rows[0])).toBe(true);
     });
 
     it("devrait désélectionner une ligne", () => {
@@ -64,7 +64,7 @@ describe("useDataGridState", () => {
       expect(result.current.selectedRows).toEqual([]);
       expect(result.current.isAllChecked).toBe(false);
       expect(onSelectionChange).toHaveBeenLastCalledWith([]);
-      expect(result.current.isRowSelected(rows[0])).toBe(false);
+      expect(result.current.handelSelectRow(rows[0])).toBe(false);
     });
 
     it("devrait sélectionner toutes les lignes", () => {
@@ -81,7 +81,7 @@ describe("useDataGridState", () => {
       expect(result.current.isAllChecked).toBe(true);
       expect(onSelectionChange).toHaveBeenCalledWith(rows);
       rows.forEach((row) => {
-        expect(result.current.isRowSelected(row)).toBe(true);
+        expect(result.current.handelSelectRow(row)).toBe(true);
       });
     });
 
@@ -105,7 +105,7 @@ describe("useDataGridState", () => {
       expect(result.current.isAllChecked).toBe(false);
       expect(onSelectionChange).toHaveBeenLastCalledWith([]);
       rows.forEach((row) => {
-        expect(result.current.isRowSelected(row)).toBe(false);
+        expect(result.current.handelSelectRow(row)).toBe(false);
       });
     });
   });
@@ -175,7 +175,7 @@ describe("useDataGridState", () => {
 
       // La sélection doit être maintenue par l'ID
       expect(result.current.selectedRows).toEqual([rows[0]]);
-      expect(result.current.isRowSelected(rows[0])).toBe(true);
+      expect(result.current.handelSelectRow(rows[0])).toBe(true);
     });
   });
 });

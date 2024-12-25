@@ -13,7 +13,8 @@ type DataGridState<T> = {
     handleSelectionChange: (row: T) => void;
     handleSelectAll: (checked: boolean) => void;
     handleSortChange: (column: keyof T, direction: "asc" | "desc") => void;
-    isRowSelected: (row: T) => boolean;
+    handelSelectRow: (row: T) => void;
+    isChecked: boolean;
 };
 type DataGridHookProps<T> = {
     rows: T[];
