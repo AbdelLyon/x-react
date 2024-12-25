@@ -1,6 +1,6 @@
 /* empty css                */
 import { j as s } from "../jsx-runtime-Dx-03ztt.js";
-import * as A from "react";
+import * as R from "react";
 import { useState as I, useEffect as B } from "react";
 import { cn as v } from "../utils/x-react.es.js";
 import { Table as G, TableHeader as M, TableColumn as L, Skeleton as T, TableBody as O, TableRow as H, TableCell as E, Checkbox as $ } from "@nextui-org/react";
@@ -116,21 +116,21 @@ function P({
   onChange: a
 } = {}) {
   var y;
-  const [S, x] = A.useState(null), p = A.useRef(a), [k, c] = A.useState({
+  const [S, x] = R.useState(null), p = R.useRef(a), [k, c] = R.useState({
     inView: !!d,
     entry: void 0
   });
-  p.current = a, A.useEffect(
+  p.current = a, R.useEffect(
     () => {
       if (r || !S) return;
       let g;
       return g = N(
         S,
-        (w, R) => {
+        (A, C) => {
           c({
-            inView: w,
-            entry: R
-          }), p.current && p.current(w, R), R.isIntersecting && u && g && (g(), g = void 0);
+            inView: A,
+            entry: C
+          }), p.current && p.current(A, C), C.isIntersecting && u && g && (g(), g = void 0);
         },
         {
           root: o,
@@ -161,8 +161,8 @@ function P({
       t
     ]
   );
-  const b = (y = k.entry) == null ? void 0 : y.target, C = A.useRef(void 0);
-  !S && b && !u && !r && C.current !== b && (C.current = b, c({
+  const b = (y = k.entry) == null ? void 0 : y.target, m = R.useRef(void 0);
+  !S && b && !u && !r && m.current !== b && (m.current = b, c({
     inView: !!d,
     entry: void 0
   }));
@@ -226,7 +226,7 @@ function oe({
     handleSelectAll: k,
     handleSortChange: c,
     isChecked: b,
-    handelSelectRow: C
+    handelSelectRow: m
   } = J({
     rows: e,
     onSelectionChange: i,
@@ -247,7 +247,7 @@ function oe({
         rows: e.length
       }
     );
-  const g = F[d], w = [
+  const g = F[d], A = [
     ...u === !0 ? [
       {
         key: "checkbox",
@@ -260,12 +260,12 @@ function oe({
       key: typeof l.field == "string" ? String(l.field) : String(j),
       label: l.header
     }))
-  ], R = (l) => {
+  ], C = (l) => {
     const j = t.find(
       (_) => typeof _.field == "string" && _.field.length > 0 && String(_.field) === l.key
-    ), m = j == null ? void 0 : j.field;
-    m != null && m !== "actions" && c(
-      m,
+    ), w = j == null ? void 0 : j.field;
+    w != null && w !== "actions" && c(
+      w,
       x.direction === "asc" ? "desc" : "asc"
     );
   };
@@ -275,7 +275,7 @@ function oe({
       {
         "aria-label": "data-grid-header",
         "aria-labelledby": "data-grid-header",
-        columns: w,
+        columns: A,
         className: v(g.header),
         ...a == null ? void 0 : a.tableHeaderProps,
         children: (l) => /* @__PURE__ */ s.jsx(
@@ -302,7 +302,7 @@ function oe({
                     "relative size-4 cursor-pointer",
                     r == null ? void 0 : r.sortIcon
                   ),
-                  onClick: () => R(l),
+                  onClick: () => C(l),
                   role: "button",
                   "aria-label": te(l.label),
                   children: [
@@ -345,8 +345,10 @@ function oe({
         children: (j) => /* @__PURE__ */ s.jsx(E, { ...a == null ? void 0 : a.tableCellProps, children: j === "checkbox" && u ? /* @__PURE__ */ s.jsx(
           $,
           {
-            isSelected: b,
-            onValueChange: (m) => (p(l), C(l), m),
+            checked: b,
+            onChange: () => {
+              p(l), m(l);
+            },
             "aria-label": `Select row ${l.id}`,
             className: r == null ? void 0 : r.checkbox
           }
