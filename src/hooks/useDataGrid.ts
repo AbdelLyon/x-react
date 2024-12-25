@@ -49,15 +49,10 @@ export const useDataGridState = <T extends DataRow>({
   const handleSelectionChange = (row: T): void => {
     let newSelectedRows: T[];
 
-    const isRowInSelection = selectedRows.some((r) => r.id === row.id);
-
-    if (isRowInSelection) {
+    if (selectedRows.some((r) => r.id === row.id)) {
       newSelectedRows = selectedRows.filter((r) => r.id !== row.id);
     } else {
-      newSelectedRows = [
-        ...rows.filter((r) => selectedRows.some((sr) => sr.id === r.id)),
-        row,
-      ];
+      newSelectedRows = [...selectedRows, row];
     }
 
     setSelectedRows(newSelectedRows);
