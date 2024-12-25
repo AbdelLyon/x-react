@@ -321,10 +321,12 @@ export function DataGrid<T extends { id: string | number }>({
                 <TableCell {...childrenProps?.tableCellProps}>
                   {columnKey === "checkbox" && showSelectionCheckboxes ? (
                     <Checkbox
-                      checked={isChecked}
-                      onValueChange={() => {
+                      // checked={isChecked}
+                      isSelected={isChecked}
+                      onValueChange={(checked) => {
                         handleSelectionChange(row);
                         handelSelectRow(row);
+                        return checked;
                       }}
                       aria-label={`Select row ${row.id}`}
                       className={classNames?.checkbox}
