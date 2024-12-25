@@ -33,7 +33,6 @@ interface DataGridProps<T extends {
     props?: DataGridComponentProps<T>;
     rows: T[];
     columns: ColumnDefinition<T>[];
-    caption?: string;
     className?: string;
     footerContent?: React.ReactNode;
     onCheckedRowsChange?: (rows: T[]) => void;
@@ -66,5 +65,5 @@ export declare const GRIDVARIANT: {
 };
 export declare function DataGrid<T extends {
     id: string | number;
-}>({ rows, columns, caption, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, isLoading, props, }: DataGridProps<T>): JSX.Element;
+}>({ rows, columns, onCheckedRowsChange, onSort, checkboxSelection, classNames, variant, isLoading, props, }: DataGridProps<T>): JSX.Element;
 export {};

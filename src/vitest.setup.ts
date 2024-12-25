@@ -1,7 +1,6 @@
 /// <reference types="vitest" />
 
 import "@testing-library/jest-dom";
-
 globalThis.matchMedia = (query: string): MediaQueryList => ({
   matches: query === "(min-width: 768px)",
   media: query,
@@ -18,3 +17,8 @@ global.ResizeObserver = class {
   unobserve(): void {}
   disconnect(): void {}
 };
+
+// afterEach(() => {
+//   cleanup();
+//   vi.resetAllMocks();
+// });

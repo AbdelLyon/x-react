@@ -60,7 +60,6 @@ interface DataGridProps<T extends { id: string | number }> {
   props?: DataGridComponentProps<T>;
   rows: T[];
   columns: ColumnDefinition<T>[];
-  caption?: string;
   className?: string;
   footerContent?: React.ReactNode;
   onCheckedRowsChange?: (rows: T[]) => void;
@@ -151,7 +150,7 @@ function getCellContent<T extends object>(
 export function DataGrid<T extends { id: string | number }>({
   rows,
   columns,
-  caption,
+
   onCheckedRowsChange,
   onSort,
   checkboxSelection = true,
@@ -224,11 +223,14 @@ export function DataGrid<T extends { id: string | number }>({
 
   return (
     <TableRoot
-      aria-label={typeof caption === "string" ? caption : undefined}
+      aria-label="data-grid"
+      aria-labelledby="data-grid"
       {...props?.tableProps}
       radius="sm"
     >
       <TableHeader
+        aria-label="data-grid-header"
+        aria-labelledby="data-grid-header"
         columns={preparedColumns}
         className={cn(variantClasses.header)}
         {...props?.tableHeaderProps}
@@ -236,6 +238,7 @@ export function DataGrid<T extends { id: string | number }>({
         {(column) => (
           <TableColumn
             key={column.key}
+            aria-labelledby={column.key}
             aria-label={getColumnAriaLabel(column)}
             className={cn(variantClasses.column)}
             {...props?.tableColumnProps}
@@ -293,6 +296,7 @@ export function DataGrid<T extends { id: string | number }>({
           <TableRow
             key={row.id}
             aria-label={`Row ${row.id}`}
+            aria-labelledby={`Row ${row.id}`}
             className={cn(variantClasses.row)}
             {...props?.tableRowProps}
           >

@@ -1,74 +1,48 @@
-import type { ReactElement } from "react";
+import type { AvatarProps, UserProps } from "@nextui-org/react";
 import { forwardRef } from "react";
-import type { AvatarProps } from "@nextui-org/react";
-import { AvatarIcon, useAvatar } from "@nextui-org/react";
+import type { AvatarGroupProps } from "@nextui-org/react";
+import {
+  Avatar as AvatarRoot,
+  User as UserRoot,
+  useAvatarGroup,
+  AvatarGroupProvider,
+} from "@nextui-org/react";
 
-export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
-  const {
-    src,
-    icon = <AvatarIcon />,
-    alt,
-    classNames,
-    slots,
-    name,
-    showFallback,
-    fallback: fallbackComponent,
-    getInitials,
-    getAvatarProps,
-    getImageProps,
-  } = useAvatar({
-    ref,
-    ...props,
-  });
+export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
+  return <AvatarRoot ref={ref} {...props} />;
+});
 
-  const getFallback = (): ReactElement | null => {
-    if (!showFallback && src !== null) {
-      return null;
-    }
+Avatar.displayName = "Avatar";
 
-    const ariaLabel = alt ? alt : name !== null ? name : "avatar";
-
-    if (fallbackComponent !== null && fallbackComponent !== undefined) {
-      return (
-        <div
-          aria-label={ariaLabel}
-          className={slots.fallback({ class: classNames?.fallback })}
-          role="img"
-        >
-          {fallbackComponent}
-        </div>
-      );
-    }
-
-    if (name !== null && name !== undefined) {
-      return (
-        <span
-          aria-label={ariaLabel}
-          className={slots.name({ class: classNames?.name })}
-          role="img"
-        >
-          {getInitials(name)}
-        </span>
-      );
-    }
+export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
+  (props, ref) => {
+    const {
+      Component,
+      clones,
+      context,
+      remainingCount,
+      renderCount = (count) => <Avatar name={`+${count}`} />,
+      getAvatarGroupProps,
+    } = useAvatarGroup({
+      ref,
+      ...props,
+    });
 
     return (
-      <span
-        aria-label={ariaLabel}
-        className={slots.icon({ class: classNames?.icon })}
-        role="img"
-      >
-        {icon}
-      </span>
+      <Component {...getAvatarGroupProps()}>
+        <AvatarGroupProvider value={context}>
+          {clones}
+          {remainingCount > 0 && renderCount(remainingCount)}
+        </AvatarGroupProvider>
+      </Component>
     );
-  };
+  },
+);
 
-  return (
-    <div {...getAvatarProps()}>
-      {src !== null && <img {...getImageProps()} alt={alt} />}
-      {getFallback()}
-    </div>
-  );
+AvatarGroup.displayName = "AvatarGroup";
+
+export const User = forwardRef<HTMLDivElement, UserProps>((props, ref) => {
+  return <UserRoot ref={ref} {...props} />;
 });
 
 Avatar.displayName = "Avatar";

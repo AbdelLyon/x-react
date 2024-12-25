@@ -3,13 +3,13 @@ import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 describe("hooks/use-disclosure", () => {
-  describe("Basic state management", () => {
-    it("should initialize with the correct default state", () => {
+  describe("Gestion basique de l'état", () => {
+    it("devrait initialiser avec l'état par défaut correct", () => {
       const { result } = renderHook(() => useDisclosure(true));
       expect(result.current[0]).toBe(true);
     });
 
-    it("should change state to false when close is called", () => {
+    it("devrait changer l'état à faux lors de l'appel à fermer", () => {
       const { result } = renderHook(() => useDisclosure(true));
 
       act(() => result.current[1].close());
@@ -17,7 +17,7 @@ describe("hooks/use-disclosure", () => {
       expect(result.current[0]).toBe(false);
     });
 
-    it("should change state to true when open is called", () => {
+    it("devrait changer l'état à vrai lors de l'appel à ouvrir", () => {
       const { result } = renderHook(() => useDisclosure(false));
 
       act(() => result.current[1].open());
@@ -25,7 +25,7 @@ describe("hooks/use-disclosure", () => {
       expect(result.current[0]).toBe(true);
     });
 
-    it("should toggle state correctly when toggle is called", () => {
+    it("devrait basculer correctement l'état lors de l'appel à basculer", () => {
       const { result } = renderHook(() => useDisclosure(false));
       expect(result.current[0]).toBe(false);
 
@@ -37,8 +37,8 @@ describe("hooks/use-disclosure", () => {
     });
   });
 
-  describe("Callback handling", () => {
-    it("should call onClose only when state changes from true to false", () => {
+  describe("Gestion des callbacks", () => {
+    it("devrait appeler onClose uniquement lorsque l'état passe de vrai à faux", () => {
       const onClose = vi.fn();
       const { result } = renderHook(() => useDisclosure(true, { onClose }));
       expect(onClose).not.toHaveBeenCalled();
@@ -50,7 +50,7 @@ describe("hooks/use-disclosure", () => {
       expect(onClose).toHaveBeenCalledTimes(1);
     });
 
-    it("should call onOpen only when state changes from false to true", () => {
+    it("devrait appeler onOpen uniquement lorsque l'état passe de faux à vrai", () => {
       const onOpen = vi.fn();
       const { result } = renderHook(() => useDisclosure(false, { onOpen }));
       expect(onOpen).not.toHaveBeenCalled();
@@ -62,7 +62,7 @@ describe("hooks/use-disclosure", () => {
       expect(onOpen).toHaveBeenCalledTimes(1);
     });
 
-    it("should call appropriate callbacks when toggling state", () => {
+    it("devrait appeler les callbacks appropriés lors du basculement d'état", () => {
       const onClose = vi.fn();
       const onOpen = vi.fn();
       const { result } = renderHook(() =>
@@ -72,25 +72,25 @@ describe("hooks/use-disclosure", () => {
       expect(onOpen).not.toHaveBeenCalled();
       expect(onClose).not.toHaveBeenCalled();
 
-      // First toggle: false -> true
+      // Premier basculement : faux -> vrai
       act(() => result.current[1].toggle());
       expect(onOpen).toHaveBeenCalledTimes(1);
       expect(onClose).not.toHaveBeenCalled();
 
-      // Second toggle: true -> false
+      // Deuxième basculement : vrai -> faux
       act(() => result.current[1].toggle());
       expect(onOpen).toHaveBeenCalledTimes(1);
       expect(onClose).toHaveBeenCalledTimes(1);
 
-      // Third toggle: false -> true
+      // Troisième basculement : faux -> vrai
       act(() => result.current[1].toggle());
       expect(onOpen).toHaveBeenCalledTimes(2);
       expect(onClose).toHaveBeenCalledTimes(1);
     });
   });
 
-  describe("Edge cases", () => {
-    it("should not trigger callbacks when state doesn't change", () => {
+  describe("Cas limites", () => {
+    it("ne devrait pas déclencher de callbacks quand l'état ne change pas", () => {
       const onClose = vi.fn();
       const onOpen = vi.fn();
       const { result } = renderHook(() =>

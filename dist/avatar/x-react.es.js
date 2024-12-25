@@ -1,61 +1,33 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Dx-03ztt.js";
-import { forwardRef as v } from "react";
-import { useAvatar as x, AvatarIcon as g } from "@nextui-org/react";
-import { User as P } from "@nextui-org/react";
-const j = v((s, c) => {
-  const {
-    src: i,
-    icon: m = /* @__PURE__ */ r.jsx(g, {}),
-    alt: n,
-    classNames: a,
-    slots: o,
-    name: l,
-    showFallback: f,
-    fallback: t,
-    getInitials: p,
-    getAvatarProps: u,
-    getImageProps: b
-  } = x({
-    ref: c,
-    ...s
-  }), d = () => {
-    if (!f && i !== null)
-      return null;
-    const e = n || (l !== null ? l : "avatar");
-    return t != null ? /* @__PURE__ */ r.jsx(
-      "div",
-      {
-        "aria-label": e,
-        className: o.fallback({ class: a == null ? void 0 : a.fallback }),
-        role: "img",
-        children: t
-      }
-    ) : l != null ? /* @__PURE__ */ r.jsx(
-      "span",
-      {
-        "aria-label": e,
-        className: o.name({ class: a == null ? void 0 : a.name }),
-        role: "img",
-        children: p(l)
-      }
-    ) : /* @__PURE__ */ r.jsx(
-      "span",
-      {
-        "aria-label": e,
-        className: o.icon({ class: a == null ? void 0 : a.icon }),
-        role: "img",
-        children: m
-      }
-    );
-  };
-  return /* @__PURE__ */ r.jsxs("div", { ...u(), children: [
-    i !== null && /* @__PURE__ */ r.jsx("img", { ...b(), alt: n }),
-    d()
-  ] });
-});
-j.displayName = "Avatar";
+import { j as t } from "../jsx-runtime-Dx-03ztt.js";
+import { forwardRef as o } from "react";
+import { Avatar as A, useAvatarGroup as x, AvatarGroupProvider as c, User as d } from "@nextui-org/react";
+const e = o((r, a) => /* @__PURE__ */ t.jsx(A, { ref: a, ...r }));
+e.displayName = "Avatar";
+const j = o(
+  (r, a) => {
+    const {
+      Component: n,
+      clones: p,
+      context: m,
+      remainingCount: s,
+      renderCount: i = (v) => /* @__PURE__ */ t.jsx(e, { name: `+${v}` }),
+      getAvatarGroupProps: u
+    } = x({
+      ref: a,
+      ...r
+    });
+    return /* @__PURE__ */ t.jsx(n, { ...u(), children: /* @__PURE__ */ t.jsxs(c, { value: m, children: [
+      p,
+      s > 0 && i(s)
+    ] }) });
+  }
+);
+j.displayName = "AvatarGroup";
+const C = o((r, a) => /* @__PURE__ */ t.jsx(d, { ref: a, ...r }));
+e.displayName = "Avatar";
 export {
-  j as Avatar,
-  P as User
+  e as Avatar,
+  j as AvatarGroup,
+  C as User
 };
