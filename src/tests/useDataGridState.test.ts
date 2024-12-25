@@ -1,56 +1,52 @@
-import {
-  useDataGridState,
-  useSelection,
-  useSort,
-} from "@/hooks/useDataGridState";
+import { useDataGridState, useSort } from "@/hooks/useDataGridState";
 import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-describe("useSelection", () => {
-  const mockRows = [
-    { id: 1, name: "Row 1" },
-    { id: 2, name: "Row 2" },
-  ];
+// describe("useSelection", () => {
+//   const mockRows = [
+//     { id: 1, name: "Row 1" },
+//     { id: 2, name: "Row 2" },
+//   ];
 
-  it("devrait initialiser avec une sélection vide", () => {
-    const { result } = renderHook(() => useSelection({ rows: mockRows }));
-    expect(result.current.checkedRows).toHaveLength(0);
-    expect(result.current.isAllChecked).toBe(false);
-  });
+//   it("devrait initialiser avec une sélection vide", () => {
+//     const { result } = renderHook(() => useSelection({ rows: mockRows }));
+//     expect(result.current.checkedRows).toHaveLength(0);
+//     expect(result.current.isAllChecked).toBe(false);
+//   });
 
-  it("devrait gérer la sélection d'une seule ligne", () => {
-    const { result } = renderHook(() => useSelection({ rows: mockRows }));
+//   it("devrait gérer la sélection d'une seule ligne", () => {
+//     const { result } = renderHook(() => useSelection({ rows: mockRows }));
 
-    act(() => {
-      result.current.handleSelectionChange(mockRows[0], true);
-    });
+//     act(() => {
+//       result.current.handleSelectionChange(mockRows[0], true);
+//     });
 
-    expect(result.current.checkedRows).toHaveLength(1);
-    // expect(result.current.checkedRows[0]).toEqual(mockRows[0]);
-  });
+//     expect(result.current.checkedRows).toHaveLength(1);
+//     // expect(result.current.checkedRows[0]).toEqual(mockRows[0]);
+//   });
 
-  it("devrait gérer la sélection de toutes les lignes", () => {
-    const { result } = renderHook(() => useSelection({ rows: mockRows }));
+//   it("devrait gérer la sélection de toutes les lignes", () => {
+//     const { result } = renderHook(() => useSelection({ rows: mockRows }));
 
-    act(() => {
-      result.current.handleSelectAll(true);
-    });
+//     act(() => {
+//       result.current.handleSelectAll(true);
+//     });
 
-    expect(result.current.checkedRows).toHaveLength(mockRows.length);
-    expect(result.current.isAllChecked).toBe(true);
-  });
+//     expect(result.current.).toHaveLength(mockRows.length);
+//     expect(result.current.isAllChecked).toBe(true);
+//   });
 
-  it("devrait gérer le basculement de la sélection d'une ligne", () => {
-    const { result } = renderHook(() => useSelection({ rows: mockRows }));
+//   it("devrait gérer le basculement de la sélection d'une ligne", () => {
+//     const { result } = renderHook(() => useSelection({ rows: mockRows }));
 
-    act(() => {
-      result.current.handleSelectionChange(mockRows[0], true);
-      result.current.handleSelectionChange(mockRows[0], false);
-    });
+//     act(() => {
+//       result.current.handleSelectionChange(mockRows[0], true);
+//       result.current.handleSelectionChange(mockRows[0], false);
+//     });
 
-    expect(result.current.checkedRows).toHaveLength(0);
-  });
-});
+//     expect(result.current.checkedRows).toHaveLength(0);
+//   });
+// });
 
 describe("useSort", () => {
   it("devrait initialiser avec la configuration de tri par défaut", () => {

@@ -7,8 +7,7 @@ export type SortConfig<T> = {
     key: keyof T | null;
     direction: SortDirection;
 };
-export type SelectionState<T> = {
-    checkedRows: Set<T>;
+export type SelectionState = {
     isAllChecked: boolean;
 };
 export type SelectionActions<T> = {
@@ -25,9 +24,12 @@ export type DataGridHookProps<T> = {
     rows: T[];
     onSelectionChange?: (rows: T[]) => void;
     onSortChange?: (column: keyof T, direction: SortDirection) => void;
+    selectedRows?: T[];
 };
-export type DataGridState<T> = SelectionState<T> & SelectionActions<T> & SortState<T> & SortActions<T>;
-export declare const useSelection: <T extends DataRow>({ rows, onSelectionChange, }: Pick<DataGridHookProps<T>, "rows" | "onSelectionChange">) => SelectionState<T> & SelectionActions<T>;
+export type DataGridState<T> = SelectionState & SelectionActions<T> & SortState<T> & SortActions<T>;
+export declare const useSelection: <T extends DataRow>({ rows, onSelectionChange, selectedRows, }: Pick<DataGridHookProps<T>, "rows" | "onSelectionChange"> & {
+    selectedRows?: T[];
+}) => SelectionState & SelectionActions<T>;
 export declare const initialSortConfig: {
     key: null;
     direction: "asc";

@@ -95,6 +95,7 @@ export function DataGrid<T extends { id: string | number }>({
     rows,
     onSelectionChange,
     onSortChange,
+    selectedRows,
   });
 
   const { inView } = useInView({
