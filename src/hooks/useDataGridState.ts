@@ -13,13 +13,12 @@ export type SortConfig<T> = {
 export type SelectionState<T> = {
   selectedRows: T[];
   isAllChecked: boolean;
-  isChecked: boolean;
 };
 
 export type SelectionActions<T> = {
   handleSelectionChange: (row: T) => void;
   handleSelectAll: (checked: boolean) => void;
-  handelSelectRow: (row: T) => void;
+  isChecked: (row: T) => boolean;
 };
 
 export type SortState<T> = {
@@ -52,7 +51,6 @@ export const useSelection = <T extends DataRow>({
   const [state, setState] = useState<SelectionState<T>>({
     selectedRows: [],
     isAllChecked: false,
-    isChecked: false,
   });
 
   useEffect(() => {
@@ -85,14 +83,10 @@ export const useSelection = <T extends DataRow>({
     onSelectionChange?.(newSelectedRows);
   };
 
-  const handelSelectRow = (row: T): void => {
-    setState((prev) => ({
-      ...prev,
-      isChecked: prev.selectedRows.some((r) => r.id === row.id),
-    }));
-  };
+  const isChecked = (row: T): boolean =>
+    state.selectedRows.some((r) => r.id === row.id);
 
-  return { ...state, handleSelectionChange, handleSelectAll, handelSelectRow };
+  return { ...state, handleSelectionChange, handleSelectAll, isChecked };
 };
 
 // hooks/useSort.ts
