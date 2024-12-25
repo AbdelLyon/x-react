@@ -5,15 +5,18 @@ import { useState as V, useEffect as $ } from "react";
 import { cn as x } from "../utils/x-react.es.js";
 import { Table as D, TableHeader as B, TableColumn as G, Skeleton as R, TableBody as M, TableRow as L, TableCell as O, Checkbox as P } from "@nextui-org/react";
 import { IconChevronUp as E, IconChevronDown as F } from "@tabler/icons-react";
-const U = {
+import "../Navbar-Hng6EGpF.js";
+import "../Sidebar-XdsFKim9.js";
+import { S as U } from "../Scroll-Ca_ONdIj.js";
+const W = {
   key: null,
   direction: "asc"
-}, W = ({
+}, q = ({
   rows: e,
   onCheckedRowsChange: t,
   onSort: l
 }) => {
-  const [r, o] = V([]), [c, i] = V(!1), [s, u] = V(U);
+  const [r, o] = V([]), [c, i] = V(!1), [s, u] = V(W);
   return $(() => {
     i(r.length === e.length && e.length > 0);
   }, [r, e]), {
@@ -21,8 +24,8 @@ const U = {
     isAllChecked: c,
     sortConfig: s,
     handleCheckboxChange: (f) => {
-      const m = r.some((v) => v.id === f.id) ? r.filter((v) => v.id !== f.id) : [...r, f];
-      o(m), t == null || t(m);
+      const j = r.some((v) => v.id === f.id) ? r.filter((v) => v.id !== f.id) : [...r, f];
+      o(j), t == null || t(j);
     },
     handleSelectAll: (f) => {
       const b = f ? [...e] : [];
@@ -33,7 +36,7 @@ const U = {
     },
     isRowSelected: (f) => r.some((b) => b.id === f.id)
   };
-}, q = ({
+}, J = ({
   columns: e = 5,
   rows: t = 5,
   checkboxSelection: l = !0,
@@ -46,9 +49,9 @@ const U = {
     /* @__PURE__ */ d.jsx(M, { children: Array(t).fill(null).map((s, u) => /* @__PURE__ */ d.jsx(L, { className: x(c.row), children: Array(i).fill(null).map((a, h) => /* @__PURE__ */ d.jsx(O, { children: h === 0 && l ? /* @__PURE__ */ d.jsx(R, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(R, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, h)) }, u)) })
   ] });
 };
-var z = /* @__PURE__ */ new Map(), T = /* @__PURE__ */ new WeakMap(), _ = 0, J = void 0;
+var z = /* @__PURE__ */ new Map(), w = /* @__PURE__ */ new WeakMap(), _ = 0, N = void 0;
 function Q(e) {
-  return e ? (T.has(e) || (_ += 1, T.set(e, _.toString())), T.get(e)) : "0";
+  return e ? (w.has(e) || (_ += 1, w.set(e, _.toString())), w.get(e)) : "0";
 }
 function X(e) {
   return Object.keys(e).sort().filter(
@@ -78,7 +81,7 @@ function Y(e) {
   }
   return l;
 }
-function Z(e, t, l = {}, r = J) {
+function Z(e, t, l = {}, r = N) {
   if (typeof window.IntersectionObserver > "u" && r !== void 0) {
     const u = e.getBoundingClientRect();
     return t(r, {
@@ -110,21 +113,21 @@ function K({
   onChange: a
 } = {}) {
   var h;
-  const [y, k] = C.useState(null), f = C.useRef(a), [b, m] = C.useState({
+  const [y, k] = C.useState(null), f = C.useRef(a), [b, j] = C.useState({
     inView: !!s,
     entry: void 0
   });
   f.current = a, C.useEffect(
     () => {
       if (i || !y) return;
-      let j;
-      return j = Z(
+      let m;
+      return m = Z(
         y,
         (n, g) => {
-          m({
+          j({
             inView: n,
             entry: g
-          }), f.current && f.current(n, g), g.isIntersecting && c && j && (j(), j = void 0);
+          }), f.current && f.current(n, g), g.isIntersecting && c && m && (m(), m = void 0);
         },
         {
           root: o,
@@ -137,7 +140,7 @@ function K({
         },
         u
       ), () => {
-        j && j();
+        m && m();
       };
     },
     // We break the rule here, because we aren't including the actual `threshold` variable
@@ -156,7 +159,7 @@ function K({
     ]
   );
   const v = (h = b.entry) == null ? void 0 : h.target, A = C.useRef(void 0);
-  !y && v && !c && !i && A.current !== v && (A.current = v, m({
+  !y && v && !c && !i && A.current !== v && (A.current = v, j({
     inView: !!s,
     entry: void 0
   }));
@@ -180,13 +183,13 @@ const H = {
     row: "py-4 hover:bg-content2 h-12"
   }
 };
-function N(e) {
+function p(e) {
   return typeof e.label == "string" && e.label.length > 0 ? e.label : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column";
 }
-function p(e) {
+function ee(e) {
   return typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column";
 }
-function ee(e, t, l) {
+function te(e, t, l) {
   const r = l.find(
     (o) => typeof o.field == "string" && String(o.field) === String(e)
   );
@@ -200,7 +203,7 @@ function ee(e, t, l) {
   }
   return null;
 }
-function de({
+function ue({
   rows: e,
   columns: t,
   onEndReached: l,
@@ -218,8 +221,8 @@ function de({
     handleCheckboxChange: k,
     handleSelectAll: f,
     handleSort: b,
-    isRowSelected: m
-  } = W({
+    isRowSelected: j
+  } = q({
     rows: e,
     onCheckedRowsChange: r,
     onSort: o
@@ -231,7 +234,7 @@ function de({
     v && (l == null || l());
   }, [v, l]), u)
     return /* @__PURE__ */ d.jsx(
-      q,
+      J,
       {
         columns: t.length,
         checkboxSelection: c,
@@ -252,9 +255,9 @@ function de({
       key: typeof n.field == "string" ? String(n.field) : String(g),
       label: n.header
     }))
-  ], j = (n) => {
+  ], m = (n) => {
     const g = t.find(
-      (w) => typeof w.field == "string" && w.field.length > 0 && String(w.field) === n.key
+      (T) => typeof T.field == "string" && T.field.length > 0 && String(T.field) === n.key
     ), I = g == null ? void 0 : g.field;
     I != null && I !== "actions" && b(I, y.direction === "asc" ? "desc" : "asc");
   };
@@ -278,7 +281,7 @@ function de({
               G,
               {
                 "aria-labelledby": n.key,
-                "aria-label": N(n),
+                "aria-label": p(n),
                 className: x(A.column),
                 ...a == null ? void 0 : a.tableColumnProps,
                 children: n.key === "checkbox" ? /* @__PURE__ */ d.jsx(
@@ -298,9 +301,9 @@ function de({
                         "relative size-4 cursor-pointer",
                         i == null ? void 0 : i.sortIcon
                       ),
-                      onClick: () => j(n),
+                      onClick: () => m(n),
                       role: "button",
-                      "aria-label": p(n.label),
+                      "aria-label": ee(n.label),
                       children: [
                         /* @__PURE__ */ d.jsx(
                           E,
@@ -331,29 +334,37 @@ function de({
             )
           }
         ),
-        /* @__PURE__ */ d.jsx(M, { items: e, ...a == null ? void 0 : a.tableBodyProps, children: (n) => /* @__PURE__ */ d.jsx(
-          L,
+        /* @__PURE__ */ d.jsx(U, { visibility: "bottom", children: /* @__PURE__ */ d.jsx(
+          M,
           {
-            "aria-label": `Row ${n.id}`,
-            "aria-labelledby": `Row ${n.id}`,
-            className: x(A.row),
-            ...a == null ? void 0 : a.tableRowProps,
-            children: (g) => /* @__PURE__ */ d.jsx(O, { ...a == null ? void 0 : a.tableCellProps, children: g === "checkbox" ? /* @__PURE__ */ d.jsx(
-              P,
+            items: e,
+            ...a == null ? void 0 : a.tableBodyProps,
+            className: "max-h-96 overflow-auto",
+            children: (n) => /* @__PURE__ */ d.jsx(
+              L,
               {
-                isSelected: m(n),
-                onValueChange: () => k(n),
-                "aria-label": `Select row ${n.id}`,
-                className: i == null ? void 0 : i.checkbox
-              }
-            ) : /* @__PURE__ */ d.jsx("div", { className: i == null ? void 0 : i.cellContent, children: ee(g, n, t) }) })
-          },
-          n.id
+                "aria-label": `Row ${n.id}`,
+                "aria-labelledby": `Row ${n.id}`,
+                className: x(A.row),
+                ...a == null ? void 0 : a.tableRowProps,
+                children: (g) => /* @__PURE__ */ d.jsx(O, { ...a == null ? void 0 : a.tableCellProps, children: g === "checkbox" ? /* @__PURE__ */ d.jsx(
+                  P,
+                  {
+                    isSelected: j(n),
+                    onValueChange: () => k(n),
+                    "aria-label": `Select row ${n.id}`,
+                    className: i == null ? void 0 : i.checkbox
+                  }
+                ) : /* @__PURE__ */ d.jsx("div", { className: i == null ? void 0 : i.cellContent, children: te(g, n, t) }) })
+              },
+              n.id
+            )
+          }
         ) })
       ]
     }
   );
 }
 export {
-  de as DataGrid
+  ue as DataGrid
 };
