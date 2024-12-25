@@ -21,8 +21,8 @@ const W = {
     isAllChecked: u,
     sortConfig: d,
     handleSelectionChange: (c) => {
-      const m = r.some((h) => h.id === c.id) ? r.filter((h) => h.id !== c.id) : [...r, c];
-      o(m), t == null || t(m);
+      const j = r.some((h) => h.id === c.id) ? r.filter((h) => h.id !== c.id) : [...r, c];
+      console.log(j), o(j), t == null || t(j);
     },
     handleSelectAll: (c) => {
       const b = c ? [...e] : [];
@@ -110,21 +110,21 @@ function N({
   onChange: s
 } = {}) {
   var g;
-  const [p, x] = k.useState(null), c = k.useRef(s), [b, m] = k.useState({
+  const [m, x] = k.useState(null), c = k.useRef(s), [b, j] = k.useState({
     inView: !!d,
     entry: void 0
   });
   c.current = s, k.useEffect(
     () => {
-      if (i || !p) return;
-      let j;
-      return j = K(
-        p,
+      if (i || !m) return;
+      let S;
+      return S = K(
+        m,
         (A, n) => {
-          m({
+          j({
             inView: A,
             entry: n
-          }), c.current && c.current(A, n), n.isIntersecting && u && j && (j(), j = void 0);
+          }), c.current && c.current(A, n), n.isIntersecting && u && S && (S(), S = void 0);
         },
         {
           root: o,
@@ -137,7 +137,7 @@ function N({
         },
         f
       ), () => {
-        j && j();
+        S && S();
       };
     },
     // We break the rule here, because we aren't including the actual `threshold` variable
@@ -145,7 +145,7 @@ function N({
     [
       // If the threshold is an array, convert it to a string, so it won't change between renders.
       Array.isArray(e) ? e.toString() : e,
-      p,
+      m,
       o,
       r,
       u,
@@ -156,7 +156,7 @@ function N({
     ]
   );
   const h = (g = b.entry) == null ? void 0 : g.target, R = k.useRef(void 0);
-  !p && h && !u && !i && R.current !== h && (R.current = h, m({
+  !m && h && !u && !i && R.current !== h && (R.current = h, j({
     inView: !!d,
     entry: void 0
   }));
@@ -214,11 +214,11 @@ function de({
   ...g
 }) {
   const {
-    isAllChecked: p,
+    isAllChecked: m,
     sortConfig: x,
     handleSelectionChange: c,
     handleSelectAll: b,
-    handleSortChange: m,
+    handleSortChange: j,
     isRowSelected: h
   } = q({
     rows: e,
@@ -240,7 +240,7 @@ function de({
         rows: e.length
       }
     );
-  const y = E[d], j = [
+  const y = E[d], S = [
     ...u === !0 ? [
       {
         key: "checkbox",
@@ -248,16 +248,16 @@ function de({
         header: ""
       }
     ] : [],
-    ...t.map((n, S) => ({
+    ...t.map((n, p) => ({
       ...n,
-      key: typeof n.field == "string" ? String(n.field) : String(S),
+      key: typeof n.field == "string" ? String(n.field) : String(p),
       label: n.header
     }))
   ], A = (n) => {
-    const S = t.find(
+    const p = t.find(
       (T) => typeof T.field == "string" && T.field.length > 0 && String(T.field) === n.key
-    ), C = S == null ? void 0 : S.field;
-    C != null && C !== "actions" && m(
+    ), C = p == null ? void 0 : p.field;
+    C != null && C !== "actions" && j(
       C,
       x.direction === "asc" ? "desc" : "asc"
     );
@@ -268,7 +268,7 @@ function de({
       {
         "aria-label": "data-grid-header",
         "aria-labelledby": "data-grid-header",
-        columns: j,
+        columns: S,
         className: v(y.header),
         ...s == null ? void 0 : s.tableHeaderProps,
         children: (n) => /* @__PURE__ */ a.jsx(
@@ -281,7 +281,7 @@ function de({
             children: n.key === "checkbox" && u ? /* @__PURE__ */ a.jsx(
               z,
               {
-                isSelected: p,
+                isSelected: m,
                 onValueChange: b,
                 "aria-label": "Select all rows",
                 className: i == null ? void 0 : i.checkbox
@@ -335,15 +335,15 @@ function de({
         "aria-labelledby": `Row ${n.id}`,
         className: v(y.row),
         ...s == null ? void 0 : s.tableRowProps,
-        children: (S) => /* @__PURE__ */ a.jsx(H, { ...s == null ? void 0 : s.tableCellProps, children: S === "checkbox" && u ? /* @__PURE__ */ a.jsx(
+        children: (p) => /* @__PURE__ */ a.jsx(H, { ...s == null ? void 0 : s.tableCellProps, children: p === "checkbox" && u ? /* @__PURE__ */ a.jsx(
           z,
           {
             checked: h(n),
-            onChange: () => c(n),
+            onValueChange: () => c(n),
             "aria-label": `Select row ${n.id}`,
             className: i == null ? void 0 : i.checkbox
           }
-        ) : /* @__PURE__ */ a.jsx("div", { className: i == null ? void 0 : i.cellContent, children: te(S, n, t) }) })
+        ) : /* @__PURE__ */ a.jsx("div", { className: i == null ? void 0 : i.cellContent, children: te(p, n, t) }) })
       },
       n.id
     ) })

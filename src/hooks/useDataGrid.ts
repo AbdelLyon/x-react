@@ -52,6 +52,8 @@ export const useDataGridState = <T extends DataRow>({
       ? selectedRows.filter((r) => r.id !== row.id)
       : [...selectedRows, row];
 
+    console.log(newSelectedRows);
+
     setSelectedRows(newSelectedRows);
     onSelectionChange?.(newSelectedRows);
   };
