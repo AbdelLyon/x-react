@@ -16,7 +16,7 @@ export type SelectionState<T> = {
 };
 
 export type SelectionActions<T> = {
-  handleSelectionChange: (row: T) => void;
+  handleSelectionChange: (row: T, checked: boolean) => void;
   handleSelectAll: (checked: boolean) => void;
 };
 
@@ -54,17 +54,15 @@ export const useSelection = <T extends DataRow>({
     setIsAllChecked(checkedRows.size === rows.length);
   }, [checkedRows, rows]);
 
-  const handleSelectionChange = (row: T): void => {
+  const handleSelectionChange = (row: T, checked: boolean): void => {
     setCheckedRows((prev) => {
-      const newChecked = new Set(prev);
-      const existing = Array.from(newChecked).find((r) => r.id === row.id);
-      if (existing) {
-        newChecked.delete(existing);
+      if (checked) {
+        prev.delete(row);
       } else {
-        newChecked.add(row);
+        prev.add(row);
       }
-      onSelectionChange?.(Array.from(newChecked));
-      return newChecked;
+      onSelectionChange?.(Array.from(prev));
+      return prev;
     });
   };
 

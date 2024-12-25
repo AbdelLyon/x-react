@@ -22,7 +22,7 @@ describe("useSelection", () => {
     const { result } = renderHook(() => useSelection({ rows: mockRows }));
 
     act(() => {
-      result.current.handleSelectionChange(mockRows[0]);
+      result.current.handleSelectionChange(mockRows[0], true);
     });
 
     expect(result.current.checkedRows).toHaveLength(1);
@@ -44,8 +44,8 @@ describe("useSelection", () => {
     const { result } = renderHook(() => useSelection({ rows: mockRows }));
 
     act(() => {
-      result.current.handleSelectionChange(mockRows[0]);
-      result.current.handleSelectionChange(mockRows[0]);
+      result.current.handleSelectionChange(mockRows[0], true);
+      result.current.handleSelectionChange(mockRows[0], false);
     });
 
     expect(result.current.checkedRows).toHaveLength(0);
@@ -105,7 +105,7 @@ describe("useDataGridState", () => {
     );
 
     act(() => {
-      result.current.handleSelectionChange(mockRows[0]);
+      result.current.handleSelectionChange(mockRows[0], true);
       result.current.handleSortChange("id", "desc");
     });
 

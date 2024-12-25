@@ -12,7 +12,7 @@ export type SelectionState<T> = {
     isAllChecked: boolean;
 };
 export type SelectionActions<T> = {
-    handleSelectionChange: (row: T) => void;
+    handleSelectionChange: (row: T, checked: boolean) => void;
     handleSelectAll: (checked: boolean) => void;
 };
 export type SortState<T> = {
