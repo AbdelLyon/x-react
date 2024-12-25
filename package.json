@@ -123,13 +123,13 @@
       "import": "./dist/tabs/x-react.es.js",
       "types": "./dist/tabs/index.d.ts"
     },
-    "./scroll": {
-      "import": "./dist/scroll/x-react.es.js",
-      "types": "./dist/scroll/index.d.ts"
-    },
     "./pagination": {
       "import": "./dist/pagination/x-react.es.js",
-      "types": "./dist/pagination/index.d.ts"
+      "types": "./dist/pagination/index.d.,ts"
+    },
+    "./typography": {
+      "import": "./dist/typography/x-react.es.js",
+      "types": "./dist/typography/index.d.,ts"
     }
   },
   "typesVersions": {

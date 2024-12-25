@@ -1,40 +1,53 @@
 /* empty css                */
-import { j as s } from "../jsx-runtime-Dx-03ztt.js";
-import { u as e } from "../useResponsive-C48eFL5T.js";
-import { N as p } from "../Navbar-Hng6EGpF.js";
-import { S as l } from "../Sidebar-XdsFKim9.js";
+import { j as r } from "../jsx-runtime-Dx-03ztt.js";
+import { u as p } from "../useResponsive-C48eFL5T.js";
+import { N as l } from "../Navbar-Hng6EGpF.js";
+import { S as x } from "../Sidebar-XdsFKim9.js";
 import { cn as c } from "../utils/x-react.es.js";
-const b = ({
-  children: n,
+import { forwardRef as d } from "react";
+import { ScrollShadow as f } from "@nextui-org/react";
+const g = ({
+  children: s,
   navbar: o,
-  sidebar: t,
-  className: x
+  sidebar: m,
+  className: i
 }) => {
-  const i = e("(min-width: 1024px)"), m = e("(min-width: 768px) and (max-width: 1023px)"), r = !!o, a = !!t;
-  return /* @__PURE__ */ s.jsxs("div", { className: "min-h-screen bg-background", children: [
-    r && /* @__PURE__ */ s.jsx(p, { ...o }),
-    /* @__PURE__ */ s.jsxs("div", { className: "flex", children: [
-      a && /* @__PURE__ */ s.jsx(l, { ...t }),
-      /* @__PURE__ */ s.jsx(
+  const t = p("(min-width: 1024px)"), a = p("(min-width: 768px) and (max-width: 1023px)"), n = !!o, e = !!m;
+  return /* @__PURE__ */ r.jsxs("div", { className: "min-h-screen bg-background", children: [
+    n && /* @__PURE__ */ r.jsx(l, { ...o }),
+    /* @__PURE__ */ r.jsxs("div", { className: "flex", children: [
+      e && /* @__PURE__ */ r.jsx(x, { ...m }),
+      /* @__PURE__ */ r.jsx(
         "main",
         {
           className: c(
             "flex-1 px-4 transition-all duration-200",
             {
-              "pt-16": r,
-              "ml-0": !a || !m && !i,
-              "ml-[90px]": a && m,
-              "ml-[270px]": a && i,
+              "pt-16": n,
+              "ml-0": !e || !a && !t,
+              "ml-[90px]": e && a,
+              "ml-[270px]": e && t,
               "px-4 sm:px-6 md:px-8 lg:px-12": !0
             },
-            x
+            i
           ),
-          children: n
+          children: s
         }
       )
     ] })
   ] });
-};
+}, u = d(
+  ({ width: s = "100%", height: o = "100%", style: m, ...i }, t) => {
+    const a = {
+      width: typeof s == "number" ? `${s}px` : s,
+      height: typeof o == "number" ? `${o}px` : o,
+      ...m
+    };
+    return /* @__PURE__ */ r.jsx(f, { ref: t, style: a, ...i });
+  }
+);
+u.displayName = "Scroll";
 export {
-  b as Layout
+  g as Layout,
+  u as Scroll
 };
