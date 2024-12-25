@@ -1,9 +1,9 @@
 /* empty css                */
 import { j as s } from "../jsx-runtime-Dx-03ztt.js";
-import * as R from "react";
-import { useState as I, useEffect as B } from "react";
+import * as C from "react";
+import { useState as I, useEffect as z } from "react";
 import { cn as v } from "../utils/x-react.es.js";
-import { Table as G, TableHeader as M, TableColumn as L, Skeleton as T, TableBody as O, TableRow as H, TableCell as E, Checkbox as $ } from "@nextui-org/react";
+import { Table as G, TableHeader as M, TableColumn as L, Skeleton as T, TableBody as O, TableRow as H, TableCell as E, Checkbox as D } from "@nextui-org/react";
 import { IconChevronUp as U, IconChevronDown as W } from "@tabler/icons-react";
 const q = {
   key: null,
@@ -14,28 +14,34 @@ const q = {
   onSortChange: n
 }) => {
   const [i, o] = I([]), [u, r] = I(!1), [d, f] = I(!1), [a, y] = I(q);
-  return B(() => {
+  z(() => {
     const c = i.length === e.length && e.length > 0;
     r(c);
-  }, [i, e]), {
+  }, [i, e]);
+  const j = (c) => {
+    o((b) => {
+      const h = b.some((g) => g.id === c.id) ? b.filter((g) => g.id !== c.id) : [...b, c];
+      return t == null || t(h), h;
+    });
+  }, x = (c) => {
+    const b = c ? [...e] : [];
+    o(b), f(c), t == null || t(b);
+  }, p = (c, b) => {
+    y({ key: c, direction: b }), n == null || n(c, b);
+  };
+  return z(() => {
+    const c = i.length > 0;
+    f(c);
+  }, [i]), {
     selectedRows: i,
     isAllChecked: u,
     sortConfig: a,
-    handleSelectionChange: (c) => {
-      o((b) => {
-        const h = b.some((g) => g.id === c.id) ? b.filter((g) => g.id !== c.id) : [...b, c];
-        return t == null || t(h), h;
-      });
-    },
-    handleSelectAll: (c) => {
-      const b = c ? [...e] : [];
-      o(b), f(c), t == null || t(b);
-    },
-    handleSortChange: (c, b) => {
-      y({ key: c, direction: b }), n == null || n(c, b);
-    },
+    handleSelectionChange: j,
+    handleSelectAll: x,
+    handleSortChange: p,
     handelSelectRow: (c) => {
-      f(i.some((b) => b.id === c.id));
+      const b = i.some((k) => k.id === c.id);
+      f(b);
     },
     isChecked: d
   };
@@ -52,9 +58,9 @@ const q = {
     /* @__PURE__ */ s.jsx(O, { children: Array(t).fill(null).map((d, f) => /* @__PURE__ */ s.jsx(H, { className: v(u.row), children: Array(r).fill(null).map((a, y) => /* @__PURE__ */ s.jsx(E, { children: y === 0 && n ? /* @__PURE__ */ s.jsx(T, { className: "size-4 rounded-md" }) : /* @__PURE__ */ s.jsx(T, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, y)) }, f)) })
   ] });
 };
-var z = /* @__PURE__ */ new Map(), V = /* @__PURE__ */ new WeakMap(), D = 0, X = void 0;
+var $ = /* @__PURE__ */ new Map(), V = /* @__PURE__ */ new WeakMap(), B = 0, X = void 0;
 function Y(e) {
-  return e ? (V.has(e) || (D += 1, V.set(e, D.toString())), V.get(e)) : "0";
+  return e ? (V.has(e) || (B += 1, V.set(e, B.toString())), V.get(e)) : "0";
 }
 function Z(e) {
   return Object.keys(e).sort().filter(
@@ -63,7 +69,7 @@ function Z(e) {
 }
 function K(e) {
   const t = Z(e);
-  let n = z.get(t);
+  let n = $.get(t);
   if (!n) {
     const i = /* @__PURE__ */ new Map();
     let o;
@@ -80,7 +86,7 @@ function K(e) {
       id: t,
       observer: u,
       elements: i
-    }, z.set(t, n);
+    }, $.set(t, n);
   }
   return n;
 }
@@ -100,7 +106,7 @@ function N(e, t, n = {}, i = X) {
   }
   const { id: o, observer: u, elements: r } = K(n), d = r.get(e) || [];
   return r.has(e) || r.set(e, d), d.push(t), u.observe(e), function() {
-    d.splice(d.indexOf(t), 1), d.length === 0 && (r.delete(e), u.unobserve(e)), r.size === 0 && (u.disconnect(), z.delete(o));
+    d.splice(d.indexOf(t), 1), d.length === 0 && (r.delete(e), u.unobserve(e)), r.size === 0 && (u.disconnect(), $.delete(o));
   };
 }
 function P({
@@ -116,21 +122,21 @@ function P({
   onChange: a
 } = {}) {
   var y;
-  const [S, x] = R.useState(null), p = R.useRef(a), [k, c] = R.useState({
+  const [j, x] = C.useState(null), p = C.useRef(a), [m, c] = C.useState({
     inView: !!d,
     entry: void 0
   });
-  p.current = a, R.useEffect(
+  p.current = a, C.useEffect(
     () => {
-      if (r || !S) return;
+      if (r || !j) return;
       let g;
       return g = N(
-        S,
-        (A, C) => {
+        j,
+        (A, R) => {
           c({
             inView: A,
-            entry: C
-          }), p.current && p.current(A, C), C.isIntersecting && u && g && (g(), g = void 0);
+            entry: R
+          }), p.current && p.current(A, R), R.isIntersecting && u && g && (g(), g = void 0);
         },
         {
           root: o,
@@ -151,7 +157,7 @@ function P({
     [
       // If the threshold is an array, convert it to a string, so it won't change between renders.
       Array.isArray(e) ? e.toString() : e,
-      S,
+      j,
       o,
       i,
       u,
@@ -161,12 +167,12 @@ function P({
       t
     ]
   );
-  const b = (y = k.entry) == null ? void 0 : y.target, m = R.useRef(void 0);
-  !S && b && !u && !r && m.current !== b && (m.current = b, c({
+  const b = (y = m.entry) == null ? void 0 : y.target, k = C.useRef(void 0);
+  !j && b && !u && !r && k.current !== b && (k.current = b, c({
     inView: !!d,
     entry: void 0
   }));
-  const h = [x, k.inView, k.entry];
+  const h = [x, m.inView, m.entry];
   return h.ref = h[0], h.inView = h[1], h.entry = h[2], h;
 }
 const F = {
@@ -220,13 +226,13 @@ function oe({
   ...y
 }) {
   const {
-    isAllChecked: S,
+    isAllChecked: j,
     sortConfig: x,
     handleSelectionChange: p,
-    handleSelectAll: k,
+    handleSelectAll: m,
     handleSortChange: c,
     isChecked: b,
-    handelSelectRow: m
+    handelSelectRow: k
   } = J({
     rows: e,
     onSelectionChange: i,
@@ -235,7 +241,7 @@ function oe({
     threshold: 0.5,
     rootMargin: "100px"
   });
-  if (B(() => {
+  if (z(() => {
     h && (n == null || n());
   }, [h, n]), f)
     return /* @__PURE__ */ s.jsx(
@@ -255,15 +261,15 @@ function oe({
         header: ""
       }
     ] : [],
-    ...t.map((l, j) => ({
+    ...t.map((l, S) => ({
       ...l,
-      key: typeof l.field == "string" ? String(l.field) : String(j),
+      key: typeof l.field == "string" ? String(l.field) : String(S),
       label: l.header
     }))
-  ], C = (l) => {
-    const j = t.find(
+  ], R = (l) => {
+    const S = t.find(
       (_) => typeof _.field == "string" && _.field.length > 0 && String(_.field) === l.key
-    ), w = j == null ? void 0 : j.field;
+    ), w = S == null ? void 0 : S.field;
     w != null && w !== "actions" && c(
       w,
       x.direction === "asc" ? "desc" : "asc"
@@ -286,10 +292,10 @@ function oe({
             className: v(g.column),
             ...a == null ? void 0 : a.tableColumnProps,
             children: l.key === "checkbox" && u ? /* @__PURE__ */ s.jsx(
-              $,
+              D,
               {
-                isSelected: S,
-                onValueChange: k,
+                isSelected: j,
+                onValueChange: m,
                 "aria-label": "Select all rows",
                 className: r == null ? void 0 : r.checkbox
               }
@@ -302,7 +308,7 @@ function oe({
                     "relative size-4 cursor-pointer",
                     r == null ? void 0 : r.sortIcon
                   ),
-                  onClick: () => C(l),
+                  onClick: () => R(l),
                   role: "button",
                   "aria-label": te(l.label),
                   children: [
@@ -342,17 +348,17 @@ function oe({
         "aria-labelledby": `Row ${l.id}`,
         className: v(g.row),
         ...a == null ? void 0 : a.tableRowProps,
-        children: (j) => /* @__PURE__ */ s.jsx(E, { ...a == null ? void 0 : a.tableCellProps, children: j === "checkbox" && u ? /* @__PURE__ */ s.jsx(
-          $,
+        children: (S) => /* @__PURE__ */ s.jsx(E, { ...a == null ? void 0 : a.tableCellProps, children: S === "checkbox" && u ? /* @__PURE__ */ s.jsx(
+          D,
           {
             checked: b,
             onChange: () => {
-              p(l), m(l);
+              p(l), k(l);
             },
             "aria-label": `Select row ${l.id}`,
             className: r == null ? void 0 : r.checkbox
           }
-        ) : /* @__PURE__ */ s.jsx("div", { className: r == null ? void 0 : r.cellContent, children: re(j, l, t) }) })
+        ) : /* @__PURE__ */ s.jsx("div", { className: r == null ? void 0 : r.cellContent, children: re(S, l, t) }) })
       },
       l.id
     ) })

@@ -76,8 +76,14 @@ export const useDataGridState = <T extends DataRow>({
     onSortChange?.(column, direction);
   };
 
+  useEffect(() => {
+    const isSelected = selectedRows.length > 0;
+    setIsChecked(isSelected);
+  }, [selectedRows]);
+
   const handelSelectRow = (row: T): void => {
-    setIsChecked(selectedRows.some((r) => r.id === row.id));
+    const isRowSelected = selectedRows.some((r) => r.id === row.id);
+    setIsChecked(isRowSelected);
   };
 
   return {

@@ -1,4 +1,4 @@
-import { useDataGridState } from "@/hooks/useDataGrid";
+import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
 import type {
   TableBodyProps,
