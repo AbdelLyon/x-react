@@ -48,7 +48,6 @@ export const useDataGridState = <T extends DataRow>({
   useEffect(() => {
     const isAllChecked = selectedRows.length === rows.length && rows.length > 0;
     setIsAllChecked(isAllChecked);
-    setIsChecked(isAllChecked);
   }, [selectedRows, rows]);
 
   const handleSelectionChange = (row: T): void => {
@@ -65,6 +64,7 @@ export const useDataGridState = <T extends DataRow>({
   const handleSelectAll = (checked: boolean): void => {
     const newSelectedRows = checked ? [...rows] : [];
     setSelectedRows(newSelectedRows);
+    setIsChecked(checked);
     onSelectionChange?.(newSelectedRows);
   };
 

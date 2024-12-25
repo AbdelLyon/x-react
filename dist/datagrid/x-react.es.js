@@ -16,7 +16,7 @@ const q = {
   const [i, o] = I([]), [u, r] = I(!1), [d, f] = I(!1), [a, y] = I(q);
   return B(() => {
     const c = i.length === e.length && e.length > 0;
-    r(c), f(c);
+    r(c);
   }, [i, e]), {
     selectedRows: i,
     isAllChecked: u,
@@ -29,7 +29,7 @@ const q = {
     },
     handleSelectAll: (c) => {
       const b = c ? [...e] : [];
-      o(b), t == null || t(b);
+      o(b), f(c), t == null || t(b);
     },
     handleSortChange: (c, b) => {
       y({ key: c, direction: b }), n == null || n(c, b);
@@ -345,7 +345,7 @@ function oe({
         children: (j) => /* @__PURE__ */ s.jsx(E, { ...a == null ? void 0 : a.tableCellProps, children: j === "checkbox" && u ? /* @__PURE__ */ s.jsx(
           $,
           {
-            isSelected: b,
+            checked: b,
             onValueChange: () => {
               p(l), m(l);
             },
