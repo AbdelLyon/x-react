@@ -72,7 +72,10 @@ export const useDataGridState = <T extends DataRow>({
   };
 
   const isRowSelected = (row: T): boolean => {
-    return selectedRows.some((r) => r.id === row.id);
+    return (
+      selectedRows.some((r) => r.id === row.id) ||
+      selectedRows.length === rows.length
+    );
   };
 
   return {
