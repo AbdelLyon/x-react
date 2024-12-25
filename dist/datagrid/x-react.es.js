@@ -116,11 +116,11 @@ function P({
   onChange: a
 } = {}) {
   var y;
-  const [S, x] = R.useState(null), k = R.useRef(a), [p, c] = R.useState({
+  const [S, x] = R.useState(null), p = R.useRef(a), [k, c] = R.useState({
     inView: !!d,
     entry: void 0
   });
-  k.current = a, R.useEffect(
+  p.current = a, R.useEffect(
     () => {
       if (r || !S) return;
       let g;
@@ -130,7 +130,7 @@ function P({
           c({
             inView: A,
             entry: C
-          }), k.current && k.current(A, C), C.isIntersecting && u && g && (g(), g = void 0);
+          }), p.current && p.current(A, C), C.isIntersecting && u && g && (g(), g = void 0);
         },
         {
           root: o,
@@ -161,12 +161,12 @@ function P({
       t
     ]
   );
-  const b = (y = p.entry) == null ? void 0 : y.target, m = R.useRef(void 0);
+  const b = (y = k.entry) == null ? void 0 : y.target, m = R.useRef(void 0);
   !S && b && !u && !r && m.current !== b && (m.current = b, c({
     inView: !!d,
     entry: void 0
   }));
-  const h = [x, p.inView, p.entry];
+  const h = [x, k.inView, k.entry];
   return h.ref = h[0], h.inView = h[1], h.entry = h[2], h;
 }
 const F = {
@@ -222,8 +222,8 @@ function oe({
   const {
     isAllChecked: S,
     sortConfig: x,
-    handleSelectionChange: k,
-    handleSelectAll: p,
+    handleSelectionChange: p,
+    handleSelectAll: k,
     handleSortChange: c,
     isChecked: b,
     handelSelectRow: m
@@ -289,7 +289,7 @@ function oe({
               $,
               {
                 isSelected: S,
-                onValueChange: p,
+                onValueChange: k,
                 "aria-label": "Select all rows",
                 className: r == null ? void 0 : r.checkbox
               }
@@ -345,9 +345,9 @@ function oe({
         children: (j) => /* @__PURE__ */ s.jsx(E, { ...a == null ? void 0 : a.tableCellProps, children: j === "checkbox" && u ? /* @__PURE__ */ s.jsx(
           $,
           {
-            checked: b,
+            isSelected: b,
             onValueChange: () => {
-              k(l), m(l);
+              p(l), m(l);
             },
             "aria-label": `Select row ${l.id}`,
             className: r == null ? void 0 : r.checkbox
