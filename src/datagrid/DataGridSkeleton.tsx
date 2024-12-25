@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 import type { JSX } from "react";
-import { GRIDVARIANT } from "./DataGrid";
+import { GRIDVARIANTS } from "./DataGrid";
 
 interface DataGridSkeletonProps {
   columns: number;
@@ -23,10 +23,10 @@ export const DataGridSkeleton = ({
   columns = 5,
   rows = 5,
   checkboxSelection = true,
-  variant = "unstyled",
+  variant = "bordered",
   className,
 }: DataGridSkeletonProps): JSX.Element => {
-  const variantClasses = GRIDVARIANT[variant];
+  const variantClasses = GRIDVARIANTS[variant as keyof typeof GRIDVARIANTS];
   const actualColumns = checkboxSelection ? columns + 1 : columns;
 
   return (
