@@ -160,6 +160,8 @@ export function DataGrid<T extends { id: string | number }>({
     }
   };
 
+  console.log(selectedRows);
+
   return (
     <TableRoot aria-label="data-grid" aria-labelledby="data-grid" {...props}>
       <TableHeader

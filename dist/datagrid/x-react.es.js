@@ -268,7 +268,7 @@ function ue({
       v.direction === "asc" ? "desc" : "asc"
     );
   };
-  return /* @__PURE__ */ d.jsxs(B, { "aria-label": "data-grid", "aria-labelledby": "data-grid", ...y, children: [
+  return console.log(c), /* @__PURE__ */ d.jsxs(B, { "aria-label": "data-grid", "aria-labelledby": "data-grid", ...y, children: [
     /* @__PURE__ */ d.jsx(
       G,
       {
