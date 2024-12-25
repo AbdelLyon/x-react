@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 import type { JSX } from "react";
-import { GRID_VARIANTS } from "./DataGrid";
+import { GRID_VARIANTS } from "@/data/default";
 
 interface DataGridSkeletonProps {
   columns: number;

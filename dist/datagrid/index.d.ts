@@ -1,1 +1,2 @@
-export { DataGrid, type ColumnDefinition } from './DataGrid';
+export { DataGrid } from './DataGrid';
+export type { ColumnDefinition, SortConfig } from '../types/datagrid';

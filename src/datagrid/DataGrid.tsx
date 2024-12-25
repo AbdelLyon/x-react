@@ -1,13 +1,5 @@
 import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
-import type {
-  TableBodyProps,
-  TableProps,
-  TableHeaderProps,
-  TableRowProps,
-  TableCellProps,
-  TableColumnProps,
-} from "@nextui-org/react";
 import { useEffect, type Key } from "react";
 import {
   Table as TableRoot,
@@ -22,86 +14,12 @@ import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import { useInView } from "react-intersection-observer";
-
-// Types
-export interface SortConfig<T> {
-  key: keyof T | null;
-  direction: "asc" | "desc";
-}
-
-interface ColumnBase<T> {
-  header: React.ReactNode;
-  footer?: (data: T[]) => React.ReactNode;
-  className?: string;
-  sortable?: boolean;
-}
-
-interface FieldColumn<T> extends ColumnBase<T> {
-  field: keyof T;
-  cell?: (row: T) => React.ReactNode;
-}
-
-interface ActionColumn<T> extends ColumnBase<T> {
-  field?: "actions";
-  cell: (row: T) => React.ReactNode;
-}
-
-export type ColumnDefinition<T> = FieldColumn<T> | ActionColumn<T>;
-
-interface DataGridComponentProps<T> {
-  tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
-  tableBodyProps?: Omit<TableBodyProps<T>, "items" | "children">;
-  tableRowProps?: Omit<TableRowProps, "children">;
-  tableCellProps?: Omit<TableCellProps, "children">;
-  tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
-}
-
-interface DataGridProps<T extends { id: string | number }>
-  extends Omit<
-    TableProps,
-    "onSelectionChange" | "onSortChange" | "showSelectionCheckboxes"
-  > {
-  childrenProps?: DataGridComponentProps<T>;
-  rows: T[];
-  columns: ColumnDefinition<T>[];
-  className?: string;
-  footerContent?: React.ReactNode;
-  onSelectionChange?: (rows: T[]) => void;
-  onSortChange?: (column: keyof T, direction: "asc" | "desc") => void;
-  onEndReached?: () => void;
-  isFetching?: boolean;
-  showSelectionCheckboxes?: boolean;
-  classNames?: {
-    checkbox?: string;
-    sortIcon?: string;
-    cellContent?: string;
-  };
-  variant?: "bordered" | "striped" | "unstyled";
-  isLoading?: boolean;
-}
-
-export const GRID_VARIANTS = {
-  bordered: {
-    header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4 h-12",
-    row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2 h-12",
-  },
-  striped: {
-    header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4 h-12",
-    row: "py-4 even:bg-content2 h-12",
-  },
-  unstyled: {
-    header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4 h-12",
-    row: "py-4 hover:bg-content2 h-12",
-  },
-};
-
-type ExtendedColumn<T> = ColumnDefinition<T> & {
-  key: string;
-  label: React.ReactNode;
-};
+import type {
+  ColumnDefinition,
+  DataGridProps,
+  ExtendedColumn,
+} from "@/types/datagrid";
+import { GRID_VARIANTS } from "@/data/default";
 
 function getColumnAriaLabel<T extends object>(
   column: ExtendedColumn<T>,
