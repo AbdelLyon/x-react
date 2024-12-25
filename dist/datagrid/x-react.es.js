@@ -3,7 +3,7 @@ import { j as d } from "../jsx-runtime-Dx-03ztt.js";
 import * as m from "react";
 import { useState as V, useEffect as D } from "react";
 import { cn as g } from "../utils/x-react.es.js";
-import { Table as B, TableHeader as G, TableColumn as M, Skeleton as R, TableBody as L, TableRow as O, TableCell as H, Checkbox as _ } from "@nextui-org/react";
+import { Table as B, TableHeader as G, TableColumn as M, Skeleton as I, TableBody as L, TableRow as O, TableCell as H, Checkbox as _ } from "@nextui-org/react";
 import { IconChevronUp as F, IconChevronDown as U } from "@tabler/icons-react";
 const W = ({
   rows: e,
@@ -17,7 +17,7 @@ const W = ({
     checkedRows: r,
     handleSelectionChange: (u) => {
       l((a) => {
-        const c = new Set(a), y = Array.from(c).find((h) => h.id === u.id);
+        const c = new Set(a), y = Array.from(c).find((j) => j.id === u.id);
         return y ? c.delete(y) : c.add(u), t == null || t(Array.from(c)), c;
       });
     },
@@ -65,13 +65,13 @@ const W = ({
 }) => {
   const s = E[l], i = r ? e + 1 : e;
   return /* @__PURE__ */ d.jsxs(B, { radius: "sm", "aria-label": "Loading data", className: o, children: [
-    /* @__PURE__ */ d.jsx(G, { className: g(s.header), children: Array(i).fill(null).map((f, u) => /* @__PURE__ */ d.jsx(M, { className: g(s.column), children: u === 0 && r ? /* @__PURE__ */ d.jsx(R, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(R, { className: "h-4 w-24 rounded-md" }) }, u)) }),
-    /* @__PURE__ */ d.jsx(L, { children: Array(t).fill(null).map((f, u) => /* @__PURE__ */ d.jsx(O, { className: g(s.row), children: Array(i).fill(null).map((a, c) => /* @__PURE__ */ d.jsx(H, { children: c === 0 && r ? /* @__PURE__ */ d.jsx(R, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(R, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, c)) }, u)) })
+    /* @__PURE__ */ d.jsx(G, { className: g(s.header), children: Array(i).fill(null).map((f, u) => /* @__PURE__ */ d.jsx(M, { className: g(s.column), children: u === 0 && r ? /* @__PURE__ */ d.jsx(I, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(I, { className: "h-4 w-24 rounded-md" }) }, u)) }),
+    /* @__PURE__ */ d.jsx(L, { children: Array(t).fill(null).map((f, u) => /* @__PURE__ */ d.jsx(O, { className: g(s.row), children: Array(i).fill(null).map((a, c) => /* @__PURE__ */ d.jsx(H, { children: c === 0 && r ? /* @__PURE__ */ d.jsx(I, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(I, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, c)) }, u)) })
   ] });
 };
-var z = /* @__PURE__ */ new Map(), I = /* @__PURE__ */ new WeakMap(), $ = 0, Y = void 0;
+var z = /* @__PURE__ */ new Map(), R = /* @__PURE__ */ new WeakMap(), $ = 0, Y = void 0;
 function Z(e) {
-  return e ? (I.has(e) || ($ += 1, I.set(e, $.toString())), I.get(e)) : "0";
+  return e ? (R.has(e) || ($ += 1, R.set(e, $.toString())), R.get(e)) : "0";
 }
 function K(e) {
   return Object.keys(e).sort().filter(
@@ -133,21 +133,21 @@ function ee({
   onChange: a
 } = {}) {
   var c;
-  const [y, h] = m.useState(null), p = m.useRef(a), [S, A] = m.useState({
+  const [y, j] = m.useState(null), v = m.useRef(a), [p, A] = m.useState({
     inView: !!f,
     entry: void 0
   });
-  p.current = a, m.useEffect(
+  v.current = a, m.useEffect(
     () => {
       if (i || !y) return;
-      let v;
-      return v = P(
+      let h;
+      return h = P(
         y,
         (C, n) => {
           A({
             inView: C,
             entry: n
-          }), p.current && p.current(C, n), n.isIntersecting && s && v && (v(), v = void 0);
+          }), v.current && v.current(C, n), n.isIntersecting && s && h && (h(), h = void 0);
         },
         {
           root: o,
@@ -160,7 +160,7 @@ function ee({
         },
         u
       ), () => {
-        v && v();
+        h && h();
       };
     },
     // We break the rule here, because we aren't including the actual `threshold` variable
@@ -178,12 +178,12 @@ function ee({
       t
     ]
   );
-  const j = (c = S.entry) == null ? void 0 : c.target, k = m.useRef(void 0);
-  !y && j && !s && !i && k.current !== j && (k.current = j, A({
+  const S = (c = p.entry) == null ? void 0 : c.target, k = m.useRef(void 0);
+  !y && S && !s && !i && k.current !== S && (k.current = S, A({
     inView: !!f,
     entry: void 0
   }));
-  const b = [h, S.inView, S.entry];
+  const b = [j, p.inView, p.entry];
   return b.ref = b[0], b.inView = b[1], b.entry = b[2], b;
 }
 function te(e) {
@@ -217,15 +217,15 @@ function ue({
   variant: f = "unstyled",
   isLoading: u = !1,
   childrenProps: a,
-  ...c
+  selectedRows: c,
+  ...y
 }) {
   const {
-    isAllChecked: y,
-    sortConfig: h,
+    isAllChecked: j,
+    sortConfig: v,
     handleSelectionChange: p,
-    handleSelectAll: S,
-    handleSortChange: A,
-    checkedRows: j
+    handleSelectAll: A,
+    handleSortChange: S
   } = Q({
     rows: e,
     onSelectionChange: l,
@@ -246,7 +246,7 @@ function ue({
         rows: e.length
       }
     );
-  const b = E[f], v = [
+  const b = E[f], h = [
     ...s === !0 ? [
       {
         key: "checkbox",
@@ -263,18 +263,18 @@ function ue({
     const x = t.find(
       (T) => typeof T.field == "string" && T.field.length > 0 && String(T.field) === n.key
     ), w = x == null ? void 0 : x.field;
-    w != null && w !== "actions" && A(
+    w != null && w !== "actions" && S(
       w,
-      h.direction === "asc" ? "desc" : "asc"
+      v.direction === "asc" ? "desc" : "asc"
     );
   };
-  return /* @__PURE__ */ d.jsxs(B, { "aria-label": "data-grid", "aria-labelledby": "data-grid", ...c, children: [
+  return /* @__PURE__ */ d.jsxs(B, { "aria-label": "data-grid", "aria-labelledby": "data-grid", ...y, children: [
     /* @__PURE__ */ d.jsx(
       G,
       {
         "aria-label": "data-grid-header",
         "aria-labelledby": "data-grid-header",
-        columns: v,
+        columns: h,
         className: g(b.header),
         ...a == null ? void 0 : a.tableHeaderProps,
         children: (n) => /* @__PURE__ */ d.jsx(
@@ -287,8 +287,8 @@ function ue({
             children: n.key === "checkbox" && s ? /* @__PURE__ */ d.jsx(
               _,
               {
-                isSelected: y,
-                onValueChange: S,
+                isSelected: j,
+                onValueChange: A,
                 "aria-label": "Select all rows",
                 className: i == null ? void 0 : i.checkbox
               }
@@ -311,7 +311,7 @@ function ue({
                         size: 16,
                         className: g(
                           "absolute -top-1",
-                          h.key === n.key && h.direction === "asc" ? "opacity-100" : "opacity-30"
+                          v.key === n.key && v.direction === "asc" ? "opacity-100" : "opacity-30"
                         )
                       }
                     ),
@@ -321,7 +321,7 @@ function ue({
                         size: 16,
                         className: g(
                           "absolute top-1",
-                          h.key === n.key && h.direction === "desc" ? "opacity-100" : "opacity-30"
+                          v.key === n.key && v.direction === "desc" ? "opacity-100" : "opacity-30"
                         )
                       }
                     )
@@ -341,17 +341,17 @@ function ue({
         "aria-labelledby": `Row ${n.id}`,
         className: g(b.row),
         ...a == null ? void 0 : a.tableRowProps,
-        children: (x) => (console.log(j.has(n)), /* @__PURE__ */ d.jsx(H, { ...a == null ? void 0 : a.tableCellProps, children: x === "checkbox" && s ? /* @__PURE__ */ d.jsx(
+        children: (x) => /* @__PURE__ */ d.jsx(H, { ...a == null ? void 0 : a.tableCellProps, children: x === "checkbox" && s ? /* @__PURE__ */ d.jsx(
           _,
           {
-            isSelected: j.has(n),
+            isSelected: c == null ? void 0 : c.includes(n),
             onValueChange: () => {
               p(n);
             },
             "aria-label": `Select row ${n.id}`,
             className: i == null ? void 0 : i.checkbox
           }
-        ) : /* @__PURE__ */ d.jsx("div", { className: i == null ? void 0 : i.cellContent, children: ne(x, n, t) }) }))
+        ) : /* @__PURE__ */ d.jsx("div", { className: i == null ? void 0 : i.cellContent, children: ne(x, n, t) }) })
       },
       n.id
     ) })

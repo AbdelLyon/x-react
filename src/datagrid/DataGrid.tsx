@@ -82,6 +82,7 @@ export function DataGrid<T extends { id: string | number }>({
   variant = "unstyled",
   isLoading = false,
   childrenProps,
+  selectedRows,
   ...props
 }: DataGridProps<T>): JSX.Element {
   const {
@@ -90,7 +91,6 @@ export function DataGrid<T extends { id: string | number }>({
     handleSelectionChange,
     handleSelectAll,
     handleSortChange,
-    checkedRows,
   } = useDataGridState({
     rows,
     onSelectionChange,
@@ -235,13 +235,11 @@ export function DataGrid<T extends { id: string | number }>({
               {...childrenProps?.tableRowProps}
             >
               {(columnKey) => {
-                console.log(checkedRows.has(row));
-
                 return (
                   <TableCell {...childrenProps?.tableCellProps}>
                     {columnKey === "checkbox" && showSelectionCheckboxes ? (
                       <Checkbox
-                        isSelected={checkedRows.has(row)}
+                        isSelected={selectedRows?.includes(row)}
                         onValueChange={() => {
                           handleSelectionChange(row);
                         }}

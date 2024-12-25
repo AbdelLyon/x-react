@@ -43,7 +43,10 @@ export interface DataGridComponentProps<T> {
 export interface DataGridProps<T extends { id: string | number }>
   extends Omit<
     TableProps,
-    "onSelectionChange" | "onSortChange" | "showSelectionCheckboxes"
+    | "onSelectionChange"
+    | "onSortChange"
+    | "showSelectionCheckboxes"
+    | "selectedKeys"
   > {
   childrenProps?: DataGridComponentProps<T>;
   rows: T[];
@@ -62,6 +65,7 @@ export interface DataGridProps<T extends { id: string | number }>
   };
   variant?: "bordered" | "striped" | "unstyled";
   isLoading?: boolean;
+  selectedRows?: T[];
 }
 
 export type ExtendedColumn<T> = ColumnDefinition<T> & {
