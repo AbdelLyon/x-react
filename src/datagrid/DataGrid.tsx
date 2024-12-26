@@ -134,17 +134,23 @@ export function DataGrid<T extends { id: string | number }>({
   };
 
   return (
-    <DataTable aria-label="data-grid" {...props}>
+    <DataTable
+      aria-label="data-grid"
+      {...props}
+      classNames={{
+        thead: cn(variantClasses.header),
+        th: cn(variantClasses.column),
+        td: cn(variantClasses.row),
+      }}
+    >
       <TableHeader
         columns={preparedColumns}
-        className={cn(variantClasses.header)}
         {...childrenProps?.tableHeaderProps}
       >
         {(column) => (
           <TableColumn
             key={column.key}
             aria-label={getColumnLabel(column)}
-            className={cn(variantClasses.column)}
             {...childrenProps?.tableColumnProps}
           >
             <div className="flex items-center gap-2">
@@ -184,11 +190,7 @@ export function DataGrid<T extends { id: string | number }>({
       </TableHeader>
       <TableBody items={rows} {...childrenProps?.tableBodyProps}>
         {(row: T) => (
-          <TableRow
-            key={row.id}
-            className={cn(variantClasses.row)}
-            {...childrenProps?.tableRowProps}
-          >
+          <TableRow key={row.id} {...childrenProps?.tableRowProps}>
             {(columnKey) => (
               <TableCell {...childrenProps?.tableCellProps}>
                 {getCellValue(columnKey, row, columns)}
