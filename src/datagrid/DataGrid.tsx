@@ -153,7 +153,7 @@ export function DataGrid<T extends { id: string | number }>({
             aria-label={getColumnLabel(column)}
             {...childrenProps?.tableColumnProps}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               {column.label}
               {column.sortable !== false && (
                 <div

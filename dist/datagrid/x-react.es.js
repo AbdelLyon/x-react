@@ -9,21 +9,21 @@ const $ = ({
   rows: e,
   onSelectionChange: t
 }) => {
-  const [r, i] = A(/* @__PURE__ */ new Set()), [a, u] = A(!1);
+  const [r, a] = A(/* @__PURE__ */ new Set()), [i, u] = A(!1);
   return z(() => {
     u(r.size === e.length);
   }, [r, e]), {
     selectedRows: r,
-    allRowsSelected: a,
+    allRowsSelected: i,
     toggleRowSelection: (n) => {
-      i((c) => {
+      a((c) => {
         const f = new Set(c);
         return f.has(n) ? f.delete(n) : f.add(n), t == null || t(Array.from(f)), f;
       });
     },
     toggleAllRowsSelection: (n) => {
       const c = n ? new Set(e) : /* @__PURE__ */ new Set();
-      i(c), t == null || t(Array.from(c));
+      a(c), t == null || t(Array.from(c));
     }
   };
 }, H = ({
@@ -33,8 +33,8 @@ const $ = ({
     key: null,
     direction: "asc"
   });
-  return { sortConfiguration: t, updateSort: (a, u) => {
-    r({ key: a, direction: u }), e == null || e(a, u);
+  return { sortConfiguration: t, updateSort: (i, u) => {
+    r({ key: i, direction: u }), e == null || e(i, u);
   } };
 }, E = (e) => ({
   ...$(e),
@@ -43,7 +43,7 @@ const $ = ({
   bordered: {
     thead: "bg-content2",
     th: "py4 bg-content2 py-4",
-    tr: "py-4 border-b border-default-200 last:border-b-0 first:border-t-0  hover:bg-content2"
+    tr: "py-4 border-b border-default-200 last:border-b-0 data-[hover=true]:bg-content2"
   },
   striped: {
     thead: "bg-content2",
@@ -52,18 +52,18 @@ const $ = ({
   },
   unstyled: {
     thead: "bg-content2",
-    th: "py4 bg-content2 py-4",
+    th: "py4 bg-content2 py-4 data-[hover=true]:bg-content2",
     tr: "py-4 hover:bg-content2"
   }
 }, F = ({
   columns: e = 5,
   rows: t = 5,
   checkboxSelection: r = !0,
-  variant: i = "unstyled",
-  className: a
+  variant: a = "unstyled",
+  className: i
 }) => {
-  const u = M[i], s = r ? e + 1 : e;
-  return /* @__PURE__ */ d.jsxs(V, { radius: "sm", "aria-label": "Loading data", className: a, children: [
+  const u = M[a], s = r ? e + 1 : e;
+  return /* @__PURE__ */ d.jsxs(V, { radius: "sm", "aria-label": "Loading data", className: i, children: [
     /* @__PURE__ */ d.jsx(_, { className: v(u.thead), children: Array(s).fill(null).map((l, n) => /* @__PURE__ */ d.jsx(C, { className: v(u.th), children: n === 0 && r ? /* @__PURE__ */ d.jsx(w, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(w, { className: "h-4 w-24 rounded-md" }) }, n)) }),
     /* @__PURE__ */ d.jsx(D, { children: Array(t).fill(null).map((l, n) => /* @__PURE__ */ d.jsx(B, { className: v(u.tr), children: Array(s).fill(null).map((c, f) => /* @__PURE__ */ d.jsx(G, { children: f === 0 && r ? /* @__PURE__ */ d.jsx(w, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(w, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, f)) }, n)) })
   ] });
@@ -81,30 +81,30 @@ function J(e) {
   const t = q(e);
   let r = k.get(t);
   if (!r) {
-    const i = /* @__PURE__ */ new Map();
-    let a;
+    const a = /* @__PURE__ */ new Map();
+    let i;
     const u = new IntersectionObserver((s) => {
       s.forEach((l) => {
         var n;
-        const c = l.isIntersecting && a.some((f) => l.intersectionRatio >= f);
-        e.trackVisibility && typeof l.isVisible > "u" && (l.isVisible = c), (n = i.get(l.target)) == null || n.forEach((f) => {
+        const c = l.isIntersecting && i.some((f) => l.intersectionRatio >= f);
+        e.trackVisibility && typeof l.isVisible > "u" && (l.isVisible = c), (n = a.get(l.target)) == null || n.forEach((f) => {
           f(c, l);
         });
       });
     }, e);
-    a = u.thresholds || (Array.isArray(e.threshold) ? e.threshold : [e.threshold || 0]), r = {
+    i = u.thresholds || (Array.isArray(e.threshold) ? e.threshold : [e.threshold || 0]), r = {
       id: t,
       observer: u,
-      elements: i
+      elements: a
     }, k.set(t, r);
   }
   return r;
 }
-function K(e, t, r = {}, i = U) {
-  if (typeof window.IntersectionObserver > "u" && i !== void 0) {
+function K(e, t, r = {}, a = U) {
+  if (typeof window.IntersectionObserver > "u" && a !== void 0) {
     const n = e.getBoundingClientRect();
-    return t(i, {
-      isIntersecting: i,
+    return t(a, {
+      isIntersecting: a,
       target: e,
       intersectionRatio: typeof r.threshold == "number" ? r.threshold : 0,
       time: 0,
@@ -114,17 +114,17 @@ function K(e, t, r = {}, i = U) {
     }), () => {
     };
   }
-  const { id: a, observer: u, elements: s } = J(r), l = s.get(e) || [];
+  const { id: i, observer: u, elements: s } = J(r), l = s.get(e) || [];
   return s.has(e) || s.set(e, l), l.push(t), u.observe(e), function() {
-    l.splice(l.indexOf(t), 1), l.length === 0 && (s.delete(e), u.unobserve(e)), s.size === 0 && (u.disconnect(), k.delete(a));
+    l.splice(l.indexOf(t), 1), l.length === 0 && (s.delete(e), u.unobserve(e)), s.size === 0 && (u.disconnect(), k.delete(i));
   };
 }
 function Q({
   threshold: e,
   delay: t,
   trackVisibility: r,
-  rootMargin: i,
-  root: a,
+  rootMargin: a,
+  root: i,
   triggerOnce: u,
   skip: s,
   initialInView: l,
@@ -149,8 +149,8 @@ function Q({
           }), x.current && x.current(T, N), N.isIntersecting && u && y && (y(), y = void 0);
         },
         {
-          root: a,
-          rootMargin: i,
+          root: i,
+          rootMargin: a,
           threshold: e,
           // @ts-ignore
           trackVisibility: r,
@@ -168,8 +168,8 @@ function Q({
       // If the threshold is an array, convert it to a string, so it won't change between renders.
       Array.isArray(e) ? e.toString() : e,
       m,
-      a,
       i,
+      a,
       u,
       s,
       r,
@@ -186,25 +186,25 @@ function Q({
   return b.ref = b[0], b.inView = b[1], b.entry = b[2], b;
 }
 const X = (e) => typeof e.label == "string" && e.label.length > 0 ? e.label : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column", Y = (e) => typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column", Z = (e, t, r) => {
-  const i = r.find(
-    (a) => typeof a.field == "string" && String(a.field) === String(e)
+  const a = r.find(
+    (i) => typeof i.field == "string" && String(i.field) === String(e)
   );
-  if (i === void 0)
+  if (a === void 0)
     return null;
-  if (i.cell !== void 0)
-    return i.cell(t);
-  if (typeof i.field == "string" && i.field.length > 0 && i.field in t) {
-    const a = t[i.field];
-    return typeof a == "string" || typeof a == "number" ? String(a) : null;
+  if (a.cell !== void 0)
+    return a.cell(t);
+  if (typeof a.field == "string" && a.field.length > 0 && a.field in t) {
+    const i = t[a.field];
+    return typeof i == "string" || typeof i == "number" ? String(i) : null;
   }
   return null;
 };
-function ie({
+function ae({
   rows: e,
   columns: t,
   onEndReached: r,
-  onSortChange: i,
-  variant: a = "unstyled",
+  onSortChange: a,
+  variant: i = "unstyled",
   isLoading: u = !1,
   childrenProps: s,
   ...l
@@ -214,7 +214,7 @@ function ie({
     rows: e,
     onSelectionChange: () => {
     },
-    onSortChange: i
+    onSortChange: a
   }), { inView: f } = Q({ threshold: 0.5, rootMargin: "100px" });
   if (z(() => {
     f && (r == null || r());
@@ -224,11 +224,11 @@ function ie({
       {
         columns: t.length,
         checkboxSelection: l.showSelectionCheckboxes,
-        variant: a,
+        variant: i,
         rows: e.length
       }
     );
-  const m = M[a], h = [
+  const m = M[i], h = [
     ...t.map((o, g) => ({
       ...o,
       key: typeof o.field == "string" ? String(o.field) : String(g),
@@ -264,7 +264,7 @@ function ie({
               {
                 "aria-label": X(o),
                 ...s == null ? void 0 : s.tableColumnProps,
-                children: /* @__PURE__ */ d.jsxs("div", { className: "flex items-center gap-2", children: [
+                children: /* @__PURE__ */ d.jsxs("div", { className: "flex items-center gap-2 ", children: [
                   o.label,
                   o.sortable !== !1 && /* @__PURE__ */ d.jsxs(
                     "div",
@@ -309,5 +309,5 @@ function ie({
   );
 }
 export {
-  ie as DataGrid
+  ae as DataGrid
 };
