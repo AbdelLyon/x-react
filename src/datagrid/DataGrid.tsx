@@ -71,7 +71,6 @@ export function DataGrid<T extends { id: string | number }>({
   columns,
   onEndReached,
   onSortChange,
-  showSelectionCheckboxes = true,
   classNames,
   variant = "unstyled",
   isLoading = false,
@@ -96,7 +95,7 @@ export function DataGrid<T extends { id: string | number }>({
     return (
       <DataGridSkeleton
         columns={columns.length}
-        checkboxSelection={showSelectionCheckboxes}
+        checkboxSelection={props.showSelectionCheckboxes}
         variant={variant}
         rows={rows.length}
       />
@@ -106,15 +105,6 @@ export function DataGrid<T extends { id: string | number }>({
   const variantClasses = GRID_VARIANTS[variant];
 
   const preparedColumns: ExtendedColumn<T>[] = [
-    ...(showSelectionCheckboxes === true
-      ? [
-          {
-            key: "checkbox",
-            label: "",
-            header: "",
-          } as ExtendedColumn<T>,
-        ]
-      : []),
     ...columns.map((col, index) => ({
       ...col,
       key: typeof col.field === "string" ? String(col.field) : String(index),
