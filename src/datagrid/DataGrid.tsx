@@ -8,7 +8,6 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Checkbox,
 } from "@nextui-org/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
@@ -71,7 +70,6 @@ export function DataGrid<T extends { id: string | number }>({
   rows,
   columns,
   onEndReached,
-  onSelectionChange,
   onSortChange,
   showSelectionCheckboxes = true,
   classNames,
@@ -80,16 +78,9 @@ export function DataGrid<T extends { id: string | number }>({
   childrenProps,
   ...props
 }: DataGridProps<T>): JSX.Element {
-  const {
-    allRowsSelected,
-    sortConfiguration,
-    toggleAllRowsSelection,
-    toggleRowSelection,
-    updateSort,
-    selectedRows,
-  } = useDataGridState({
+  const { sortConfiguration, updateSort } = useDataGridState({
     rows,
-    onSelectionChange,
+    onSelectionChange: () => {},
     onSortChange,
   });
 
@@ -167,47 +158,38 @@ export function DataGrid<T extends { id: string | number }>({
             className={cn(variantClasses.column)}
             {...childrenProps?.tableColumnProps}
           >
-            {column.key === "checkbox" && showSelectionCheckboxes ? (
-              <Checkbox
-                isSelected={allRowsSelected}
-                onValueChange={toggleAllRowsSelection}
-                aria-label="Select all rows"
-                className={classNames?.checkbox}
-              />
-            ) : (
-              <div className="flex items-center gap-2">
-                {column.label}
-                {column.sortable !== false && (
-                  <div
-                    className={cn("relative size-4 cursor-pointer")}
-                    onClick={() => handleSort(column)}
-                    role="button"
-                    aria-label={getSortLabel(column.label)}
-                  >
-                    <IconChevronUp
-                      size={16}
-                      className={cn(
-                        "absolute -top-1",
-                        sortConfiguration.key === column.key &&
-                          sortConfiguration.direction === "asc"
-                          ? "opacity-100"
-                          : "opacity-30",
-                      )}
-                    />
-                    <IconChevronDown
-                      size={16}
-                      className={cn(
-                        "absolute top-1",
-                        sortConfiguration.key === column.key &&
-                          sortConfiguration.direction === "desc"
-                          ? "opacity-100"
-                          : "opacity-30",
-                      )}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              {column.label}
+              {column.sortable !== false && (
+                <div
+                  className={cn("relative size-4 cursor-pointer")}
+                  onClick={() => handleSort(column)}
+                  role="button"
+                  aria-label={getSortLabel(column.label)}
+                >
+                  <IconChevronUp
+                    size={16}
+                    className={cn(
+                      "absolute -top-1",
+                      sortConfiguration.key === column.key &&
+                        sortConfiguration.direction === "asc"
+                        ? "opacity-100"
+                        : "opacity-30",
+                    )}
+                  />
+                  <IconChevronDown
+                    size={16}
+                    className={cn(
+                      "absolute top-1",
+                      sortConfiguration.key === column.key &&
+                        sortConfiguration.direction === "desc"
+                        ? "opacity-100"
+                        : "opacity-30",
+                    )}
+                  />
+                </div>
+              )}
+            </div>
           </TableColumn>
         )}
       </TableHeader>
@@ -220,18 +202,9 @@ export function DataGrid<T extends { id: string | number }>({
           >
             {(columnKey) => (
               <TableCell {...childrenProps?.tableCellProps}>
-                {columnKey === "checkbox" && showSelectionCheckboxes ? (
-                  <Checkbox
-                    isSelected={selectedRows?.has(row)}
-                    onValueChange={() => toggleRowSelection?.(row)}
-                    aria-label={`Select row ${row.id}`}
-                    className={classNames?.checkbox}
-                  />
-                ) : (
-                  <div className={classNames?.cellContent}>
-                    {getCellValue(columnKey, row, columns)}
-                  </div>
-                )}
+                <div className={classNames?.cellContent}>
+                  {getCellValue(columnKey, row, columns)}
+                </div>
               </TableCell>
             )}
           </TableRow>

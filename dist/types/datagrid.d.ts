@@ -27,17 +27,15 @@ export interface DataGridComponentProps<T> {
 }
 export interface DataGridProps<T extends {
     id: string | number;
-}> extends Omit<TableProps, "onSelectionChange" | "onSortChange" | "showSelectionCheckboxes" | "selectedKeys"> {
+}> extends Omit<TableProps, "onSortChange"> {
     childrenProps?: DataGridComponentProps<T>;
     rows: T[];
     columns: ColumnDefinition<T>[];
     className?: string;
     footerContent?: React.ReactNode;
-    onSelectionChange?: (rows: T[]) => void;
     onSortChange?: (column: keyof T, direction: "asc" | "desc") => void;
     onEndReached?: () => void;
     isFetching?: boolean;
-    showSelectionCheckboxes?: boolean;
     classNames?: {
         checkbox?: string;
         sortIcon?: string;
