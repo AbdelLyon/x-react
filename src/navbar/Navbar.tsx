@@ -32,7 +32,7 @@ export type NavbarProps = {
   classNames?: {
     item?: string;
   };
-} & Omit<NavbarRootProps, "children">
+} & Omit<NavbarRootProps, "children">;
 
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   (
@@ -85,7 +85,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {!isMobile && (appName !== null || appLogo !== null) && (
           <NavbarContent justify="start">
             {!isTablet && appName !== null && (
-              <NavbarItem className="w-[247px] border-r-2 border-default-200">
+              <NavbarItem className="w-[247px] border-r-2 border-default">
                 {appName}
               </NavbarItem>
             )}

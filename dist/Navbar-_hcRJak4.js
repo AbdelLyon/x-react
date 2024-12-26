@@ -46,7 +46,7 @@ const z = A(
             }
           ) }),
           !j && (n !== null || b !== null) && /* @__PURE__ */ t.jsxs(a, { justify: "start", children: [
-            !N && n !== null && /* @__PURE__ */ t.jsx(s, { className: "w-[247px] border-r-2 border-default-200", children: n }),
+            !N && n !== null && /* @__PURE__ */ t.jsx(s, { className: "w-[247px] border-r-2 border-default", children: n }),
             b !== null && /* @__PURE__ */ t.jsx(s, { children: b })
           ] }),
           /* @__PURE__ */ t.jsxs(a, { justify: "end", ...c, children: [

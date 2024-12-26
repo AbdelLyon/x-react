@@ -43,7 +43,7 @@ const $ = ({
   bordered: {
     thead: "bg-content2",
     th: "py4 bg-content2 py-4",
-    tr: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2"
+    tr: "py-4 border-b border-default last:border-b-0 hover:bg-content2"
   },
   striped: {
     thead: "bg-content2",

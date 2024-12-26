@@ -41,7 +41,7 @@ const c = a(
           placement: "right",
           delay: 0,
           closeDelay: 0,
-          className: "border border-default-200"
+          className: "border border-default"
         },
         r.key
       ) : p;
@@ -51,7 +51,7 @@ const c = a(
       {
         ref: l,
         className: d(
-          "fixed left-0 h-screen flex-col bg-[#212324] border-r border-default-200",
+          "fixed left-0 h-screen flex-col bg-[#212324] border-r border-default",
           {
             "w-[270px]": i,
             "w-[90px]": o

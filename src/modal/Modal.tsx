@@ -49,7 +49,7 @@ export type ModalProps = Omit<Partial<ModalPropsRoot>, keyof ModalBaseProps> &
 
 const defaultClassNames = {
   closeButton: "absolute right-4 top-4",
-  base: "bg-background border border-default-200 shadow-lg dark:shadow-none rounded-lg",
+  base: "bg-background border border-default shadow-lg dark:shadow-none rounded-lg",
   header: "flex flex-col gap-1",
   footer: "flex justify-end gap-2",
 } as const;

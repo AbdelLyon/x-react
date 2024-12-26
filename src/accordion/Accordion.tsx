@@ -21,7 +21,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
   ({ items, itemClasses, ...accordionProps }, ref) => {
     const defaultItemClasses = {
       base: cn("w-full shadow-none ", {
-        "bg-white dark:bg-content1 border-1 border-default-200 rounded-md":
+        "bg-white dark:bg-content1 border-1 border-default rounded-md":
           accordionProps.variant === "splitted",
       }),
       title: "text-lg font-semibold",
