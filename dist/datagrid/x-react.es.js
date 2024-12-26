@@ -1,7 +1,7 @@
 /* empty css                */
 import { j as u } from "../jsx-runtime-Dx-03ztt.js";
 import * as j from "react";
-import { useState as N, useEffect as z } from "react";
+import { useState as h, useEffect as z } from "react";
 import { cn as g } from "../utils/x-react.es.js";
 import { Table as V, TableHeader as _, TableColumn as C, Skeleton as w, TableBody as D, TableRow as B, TableCell as G } from "@nextui-org/react";
 import { IconChevronUp as L, IconChevronDown as O } from "@tabler/icons-react";
@@ -9,7 +9,7 @@ const $ = ({
   rows: e,
   onSelectionChange: t
 }) => {
-  const [s, i] = N(/* @__PURE__ */ new Set()), [a, l] = N(!1);
+  const [s, i] = h(/* @__PURE__ */ new Set()), [a, l] = h(!1);
   return z(() => {
     l(s.size === e.length);
   }, [s, e]), {
@@ -29,7 +29,7 @@ const $ = ({
 }, H = ({
   onSortChange: e
 }) => {
-  const [t, s] = N({
+  const [t, s] = h({
     key: null,
     direction: "asc"
   });
@@ -42,18 +42,18 @@ const $ = ({
 }), M = {
   bordered: {
     header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4 h-12",
-    row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2 h-12"
+    column: "bg-content2 py-4",
+    row: "py-4 border-b border-default-200 last:border-b-0 hover:bg-content2"
   },
   striped: {
     header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4 h-12",
-    row: "py-4 even:bg-content2 h-12"
+    column: "bg-content2 py-4",
+    row: "py-4 even:bg-content2"
   },
   unstyled: {
     header: "bg-content2 border border-default-200",
-    column: "bg-content2 py-4 h-12",
-    row: "py-4 hover:bg-content2 h-12"
+    column: "bg-content2 py-4 ",
+    row: "py-4 hover:bg-content2"
   }
 }, F = ({
   columns: e = 5,
@@ -132,7 +132,7 @@ function Q({
   onChange: c
 } = {}) {
   var f;
-  const [y, h] = j.useState(null), p = j.useRef(c), [o, b] = j.useState({
+  const [y, A] = j.useState(null), p = j.useRef(c), [o, b] = j.useState({
     inView: !!d,
     entry: void 0
   });
@@ -142,11 +142,11 @@ function Q({
       let x;
       return x = K(
         y,
-        (T, A) => {
+        (T, N) => {
           b({
             inView: T,
-            entry: A
-          }), p.current && p.current(T, A), A.isIntersecting && l && x && (x(), x = void 0);
+            entry: N
+          }), p.current && p.current(T, N), N.isIntersecting && l && x && (x(), x = void 0);
         },
         {
           root: a,
@@ -182,7 +182,7 @@ function Q({
     inView: !!d,
     entry: void 0
   }));
-  const m = [h, o.inView, o.entry];
+  const m = [A, o.inView, o.entry];
   return m.ref = m[0], m.inView = m[1], m.entry = m[2], m;
 }
 const X = (e) => typeof e.label == "string" && e.label.length > 0 ? e.label : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column", Y = (e) => typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column", Z = (e, t, s) => {
@@ -227,7 +227,7 @@ function ie({
         rows: e.length
       }
     );
-  const y = M[a], h = [
+  const y = M[a], A = [
     ...t.map((o, b) => ({
       ...o,
       key: typeof o.field == "string" ? String(o.field) : String(b),
@@ -250,13 +250,13 @@ function ie({
       classNames: {
         thead: g(y.header),
         th: g(y.column),
-        td: g(y.row)
+        tr: g(y.row)
       },
       children: [
         /* @__PURE__ */ u.jsx(
           _,
           {
-            columns: h,
+            columns: A,
             ...r == null ? void 0 : r.tableHeaderProps,
             children: (o) => /* @__PURE__ */ u.jsx(
               C,

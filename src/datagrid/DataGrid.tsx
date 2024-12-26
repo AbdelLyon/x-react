@@ -140,7 +140,7 @@ export function DataGrid<T extends { id: string | number }>({
       classNames={{
         thead: cn(variantClasses.header),
         th: cn(variantClasses.column),
-        td: cn(variantClasses.row),
+        tr: cn(variantClasses.row),
       }}
     >
       <TableHeader
