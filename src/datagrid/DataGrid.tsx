@@ -71,7 +71,6 @@ export function DataGrid<T extends { id: string | number }>({
   columns,
   onEndReached,
   onSortChange,
-  classNames,
   variant = "unstyled",
   isLoading = false,
   childrenProps,
@@ -192,9 +191,7 @@ export function DataGrid<T extends { id: string | number }>({
           >
             {(columnKey) => (
               <TableCell {...childrenProps?.tableCellProps}>
-                <div className={classNames?.cellContent}>
-                  {getCellValue(columnKey, row, columns)}
-                </div>
+                {getCellValue(columnKey, row, columns)}
               </TableCell>
             )}
           </TableRow>

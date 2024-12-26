@@ -50,11 +50,6 @@ export interface DataGridProps<T extends { id: string | number }>
   onSortChange?: (column: keyof T, direction: "asc" | "desc") => void;
   onEndReached?: () => void;
   isFetching?: boolean;
-  classNames?: {
-    checkbox?: string;
-    sortIcon?: string;
-    cellContent?: string;
-  };
   variant?: "bordered" | "striped" | "unstyled";
   isLoading?: boolean;
 }
