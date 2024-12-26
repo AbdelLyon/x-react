@@ -138,12 +138,12 @@ export function DataGrid<T extends { id: string | number }>({
   return (
     <DataTable
       aria-label="data-grid"
-      {...props}
       classNames={{
         th: cn(variantClasses.th, th),
         tr: cn(variantClasses.tr, tr),
         ...classNames,
       }}
+      {...props}
     >
       <TableHeader
         columns={preparedColumns}

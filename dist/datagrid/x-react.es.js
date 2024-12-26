@@ -246,12 +246,12 @@ function ie({
     V,
     {
       "aria-label": "data-grid",
-      ...l,
       classNames: {
         th: y(v.th, p),
         tr: y(v.tr, w),
         ...x
       },
+      ...l,
       children: [
         /* @__PURE__ */ d.jsx(
           _,
