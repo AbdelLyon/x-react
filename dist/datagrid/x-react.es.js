@@ -1,6 +1,6 @@
 /* empty css                */
 import { j as d } from "../jsx-runtime-Dx-03ztt.js";
-import * as p from "react";
+import * as j from "react";
 import { useState as A, useEffect as z } from "react";
 import { cn as v } from "../utils/x-react.es.js";
 import { Table as V, TableHeader as _, TableColumn as C, Skeleton as w, TableBody as D, TableRow as B, TableCell as G } from "@nextui-org/react";
@@ -43,7 +43,7 @@ const $ = ({
   bordered: {
     thead: "bg-content2",
     th: "py4 bg-content2 py-4",
-    tr: "py-4 border-b border-default-200 last:border-b-0 data-[hover=true]:bg-content2"
+    tr: "py-4 border-b border-default-200 last:border-b-0 group-data-[hover=true]:bg-content2"
   },
   striped: {
     thead: "bg-content2",
@@ -52,7 +52,7 @@ const $ = ({
   },
   unstyled: {
     thead: "bg-content2",
-    th: "py4 bg-content2 py-4 data-[hover=true]:bg-content2",
+    th: "py4 bg-content2 py-4 group-data-[hover=true]:bg-content2",
     tr: "py-4 hover:bg-content2"
   }
 }, F = ({
@@ -132,18 +132,18 @@ function Q({
   onChange: c
 } = {}) {
   var f;
-  const [m, h] = p.useState(null), x = p.useRef(c), [S, j] = p.useState({
+  const [m, h] = j.useState(null), x = j.useRef(c), [S, p] = j.useState({
     inView: !!l,
     entry: void 0
   });
-  x.current = c, p.useEffect(
+  x.current = c, j.useEffect(
     () => {
       if (s || !m) return;
       let y;
       return y = K(
         m,
         (T, N) => {
-          j({
+          p({
             inView: T,
             entry: N
           }), x.current && x.current(T, N), N.isIntersecting && u && y && (y(), y = void 0);
@@ -177,8 +177,8 @@ function Q({
       t
     ]
   );
-  const o = (f = S.entry) == null ? void 0 : f.target, g = p.useRef(void 0);
-  !m && o && !u && !s && g.current !== o && (g.current = o, j({
+  const o = (f = S.entry) == null ? void 0 : f.target, g = j.useRef(void 0);
+  !m && o && !u && !s && g.current !== o && (g.current = o, p({
     inView: !!l,
     entry: void 0
   }));
@@ -209,7 +209,7 @@ function ae({
   childrenProps: s,
   ...l
 }) {
-  var S, j;
+  var S, p;
   const { sortConfiguration: n, updateSort: c } = E({
     rows: e,
     onSelectionChange: () => {
@@ -250,7 +250,7 @@ function ae({
       ...l,
       classNames: {
         th: v(m.th, (S = l.classNames) == null ? void 0 : S.th),
-        tr: v(m.tr, (j = l.classNames) == null ? void 0 : j.tr),
+        tr: v(m.tr, (p = l.classNames) == null ? void 0 : p.tr),
         ...l.classNames
       },
       children: [
