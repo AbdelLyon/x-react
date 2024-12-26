@@ -138,9 +138,9 @@ export function DataGrid<T extends { id: string | number }>({
       aria-label="data-grid"
       {...props}
       classNames={{
-        thead: cn(variantClasses.header),
-        th: cn(variantClasses.column),
-        tr: cn(variantClasses.row),
+        thead: cn(variantClasses.thead),
+        th: cn(variantClasses.th),
+        tr: cn(variantClasses.tr),
       }}
     >
       <TableHeader

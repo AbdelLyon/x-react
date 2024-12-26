@@ -31,11 +31,11 @@ export const DataGridSkeleton = ({
 
   return (
     <Table radius="sm" aria-label="Loading data" className={className}>
-      <TableHeader className={cn(variantClasses.header)}>
+      <TableHeader className={cn(variantClasses.thead)}>
         {Array(actualColumns)
           .fill(null)
           .map((_, index) => (
-            <TableColumn key={index} className={cn(variantClasses.column)}>
+            <TableColumn key={index} className={cn(variantClasses.th)}>
               {index === 0 && checkboxSelection ? (
                 <Skeleton className="size-4 rounded-md" />
               ) : (
@@ -49,7 +49,7 @@ export const DataGridSkeleton = ({
         {Array(rows)
           .fill(null)
           .map((_, rowIndex) => (
-            <TableRow key={rowIndex} className={cn(variantClasses.row)}>
+            <TableRow key={rowIndex} className={cn(variantClasses.tr)}>
               {Array(actualColumns)
                 .fill(null)
                 .map((_, colIndex) => (
