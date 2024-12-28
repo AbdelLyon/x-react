@@ -1,6 +1,7 @@
 import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
-import { type Key } from "react";
+import { forwardRef, type Key } from "react";
+import type { TableRowProps } from "@nextui-org/react";
 import {
   Table as DataTable,
   TableHeader,
@@ -18,7 +19,22 @@ import type {
   ExtendedColumn,
 } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
+import { useInView } from "react-intersection-observer";
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
+type TRowProps = Omit<TableRowProps, "ref">;
+
+export const TRow = forwardRef<HTMLTableRowElement, TRowProps>(
+  function Row(props, ref) {
+    return (
+      <div ref={ref}>
+        <TableRow {...props} />
+      </div>
+    );
+  },
+);
+
+TRow.displayName = "TRow";
 const getColumnLabel = <T extends object>(
   column: ExtendedColumn<T>,
 ): string => {
@@ -72,6 +88,7 @@ export function DataGrid<T extends { id: string | number }>({
   onSortChange,
   variant = "unstyled",
   isLoading = false,
+  onRowsScrollEnd,
   childrenProps,
   ...props
 }: DataGridProps<T>): JSX.Element {
@@ -79,6 +96,10 @@ export function DataGrid<T extends { id: string | number }>({
     rows,
     onSortChange,
   });
+
+  const { ref, inView } = useInView();
+
+  useInfiniteScroll(inView, onRowsScrollEnd);
 
   const preparedColumns = columns.map((col, index) => ({
     ...col,
@@ -128,7 +149,6 @@ export function DataGrid<T extends { id: string | number }>({
         {...props}
         classNames={{
           ...props.classNames,
-          table: cn("overflow-auto h-[300px]", props.classNames?.table),
           th: cn(variantClasses.th, props.classNames?.th),
           tr: cn(variantClasses.tr, props.classNames?.tr),
         }}
@@ -179,15 +199,22 @@ export function DataGrid<T extends { id: string | number }>({
           )}
         </TableHeader>
         <TableBody items={rows} {...childrenProps?.tableBodyProps}>
-          {(row: T) => (
-            <TableRow key={row.id} {...childrenProps?.tableRowProps}>
-              {(columnKey) => (
-                <TableCell {...childrenProps?.tableCellProps}>
-                  {getCellValue(columnKey, row, columns)}
-                </TableCell>
-              )}
-            </TableRow>
-          )}
+          {(row: T) => {
+            const rowIndex = rows.indexOf(row);
+            return (
+              <TRow
+                key={row.id}
+                {...childrenProps?.tableRowProps}
+                ref={rowIndex === rows.length - 1 ? ref : undefined}
+              >
+                {(columnKey) => (
+                  <TableCell {...childrenProps?.tableCellProps}>
+                    {getCellValue(columnKey, row, columns)}
+                  </TableCell>
+                )}
+              </TRow>
+            );
+          }}
         </TableBody>
       </DataTable>
     </div>

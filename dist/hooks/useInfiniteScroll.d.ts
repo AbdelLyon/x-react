@@ -1,1 +1,1 @@
-export declare const useInfiniteScroll: (inView: boolean, onRowsScrollEnd: (() => void) | undefined) => void;
+export declare const useInfiniteScroll: (inView: boolean, onRowsScrollEnd?: () => void) => void;

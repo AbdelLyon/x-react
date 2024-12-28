@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export const useInfiniteScroll = (
   inView: boolean,
-  onRowsScrollEnd: (() => void) | undefined,
+  onRowsScrollEnd?: () => void,
 ): void => {
   useEffect(() => {
     if (inView && onRowsScrollEnd) {

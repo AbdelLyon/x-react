@@ -58,7 +58,7 @@ export interface DataGridBaseProps<T> {
 }
 export interface DataGridCallbacks<T> {
     onSortChange?: (column: keyof T, direction: SortDirection) => void;
-    onRowsScrollEnd?: (callback: GridScrollEndCallback) => void;
+    onRowsScrollEnd?: () => void;
 }
 export interface DataGridProps<T extends {
     id: string | number;
