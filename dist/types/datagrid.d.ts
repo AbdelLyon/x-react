@@ -23,10 +23,13 @@ export type ExtendedColumn<T> = ColumnDefinition<T> & {
     key: string;
     label: React.ReactNode;
 };
+export interface RowProps extends TableRowProps {
+    ref: React.Ref<HTMLTableRowElement>;
+}
 export interface DataGridComponentProps<T> {
     tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
     tableBodyProps?: Omit<TableBodyProps<T>, "items" | "children">;
-    tableRowProps?: Omit<TableRowProps, "children">;
+    tableRowProps?: Omit<RowProps, "children">;
     tableCellProps?: Omit<TableCellProps, "children">;
     tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }

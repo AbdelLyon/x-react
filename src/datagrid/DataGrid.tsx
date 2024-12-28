@@ -1,7 +1,6 @@
 import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
-import { forwardRef, type Key } from "react";
-import type { TableRowProps } from "@nextui-org/react";
+import { type Key } from "react";
 import {
   Table as DataTable,
   TableHeader,
@@ -17,24 +16,16 @@ import type {
   ColumnDefinition,
   DataGridProps,
   ExtendedColumn,
+  RowProps,
 } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
 import { useInView } from "react-intersection-observer";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
-type TRowProps = Omit<TableRowProps, "ref">;
+const TRow = (props: RowProps): JSX.Element => {
+  return <TableRow {...props} />;
+};
 
-export const TRow = forwardRef<HTMLTableRowElement, TRowProps>(
-  function Row(props, ref) {
-    return (
-      <div ref={ref}>
-        <TableRow {...props} />
-      </div>
-    );
-  },
-);
-
-TRow.displayName = "TRow";
 const getColumnLabel = <T extends object>(
   column: ExtendedColumn<T>,
 ): string => {
@@ -205,7 +196,7 @@ export function DataGrid<T extends { id: string | number }>({
               <TRow
                 key={row.id}
                 {...childrenProps?.tableRowProps}
-                ref={rowIndex === rows.length - 1 ? ref : undefined}
+                ref={rowIndex === rows.length - 1 ? ref : null}
               >
                 {(columnKey) => (
                   <TableCell {...childrenProps?.tableCellProps}>
