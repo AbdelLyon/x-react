@@ -1,6 +1,6 @@
 import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
-import { useEffect, useRef, type Key } from "react";
+import { useEffect, type Key } from "react";
 import {
   Table as DataTable,
   TableHeader,
@@ -17,9 +17,9 @@ import type {
   ColumnDefinition,
   DataGridProps,
   ExtendedColumn,
-  GridCallbackDetails,
-  GridScrollEndEvent,
   GridScrollEndParams,
+  GridScrollEndEvent,
+  GridCallbackDetails,
 } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
 
@@ -86,29 +86,18 @@ export function DataGrid<T extends { id: string | number }>({
     onSortChange,
   });
 
-  const tableRef = useRef<HTMLDivElement>(null);
-  const {
-    ref: inViewRef,
-    inView,
-    entry,
-  } = useInView({ threshold: 0.5, rootMargin: "100px" });
-
-  const setRefs = (node: HTMLDivElement | null): void => {
-    tableRef.current = node;
-    inViewRef(node);
-  };
+  const { ref: sentinelRef, entry } = useInView({
+    threshold: 0.5,
+    rootMargin: "100px",
+  });
 
   useEffect(() => {
-    if (!inView || !onRowsScrollEnd) {
-      return;
-    }
+    if (entry?.isIntersecting === true && onRowsScrollEnd) {
+      const target = entry.target.parentElement;
+      if (!(target instanceof HTMLDivElement)) {
+        return;
+      }
 
-    const target = entry?.target;
-    if (!(target instanceof HTMLDivElement)) {
-      return;
-    }
-
-    const handleScroll = (): void => {
       const rowHeight = 48;
       const visibleRows = Math.ceil(target.clientHeight / rowHeight);
 
@@ -133,17 +122,8 @@ export function DataGrid<T extends { id: string | number }>({
         scrollEvent,
         details,
       });
-    };
-
-    // Attacher l'écouteur d'événement
-    target.addEventListener("scroll", handleScroll);
-
-    // Nettoyer
-    return () => {
-      target.removeEventListener("scroll", handleScroll);
-    };
-  }, [inView, onRowsScrollEnd, rows.length]);
-
+    }
+  }, [entry?.isIntersecting, onRowsScrollEnd, rows.length]);
   if (isLoading) {
     return (
       <DataGridSkeleton
@@ -188,7 +168,7 @@ export function DataGrid<T extends { id: string | number }>({
   };
 
   return (
-    <div ref={setRefs}>
+    <div className="relative">
       <DataTable
         aria-label="data-grid"
         {...props}
@@ -209,7 +189,7 @@ export function DataGrid<T extends { id: string | number }>({
               aria-label={getColumnLabel(column)}
               {...childrenProps?.tableColumnProps}
             >
-              <div className="flex items-center gap-2 ">
+              <div className="flex items-center gap-2">
                 {column.label}
                 {column.sortable !== false && (
                   <div
@@ -256,6 +236,7 @@ export function DataGrid<T extends { id: string | number }>({
           )}
         </TableBody>
       </DataTable>
+      <div ref={sentinelRef} className="absolute bottom-0 h-px w-full" />
     </div>
   );
 }
