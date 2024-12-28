@@ -99,9 +99,17 @@ export function DataGrid<T extends { id: string | number }>({
   };
 
   useEffect(() => {
-    if (inView && entry?.target instanceof HTMLDivElement && onRowsScrollEnd) {
+    if (!inView || !onRowsScrollEnd) {
+      return;
+    }
+
+    const target = entry?.target;
+    if (!(target instanceof HTMLDivElement)) {
+      return;
+    }
+
+    const handleScroll = (): void => {
       const rowHeight = 48;
-      const target = entry.target;
       const visibleRows = Math.ceil(target.clientHeight / rowHeight);
 
       const params: GridScrollEndParams = {
@@ -120,9 +128,21 @@ export function DataGrid<T extends { id: string | number }>({
         reason: "scroll",
       };
 
-      onRowsScrollEnd({ params, scrollEvent, details });
-    }
-  }, [inView, entry, onRowsScrollEnd, rows.length]);
+      onRowsScrollEnd({
+        params,
+        scrollEvent,
+        details,
+      });
+    };
+
+    // Attacher l'écouteur d'événement
+    target.addEventListener("scroll", handleScroll);
+
+    // Nettoyer
+    return () => {
+      target.removeEventListener("scroll", handleScroll);
+    };
+  }, [inView, onRowsScrollEnd, rows.length]);
 
   if (isLoading) {
     return (
