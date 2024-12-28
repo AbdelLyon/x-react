@@ -16,15 +16,10 @@ import type {
   ColumnDefinition,
   DataGridProps,
   ExtendedColumn,
-  RowProps,
 } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
 import { useInView } from "react-intersection-observer";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
-
-const TRow = (props: RowProps): JSX.Element => {
-  return <TableRow {...props} />;
-};
 
 const getColumnLabel = <T extends object>(
   column: ExtendedColumn<T>,
@@ -193,9 +188,11 @@ export function DataGrid<T extends { id: string | number }>({
           {(row: T) => {
             const rowIndex = rows.indexOf(row);
             return (
-              <TRow
+              <TableRow
                 key={row.id}
                 {...childrenProps?.tableRowProps}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
                 ref={rowIndex === rows.length - 1 ? ref : null}
               >
                 {(columnKey) => (
@@ -203,7 +200,7 @@ export function DataGrid<T extends { id: string | number }>({
                     {getCellValue(columnKey, row, columns)}
                   </TableCell>
                 )}
-              </TRow>
+              </TableRow>
             );
           }}
         </TableBody>
