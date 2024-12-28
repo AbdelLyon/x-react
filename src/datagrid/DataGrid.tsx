@@ -168,6 +168,7 @@ export function DataGrid<T extends { id: string | number }>({
           th: cn(variantClasses.th, props.classNames?.th),
           tr: cn(variantClasses.tr, props.classNames?.tr),
         }}
+        scrollRef={sentinelRef as unknown as React.RefObject<HTMLElement>}
       >
         <TableHeader
           columns={preparedColumns}
@@ -226,7 +227,6 @@ export function DataGrid<T extends { id: string | number }>({
           )}
         </TableBody>
       </DataTable>
-      <div ref={sentinelRef} className="absolute bottom-0 h-px w-full" />
     </div>
   );
 }

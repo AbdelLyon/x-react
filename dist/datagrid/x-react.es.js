@@ -1,6 +1,6 @@
 /* empty css                */
 import { j as d } from "../jsx-runtime-Dx-03ztt.js";
-import * as R from "react";
+import * as j from "react";
 import { useState as T, useEffect as B } from "react";
 import { cn as v } from "../utils/x-react.es.js";
 import { Table as M, TableHeader as E, TableColumn as z, Skeleton as w, TableBody as _, TableRow as C, TableCell as D } from "@nextui-org/react";
@@ -132,11 +132,11 @@ function X({
   onChange: b
 } = {}) {
   var u;
-  const [m, A] = R.useState(null), p = R.useRef(b), [h, S] = R.useState({
+  const [m, A] = j.useState(null), p = j.useRef(b), [h, S] = j.useState({
     inView: !!l,
     entry: void 0
   });
-  p.current = b, R.useEffect(
+  p.current = b, j.useEffect(
     () => {
       if (s || !m) return;
       let f;
@@ -177,8 +177,8 @@ function X({
       t
     ]
   );
-  const x = (u = h.entry) == null ? void 0 : u.target, j = R.useRef(void 0);
-  !m && x && !c && !s && j.current !== x && (j.current = x, S({
+  const x = (u = h.entry) == null ? void 0 : u.target, R = j.useRef(void 0);
+  !m && x && !c && !s && R.current !== x && (R.current = x, S({
     inView: !!l,
     entry: void 0
   }));
@@ -209,7 +209,7 @@ function ie({
   childrenProps: s,
   ...l
 }) {
-  var S, x, j;
+  var S, x, R;
   const { sortConfiguration: n, updateSort: b } = F({
     rows: e,
     onSortChange: i
@@ -261,74 +261,72 @@ function ie({
       }
     );
   const h = H[o];
-  return /* @__PURE__ */ d.jsxs("div", { className: "relative", children: [
-    /* @__PURE__ */ d.jsxs(
-      M,
-      {
-        "aria-label": "data-grid",
-        ...l,
-        classNames: {
-          ...l.classNames,
-          wrapper: v("overflow-auto", (S = l.classNames) == null ? void 0 : S.wrapper),
-          th: v(h.th, (x = l.classNames) == null ? void 0 : x.th),
-          tr: v(h.tr, (j = l.classNames) == null ? void 0 : j.tr)
-        },
-        children: [
-          /* @__PURE__ */ d.jsx(
-            E,
-            {
-              columns: A,
-              ...s == null ? void 0 : s.tableHeaderProps,
-              children: (r) => /* @__PURE__ */ d.jsx(
-                z,
-                {
-                  "aria-label": Y(r),
-                  ...s == null ? void 0 : s.tableColumnProps,
-                  children: /* @__PURE__ */ d.jsxs("div", { className: "flex items-center gap-2", children: [
-                    r.label,
-                    r.sortable !== !1 && /* @__PURE__ */ d.jsxs(
-                      "div",
-                      {
-                        className: v("relative size-4 cursor-pointer"),
-                        onClick: () => p(r),
-                        role: "button",
-                        "aria-label": Z(r.label),
-                        children: [
-                          /* @__PURE__ */ d.jsx(
-                            G,
-                            {
-                              size: 16,
-                              className: v(
-                                "absolute -top-1",
-                                n.key === r.key && n.direction === "asc" ? "opacity-100" : "opacity-30"
-                              )
-                            }
-                          ),
-                          /* @__PURE__ */ d.jsx(
-                            L,
-                            {
-                              size: 16,
-                              className: v(
-                                "absolute top-1",
-                                n.key === r.key && n.direction === "desc" ? "opacity-100" : "opacity-30"
-                              )
-                            }
-                          )
-                        ]
-                      }
-                    )
-                  ] })
-                },
-                r.key
-              )
-            }
-          ),
-          /* @__PURE__ */ d.jsx(_, { items: e, ...s == null ? void 0 : s.tableBodyProps, children: (r) => /* @__PURE__ */ d.jsx(C, { ...s == null ? void 0 : s.tableRowProps, children: (f) => /* @__PURE__ */ d.jsx(D, { ...s == null ? void 0 : s.tableCellProps, children: P(f, r, t) }) }, r.id) })
-        ]
-      }
-    ),
-    /* @__PURE__ */ d.jsx("div", { ref: m, className: "absolute bottom-0 h-px w-full" })
-  ] });
+  return /* @__PURE__ */ d.jsx("div", { className: "relative", children: /* @__PURE__ */ d.jsxs(
+    M,
+    {
+      "aria-label": "data-grid",
+      ...l,
+      classNames: {
+        ...l.classNames,
+        wrapper: v("overflow-auto", (S = l.classNames) == null ? void 0 : S.wrapper),
+        th: v(h.th, (x = l.classNames) == null ? void 0 : x.th),
+        tr: v(h.tr, (R = l.classNames) == null ? void 0 : R.tr)
+      },
+      scrollRef: m,
+      children: [
+        /* @__PURE__ */ d.jsx(
+          E,
+          {
+            columns: A,
+            ...s == null ? void 0 : s.tableHeaderProps,
+            children: (r) => /* @__PURE__ */ d.jsx(
+              z,
+              {
+                "aria-label": Y(r),
+                ...s == null ? void 0 : s.tableColumnProps,
+                children: /* @__PURE__ */ d.jsxs("div", { className: "flex items-center gap-2", children: [
+                  r.label,
+                  r.sortable !== !1 && /* @__PURE__ */ d.jsxs(
+                    "div",
+                    {
+                      className: v("relative size-4 cursor-pointer"),
+                      onClick: () => p(r),
+                      role: "button",
+                      "aria-label": Z(r.label),
+                      children: [
+                        /* @__PURE__ */ d.jsx(
+                          G,
+                          {
+                            size: 16,
+                            className: v(
+                              "absolute -top-1",
+                              n.key === r.key && n.direction === "asc" ? "opacity-100" : "opacity-30"
+                            )
+                          }
+                        ),
+                        /* @__PURE__ */ d.jsx(
+                          L,
+                          {
+                            size: 16,
+                            className: v(
+                              "absolute top-1",
+                              n.key === r.key && n.direction === "desc" ? "opacity-100" : "opacity-30"
+                            )
+                          }
+                        )
+                      ]
+                    }
+                  )
+                ] })
+              },
+              r.key
+            )
+          }
+        ),
+        /* @__PURE__ */ d.jsx(_, { items: e, ...s == null ? void 0 : s.tableBodyProps, children: (r) => /* @__PURE__ */ d.jsx(C, { ...s == null ? void 0 : s.tableRowProps, children: (f) => /* @__PURE__ */ d.jsx(D, { ...s == null ? void 0 : s.tableCellProps, children: P(f, r, t) }) }, r.id) })
+      ]
+    }
+  ) });
 }
 export {
   ie as DataGrid
