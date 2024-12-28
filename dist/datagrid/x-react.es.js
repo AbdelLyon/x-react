@@ -132,21 +132,21 @@ function X({
   onChange: b
 } = {}) {
   var u;
-  const [m, A] = R.useState(null), S = R.useRef(b), [x, p] = R.useState({
+  const [m, A] = R.useState(null), p = R.useRef(b), [h, S] = R.useState({
     inView: !!l,
     entry: void 0
   });
-  S.current = b, R.useEffect(
+  p.current = b, R.useEffect(
     () => {
       if (s || !m) return;
       let f;
       return f = Q(
         m,
         (g, y) => {
-          p({
+          S({
             inView: g,
             entry: y
-          }), S.current && S.current(g, y), y.isIntersecting && c && f && (f(), f = void 0);
+          }), p.current && p.current(g, y), y.isIntersecting && c && f && (f(), f = void 0);
         },
         {
           root: o,
@@ -177,12 +177,12 @@ function X({
       t
     ]
   );
-  const h = (u = x.entry) == null ? void 0 : u.target, j = R.useRef(void 0);
-  !m && h && !c && !s && j.current !== h && (j.current = h, p({
+  const x = (u = h.entry) == null ? void 0 : u.target, j = R.useRef(void 0);
+  !m && x && !c && !s && j.current !== x && (j.current = x, S({
     inView: !!l,
     entry: void 0
   }));
-  const r = [A, x.inView, x.entry];
+  const r = [A, h.inView, h.entry];
   return r.ref = r[0], r.inView = r[1], r.entry = r[2], r;
 }
 const Y = (e) => typeof e.label == "string" && e.label.length > 0 ? e.label : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column", Z = (e) => typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column", P = (e, t, i) => {
@@ -209,7 +209,7 @@ function ie({
   childrenProps: s,
   ...l
 }) {
-  var p, h, j;
+  var S, x, j;
   const { sortConfiguration: n, updateSort: b } = F({
     rows: e,
     onSortChange: i
@@ -241,7 +241,7 @@ function ie({
     ...r,
     key: typeof r.field == "string" ? String(r.field) : String(f),
     label: r.header
-  })), S = (r) => {
+  })), p = (r) => {
     const f = t.find(
       (y) => typeof y.field == "string" && y.field.length > 0 && String(y.field) === r.key
     ), g = f == null ? void 0 : f.field;
@@ -260,7 +260,7 @@ function ie({
         rows: e.length
       }
     );
-  const x = H[o];
+  const h = H[o];
   return /* @__PURE__ */ d.jsxs("div", { className: "relative", children: [
     /* @__PURE__ */ d.jsxs(
       M,
@@ -269,9 +269,9 @@ function ie({
         ...l,
         classNames: {
           ...l.classNames,
-          th: v(x.th, (p = l.classNames) == null ? void 0 : p.th),
-          tr: v(x.tr, (h = l.classNames) == null ? void 0 : h.tr),
-          base: v("max-h-[600px] overflow-auto", (j = l.classNames) == null ? void 0 : j.base)
+          wrapper: v("overflow-auto", (S = l.classNames) == null ? void 0 : S.wrapper),
+          th: v(h.th, (x = l.classNames) == null ? void 0 : x.th),
+          tr: v(h.tr, (j = l.classNames) == null ? void 0 : j.tr)
         },
         children: [
           /* @__PURE__ */ d.jsx(
@@ -290,7 +290,7 @@ function ie({
                       "div",
                       {
                         className: v("relative size-4 cursor-pointer"),
-                        onClick: () => S(r),
+                        onClick: () => p(r),
                         role: "button",
                         "aria-label": Z(r.label),
                         children: [

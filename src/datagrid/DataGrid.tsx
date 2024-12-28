@@ -164,9 +164,9 @@ export function DataGrid<T extends { id: string | number }>({
         {...props}
         classNames={{
           ...props.classNames,
+          wrapper: cn("overflow-auto", props.classNames?.wrapper),
           th: cn(variantClasses.th, props.classNames?.th),
           tr: cn(variantClasses.tr, props.classNames?.tr),
-          base: cn("max-h-[600px] overflow-auto", props.classNames?.base),
         }}
       >
         <TableHeader
