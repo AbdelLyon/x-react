@@ -12,7 +12,6 @@ import {
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
-import { useInView } from "react-intersection-observer";
 import type {
   ColumnDefinition,
   DataGridProps,
@@ -71,7 +70,6 @@ export function DataGrid<T extends { id: string | number }>({
   rows,
   columns,
   onSortChange,
-  onRowsScrollEnd,
   variant = "unstyled",
   isLoading = false,
   childrenProps,
@@ -80,40 +78,6 @@ export function DataGrid<T extends { id: string | number }>({
   const { sortConfiguration, updateSort } = useDataGridState({
     rows,
     onSortChange,
-  });
-
-  const handleIntersect = (
-    inView: boolean,
-    entry: IntersectionObserverEntry | null,
-  ): void => {
-    if (inView && entry && onRowsScrollEnd) {
-      const target = entry.target.parentElement;
-      if (!(target instanceof HTMLDivElement)) {
-        return;
-      }
-
-      const rowHeight = 48;
-      const visibleRows = Math.ceil(target.clientHeight / rowHeight);
-
-      onRowsScrollEnd({
-        params: {
-          visibleRows,
-          visibleStartIndex: Math.floor(target.scrollTop / rowHeight),
-          visibleEndIndex: Math.min(
-            Math.floor((target.scrollTop + target.clientHeight) / rowHeight),
-            rows.length,
-          ),
-        },
-        details: {
-          reason: "scroll",
-        },
-      });
-    }
-  };
-  const { ref: sentinelRef } = useInView({
-    threshold: 0.5,
-    rootMargin: "100px",
-    onChange: handleIntersect,
   });
 
   const preparedColumns = columns.map((col, index) => ({
@@ -164,11 +128,10 @@ export function DataGrid<T extends { id: string | number }>({
         {...props}
         classNames={{
           ...props.classNames,
-          wrapper: cn("overflow-auto", props.classNames?.wrapper),
+          table: cn("overflow-auto h-[300px]", props.classNames?.table),
           th: cn(variantClasses.th, props.classNames?.th),
           tr: cn(variantClasses.tr, props.classNames?.tr),
         }}
-        scrollRef={sentinelRef as unknown as React.RefObject<HTMLElement>}
       >
         <TableHeader
           columns={preparedColumns}
