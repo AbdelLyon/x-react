@@ -1,6 +1,6 @@
 import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
-import { useEffect, type Key } from "react";
+import { type Key } from "react";
 import {
   Table as DataTable,
   TableHeader,
@@ -17,9 +17,6 @@ import type {
   ColumnDefinition,
   DataGridProps,
   ExtendedColumn,
-  GridScrollEndParams,
-  GridScrollEndEvent,
-  GridCallbackDetails,
 } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
 
@@ -82,17 +79,14 @@ export function DataGrid<T extends { id: string | number }>({
 }: DataGridProps<T>): JSX.Element {
   const { sortConfiguration, updateSort } = useDataGridState({
     rows,
-    onSelectionChange: () => {},
     onSortChange,
   });
 
-  const { ref: sentinelRef, entry } = useInView({
-    threshold: 0.5,
-    rootMargin: "100px",
-  });
-
-  useEffect(() => {
-    if (entry?.isIntersecting === true && onRowsScrollEnd) {
+  const handleIntersect = (
+    inView: boolean,
+    entry: IntersectionObserverEntry | null,
+  ): void => {
+    if (inView && entry && onRowsScrollEnd) {
       const target = entry.target.parentElement;
       if (!(target instanceof HTMLDivElement)) {
         return;
@@ -101,49 +95,32 @@ export function DataGrid<T extends { id: string | number }>({
       const rowHeight = 48;
       const visibleRows = Math.ceil(target.clientHeight / rowHeight);
 
-      const params: GridScrollEndParams = {
-        visibleRows,
-        visibleStartIndex: Math.floor(target.scrollTop / rowHeight),
-        visibleEndIndex: Math.min(
-          Math.floor((target.scrollTop + target.clientHeight) / rowHeight),
-          rows.length,
-        ),
-      };
-
-      const scrollEvent = new UIEvent("scroll") as GridScrollEndEvent;
-      scrollEvent.target = target;
-
-      const details: GridCallbackDetails = {
-        reason: "scroll",
-      };
-
       onRowsScrollEnd({
-        params,
-        scrollEvent,
-        details,
+        params: {
+          visibleRows,
+          visibleStartIndex: Math.floor(target.scrollTop / rowHeight),
+          visibleEndIndex: Math.min(
+            Math.floor((target.scrollTop + target.clientHeight) / rowHeight),
+            rows.length,
+          ),
+        },
+        details: {
+          reason: "scroll",
+        },
       });
     }
-  }, [entry?.isIntersecting, onRowsScrollEnd, rows.length]);
-  if (isLoading) {
-    return (
-      <DataGridSkeleton
-        columns={columns.length}
-        checkboxSelection={props.showSelectionCheckboxes}
-        variant={variant}
-        rows={rows.length}
-      />
-    );
-  }
+  };
+  const { ref: sentinelRef } = useInView({
+    threshold: 0.5,
+    rootMargin: "100px",
+    onChange: handleIntersect,
+  });
 
-  const variantClasses = GRID_VARIANTS[variant];
-
-  const preparedColumns: ExtendedColumn<T>[] = [
-    ...columns.map((col, index) => ({
-      ...col,
-      key: typeof col.field === "string" ? String(col.field) : String(index),
-      label: col.header,
-    })),
-  ];
+  const preparedColumns = columns.map((col, index) => ({
+    ...col,
+    key: typeof col.field === "string" ? String(col.field) : String(index),
+    label: col.header,
+  }));
 
   const handleSort = (column: ExtendedColumn<T>): void => {
     const matchingColumn = columns.find(
@@ -166,6 +143,19 @@ export function DataGrid<T extends { id: string | number }>({
       );
     }
   };
+
+  if (isLoading) {
+    return (
+      <DataGridSkeleton
+        columns={columns.length}
+        checkboxSelection={props.showSelectionCheckboxes}
+        variant={variant}
+        rows={rows.length}
+      />
+    );
+  }
+
+  const variantClasses = GRID_VARIANTS[variant];
 
   return (
     <div className="relative">

@@ -43,7 +43,6 @@ export interface GridCallbackDetails {
 }
 export interface GridScrollEndCallback {
     params: GridScrollEndParams;
-    scrollEvent: GridScrollEndEvent;
     details: GridCallbackDetails;
 }
 export type GridVariant = "bordered" | "striped" | "unstyled";
