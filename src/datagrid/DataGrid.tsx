@@ -1,6 +1,6 @@
 import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
-import { useEffect, type Key } from "react";
+import { useEffect, useRef, type Key } from "react";
 import {
   Table as DataTable,
   TableHeader,
@@ -17,6 +17,9 @@ import type {
   ColumnDefinition,
   DataGridProps,
   ExtendedColumn,
+  GridCallbackDetails,
+  GridScrollEndEvent,
+  GridScrollEndParams,
 } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
 
@@ -35,6 +38,7 @@ const getSortLabel = (label: React.ReactNode): string => {
     ? `Sort by ${label}`
     : "Sort column";
 };
+
 const getCellValue = <T extends object>(
   columnKey: Key,
   row: T,
@@ -69,8 +73,8 @@ const getCellValue = <T extends object>(
 export function DataGrid<T extends { id: string | number }>({
   rows,
   columns,
-  onEndReached,
   onSortChange,
+  onRowsScrollEnd,
   variant = "unstyled",
   isLoading = false,
   childrenProps,
@@ -82,13 +86,43 @@ export function DataGrid<T extends { id: string | number }>({
     onSortChange,
   });
 
-  const { inView } = useInView({ threshold: 0.5, rootMargin: "100px" });
+  const tableRef = useRef<HTMLDivElement>(null);
+  const {
+    ref: inViewRef,
+    inView,
+    entry,
+  } = useInView({ threshold: 0.5, rootMargin: "100px" });
+
+  const setRefs = (node: HTMLDivElement | null): void => {
+    tableRef.current = node;
+    inViewRef(node);
+  };
 
   useEffect(() => {
-    if (inView) {
-      onEndReached?.();
+    if (inView && entry?.target instanceof HTMLDivElement && onRowsScrollEnd) {
+      const rowHeight = 48;
+      const target = entry.target;
+      const visibleRows = Math.ceil(target.clientHeight / rowHeight);
+
+      const params: GridScrollEndParams = {
+        visibleRows,
+        visibleStartIndex: Math.floor(target.scrollTop / rowHeight),
+        visibleEndIndex: Math.min(
+          Math.floor((target.scrollTop + target.clientHeight) / rowHeight),
+          rows.length,
+        ),
+      };
+
+      const scrollEvent = new UIEvent("scroll") as GridScrollEndEvent;
+      scrollEvent.target = target;
+
+      const details: GridCallbackDetails = {
+        reason: "scroll",
+      };
+
+      onRowsScrollEnd({ params, scrollEvent, details });
     }
-  }, [inView, onEndReached]);
+  }, [inView, entry, onRowsScrollEnd, rows.length]);
 
   if (isLoading) {
     return (
@@ -134,71 +168,74 @@ export function DataGrid<T extends { id: string | number }>({
   };
 
   return (
-    <DataTable
-      aria-label="data-grid"
-      {...props}
-      classNames={{
-        ...props.classNames,
-        th: cn(variantClasses.th, props.classNames?.th),
-        tr: cn(variantClasses.tr, props.classNames?.tr),
-      }}
-    >
-      <TableHeader
-        columns={preparedColumns}
-        {...childrenProps?.tableHeaderProps}
+    <div ref={setRefs}>
+      <DataTable
+        aria-label="data-grid"
+        {...props}
+        classNames={{
+          ...props.classNames,
+          th: cn(variantClasses.th, props.classNames?.th),
+          tr: cn(variantClasses.tr, props.classNames?.tr),
+          base: cn("max-h-[600px] overflow-auto", props.classNames?.base),
+        }}
       >
-        {(column) => (
-          <TableColumn
-            key={column.key}
-            aria-label={getColumnLabel(column)}
-            {...childrenProps?.tableColumnProps}
-          >
-            <div className="flex items-center gap-2 ">
-              {column.label}
-              {column.sortable !== false && (
-                <div
-                  className={cn("relative size-4 cursor-pointer")}
-                  onClick={() => handleSort(column)}
-                  role="button"
-                  aria-label={getSortLabel(column.label)}
-                >
-                  <IconChevronUp
-                    size={16}
-                    className={cn(
-                      "absolute -top-1",
-                      sortConfiguration.key === column.key &&
-                        sortConfiguration.direction === "asc"
-                        ? "opacity-100"
-                        : "opacity-30",
-                    )}
-                  />
-                  <IconChevronDown
-                    size={16}
-                    className={cn(
-                      "absolute top-1",
-                      sortConfiguration.key === column.key &&
-                        sortConfiguration.direction === "desc"
-                        ? "opacity-100"
-                        : "opacity-30",
-                    )}
-                  />
-                </div>
+        <TableHeader
+          columns={preparedColumns}
+          {...childrenProps?.tableHeaderProps}
+        >
+          {(column) => (
+            <TableColumn
+              key={column.key}
+              aria-label={getColumnLabel(column)}
+              {...childrenProps?.tableColumnProps}
+            >
+              <div className="flex items-center gap-2 ">
+                {column.label}
+                {column.sortable !== false && (
+                  <div
+                    className={cn("relative size-4 cursor-pointer")}
+                    onClick={() => handleSort(column)}
+                    role="button"
+                    aria-label={getSortLabel(column.label)}
+                  >
+                    <IconChevronUp
+                      size={16}
+                      className={cn(
+                        "absolute -top-1",
+                        sortConfiguration.key === column.key &&
+                          sortConfiguration.direction === "asc"
+                          ? "opacity-100"
+                          : "opacity-30",
+                      )}
+                    />
+                    <IconChevronDown
+                      size={16}
+                      className={cn(
+                        "absolute top-1",
+                        sortConfiguration.key === column.key &&
+                          sortConfiguration.direction === "desc"
+                          ? "opacity-100"
+                          : "opacity-30",
+                      )}
+                    />
+                  </div>
+                )}
+              </div>
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={rows} {...childrenProps?.tableBodyProps}>
+          {(row: T) => (
+            <TableRow key={row.id} {...childrenProps?.tableRowProps}>
+              {(columnKey) => (
+                <TableCell {...childrenProps?.tableCellProps}>
+                  {getCellValue(columnKey, row, columns)}
+                </TableCell>
               )}
-            </div>
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody items={rows} {...childrenProps?.tableBodyProps}>
-        {(row: T) => (
-          <TableRow key={row.id} {...childrenProps?.tableRowProps}>
-            {(columnKey) => (
-              <TableCell {...childrenProps?.tableCellProps}>
-                {getCellValue(columnKey, row, columns)}
-              </TableCell>
-            )}
-          </TableRow>
-        )}
-      </TableBody>
-    </DataTable>
+            </TableRow>
+          )}
+        </TableBody>
+      </DataTable>
+    </div>
   );
 }

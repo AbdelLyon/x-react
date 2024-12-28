@@ -1,45 +1,45 @@
 /* empty css                */
-import { j as d } from "../jsx-runtime-Dx-03ztt.js";
-import * as p from "react";
-import { useState as A, useEffect as z } from "react";
-import { cn as v } from "../utils/x-react.es.js";
-import { Table as V, TableHeader as _, TableColumn as C, Skeleton as w, TableBody as D, TableRow as B, TableCell as G } from "@nextui-org/react";
-import { IconChevronUp as L, IconChevronDown as O } from "@tabler/icons-react";
-const $ = ({
+import { j as c } from "../jsx-runtime-Dx-03ztt.js";
+import * as N from "react";
+import { useState as H, useEffect as z, useRef as $ } from "react";
+import { cn as m } from "../utils/x-react.es.js";
+import { Table as _, TableHeader as C, TableColumn as D, Skeleton as I, TableBody as B, TableRow as G, TableCell as L } from "@nextui-org/react";
+import { IconChevronUp as U, IconChevronDown as F } from "@tabler/icons-react";
+const W = ({
   rows: e,
   onSelectionChange: t
 }) => {
-  const [r, i] = A(/* @__PURE__ */ new Set()), [a, u] = A(!1);
+  const [a, r] = H(/* @__PURE__ */ new Set()), [o, d] = H(!1);
   return z(() => {
-    u(r.size === e.length);
-  }, [r, e]), {
-    selectedRows: r,
-    allRowsSelected: a,
+    d(a.size === e.length);
+  }, [a, e]), {
+    selectedRows: a,
+    allRowsSelected: o,
     toggleRowSelection: (n) => {
-      i((c) => {
-        const f = new Set(c);
-        return f.has(n) ? f.delete(n) : f.add(n), t == null || t(Array.from(f)), f;
+      r((f) => {
+        const u = new Set(f);
+        return u.has(n) ? u.delete(n) : u.add(n), t == null || t(Array.from(u)), u;
       });
     },
     toggleAllRowsSelection: (n) => {
-      const c = n ? new Set(e) : /* @__PURE__ */ new Set();
-      i(c), t == null || t(Array.from(c));
+      const f = n ? new Set(e) : /* @__PURE__ */ new Set();
+      r(f), t == null || t(Array.from(f));
     }
   };
-}, H = ({
+}, q = ({
   onSortChange: e
 }) => {
-  const [t, r] = A({
+  const [t, a] = H({
     key: null,
     direction: "asc"
   });
-  return { sortConfiguration: t, updateSort: (a, u) => {
-    r({ key: a, direction: u }), e == null || e(a, u);
+  return { sortConfiguration: t, updateSort: (o, d) => {
+    a({ key: o, direction: d }), e == null || e(o, d);
   } };
-}, E = (e) => ({
-  ...$(e),
-  ...H(e)
-}), M = {
+}, J = (e) => ({
+  ...W(e),
+  ...q(e)
+}), O = {
   bordered: {
     thead: "bg-content2",
     th: "py4 bg-content2 py-4",
@@ -55,58 +55,58 @@ const $ = ({
     th: "py4 bg-content2 py-4",
     tr: "py-4 hover:bg-content2"
   }
-}, F = ({
+}, K = ({
   columns: e = 5,
   rows: t = 5,
-  checkboxSelection: r = !0,
-  variant: i = "unstyled",
-  className: a
+  checkboxSelection: a = !0,
+  variant: r = "unstyled",
+  className: o
 }) => {
-  const u = M[i], s = r ? e + 1 : e;
-  return /* @__PURE__ */ d.jsxs(V, { radius: "sm", "aria-label": "Loading data", className: a, children: [
-    /* @__PURE__ */ d.jsx(_, { className: v(u.thead), children: Array(s).fill(null).map((l, n) => /* @__PURE__ */ d.jsx(C, { className: v(u.th), children: n === 0 && r ? /* @__PURE__ */ d.jsx(w, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(w, { className: "h-4 w-24 rounded-md" }) }, n)) }),
-    /* @__PURE__ */ d.jsx(D, { children: Array(t).fill(null).map((l, n) => /* @__PURE__ */ d.jsx(B, { className: v(u.tr), children: Array(s).fill(null).map((c, f) => /* @__PURE__ */ d.jsx(G, { children: f === 0 && r ? /* @__PURE__ */ d.jsx(w, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(w, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, f)) }, n)) })
+  const d = O[r], s = a ? e + 1 : e;
+  return /* @__PURE__ */ c.jsxs(_, { radius: "sm", "aria-label": "Loading data", className: o, children: [
+    /* @__PURE__ */ c.jsx(C, { className: m(d.thead), children: Array(s).fill(null).map((l, n) => /* @__PURE__ */ c.jsx(D, { className: m(d.th), children: n === 0 && a ? /* @__PURE__ */ c.jsx(I, { className: "size-4 rounded-md" }) : /* @__PURE__ */ c.jsx(I, { className: "h-4 w-24 rounded-md" }) }, n)) }),
+    /* @__PURE__ */ c.jsx(B, { children: Array(t).fill(null).map((l, n) => /* @__PURE__ */ c.jsx(G, { className: m(d.tr), children: Array(s).fill(null).map((f, u) => /* @__PURE__ */ c.jsx(L, { children: u === 0 && a ? /* @__PURE__ */ c.jsx(I, { className: "size-4 rounded-md" }) : /* @__PURE__ */ c.jsx(I, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, u)) }, n)) })
   ] });
 };
-var k = /* @__PURE__ */ new Map(), R = /* @__PURE__ */ new WeakMap(), I = 0, U = void 0;
-function W(e) {
-  return e ? (R.has(e) || (I += 1, R.set(e, I.toString())), R.get(e)) : "0";
+var M = /* @__PURE__ */ new Map(), k = /* @__PURE__ */ new WeakMap(), V = 0, Q = void 0;
+function X(e) {
+  return e ? (k.has(e) || (V += 1, k.set(e, V.toString())), k.get(e)) : "0";
 }
-function q(e) {
+function Y(e) {
   return Object.keys(e).sort().filter(
     (t) => e[t] !== void 0
-  ).map((t) => `${t}_${t === "root" ? W(e.root) : e[t]}`).toString();
+  ).map((t) => `${t}_${t === "root" ? X(e.root) : e[t]}`).toString();
 }
-function J(e) {
-  const t = q(e);
-  let r = k.get(t);
-  if (!r) {
-    const i = /* @__PURE__ */ new Map();
-    let a;
-    const u = new IntersectionObserver((s) => {
+function Z(e) {
+  const t = Y(e);
+  let a = M.get(t);
+  if (!a) {
+    const r = /* @__PURE__ */ new Map();
+    let o;
+    const d = new IntersectionObserver((s) => {
       s.forEach((l) => {
         var n;
-        const c = l.isIntersecting && a.some((f) => l.intersectionRatio >= f);
-        e.trackVisibility && typeof l.isVisible > "u" && (l.isVisible = c), (n = i.get(l.target)) == null || n.forEach((f) => {
-          f(c, l);
+        const f = l.isIntersecting && o.some((u) => l.intersectionRatio >= u);
+        e.trackVisibility && typeof l.isVisible > "u" && (l.isVisible = f), (n = r.get(l.target)) == null || n.forEach((u) => {
+          u(f, l);
         });
       });
     }, e);
-    a = u.thresholds || (Array.isArray(e.threshold) ? e.threshold : [e.threshold || 0]), r = {
+    o = d.thresholds || (Array.isArray(e.threshold) ? e.threshold : [e.threshold || 0]), a = {
       id: t,
-      observer: u,
-      elements: i
-    }, k.set(t, r);
+      observer: d,
+      elements: r
+    }, M.set(t, a);
   }
-  return r;
+  return a;
 }
-function K(e, t, r = {}, i = U) {
-  if (typeof window.IntersectionObserver > "u" && i !== void 0) {
+function P(e, t, a = {}, r = Q) {
+  if (typeof window.IntersectionObserver > "u" && r !== void 0) {
     const n = e.getBoundingClientRect();
-    return t(i, {
-      isIntersecting: i,
+    return t(r, {
+      isIntersecting: r,
       target: e,
-      intersectionRatio: typeof r.threshold == "number" ? r.threshold : 0,
+      intersectionRatio: typeof a.threshold == "number" ? a.threshold : 0,
       time: 0,
       boundingClientRect: n,
       intersectionRect: n,
@@ -114,46 +114,46 @@ function K(e, t, r = {}, i = U) {
     }), () => {
     };
   }
-  const { id: a, observer: u, elements: s } = J(r), l = s.get(e) || [];
-  return s.has(e) || s.set(e, l), l.push(t), u.observe(e), function() {
-    l.splice(l.indexOf(t), 1), l.length === 0 && (s.delete(e), u.unobserve(e)), s.size === 0 && (u.disconnect(), k.delete(a));
+  const { id: o, observer: d, elements: s } = Z(a), l = s.get(e) || [];
+  return s.has(e) || s.set(e, l), l.push(t), d.observe(e), function() {
+    l.splice(l.indexOf(t), 1), l.length === 0 && (s.delete(e), d.unobserve(e)), s.size === 0 && (d.disconnect(), M.delete(o));
   };
 }
-function Q({
+function ee({
   threshold: e,
   delay: t,
-  trackVisibility: r,
-  rootMargin: i,
-  root: a,
-  triggerOnce: u,
+  trackVisibility: a,
+  rootMargin: r,
+  root: o,
+  triggerOnce: d,
   skip: s,
   initialInView: l,
   fallbackInView: n,
-  onChange: c
+  onChange: f
 } = {}) {
-  var f;
-  const [m, h] = p.useState(null), x = p.useRef(c), [S, j] = p.useState({
+  var u;
+  const [h, A] = N.useState(null), v = N.useRef(f), [x, S] = N.useState({
     inView: !!l,
     entry: void 0
   });
-  x.current = c, p.useEffect(
+  v.current = f, N.useEffect(
     () => {
-      if (s || !m) return;
+      if (s || !h) return;
       let y;
-      return y = K(
-        m,
-        (T, N) => {
-          j({
-            inView: T,
-            entry: N
-          }), x.current && x.current(T, N), N.isIntersecting && u && y && (y(), y = void 0);
+      return y = P(
+        h,
+        (j, i) => {
+          S({
+            inView: j,
+            entry: i
+          }), v.current && v.current(j, i), i.isIntersecting && d && y && (y(), y = void 0);
         },
         {
-          root: a,
-          rootMargin: i,
+          root: o,
+          rootMargin: r,
           threshold: e,
           // @ts-ignore
-          trackVisibility: r,
+          trackVisibility: a,
           // @ts-ignore
           delay: t
         },
@@ -167,130 +167,149 @@ function Q({
     [
       // If the threshold is an array, convert it to a string, so it won't change between renders.
       Array.isArray(e) ? e.toString() : e,
-      m,
-      a,
-      i,
-      u,
-      s,
+      h,
+      o,
       r,
+      d,
+      s,
+      a,
       n,
       t
     ]
   );
-  const o = (f = S.entry) == null ? void 0 : f.target, g = p.useRef(void 0);
-  !m && o && !u && !s && g.current !== o && (g.current = o, j({
+  const R = (u = x.entry) == null ? void 0 : u.target, T = N.useRef(void 0);
+  !h && R && !d && !s && T.current !== R && (T.current = R, S({
     inView: !!l,
     entry: void 0
   }));
-  const b = [h, S.inView, S.entry];
+  const b = [A, x.inView, x.entry];
   return b.ref = b[0], b.inView = b[1], b.entry = b[2], b;
 }
-const X = (e) => typeof e.label == "string" && e.label.length > 0 ? e.label : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column", Y = (e) => typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column", Z = (e, t, r) => {
-  const i = r.find(
-    (a) => typeof a.field == "string" && String(a.field) === String(e)
+const te = (e) => typeof e.label == "string" && e.label.length > 0 ? e.label : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column", se = (e) => typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column", re = (e, t, a) => {
+  const r = a.find(
+    (o) => typeof o.field == "string" && String(o.field) === String(e)
   );
-  if (i === void 0)
+  if (r === void 0)
     return null;
-  if (i.cell !== void 0)
-    return i.cell(t);
-  if (typeof i.field == "string" && i.field.length > 0 && i.field in t) {
-    const a = t[i.field];
-    return typeof a == "string" || typeof a == "number" ? String(a) : null;
+  if (r.cell !== void 0)
+    return r.cell(t);
+  if (typeof r.field == "string" && r.field.length > 0 && r.field in t) {
+    const o = t[r.field];
+    return typeof o == "string" || typeof o == "number" ? String(o) : null;
   }
   return null;
 };
-function ie({
+function ue({
   rows: e,
   columns: t,
-  onEndReached: r,
-  onSortChange: i,
-  variant: a = "unstyled",
-  isLoading: u = !1,
+  onSortChange: a,
+  onRowsScrollEnd: r,
+  variant: o = "unstyled",
+  isLoading: d = !1,
   childrenProps: s,
   ...l
 }) {
-  var S, j;
-  const { sortConfiguration: n, updateSort: c } = E({
+  var b, y, j;
+  const { sortConfiguration: n, updateSort: f } = J({
     rows: e,
     onSelectionChange: () => {
     },
-    onSortChange: i
-  }), { inView: f } = Q({ threshold: 0.5, rootMargin: "100px" });
+    onSortChange: a
+  }), u = $(null), {
+    ref: h,
+    inView: A,
+    entry: v
+  } = ee({ threshold: 0.5, rootMargin: "100px" }), x = (i) => {
+    u.current = i, h(i);
+  };
   if (z(() => {
-    f && (r == null || r());
-  }, [f, r]), u)
-    return /* @__PURE__ */ d.jsx(
-      F,
+    if (A && (v == null ? void 0 : v.target) instanceof HTMLDivElement && r) {
+      const g = v.target, w = {
+        visibleRows: Math.ceil(g.clientHeight / 48),
+        visibleStartIndex: Math.floor(g.scrollTop / 48),
+        visibleEndIndex: Math.min(
+          Math.floor((g.scrollTop + g.clientHeight) / 48),
+          e.length
+        )
+      }, E = new UIEvent("scroll");
+      E.target = g, r({ params: w, scrollEvent: E, details: {
+        reason: "scroll"
+      } });
+    }
+  }, [A, v, r, e.length]), d)
+    return /* @__PURE__ */ c.jsx(
+      K,
       {
         columns: t.length,
         checkboxSelection: l.showSelectionCheckboxes,
-        variant: a,
+        variant: o,
         rows: e.length
       }
     );
-  const m = M[a], h = [
-    ...t.map((o, g) => ({
-      ...o,
-      key: typeof o.field == "string" ? String(o.field) : String(g),
-      label: o.header
+  const S = O[o], R = [
+    ...t.map((i, g) => ({
+      ...i,
+      key: typeof i.field == "string" ? String(i.field) : String(g),
+      label: i.header
     }))
-  ], x = (o) => {
+  ], T = (i) => {
     const g = t.find(
-      (y) => typeof y.field == "string" && y.field.length > 0 && String(y.field) === o.key
-    ), b = g == null ? void 0 : g.field;
-    b != null && b !== "actions" && c(
-      b,
+      (w) => typeof w.field == "string" && w.field.length > 0 && String(w.field) === i.key
+    ), p = g == null ? void 0 : g.field;
+    p != null && p !== "actions" && f(
+      p,
       n.direction === "asc" ? "desc" : "asc"
     );
   };
-  return /* @__PURE__ */ d.jsxs(
-    V,
+  return /* @__PURE__ */ c.jsx("div", { ref: x, children: /* @__PURE__ */ c.jsxs(
+    _,
     {
       "aria-label": "data-grid",
       ...l,
       classNames: {
         ...l.classNames,
-        th: v(m.th, (S = l.classNames) == null ? void 0 : S.th),
-        tr: v(m.tr, (j = l.classNames) == null ? void 0 : j.tr)
+        th: m(S.th, (b = l.classNames) == null ? void 0 : b.th),
+        tr: m(S.tr, (y = l.classNames) == null ? void 0 : y.tr),
+        base: m("max-h-[600px] overflow-auto", (j = l.classNames) == null ? void 0 : j.base)
       },
       children: [
-        /* @__PURE__ */ d.jsx(
-          _,
+        /* @__PURE__ */ c.jsx(
+          C,
           {
-            columns: h,
+            columns: R,
             ...s == null ? void 0 : s.tableHeaderProps,
-            children: (o) => /* @__PURE__ */ d.jsx(
-              C,
+            children: (i) => /* @__PURE__ */ c.jsx(
+              D,
               {
-                "aria-label": X(o),
+                "aria-label": te(i),
                 ...s == null ? void 0 : s.tableColumnProps,
-                children: /* @__PURE__ */ d.jsxs("div", { className: "flex items-center gap-2 ", children: [
-                  o.label,
-                  o.sortable !== !1 && /* @__PURE__ */ d.jsxs(
+                children: /* @__PURE__ */ c.jsxs("div", { className: "flex items-center gap-2 ", children: [
+                  i.label,
+                  i.sortable !== !1 && /* @__PURE__ */ c.jsxs(
                     "div",
                     {
-                      className: v("relative size-4 cursor-pointer"),
-                      onClick: () => x(o),
+                      className: m("relative size-4 cursor-pointer"),
+                      onClick: () => T(i),
                       role: "button",
-                      "aria-label": Y(o.label),
+                      "aria-label": se(i.label),
                       children: [
-                        /* @__PURE__ */ d.jsx(
-                          L,
+                        /* @__PURE__ */ c.jsx(
+                          U,
                           {
                             size: 16,
-                            className: v(
+                            className: m(
                               "absolute -top-1",
-                              n.key === o.key && n.direction === "asc" ? "opacity-100" : "opacity-30"
+                              n.key === i.key && n.direction === "asc" ? "opacity-100" : "opacity-30"
                             )
                           }
                         ),
-                        /* @__PURE__ */ d.jsx(
-                          O,
+                        /* @__PURE__ */ c.jsx(
+                          F,
                           {
                             size: 16,
-                            className: v(
+                            className: m(
                               "absolute top-1",
-                              n.key === o.key && n.direction === "desc" ? "opacity-100" : "opacity-30"
+                              n.key === i.key && n.direction === "desc" ? "opacity-100" : "opacity-30"
                             )
                           }
                         )
@@ -299,15 +318,15 @@ function ie({
                   )
                 ] })
               },
-              o.key
+              i.key
             )
           }
         ),
-        /* @__PURE__ */ d.jsx(D, { items: e, ...s == null ? void 0 : s.tableBodyProps, children: (o) => /* @__PURE__ */ d.jsx(B, { ...s == null ? void 0 : s.tableRowProps, children: (g) => /* @__PURE__ */ d.jsx(G, { ...s == null ? void 0 : s.tableCellProps, children: Z(g, o, t) }) }, o.id) })
+        /* @__PURE__ */ c.jsx(B, { items: e, ...s == null ? void 0 : s.tableBodyProps, children: (i) => /* @__PURE__ */ c.jsx(G, { ...s == null ? void 0 : s.tableRowProps, children: (g) => /* @__PURE__ */ c.jsx(L, { ...s == null ? void 0 : s.tableCellProps, children: re(g, i, t) }) }, i.id) })
       ]
     }
-  );
+  ) });
 }
 export {
-  ie as DataGrid
+  ue as DataGrid
 };
