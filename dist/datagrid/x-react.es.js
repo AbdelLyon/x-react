@@ -218,7 +218,7 @@ function ie({
     rows: e,
     onSortChange: a
   }), { ref: c, inView: v } = Q();
-  X(v, u);
+  console.log(c), X(v, u);
   const w = t.map((o, f) => ({
     ...o,
     key: typeof o.field == "string" ? String(o.field) : String(f),

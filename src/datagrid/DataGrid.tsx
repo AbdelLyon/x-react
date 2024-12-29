@@ -85,6 +85,8 @@ export function DataGrid<T extends { id: string | number }>({
 
   const { ref, inView } = useInView();
 
+  console.log(ref);
+
   useInfiniteScroll(inView, onRowsScrollEnd);
 
   const preparedColumns = columns.map((col, index) => ({
