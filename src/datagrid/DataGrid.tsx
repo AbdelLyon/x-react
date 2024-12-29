@@ -186,7 +186,11 @@ export function DataGrid<T extends { id: string | number }>({
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={rows} {...childrenProps?.tableBodyProps}>
+        <TableBody
+          items={rows}
+          {...childrenProps?.tableBodyProps}
+          className="h-96"
+        >
           {(row: T) => {
             return (
               <TableRow key={row.id} {...childrenProps?.tableRowProps}>

@@ -2,7 +2,7 @@
 import { j as t } from "../jsx-runtime-Dx-03ztt.js";
 import { useState as j, useEffect as C } from "react";
 import { cn as y } from "../utils/x-react.es.js";
-import { Table as k, TableHeader as v, TableColumn as A, Skeleton as m, TableBody as h, TableRow as R, TableCell as T } from "@nextui-org/react";
+import { Table as k, TableHeader as v, TableColumn as h, Skeleton as m, TableBody as A, TableRow as R, TableCell as T } from "@nextui-org/react";
 import { IconChevronUp as G, IconChevronDown as H } from "@tabler/icons-react";
 const _ = ({
   rows: e,
@@ -16,8 +16,8 @@ const _ = ({
     allRowsSelected: i,
     toggleRowSelection: (n) => {
       r((b) => {
-        const c = new Set(b);
-        return c.has(n) ? c.delete(n) : c.add(n), a == null || a(Array.from(c)), c;
+        const f = new Set(b);
+        return f.has(n) ? f.delete(n) : f.add(n), a == null || a(Array.from(f)), f;
       });
     },
     toggleAllRowsSelection: (n) => {
@@ -63,8 +63,8 @@ const _ = ({
 }) => {
   const o = w[r], l = d ? e + 1 : e;
   return /* @__PURE__ */ t.jsxs(k, { radius: "sm", "aria-label": "Loading data", className: i, children: [
-    /* @__PURE__ */ t.jsx(v, { className: y(o.thead), children: Array(l).fill(null).map((u, n) => /* @__PURE__ */ t.jsx(A, { className: y(o.th), children: n === 0 && d ? /* @__PURE__ */ t.jsx(m, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(m, { className: "h-4 w-24 rounded-md" }) }, n)) }),
-    /* @__PURE__ */ t.jsx(h, { children: Array(a).fill(null).map((u, n) => /* @__PURE__ */ t.jsx(R, { className: y(o.tr), children: Array(l).fill(null).map((b, c) => /* @__PURE__ */ t.jsx(T, { children: c === 0 && d ? /* @__PURE__ */ t.jsx(m, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(m, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, c)) }, n)) })
+    /* @__PURE__ */ t.jsx(v, { className: y(o.thead), children: Array(l).fill(null).map((u, n) => /* @__PURE__ */ t.jsx(h, { className: y(o.th), children: n === 0 && d ? /* @__PURE__ */ t.jsx(m, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(m, { className: "h-4 w-24 rounded-md" }) }, n)) }),
+    /* @__PURE__ */ t.jsx(A, { children: Array(a).fill(null).map((u, n) => /* @__PURE__ */ t.jsx(R, { className: y(o.tr), children: Array(l).fill(null).map((b, f) => /* @__PURE__ */ t.jsx(T, { children: f === 0 && d ? /* @__PURE__ */ t.jsx(m, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(m, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, f)) }, n)) })
   ] });
 }, F = (e) => typeof e.label == "string" && e.label.length > 0 ? e.label : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column", V = (e) => typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column", U = (e, a, d) => {
   const r = d.find(
@@ -94,21 +94,21 @@ function Q({
   const { sortConfiguration: n, updateSort: b } = L({
     rows: e,
     onSortChange: d
-  }), c = a.map((s, f) => ({
+  }), f = a.map((s, c) => ({
     ...s,
-    key: typeof s.field == "string" ? String(s.field) : String(f),
+    key: typeof s.field == "string" ? String(s.field) : String(c),
     label: s.header
   })), z = (s) => {
-    const f = a.find(
+    const c = a.find(
       (x) => typeof x.field == "string" && x.field.length > 0 && String(x.field) === s.key
-    ), g = f == null ? void 0 : f.field;
+    ), g = c == null ? void 0 : c.field;
     g != null && g !== "actions" && b(
       g,
       n.direction === "asc" ? "desc" : "asc"
     );
   }, S = w[r], D = (s) => {
-    const f = s.currentTarget;
-    f.scrollTop + f.clientHeight >= f.scrollHeight && (o == null || o());
+    const c = s.currentTarget;
+    c.scrollTop + c.clientHeight >= c.scrollHeight && (o == null || o());
   };
   return i ? /* @__PURE__ */ t.jsx(
     B,
@@ -133,10 +133,10 @@ function Q({
         /* @__PURE__ */ t.jsx(
           v,
           {
-            columns: c,
+            columns: f,
             ...l == null ? void 0 : l.tableHeaderProps,
             children: (s) => /* @__PURE__ */ t.jsx(
-              A,
+              h,
               {
                 "aria-label": F(s),
                 ...l == null ? void 0 : l.tableColumnProps,
@@ -179,7 +179,15 @@ function Q({
             )
           }
         ),
-        /* @__PURE__ */ t.jsx(h, { items: e, ...l == null ? void 0 : l.tableBodyProps, children: (s) => /* @__PURE__ */ t.jsx(R, { ...l == null ? void 0 : l.tableRowProps, children: (f) => /* @__PURE__ */ t.jsx(T, { ...l == null ? void 0 : l.tableCellProps, children: U(f, s, a) }) }, s.id) })
+        /* @__PURE__ */ t.jsx(
+          A,
+          {
+            items: e,
+            ...l == null ? void 0 : l.tableBodyProps,
+            className: "h-96",
+            children: (s) => /* @__PURE__ */ t.jsx(R, { ...l == null ? void 0 : l.tableRowProps, children: (c) => /* @__PURE__ */ t.jsx(T, { ...l == null ? void 0 : l.tableCellProps, children: U(c, s, a) }) }, s.id)
+          }
+        )
       ]
     }
   ) });
