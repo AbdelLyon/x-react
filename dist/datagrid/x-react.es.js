@@ -1,24 +1,24 @@
 /* empty css                */
-import { j as u } from "../jsx-runtime-Dx-03ztt.js";
-import * as R from "react";
+import { j as d } from "../jsx-runtime-Dx-03ztt.js";
+import * as h from "react";
 import { useState as I, useEffect as z } from "react";
 import { cn as y } from "../utils/x-react.es.js";
-import { Table as _, TableHeader as V, TableColumn as C, Skeleton as h, TableBody as D, TableRow as B, TableCell as E } from "@nextui-org/react";
+import { Table as _, TableHeader as V, TableColumn as C, Skeleton as R, TableBody as D, TableRow as B, TableCell as E } from "@nextui-org/react";
 import { IconChevronUp as M, IconChevronDown as O } from "@tabler/icons-react";
 const L = ({
   rows: e,
   onSelectionChange: t
 }) => {
-  const [a, n] = I(/* @__PURE__ */ new Set()), [l, d] = I(!1);
+  const [a, n] = I(/* @__PURE__ */ new Set()), [l, u] = I(!1);
   return z(() => {
-    d(a.size === e.length);
+    u(a.size === e.length);
   }, [a, e]), {
     selectedRows: a,
     allRowsSelected: l,
     toggleRowSelection: (r) => {
       n((b) => {
-        const f = new Set(b);
-        return f.has(r) ? f.delete(r) : f.add(r), t == null || t(Array.from(f)), f;
+        const c = new Set(b);
+        return c.has(r) ? c.delete(r) : c.add(r), t == null || t(Array.from(c)), c;
       });
     },
     toggleAllRowsSelection: (r) => {
@@ -33,8 +33,8 @@ const L = ({
     key: null,
     direction: "asc"
   });
-  return { sortConfiguration: t, updateSort: (l, d) => {
-    a({ key: l, direction: d }), e == null || e(l, d);
+  return { sortConfiguration: t, updateSort: (l, u) => {
+    a({ key: l, direction: u }), e == null || e(l, u);
   } };
 }, H = (e) => ({
   ...L(e),
@@ -62,10 +62,10 @@ const L = ({
   variant: n = "unstyled",
   className: l
 }) => {
-  const d = G[n], s = a ? e + 1 : e;
-  return /* @__PURE__ */ u.jsxs(_, { radius: "sm", "aria-label": "Loading data", className: l, children: [
-    /* @__PURE__ */ u.jsx(V, { className: y(d.thead), children: Array(s).fill(null).map((i, r) => /* @__PURE__ */ u.jsx(C, { className: y(d.th), children: r === 0 && a ? /* @__PURE__ */ u.jsx(h, { className: "size-4 rounded-md" }) : /* @__PURE__ */ u.jsx(h, { className: "h-4 w-24 rounded-md" }) }, r)) }),
-    /* @__PURE__ */ u.jsx(D, { children: Array(t).fill(null).map((i, r) => /* @__PURE__ */ u.jsx(B, { className: y(d.tr), children: Array(s).fill(null).map((b, f) => /* @__PURE__ */ u.jsx(E, { children: f === 0 && a ? /* @__PURE__ */ u.jsx(h, { className: "size-4 rounded-md" }) : /* @__PURE__ */ u.jsx(h, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, f)) }, r)) })
+  const u = G[n], s = a ? e + 1 : e;
+  return /* @__PURE__ */ d.jsxs(_, { radius: "sm", "aria-label": "Loading data", className: l, children: [
+    /* @__PURE__ */ d.jsx(V, { className: y(u.thead), children: Array(s).fill(null).map((i, r) => /* @__PURE__ */ d.jsx(C, { className: y(u.th), children: r === 0 && a ? /* @__PURE__ */ d.jsx(R, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(R, { className: "h-4 w-24 rounded-md" }) }, r)) }),
+    /* @__PURE__ */ d.jsx(D, { children: Array(t).fill(null).map((i, r) => /* @__PURE__ */ d.jsx(B, { className: y(u.tr), children: Array(s).fill(null).map((b, c) => /* @__PURE__ */ d.jsx(E, { children: c === 0 && a ? /* @__PURE__ */ d.jsx(R, { className: "size-4 rounded-md" }) : /* @__PURE__ */ d.jsx(R, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, c)) }, r)) })
   ] });
 };
 var k = /* @__PURE__ */ new Map(), N = /* @__PURE__ */ new WeakMap(), T = 0, U = void 0;
@@ -83,18 +83,18 @@ function J(e) {
   if (!a) {
     const n = /* @__PURE__ */ new Map();
     let l;
-    const d = new IntersectionObserver((s) => {
+    const u = new IntersectionObserver((s) => {
       s.forEach((i) => {
         var r;
-        const b = i.isIntersecting && l.some((f) => i.intersectionRatio >= f);
-        e.trackVisibility && typeof i.isVisible > "u" && (i.isVisible = b), (r = n.get(i.target)) == null || r.forEach((f) => {
-          f(b, i);
+        const b = i.isIntersecting && l.some((c) => i.intersectionRatio >= c);
+        e.trackVisibility && typeof i.isVisible > "u" && (i.isVisible = b), (r = n.get(i.target)) == null || r.forEach((c) => {
+          c(b, i);
         });
       });
     }, e);
-    l = d.thresholds || (Array.isArray(e.threshold) ? e.threshold : [e.threshold || 0]), a = {
+    l = u.thresholds || (Array.isArray(e.threshold) ? e.threshold : [e.threshold || 0]), a = {
       id: t,
-      observer: d,
+      observer: u,
       elements: n
     }, k.set(t, a);
   }
@@ -114,9 +114,9 @@ function K(e, t, a = {}, n = U) {
     }), () => {
     };
   }
-  const { id: l, observer: d, elements: s } = J(a), i = s.get(e) || [];
-  return s.has(e) || s.set(e, i), i.push(t), d.observe(e), function() {
-    i.splice(i.indexOf(t), 1), i.length === 0 && (s.delete(e), d.unobserve(e)), s.size === 0 && (d.disconnect(), k.delete(l));
+  const { id: l, observer: u, elements: s } = J(a), i = s.get(e) || [];
+  return s.has(e) || s.set(e, i), i.push(t), u.observe(e), function() {
+    i.splice(i.indexOf(t), 1), i.length === 0 && (s.delete(e), u.unobserve(e)), s.size === 0 && (u.disconnect(), k.delete(l));
   };
 }
 function Q({
@@ -125,18 +125,18 @@ function Q({
   trackVisibility: a,
   rootMargin: n,
   root: l,
-  triggerOnce: d,
+  triggerOnce: u,
   skip: s,
   initialInView: i,
   fallbackInView: r,
   onChange: b
 } = {}) {
-  var f;
-  const [v, w] = R.useState(null), j = R.useRef(b), [m, p] = R.useState({
+  var c;
+  const [v, w] = h.useState(null), j = h.useRef(b), [m, p] = h.useState({
     inView: !!i,
     entry: void 0
   });
-  j.current = b, R.useEffect(
+  j.current = b, h.useEffect(
     () => {
       if (s || !v) return;
       let g;
@@ -146,7 +146,7 @@ function Q({
           p({
             inView: S,
             entry: A
-          }), j.current && j.current(S, A), A.isIntersecting && d && g && (g(), g = void 0);
+          }), j.current && j.current(S, A), A.isIntersecting && u && g && (g(), g = void 0);
         },
         {
           root: l,
@@ -170,20 +170,20 @@ function Q({
       v,
       l,
       n,
-      d,
+      u,
       s,
       a,
       r,
       t
     ]
   );
-  const x = (f = m.entry) == null ? void 0 : f.target, o = R.useRef(void 0);
-  !v && x && !d && !s && o.current !== x && (o.current = x, p({
+  const x = (c = m.entry) == null ? void 0 : c.target, o = h.useRef(void 0);
+  !v && x && !u && !s && o.current !== x && (o.current = x, p({
     inView: !!i,
     entry: void 0
   }));
-  const c = [w, m.inView, m.entry];
-  return c.ref = c[0], c.inView = c[1], c.entry = c[2], c;
+  const f = [w, m.inView, m.entry];
+  return f.ref = f[0], f.inView = f[1], f.entry = f[2], f;
 }
 const X = (e, t) => {
   z(() => {
@@ -209,7 +209,7 @@ function ie({
   onSortChange: a,
   variant: n = "unstyled",
   isLoading: l = !1,
-  onRowsScrollEnd: d,
+  onRowsScrollEnd: u,
   childrenProps: s,
   ...i
 }) {
@@ -217,26 +217,30 @@ function ie({
   const { sortConfiguration: r, updateSort: b } = H({
     rows: e,
     onSortChange: a
-  }), { ref: f, inView: v } = Q({
-    threshold: 1,
-    rootMargin: "0px"
+  }), { ref: c, inView: v } = Q({
+    threshold: 0.1,
+    // Réduit le seuil
+    rootMargin: "100px",
+    // Ajoute une marge pour déclencher plus tôt
+    delay: 100
+    // Ajoute un petit délai
   });
-  X(v, d);
-  const w = t.map((o, c) => ({
+  X(v, u);
+  const w = t.map((o, f) => ({
     ...o,
-    key: typeof o.field == "string" ? String(o.field) : String(c),
+    key: typeof o.field == "string" ? String(o.field) : String(f),
     label: o.header
   })), j = (o) => {
-    const c = t.find(
+    const f = t.find(
       (S) => typeof S.field == "string" && S.field.length > 0 && String(S.field) === o.key
-    ), g = c == null ? void 0 : c.field;
+    ), g = f == null ? void 0 : f.field;
     g != null && g !== "actions" && b(
       g,
       r.direction === "asc" ? "desc" : "asc"
     );
   };
   if (l)
-    return /* @__PURE__ */ u.jsx(
+    return /* @__PURE__ */ d.jsx(
       F,
       {
         columns: t.length,
@@ -246,7 +250,7 @@ function ie({
       }
     );
   const m = G[n];
-  return /* @__PURE__ */ u.jsxs(
+  return /* @__PURE__ */ d.jsx("div", { ref: c, children: /* @__PURE__ */ d.jsxs(
     _,
     {
       "aria-label": "data-grid",
@@ -256,21 +260,21 @@ function ie({
         th: y(m.th, (p = i.classNames) == null ? void 0 : p.th),
         tr: y(m.tr, (x = i.classNames) == null ? void 0 : x.tr)
       },
-      ref: f,
+      ref: c,
       children: [
-        /* @__PURE__ */ u.jsx(
+        /* @__PURE__ */ d.jsx(
           V,
           {
             columns: w,
             ...s == null ? void 0 : s.tableHeaderProps,
-            children: (o) => /* @__PURE__ */ u.jsx(
+            children: (o) => /* @__PURE__ */ d.jsx(
               C,
               {
                 "aria-label": Y(o),
                 ...s == null ? void 0 : s.tableColumnProps,
-                children: /* @__PURE__ */ u.jsxs("div", { className: "flex items-center gap-2", children: [
+                children: /* @__PURE__ */ d.jsxs("div", { className: "flex items-center gap-2", children: [
                   o.label,
-                  o.sortable !== !1 && /* @__PURE__ */ u.jsxs(
+                  o.sortable !== !1 && /* @__PURE__ */ d.jsxs(
                     "div",
                     {
                       className: y("relative size-4 cursor-pointer"),
@@ -278,7 +282,7 @@ function ie({
                       role: "button",
                       "aria-label": Z(o.label),
                       children: [
-                        /* @__PURE__ */ u.jsx(
+                        /* @__PURE__ */ d.jsx(
                           M,
                           {
                             size: 16,
@@ -288,7 +292,7 @@ function ie({
                             )
                           }
                         ),
-                        /* @__PURE__ */ u.jsx(
+                        /* @__PURE__ */ d.jsx(
                           O,
                           {
                             size: 16,
@@ -307,21 +311,21 @@ function ie({
             )
           }
         ),
-        /* @__PURE__ */ u.jsx(D, { items: e, ...s == null ? void 0 : s.tableBodyProps, children: (o) => {
-          const c = e.indexOf(o);
-          return /* @__PURE__ */ u.jsx(
+        /* @__PURE__ */ d.jsx(D, { items: e, ...s == null ? void 0 : s.tableBodyProps, children: (o) => {
+          const f = e.indexOf(o);
+          return /* @__PURE__ */ d.jsx(
             B,
             {
               ...s == null ? void 0 : s.tableRowProps,
-              ref: c === e.length - 1 ? f : null,
-              children: (g) => /* @__PURE__ */ u.jsx(E, { ...s == null ? void 0 : s.tableCellProps, children: P(g, o, t) })
+              ref: f === e.length - 1 ? c : null,
+              children: (g) => /* @__PURE__ */ d.jsx(E, { ...s == null ? void 0 : s.tableCellProps, children: P(g, o, t) })
             },
             o.id
           );
         } })
       ]
     }
-  );
+  ) });
 }
 export {
   ie as DataGrid

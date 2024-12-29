@@ -84,10 +84,10 @@ export function DataGrid<T extends { id: string | number }>({
   });
 
   const { ref, inView } = useInView({
-    threshold: 1.0,
-    rootMargin: "0px",
+    threshold: 0.1, // Réduit le seuil
+    rootMargin: "100px", // Ajoute une marge pour déclencher plus tôt
+    delay: 100, // Ajoute un petit délai
   });
-
   useInfiniteScroll(inView, onRowsScrollEnd);
 
   const preparedColumns = columns.map((col, index) => ({
@@ -132,81 +132,83 @@ export function DataGrid<T extends { id: string | number }>({
   const variantClasses = GRID_VARIANTS[variant];
 
   return (
-    <DataTable
-      aria-label="data-grid"
-      {...props}
-      classNames={{
-        ...props.classNames,
-        th: cn(variantClasses.th, props.classNames?.th),
-        tr: cn(variantClasses.tr, props.classNames?.tr),
-      }}
-      ref={ref}
-    >
-      <TableHeader
-        columns={preparedColumns}
-        {...childrenProps?.tableHeaderProps}
-      >
-        {(column) => (
-          <TableColumn
-            key={column.key}
-            aria-label={getColumnLabel(column)}
-            {...childrenProps?.tableColumnProps}
-          >
-            <div className="flex items-center gap-2">
-              {column.label}
-              {column.sortable !== false && (
-                <div
-                  className={cn("relative size-4 cursor-pointer")}
-                  onClick={() => handleSort(column)}
-                  role="button"
-                  aria-label={getSortLabel(column.label)}
-                >
-                  <IconChevronUp
-                    size={16}
-                    className={cn(
-                      "absolute -top-1",
-                      sortConfiguration.key === column.key &&
-                        sortConfiguration.direction === "asc"
-                        ? "opacity-100"
-                        : "opacity-30",
-                    )}
-                  />
-                  <IconChevronDown
-                    size={16}
-                    className={cn(
-                      "absolute top-1",
-                      sortConfiguration.key === column.key &&
-                        sortConfiguration.direction === "desc"
-                        ? "opacity-100"
-                        : "opacity-30",
-                    )}
-                  />
-                </div>
-              )}
-            </div>
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody items={rows} {...childrenProps?.tableBodyProps}>
-        {(row: T) => {
-          const rowIndex = rows.indexOf(row);
-          return (
-            <TableRow
-              key={row.id}
-              {...childrenProps?.tableRowProps}
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              ref={rowIndex === rows.length - 1 ? ref : null}
-            >
-              {(columnKey) => (
-                <TableCell {...childrenProps?.tableCellProps}>
-                  {getCellValue(columnKey, row, columns)}
-                </TableCell>
-              )}
-            </TableRow>
-          );
+    <div ref={ref}>
+      <DataTable
+        aria-label="data-grid"
+        {...props}
+        classNames={{
+          ...props.classNames,
+          th: cn(variantClasses.th, props.classNames?.th),
+          tr: cn(variantClasses.tr, props.classNames?.tr),
         }}
-      </TableBody>
-    </DataTable>
+        ref={ref}
+      >
+        <TableHeader
+          columns={preparedColumns}
+          {...childrenProps?.tableHeaderProps}
+        >
+          {(column) => (
+            <TableColumn
+              key={column.key}
+              aria-label={getColumnLabel(column)}
+              {...childrenProps?.tableColumnProps}
+            >
+              <div className="flex items-center gap-2">
+                {column.label}
+                {column.sortable !== false && (
+                  <div
+                    className={cn("relative size-4 cursor-pointer")}
+                    onClick={() => handleSort(column)}
+                    role="button"
+                    aria-label={getSortLabel(column.label)}
+                  >
+                    <IconChevronUp
+                      size={16}
+                      className={cn(
+                        "absolute -top-1",
+                        sortConfiguration.key === column.key &&
+                          sortConfiguration.direction === "asc"
+                          ? "opacity-100"
+                          : "opacity-30",
+                      )}
+                    />
+                    <IconChevronDown
+                      size={16}
+                      className={cn(
+                        "absolute top-1",
+                        sortConfiguration.key === column.key &&
+                          sortConfiguration.direction === "desc"
+                          ? "opacity-100"
+                          : "opacity-30",
+                      )}
+                    />
+                  </div>
+                )}
+              </div>
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={rows} {...childrenProps?.tableBodyProps}>
+          {(row: T) => {
+            const rowIndex = rows.indexOf(row);
+            return (
+              <TableRow
+                key={row.id}
+                {...childrenProps?.tableRowProps}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                ref={rowIndex === rows.length - 1 ? ref : null}
+              >
+                {(columnKey) => (
+                  <TableCell {...childrenProps?.tableCellProps}>
+                    {getCellValue(columnKey, row, columns)}
+                  </TableCell>
+                )}
+              </TableRow>
+            );
+          }}
+        </TableBody>
+      </DataTable>
+    </div>
   );
 }
