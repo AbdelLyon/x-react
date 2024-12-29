@@ -111,19 +111,13 @@ export function DataGrid<T extends { id: string | number }>({
 
   const variantClasses = GRID_VARIANTS[variant];
 
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>): void => {
-    const target = event.target as HTMLDivElement;
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>): void => {
+    const element = e.currentTarget;
 
-    // Vérifier si on est en bas du scroll
-    const isAtBottom =
-      Math.abs(target.scrollHeight - target.scrollTop - target.clientHeight) <
-      1;
-
-    if (isAtBottom && onRowsScrollEnd) {
-      onRowsScrollEnd();
+    if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
+      onRowsScrollEnd?.();
     }
   };
-
   if (isLoading) {
     return (
       <DataGridSkeleton
