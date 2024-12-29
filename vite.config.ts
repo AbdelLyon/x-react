@@ -43,7 +43,7 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      exclude: ["src/shared/**/*", "src/tests/**/*", "src/ui/**/*"],
+      exclude: ["src/data/**/*", "src/tests/**/*"],
     }),
   ],
   resolve: {
