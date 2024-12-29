@@ -1,6 +1,6 @@
 import { useDataGridState } from "@/hooks/useDataGridState";
 import { cn } from "@/utils";
-import { useEffect, type Key } from "react";
+import { type Key } from "react";
 import {
   Table as DataTable,
   TableHeader,
@@ -18,7 +18,6 @@ import type {
   ExtendedColumn,
 } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
-import { useIntersection } from "@/hooks/useIntersection";
 
 const getColumnLabel = <T extends object>(
   column: ExtendedColumn<T>,
@@ -112,13 +111,18 @@ export function DataGrid<T extends { id: string | number }>({
 
   const variantClasses = GRID_VARIANTS[variant];
 
-  const { ref: sentinelRef, entry } = useIntersection();
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>): void => {
+    const target = event.target as HTMLDivElement;
 
-  useEffect(() => {
-    if (entry?.isIntersecting === true && onRowsScrollEnd) {
+    // Vérifier si on est en bas du scroll
+    const isAtBottom =
+      Math.abs(target.scrollHeight - target.scrollTop - target.clientHeight) <
+      1;
+
+    if (isAtBottom && onRowsScrollEnd) {
       onRowsScrollEnd();
     }
-  }, [entry, onRowsScrollEnd]);
+  };
 
   if (isLoading) {
     return (
@@ -141,6 +145,7 @@ export function DataGrid<T extends { id: string | number }>({
           th: cn(variantClasses.th, props.classNames?.th),
           tr: cn(variantClasses.tr, props.classNames?.tr),
         }}
+        onScroll={handleScroll}
       >
         <TableHeader
           columns={preparedColumns}
@@ -201,7 +206,6 @@ export function DataGrid<T extends { id: string | number }>({
           }}
         </TableBody>
       </DataTable>
-      <div ref={sentinelRef} className="h-1" />
     </>
   );
 }
