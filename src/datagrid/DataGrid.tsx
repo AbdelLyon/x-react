@@ -143,6 +143,7 @@ export function DataGrid<T extends { id: string | number }>({
         th: cn(variantClasses.th, props.classNames?.th),
         tr: cn(variantClasses.tr, props.classNames?.tr),
       }}
+      ref={ref}
     >
       <TableHeader
         columns={preparedColumns}

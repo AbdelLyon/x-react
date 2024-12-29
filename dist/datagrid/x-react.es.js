@@ -146,6 +146,7 @@ function X({
         th: f(p.th, (v = c.classNames) == null ? void 0 : v.th),
         tr: f(p.tr, (N = c.classNames) == null ? void 0 : N.tr)
       },
+      ref: u,
       children: [
         /* @__PURE__ */ a.jsx(
           A,
