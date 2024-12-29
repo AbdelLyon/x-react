@@ -132,7 +132,7 @@ export function DataGrid<T extends { id: string | number }>({
   const variantClasses = GRID_VARIANTS[variant];
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="max-h-96 overflow-auto">
       <DataTable
         aria-label="data-grid"
         {...props}
@@ -141,7 +141,6 @@ export function DataGrid<T extends { id: string | number }>({
           th: cn(variantClasses.th, props.classNames?.th),
           tr: cn(variantClasses.tr, props.classNames?.tr),
         }}
-        ref={ref}
       >
         <TableHeader
           columns={preparedColumns}

@@ -1,6 +1,6 @@
 /* empty css                */
 import { j as d } from "../jsx-runtime-Dx-03ztt.js";
-import * as h from "react";
+import * as p from "react";
 import { useState as I, useEffect as z } from "react";
 import { cn as y } from "../utils/x-react.es.js";
 import { Table as _, TableHeader as V, TableColumn as C, Skeleton as R, TableBody as D, TableRow as B, TableCell as E } from "@nextui-org/react";
@@ -132,18 +132,18 @@ function Q({
   onChange: b
 } = {}) {
   var c;
-  const [v, w] = h.useState(null), j = h.useRef(b), [m, p] = h.useState({
+  const [v, w] = p.useState(null), j = p.useRef(b), [m, h] = p.useState({
     inView: !!i,
     entry: void 0
   });
-  j.current = b, h.useEffect(
+  j.current = b, p.useEffect(
     () => {
       if (s || !v) return;
       let g;
       return g = K(
         v,
         (S, A) => {
-          p({
+          h({
             inView: S,
             entry: A
           }), j.current && j.current(S, A), A.isIntersecting && u && g && (g(), g = void 0);
@@ -177,8 +177,8 @@ function Q({
       t
     ]
   );
-  const x = (c = m.entry) == null ? void 0 : c.target, o = h.useRef(void 0);
-  !v && x && !u && !s && o.current !== x && (o.current = x, p({
+  const x = (c = m.entry) == null ? void 0 : c.target, o = p.useRef(void 0);
+  !v && x && !u && !s && o.current !== x && (o.current = x, h({
     inView: !!i,
     entry: void 0
   }));
@@ -213,7 +213,7 @@ function ie({
   childrenProps: s,
   ...i
 }) {
-  var p, x;
+  var h, x;
   const { sortConfiguration: r, updateSort: b } = H({
     rows: e,
     onSortChange: a
@@ -250,17 +250,16 @@ function ie({
       }
     );
   const m = G[n];
-  return /* @__PURE__ */ d.jsx("div", { ref: c, children: /* @__PURE__ */ d.jsxs(
+  return /* @__PURE__ */ d.jsx("div", { ref: c, className: "max-h-96 overflow-auto", children: /* @__PURE__ */ d.jsxs(
     _,
     {
       "aria-label": "data-grid",
       ...i,
       classNames: {
         ...i.classNames,
-        th: y(m.th, (p = i.classNames) == null ? void 0 : p.th),
+        th: y(m.th, (h = i.classNames) == null ? void 0 : h.th),
         tr: y(m.tr, (x = i.classNames) == null ? void 0 : x.tr)
       },
-      ref: c,
       children: [
         /* @__PURE__ */ d.jsx(
           V,
