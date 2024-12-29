@@ -4,8 +4,8 @@ import * as R from "react";
 import { useState as I, useEffect as z } from "react";
 import { cn as y } from "../utils/x-react.es.js";
 import { Table as _, TableHeader as V, TableColumn as C, Skeleton as h, TableBody as D, TableRow as B, TableCell as E } from "@nextui-org/react";
-import { IconChevronUp as O, IconChevronDown as L } from "@tabler/icons-react";
-const M = ({
+import { IconChevronUp as M, IconChevronDown as O } from "@tabler/icons-react";
+const L = ({
   rows: e,
   onSelectionChange: t
 }) => {
@@ -17,8 +17,8 @@ const M = ({
     allRowsSelected: l,
     toggleRowSelection: (r) => {
       n((b) => {
-        const c = new Set(b);
-        return c.has(r) ? c.delete(r) : c.add(r), t == null || t(Array.from(c)), c;
+        const f = new Set(b);
+        return f.has(r) ? f.delete(r) : f.add(r), t == null || t(Array.from(f)), f;
       });
     },
     toggleAllRowsSelection: (r) => {
@@ -37,7 +37,7 @@ const M = ({
     a({ key: l, direction: d }), e == null || e(l, d);
   } };
 }, H = (e) => ({
-  ...M(e),
+  ...L(e),
   ...$(e)
 }), G = {
   bordered: {
@@ -65,7 +65,7 @@ const M = ({
   const d = G[n], s = a ? e + 1 : e;
   return /* @__PURE__ */ u.jsxs(_, { radius: "sm", "aria-label": "Loading data", className: l, children: [
     /* @__PURE__ */ u.jsx(V, { className: y(d.thead), children: Array(s).fill(null).map((i, r) => /* @__PURE__ */ u.jsx(C, { className: y(d.th), children: r === 0 && a ? /* @__PURE__ */ u.jsx(h, { className: "size-4 rounded-md" }) : /* @__PURE__ */ u.jsx(h, { className: "h-4 w-24 rounded-md" }) }, r)) }),
-    /* @__PURE__ */ u.jsx(D, { children: Array(t).fill(null).map((i, r) => /* @__PURE__ */ u.jsx(B, { className: y(d.tr), children: Array(s).fill(null).map((b, c) => /* @__PURE__ */ u.jsx(E, { children: c === 0 && a ? /* @__PURE__ */ u.jsx(h, { className: "size-4 rounded-md" }) : /* @__PURE__ */ u.jsx(h, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, c)) }, r)) })
+    /* @__PURE__ */ u.jsx(D, { children: Array(t).fill(null).map((i, r) => /* @__PURE__ */ u.jsx(B, { className: y(d.tr), children: Array(s).fill(null).map((b, f) => /* @__PURE__ */ u.jsx(E, { children: f === 0 && a ? /* @__PURE__ */ u.jsx(h, { className: "size-4 rounded-md" }) : /* @__PURE__ */ u.jsx(h, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, f)) }, r)) })
   ] });
 };
 var k = /* @__PURE__ */ new Map(), N = /* @__PURE__ */ new WeakMap(), T = 0, U = void 0;
@@ -86,9 +86,9 @@ function J(e) {
     const d = new IntersectionObserver((s) => {
       s.forEach((i) => {
         var r;
-        const b = i.isIntersecting && l.some((c) => i.intersectionRatio >= c);
-        e.trackVisibility && typeof i.isVisible > "u" && (i.isVisible = b), (r = n.get(i.target)) == null || r.forEach((c) => {
-          c(b, i);
+        const b = i.isIntersecting && l.some((f) => i.intersectionRatio >= f);
+        e.trackVisibility && typeof i.isVisible > "u" && (i.isVisible = b), (r = n.get(i.target)) == null || r.forEach((f) => {
+          f(b, i);
         });
       });
     }, e);
@@ -131,7 +131,7 @@ function Q({
   fallbackInView: r,
   onChange: b
 } = {}) {
-  var c;
+  var f;
   const [v, w] = R.useState(null), j = R.useRef(b), [m, p] = R.useState({
     inView: !!i,
     entry: void 0
@@ -177,13 +177,13 @@ function Q({
       t
     ]
   );
-  const x = (c = m.entry) == null ? void 0 : c.target, o = R.useRef(void 0);
+  const x = (f = m.entry) == null ? void 0 : f.target, o = R.useRef(void 0);
   !v && x && !d && !s && o.current !== x && (o.current = x, p({
     inView: !!i,
     entry: void 0
   }));
-  const f = [w, m.inView, m.entry];
-  return f.ref = f[0], f.inView = f[1], f.entry = f[2], f;
+  const c = [w, m.inView, m.entry];
+  return c.ref = c[0], c.inView = c[1], c.entry = c[2], c;
 }
 const X = (e, t) => {
   z(() => {
@@ -217,16 +217,19 @@ function ie({
   const { sortConfiguration: r, updateSort: b } = H({
     rows: e,
     onSortChange: a
-  }), { ref: c, inView: v } = Q();
-  console.log(c), X(v, d);
-  const w = t.map((o, f) => ({
+  }), { ref: f, inView: v } = Q({
+    threshold: 1,
+    rootMargin: "0px"
+  });
+  X(v, d);
+  const w = t.map((o, c) => ({
     ...o,
-    key: typeof o.field == "string" ? String(o.field) : String(f),
+    key: typeof o.field == "string" ? String(o.field) : String(c),
     label: o.header
   })), j = (o) => {
-    const f = t.find(
+    const c = t.find(
       (S) => typeof S.field == "string" && S.field.length > 0 && String(S.field) === o.key
-    ), g = f == null ? void 0 : f.field;
+    ), g = c == null ? void 0 : c.field;
     g != null && g !== "actions" && b(
       g,
       r.direction === "asc" ? "desc" : "asc"
@@ -253,7 +256,7 @@ function ie({
         th: y(m.th, (p = i.classNames) == null ? void 0 : p.th),
         tr: y(m.tr, (x = i.classNames) == null ? void 0 : x.tr)
       },
-      ref: c,
+      ref: f,
       children: [
         /* @__PURE__ */ u.jsx(
           V,
@@ -276,7 +279,7 @@ function ie({
                       "aria-label": Z(o.label),
                       children: [
                         /* @__PURE__ */ u.jsx(
-                          O,
+                          M,
                           {
                             size: 16,
                             className: y(
@@ -286,7 +289,7 @@ function ie({
                           }
                         ),
                         /* @__PURE__ */ u.jsx(
-                          L,
+                          O,
                           {
                             size: 16,
                             className: y(
@@ -305,12 +308,12 @@ function ie({
           }
         ),
         /* @__PURE__ */ u.jsx(D, { items: e, ...s == null ? void 0 : s.tableBodyProps, children: (o) => {
-          const f = e.indexOf(o);
+          const c = e.indexOf(o);
           return /* @__PURE__ */ u.jsx(
             B,
             {
               ...s == null ? void 0 : s.tableRowProps,
-              ref: f === e.length - 1 ? c : null,
+              ref: c === e.length - 1 ? f : null,
               children: (g) => /* @__PURE__ */ u.jsx(E, { ...s == null ? void 0 : s.tableCellProps, children: P(g, o, t) })
             },
             o.id

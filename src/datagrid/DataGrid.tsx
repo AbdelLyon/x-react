@@ -83,9 +83,10 @@ export function DataGrid<T extends { id: string | number }>({
     onSortChange,
   });
 
-  const { ref, inView } = useInView();
-
-  console.log(ref);
+  const { ref, inView } = useInView({
+    threshold: 1.0,
+    rootMargin: "0px",
+  });
 
   useInfiniteScroll(inView, onRowsScrollEnd);
 
