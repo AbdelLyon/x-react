@@ -1,9 +1,41 @@
+// Global dependencies
 export * from "@tanstack/react-query";
+
+// Theming and layout
 export { useTheme } from "@/hooks/useTheme";
+export { useLayoutConfig } from "@/hooks/useLayoutConfig";
+
+// Responsiveness and media queries
 export {
   useMediaQuery,
   type UseMediaQueryOptions,
 } from "@/hooks/useMediaQuery";
-
-export { useLayoutConfig } from "@/hooks/useLayoutConfig";
 export { useResponsive } from "@/hooks/useResponsive";
+
+// DOM and event handling
+export { useClickOutside } from "@/hooks/useClickOutside";
+export { useFocusDetection } from "@/hooks/useFocusDetection";
+export { useWindowEvent } from "@/hooks/useWindowEvent";
+export { useIntersection } from "@/hooks/useIntersection";
+
+// State and values management
+export { useCounter } from "@/hooks/useCounter";
+export { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
+export { useDebouncedState } from "@/hooks/useDebouncedState";
+export { useEvent } from "@/hooks/useEvent";
+export { usePreviousValue } from "@/hooks/usePreviousValue";
+export { useReactiveSet } from "@/hooks/useReactiveSet";
+export { useRerender } from "@/hooks/useRerender";
+export { useStateHistory } from "@/hooks/useStateHistory";
+export { useToggle } from "@/hooks/useToggle";
+
+// Lifecycle and timing
+export { useMounted } from "@/hooks/useMounted";
+export { useTimeout } from "@/hooks/useTimeout";
+export { useInterval } from "@/hooks/useInterval";
+
+// Utility hooks
+export { useCallbackRef } from "@/hooks/useCallbackRef";
+export { useLocalStorage } from "@/hooks/useLocalStorage";
+export { useMergedRef } from "@/hooks/useMergedRef";
+export { useDisclosure } from "@/hooks/useDisclosure";

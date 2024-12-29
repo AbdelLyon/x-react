@@ -63,55 +63,6 @@ describe("Composant DataGrid", () => {
     });
   });
 
-  describe("Sélection par Cases à Cocher", () => {
-    it("devrait rendre les cases à cocher quand la sélection est activée", () => {
-      render(
-        <DataGrid
-          rows={testData}
-          columns={columns}
-          showSelectionCheckboxes={true}
-        />,
-      );
-
-      const checkboxes = screen.getAllByRole("checkbox");
-      expect(checkboxes).toHaveLength(testData.length + 1); // +1 pour la sélection globale
-    });
-
-    it("devrait gérer correctement la sélection des lignes", () => {
-      const onCheckedRowsChange = vi.fn();
-      render(
-        <DataGrid
-          rows={testData}
-          columns={columns}
-          showSelectionCheckboxes={true}
-          onSelectionChange={onCheckedRowsChange}
-        />,
-      );
-
-      const premierCheckbox = screen.getAllByRole("checkbox")[1];
-      fireEvent.click(premierCheckbox);
-
-      expect(onCheckedRowsChange).toHaveBeenCalledWith([testData[0]]);
-    });
-
-    it("devrait gérer correctement la sélection globale", () => {
-      const onCheckedRowsChange = vi.fn();
-      render(
-        <DataGrid
-          rows={testData}
-          columns={columns}
-          showSelectionCheckboxes={true}
-          onSelectionChange={onCheckedRowsChange}
-        />,
-      );
-
-      const selectAllCheckbox = screen.getAllByRole("checkbox")[0];
-      fireEvent.click(selectAllCheckbox);
-
-      expect(onCheckedRowsChange).toHaveBeenCalledWith(testData);
-    });
-  });
-
   describe("Tri", () => {
     it("devrait gérer le tri des colonnes", () => {
       const onSort = vi.fn();

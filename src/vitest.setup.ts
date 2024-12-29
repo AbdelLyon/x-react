@@ -17,8 +17,3 @@ global.ResizeObserver = class {
   unobserve(): void {}
   disconnect(): void {}
 };
-
-// afterEach(() => {
-//   cleanup();
-//   vi.resetAllMocks();
-// });

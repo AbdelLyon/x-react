@@ -4,12 +4,12 @@ import { cn as d } from "./utils/x-react.es.js";
 import { Link as b } from "@nextui-org/react";
 import "@tanstack/react-query";
 import "next-themes";
-import { a as s } from "./useResponsive-C48eFL5T.js";
+import { u } from "./useResponsive-C59ustr5.js";
 /* empty css               */
-import { T as u } from "./Tooltip-BVlWH2NE.js";
+import { T as s } from "./Tooltip-BVlWH2NE.js";
 const c = a(
   ({ items: f = [], classNames: e, onItemClick: n }, l) => {
-    const { isDesktop: i, isTablet: o } = s();
+    const { isDesktop: i, isTablet: o } = u();
     if (!i && !o)
       return null;
     const x = (r) => {
@@ -34,7 +34,7 @@ const c = a(
         r.key
       );
       return o ? /* @__PURE__ */ t.jsx(
-        u,
+        s,
         {
           trigger: p,
           content: r.label,

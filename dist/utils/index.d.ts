@@ -8,3 +8,4 @@ export declare const toLowerCase: (str: string) => string;
 export declare const toUpperCase: (str: string) => string;
 export declare const trim: (str: string) => string;
 export declare const reverse: (str: string) => string;
+export declare const limitValue: (value: number, min: number | undefined, max: number | undefined) => number;

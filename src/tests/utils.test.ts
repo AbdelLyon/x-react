@@ -10,24 +10,25 @@ import {
   toUpperCase,
   trim,
   reverse,
+  limitValue,
 } from "@/utils";
 
 describe("cn", () => {
-  it("should merge class names", () => {
+  it("devrait fusionner les noms de classes", () => {
     const result = cn("class1", "class2");
 
     expect(result).toContain("class1");
     expect(result).toContain("class2");
   });
 
-  it("should handle arrays", () => {
+  it("devrait gérer les tableaux", () => {
     const result = cn(["class1", "class2"]);
 
     expect(result).toContain("class1");
     expect(result).toContain("class2");
   });
 
-  it("should handle objects", () => {
+  it("devrait gérer les objets", () => {
     const result = cn({ class1: true, class2: false });
 
     expect(result).toContain("class1");
@@ -35,47 +36,69 @@ describe("cn", () => {
   });
 });
 
-describe("String utilities", () => {
-  it("should capitalize the first letter of a string", () => {
+describe("Utilitaires de chaînes", () => {
+  it("devrait mettre en majuscule la première lettre", () => {
     expect(capitalizeFirstLetter("hello")).toBe("Hello");
     expect(capitalizeFirstLetter("")).toBe("");
   });
 
-  it("should concatenate strings with space", () => {
+  it("devrait concaténer les chaînes avec un espace", () => {
     expect(concatenateWithSpace("Hello", "World")).toBe("Hello World");
     expect(concatenateWithSpace("Hello", undefined)).toBe("Hello");
     expect(concatenateWithSpace()).toBe("");
   });
 
-  it("should return true if string starts with prefix", () => {
+  it("devrait vérifier si la chaîne commence par un préfixe", () => {
     expect(startsWith("Hello World", "Hello")).toBeTruthy();
     expect(startsWith("", "")).toBeTruthy();
     expect(startsWith("Hello", "World")).toBeFalsy();
   });
 
-  it("should return true if string ends with suffix", () => {
+  it("devrait vérifier si la chaîne se termine par un suffixe", () => {
     expect(endsWith("Hello World", "World")).toBeTruthy();
     expect(endsWith("", "")).toBeTruthy();
     expect(endsWith("Hello", "World")).toBeFalsy();
   });
 
-  it("should convert string to lower case", () => {
+  it("devrait convertir en minuscules", () => {
     expect(toLowerCase("HELLO WORLD")).toBe("hello world");
     expect(toLowerCase("")).toBe("");
   });
 
-  it("should convert string to upper case", () => {
+  it("devrait convertir en majuscules", () => {
     expect(toUpperCase("hello world")).toBe("HELLO WORLD");
     expect(toUpperCase("")).toBe("");
   });
 
-  it("should trim whitespace from string", () => {
+  it("devrait supprimer les espaces en début et fin", () => {
     expect(trim(" hello world ")).toBe("hello world");
     expect(trim("")).toBe("");
   });
 
-  it("should reverse a string", () => {
+  it("devrait inverser une chaîne", () => {
     expect(reverse("hello world")).toBe("dlrow olleh");
     expect(reverse("")).toBe("");
+  });
+});
+
+describe("limitValue", () => {
+  it("devrait retourner la valeur quand min et max sont undefined", () => {
+    expect(limitValue(5, undefined, undefined)).toBe(5);
+  });
+
+  it("devrait limiter la valeur au minimum", () => {
+    expect(limitValue(5, 10, undefined)).toBe(10);
+    expect(limitValue(15, 10, undefined)).toBe(15);
+  });
+
+  it("devrait limiter la valeur au maximum", () => {
+    expect(limitValue(15, undefined, 10)).toBe(10);
+    expect(limitValue(5, undefined, 10)).toBe(5);
+  });
+
+  it("devrait limiter la valeur entre min et max", () => {
+    expect(limitValue(5, 0, 10)).toBe(5);
+    expect(limitValue(15, 0, 10)).toBe(10);
+    expect(limitValue(-5, 0, 10)).toBe(0);
   });
 });

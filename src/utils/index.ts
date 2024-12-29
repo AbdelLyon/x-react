@@ -26,3 +26,27 @@ export const trim = (str: string): string => str.trim();
 
 export const reverse = (str: string): string =>
   str.split("").reverse().join("");
+
+export const limitValue = (
+  value: number,
+  min: number | undefined,
+  max: number | undefined,
+): number => {
+  if (min === undefined && max === undefined) {
+    return value;
+  }
+
+  if (min !== undefined && max === undefined) {
+    return Math.max(value, min);
+  }
+
+  if (min === undefined && max !== undefined) {
+    return Math.min(value, max);
+  }
+
+  if (min !== undefined && max !== undefined) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  return value;
+};
