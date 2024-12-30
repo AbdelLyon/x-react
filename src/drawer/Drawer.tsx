@@ -116,7 +116,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
     };
 
     const drawerClassNames = {
-      wrapper: cn(classNames.wrapper),
+      wrapper: cn("rounded-none", classNames.wrapper),
       base: cn("bg-background", classNames.base),
       backdrop: cn(classNames.backdrop),
       closeButton: cn("absolute right-4 top-4", classNames.closeButton),

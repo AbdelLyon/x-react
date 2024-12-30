@@ -54,7 +54,7 @@ const w = (s) => typeof s == "string" && s.length > 0, H = N(
         )
       ] });
     }, t = {
-      wrapper: e(a.wrapper),
+      wrapper: e("rounded-none", a.wrapper),
       base: e("bg-background", a.base),
       backdrop: e(a.backdrop),
       closeButton: e("absolute right-4 top-4", a.closeButton),
