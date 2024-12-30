@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { forwardRef, isValidElement } from "react";
+import { forwardRef } from "react";
 import {
   Drawer as DrawerRoot,
   DrawerContent,
@@ -37,9 +37,6 @@ interface AdditionalDrawerProps {
 
 export type DrawerProps = Omit<DrawerRootProps, keyof AdditionalDrawerProps> &
   AdditionalDrawerProps;
-
-const isValidNodeContent = (content: unknown): boolean =>
-  content !== undefined && isValidElement(content);
 
 const isValidButtonLabel = (label: unknown): label is string =>
   typeof label === "string" && label.length > 0;
@@ -150,7 +147,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
           <DrawerContent>
             {() => (
               <>
-                {isValidNodeContent(title) && (
+                {title !== undefined && (
                   <DrawerHeader className={drawerClassNames.header}>
                     {title}
                   </DrawerHeader>
@@ -161,7 +158,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                 </DrawerBody>
 
                 <DrawerFooter className={drawerClassNames.footer}>
-                  {isValidNodeContent(footer) ? footer : renderButtons()}
+                  {footer !== undefined ? footer : renderButtons()}
                 </DrawerFooter>
               </>
             )}

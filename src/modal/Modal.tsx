@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { forwardRef, isValidElement, useState, useCallback } from "react";
+import { forwardRef, useState, useCallback } from "react";
 import type { ModalProps as ModalPropsRoot } from "@nextui-org/react";
 import {
   Modal as ModalRoot,
@@ -58,9 +58,6 @@ const defaultButtonProps = {
   color: "primary" as const,
   radius: "sm" as const,
 } as const;
-
-const isValidContent = (content: unknown): boolean =>
-  content !== undefined && isValidElement(content);
 
 const isValidButtonLabel = (label: unknown): label is string =>
   typeof label === "string" && label.length > 0;
@@ -191,18 +188,16 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           <ModalContent>
             {() => (
               <>
-                {isValidContent(title) && (
+                {title !== undefined && (
                   <ModalHeader className={modalClassNames.header}>
                     {title}
                   </ModalHeader>
                 )}
-
                 <ModalBody className={modalClassNames.body}>
                   {children}
                 </ModalBody>
-
                 <ModalFooter className={modalClassNames.footer}>
-                  {isValidContent(footer) ? (
+                  {footer !== undefined ? (
                     footer
                   ) : (
                     <ModalButtons
