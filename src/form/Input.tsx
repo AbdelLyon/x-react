@@ -68,6 +68,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const { classNames: propClassNames, ...restProps } = props;
 
+    const getVariantStyles = (): string => {
+      switch (variant) {
+        case "bordered":
+          return "border-1 bg-white dark:bg-background data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12 group-data-[focus=true]:bg-content1";
+        case "flat":
+          return "border-none bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-12";
+        case "faded":
+          return "border-1 border-transparent bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:border-outline h-12";
+        case "underlined":
+          return "border-b-1 rounded-none bg-transparent border-default-200 dark:border-default-100 data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
+        default:
+          return "border-1 bg-white dark:bg-background data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
+      }
+    };
     return (
       <div className={cn("w-full", containerClasses)}>
         <InputRoot
@@ -85,14 +99,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           validate={combinedValidate}
           classNames={{
             ...propClassNames,
-            inputWrapper: cn(
-              "border-1 bg-white dark:bg-background",
-              {
-                "data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12 group-data-[focus=true]:bg-content1":
-                  variant === "bordered",
-              },
-              propClassNames?.inputWrapper,
-            ),
+            inputWrapper: cn(getVariantStyles(), propClassNames?.inputWrapper),
           }}
           endContent={endContent}
           type={inputType}
