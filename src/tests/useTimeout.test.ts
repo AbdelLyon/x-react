@@ -17,7 +17,7 @@ export const useTimeout = (
   const timeoutRef = useRef<number | null>(null);
 
   const start = (...params: unknown[]): void => {
-    if (timeoutRef.current === null) {
+    if (timeoutRef.current === undefined) {
       timeoutRef.current = window.setTimeout(() => {
         callback(...params);
         timeoutRef.current = null;

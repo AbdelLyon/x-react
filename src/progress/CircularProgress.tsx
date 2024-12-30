@@ -8,7 +8,7 @@ type AdditionalCircularProgressProps = {
   incrementInterval?: number;
   incrementStep?: number;
   onValueChange?: (value: number) => void;
-}
+};
 
 type CircularProgressProps = Omit<CircularProgressRootProps, "classNames"> &
   AdditionalCircularProgressProps & {
@@ -86,7 +86,7 @@ export const CircularProgress = forwardRef<
     ]);
 
     const getValueLabel = (): ReactNode => {
-      if (valueLabel !== null && valueLabel !== undefined) {
+      if (valueLabel !== undefined) {
         return valueLabel;
       }
 

@@ -117,10 +117,10 @@ export function createStorage<T>(
 
       try {
         storageBlockedOrSkipped =
-          typeof window === "undefined" ||
+          window === undefined ||
           !(type in window) ||
-          window[type] === null ||
-          skipStorage === true;
+          window[type] === undefined ||
+          skipStorage === undefined;
       } catch {
         storageBlockedOrSkipped = true;
       }
@@ -220,9 +220,7 @@ export function readValue(
 
     try {
       storageBlockedOrSkipped =
-        typeof window === "undefined" ||
-        !(type in window) ||
-        window[type] === null;
+        window === undefined || !(type in window) || window[type] === undefined;
     } catch {
       storageBlockedOrSkipped = true;
     }

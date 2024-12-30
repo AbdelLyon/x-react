@@ -49,13 +49,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const Content = (): ReactNode => (
       <>
-        {startContent !== null && (
+        {startContent !== undefined && (
           <span className={cn("mr-2", customStyles.beforeContent)}>
             {startContent}
           </span>
         )}
         <span className={customStyles.content}>{children}</span>
-        {endContent !== null && (
+        {endContent !== undefined && (
           <span className={cn("ml-2", customStyles.afterContent)}>
             {endContent}
           </span>
@@ -64,9 +64,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     const hasValidLink =
-      typeof href === "string" &&
+      href !== undefined &&
       href.length > 0 &&
-      LinkComponent !== null &&
+      LinkComponent !== undefined &&
       LinkComponent !== undefined;
 
     if (hasValidLink) {

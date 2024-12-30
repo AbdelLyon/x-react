@@ -60,9 +60,7 @@ const defaultButtonProps = {
 } as const;
 
 const isValidContent = (content: unknown): boolean =>
-  content !== undefined &&
-  content !== null &&
-  (typeof content === "string" || isValidElement(content));
+  content !== undefined && isValidElement(content);
 
 const isValidButtonLabel = (label: unknown): label is string =>
   typeof label === "string" && label.length > 0;

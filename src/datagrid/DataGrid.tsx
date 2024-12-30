@@ -99,7 +99,7 @@ export function DataGrid<T extends { id: string | number }>({
 
     if (
       columnField !== undefined &&
-      columnField !== null &&
+      columnField !== undefined &&
       columnField !== "actions"
     ) {
       updateSort(

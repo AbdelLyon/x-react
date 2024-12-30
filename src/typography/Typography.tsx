@@ -72,8 +72,8 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(
       VARIANT_STYLES[variant],
       weight && WEIGHT_STYLES[weight],
       align && ALIGN_STYLES[align],
-      color !== undefined && color !== null && `text-${color}`,
-      truncate !== undefined && color !== null && "truncate",
+      color !== undefined && `text-${color}`,
+      truncate !== undefined && "truncate",
       className,
     );
 

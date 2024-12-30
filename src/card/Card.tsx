@@ -73,11 +73,11 @@ export const Card = forwardRef<HTMLDivElement, GenericCardProps>(
         onPressChange={onPressChange}
         onPressUp={onPressUp}
       >
-        {header !== null && (
+        {header !== undefined && (
           <CardHeader className={classNames?.header}>{header}</CardHeader>
         )}
         <CardBody className={classNames?.body}>{children}</CardBody>
-        {footer !== null && (
+        {footer !== undefined && (
           <CardFooter className={classNames?.footer}>{footer}</CardFooter>
         )}
       </NextUICard>

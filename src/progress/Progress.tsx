@@ -8,11 +8,12 @@ type AdditionalProgressProps = {
   labelPosition?: "top" | "bottom" | "none";
   containerClassName?: string;
   labelClassName?: string;
-}
+};
 
 type ProgressProps = {
   classNames?: ProgressRootProps["classNames"];
-} & Omit<ProgressRootProps, "classNames"> & AdditionalProgressProps
+} & Omit<ProgressRootProps, "classNames"> &
+  AdditionalProgressProps;
 
 const defaultProps = {
   size: "md",
@@ -54,7 +55,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
     };
 
     const labelComponent =
-      labelPosition === "none" ? null : (
+      labelPosition === "none" ? undefined : (
         <div
           className={`
       flex items-center justify-between
@@ -63,7 +64,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       ${labelPosition === "top" ? "order-first" : "order-last"}
     `}
         >
-          {label !== null && <span>{label}</span>}
+          {label !== undefined && <span>{label}</span>}
           {showValueLabel && <span>{getValueLabel()}</span>}
         </div>
       );
