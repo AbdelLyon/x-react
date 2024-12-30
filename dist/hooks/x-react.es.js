@@ -15,7 +15,7 @@ const _ = (e = {}) => {
       ...r
     } : void 0
   };
-}, I = ["mousedown", "touchstart"], z = (e, t, r) => {
+}, p = ["mousedown", "touchstart"], z = (e, t, r) => {
   const n = d(null);
   return f(() => {
     const s = (o) => {
@@ -27,10 +27,10 @@ const _ = (e = {}) => {
         ) && !c && e();
       } else n.current && !n.current.contains(u) && e();
     };
-    return (t || I).forEach(
+    return (t || p).forEach(
       (o) => document.addEventListener(o, s)
     ), () => {
-      (t || I).forEach(
+      (t || p).forEach(
         (o) => document.removeEventListener(o, s)
       );
     };
@@ -183,7 +183,7 @@ const _ = (e = {}) => {
   return f(() => t(!0), []), e;
 }, ee = (e, t, { autoInvoke: r = !1 } = {}) => {
   const n = d(null), s = (...u) => {
-    n.current === null && (n.current = window.setTimeout(() => {
+    n.current === void 0 && (n.current = window.setTimeout(() => {
       e(...u), n.current = null;
     }, t));
   }, o = () => {
@@ -251,12 +251,12 @@ function J(e, t) {
     defaultValue: a,
     getInitialValueInEffect: i = !0,
     deserialize: m = D,
-    serialize: p = (S) => A(S, t)
+    serialize: I = (S) => A(S, t)
   }) {
     const S = (l) => {
       let w;
       try {
-        w = typeof window > "u" || !(e in window) || window[e] === null || l === !0;
+        w = window === void 0 || !(e in window) || window[e] === void 0 || l === void 0;
       } catch {
         w = !0;
       }
@@ -270,18 +270,18 @@ function J(e, t) {
       (l) => {
         l instanceof Function ? b((w) => {
           const h = l(w);
-          return s(c, p(h)), window.dispatchEvent(
+          return s(c, I(h)), window.dispatchEvent(
             new CustomEvent(r, {
               detail: { key: c, value: l(w) }
             })
           ), h;
-        }) : (s(c, p(l)), window.dispatchEvent(
+        }) : (s(c, I(l)), window.dispatchEvent(
           new CustomEvent(r, {
             detail: { key: c, value: l }
           })
         ), b(l));
       },
-      [c, p]
+      [c, I]
     ), R = () => {
       o(c), window.dispatchEvent(
         new CustomEvent(r, {

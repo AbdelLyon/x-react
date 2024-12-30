@@ -102,7 +102,7 @@ function Q({
     const f = a.find(
       (x) => typeof x.field == "string" && x.field.length > 0 && String(x.field) === s.key
     ), g = f == null ? void 0 : f.field;
-    g != null && g !== "actions" && b(
+    g !== void 0 && g !== void 0 && g !== "actions" && b(
       g,
       i.direction === "asc" ? "desc" : "asc"
     );

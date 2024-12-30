@@ -27,24 +27,24 @@ const b = {
 }, u = f(
   ({
     children: x,
-    as: l = "p",
-    variant: s = "base",
-    weight: e,
-    align: o,
-    color: t,
+    as: s = "p",
+    variant: l = "base",
+    weight: t,
+    align: e,
+    color: o,
     truncate: m,
     className: n,
-    ...d
-  }, i) => {
-    const r = p(
-      b[s],
-      e && c[e],
-      o && h[o],
-      t != null && `text-${t}`,
-      m !== void 0 && t !== null && "truncate",
+    ...r
+  }, d) => {
+    const i = p(
+      b[l],
+      t && c[t],
+      e && h[e],
+      o !== void 0 && `text-${o}`,
+      m !== void 0 && "truncate",
       n
     );
-    return /* @__PURE__ */ a.jsx(l, { ref: i, className: r, ...d, children: x });
+    return /* @__PURE__ */ a.jsx(s, { ref: d, className: i, ...r, children: x });
   }
 );
 u.displayName = "Typography";

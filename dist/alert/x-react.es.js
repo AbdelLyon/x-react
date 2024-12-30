@@ -1,36 +1,36 @@
 /* empty css                */
 import { j as m } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as n } from "react";
-import { Alert as p, Button as c } from "@nextui-org/react";
-const d = n(
+import { Alert as p, Button as d } from "@nextui-org/react";
+const c = n(
   ({
     onVisibleChange: t,
     onClose: r,
-    isVisible: a = !0,
-    closeButtonProps: f,
-    isClosable: l = !1,
-    ...o
-  }, u) => {
-    const e = (i) => {
-      t == null || t(i);
-    }, s = () => {
-      r == null || r(), e(!1);
+    isVisible: o = !0,
+    closeButtonProps: a,
+    isClosable: e = !1,
+    ...f
+  }, i) => {
+    const s = (u) => {
+      t == null || t(u);
+    }, l = () => {
+      r == null || r(), s(!1);
     };
-    return a === !1 ? null : /* @__PURE__ */ m.jsx(
+    return o === !1 ? null : /* @__PURE__ */ m.jsx(
       p,
       {
-        ...o,
-        ref: u,
-        isClosable: l,
-        onVisibleChange: e,
-        onClose: s,
-        closeButton: l !== null ? /* @__PURE__ */ m.jsx(
-          c,
+        ...f,
+        ref: i,
+        isClosable: e,
+        onVisibleChange: s,
+        onClose: l,
+        closeButton: e !== void 0 ? /* @__PURE__ */ m.jsx(
+          d,
           {
             size: "sm",
             variant: "light",
-            ...f,
-            onPress: s,
+            ...a,
+            onPress: l,
             children: "Close"
           }
         ) : null
@@ -38,7 +38,7 @@ const d = n(
     );
   }
 );
-d.displayName = "Alert";
+c.displayName = "Alert";
 export {
-  d as Alert
+  c as Alert
 };

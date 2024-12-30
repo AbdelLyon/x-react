@@ -1,4 +1,3 @@
-// components/ui/typography/types.ts
 import type { ReactNode, ElementType } from "react";
 
 export interface TypographyProps {

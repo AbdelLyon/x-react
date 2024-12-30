@@ -3,7 +3,7 @@ import { j as o } from "../jsx-runtime-Dx-03ztt.js";
 import { forwardRef as m, useState as q, useCallback as M, isValidElement as H } from "react";
 import { useDisclosure as I, Modal as S, ModalContent as $, ModalHeader as z, ModalBody as G, ModalFooter as J } from "@nextui-org/react";
 import { cn as n } from "../utils/x-react.es.js";
-import { B as k } from "../Buttons-DECBa93a.js";
+import { B as k } from "../Buttons-COIoW96c.js";
 const x = {
   closeButton: "absolute right-4 top-4",
   base: "bg-background border border-default shadow-lg dark:shadow-none rounded-lg",
@@ -12,11 +12,11 @@ const x = {
 }, b = {
   color: "primary",
   radius: "sm"
-}, w = (d) => d != null && (typeof d == "string" || H(d)), V = (d) => typeof d == "string" && d.length > 0, L = ({
+}, w = (d) => d !== void 0 && H(d), V = (d) => typeof d == "string" && d.length > 0, L = ({
   buttonCloseLabel: d = "Close",
   buttonActionLabel: i,
   buttonCloseProps: e,
-  buttonActionProps: y,
+  buttonActionProps: c,
   onAction: t,
   onClose: l
 }) => {
@@ -26,9 +26,9 @@ const x = {
     } catch (a) {
       console.error("Modal action failed:", a);
     }
-  }, c = V(d), g = V(i) && t !== void 0;
+  }, y = V(d), g = V(i) && t !== void 0;
   return /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
-    c && /* @__PURE__ */ o.jsx(
+    y && /* @__PURE__ */ o.jsx(
       k,
       {
         className: n("border-primary/50", e == null ? void 0 : e.className),
@@ -44,7 +44,7 @@ const x = {
       {
         onPress: j,
         ...b,
-        ...y,
+        ...c,
         children: i
       }
     )
@@ -54,11 +54,11 @@ const x = {
     trigger: d,
     title: i,
     footer: e,
-    children: y,
+    children: c,
     onAction: t,
     buttonCloseLabel: l,
     buttonActionLabel: j,
-    buttonCloseProps: c,
+    buttonCloseProps: y,
     buttonActionProps: g,
     defaultBackdrop: a = "opaque",
     onOpenChange: v,
@@ -108,13 +108,13 @@ const x = {
           ...D,
           children: /* @__PURE__ */ o.jsx($, { children: () => /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
             w(i) && /* @__PURE__ */ o.jsx(z, { className: f.header, children: i }),
-            /* @__PURE__ */ o.jsx(G, { className: f.body, children: y }),
+            /* @__PURE__ */ o.jsx(G, { className: f.body, children: c }),
             /* @__PURE__ */ o.jsx(J, { className: f.footer, children: w(e) ? e : /* @__PURE__ */ o.jsx(
               L,
               {
                 buttonCloseLabel: l,
                 buttonActionLabel: j,
-                buttonCloseProps: c,
+                buttonCloseProps: y,
                 buttonActionProps: g,
                 onAction: t,
                 onClose: B
