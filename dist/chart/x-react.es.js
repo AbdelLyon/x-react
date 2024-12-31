@@ -21,8 +21,8 @@ j.register(
   D
 );
 const o = {
-  root: "relative w-full h-[400px]",
-  canvas: "w-full h-full",
+  root: "relative w-full",
+  canvas: "w-full",
   container: "relative",
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",
@@ -34,8 +34,8 @@ const o = {
     options: f,
     getElementSelected: d,
     classNames: t = {},
-    responsive: h = !0,
-    maintainAspectRatio: g = !1,
+    responsive: g = !0,
+    maintainAspectRatio: h = !1,
     title: l,
     showLegend: C = !0,
     showTooltip: b = !0,
@@ -63,8 +63,8 @@ const o = {
       [d]
     ), y = {
       ...{
-        responsive: h,
-        maintainAspectRatio: g,
+        responsive: g,
+        maintainAspectRatio: h,
         plugins: {
           title: l !== void 0 ? {
             display: !0,

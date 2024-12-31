@@ -78,8 +78,8 @@ type Props<T extends ChartType> = ChartBaseProps<T> &
   Omit<ChartProps<T>, keyof ChartBaseProps<T>>;
 
 const defaultClassNames: Required<ChartClassNames> = {
-  root: "relative w-full h-[400px]",
-  canvas: "w-full h-full",
+  root: "relative w-full",
+  canvas: "w-full",
   container: "relative",
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",
