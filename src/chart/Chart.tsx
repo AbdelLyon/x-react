@@ -1,3 +1,11 @@
+import { cn } from "@/utils";
+import type {
+  ChartData,
+  ChartOptions,
+  ChartTypeRegistry,
+  InteractionItem,
+  TooltipItem,
+} from "chart.js";
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -15,20 +23,12 @@ import {
   ScatterController,
   PolarAreaController,
 } from "chart.js";
-import type {
-  ChartTypeRegistry,
-  ChartOptions,
-  ChartData,
-  InteractionItem,
-  TooltipItem,
-} from "chart.js";
 import type { JSX } from "react";
-import { useRef, useCallback, forwardRef } from "react";
+import { useRef, forwardRef } from "react";
 import type { ChartProps } from "react-chartjs-2";
 import { Chart as ChartRoot, getElementAtEvent } from "react-chartjs-2";
-import { cn } from "@/utils";
-import type { DistributiveArray } from "chart.js/dist/types/utils";
 
+// Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -110,21 +110,17 @@ export const Chart = forwardRef(
       tooltip: cn(defaultClassNames.tooltip, classNames.tooltip),
     };
 
-    const handleClick = useCallback(
-      (event: React.MouseEvent<HTMLCanvasElement>) => {
-        if (chartRef.current !== null) {
-          const element = getElementAtEvent(
-            chartRef.current as unknown as ChartJS<keyof ChartTypeRegistry>,
-            event,
-          );
-          if (element.length > 0 && getElementSelected) {
-            getElementSelected(element);
-          }
+    const handleClick = (event: React.MouseEvent<HTMLCanvasElement>): void => {
+      if (chartRef.current !== null) {
+        const element = getElementAtEvent(
+          chartRef.current as unknown as ChartJS<keyof ChartTypeRegistry>,
+          event,
+        );
+        if (element.length > 0 && getElementSelected) {
+          getElementSelected(element);
         }
-      },
-      [getElementSelected],
-    );
-
+      }
+    };
     const defaultOptions: ChartOptions<T> = {
       responsive,
       maintainAspectRatio,
@@ -205,7 +201,6 @@ export type {
   ChartType,
   ChartClassNames,
   ChartTypeRegistry,
-  DistributiveArray,
   ChartJS,
   ChartOptions,
   ChartProps,

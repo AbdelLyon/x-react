@@ -9,5 +9,4 @@ export type {
   ChartProps,
   ChartType,
   ChartTypeRegistry,
-  DistributiveArray,
 } from "@/chart/Chart";

@@ -1,6 +1,5 @@
-import { Chart as ChartJS, ChartTypeRegistry, ChartOptions, ChartData, InteractionItem, TooltipItem } from 'chart.js';
+import { ChartData, ChartOptions, ChartTypeRegistry, InteractionItem, TooltipItem, Chart as ChartJS } from 'chart.js';
 import { ChartProps } from 'react-chartjs-2';
-import { DistributiveArray } from 'chart.js/dist/types/utils';
 type ChartType = keyof ChartTypeRegistry;
 interface ChartClassNames {
     root?: string;
@@ -26,4 +25,4 @@ interface ChartBaseProps<T extends ChartType> {
     customTooltip?: (context: TooltipItem<T>) => string | string[] | undefined;
 }
 export declare const Chart: import('react').ForwardRefExoticComponent<ChartBaseProps<keyof ChartTypeRegistry> & Omit<ChartProps<keyof ChartTypeRegistry, (number | import('chart.js').Point | [number, number] | import('chart.js').BubbleDataPoint | null)[], unknown>, keyof ChartBaseProps<T>> & import('react').RefAttributes<unknown>>;
-export type { ChartType, ChartClassNames, ChartTypeRegistry, DistributiveArray, ChartJS, ChartOptions, ChartProps, ChartBaseProps, };
+export type { ChartType, ChartClassNames, ChartTypeRegistry, ChartJS, ChartOptions, ChartProps, ChartBaseProps, };

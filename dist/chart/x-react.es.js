@@ -1,23 +1,23 @@
 /* empty css                */
 import { j as i } from "../jsx-runtime-Dx-03ztt.js";
-import { Chart as k, CategoryScale as y, LinearScale as R, Title as j, Tooltip as E, Legend as L, RadialLinearScale as z, BarElement as A, ArcElement as O, PointElement as B, LineElement as F, BarController as N, DoughnutController as P, ScatterController as S, PolarAreaController as $ } from "chart.js";
-import { forwardRef as D, useRef as T, useCallback as W } from "react";
-import { getElementAtEvent as q, Chart as G } from "react-chartjs-2";
 import { cn as e } from "../utils/x-react.es.js";
-k.register(
-  y,
+import { Chart as y, CategoryScale as E, LinearScale as R, Title as j, Tooltip as k, Legend as L, RadialLinearScale as z, BarElement as A, ArcElement as O, PointElement as S, LineElement as B, BarController as F, DoughnutController as N, ScatterController as P, PolarAreaController as $ } from "chart.js";
+import { forwardRef as D, useRef as T } from "react";
+import { Chart as W, getElementAtEvent as q } from "react-chartjs-2";
+y.register(
+  E,
   R,
   j,
-  E,
+  k,
   L,
   z,
   A,
   O,
+  S,
   B,
   F,
   N,
   P,
-  S,
   $
 );
 const o = {
@@ -26,15 +26,15 @@ const o = {
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",
   tooltip: "bg-white p-2 rounded shadow-lg border text-sm"
-}, H = D(
+}, G = D(
   ({
     type: c,
     data: p,
     options: m,
-    getElementSelected: l,
+    getElementSelected: a,
     classNames: t = {},
-    responsive: u = !0,
-    maintainAspectRatio: g = !1,
+    responsive: g = !0,
+    maintainAspectRatio: u = !1,
     title: r,
     showLegend: f = !0,
     showTooltip: h = !0,
@@ -42,27 +42,24 @@ const o = {
     customTooltip: d,
     ...C
   }) => {
-    const n = T(null), a = {
+    const l = T(null), n = {
       root: e(o.root, t.root),
       canvas: e(o.canvas, t.canvas),
       title: e(o.title, t.title),
       legend: e(o.legend, t.legend),
       tooltip: e(o.tooltip, t.tooltip)
-    }, v = W(
-      (w) => {
-        if (n.current !== null) {
-          const s = q(
-            n.current,
-            w
-          );
-          s.length > 0 && l && l(s);
-        }
-      },
-      [l]
-    ), x = {
+    }, v = (w) => {
+      if (l.current !== null) {
+        const s = q(
+          l.current,
+          w
+        );
+        s.length > 0 && a && a(s);
+      }
+    }, x = {
       ...{
-        responsive: u,
-        maintainAspectRatio: g,
+        responsive: g,
+        maintainAspectRatio: u,
         plugins: {
           title: r !== void 0 ? {
             display: !0,
@@ -106,24 +103,24 @@ const o = {
       },
       ...m
     };
-    return /* @__PURE__ */ i.jsxs("div", { className: a.root, children: [
-      r !== void 0 && /* @__PURE__ */ i.jsx("h3", { className: a.title, children: r }),
+    return /* @__PURE__ */ i.jsxs("div", { className: n.root, children: [
+      r !== void 0 && /* @__PURE__ */ i.jsx("h3", { className: n.title, children: r }),
       /* @__PURE__ */ i.jsx(
-        G,
+        W,
         {
-          ref: n,
+          ref: l,
           data: p,
           options: x,
           type: c,
           onClick: v,
-          className: a.canvas,
+          className: n.canvas,
           ...C
         }
       )
     ] });
   }
 );
-H.displayName = "Chart";
+G.displayName = "Chart";
 export {
-  H as Chart
+  G as Chart
 };
