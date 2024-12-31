@@ -77,8 +77,8 @@ type Props<T extends ChartType> = ChartBaseProps<T> &
   Omit<ChartProps<T>, keyof ChartBaseProps<T>>;
 
 const defaultClassNames: Required<ChartClassNames> = {
-  root: "relative w-full bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
-  canvas: "w-full",
+  root: "relative w-full h-[400px] flex flex-col items-center justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
+  canvas: "w-full h-[400px]",
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",
   tooltip: "bg-white p-2 rounded shadow-lg border text-sm",
@@ -177,9 +177,6 @@ export const Chart = <T extends ChartType>({
 
   return (
     <div className={mergedClassNames.root}>
-      {title !== undefined && (
-        <h3 className={mergedClassNames.title}>{title}</h3>
-      )}
       <ChartRoot
         ref={chartRef}
         data={data}

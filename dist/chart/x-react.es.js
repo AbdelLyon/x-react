@@ -1,8 +1,8 @@
 /* empty css                */
-import { j as i } from "../jsx-runtime-Dx-03ztt.js";
+import { j as s } from "../jsx-runtime-Dx-03ztt.js";
 import { cn as e } from "../utils/x-react.es.js";
-import { Chart as y, CategoryScale as E, LinearScale as j, Title as k, Tooltip as R, Legend as L, RadialLinearScale as z, BarElement as A, ArcElement as O, PointElement as S, LineElement as B, BarController as F, DoughnutController as N, ScatterController as P, PolarAreaController as $ } from "chart.js";
-import { useRef as D } from "react";
+import { Chart as y, CategoryScale as E, LinearScale as j, Title as k, Tooltip as R, Legend as L, RadialLinearScale as z, BarElement as A, ArcElement as O, PointElement as S, LineElement as B, BarController as F, DoughnutController as P, ScatterController as $, PolarAreaController as D } from "chart.js";
+import { useRef as N } from "react";
 import { Chart as T, getElementAtEvent as W } from "react-chartjs-2";
 y.register(
   E,
@@ -16,13 +16,13 @@ y.register(
   S,
   B,
   F,
-  N,
   P,
-  $
+  $,
+  D
 );
 const o = {
-  root: "relative w-full bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
-  canvas: "w-full",
+  root: "relative w-full h-[400px] flex flex-col items-center justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
+  canvas: "w-full h-[400px]",
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",
   tooltip: "bg-white p-2 rounded shadow-lg border text-sm"
@@ -30,39 +30,39 @@ const o = {
   type: c,
   data: p,
   options: m,
-  getElementSelected: a,
+  getElementSelected: l,
   classNames: t = {},
-  responsive: g = !0,
-  maintainAspectRatio: u = !1,
-  title: r,
-  showLegend: h = !0,
-  showTooltip: b = !0,
-  legendPosition: f = "top",
-  customTooltip: d,
+  responsive: u = !0,
+  maintainAspectRatio: g = !1,
+  title: n,
+  showLegend: f = !0,
+  showTooltip: h = !0,
+  legendPosition: b = "top",
+  customTooltip: i,
   ...C
 }) => {
-  const l = D(null), n = {
+  const r = N(null), a = {
     root: e(o.root, t.root),
     canvas: e(o.canvas, t.canvas),
     title: e(o.title, t.title),
     legend: e(o.legend, t.legend),
     tooltip: e(o.tooltip, t.tooltip)
-  }, v = (w) => {
-    if (l.current !== null) {
-      const s = W(
-        l.current,
+  }, x = (w) => {
+    if (r.current !== null) {
+      const d = W(
+        r.current,
         w
       );
-      s.length > 0 && a && a(s);
+      d.length > 0 && l && l(d);
     }
-  }, x = {
+  }, v = {
     ...{
-      responsive: g,
-      maintainAspectRatio: u,
+      responsive: u,
+      maintainAspectRatio: g,
       plugins: {
-        title: r !== void 0 ? {
+        title: n !== void 0 ? {
           display: !0,
-          text: r,
+          text: n,
           font: {
             size: 16,
             weight: "bold"
@@ -73,10 +73,10 @@ const o = {
           }
         } : void 0,
         legend: {
-          display: h,
-          position: f
+          display: f,
+          position: b
         },
-        tooltip: b ? {
+        tooltip: h ? {
           enabled: !0,
           backgroundColor: "white",
           titleColor: "#1f2937",
@@ -92,9 +92,9 @@ const o = {
             size: 14,
             weight: "bold"
           },
-          ...d && {
+          ...i && {
             callbacks: {
-              label: d
+              label: i
             }
           }
         } : void 0
@@ -102,21 +102,18 @@ const o = {
     },
     ...m
   };
-  return /* @__PURE__ */ i.jsxs("div", { className: n.root, children: [
-    r !== void 0 && /* @__PURE__ */ i.jsx("h3", { className: n.title, children: r }),
-    /* @__PURE__ */ i.jsx(
-      T,
-      {
-        ref: l,
-        data: p,
-        options: x,
-        type: c,
-        onClick: v,
-        className: n.canvas,
-        ...C
-      }
-    )
-  ] });
+  return /* @__PURE__ */ s.jsx("div", { className: a.root, children: /* @__PURE__ */ s.jsx(
+    T,
+    {
+      ref: r,
+      data: p,
+      options: v,
+      type: c,
+      onClick: x,
+      className: a.canvas,
+      ...C
+    }
+  ) });
 };
 q.displayName = "Chart";
 export {
