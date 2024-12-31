@@ -104,7 +104,7 @@ export const Chart = forwardRef(
       classNames = {},
       styles = {},
       width = "100%",
-      height = "100%",
+      height = 400,
       responsive = true,
       maintainAspectRatio = false,
       title,

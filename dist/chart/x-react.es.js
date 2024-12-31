@@ -36,7 +36,7 @@ const o = {
     classNames: t = {},
     styles: s = {},
     width: g = "100%",
-    height: C = "100%",
+    height: C = 400,
     responsive: b = !0,
     maintainAspectRatio: v = !1,
     title: l,
