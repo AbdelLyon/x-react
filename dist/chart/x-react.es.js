@@ -1,10 +1,13 @@
 /* empty css                */
 import { j as a } from "../jsx-runtime-Dx-03ztt.js";
-import { Chart as E, CategoryScale as L, LinearScale as z, Title as A, Tooltip as O, Legend as B, RadialLinearScale as F, BarElement as N, ArcElement as P, PointElement as S, LineElement as $, BarController as D, DoughnutController as T, ScatterController as W, PolarAreaController as q } from "chart.js";
-import { forwardRef as G, useRef as H, useCallback as I } from "react";
-import { getElementAtEvent as J, Chart as K } from "react-chartjs-2";
+import { Chart as j, CategoryScale as R, LinearScale as k, Title as E, Tooltip as L, Legend as z, RadialLinearScale as A, BarElement as O, ArcElement as B, PointElement as F, LineElement as N, BarController as P, DoughnutController as S, ScatterController as $, PolarAreaController as D } from "chart.js";
+import { forwardRef as T, useRef as W, useCallback as q } from "react";
+import { getElementAtEvent as G, Chart as H } from "react-chartjs-2";
 import { cn as e } from "../utils/x-react.es.js";
-E.register(
+j.register(
+  R,
+  k,
+  E,
   L,
   z,
   A,
@@ -15,59 +18,53 @@ E.register(
   P,
   S,
   $,
-  D,
-  T,
-  W,
-  q
+  D
 );
 const o = {
-  root: "relative w-full h-full",
+  root: "relative w-full h-[400px]",
   canvas: "w-full h-full",
   container: "relative",
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",
   tooltip: "bg-white p-2 rounded shadow-lg border text-sm"
-}, M = G(
+}, I = T(
   ({
-    type: f,
+    type: u,
     data: m,
-    options: h,
+    options: f,
     getElementSelected: d,
     classNames: t = {},
-    styles: s = {},
-    width: g = "100%",
-    height: C = 400,
-    responsive: b = !0,
-    maintainAspectRatio: v = !1,
+    responsive: h = !0,
+    maintainAspectRatio: g = !1,
     title: l,
-    showLegend: x = !0,
-    showTooltip: w = !0,
-    legendPosition: y = "top",
-    customTooltip: p,
-    ...j
+    showLegend: C = !0,
+    showTooltip: b = !0,
+    legendPosition: v = "top",
+    customTooltip: c,
+    ...x
   }, n) => {
-    const c = H(null), i = {
+    const s = W(null), i = {
       root: e(o.root, t.root),
       canvas: e(o.canvas, t.canvas),
       container: e(o.container, t.container),
       title: e(o.title, t.title),
       legend: e(o.legend, t.legend),
       tooltip: e(o.tooltip, t.tooltip)
-    }, R = I(
+    }, w = q(
       (r) => {
-        if (c.current !== null) {
-          const u = J(
-            c.current,
+        if (s.current !== null) {
+          const p = G(
+            s.current,
             r
           );
-          u.length > 0 && d && d(u);
+          p.length > 0 && d && d(p);
         }
       },
       [d]
-    ), k = {
+    ), y = {
       ...{
-        responsive: b,
-        maintainAspectRatio: v,
+        responsive: h,
+        maintainAspectRatio: g,
         plugins: {
           title: l !== void 0 ? {
             display: !0,
@@ -82,10 +79,10 @@ const o = {
             }
           } : void 0,
           legend: {
-            display: x,
-            position: y
+            display: C,
+            position: v
           },
-          tooltip: w ? {
+          tooltip: b ? {
             enabled: !0,
             backgroundColor: "white",
             titleColor: "#1f2937",
@@ -101,46 +98,38 @@ const o = {
               size: 14,
               weight: "bold"
             },
-            ...p && {
+            ...c && {
               callbacks: {
-                label: p
+                label: c
               }
             }
           } : void 0
         }
       },
-      ...h
+      ...f
     };
-    return /* @__PURE__ */ a.jsx(
-      "div",
-      {
-        className: i.root,
-        style: { width: g, height: C, ...s.root },
-        children: /* @__PURE__ */ a.jsxs("div", { className: i.container, style: s.container, children: [
-          l !== void 0 && /* @__PURE__ */ a.jsx("h3", { className: i.title, children: l }),
-          /* @__PURE__ */ a.jsx(
-            K,
-            {
-              ref: (r) => {
-                c.current = r, typeof n == "function" ? n(
-                  r
-                ) : n && (n.current = r);
-              },
-              data: m,
-              options: k,
-              type: f,
-              onClick: R,
-              className: i.canvas,
-              style: s.canvas,
-              ...j
-            }
-          )
-        ] })
-      }
-    );
+    return /* @__PURE__ */ a.jsx("div", { className: i.root, children: /* @__PURE__ */ a.jsxs("div", { className: i.container, children: [
+      l !== void 0 && /* @__PURE__ */ a.jsx("h3", { className: i.title, children: l }),
+      /* @__PURE__ */ a.jsx(
+        H,
+        {
+          ref: (r) => {
+            s.current = r, typeof n == "function" ? n(
+              r
+            ) : n && (n.current = r);
+          },
+          data: m,
+          options: y,
+          type: u,
+          onClick: w,
+          className: i.canvas,
+          ...x
+        }
+      )
+    ] }) });
   }
 );
-M.displayName = "Chart";
+I.displayName = "Chart";
 export {
-  M as Chart
+  I as Chart
 };

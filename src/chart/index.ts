@@ -7,7 +7,6 @@ export type {
   ChartJS,
   ChartOptions,
   ChartProps,
-  ChartStyles,
   ChartType,
   ChartTypeRegistry,
   DistributiveArray,

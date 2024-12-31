@@ -29,7 +29,6 @@ import { Chart as ChartRoot, getElementAtEvent } from "react-chartjs-2";
 import { cn } from "@/utils";
 import type { DistributiveArray } from "chart.js/dist/types/utils";
 
-// Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -58,19 +57,12 @@ interface ChartClassNames {
   tooltip?: string;
 }
 
-interface ChartStyles {
-  root?: React.CSSProperties;
-  canvas?: React.CSSProperties;
-  container?: React.CSSProperties;
-}
-
 interface ChartBaseProps<T extends ChartType> {
   data: ChartData<T>;
   options?: ChartOptions<T>;
   type: T;
   getElementSelected?: (elementSelected: InteractionItem[]) => void;
   classNames?: ChartClassNames;
-  styles?: ChartStyles;
   width?: number | string;
   height?: number | string;
   responsive?: boolean;
@@ -79,14 +71,14 @@ interface ChartBaseProps<T extends ChartType> {
   showLegend?: boolean;
   showTooltip?: boolean;
   legendPosition?: "top" | "bottom" | "left" | "right";
-
   customTooltip?: (context: TooltipItem<T>) => string | string[] | undefined;
 }
+
 type Props<T extends ChartType> = ChartBaseProps<T> &
   Omit<ChartProps<T>, keyof ChartBaseProps<T>>;
 
 const defaultClassNames: Required<ChartClassNames> = {
-  root: "relative w-full h-full",
+  root: "relative w-full h-[400px]",
   canvas: "w-full h-full",
   container: "relative",
   title: "text-lg font-semibold text-center mb-4",
@@ -102,9 +94,6 @@ export const Chart = forwardRef(
       options,
       getElementSelected,
       classNames = {},
-      styles = {},
-      width = "100%",
-      height = 400,
       responsive = true,
       maintainAspectRatio = false,
       title,
@@ -198,11 +187,8 @@ export const Chart = forwardRef(
     };
 
     return (
-      <div
-        className={mergedClassNames.root}
-        style={{ width, height, ...styles.root }}
-      >
-        <div className={mergedClassNames.container} style={styles.container}>
+      <div className={mergedClassNames.root}>
+        <div className={mergedClassNames.container}>
           {title !== undefined && (
             <h3 className={mergedClassNames.title}>{title}</h3>
           )}
@@ -234,7 +220,6 @@ export const Chart = forwardRef(
             type={type}
             onClick={handleClick}
             className={mergedClassNames.canvas}
-            style={styles.canvas}
             {...props}
           />
         </div>
@@ -242,12 +227,12 @@ export const Chart = forwardRef(
     );
   },
 );
+
 Chart.displayName = "Chart";
 
 export type {
   ChartType,
   ChartClassNames,
-  ChartStyles,
   ChartTypeRegistry,
   DistributiveArray,
   ChartJS,
