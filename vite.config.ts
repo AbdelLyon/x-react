@@ -37,6 +37,7 @@ const modules = [
   "pagination",
   "typography",
   "HOC",
+  "chart",
 ];
 
 export default defineConfig({
@@ -81,6 +82,8 @@ export default defineConfig({
         "@vitejs/plugin-react-swc",
         "clsx",
         "next-themes",
+        "react-chartjs-2",
+        "chart.js",
       ],
 
       output: {

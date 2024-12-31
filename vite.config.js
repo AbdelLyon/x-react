@@ -35,6 +35,7 @@ var modules = [
     "pagination",
     "typography",
     "HOC",
+    "chart",
 ];
 export default defineConfig({
     plugins: [
@@ -77,6 +78,8 @@ export default defineConfig({
                 "@vitejs/plugin-react-swc",
                 "clsx",
                 "next-themes",
+                "react-chartjs-2",
+                "chart.js",
             ],
             output: {
                 globals: {

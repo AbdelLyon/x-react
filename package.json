@@ -134,6 +134,10 @@
     "./HOC": {
       "import": "./dist/HOC/x-react.es.js",
       "types": "./dist/HOC/index.d.ts"
+    },
+    "./chart": {
+      "import": "./dist/chart/x-react.es.js",
+      "types": "./dist/chart/index.d.ts"
     }
   },
   "typesVersions": {
@@ -155,9 +159,11 @@
     "@tabler/icons-react": "^3.26.0",
     "@tanstack/react-query": "^5.62.10",
     "@vitejs/plugin-react-swc": "^3.7.2",
+    "chart.js": "^4.4.7",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
-    "next-themes": "^0.4.4"
+    "next-themes": "^0.4.4",
+    "react-chartjs-2": "^5.2.0"
   },
   "peerDependencies": {
     "react": "^19.0.0",
