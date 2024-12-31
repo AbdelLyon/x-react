@@ -1,4 +1,14 @@
 import "@/index.css";
-export * from "chart.js";
-export * from "react-chartjs-2";
+
 export { Chart } from "@/chart/Chart";
+export type {
+  ChartBaseProps,
+  ChartClassNames,
+  ChartJS,
+  ChartOptions,
+  ChartProps,
+  ChartStyles,
+  ChartType,
+  ChartTypeRegistry,
+  DistributiveArray,
+} from "@/chart/Chart";

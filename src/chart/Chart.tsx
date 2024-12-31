@@ -244,4 +244,14 @@ export const Chart = forwardRef(
 );
 Chart.displayName = "Chart";
 
-export default Chart;
+export type {
+  ChartType,
+  ChartClassNames,
+  ChartStyles,
+  ChartTypeRegistry,
+  DistributiveArray,
+  ChartJS,
+  ChartOptions,
+  ChartProps,
+  ChartBaseProps,
+};
