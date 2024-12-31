@@ -1,4 +1,5 @@
 import { ChartData, ChartOptions, ChartTypeRegistry, InteractionItem, TooltipItem, Chart as ChartJS } from 'chart.js';
+import { JSX } from 'react';
 import { ChartProps } from 'react-chartjs-2';
 type ChartType = keyof ChartTypeRegistry;
 interface ChartClassNames {
@@ -24,5 +25,9 @@ interface ChartBaseProps<T extends ChartType> {
     legendPosition?: "top" | "bottom" | "left" | "right";
     customTooltip?: (context: TooltipItem<T>) => string | string[] | undefined;
 }
-export declare const Chart: import('react').ForwardRefExoticComponent<ChartBaseProps<keyof ChartTypeRegistry> & Omit<ChartProps<keyof ChartTypeRegistry, (number | import('chart.js').Point | [number, number] | import('chart.js').BubbleDataPoint | null)[], unknown>, keyof ChartBaseProps<T>> & import('react').RefAttributes<unknown>>;
+type Props<T extends ChartType> = ChartBaseProps<T> & Omit<ChartProps<T>, keyof ChartBaseProps<T>>;
+export declare const Chart: {
+    <T extends ChartType>({ type, data, options, getElementSelected, classNames, responsive, maintainAspectRatio, title, showLegend, showTooltip, legendPosition, customTooltip, ...props }: Props<T>): JSX.Element;
+    displayName: string;
+};
 export type { ChartType, ChartClassNames, ChartTypeRegistry, ChartJS, ChartOptions, ChartProps, ChartBaseProps, };

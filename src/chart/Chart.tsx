@@ -24,7 +24,7 @@ import {
   PolarAreaController,
 } from "chart.js";
 import type { JSX } from "react";
-import { useRef, forwardRef } from "react";
+import { useRef } from "react";
 import type { ChartProps } from "react-chartjs-2";
 import { Chart as ChartRoot, getElementAtEvent } from "react-chartjs-2";
 
@@ -84,116 +84,114 @@ const defaultClassNames: Required<ChartClassNames> = {
   tooltip: "bg-white p-2 rounded shadow-lg border text-sm",
 };
 
-export const Chart = forwardRef(
-  <T extends ChartType>({
-    type,
-    data,
-    options,
-    getElementSelected,
-    classNames = {},
-    responsive = true,
-    maintainAspectRatio = false,
-    title,
-    showLegend = true,
-    showTooltip = true,
-    legendPosition = "top",
-    customTooltip,
-    ...props
-  }: Props<T>): JSX.Element => {
-    const chartRef = useRef<ChartJS<T>>(null);
+export const Chart = <T extends ChartType>({
+  type,
+  data,
+  options,
+  getElementSelected,
+  classNames = {},
+  responsive = true,
+  maintainAspectRatio = false,
+  title,
+  showLegend = true,
+  showTooltip = true,
+  legendPosition = "top",
+  customTooltip,
+  ...props
+}: Props<T>): JSX.Element => {
+  const chartRef = useRef<ChartJS<T>>(null);
 
-    const mergedClassNames = {
-      root: cn(defaultClassNames.root, classNames.root),
-      canvas: cn(defaultClassNames.canvas, classNames.canvas),
-      title: cn(defaultClassNames.title, classNames.title),
-      legend: cn(defaultClassNames.legend, classNames.legend),
-      tooltip: cn(defaultClassNames.tooltip, classNames.tooltip),
-    };
+  const mergedClassNames = {
+    root: cn(defaultClassNames.root, classNames.root),
+    canvas: cn(defaultClassNames.canvas, classNames.canvas),
+    title: cn(defaultClassNames.title, classNames.title),
+    legend: cn(defaultClassNames.legend, classNames.legend),
+    tooltip: cn(defaultClassNames.tooltip, classNames.tooltip),
+  };
 
-    const handleClick = (event: React.MouseEvent<HTMLCanvasElement>): void => {
-      if (chartRef.current !== null) {
-        const element = getElementAtEvent(
-          chartRef.current as unknown as ChartJS<keyof ChartTypeRegistry>,
-          event,
-        );
-        if (element.length > 0 && getElementSelected) {
-          getElementSelected(element);
-        }
+  const handleClick = (event: React.MouseEvent<HTMLCanvasElement>): void => {
+    if (chartRef.current !== null) {
+      const element = getElementAtEvent(
+        chartRef.current as unknown as ChartJS<keyof ChartTypeRegistry>,
+        event,
+      );
+      if (element.length > 0 && getElementSelected) {
+        getElementSelected(element);
       }
-    };
-    const defaultOptions: ChartOptions<T> = {
-      responsive,
-      maintainAspectRatio,
-      plugins: {
-        title:
-          title !== undefined
-            ? {
-                display: true,
-                text: title,
-                font: {
-                  size: 16,
-                  weight: "bold",
-                },
-                padding: {
-                  top: 10,
-                  bottom: 20,
-                },
-              }
-            : undefined,
-        legend: {
-          display: showLegend,
-          position: legendPosition,
-        },
-        tooltip: showTooltip
+    }
+  };
+  const defaultOptions: ChartOptions<T> = {
+    responsive,
+    maintainAspectRatio,
+    plugins: {
+      title:
+        title !== undefined
           ? {
-              enabled: true,
-              backgroundColor: "white",
-              titleColor: "#1f2937",
-              bodyColor: "#4b5563",
-              borderColor: "#e5e7eb",
-              borderWidth: 1,
-              padding: 8,
-              cornerRadius: 4,
-              bodyFont: {
-                size: 14,
+              display: true,
+              text: title,
+              font: {
+                size: 16,
+                weight: "bold",
               },
-              titleFont: {
-                size: 14,
-                weight: "bold" as const,
+              padding: {
+                top: 10,
+                bottom: 20,
               },
-              ...(customTooltip && {
-                callbacks: {
-                  label: customTooltip,
-                },
-              }),
             }
           : undefined,
+      legend: {
+        display: showLegend,
+        position: legendPosition,
       },
-    } as ChartOptions<T>;
+      tooltip: showTooltip
+        ? {
+            enabled: true,
+            backgroundColor: "white",
+            titleColor: "#1f2937",
+            bodyColor: "#4b5563",
+            borderColor: "#e5e7eb",
+            borderWidth: 1,
+            padding: 8,
+            cornerRadius: 4,
+            bodyFont: {
+              size: 14,
+            },
+            titleFont: {
+              size: 14,
+              weight: "bold" as const,
+            },
+            ...(customTooltip && {
+              callbacks: {
+                label: customTooltip,
+              },
+            }),
+          }
+        : undefined,
+    },
+  } as ChartOptions<T>;
 
-    const mergedOptions: ChartOptions<T> = {
-      ...defaultOptions,
-      ...options,
-    };
+  const mergedOptions: ChartOptions<T> = {
+    ...defaultOptions,
+    ...options,
+  };
 
-    return (
-      <div className={mergedClassNames.root}>
-        {title !== undefined && (
-          <h3 className={mergedClassNames.title}>{title}</h3>
-        )}
-        <ChartRoot
-          ref={chartRef}
-          data={data}
-          options={mergedOptions}
-          type={type}
-          onClick={handleClick}
-          className={mergedClassNames.canvas}
-          {...props}
-        />
-      </div>
-    );
-  },
-);
+  return (
+    <div className={mergedClassNames.root}>
+      {title !== undefined && (
+        <h3 className={mergedClassNames.title}>{title}</h3>
+      )}
+      <ChartRoot
+        ref={chartRef}
+        data={data}
+        options={mergedOptions}
+        type={type}
+        onClick={handleClick}
+        className={mergedClassNames.canvas}
+        {...props}
+      />
+    </div>
+  );
+};
 
 Chart.displayName = "Chart";
 
