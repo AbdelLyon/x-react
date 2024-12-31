@@ -21,7 +21,7 @@ y.register(
   D
 );
 const o = {
-  root: "relative w-full h-max flex flex-col items-center justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
+  root: "relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
   canvas: "w-full h-[400px]",
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",
@@ -33,11 +33,11 @@ const o = {
   getElementSelected: l,
   classNames: t = {},
   responsive: u = !0,
-  maintainAspectRatio: g = !1,
+  maintainAspectRatio: f = !1,
   title: n,
-  showLegend: f = !0,
-  showTooltip: h = !0,
-  legendPosition: b = "top",
+  showLegend: g = !0,
+  showTooltip: b = !0,
+  legendPosition: h = "top",
   customTooltip: i,
   ...C
 }) => {
@@ -58,7 +58,7 @@ const o = {
   }, v = {
     ...{
       responsive: u,
-      maintainAspectRatio: g,
+      maintainAspectRatio: f,
       plugins: {
         title: n !== void 0 ? {
           display: !0,
@@ -73,10 +73,10 @@ const o = {
           }
         } : void 0,
         legend: {
-          display: f,
-          position: b
+          display: g,
+          position: h
         },
-        tooltip: h ? {
+        tooltip: b ? {
           enabled: !0,
           backgroundColor: "white",
           titleColor: "#1f2937",
