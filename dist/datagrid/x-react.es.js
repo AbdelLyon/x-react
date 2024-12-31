@@ -2,7 +2,7 @@
 import { j as t } from "../jsx-runtime-Dx-03ztt.js";
 import { useState as j, useEffect as C } from "react";
 import { cn as y } from "../utils/x-react.es.js";
-import { Table as k, TableHeader as v, TableColumn as A, Skeleton as m, TableBody as R, TableRow as T, TableCell as h } from "@nextui-org/react";
+import { Table as k, TableHeader as v, TableColumn as h, Skeleton as m, TableBody as A, TableRow as R, TableCell as T } from "@nextui-org/react";
 import { IconChevronUp as G, IconChevronDown as H } from "@tabler/icons-react";
 const _ = ({
   rows: e,
@@ -41,17 +41,17 @@ const _ = ({
 }), w = {
   bordered: {
     thead: "bg-content2",
-    th: "py4 bg-content2 py-4",
+    th: "py4 bg-content2 py-4 h-10",
     tr: "py-4 border-b border-default last:border-b-0 hover:bg-content2"
   },
   striped: {
     thead: "bg-content2",
-    th: "py4 bg-content2 py-4",
+    th: "py4 bg-content2 py-4 h-10",
     tr: "py-4 even:bg-content2"
   },
   unstyled: {
     thead: "bg-content2",
-    th: "py4 bg-content2 py-4",
+    th: "py4 bg-content2 py-4 h-10",
     tr: "py-4 hover:bg-content2"
   }
 }, B = ({
@@ -63,8 +63,8 @@ const _ = ({
 }) => {
   const d = w[r], l = o ? e + 1 : e;
   return /* @__PURE__ */ t.jsxs(k, { radius: "sm", "aria-label": "Loading data", className: n, children: [
-    /* @__PURE__ */ t.jsx(v, { className: y(d.thead), children: Array(l).fill(null).map((u, i) => /* @__PURE__ */ t.jsx(A, { className: y(d.th), children: i === 0 && o ? /* @__PURE__ */ t.jsx(m, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(m, { className: "h-4 w-24 rounded-md" }) }, i)) }),
-    /* @__PURE__ */ t.jsx(R, { children: Array(a).fill(null).map((u, i) => /* @__PURE__ */ t.jsx(T, { className: y(d.tr), children: Array(l).fill(null).map((b, c) => /* @__PURE__ */ t.jsx(h, { children: c === 0 && o ? /* @__PURE__ */ t.jsx(m, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(m, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, c)) }, i)) })
+    /* @__PURE__ */ t.jsx(v, { className: y(d.thead), children: Array(l).fill(null).map((u, i) => /* @__PURE__ */ t.jsx(h, { className: y(d.th), children: i === 0 && o ? /* @__PURE__ */ t.jsx(m, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(m, { className: "h-4 w-24 rounded-md" }) }, i)) }),
+    /* @__PURE__ */ t.jsx(A, { children: Array(a).fill(null).map((u, i) => /* @__PURE__ */ t.jsx(R, { className: y(d.tr), children: Array(l).fill(null).map((b, c) => /* @__PURE__ */ t.jsx(T, { children: c === 0 && o ? /* @__PURE__ */ t.jsx(m, { className: "size-4 rounded-md" }) : /* @__PURE__ */ t.jsx(m, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, c)) }, i)) })
   ] });
 }, V = (e) => typeof e.label == "string" && e.label.length > 0 ? e.label : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column", F = (e) => typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column", U = (e, a, o) => {
   const r = o.find(
@@ -136,7 +136,7 @@ function Q({
             columns: c,
             ...l == null ? void 0 : l.tableHeaderProps,
             children: (s) => /* @__PURE__ */ t.jsx(
-              A,
+              h,
               {
                 "aria-label": V(s),
                 ...l == null ? void 0 : l.tableColumnProps,
@@ -179,7 +179,7 @@ function Q({
             )
           }
         ),
-        /* @__PURE__ */ t.jsx(R, { items: e, ...l == null ? void 0 : l.tableBodyProps, children: (s) => /* @__PURE__ */ t.jsx(T, { ...l == null ? void 0 : l.tableRowProps, children: (f) => /* @__PURE__ */ t.jsx(h, { ...l == null ? void 0 : l.tableCellProps, children: U(f, s, a) }) }, s.id) })
+        /* @__PURE__ */ t.jsx(A, { items: e, ...l == null ? void 0 : l.tableBodyProps, children: (s) => /* @__PURE__ */ t.jsx(R, { ...l == null ? void 0 : l.tableRowProps, children: (f) => /* @__PURE__ */ t.jsx(T, { ...l == null ? void 0 : l.tableCellProps, children: U(f, s, a) }) }, s.id) })
       ]
     }
   );
