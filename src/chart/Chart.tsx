@@ -51,7 +51,6 @@ type ChartType = keyof ChartTypeRegistry;
 interface ChartClassNames {
   root?: string;
   canvas?: string;
-  container?: string;
   title?: string;
   legend?: string;
   tooltip?: string;
@@ -78,39 +77,34 @@ type Props<T extends ChartType> = ChartBaseProps<T> &
   Omit<ChartProps<T>, keyof ChartBaseProps<T>>;
 
 const defaultClassNames: Required<ChartClassNames> = {
-  root: "relative w-full",
+  root: "relative w-full bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
   canvas: "w-full",
-  container: "relative",
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",
   tooltip: "bg-white p-2 rounded shadow-lg border text-sm",
 };
 
 export const Chart = forwardRef(
-  <T extends ChartType>(
-    {
-      type,
-      data,
-      options,
-      getElementSelected,
-      classNames = {},
-      responsive = true,
-      maintainAspectRatio = false,
-      title,
-      showLegend = true,
-      showTooltip = true,
-      legendPosition = "top",
-      customTooltip,
-      ...props
-    }: Props<T>,
-    ref: React.ForwardedRef<ChartJS<T>>,
-  ): JSX.Element => {
+  <T extends ChartType>({
+    type,
+    data,
+    options,
+    getElementSelected,
+    classNames = {},
+    responsive = true,
+    maintainAspectRatio = false,
+    title,
+    showLegend = true,
+    showTooltip = true,
+    legendPosition = "top",
+    customTooltip,
+    ...props
+  }: Props<T>): JSX.Element => {
     const chartRef = useRef<ChartJS<T>>(null);
 
     const mergedClassNames = {
       root: cn(defaultClassNames.root, classNames.root),
       canvas: cn(defaultClassNames.canvas, classNames.canvas),
-      container: cn(defaultClassNames.container, classNames.container),
       title: cn(defaultClassNames.title, classNames.title),
       legend: cn(defaultClassNames.legend, classNames.legend),
       tooltip: cn(defaultClassNames.tooltip, classNames.tooltip),
@@ -188,41 +182,18 @@ export const Chart = forwardRef(
 
     return (
       <div className={mergedClassNames.root}>
-        <div className={mergedClassNames.container}>
-          {title !== undefined && (
-            <h3 className={mergedClassNames.title}>{title}</h3>
-          )}
-          <ChartRoot
-            ref={(instance) => {
-              chartRef.current = instance as ChartJS<
-                T,
-                DistributiveArray<ChartTypeRegistry[T]["defaultDataPoint"]>,
-                unknown
-              > | null;
-              if (typeof ref === "function") {
-                ref(
-                  instance as ChartJS<
-                    T,
-                    DistributiveArray<ChartTypeRegistry[T]["defaultDataPoint"]>,
-                    unknown
-                  > | null,
-                );
-              } else if (ref) {
-                ref.current = instance as ChartJS<
-                  T,
-                  DistributiveArray<ChartTypeRegistry[T]["defaultDataPoint"]>,
-                  unknown
-                > | null;
-              }
-            }}
-            data={data}
-            options={mergedOptions}
-            type={type}
-            onClick={handleClick}
-            className={mergedClassNames.canvas}
-            {...props}
-          />
-        </div>
+        {title !== undefined && (
+          <h3 className={mergedClassNames.title}>{title}</h3>
+        )}
+        <ChartRoot
+          ref={chartRef}
+          data={data}
+          options={mergedOptions}
+          type={type}
+          onClick={handleClick}
+          className={mergedClassNames.canvas}
+          {...props}
+        />
       </div>
     );
   },
