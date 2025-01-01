@@ -17,6 +17,11 @@ export { useClickOutside } from "@/hooks/useClickOutside";
 export { useFocusDetection } from "@/hooks/useFocusDetection";
 export { useWindowEvent } from "@/hooks/useWindowEvent";
 export { useIntersection } from "@/hooks/useIntersection";
+export {
+  useInfiniteScroll,
+  type UseInfiniteScrollProps,
+  type UseInfiniteScrollReturn,
+} from "@/hooks/useInfiniteScroll";
 
 // State and values management
 export { useCounter } from "@/hooks/useCounter";

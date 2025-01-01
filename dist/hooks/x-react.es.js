@@ -2,6 +2,7 @@ export * from "@tanstack/react-query";
 import { u as ie } from "../useTheme-ery4R1ul.js";
 import { a as le, u as de } from "../useResponsive-C59ustr5.js";
 import { useRef as d, useEffect as f, useState as g, useReducer as L, useCallback as x } from "react";
+import { u as me } from "../useInfiniteScroll-CU_5Rd-q.js";
 import { limitValue as E } from "../utils/x-react.es.js";
 const _ = (e = {}) => {
   const { navbar: t, sidebar: r } = e;
@@ -251,7 +252,7 @@ function J(e, t) {
     defaultValue: a,
     getInitialValueInEffect: i = !0,
     deserialize: m = D,
-    serialize: I = (S) => A(S, t)
+    serialize: b = (S) => A(S, t)
   }) {
     const S = (l) => {
       let w;
@@ -264,24 +265,24 @@ function J(e, t) {
         return a;
       const h = n(c);
       return h !== null ? m(h) : a;
-    }, [T, b] = g(
+    }, [T, I] = g(
       S(i)
     ), v = x(
       (l) => {
-        l instanceof Function ? b((w) => {
+        l instanceof Function ? I((w) => {
           const h = l(w);
-          return s(c, I(h)), window.dispatchEvent(
+          return s(c, b(h)), window.dispatchEvent(
             new CustomEvent(r, {
               detail: { key: c, value: l(w) }
             })
           ), h;
-        }) : (s(c, I(l)), window.dispatchEvent(
+        }) : (s(c, b(l)), window.dispatchEvent(
           new CustomEvent(r, {
             detail: { key: c, value: l }
           })
-        ), b(l));
+        ), I(l));
       },
-      [c, I]
+      [c, b]
     ), R = () => {
       o(c), window.dispatchEvent(
         new CustomEvent(r, {
@@ -290,9 +291,9 @@ function J(e, t) {
       );
     };
     return y("storage", (l) => {
-      l.storageArea === window[e] && l.key === c && b(m(l.newValue ?? ""));
+      l.storageArea === window[e] && l.key === c && I(m(l.newValue ?? ""));
     }), y(r, (l) => {
-      l.detail.key === c && b(l.detail.value);
+      l.detail.key === c && I(l.detail.value);
     }), f(() => {
       a !== void 0 && T === void 0 && v(a);
     }, [a, T, v]), f(() => {
@@ -328,6 +329,7 @@ export {
   oe as useDisclosure,
   G as useEvent,
   $ as useFocusDetection,
+  me as useInfiniteScroll,
   j as useIntersection,
   te as useInterval,
   _ as useLayoutConfig,

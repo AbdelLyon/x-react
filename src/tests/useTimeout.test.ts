@@ -17,7 +17,8 @@ export const useTimeout = (
   const timeoutRef = useRef<number | null>(null);
 
   const start = (...params: unknown[]): void => {
-    if (timeoutRef.current === undefined) {
+    // Correction ici : vérifier null au lieu de undefined
+    if (timeoutRef.current === null) {
       timeoutRef.current = window.setTimeout(() => {
         callback(...params);
         timeoutRef.current = null;
@@ -37,12 +38,12 @@ export const useTimeout = (
       start();
     }
     return clear;
-  }, [delay]);
+  }, [delay, autoInvoke]); // Ajout de autoInvoke dans les dépendances
 
   return { start, clear };
 };
 
-// Tests
+// Les tests restent les mêmes
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 

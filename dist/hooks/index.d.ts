@@ -7,6 +7,7 @@ export { useClickOutside } from './useClickOutside';
 export { useFocusDetection } from './useFocusDetection';
 export { useWindowEvent } from './useWindowEvent';
 export { useIntersection } from './useIntersection';
+export { useInfiniteScroll, type UseInfiniteScrollProps, type UseInfiniteScrollReturn, } from './useInfiniteScroll';
 export { useCounter } from './useCounter';
 export { useDebouncedCallback } from './useDebouncedCallback';
 export { useDebouncedState } from './useDebouncedState';

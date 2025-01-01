@@ -1,2 +1,2 @@
 import "@/index.css";
-export { DatePicker } from "@/datepicker/DatePicker";
+export { DatePicker, type DateValue } from "@/datepicker/DatePicker";
