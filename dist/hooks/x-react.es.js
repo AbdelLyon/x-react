@@ -1,10 +1,10 @@
 export * from "@tanstack/react-query";
-import { u as ie } from "../useTheme-ery4R1ul.js";
-import { a as le, u as de } from "../useResponsive-C59ustr5.js";
-import { useRef as d, useEffect as f, useState as g, useReducer as L, useCallback as x } from "react";
-import { u as me } from "../useInfiniteScroll-CU_5Rd-q.js";
+import { u as ae } from "../useTheme-ery4R1ul.js";
+import { a as de, u as fe } from "../useResponsive-C59ustr5.js";
+import { useRef as d, useEffect as f, useState as g, useReducer as y, useCallback as x } from "react";
+import { u as ge } from "../useInfiniteScroll-CU_5Rd-q.js";
 import { limitValue as E } from "../utils/x-react.es.js";
-const _ = (e = {}) => {
+const U = (e = {}) => {
   const { navbar: t, sidebar: r } = e;
   return {
     navbar: t ? {
@@ -56,7 +56,7 @@ const _ = (e = {}) => {
       };
     }
   }, [t, e]), { ref: r, focused: n };
-}, y = (e, t, r) => {
+}, R = (e, t, r) => {
   f(() => (window.addEventListener(e, t, r), () => window.removeEventListener(e, t, r)), [e, t]);
 }, j = (e) => {
   const [t, r] = g(null), n = d(null);
@@ -102,7 +102,16 @@ const _ = (e = {}) => {
       u.current = !0, s(i);
     }, t), u.current = !1;
   }];
-}, G = (e, t, r) => {
+}, G = (e, t, r = { leading: !1 }) => {
+  const [n, s] = g(e), o = d(!1), u = d(null), c = d(!1), a = () => {
+    u.current !== null && window.clearTimeout(u.current);
+  };
+  return f(() => {
+    o.current && (!c.current && r.leading ? (c.current = !0, s(e)) : (a(), u.current = window.setTimeout(() => {
+      c.current = !1, s(e);
+    }, t)));
+  }, [e, r.leading, t]), f(() => (o.current = !0, a), []), [n, a];
+}, K = (e, t, r) => {
   const n = d(null);
   return f(() => {
     if (n.current) {
@@ -111,15 +120,15 @@ const _ = (e = {}) => {
       return () => s == null ? void 0 : s.removeEventListener(e, t, r);
     }
   }, [t, r, e]), n;
-}, K = (e) => {
+}, X = (e) => {
   const t = d(void 0);
   return f(() => {
     t.current = e;
   }, [e]), t.current;
 }, O = (e) => (e + 1) % 1e6, F = () => {
-  const [, e] = L(O, 0);
+  const [, e] = y(O, 0);
   return e;
-}, X = (e) => {
+}, Y = (e) => {
   const t = d(new Set(e)), r = F();
   return t.current.add = (...n) => {
     const s = Set.prototype.add.apply(t.current, n);
@@ -130,7 +139,7 @@ const _ = (e = {}) => {
     const s = Set.prototype.delete.apply(t.current, n);
     return r(), s;
   }, t.current;
-}, Y = (e) => {
+}, Z = (e) => {
   const [t, r] = g({
     history: [e],
     current: 0
@@ -170,19 +179,19 @@ const _ = (e = {}) => {
     }
   };
   return [t.history[t.current], n, t];
-}, Z = (e = [!1, !0]) => {
+}, B = (e = [!1, !0]) => {
   const t = (s, o) => {
     const u = o instanceof Function ? o(s[0]) : o, c = Math.abs(s.indexOf(u));
     return [...s.slice(c), ...s.slice(0, c)];
-  }, [[r], n] = L(t, [...e]);
+  }, [[r], n] = y(t, [...e]);
   return [
     r,
     n
   ];
-}, B = () => {
+}, ee = () => {
   const [e, t] = g(!1);
   return f(() => t(!0), []), e;
-}, ee = (e, t, { autoInvoke: r = !1 } = {}) => {
+}, te = (e, t, { autoInvoke: r = !1 } = {}) => {
   const n = d(null), s = (...u) => {
     n.current === void 0 && (n.current = window.setTimeout(() => {
       e(...u), n.current = null;
@@ -191,7 +200,7 @@ const _ = (e = {}) => {
     n.current !== null && (window.clearTimeout(n.current), n.current = null);
   };
   return f(() => (r && s(), o), [t]), { start: s, clear: o };
-}, te = (e, t, { autoInvoke: r = !1 } = {}) => {
+}, re = (e, t, { autoInvoke: r = !1 } = {}) => {
   const [n, s] = g(!1), o = d(null), u = d(e), c = () => {
     s((m) => (!m && (o.current === null || o.current === -1) && (o.current = window.setInterval(u.current, t)), !0));
   }, a = () => {
@@ -245,16 +254,16 @@ function H(e) {
     }
   } };
 }
-function J(e, t) {
+function V(e, t) {
   const r = "mantine-local-storage", { getItem: n, setItem: s, removeItem: o } = H(e);
   return function({
     key: c,
     defaultValue: a,
     getInitialValueInEffect: i = !0,
     deserialize: m = D,
-    serialize: b = (S) => A(S, t)
+    serialize: I = (T) => A(T, t)
   }) {
-    const S = (l) => {
+    const T = (l) => {
       let w;
       try {
         w = window === void 0 || !(e in window) || window[e] === void 0 || l === void 0;
@@ -265,52 +274,52 @@ function J(e, t) {
         return a;
       const h = n(c);
       return h !== null ? m(h) : a;
-    }, [T, I] = g(
-      S(i)
+    }, [S, b] = g(
+      T(i)
     ), v = x(
       (l) => {
-        l instanceof Function ? I((w) => {
+        l instanceof Function ? b((w) => {
           const h = l(w);
-          return s(c, b(h)), window.dispatchEvent(
+          return s(c, I(h)), window.dispatchEvent(
             new CustomEvent(r, {
               detail: { key: c, value: l(w) }
             })
           ), h;
-        }) : (s(c, b(l)), window.dispatchEvent(
+        }) : (s(c, I(l)), window.dispatchEvent(
           new CustomEvent(r, {
             detail: { key: c, value: l }
           })
-        ), I(l));
+        ), b(l));
       },
-      [c, b]
-    ), R = () => {
+      [c, I]
+    ), L = () => {
       o(c), window.dispatchEvent(
         new CustomEvent(r, {
           detail: { key: c, value: a }
         })
       );
     };
-    return y("storage", (l) => {
-      l.storageArea === window[e] && l.key === c && I(m(l.newValue ?? ""));
-    }), y(r, (l) => {
-      l.detail.key === c && I(l.detail.value);
+    return R("storage", (l) => {
+      l.storageArea === window[e] && l.key === c && b(m(l.newValue ?? ""));
+    }), R(r, (l) => {
+      l.detail.key === c && b(l.detail.value);
     }), f(() => {
-      a !== void 0 && T === void 0 && v(a);
-    }, [a, T, v]), f(() => {
-      const l = S();
+      a !== void 0 && S === void 0 && v(a);
+    }, [a, S, v]), f(() => {
+      const l = T();
       l !== void 0 && v(l);
     }, [c, v]), [
-      T === void 0 ? a : T,
+      S === void 0 ? a : S,
       v,
-      R
+      L
     ];
   };
 }
-const re = (e) => J("localStorage", "use-local-storage")(e), k = (e, t) => {
+const ne = (e) => V("localStorage", "use-local-storage")(e), J = (e, t) => {
   typeof e == "function" ? e(t) : typeof e == "object" && e !== null && "current" in e && (e.current = t);
-}, P = (...e) => (t) => {
-  e.forEach((r) => k(r, t));
-}, ne = (...e) => P(...e), oe = (e = !1, t) => {
+}, _ = (...e) => (t) => {
+  e.forEach((r) => J(r, t));
+}, oe = (...e) => _(...e), se = (e = !1, t) => {
   const { onOpen: r, onClose: n } = t || {}, [s, o] = g(e), u = () => {
     o((i) => i || (r == null || r(), !0));
   }, c = () => {
@@ -326,24 +335,25 @@ export {
   Q as useCounter,
   W as useDebouncedCallback,
   q as useDebouncedState,
-  oe as useDisclosure,
-  G as useEvent,
+  G as useDebouncedValue,
+  se as useDisclosure,
+  K as useEvent,
   $ as useFocusDetection,
-  me as useInfiniteScroll,
+  ge as useInfiniteScroll,
   j as useIntersection,
-  te as useInterval,
-  _ as useLayoutConfig,
-  re as useLocalStorage,
-  le as useMediaQuery,
-  ne as useMergedRef,
-  B as useMounted,
-  K as usePreviousValue,
-  X as useReactiveSet,
+  re as useInterval,
+  U as useLayoutConfig,
+  ne as useLocalStorage,
+  de as useMediaQuery,
+  oe as useMergedRef,
+  ee as useMounted,
+  X as usePreviousValue,
+  Y as useReactiveSet,
   F as useRerender,
-  de as useResponsive,
-  Y as useStateHistory,
-  ie as useTheme,
-  ee as useTimeout,
-  Z as useToggle,
-  y as useWindowEvent
+  fe as useResponsive,
+  Z as useStateHistory,
+  ae as useTheme,
+  te as useTimeout,
+  B as useToggle,
+  R as useWindowEvent
 };

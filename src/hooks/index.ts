@@ -27,6 +27,7 @@ export {
 export { useCounter } from "@/hooks/useCounter";
 export { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 export { useDebouncedState } from "@/hooks/useDebouncedState";
+export { useDebouncedValue } from "@/hooks/useDebouncedValue";
 export { useEvent } from "@/hooks/useEvent";
 export { usePreviousValue } from "@/hooks/usePreviousValue";
 export { useReactiveSet } from "@/hooks/useReactiveSet";

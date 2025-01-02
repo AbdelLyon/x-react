@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 export type UseMediaQueryOptions = {
   getInitialValueInEffect?: boolean;
   initialValue?: boolean;
-}
+};
 
 function attachMediaListener(
   query: MediaQueryList,
@@ -38,7 +38,7 @@ export function useMediaQuery(
 
   const [matches, setMatches] = useState<boolean>(() =>
     getInitialValueInEffect
-      ? initialValue ?? false
+      ? (initialValue ?? false)
       : getInitialValue(query, initialValue),
   );
 
@@ -67,9 +67,3 @@ export function useMediaQuery(
 
   return matches;
 }
-
-/**
- * React hook to track viewport breakpoints and custom media queries
- * @param customQuery - Optional custom media query to evaluate
- * @returns Object with breakpoints status and custom query match if provided
- */

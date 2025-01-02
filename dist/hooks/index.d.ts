@@ -11,6 +11,7 @@ export { useInfiniteScroll, type UseInfiniteScrollProps, type UseInfiniteScrollR
 export { useCounter } from './useCounter';
 export { useDebouncedCallback } from './useDebouncedCallback';
 export { useDebouncedState } from './useDebouncedState';
+export { useDebouncedValue } from './useDebouncedValue';
 export { useEvent } from './useEvent';
 export { usePreviousValue } from './usePreviousValue';
 export { useReactiveSet } from './useReactiveSet';
