@@ -1,2 +1,5 @@
 import "@/index.css";
-export { Accordion } from "@/accordion/Accordion";
+export {
+  Accordion,
+  type ExtendedAccordionItemProps,
+} from "@/accordion/Accordion";

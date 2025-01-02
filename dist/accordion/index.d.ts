@@ -1,1 +1,1 @@
-export { Accordion } from './Accordion';
+export { Accordion, type ExtendedAccordionItemProps, } from './Accordion';
