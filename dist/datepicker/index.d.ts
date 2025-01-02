@@ -1,1 +1,1 @@
-export { DatePicker, type DateValue } from './DatePicker';
+export { DatePicker, DateRangePicker, type DateValue, } from './DatePicker';
