@@ -3,7 +3,7 @@ import { cn } from "@/utils";
 import type { AccordionProps, AccordionItemProps } from "@nextui-org/react";
 import { Accordion as AccordionRoot, AccordionItem } from "@nextui-org/react";
 
-interface ExtendedAccordionItemProps
+export interface ExtendedAccordionItemProps
   extends Omit<AccordionItemProps, "content"> {
   content?: React.ReactNode;
 }
