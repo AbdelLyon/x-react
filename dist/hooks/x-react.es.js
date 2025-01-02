@@ -1,158 +1,158 @@
 export * from "@tanstack/react-query";
-import { u as ae } from "../useTheme-ery4R1ul.js";
-import { a as de, u as fe } from "../useResponsive-C59ustr5.js";
-import { useRef as d, useEffect as f, useState as g, useReducer as y, useCallback as x } from "react";
-import { u as ge } from "../useInfiniteScroll-CU_5Rd-q.js";
-import { limitValue as E } from "../utils/x-react.es.js";
-const U = (e = {}) => {
-  const { navbar: t, sidebar: r } = e;
+import { u as Y } from "../useTheme-ery4R1ul.js";
+import { a as B, u as ee } from "../useResponsive-C59ustr5.js";
+import { useRef as l, useEffect as d, useState as f, useReducer as h, useCallback as w } from "react";
+import { u as re } from "../useInfiniteScroll-CU_5Rd-q.js";
+import { limitValue as g } from "../utils/x-react.es.js";
+const V = (t = {}) => {
+  const { navbar: e, sidebar: r } = t;
   return {
-    navbar: t ? {
+    navbar: e ? {
       className: "fixed top-0 z-40",
-      ...t
+      ...e
     } : void 0,
     sidebar: r ? {
       className: "fixed z-30",
       ...r
     } : void 0
   };
-}, p = ["mousedown", "touchstart"], z = (e, t, r) => {
-  const n = d(null);
-  return f(() => {
+}, y = ["mousedown", "touchstart"], k = (t, e, r) => {
+  const n = l(null);
+  return d(() => {
     const s = (o) => {
-      const { target: u } = o ?? {};
+      const { target: c } = o ?? {};
       if (Array.isArray(r)) {
-        const c = (u == null ? void 0 : u.hasAttribute("data-ignore-outside-clicks")) || !document.body.contains(u) && u.tagName !== "HTML";
+        const u = (c == null ? void 0 : c.hasAttribute("data-ignore-outside-clicks")) || !document.body.contains(c) && c.tagName !== "HTML";
         r.every(
-          (i) => !!i && !o.composedPath().includes(i)
-        ) && !c && e();
-      } else n.current && !n.current.contains(u) && e();
+          (a) => !!a && !o.composedPath().includes(a)
+        ) && !u && t();
+      } else n.current && !n.current.contains(c) && t();
     };
-    return (t || p).forEach(
+    return (e || y).forEach(
       (o) => document.addEventListener(o, s)
     ), () => {
-      (t || p).forEach(
+      (e || y).forEach(
         (o) => document.removeEventListener(o, s)
       );
     };
-  }, [n, e, r]), n;
-}, C = (e) => e.currentTarget instanceof HTMLElement && e.relatedTarget instanceof HTMLElement ? e.currentTarget.contains(e.relatedTarget) : !1, $ = ({
-  onBlur: e,
-  onFocus: t
+  }, [n, t, r]), n;
+}, v = (t) => t.currentTarget instanceof HTMLElement && t.relatedTarget instanceof HTMLElement ? t.currentTarget.contains(t.relatedTarget) : !1, M = ({
+  onBlur: t,
+  onFocus: e
 } = {}) => {
-  const r = d(null), [n, s] = g(!1), o = d(!1), u = (c) => {
-    s(c), o.current = c;
+  const r = l(null), [n, s] = f(!1), o = l(!1), c = (u) => {
+    s(u), o.current = u;
   };
-  return f(() => {
-    const c = (i) => {
-      o.current || (u(!0), t == null || t(i));
-    }, a = (i) => {
-      o.current && !C(i) && (u(!1), e == null || e(i));
+  return d(() => {
+    const u = (a) => {
+      o.current || (c(!0), e == null || e(a));
+    }, i = (a) => {
+      o.current && !v(a) && (c(!1), t == null || t(a));
     };
     if (r.current) {
-      const i = r.current;
-      return i.addEventListener("focusin", c), i.addEventListener("focusout", a), () => {
-        i.removeEventListener("focusin", c), i.removeEventListener("focusout", a);
+      const a = r.current;
+      return a.addEventListener("focusin", u), a.addEventListener("focusout", i), () => {
+        a.removeEventListener("focusin", u), a.removeEventListener("focusout", i);
       };
     }
-  }, [t, e]), { ref: r, focused: n };
-}, R = (e, t, r) => {
-  f(() => (window.addEventListener(e, t, r), () => window.removeEventListener(e, t, r)), [e, t]);
-}, j = (e) => {
-  const [t, r] = g(null), n = d(null);
+  }, [e, t]), { ref: r, focused: n };
+}, C = (t, e, r) => {
+  d(() => (window.addEventListener(t, e, r), () => window.removeEventListener(t, e, r)), [t, e]);
+}, N = (t) => {
+  const [e, r] = f(null), n = l(null);
   return { ref: (o) => {
     if (n.current && (n.current.disconnect(), n.current = null), o === null) {
       r(null);
       return;
     }
-    n.current = new IntersectionObserver(([u]) => {
-      r(u);
-    }, e), n.current.observe(o);
-  }, entry: t };
-}, M = {
+    n.current = new IntersectionObserver(([c]) => {
+      r(c);
+    }, t), n.current.observe(o);
+  }, entry: e };
+}, T = {
   min: -1 / 0,
   max: 1 / 0
-}, Q = (e = 0, t) => {
-  const { min: r, max: n } = { ...M, ...t }, [s, o] = g(
-    E(e, r, n)
+}, O = (t = 0, e) => {
+  const { min: r, max: n } = { ...T, ...e }, [s, o] = f(
+    g(t, r, n)
   );
-  return [s, { increment: () => o((m) => E(m + 1, r, n)), decrement: () => o((m) => E(m - 1, r, n)), set: (m) => o(E(m, r, n)), reset: () => o(E(e, r, n)) }];
-}, N = (e) => {
-  const t = d(e);
-  return f(() => {
-    t.current = e;
+  return [s, { increment: () => o((m) => g(m + 1, r, n)), decrement: () => o((m) => g(m - 1, r, n)), set: (m) => o(g(m, r, n)), reset: () => o(g(t, r, n)) }];
+}, E = (t) => {
+  const e = l(t);
+  return d(() => {
+    e.current = t;
   }), (...r) => {
     var n;
-    return (n = t.current) == null ? void 0 : n.call(t, ...r);
+    return (n = e.current) == null ? void 0 : n.call(e, ...r);
   };
-}, W = (e, t) => {
-  const r = N(e), n = d(0);
-  return f(() => () => window.clearTimeout(n.current), []), (...s) => {
+}, D = (t, e) => {
+  const r = E(t), n = l(0);
+  return d(() => () => window.clearTimeout(n.current), []), (...s) => {
     window.clearTimeout(n.current), n.current = window.setTimeout(
       () => r(...s),
-      t
+      e
     );
   };
-}, q = (e, t, r = { leading: !1 }) => {
-  const [n, s] = g(e), o = d(null), u = d(!0), c = () => {
+}, A = (t, e, r = { leading: !1 }) => {
+  const [n, s] = f(t), o = l(null), c = l(!0), u = () => {
     o.current !== null && window.clearTimeout(o.current);
   };
-  return f(() => c, []), [n, (i) => {
-    c(), u.current && r.leading ? s(i) : o.current = window.setTimeout(() => {
-      u.current = !0, s(i);
-    }, t), u.current = !1;
+  return d(() => u, []), [n, (a) => {
+    u(), c.current && r.leading ? s(a) : o.current = window.setTimeout(() => {
+      c.current = !0, s(a);
+    }, e), c.current = !1;
   }];
-}, G = (e, t, r = { leading: !1 }) => {
-  const [n, s] = g(e), o = d(!1), u = d(null), c = d(!1), a = () => {
-    u.current !== null && window.clearTimeout(u.current);
+}, F = (t, e, r = { leading: !1 }) => {
+  const [n, s] = f(t), o = l(!1), c = l(null), u = l(!1), i = () => {
+    c.current !== null && window.clearTimeout(c.current);
   };
-  return f(() => {
-    o.current && (!c.current && r.leading ? (c.current = !0, s(e)) : (a(), u.current = window.setTimeout(() => {
-      c.current = !1, s(e);
-    }, t)));
-  }, [e, r.leading, t]), f(() => (o.current = !0, a), []), [n, a];
-}, K = (e, t, r) => {
-  const n = d(null);
-  return f(() => {
+  return d(() => {
+    o.current && (!u.current && r.leading ? (u.current = !0, s(t)) : (i(), c.current = window.setTimeout(() => {
+      u.current = !1, s(t);
+    }, e)));
+  }, [t, r.leading, e]), d(() => (o.current = !0, i), []), [n, i];
+}, H = (t, e, r) => {
+  const n = l(null);
+  return d(() => {
     if (n.current) {
-      n.current.addEventListener(e, t, r);
+      n.current.addEventListener(t, e, r);
       const s = n.current;
-      return () => s == null ? void 0 : s.removeEventListener(e, t, r);
+      return () => s == null ? void 0 : s.removeEventListener(t, e, r);
     }
-  }, [t, r, e]), n;
-}, X = (e) => {
-  const t = d(void 0);
-  return f(() => {
-    t.current = e;
-  }, [e]), t.current;
-}, O = (e) => (e + 1) % 1e6, F = () => {
-  const [, e] = y(O, 0);
-  return e;
-}, Y = (e) => {
-  const t = d(new Set(e)), r = F();
-  return t.current.add = (...n) => {
-    const s = Set.prototype.add.apply(t.current, n);
+  }, [e, r, t]), n;
+}, _ = (t) => {
+  const e = l(void 0);
+  return d(() => {
+    e.current = t;
+  }, [t]), e.current;
+}, S = (t) => (t + 1) % 1e6, p = () => {
+  const [, t] = h(S, 0);
+  return t;
+}, J = (t) => {
+  const e = l(new Set(t)), r = p();
+  return e.current.add = (...n) => {
+    const s = Set.prototype.add.apply(e.current, n);
     return r(), s;
-  }, t.current.clear = (...n) => {
-    Set.prototype.clear.apply(t.current, n), r();
-  }, t.current.delete = (...n) => {
-    const s = Set.prototype.delete.apply(t.current, n);
+  }, e.current.clear = (...n) => {
+    Set.prototype.clear.apply(e.current, n), r();
+  }, e.current.delete = (...n) => {
+    const s = Set.prototype.delete.apply(e.current, n);
     return r(), s;
-  }, t.current;
-}, Z = (e) => {
-  const [t, r] = g({
-    history: [e],
+  }, e.current;
+}, P = (t) => {
+  const [e, r] = f({
+    history: [t],
     current: 0
   }), n = {
     set: (s) => {
       r((o) => {
-        const u = [
+        const c = [
           ...o.history.slice(0, o.current + 1),
           s
         ];
         return {
-          history: u,
-          current: u.length - 1
+          history: c,
+          current: c.length - 1
         };
       });
     },
@@ -173,187 +173,124 @@ const U = (e = {}) => {
     },
     reset: () => {
       r({
-        history: [e],
+        history: [t],
         current: 0
       });
     }
   };
-  return [t.history[t.current], n, t];
-}, B = (e = [!1, !0]) => {
-  const t = (s, o) => {
-    const u = o instanceof Function ? o(s[0]) : o, c = Math.abs(s.indexOf(u));
-    return [...s.slice(c), ...s.slice(0, c)];
-  }, [[r], n] = y(t, [...e]);
+  return [e.history[e.current], n, e];
+}, U = (t = [!1, !0]) => {
+  const e = (s, o) => {
+    const c = o instanceof Function ? o(s[0]) : o, u = Math.abs(s.indexOf(c));
+    return [...s.slice(u), ...s.slice(0, u)];
+  }, [[r], n] = h(e, [...t]);
   return [
     r,
     n
   ];
-}, ee = () => {
-  const [e, t] = g(!1);
-  return f(() => t(!0), []), e;
-}, te = (e, t, { autoInvoke: r = !1 } = {}) => {
-  const n = d(null), s = (...u) => {
+}, $ = () => {
+  const [t, e] = f(!1);
+  return d(() => e(!0), []), t;
+}, z = (t, e, { autoInvoke: r = !1 } = {}) => {
+  const n = l(null), s = (...c) => {
     n.current === void 0 && (n.current = window.setTimeout(() => {
-      e(...u), n.current = null;
-    }, t));
+      t(...c), n.current = null;
+    }, e));
   }, o = () => {
     n.current !== null && (window.clearTimeout(n.current), n.current = null);
   };
-  return f(() => (r && s(), o), [t]), { start: s, clear: o };
-}, re = (e, t, { autoInvoke: r = !1 } = {}) => {
-  const [n, s] = g(!1), o = d(null), u = d(e), c = () => {
-    s((m) => (!m && (o.current === null || o.current === -1) && (o.current = window.setInterval(u.current, t)), !0));
-  }, a = () => {
-    s(!1), window.clearInterval(o.current ?? -1), o.current = -1;
+  return d(() => (r && s(), o), [e]), { start: s, clear: o };
+}, j = (t, e, { autoInvoke: r = !1 } = {}) => {
+  const [n, s] = f(!1), o = l(null), c = l(t), u = () => {
+    s((m) => (!m && (o.current === null || o.current === -1) && (o.current = window.setInterval(c.current, e)), !0));
   }, i = () => {
-    n ? a() : c();
+    s(!1), window.clearInterval(o.current ?? -1), o.current = -1;
+  }, a = () => {
+    n ? i() : u();
   };
-  return f(() => (u.current = e, n && c(), a), [e, n, t]), f(() => (r && c(), () => a()), []), { start: c, stop: a, toggle: i, active: n };
+  return d(() => (c.current = t, n && u(), i), [t, n, e]), d(() => (r && u(), () => i()), []), { start: u, stop: i, toggle: a, active: n };
 };
-function A(e, t = "use-local-storage") {
+function b(t, e) {
+  if (typeof window > "u")
+    return e;
   try {
-    return JSON.stringify(e);
+    const r = window.localStorage.getItem(t);
+    return r === null ? e : JSON.parse(r);
   } catch (r) {
-    throw r instanceof Error ? new Error(
-      `@mantine/hooks ${t}: Failed to serialize the value: ${r.message}`
-    ) : r;
+    return console.warn(`Error reading localStorage key "${t}":`, r), e;
   }
 }
-function D(e) {
-  if (!(e === void 0 || e === ""))
-    try {
-      return JSON.parse(e);
-    } catch {
-      return e;
-    }
-}
-function H(e) {
-  return { getItem: (s) => {
-    try {
-      return window[e].getItem(s);
-    } catch {
-      return console.warn(
-        "use-local-storage: Failed to get value from storage, localStorage is blocked"
-      ), null;
-    }
-  }, setItem: (s, o) => {
-    try {
-      window[e].setItem(s, o);
-    } catch {
-      console.warn(
-        "use-local-storage: Failed to set value to storage, localStorage is blocked"
-      );
-    }
-  }, removeItem: (s) => {
-    try {
-      window[e].removeItem(s);
-    } catch {
-      console.warn(
-        "use-local-storage: Failed to remove value from storage, localStorage is blocked"
-      );
-    }
-  } };
-}
-function V(e, t) {
-  const r = "mantine-local-storage", { getItem: n, setItem: s, removeItem: o } = H(e);
-  return function({
-    key: c,
-    defaultValue: a,
-    getInitialValueInEffect: i = !0,
-    deserialize: m = D,
-    serialize: I = (T) => A(T, t)
-  }) {
-    const T = (l) => {
-      let w;
+const Q = (t) => {
+  const { key: e, defaultValue: r } = t, [n, s] = f(
+    () => b(e, r)
+  ), o = w(
+    (u) => {
       try {
-        w = window === void 0 || !(e in window) || window[e] === void 0 || l === void 0;
-      } catch {
-        w = !0;
+        const i = u instanceof Function ? u(n) : u;
+        s(i), window.localStorage.setItem(e, JSON.stringify(i));
+      } catch (i) {
+        console.warn(`Error setting localStorage key "${e}":`, i);
       }
-      if (w)
-        return a;
-      const h = n(c);
-      return h !== null ? m(h) : a;
-    }, [S, b] = g(
-      T(i)
-    ), v = x(
-      (l) => {
-        l instanceof Function ? b((w) => {
-          const h = l(w);
-          return s(c, I(h)), window.dispatchEvent(
-            new CustomEvent(r, {
-              detail: { key: c, value: l(w) }
-            })
-          ), h;
-        }) : (s(c, I(l)), window.dispatchEvent(
-          new CustomEvent(r, {
-            detail: { key: c, value: l }
-          })
-        ), b(l));
-      },
-      [c, I]
-    ), L = () => {
-      o(c), window.dispatchEvent(
-        new CustomEvent(r, {
-          detail: { key: c, value: a }
-        })
-      );
+    },
+    [e, n]
+  ), c = w(() => {
+    try {
+      window.localStorage.removeItem(e), s(r);
+    } catch (u) {
+      console.warn(`Error removing localStorage key "${e}":`, u);
+    }
+  }, [e, r]);
+  return d(() => {
+    const u = (i) => {
+      if (i.key === e && i.newValue !== null)
+        try {
+          s(JSON.parse(i.newValue));
+        } catch {
+          s(r);
+        }
+      else i.key === e && s(r);
     };
-    return R("storage", (l) => {
-      l.storageArea === window[e] && l.key === c && b(m(l.newValue ?? ""));
-    }), R(r, (l) => {
-      l.detail.key === c && b(l.detail.value);
-    }), f(() => {
-      a !== void 0 && S === void 0 && v(a);
-    }, [a, S, v]), f(() => {
-      const l = T();
-      l !== void 0 && v(l);
-    }, [c, v]), [
-      S === void 0 ? a : S,
-      v,
-      L
-    ];
+    return window.addEventListener("storage", u), () => window.removeEventListener("storage", u);
+  }, [e, r]), [n, o, c];
+}, L = (t, e) => {
+  typeof t == "function" ? t(e) : typeof t == "object" && t !== null && "current" in t && (t.current = e);
+}, R = (...t) => (e) => {
+  t.forEach((r) => L(r, e));
+}, W = (...t) => R(...t), q = (t = !1, e) => {
+  const { onOpen: r, onClose: n } = e || {}, [s, o] = f(t), c = () => {
+    o((a) => a || (r == null || r(), !0));
+  }, u = () => {
+    o((a) => a && (n == null || n(), !1));
   };
-}
-const ne = (e) => V("localStorage", "use-local-storage")(e), J = (e, t) => {
-  typeof e == "function" ? e(t) : typeof e == "object" && e !== null && "current" in e && (e.current = t);
-}, _ = (...e) => (t) => {
-  e.forEach((r) => J(r, t));
-}, oe = (...e) => _(...e), se = (e = !1, t) => {
-  const { onOpen: r, onClose: n } = t || {}, [s, o] = g(e), u = () => {
-    o((i) => i || (r == null || r(), !0));
-  }, c = () => {
-    o((i) => i && (n == null || n(), !1));
-  };
-  return [s, { open: u, close: c, toggle: () => {
-    s ? c() : u();
+  return [s, { open: c, close: u, toggle: () => {
+    s ? u() : c();
   } }];
 };
 export {
-  N as useCallbackRef,
-  z as useClickOutside,
-  Q as useCounter,
-  W as useDebouncedCallback,
-  q as useDebouncedState,
-  G as useDebouncedValue,
-  se as useDisclosure,
-  K as useEvent,
-  $ as useFocusDetection,
-  ge as useInfiniteScroll,
-  j as useIntersection,
-  re as useInterval,
-  U as useLayoutConfig,
-  ne as useLocalStorage,
-  de as useMediaQuery,
-  oe as useMergedRef,
-  ee as useMounted,
-  X as usePreviousValue,
-  Y as useReactiveSet,
-  F as useRerender,
-  fe as useResponsive,
-  Z as useStateHistory,
-  ae as useTheme,
-  te as useTimeout,
-  B as useToggle,
-  R as useWindowEvent
+  E as useCallbackRef,
+  k as useClickOutside,
+  O as useCounter,
+  D as useDebouncedCallback,
+  A as useDebouncedState,
+  F as useDebouncedValue,
+  q as useDisclosure,
+  H as useEvent,
+  M as useFocusDetection,
+  re as useInfiniteScroll,
+  N as useIntersection,
+  j as useInterval,
+  V as useLayoutConfig,
+  Q as useLocalStorage,
+  B as useMediaQuery,
+  W as useMergedRef,
+  $ as useMounted,
+  _ as usePreviousValue,
+  J as useReactiveSet,
+  p as useRerender,
+  ee as useResponsive,
+  P as useStateHistory,
+  Y as useTheme,
+  z as useTimeout,
+  U as useToggle,
+  C as useWindowEvent
 };
