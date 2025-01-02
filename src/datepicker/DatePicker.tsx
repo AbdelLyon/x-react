@@ -14,7 +14,7 @@ type DatePickerProps = DatePickerRootProps & {
 export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   (
     {
-      variant = "bordered",
+      variant = "flat",
       color = "default",
       size = "md",
       radius = "md",
@@ -33,15 +33,15 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const getVariantStyles = (): string => {
       switch (variant) {
         case "bordered":
-          return "border-1 bg-white dark:bg-background data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12 group-data-[focus=true]:bg-content1";
+          return "bg-white dark:bg-background data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12 group-data-[focus=true]:bg-content1";
         case "flat":
-          return "border-none bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-12";
+          return "border-none border-1 bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-12";
         case "faded":
-          return "border-1 border-transparent bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:border-outline h-12";
+          return "border-transparent bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:border-outline h-12";
         case "underlined":
           return "border-b-1 rounded-none bg-transparent border-default-200 dark:border-default-100 data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
         default:
-          return "border-1 bg-white dark:bg-background data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
+          return "bg-white dark:bg-background data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
       }
     };
 
@@ -60,6 +60,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           isDisabled={isDisabled}
           classNames={{
             ...propClassNames,
+            base: cn("border-1 border-default", propClassNames?.base),
             inputWrapper: cn(getVariantStyles(), propClassNames?.inputWrapper),
           }}
           {...restProps}
