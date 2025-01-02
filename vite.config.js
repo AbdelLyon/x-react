@@ -74,7 +74,6 @@ export default defineConfig({
                 // Dependencies
                 "@nextui-org/react",
                 "@tabler/icons-react",
-                "@tanstack/react-query",
                 "@vitejs/plugin-react-swc",
                 "clsx",
                 "next-themes",

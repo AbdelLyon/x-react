@@ -1,5 +1,5 @@
 /* empty css                */
-import { j as t } from "../jsx-runtime-Dx-03ztt.js";
+import { j as t } from "../jsx-runtime-Bq5baZvQ.js";
 import { forwardRef as o } from "react";
 import { Avatar as A, useAvatarGroup as x, AvatarGroupProvider as c, User as d } from "@nextui-org/react";
 const e = o((r, a) => /* @__PURE__ */ t.jsx(A, { ref: a, ...r }));

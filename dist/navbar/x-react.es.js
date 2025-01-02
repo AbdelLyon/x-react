@@ -1,5 +1,5 @@
 /* empty css                */
-import { N as m } from "../Navbar-a9rTFOsQ.js";
+import { N as m } from "../Navbar-DdN62eqE.js";
 export {
   m as Navbar
 };

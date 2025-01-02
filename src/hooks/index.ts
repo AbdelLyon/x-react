@@ -1,6 +1,3 @@
-// Global dependencies
-export * from "@tanstack/react-query";
-
 // Theming and layout
 export { useTheme } from "@/hooks/useTheme";
 export { useLayoutConfig } from "@/hooks/useLayoutConfig";

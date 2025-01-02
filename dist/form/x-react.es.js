@@ -1,11 +1,10 @@
 /* empty css                */
-import { j as o } from "../jsx-runtime-Dx-03ztt.js";
+import { j as o } from "../jsx-runtime-Bq5baZvQ.js";
 import { forwardRef as y, useState as I, useEffect as T } from "react";
 import { RadioGroup as v, Radio as M, CheckboxGroup as E, Checkbox as P, InputOtp as W, Input as V, Textarea as K, Switch as A, Select as G, SelectItem as L } from "@nextui-org/react";
-import { Checkbox as se } from "@nextui-org/react";
+import { Checkbox as ue } from "@nextui-org/react";
 import { cn as n } from "../utils/x-react.es.js";
 import { IconEye as H, IconEyeOff as U } from "@tabler/icons-react";
-import "@tanstack/react-query";
 import "next-themes";
 import { u as q } from "../useInfiniteScroll-CU_5Rd-q.js";
 import "clsx";
@@ -368,7 +367,7 @@ function Y({
     }
   };
 }
-function ce({
+function le({
   fetchFunction: a,
   fetchDelay: r = 0,
   limit: e = 10,
@@ -401,9 +400,9 @@ function ce({
   );
 }
 export {
-  se as Checkbox,
+  ue as Checkbox,
   B as CheckboxGroup,
-  ce as InfiniteSelect,
+  le as InfiniteSelect,
   F as Input,
   D as InputOtp,
   z as RadioGroup,

@@ -1,5 +1,5 @@
 /* empty css                */
-import { j as n } from "../jsx-runtime-Dx-03ztt.js";
+import { j as n } from "../jsx-runtime-Bq5baZvQ.js";
 const d = (t, i = () => /* @__PURE__ */ n.jsx("div", { children: "Loading..." })) => function({
   loading: o,
   ...r

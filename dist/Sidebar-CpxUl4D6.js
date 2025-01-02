@@ -1,12 +1,11 @@
-import { j as t } from "./jsx-runtime-Dx-03ztt.js";
+import { j as t } from "./jsx-runtime-Bq5baZvQ.js";
 import { forwardRef as a } from "react";
 import { cn as d } from "./utils/x-react.es.js";
 import { Link as b } from "@nextui-org/react";
-import "@tanstack/react-query";
 import "next-themes";
 import { u } from "./useResponsive-C59ustr5.js";
 /* empty css               */
-import { T as s } from "./Tooltip-BVlWH2NE.js";
+import { T as s } from "./Tooltip-DDe70e5i.js";
 const c = a(
   ({ items: f = [], classNames: e, onItemClick: n }, l) => {
     const { isDesktop: i, isTablet: o } = u();

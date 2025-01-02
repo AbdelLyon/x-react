@@ -1,5 +1,5 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Dx-03ztt.js";
+import { j as r } from "../jsx-runtime-Bq5baZvQ.js";
 import { forwardRef as R } from "react";
 import { Tabs as V, Tab as g } from "@nextui-org/react";
 const k = R(
