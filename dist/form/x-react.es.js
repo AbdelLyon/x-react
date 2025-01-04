@@ -228,7 +228,7 @@ const F = y(
             "after:bg-outline",
             // Hover
             "data-[hover=true]:after:scale-x-100",
-            "data-[hover=true]:after:bg-primary/80",
+            "data-[hover=true]:after:bg-outline",
             // Focus
             "group-data-[focus=true]:after:scale-x-100",
             "group-data-[focus=true]:after:bg-primary"
