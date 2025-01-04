@@ -2,9 +2,7 @@ import { jsxs as k, Fragment as B, jsx as d } from "react/jsx-runtime";
 import { forwardRef as I, useState as R, useCallback as w } from "react";
 import { useDisclosure as S, Modal as $, ModalContent as z, ModalHeader as G, ModalBody as J, ModalFooter as L } from "@nextui-org/react";
 import { cn as n } from "../../utils/x-react.es.js";
-/* empty css                         */
 import { Button as v } from "../../button/Button/x-react.es.js";
-/* empty css                              */
 const c = {
   closeButton: "absolute right-4 top-4",
   base: "bg-background border border-default shadow-lg dark:shadow-none rounded-lg",
@@ -21,15 +19,15 @@ const c = {
   onAction: t,
   onClose: f
 }) => {
-  const p = async () => {
+  const u = async () => {
     try {
       await (t == null ? void 0 : t()), f();
     } catch (h) {
       console.error("Modal action failed:", h);
     }
-  }, u = j(e), g = j(i) && t !== void 0;
+  }, g = j(e), p = j(i) && t !== void 0;
   return /* @__PURE__ */ k(B, { children: [
-    u && /* @__PURE__ */ d(
+    g && /* @__PURE__ */ d(
       v,
       {
         className: n("border-primary/50", o == null ? void 0 : o.className),
@@ -40,10 +38,10 @@ const c = {
         children: e
       }
     ),
-    g && /* @__PURE__ */ d(
+    p && /* @__PURE__ */ d(
       v,
       {
-        onPress: p,
+        onPress: u,
         ...D,
         ...y,
         children: i
@@ -58,9 +56,9 @@ const c = {
     children: y,
     onAction: t,
     buttonCloseLabel: f,
-    buttonActionLabel: p,
-    buttonCloseProps: u,
-    buttonActionProps: g,
+    buttonActionLabel: u,
+    buttonCloseProps: g,
+    buttonActionProps: p,
     defaultBackdrop: h = "opaque",
     onOpenChange: O,
     classNames: r,
@@ -114,9 +112,9 @@ const c = {
               Q,
               {
                 buttonCloseLabel: f,
-                buttonActionLabel: p,
-                buttonCloseProps: u,
-                buttonActionProps: g,
+                buttonActionLabel: u,
+                buttonCloseProps: g,
+                buttonActionProps: p,
                 onAction: t,
                 onClose: x
               }

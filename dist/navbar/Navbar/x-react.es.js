@@ -2,7 +2,6 @@ import { jsxs as n, jsx as e } from "react/jsx-runtime";
 import { forwardRef as T } from "react";
 import { Navbar as D, NavbarContent as u, NavbarMenuToggle as $, NavbarItem as b, Link as c, NavbarMenu as q, NavbarMenuItem as z } from "@nextui-org/react";
 import { cn as x } from "../../utils/x-react.es.js";
-import "next-themes";
 import { useResponsive as B } from "../../hooks/useResponsive/x-react.es.js";
 const E = T(
   ({
@@ -16,11 +15,11 @@ const E = T(
     onItemClick: t,
     className: j,
     classNames: d,
-    isMenuOpen: i,
+    isMenuOpen: v,
     onMenuOpenChange: o,
     ...P
   }, A) => {
-    const { isDesktop: v, isMobile: s, isTablet: N } = B(), R = (r) => {
+    const { isDesktop: i, isMobile: s, isTablet: N } = B(), R = (r) => {
       var h;
       (h = r.onPress) == null || h.call(r), t == null || t(r), o == null || o(!1);
     };
@@ -34,14 +33,14 @@ const E = T(
           wrapper: "max-w-full",
           ...d
         },
-        isMenuOpen: i,
+        isMenuOpen: v,
         onMenuOpenChange: o,
         ...P,
         children: [
           s && /* @__PURE__ */ e(u, { children: /* @__PURE__ */ e(
             $,
             {
-              "aria-label": i === !0 ? "Close menu" : "Open menu"
+              "aria-label": v === !0 ? "Close menu" : "Open menu"
             }
           ) }),
           !s && (l !== null || a !== null) && /* @__PURE__ */ n(u, { justify: "start", children: [
@@ -49,7 +48,7 @@ const E = T(
             a !== null && /* @__PURE__ */ e(b, { children: a })
           ] }),
           /* @__PURE__ */ n(u, { justify: "end", ...g, children: [
-            v && y.map((r) => /* @__PURE__ */ e(b, { children: /* @__PURE__ */ n(
+            i && y.map((r) => /* @__PURE__ */ e(b, { children: /* @__PURE__ */ n(
               c,
               {
                 className: x(
@@ -69,7 +68,7 @@ const E = T(
             ) }, r.key)),
             f !== null && /* @__PURE__ */ e(b, { children: f })
           ] }),
-          !v && /* @__PURE__ */ e(q, { ...w, children: p.map((r) => /* @__PURE__ */ e(z, { children: /* @__PURE__ */ n(
+          !i && /* @__PURE__ */ e(q, { ...w, children: p.map((r) => /* @__PURE__ */ e(z, { children: /* @__PURE__ */ n(
             c,
             {
               className: x(

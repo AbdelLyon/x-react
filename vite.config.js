@@ -89,6 +89,9 @@ export default defineConfig({
                     tailwindcss: "tailwindcss",
                 },
             },
+            treeshake: {
+                moduleSideEffects: false,
+            },
         },
     },
 });

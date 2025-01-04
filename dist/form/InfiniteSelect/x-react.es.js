@@ -1,43 +1,40 @@
 import { jsx as o } from "react/jsx-runtime";
-import "next-themes";
-import { useState as I } from "react";
-import { useInfiniteScroll as S } from "../../hooks/useInfiniteScroll/x-react.es.js";
-import "clsx";
-import "tailwind-merge";
-import { useInfiniteList as x } from "../../hooks/useInfiniteList/x-react.es.js";
-import { Select as L, SelectItem as g } from "@nextui-org/react";
-function U({
-  fetchFunction: r,
-  fetchDelay: t = 0,
-  limit: i = 10,
-  className: n = "max-w-xs",
-  renderItem: s,
+import { useInfiniteList as I } from "../../hooks/useInfiniteList/x-react.es.js";
+import { Select as S, SelectItem as x } from "@nextui-org/react";
+import { useState as L } from "react";
+import { useInfiniteScroll as g } from "../../hooks/useInfiniteScroll/x-react.es.js";
+function w({
+  fetchFunction: n,
+  fetchDelay: s = 0,
+  limit: r = 10,
+  className: t = "max-w-xs",
+  renderItem: i,
   getItemKey: l,
-  selectionMode: m = "single"
+  selectionMode: f = "single"
 }) {
-  const [f, c] = I(!1), { items: p, hasMore: a, isLoading: d, onLoadMore: u } = x({
-    fetchFunction: r,
-    fetchDelay: t,
-    limit: i
-  }), [, h] = S({
-    hasMore: a,
-    isEnabled: f,
+  const [c, m] = L(!1), { items: a, hasMore: p, isLoading: d, onLoadMore: u } = I({
+    fetchFunction: n,
+    fetchDelay: s,
+    limit: r
+  }), [, h] = g({
+    hasMore: p,
+    isEnabled: c,
     shouldUseLoader: !1,
     onLoadMore: u
   });
   return /* @__PURE__ */ o(
-    L,
+    S,
     {
-      className: n,
+      className: t,
       isLoading: d,
-      items: p,
+      items: a,
       scrollRef: h,
-      selectionMode: m,
-      onOpenChange: c,
-      children: (e) => /* @__PURE__ */ o(g, { children: s(e) }, l(e))
+      selectionMode: f,
+      onOpenChange: m,
+      children: (e) => /* @__PURE__ */ o(x, { children: i(e) }, l(e))
     }
   );
 }
 export {
-  U as InfiniteSelect
+  w as InfiniteSelect
 };

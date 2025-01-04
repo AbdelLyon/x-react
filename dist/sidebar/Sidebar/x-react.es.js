@@ -2,9 +2,7 @@ import { jsx as d, jsxs as x } from "react/jsx-runtime";
 import { forwardRef as u } from "react";
 import { cn as p } from "../../utils/x-react.es.js";
 import { Link as a } from "@nextui-org/react";
-import "next-themes";
 import { useResponsive as c } from "../../hooks/useResponsive/x-react.es.js";
-/* empty css                         */
 import { Tooltip as g } from "../../tooltip/Tooltip/x-react.es.js";
 const y = u(
   ({ items: f = [], classNames: e, onItemClick: t }, l) => {
