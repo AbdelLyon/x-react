@@ -1,6 +1,5 @@
-/* empty css                      */
-import { Sidebar } from "./Sidebar/x-react.es.js";
+/* empty css                */
+import { S as e } from "../Sidebar-C9R_kb9y.js";
 export {
-  Sidebar
+  e as Sidebar
 };
-//# sourceMappingURL=x-react.es.js.map

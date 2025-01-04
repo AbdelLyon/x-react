@@ -1,6 +1,5 @@
-/* empty css                      */
-import { Image } from "@nextui-org/react";
+/* empty css                */
+import { Image as e } from "@nextui-org/react";
 export {
-  Image
+  e as Image
 };
-//# sourceMappingURL=x-react.es.js.map
