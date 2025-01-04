@@ -233,7 +233,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             "data-[hover=true]:after:bg-outline",
             // Focus
             "group-data-[focus=true]:after:scale-x-100",
-            "group-data-[focus=true]:after:bg-primary",
+            "group-data-[focus=true]:after:bg-outline",
           ].join(" ");
 
         default:
