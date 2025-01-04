@@ -1,16 +1,14 @@
 import { forwardRef } from "react";
-import type {
-  CheckboxGroupProps,
-  CheckboxProps} from "@nextui-org/react";
+import type { CheckboxGroupProps, CheckboxProps } from "@nextui-org/react";
 import {
   CheckboxGroup as CheckboxGroupRoot,
-  Checkbox
+  Checkbox,
 } from "@nextui-org/react";
 import { cn } from "@/utils";
 
 type CheckboxItemProps = {
   label?: React.ReactNode;
-} & Omit<CheckboxProps, "children">
+} & Omit<CheckboxProps, "children">;
 
 type CheckboxWrapperProps = {
   items: CheckboxItemProps[];
@@ -23,7 +21,7 @@ type CheckboxWrapperProps = {
     label?: string;
     wrapper?: string;
   };
-} & Omit<CheckboxGroupProps, "children">
+} & Omit<CheckboxGroupProps, "children">;
 
 const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxWrapperProps>(
   (

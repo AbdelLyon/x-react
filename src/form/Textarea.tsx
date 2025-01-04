@@ -57,6 +57,71 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const { classNames: propClassNames, ...restProps } = props;
 
+    const getVariantStyles = (): string => {
+      switch (variant) {
+        case "bordered":
+          return [
+            "border-1",
+            "bg-white",
+            "dark:bg-background",
+            "data-[hover=true]:border-outline",
+            "group-data-[focus=true]:border-outline",
+            "group-data-[focus=true]:bg-content1",
+            "h-12",
+          ].join(" ");
+
+        case "flat":
+          return [
+            "border-none",
+            "bg-default-100",
+            "dark:bg-default-50",
+            "data-[hover=true]:bg-default-200",
+            "group-data-[focus=true]:bg-default-100",
+            "h-12",
+          ].join(" ");
+
+        case "faded":
+          return [
+            "border-1",
+            "border-transparent",
+            "bg-default-100",
+            "dark:bg-default-50",
+            "data-[hover=true]:bg-default-200",
+            "group-data-[focus=true]:border-outline",
+            "h-12",
+          ].join(" ");
+
+        case "underlined":
+          return [
+            "relative",
+            "border-b-1",
+            "rounded-none",
+            "bg-transparent",
+            "border-default-200",
+            "dark:border-default-100",
+            "h-12",
+            // Underline effect
+            "after:bg-outline",
+            // Hover
+            "data-[hover=true]:after:scale-x-100",
+            "data-[hover=true]:after:bg-outline",
+            // Focus
+            "group-data-[focus=true]:after:scale-x-100",
+            "group-data-[focus=true]:after:bg-outline",
+          ].join(" ");
+
+        default:
+          return [
+            "border-1",
+            "bg-white",
+            "dark:bg-background",
+            "data-[hover=true]:border-outline",
+            "group-data-[focus=true]:border-outline",
+            "h-12",
+          ].join(" ");
+      }
+    };
+
     return (
       <div className={cn("w-full", containerClasses)}>
         <TextareaRoot
@@ -74,14 +139,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           style={combinedStyle}
           classNames={{
             ...propClassNames,
-            inputWrapper: cn(
-              "border-1 bg-white dark:bg-background",
-              {
-                "data-[hover=true]:border-outline group-data-[focus=true]:border-outline group-data-[focus=true]:bg-content1":
-                  variant === "bordered",
-              },
-              propClassNames?.inputWrapper,
-            ),
+            inputWrapper: cn(getVariantStyles(), propClassNames?.inputWrapper),
             input: cn("text-base", propClassNames?.input),
           }}
           {...restProps}
