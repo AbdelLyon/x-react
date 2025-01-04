@@ -13,8 +13,8 @@ const z = w(
     items: a,
     groupClasses: r,
     itemClasses: e,
-    label: d = "Select an option",
-    defaultValue: u,
+    label: u = "Select an option",
+    defaultValue: d,
     ...l
   }, c) => {
     const p = {
@@ -30,8 +30,8 @@ const z = w(
       T,
       {
         ref: c,
-        label: d,
-        defaultValue: u,
+        label: u,
+        defaultValue: d,
         ...l,
         classNames: {
           base: n(p.base, r == null ? void 0 : r.base),
@@ -80,8 +80,8 @@ const B = w(
     items: a,
     groupClasses: r,
     itemClasses: e,
-    label: d = "Select options",
-    defaultValue: u,
+    label: u = "Select options",
+    defaultValue: d,
     ...l
   }, c) => {
     const p = {
@@ -96,8 +96,8 @@ const B = w(
       E,
       {
         ref: c,
-        label: d,
-        defaultValue: u,
+        label: u,
+        defaultValue: d,
         ...l,
         classNames: {
           base: n(p.base, r == null ? void 0 : r.base),
@@ -141,11 +141,11 @@ const D = w(
     length: a = 6,
     label: r = `${a} digits OTP`,
     labelClasses: e,
-    containerClasses: d,
-    ...u
-  }, l) => /* @__PURE__ */ o.jsxs("div", { ref: l, className: n("flex flex-col", d), children: [
+    containerClasses: u,
+    ...d
+  }, l) => /* @__PURE__ */ o.jsxs("div", { ref: l, className: n("flex flex-col", u), children: [
     r && /* @__PURE__ */ o.jsx("p", { className: n("text-default-500 text-small mb-2", e), children: r }),
-    /* @__PURE__ */ o.jsx(V, { length: a, ...u })
+    /* @__PURE__ */ o.jsx(V, { length: a, ...d })
   ] })
 );
 D.displayName = "InputOtp";
@@ -154,8 +154,8 @@ const F = w(
     variant: a = "bordered",
     color: r = "default",
     size: e = "md",
-    radius: d = "md",
-    labelPlacement: u = "inside",
+    radius: u = "md",
+    labelPlacement: d = "inside",
     fullWidth: l = !0,
     isClearable: c = !1,
     isRequired: p = !1,
@@ -166,7 +166,7 @@ const F = w(
     validate: h,
     type: i,
     ...x
-  }, k) => {
+  }, I) => {
     const [g, S] = N(i), v = (y) => {
       if (b) {
         const O = b(y);
@@ -184,7 +184,7 @@ const F = w(
         onClick: () => S(g === "password" ? "text" : "password"),
         children: g === "password" ? /* @__PURE__ */ o.jsx(H, { className: "pointer-events-none" }) : /* @__PURE__ */ o.jsx(U, { className: "pointer-events-none" })
       }
-    ) : void 0, { classNames: j, ...$ } = x, I = () => {
+    ) : void 0, { classNames: j, ...$ } = x, k = () => {
       switch (a) {
         case "bordered":
           return [
@@ -218,11 +218,10 @@ const F = w(
         case "underlined":
           return [
             "relative",
-            "border-b-1 border-defaul",
+            "border-b-1",
             "rounded-none",
             "bg-transparent",
-            "border-default-200",
-            "dark:border-default-100",
+            "border-default",
             "h-12",
             // Underline effect
             "after:bg-outline",
@@ -247,12 +246,12 @@ const F = w(
     return /* @__PURE__ */ o.jsx("div", { className: n("w-full", f), children: /* @__PURE__ */ o.jsx(
       W,
       {
-        ref: k,
+        ref: I,
         variant: a,
         color: r,
         size: e,
-        radius: d,
-        labelPlacement: u,
+        radius: u,
+        labelPlacement: d,
         fullWidth: l,
         isClearable: c,
         isRequired: p,
@@ -261,7 +260,7 @@ const F = w(
         validate: v,
         classNames: {
           ...j,
-          inputWrapper: n(I(), j == null ? void 0 : j.inputWrapper)
+          inputWrapper: n(k(), j == null ? void 0 : j.inputWrapper)
         },
         endContent: m,
         type: g,
@@ -276,8 +275,8 @@ const J = w(
     variant: a = "bordered",
     color: r = "default",
     size: e = "md",
-    radius: d = "md",
-    labelPlacement: u = "inside",
+    radius: u = "md",
+    labelPlacement: d = "inside",
     fullWidth: l = !0,
     isRequired: c = !1,
     isReadOnly: p = !1,
@@ -288,22 +287,22 @@ const J = w(
     style: h,
     customValidation: i,
     validate: x,
-    ...k
+    ...I
   }, g) => {
     const S = {
       width: typeof f == "number" ? `${f}px` : f,
       height: typeof b == "number" ? `${b}px` : b,
       ...h
-    }, v = (I) => {
+    }, v = (k) => {
       if (i) {
-        const y = i(I);
+        const y = i(k);
         if (typeof y == "string")
           return y;
         if (y === !1)
           return "Validation failed";
       }
-      return (x == null ? void 0 : x(I)) ?? !0;
-    }, { classNames: m, ...j } = k, $ = () => {
+      return (x == null ? void 0 : x(k)) ?? !0;
+    }, { classNames: m, ...j } = I, $ = () => {
       switch (a) {
         case "bordered":
           return [
@@ -337,12 +336,10 @@ const J = w(
         case "underlined":
           return [
             "relative",
-            "border-b-1 border-default",
+            "border-b-1",
             "rounded-none",
             "bg-transparent",
-            "border-default-200",
-            "dark:border-default-100",
-            "h-12",
+            "border-default",
             // Underline effect
             "after:bg-outline",
             // Hover
@@ -370,8 +367,8 @@ const J = w(
         variant: a,
         color: r,
         size: e,
-        radius: d,
-        labelPlacement: u,
+        radius: u,
+        labelPlacement: d,
         fullWidth: l,
         isRequired: c,
         isReadOnly: p,
@@ -390,13 +387,13 @@ const J = w(
 );
 J.displayName = "Textarea";
 const Q = w(
-  ({ width: a, height: r, style: e, ...d }, u) => {
+  ({ width: a, height: r, style: e, ...u }, d) => {
     const l = {
       width: typeof a == "number" ? `${a}px` : a,
       height: typeof r == "number" ? `${r}px` : r,
       ...e
     };
-    return /* @__PURE__ */ o.jsx(A, { ref: u, style: l, ...d });
+    return /* @__PURE__ */ o.jsx(A, { ref: d, style: l, ...u });
   }
 );
 Q.displayName = "Switch";
@@ -406,8 +403,8 @@ const X = w(
     options: a = [],
     value: r,
     defaultValue: e,
-    classNames: d,
-    ...u
+    classNames: u,
+    ...d
   }, l) => /* @__PURE__ */ o.jsx(
     R,
     {
@@ -416,11 +413,11 @@ const X = w(
         base: "max-w-xs",
         trigger: "h-10",
         value: "text-small",
-        ...d
+        ...u
       },
       selectedKeys: r,
       defaultSelectedKeys: e,
-      ...u,
+      ...d,
       children: a.map((c) => /* @__PURE__ */ o.jsx(
         G,
         {
@@ -440,14 +437,14 @@ function Y({
   fetchDelay: r = 0,
   limit: e = 10
 }) {
-  const [d, u] = N([]), [l, c] = N(!0), [p, s] = N(!1), [t, f] = N(0), b = async (i) => {
+  const [u, d] = N([]), [l, c] = N(!0), [p, s] = N(!1), [t, f] = N(0), b = async (i) => {
     try {
       s(!0), t > 0 && await new Promise((g) => setTimeout(g, r));
-      const { items: x, hasMore: k } = await a(
+      const { items: x, hasMore: I } = await a(
         i,
         e
       );
-      c(k), u((g) => [...g, ...x]);
+      c(I), d((g) => [...g, ...x]);
     } catch (x) {
       console.error("There was an error with the fetch operation:", x);
     } finally {
@@ -457,7 +454,7 @@ function Y({
   return L(() => {
     b(t);
   }, []), {
-    items: d,
+    items: u,
     hasMore: l,
     isLoading: p,
     onLoadMore: () => {
@@ -466,12 +463,12 @@ function Y({
     }
   };
 }
-function de({
+function ue({
   fetchFunction: a,
   fetchDelay: r = 0,
   limit: e = 10,
-  className: d = "max-w-xs",
-  renderItem: u,
+  className: u = "max-w-xs",
+  renderItem: d,
   getItemKey: l,
   selectionMode: c = "single"
 }) {
@@ -488,20 +485,20 @@ function de({
   return /* @__PURE__ */ o.jsx(
     R,
     {
-      className: d,
+      className: u,
       isLoading: b,
       items: t,
       scrollRef: i,
       selectionMode: c,
       onOpenChange: s,
-      children: (x) => /* @__PURE__ */ o.jsx(G, { children: u(x) }, l(x))
+      children: (x) => /* @__PURE__ */ o.jsx(G, { children: d(x) }, l(x))
     }
   );
 }
 export {
   ce as Checkbox,
   B as CheckboxGroup,
-  de as InfiniteSelect,
+  ue as InfiniteSelect,
   F as Input,
   D as InputOtp,
   z as RadioGroup,

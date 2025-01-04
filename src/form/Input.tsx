@@ -105,11 +105,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         case "underlined":
           return [
             "relative",
-            "border-b-1 border-defaul",
+            "border-b-1",
             "rounded-none",
             "bg-transparent",
-            "border-default-200",
-            "dark:border-default-100",
+            "border-default",
             "h-12",
             // Underline effect
 
