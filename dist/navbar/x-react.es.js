@@ -1,5 +1,6 @@
-/* empty css                */
-import { N as m } from "../Navbar-DdN62eqE.js";
+/* empty css                      */
+import { Navbar } from "./Navbar/x-react.es.js";
 export {
-  m as Navbar
+  Navbar
 };
+//# sourceMappingURL=x-react.es.js.map

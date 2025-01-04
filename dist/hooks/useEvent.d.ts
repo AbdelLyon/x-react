@@ -1,1 +1,0 @@
-export declare const useEvent: <K extends keyof HTMLElementEventMap, T extends HTMLElement>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void, options?: boolean | AddEventListenerOptions) => React.RefObject<T | null>;

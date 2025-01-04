@@ -1,5 +1,6 @@
-/* empty css                */
-import { T as t } from "../Tooltip-DDe70e5i.js";
+/* empty css                      */
+import { Tooltip } from "./Tooltip/x-react.es.js";
 export {
-  t as Tooltip
+  Tooltip
 };
+//# sourceMappingURL=x-react.es.js.map

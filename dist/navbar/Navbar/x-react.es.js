@@ -1,0 +1,103 @@
+import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { forwardRef } from "react";
+import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import { cn } from "../../utils/x-react.es.js";
+import "next-themes";
+import { useResponsive } from "../../hooks/useResponsive/x-react.es.js";
+const Navbar = forwardRef(
+  ({
+    appName,
+    appLogo,
+    profile,
+    navigationItems = [],
+    menuItems = [],
+    contentProps,
+    menuProps,
+    onItemClick,
+    className,
+    classNames,
+    isMenuOpen,
+    onMenuOpenChange,
+    ...props
+  }, ref) => {
+    const { isDesktop, isMobile, isTablet } = useResponsive();
+    const handleItemPress = (item) => {
+      var _a;
+      (_a = item.onPress) == null ? void 0 : _a.call(item);
+      onItemClick == null ? void 0 : onItemClick(item);
+      onMenuOpenChange == null ? void 0 : onMenuOpenChange(false);
+    };
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      Navbar$1,
+      {
+        ref,
+        className,
+        classNames: {
+          base: "bg-white dark:bg-background",
+          wrapper: "max-w-full",
+          ...classNames
+        },
+        isMenuOpen,
+        onMenuOpenChange,
+        ...props,
+        children: [
+          isMobile && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            NavbarMenuToggle,
+            {
+              "aria-label": isMenuOpen === true ? "Close menu" : "Open menu"
+            }
+          ) }),
+          !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxRuntimeExports.jsxs(NavbarContent, { justify: "start", children: [
+            !isTablet && appName !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarItem, { className: "w-[247px] border-r-2 border-default", children: appName }),
+            appLogo !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarItem, { children: appLogo })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(NavbarContent, { justify: "end", ...contentProps, children: [
+            isDesktop && navigationItems.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarItem, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Link,
+              {
+                className: cn(
+                  "p-2 hover:bg-content1 rounded-md text-foreground",
+                  {
+                    "border-l-2 border-primary bg-content1 text-primary": item.isActive
+                  },
+                  classNames == null ? void 0 : classNames.item
+                ),
+                onPress: () => handleItemPress(item),
+                children: [
+                  item.startContent,
+                  item.label,
+                  item.endContent
+                ]
+              }
+            ) }, item.key)),
+            profile !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarItem, { children: profile })
+          ] }),
+          !isDesktop && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarMenu, { ...menuProps, children: menuItems.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Link,
+            {
+              className: cn(
+                "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
+                {
+                  "border-l-2 border-primary bg-content1 text-primary": item.isActive
+                },
+                classNames == null ? void 0 : classNames.item
+              ),
+              onPress: () => onItemClick == null ? void 0 : onItemClick(item),
+              children: [
+                item.startContent,
+                item.label,
+                item.endContent
+              ]
+            },
+            item.key
+          ) }, item.key)) })
+        ]
+      }
+    );
+  }
+);
+Navbar.displayName = "Navbar";
+export {
+  Navbar
+};
+//# sourceMappingURL=x-react.es.js.map

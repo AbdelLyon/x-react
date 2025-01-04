@@ -1,24 +1,8 @@
-/* empty css                */
-import { j as t } from "../jsx-runtime-Bq5baZvQ.js";
-import { ThemeProvider as i } from "next-themes";
-import { NextUIProvider as s } from "@nextui-org/react";
-const x = ({
-  children: r,
-  ...e
-}) => /* @__PURE__ */ t.jsx(
-  i,
-  {
-    defaultTheme: "light",
-    attribute: "class",
-    disableTransitionOnChange: !0,
-    ...e,
-    children: r
-  }
-), h = (r) => {
-  const { children: e, ...o } = r;
-  return /* @__PURE__ */ t.jsx(s, { ...o, children: e });
-};
+/* empty css                      */
+import { ThemeProvider } from "./ThemeProvider/x-react.es.js";
+import { NextUIProvider } from "./NextUIProvider/x-react.es.js";
 export {
-  h as NextUIProvider,
-  x as ThemeProvider
+  NextUIProvider,
+  ThemeProvider
 };
+//# sourceMappingURL=x-react.es.js.map

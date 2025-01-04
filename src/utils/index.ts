@@ -50,3 +50,41 @@ export const limitValue = (
 
   return value;
 };
+type DebouncedFunction<Args extends unknown[]> = {
+  (...args: Args): void;
+  cancel: () => void;
+};
+
+export function debounce<
+  Callback extends (...args: never[]) => unknown,
+  Args extends Parameters<Callback>,
+>(callback: Callback, delay = 0): DebouncedFunction<Args> {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  let latestArgs: Args | undefined;
+
+  function debouncedFn(this: unknown, ...args: Args): void {
+    latestArgs = args;
+
+    if (timeoutId !== undefined) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+      if (latestArgs) {
+        callback.apply(this, latestArgs);
+      }
+      timeoutId = undefined;
+      latestArgs = undefined;
+    }, delay);
+  }
+
+  debouncedFn.cancel = function cancel(): void {
+    if (timeoutId !== undefined) {
+      clearTimeout(timeoutId);
+      timeoutId = undefined;
+      latestArgs = undefined;
+    }
+  };
+
+  return debouncedFn;
+}
