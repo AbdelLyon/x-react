@@ -50,11 +50,13 @@ export const limitValue = (
 
   return value;
 };
+
 type DebouncedFunction<Args extends unknown[]> = {
   (...args: Args): void;
   cancel: () => void;
 };
 
+//debounce function
 export function debounce<
   Callback extends (...args: never[]) => unknown,
   Args extends Parameters<Callback>,
