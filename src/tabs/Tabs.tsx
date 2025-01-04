@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { forwardRef } from "react";
 import type { TabsProps as NextUITabsProps } from "@nextui-org/react";
 import { Tabs as TabsRoot, Tab } from "@nextui-org/react";
+import { cn } from "@/utils";
 
 export interface TabItem {
   key: string;
@@ -18,14 +19,6 @@ interface CustomTabsProps extends Omit<NextUITabsProps, "children"> {
   defaultActiveTab?: string;
   onTabChange?: (key: string) => void;
   renderTabContent?: (item: TabItem) => React.ReactNode;
-  classNames?: {
-    base?: string;
-    tabList?: string;
-    tab?: string;
-    tabContent?: string;
-    cursor?: string;
-    panel?: string;
-  };
 }
 
 export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
@@ -45,7 +38,6 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
       disableAnimation = false,
       disableCursorAnimation = false,
       destroyInactiveTabPanel = true,
-      classNames,
       ...props
     },
     ref,
@@ -56,6 +48,13 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
 
     const defaultContent = (item: TabItem): ReactNode => item.content;
     const contentRenderer = renderTabContent || defaultContent;
+
+    const getVariantStyles = (): string => {
+      if (variant === "bordered") {
+        return "border-1 border-default";
+      }
+      return "";
+    };
 
     return (
       <TabsRoot
@@ -71,7 +70,10 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
         disableCursorAnimation={disableCursorAnimation}
         destroyInactiveTabPanel={destroyInactiveTabPanel}
         defaultSelectedKey={defaultActiveTab}
-        classNames={classNames}
+        classNames={{
+          ...props.classNames,
+          tabList: cn(getVariantStyles(), props.classNames?.tabList),
+        }}
         onSelectionChange={handleSelectionChange}
         {...props}
       >

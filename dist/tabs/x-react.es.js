@@ -1,48 +1,52 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Bq5baZvQ.js";
+import { j as l } from "../jsx-runtime-Bq5baZvQ.js";
 import { forwardRef as R } from "react";
 import { Tabs as V, Tab as g } from "@nextui-org/react";
+import { cn as L } from "../utils/x-react.es.js";
 const k = R(
   ({
-    items: l,
-    defaultActiveTab: s,
+    items: o,
+    defaultActiveTab: d,
     onTabChange: t,
-    renderTabContent: a,
-    variant: o = "solid",
-    color: d = "primary",
-    size: n = "md",
-    radius: f = "md",
-    fullWidth: i = !1,
-    placement: c = "top",
-    isVertical: p = !1,
-    disableAnimation: u = !1,
-    disableCursorAnimation: m = !1,
-    destroyInactiveTabPanel: x = !0,
-    classNames: j,
-    ...y
+    renderTabContent: n,
+    variant: s = "solid",
+    color: i = "primary",
+    size: f = "md",
+    radius: c = "md",
+    fullWidth: m = !1,
+    placement: u = "top",
+    isVertical: b = !1,
+    disableAnimation: p = !1,
+    disableCursorAnimation: x = !1,
+    destroyInactiveTabPanel: y = !0,
+    ...r
   }, S) => {
-    const b = (e) => {
+    var a;
+    const j = (e) => {
       t == null || t(e.toString());
-    }, h = a || ((e) => e.content);
-    return /* @__PURE__ */ r.jsx(
+    }, N = n || ((e) => e.content), h = () => s === "bordered" ? "border-1 border-default" : "";
+    return /* @__PURE__ */ l.jsx(
       V,
       {
         ref: S,
-        variant: o,
-        color: d,
-        size: n,
-        radius: f,
-        fullWidth: i,
-        placement: c,
-        isVertical: p,
-        disableAnimation: u,
-        disableCursorAnimation: m,
-        destroyInactiveTabPanel: x,
-        defaultSelectedKey: s,
-        classNames: j,
-        onSelectionChange: b,
-        ...y,
-        children: l.map((e) => /* @__PURE__ */ r.jsx(
+        variant: s,
+        color: i,
+        size: f,
+        radius: c,
+        fullWidth: m,
+        placement: u,
+        isVertical: b,
+        disableAnimation: p,
+        disableCursorAnimation: x,
+        destroyInactiveTabPanel: y,
+        defaultSelectedKey: d,
+        classNames: {
+          ...r.classNames,
+          tabList: L(h(), (a = r.classNames) == null ? void 0 : a.tabList)
+        },
+        onSelectionChange: j,
+        ...r,
+        children: o.map((e) => /* @__PURE__ */ l.jsx(
           g,
           {
             title: e.title,
@@ -50,7 +54,7 @@ const k = R(
             href: e.href,
             target: e.target,
             isDisabled: e.disabled,
-            children: h(e)
+            children: N(e)
           },
           e.key
         ))
