@@ -1,52 +1,52 @@
 /* empty css                */
-import { j as r } from "../jsx-runtime-Bq5baZvQ.js";
-import { forwardRef as R } from "react";
-import { Card as g, CardHeader as m, CardBody as w, CardFooter as B } from "@nextui-org/react";
-const E = R(
+import { j as d } from "../jsx-runtime-Bq5baZvQ.js";
+import { forwardRef as w } from "react";
+import { Card as B, CardHeader as E, CardBody as F, CardFooter as H } from "@nextui-org/react";
+const $ = w(
   ({
-    children: x,
-    shadow: C = "md",
-    radius: j = "lg",
-    fullWidth: n = !1,
-    isHoverable: a = !1,
-    isPressable: l = !1,
-    isBlurred: t = !1,
-    isFooterBlurred: h = !1,
-    isDisabled: o = !1,
-    disableAnimation: p = !1,
-    disableRipple: y = !1,
-    allowTextSelectionOnPress: b = !1,
-    classNames: d,
-    header: f,
-    footer: e,
-    footerProps: i,
-    ...u
-  }, v) => /* @__PURE__ */ r.jsxs(
-    g,
+    children: i,
+    shadow: t = "md",
+    radius: p = "lg",
+    fullWidth: x = !1,
+    isHoverable: C = !1,
+    isPressable: e = !1,
+    isBlurred: j = !1,
+    isFooterBlurred: n = !1,
+    isDisabled: h = !1,
+    disableAnimation: y = !1,
+    disableRipple: b = !1,
+    allowTextSelectionOnPress: u = !1,
+    classNames: r,
+    header: o,
+    footer: f,
+    footerProps: v,
+    ...R
+  }, g) => /* @__PURE__ */ d.jsxs(
+    B,
     {
-      ref: v,
-      shadow: C,
-      radius: j,
-      fullWidth: n,
-      isHoverable: a,
-      isPressable: l,
-      isBlurred: t,
-      isFooterBlurred: h,
-      isDisabled: o,
-      disableAnimation: p,
-      disableRipple: y,
-      allowTextSelectionOnPress: b,
-      className: d == null ? void 0 : d.base,
-      ...u,
+      ref: g,
+      shadow: t,
+      radius: p,
+      fullWidth: x,
+      isHoverable: C,
+      isPressable: e,
+      isBlurred: j,
+      isFooterBlurred: n,
+      isDisabled: h,
+      disableAnimation: y,
+      disableRipple: b,
+      allowTextSelectionOnPress: u,
+      className: r == null ? void 0 : r.base,
+      ...R,
       children: [
-        f !== void 0 && /* @__PURE__ */ r.jsx(m, { className: d == null ? void 0 : d.header, children: f }),
-        /* @__PURE__ */ r.jsx(w, { className: d == null ? void 0 : d.body, children: x }),
-        e !== void 0 && /* @__PURE__ */ r.jsx(B, { className: i == null ? void 0 : i.className, children: e })
+        o !== void 0 && /* @__PURE__ */ d.jsx(E, { className: r == null ? void 0 : r.header, children: o }),
+        /* @__PURE__ */ d.jsx(F, { className: r == null ? void 0 : r.body, children: i }),
+        f !== void 0 && /* @__PURE__ */ d.jsx(H, { className: r == null ? void 0 : r.footer, ...v, children: f })
       ]
     }
   )
 );
-E.displayName = "Card";
+$.displayName = "Card";
 export {
-  E as Card
+  $ as Card
 };

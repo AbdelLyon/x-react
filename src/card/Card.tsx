@@ -63,7 +63,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         )}
         <CardBody className={classNames?.body}>{children}</CardBody>
         {footer !== undefined && (
-          <CardFooter className={footerProps?.className}>{footer}</CardFooter>
+          <CardFooter className={classNames?.footer} {...footerProps}>
+            {footer}
+          </CardFooter>
         )}
       </NextUICard>
     );

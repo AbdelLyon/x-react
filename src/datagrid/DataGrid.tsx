@@ -1,6 +1,5 @@
-import { useDataGridState } from "@/hooks/useDataGridState";
+import { useDataGridState } from "@/datagrid/useDataGridState";
 import { cn } from "@/utils";
-import { type Key } from "react";
 import {
   Table as DataTable,
   TableHeader,
@@ -12,59 +11,8 @@ import {
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
-import type {
-  ColumnDefinition,
-  DataGridProps,
-  ExtendedColumn,
-} from "@/types/datagrid";
+import type { DataGridProps } from "@/types/datagrid";
 import { GRID_VARIANTS } from "@/data/default";
-
-const getColumnLabel = <T extends object>(
-  column: ExtendedColumn<T>,
-): string => {
-  return typeof column.label === "string" && column.label.length > 0
-    ? column.label
-    : typeof column.key === "string" && column.key.length > 0
-      ? column.key
-      : "Column";
-};
-
-const getSortLabel = (label: React.ReactNode): string => {
-  return typeof label === "string" && label.length > 0
-    ? `Sort by ${label}`
-    : "Sort column";
-};
-
-const getCellValue = <T extends object>(
-  columnKey: Key,
-  row: T,
-  columns: ColumnDefinition<T>[],
-): React.ReactNode => {
-  const column = columns.find(
-    (c) => typeof c.field === "string" && String(c.field) === String(columnKey),
-  );
-
-  if (column === undefined) {
-    return null;
-  }
-
-  if (column.cell !== undefined) {
-    return column.cell(row);
-  }
-
-  if (
-    typeof column.field === "string" &&
-    column.field.length > 0 &&
-    column.field in row
-  ) {
-    const value = row[column.field as keyof T];
-    return typeof value === "string" || typeof value === "number"
-      ? String(value)
-      : null;
-  }
-
-  return null;
-};
 
 export function DataGrid<T extends { id: string | number }>({
   rows,
@@ -72,52 +20,26 @@ export function DataGrid<T extends { id: string | number }>({
   onSortChange,
   variant = "unstyled",
   isLoading = false,
-  onRowsScrollEnd,
+  onGridScrollEnd,
   childrenProps,
   ...props
 }: DataGridProps<T>): JSX.Element {
-  const { sortConfiguration, updateSort } = useDataGridState({
-    rows,
+  const {
+    sortConfig,
+    processedColumns,
+    formatSortHeader,
+    extractCellValue,
+    extractColumnHeader,
+    onSort,
+    handleGridScroll,
+  } = useDataGridState({
     onSortChange,
+    columns,
+    onGridScrollEnd,
   });
-
-  const preparedColumns = columns.map((col, index) => ({
-    ...col,
-    key: typeof col.field === "string" ? String(col.field) : String(index),
-    label: col.header,
-  }));
-
-  const handleSort = (column: ExtendedColumn<T>): void => {
-    const matchingColumn = columns.find(
-      (c) =>
-        typeof c.field === "string" &&
-        c.field.length > 0 &&
-        String(c.field) === column.key,
-    );
-
-    const columnField = matchingColumn?.field;
-
-    if (
-      columnField !== undefined &&
-      columnField !== undefined &&
-      columnField !== "actions"
-    ) {
-      updateSort(
-        columnField,
-        sortConfiguration.direction === "asc" ? "desc" : "asc",
-      );
-    }
-  };
 
   const variantClasses = GRID_VARIANTS[variant];
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>): void => {
-    const element = e.currentTarget;
-
-    if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
-      onRowsScrollEnd?.();
-    }
-  };
   if (isLoading) {
     return (
       <DataGridSkeleton
@@ -138,33 +60,33 @@ export function DataGrid<T extends { id: string | number }>({
         th: cn(variantClasses.th, props.classNames?.th),
         tr: cn(variantClasses.tr, props.classNames?.tr),
       }}
-      onScroll={handleScroll}
+      onScroll={handleGridScroll}
     >
       <TableHeader
-        columns={preparedColumns}
+        columns={processedColumns}
         {...childrenProps?.tableHeaderProps}
       >
         {(column) => (
           <TableColumn
             key={column.key}
-            aria-label={getColumnLabel(column)}
+            aria-label={extractColumnHeader(column)}
             {...childrenProps?.tableColumnProps}
           >
             <div className="flex items-center gap-2">
-              {column.label}
+              {column.header}
               {column.sortable !== false && (
                 <div
                   className={cn("relative size-4 cursor-pointer")}
-                  onClick={() => handleSort(column)}
+                  onClick={() => onSort(column)}
                   role="button"
-                  aria-label={getSortLabel(column.label)}
+                  aria-label={formatSortHeader(column.header)}
                 >
                   <IconChevronUp
                     size={16}
                     className={cn(
                       "absolute -top-1",
-                      sortConfiguration.key === column.key &&
-                        sortConfiguration.direction === "asc"
+                      sortConfig.field === column.key &&
+                        sortConfig.direction === "asc"
                         ? "opacity-100"
                         : "opacity-30",
                     )}
@@ -173,8 +95,8 @@ export function DataGrid<T extends { id: string | number }>({
                     size={16}
                     className={cn(
                       "absolute top-1",
-                      sortConfiguration.key === column.key &&
-                        sortConfiguration.direction === "desc"
+                      sortConfig.field === column.key &&
+                        sortConfig.direction === "desc"
                         ? "opacity-100"
                         : "opacity-30",
                     )}
@@ -191,7 +113,7 @@ export function DataGrid<T extends { id: string | number }>({
             <TableRow key={row.id} {...childrenProps?.tableRowProps}>
               {(columnKey) => (
                 <TableCell {...childrenProps?.tableCellProps}>
-                  {getCellValue(columnKey, row, columns)}
+                  {extractCellValue(columnKey, row, columns)}
                 </TableCell>
               )}
             </TableRow>

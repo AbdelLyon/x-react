@@ -16,12 +16,12 @@ interface FieldColumn<T> extends ColumnBase<T> {
 }
 interface ActionColumn<T> extends ColumnBase<T> {
     field?: "actions";
-    cell: (row: T) => React.ReactNode;
+    cell?: (row: T) => React.ReactNode;
 }
 export type ColumnDefinition<T> = FieldColumn<T> | ActionColumn<T>;
 export type ExtendedColumn<T> = ColumnDefinition<T> & {
     key: string;
-    label: React.ReactNode;
+    header: React.ReactNode;
 };
 export interface DataGridComponentProps<T> {
     tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;
@@ -58,7 +58,7 @@ export interface DataGridBaseProps<T> {
 }
 export interface DataGridCallbacks<T> {
     onSortChange?: (column: keyof T, direction: SortDirection) => void;
-    onRowsScrollEnd?: () => void;
+    onGridScrollEnd?: () => void;
 }
 export interface DataGridProps<T extends {
     id: string | number;
