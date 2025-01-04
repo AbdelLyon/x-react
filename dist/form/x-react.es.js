@@ -218,7 +218,7 @@ const F = w(
         case "underlined":
           return [
             "relative",
-            "border-b-1",
+            "border-b-1 border-defaul",
             "rounded-none",
             "bg-transparent",
             "border-default-200",
@@ -337,7 +337,7 @@ const J = w(
         case "underlined":
           return [
             "relative",
-            "border-b-1",
+            "border-b-1 border-default",
             "rounded-none",
             "bg-transparent",
             "border-default-200",
