@@ -138,8 +138,7 @@
     "./chart": {
       "import": "./dist/chart/x-react.es.js",
       "types": "./dist/chart/index.d.ts"
-    },
-    "sideEffects": false
+    }
   },
   "typesVersions": {
     "*": {
