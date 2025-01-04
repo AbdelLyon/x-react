@@ -1,20 +1,5 @@
-/* empty css                */
-import { j as i } from "../jsx-runtime-BFln9wzo.js";
-import { forwardRef as m } from "react";
-import { Spinner as t } from "@nextui-org/react";
-const s = m(
-  ({ color: r = "default", size: n = "md", strokeWidth: o = 4, ...p }, e) => /* @__PURE__ */ i.jsx(
-    t,
-    {
-      ref: e,
-      color: r,
-      size: n,
-      strokeWidth: o,
-      ...p
-    }
-  )
-);
-s.displayName = "Spinner";
+/* empty css                      */
+import { Spinner } from "./Spiner/x-react.es.js";
 export {
-  s as Spinner
+  Spinner
 };

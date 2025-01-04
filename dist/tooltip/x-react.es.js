@@ -1,5 +1,5 @@
-/* empty css                */
-import { T as t } from "../Tooltip-C7TYhxUU.js";
+/* empty css                      */
+import { Tooltip } from "./Tooltip/x-react.es.js";
 export {
-  t as Tooltip
+  Tooltip
 };

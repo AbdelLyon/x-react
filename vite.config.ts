@@ -38,11 +38,30 @@ const modules = [
   "chart",
 ];
 
+const EXTERNAL_DEPS = {
+  peer: ["react", "react-dom"],
+  ui: ["@nextui-org/react", "@tabler/icons-react"],
+  utils: ["clsx", "next-themes"],
+  chart: ["react-chartjs-2", "chart.js"],
+};
+
 export default defineConfig({
   plugins: [
     react(),
     dts({
       exclude: ["src/data/**/*", "src/tests/**/*"],
+      rollupTypes: true,
+      compilerOptions: {
+        skipLibCheck: true,
+        emitDeclarationOnly: true,
+      },
+      beforeWriteFile: (filePath, content) => ({
+        filePath,
+        content: content.replace(
+          /import\s+\{\s*\}\s+from\s+['"]react['"];?/g,
+          "",
+        ),
+      }),
     }),
   ],
 
@@ -56,14 +75,44 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss],
     },
+    modules: {
+      scopeBehaviour: "local",
+      generateScopedName: "[hash:base64:8]",
+    },
   },
 
   build: {
+    target: "es2020",
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: [
+          "console.log",
+          "console.info",
+          "console.debug",
+          "console.trace",
+        ],
+      },
+      mangle: {
+        properties: false,
+      },
+      format: {
+        comments: false,
+      },
+    },
+    sourcemap: false,
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
+    modulePreload: false,
+    reportCompressedSize: false,
+
     lib: {
       entry: Object.fromEntries(
         modules.map((module) => [
           module,
-          path.resolve(__dirname, `src/${module}`),
+          path.resolve(__dirname, `src/${module}/index.ts`),
         ]),
       ),
       name: "x-react",
@@ -74,26 +123,31 @@ export default defineConfig({
 
     rollupOptions: {
       external: [
-        // Peer Dependencies
-        "react",
-        "react-dom",
-        // Dependencies
-        "@nextui-org/react",
-        "@tabler/icons-react",
-        "@vitejs/plugin-react-swc",
-        "clsx",
-        "next-themes",
-        "react-chartjs-2",
-        "chart.js",
+        ...Object.values(EXTERNAL_DEPS).flat(),
+        /^react\//,
+        /^@nextui-org\/react\/.*/,
       ],
-
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
           tailwindcss: "tailwindcss",
+          "@nextui-org/react": "NextUI",
+          "@tabler/icons-react": "TablerIcons",
+          "chart.js": "Chart",
+          "react-chartjs-2": "ReactChartJS",
         },
+        preserveModules: true,
+        preserveModulesRoot: "src",
+        minifyInternalExports: true,
+        compact: true,
       },
     },
+  },
+
+  esbuild: {
+    target: "es2020",
+    legalComments: "none",
+    treeShaking: true,
   },
 });

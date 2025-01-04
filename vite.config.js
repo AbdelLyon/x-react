@@ -1,3 +1,12 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
@@ -36,11 +45,26 @@ var modules = [
     "HOC",
     "chart",
 ];
+var EXTERNAL_DEPS = {
+    peer: ["react", "react-dom"],
+    ui: ["@nextui-org/react", "@tabler/icons-react"],
+    utils: ["clsx", "next-themes"],
+    chart: ["react-chartjs-2", "chart.js"],
+};
 export default defineConfig({
     plugins: [
         react(),
         dts({
             exclude: ["src/data/**/*", "src/tests/**/*"],
+            rollupTypes: true,
+            compilerOptions: {
+                skipLibCheck: true,
+                emitDeclarationOnly: true,
+            },
+            beforeWriteFile: function (filePath, content) { return ({
+                filePath: filePath,
+                content: content.replace(/import\s+\{\s*\}\s+from\s+['"]react['"];?/g, ""),
+            }); },
         }),
     ],
     resolve: {
@@ -52,12 +76,41 @@ export default defineConfig({
         postcss: {
             plugins: [tailwindcss],
         },
+        modules: {
+            scopeBehaviour: "local",
+            generateScopedName: "[hash:base64:8]",
+        },
     },
     build: {
+        target: "es2020",
+        minify: "terser",
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true,
+                pure_funcs: [
+                    "console.log",
+                    "console.info",
+                    "console.debug",
+                    "console.trace",
+                ],
+            },
+            mangle: {
+                properties: false,
+            },
+            format: {
+                comments: false,
+            },
+        },
+        sourcemap: false,
+        cssCodeSplit: true,
+        assetsInlineLimit: 4096,
+        modulePreload: false,
+        reportCompressedSize: false,
         lib: {
             entry: Object.fromEntries(modules.map(function (module) { return [
                 module,
-                path.resolve(__dirname, "src/".concat(module)),
+                path.resolve(__dirname, "src/".concat(module, "/index.ts")),
             ]; })),
             name: "x-react",
             formats: ["es"],
@@ -66,26 +119,30 @@ export default defineConfig({
             },
         },
         rollupOptions: {
-            external: [
-                // Peer Dependencies
-                "react",
-                "react-dom",
-                // Dependencies
-                "@nextui-org/react",
-                "@tabler/icons-react",
-                "@vitejs/plugin-react-swc",
-                "clsx",
-                "next-themes",
-                "react-chartjs-2",
-                "chart.js",
-            ],
+            external: __spreadArray(__spreadArray([], Object.values(EXTERNAL_DEPS).flat(), true), [
+                /^react\//,
+                /^@nextui-org\/react\/.*/,
+            ], false),
             output: {
                 globals: {
                     react: "React",
                     "react-dom": "ReactDOM",
                     tailwindcss: "tailwindcss",
+                    "@nextui-org/react": "NextUI",
+                    "@tabler/icons-react": "TablerIcons",
+                    "chart.js": "Chart",
+                    "react-chartjs-2": "ReactChartJS",
                 },
+                preserveModules: true,
+                preserveModulesRoot: "src",
+                minifyInternalExports: true,
+                compact: true,
             },
         },
+    },
+    esbuild: {
+        target: "es2020",
+        legalComments: "none",
+        treeShaking: true,
     },
 });
