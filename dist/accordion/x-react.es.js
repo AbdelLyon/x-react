@@ -1,35 +1,42 @@
 /* empty css                */
-import { j as p } from "../jsx-runtime-Bq5baZvQ.js";
-import { forwardRef as b, createElement as m } from "react";
-import { cn as t } from "../utils/x-react.es.js";
-import { Accordion as a, AccordionItem as l } from "@nextui-org/react";
-const u = b(
-  ({ items: d, itemClasses: o, ...n }, c) => {
-    const r = {
-      base: t("w-full shadow-none ", {
-        "bg-white dark:bg-content1 border-1 border-default rounded-md": n.variant === "splitted"
+import { j as f } from "../jsx-runtime-Bq5baZvQ.js";
+import { forwardRef as i, createElement as l } from "react";
+import { cn as o } from "../utils/x-react.es.js";
+import { Accordion as u, AccordionItem as p } from "@nextui-org/react";
+const x = i(
+  ({ items: n, itemClasses: r, ...t }, a) => {
+    const e = {
+      base: o("w-full shadow-none ", {
+        "bg-white dark:bg-content1 border-1 border-default rounded-md": t.variant === "splitted"
       }),
       title: "text-lg font-semibold"
-    };
-    return /* @__PURE__ */ p.jsx(
-      a,
+    }, c = o(
+      "rounded-md",
       {
-        ref: c,
-        ...n,
+        "border-1 border-default": t.variant === "bordered"
+      },
+      t.className
+    );
+    return /* @__PURE__ */ f.jsx(
+      u,
+      {
+        ref: a,
+        ...t,
+        className: c,
         itemClasses: {
+          ...e,
           ...r,
-          ...o,
-          base: t(r.base, o == null ? void 0 : o.base),
-          title: t(r.title, o == null ? void 0 : o.title)
+          base: o(e.base, r == null ? void 0 : r.base),
+          title: o(e.title, r == null ? void 0 : r.title)
         },
-        children: d.map((i) => {
-          const { content: f, ...e } = i;
-          return /* @__PURE__ */ m(
-            l,
+        children: n.map((m) => {
+          const { content: b, ...d } = m;
+          return /* @__PURE__ */ l(
+            p,
             {
-              ...e,
-              key: e.key,
-              children: f
+              ...d,
+              key: d.key,
+              children: b
             }
           );
         })
@@ -37,7 +44,7 @@ const u = b(
     );
   }
 );
-u.displayName = "Accordion";
+x.displayName = "Accordion";
 export {
-  u as Accordion
+  x as Accordion
 };

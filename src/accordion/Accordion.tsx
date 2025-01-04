@@ -26,11 +26,19 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
       }),
       title: "text-lg font-semibold",
     };
+    const defaultClassName = cn(
+      "rounded-md",
+      {
+        "border-1 border-default": accordionProps.variant === "bordered",
+      },
+      accordionProps.className,
+    );
 
     return (
       <AccordionRoot
         ref={ref}
         {...accordionProps}
+        className={defaultClassName}
         itemClasses={{
           ...defaultItemClasses,
           ...itemClasses,
