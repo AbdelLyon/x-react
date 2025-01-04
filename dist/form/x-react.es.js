@@ -38,7 +38,7 @@ const z = y(
           label: n(p.label, r == null ? void 0 : r.label)
         },
         children: a.map((t) => {
-          var b, f, h;
+          var f, b, h;
           return /* @__PURE__ */ o.jsx(
             M,
             {
@@ -52,12 +52,12 @@ const z = y(
                 label: n(
                   s.label,
                   e == null ? void 0 : e.label,
-                  (b = t.classNames) == null ? void 0 : b.label
+                  (f = t.classNames) == null ? void 0 : f.label
                 ),
                 wrapper: n(
                   s.wrapper,
                   e == null ? void 0 : e.wrapper,
-                  (f = t.classNames) == null ? void 0 : f.wrapper
+                  (b = t.classNames) == null ? void 0 : b.wrapper
                 ),
                 control: n(
                   s.control,
@@ -104,7 +104,7 @@ const B = y(
           label: n(p.label, r == null ? void 0 : r.label)
         },
         children: a.map((t) => {
-          var b, f;
+          var f, b;
           return /* @__PURE__ */ o.jsx(
             P,
             {
@@ -118,12 +118,12 @@ const B = y(
                 label: n(
                   s.label,
                   e == null ? void 0 : e.label,
-                  (b = t.classNames) == null ? void 0 : b.label
+                  (f = t.classNames) == null ? void 0 : f.label
                 ),
                 wrapper: n(
                   s.wrapper,
                   e == null ? void 0 : e.wrapper,
-                  (f = t.classNames) == null ? void 0 : f.wrapper
+                  (b = t.classNames) == null ? void 0 : b.wrapper
                 )
               },
               children: t.label
@@ -161,15 +161,15 @@ const F = y(
     isRequired: p = !1,
     isReadOnly: s = !1,
     isDisabled: t = !1,
-    containerClasses: b,
-    customValidation: f,
+    containerClasses: f,
+    customValidation: b,
     validate: h,
     type: i,
     ...x
-  }, g) => {
+  }, I) => {
     const [m, k] = j(i), $ = (R) => {
-      if (f) {
-        const O = f(R);
+      if (b) {
+        const O = b(R);
         if (typeof O == "string")
           return O;
         if (O)
@@ -184,7 +184,7 @@ const F = y(
         onClick: () => k(m === "password" ? "text" : "password"),
         children: m === "password" ? /* @__PURE__ */ o.jsx(H, { className: "pointer-events-none" }) : /* @__PURE__ */ o.jsx(U, { className: "pointer-events-none" })
       }
-    ) : void 0, { classNames: N, ...S } = x, I = () => {
+    ) : void 0, { classNames: N, ...S } = x, g = () => {
       switch (a) {
         case "bordered":
           return [
@@ -225,17 +225,7 @@ const F = y(
             "dark:border-default-100",
             "h-12",
             // Underline effect
-            "after:content-['']",
-            "after:absolute",
-            "after:bottom-[-1px]",
-            "after:left-0",
-            "after:h-[2px]",
-            "after:origin-center",
-            "after:transition-transform",
-            "after:duration-200",
-            "after:ease-out",
-            "after:scale-x-0",
-            "after:bg-primary",
+            "after:bg-outline",
             // Hover
             "data-[hover=true]:after:scale-x-100",
             "data-[hover=true]:after:bg-primary/80",
@@ -254,10 +244,10 @@ const F = y(
           ].join(" ");
       }
     };
-    return /* @__PURE__ */ o.jsx("div", { className: n("w-full", b), children: /* @__PURE__ */ o.jsx(
+    return /* @__PURE__ */ o.jsx("div", { className: n("w-full", f), children: /* @__PURE__ */ o.jsx(
       V,
       {
-        ref: g,
+        ref: I,
         variant: a,
         color: r,
         size: e,
@@ -271,7 +261,7 @@ const F = y(
         validate: $,
         classNames: {
           ...N,
-          inputWrapper: n(I(), N == null ? void 0 : N.inputWrapper)
+          inputWrapper: n(g(), N == null ? void 0 : N.inputWrapper)
         },
         endContent: w,
         type: m,
@@ -293,27 +283,27 @@ const J = y(
     isReadOnly: p = !1,
     isDisabled: s = !1,
     containerClasses: t,
-    width: b,
-    height: f,
+    width: f,
+    height: b,
     style: h,
     customValidation: i,
     validate: x,
-    ...g
+    ...I
   }, m) => {
     const k = {
-      width: typeof b == "number" ? `${b}px` : b,
-      height: typeof f == "number" ? `${f}px` : f,
+      width: typeof f == "number" ? `${f}px` : f,
+      height: typeof b == "number" ? `${b}px` : b,
       ...h
     }, $ = (S) => {
       if (i) {
-        const I = i(S);
-        if (typeof I == "string")
-          return I;
-        if (I === !1)
+        const g = i(S);
+        if (typeof g == "string")
+          return g;
+        if (g === !1)
           return "Validation failed";
       }
       return (x == null ? void 0 : x(S)) ?? !0;
-    }, { classNames: w, ...N } = g;
+    }, { classNames: w, ...N } = I;
     return /* @__PURE__ */ o.jsx("div", { className: n("w-full", t), children: /* @__PURE__ */ o.jsx(
       K,
       {
@@ -397,14 +387,14 @@ function Y({
   fetchDelay: r = 0,
   limit: e = 10
 }) {
-  const [l, c] = j([]), [d, u] = j(!0), [p, s] = j(!1), [t, b] = j(0), f = async (i) => {
+  const [l, c] = j([]), [d, u] = j(!0), [p, s] = j(!1), [t, f] = j(0), b = async (i) => {
     try {
       s(!0), t > 0 && await new Promise((m) => setTimeout(m, r));
-      const { items: x, hasMore: g } = await a(
+      const { items: x, hasMore: I } = await a(
         i,
         e
       );
-      u(g), c((m) => [...m, ...x]);
+      u(I), c((m) => [...m, ...x]);
     } catch (x) {
       console.error("There was an error with the fetch operation:", x);
     } finally {
@@ -412,14 +402,14 @@ function Y({
     }
   };
   return L(() => {
-    f(t);
+    b(t);
   }, []), {
     items: l,
     hasMore: d,
     isLoading: p,
     onLoadMore: () => {
       const i = t + e;
-      b(i), f(i);
+      f(i), b(i);
     }
   };
 }
@@ -432,12 +422,12 @@ function le({
   getItemKey: d,
   selectionMode: u = "single"
 }) {
-  const [p, s] = j(!1), { items: t, hasMore: b, isLoading: f, onLoadMore: h } = Y({
+  const [p, s] = j(!1), { items: t, hasMore: f, isLoading: b, onLoadMore: h } = Y({
     fetchFunction: a,
     fetchDelay: r,
     limit: e
   }), [, i] = q({
-    hasMore: b,
+    hasMore: f,
     isEnabled: p,
     shouldUseLoader: !1,
     onLoadMore: h
@@ -446,7 +436,7 @@ function le({
     v,
     {
       className: l,
-      isLoading: f,
+      isLoading: b,
       items: t,
       scrollRef: i,
       selectionMode: u,

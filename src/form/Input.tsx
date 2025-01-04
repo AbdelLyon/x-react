@@ -226,17 +226,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             "dark:border-default-100",
             "h-12",
             // Underline effect
-            "after:content-['']",
-            "after:absolute",
-            "after:bottom-[-1px]",
-            "after:left-0",
-            "after:h-[2px]",
-            "after:origin-center",
-            "after:transition-transform",
-            "after:duration-200",
-            "after:ease-out",
-            "after:scale-x-0",
-            "after:bg-primary",
+
+            "after:bg-outline",
             // Hover
             "data-[hover=true]:after:scale-x-100",
             "data-[hover=true]:after:bg-primary/80",
