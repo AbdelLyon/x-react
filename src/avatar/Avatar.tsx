@@ -41,8 +41,12 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 
 AvatarGroup.displayName = "AvatarGroup";
 
-export const User = forwardRef<HTMLDivElement, UserProps>((props, ref) => {
-  return <UserRoot ref={ref} {...props} />;
-});
+export const UserAvatar = forwardRef<HTMLDivElement, UserProps>(
+  (props, ref) => {
+    return <UserRoot ref={ref} {...props} />;
+  },
+);
+
+UserAvatar.displayName = "UserAvatar";
 
 Avatar.displayName = "Avatar";

@@ -6,7 +6,7 @@ import { cn } from "@/utils";
 
 export interface ButtonProps extends ButtonRootProps {
   LinkComponent?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
-  customStyles?: {
+  classNames?: {
     base?: string;
     beforeContent?: string;
     afterContent?: string;
@@ -25,7 +25,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className = "",
       LinkComponent,
       variant = "solid",
-      customStyles = {
+      classNames = {
         base: "",
         beforeContent: "",
         afterContent: "",
@@ -43,20 +43,20 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       "transition-none font-normal border-1 rounded-md",
       fullWidth && "w-full",
       isLoading && "opacity-50 cursor-not-allowed",
-      customStyles.base,
+      classNames.base,
       className,
     );
 
     const Content = (): ReactNode => (
       <>
         {startContent !== undefined && (
-          <span className={cn("mr-2", customStyles.beforeContent)}>
+          <span className={cn("mr-2", classNames.beforeContent)}>
             {startContent}
           </span>
         )}
-        <span className={customStyles.content}>{children}</span>
+        <span className={classNames.content}>{children}</span>
         {endContent !== undefined && (
-          <span className={cn("ml-2", customStyles.afterContent)}>
+          <span className={cn("ml-2", classNames.afterContent)}>
             {endContent}
           </span>
         )}

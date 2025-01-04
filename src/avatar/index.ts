@@ -1,2 +1,2 @@
 import "@/index.css";
-export { Avatar, AvatarGroup, User } from "@/avatar/Avatar";
+export { Avatar, AvatarGroup, UserAvatar } from "@/avatar/Avatar";

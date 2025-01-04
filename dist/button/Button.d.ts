@@ -2,7 +2,7 @@ import { AnchorHTMLAttributes, ComponentType } from 'react';
 import { ButtonProps as ButtonRootProps } from '@nextui-org/react';
 export interface ButtonProps extends ButtonRootProps {
     LinkComponent?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
-    customStyles?: {
+    classNames?: {
         base?: string;
         beforeContent?: string;
         afterContent?: string;

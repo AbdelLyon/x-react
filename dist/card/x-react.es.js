@@ -1,59 +1,52 @@
 /* empty css                */
-import { j as d } from "../jsx-runtime-Bq5baZvQ.js";
-import { forwardRef as F } from "react";
-import { Card as H, CardHeader as $, CardBody as g, CardFooter as k } from "@nextui-org/react";
-const q = F(
+import { j as r } from "../jsx-runtime-Bq5baZvQ.js";
+import { forwardRef as R } from "react";
+import { Card as g, CardHeader as m, CardBody as w, CardFooter as B } from "@nextui-org/react";
+const E = R(
   ({
-    children: i,
-    shadow: t = "none",
-    radius: e = "md",
+    children: x,
+    shadow: C = "md",
+    radius: j = "lg",
     fullWidth: n = !1,
-    isHoverable: p = !1,
-    isPressable: x = !1,
-    isBlurred: C = !1,
-    isFooterBlurred: j = !1,
-    isDisabled: h = !1,
-    disableAnimation: y = !1,
-    disableRipple: u = !1,
-    allowTextSelectionOnPress: v = !1,
-    classNames: r,
-    header: o,
-    footer: f,
-    onPress: R,
-    onPressStart: b,
-    onPressEnd: l,
-    onPressChange: w,
-    onPressUp: B
-  }, E) => /* @__PURE__ */ d.jsxs(
-    H,
+    isHoverable: a = !1,
+    isPressable: l = !1,
+    isBlurred: t = !1,
+    isFooterBlurred: h = !1,
+    isDisabled: o = !1,
+    disableAnimation: p = !1,
+    disableRipple: y = !1,
+    allowTextSelectionOnPress: b = !1,
+    classNames: d,
+    header: f,
+    footer: e,
+    footerProps: i,
+    ...u
+  }, v) => /* @__PURE__ */ r.jsxs(
+    g,
     {
-      ref: E,
-      shadow: t,
-      radius: e,
+      ref: v,
+      shadow: C,
+      radius: j,
       fullWidth: n,
-      isHoverable: p,
-      isPressable: x,
-      isBlurred: C,
-      isFooterBlurred: j,
-      isDisabled: h,
-      disableAnimation: y,
-      disableRipple: u,
-      allowTextSelectionOnPress: v,
-      classNames: r,
-      onPress: R,
-      onPressStart: b,
-      onPressEnd: l,
-      onPressChange: w,
-      onPressUp: B,
+      isHoverable: a,
+      isPressable: l,
+      isBlurred: t,
+      isFooterBlurred: h,
+      isDisabled: o,
+      disableAnimation: p,
+      disableRipple: y,
+      allowTextSelectionOnPress: b,
+      className: d == null ? void 0 : d.base,
+      ...u,
       children: [
-        o !== void 0 && /* @__PURE__ */ d.jsx($, { className: r == null ? void 0 : r.header, children: o }),
-        /* @__PURE__ */ d.jsx(g, { className: r == null ? void 0 : r.body, children: i }),
-        f !== void 0 && /* @__PURE__ */ d.jsx(k, { className: r == null ? void 0 : r.footer, children: f })
+        f !== void 0 && /* @__PURE__ */ r.jsx(m, { className: d == null ? void 0 : d.header, children: f }),
+        /* @__PURE__ */ r.jsx(w, { className: d == null ? void 0 : d.body, children: x }),
+        e !== void 0 && /* @__PURE__ */ r.jsx(B, { className: i == null ? void 0 : i.className, children: e })
       ]
     }
   )
 );
-q.displayName = "Card";
+E.displayName = "Card";
 export {
-  q as Card
+  E as Card
 };

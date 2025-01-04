@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup, User } from "@/avatar";
+import { Avatar, AvatarGroup, UserAvatar } from "@/avatar";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
@@ -104,7 +104,7 @@ describe("Composants Avatar", () => {
 
   describe("User", () => {
     it("devrait rendre les informations de base", () => {
-      render(<User name="John Doe" description="Developer" />);
+      render(<UserAvatar name="John Doe" description="Developer" />);
 
       expect(screen.getByText("John Doe")).toBeInTheDocument();
       expect(screen.getByText("Developer")).toBeInTheDocument();
@@ -112,7 +112,7 @@ describe("Composants Avatar", () => {
 
     it("devrait inclure un avatar", () => {
       render(
-        <User
+        <UserAvatar
           name="John Doe"
           avatarProps={{
             src: "test.jpg",
@@ -127,7 +127,7 @@ describe("Composants Avatar", () => {
 
     it("devrait accepter des contenus personnalisés", () => {
       render(
-        <User
+        <UserAvatar
           name={<span data-testid="custom-name">John</span>}
           description={<span data-testid="custom-desc">Info</span>}
         />,
