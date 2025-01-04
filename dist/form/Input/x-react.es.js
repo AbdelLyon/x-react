@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef, useState } from "react";
 import { Input as Input$1 } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
@@ -34,13 +34,13 @@ const Input = forwardRef(
       }
       return (validate == null ? void 0 : validate(value)) ?? true;
     };
-    const endContent = type === "password" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+    const endContent = type === "password" ? /* @__PURE__ */ jsx(
       "button",
       {
         className: "opacity-40 focus:outline-none",
         type: "button",
         onClick: () => setInputType(inputType === "password" ? "text" : "password"),
-        children: inputType === "password" ? /* @__PURE__ */ jsxRuntimeExports.jsx(IconEye, { className: "pointer-events-none" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(IconEyeOff, { className: "pointer-events-none" })
+        children: inputType === "password" ? /* @__PURE__ */ jsx(IconEye, { className: "pointer-events-none" }) : /* @__PURE__ */ jsx(IconEyeOff, { className: "pointer-events-none" })
       }
     ) : void 0;
     const { classNames: propClassNames, ...restProps } = props;
@@ -103,7 +103,7 @@ const Input = forwardRef(
           ].join(" ");
       }
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
       Input$1,
       {
         ref,

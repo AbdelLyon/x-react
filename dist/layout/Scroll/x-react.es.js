@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { ScrollShadow } from "@nextui-org/react";
 const Scroll = forwardRef(
@@ -8,7 +8,7 @@ const Scroll = forwardRef(
       height: typeof height === "number" ? `${height}px` : height,
       ...style
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollShadow, { ref, style: combinedStyle, ...props });
+    return /* @__PURE__ */ jsx(ScrollShadow, { ref, style: combinedStyle, ...props });
   }
 );
 Scroll.displayName = "Scroll";

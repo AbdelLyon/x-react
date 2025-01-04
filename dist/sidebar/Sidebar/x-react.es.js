@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx, jsxs } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../../utils/x-react.es.js";
 import { Link } from "@nextui-org/react";
@@ -13,7 +13,7 @@ const Sidebar = forwardRef(
       return null;
     }
     const renderLink = (item) => {
-      const linkContent = /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      const linkContent = /* @__PURE__ */ jsxs(
         Link,
         {
           className: cn(
@@ -34,7 +34,7 @@ const Sidebar = forwardRef(
         item.key
       );
       if (isTablet) {
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        return /* @__PURE__ */ jsx(
           Tooltip,
           {
             trigger: linkContent,
@@ -49,7 +49,7 @@ const Sidebar = forwardRef(
       }
       return linkContent;
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       "aside",
       {
         ref,
@@ -61,7 +61,7 @@ const Sidebar = forwardRef(
           },
           classNames == null ? void 0 : classNames.base
         ),
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: items.map(renderLink) })
+        children: /* @__PURE__ */ jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: items.map(renderLink) })
       }
     );
   }

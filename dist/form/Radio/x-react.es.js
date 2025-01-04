@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { RadioGroup as RadioGroup$1, Radio } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
@@ -21,7 +21,7 @@ const RadioGroup = forwardRef(
       wrapper: "",
       control: ""
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       RadioGroup$1,
       {
         ref,
@@ -34,7 +34,7 @@ const RadioGroup = forwardRef(
         },
         children: items.map((item) => {
           var _a, _b, _c;
-          return /* @__PURE__ */ jsxRuntimeExports.jsx(
+          return /* @__PURE__ */ jsx(
             Radio,
             {
               ...item,

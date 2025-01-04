@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef, createElement } from "react";
 import { cn } from "../../utils/x-react.es.js";
 import { Accordion as Accordion$1, AccordionItem } from "@nextui-org/react";
@@ -17,7 +17,7 @@ const Accordion = forwardRef(
       },
       accordionProps.className
     );
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       Accordion$1,
       {
         ref,

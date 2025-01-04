@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { cn } from "../../utils/x-react.es.js";
 import { Chart as Chart$1, CategoryScale, LinearScale, Title, Tooltip, Legend, RadialLinearScale, BarElement, ArcElement, PointElement, LineElement, BarController, DoughnutController, ScatterController, PolarAreaController } from "chart.js";
 import { useRef } from "react";
@@ -108,7 +108,7 @@ const Chart = ({
     ...defaultOptions,
     ...options
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: mergedClassNames.root, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsx("div", { className: mergedClassNames.root, children: /* @__PURE__ */ jsx(
     Chart$2,
     {
       ref: chartRef,

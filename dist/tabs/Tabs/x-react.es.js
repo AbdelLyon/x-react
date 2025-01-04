@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Tabs as Tabs$1, Tab } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
@@ -32,7 +32,7 @@ const Tabs = forwardRef(
       }
       return "";
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       Tabs$1,
       {
         ref,
@@ -53,7 +53,7 @@ const Tabs = forwardRef(
         },
         onSelectionChange: handleSelectionChange,
         ...props,
-        children: items.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        children: items.map((item) => /* @__PURE__ */ jsx(
           Tab,
           {
             title: item.title,

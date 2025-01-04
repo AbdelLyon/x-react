@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { useDisclosure, Drawer as Drawer$1, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
@@ -42,8 +42,8 @@ const Drawer = forwardRef(
         color: "primary",
         radius: "sm"
       };
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-2", children: [
-        hasValidCloseLabel && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      return /* @__PURE__ */ jsxs("div", { className: "flex justify-end gap-2", children: [
+        hasValidCloseLabel && /* @__PURE__ */ jsx(
           Button,
           {
             ...defaultButtonProps,
@@ -54,7 +54,7 @@ const Drawer = forwardRef(
             children: buttonCloseLabel
           }
         ),
-        hasValidActionButton && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        hasValidActionButton && /* @__PURE__ */ jsx(
           Button,
           {
             ...defaultButtonProps,
@@ -74,8 +74,8 @@ const Drawer = forwardRef(
       body: cn(classNames.body),
       footer: cn(classNames.footer)
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx(
         "div",
         {
           role: "button",
@@ -86,7 +86,7 @@ const Drawer = forwardRef(
           children: trigger
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
+      /* @__PURE__ */ jsx(
         Drawer$1,
         {
           ref,
@@ -94,10 +94,10 @@ const Drawer = forwardRef(
           onClose,
           classNames: drawerClassNames,
           ...nextUIProps,
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerContent, { children: () => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            title !== void 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerHeader, { className: drawerClassNames.header, children: title }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerBody, { className: drawerClassNames.body, children }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(DrawerFooter, { className: drawerClassNames.footer, children: footer !== void 0 ? footer : renderButtons() })
+          children: /* @__PURE__ */ jsx(DrawerContent, { children: () => /* @__PURE__ */ jsxs(Fragment, { children: [
+            title !== void 0 && /* @__PURE__ */ jsx(DrawerHeader, { className: drawerClassNames.header, children: title }),
+            /* @__PURE__ */ jsx(DrawerBody, { className: drawerClassNames.body, children }),
+            /* @__PURE__ */ jsx(DrawerFooter, { className: drawerClassNames.footer, children: footer !== void 0 ? footer : renderButtons() })
           ] }) })
         }
       )

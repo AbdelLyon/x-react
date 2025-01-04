@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Button as Button$1 } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
@@ -31,14 +31,14 @@ const Button = forwardRef(
       classNames.base,
       className
     );
-    const Content = () => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-      startContent !== void 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: cn("mr-2", classNames.beforeContent), children: startContent }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classNames.content, children }),
-      endContent !== void 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: cn("ml-2", classNames.afterContent), children: endContent })
+    const Content = () => /* @__PURE__ */ jsxs(Fragment, { children: [
+      startContent !== void 0 && /* @__PURE__ */ jsx("span", { className: cn("mr-2", classNames.beforeContent), children: startContent }),
+      /* @__PURE__ */ jsx("span", { className: classNames.content, children }),
+      endContent !== void 0 && /* @__PURE__ */ jsx("span", { className: cn("ml-2", classNames.afterContent), children: endContent })
     ] });
     const hasValidLink = href !== void 0 && href.length > 0 && LinkComponent !== void 0 && LinkComponent !== void 0;
     if (hasValidLink) {
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      return /* @__PURE__ */ jsx(
         Button$1,
         {
           ref,
@@ -49,11 +49,11 @@ const Button = forwardRef(
           href,
           rel: target === "_blank" ? "noopener noreferrer" : rel,
           target,
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Content, {})
+          children: /* @__PURE__ */ jsx(Content, {})
         }
       );
     }
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       Button$1,
       {
         ref,
@@ -61,7 +61,7 @@ const Button = forwardRef(
         variant,
         className: baseStyles,
         isDisabled,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Content, {})
+        children: /* @__PURE__ */ jsx(Content, {})
       }
     );
   }

@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { useMediaQuery } from "../../hooks/useMediaQuery/x-react.es.js";
 import { Navbar } from "../../navbar/Navbar/x-react.es.js";
 import { Sidebar } from "../../sidebar/Sidebar/x-react.es.js";
@@ -13,11 +13,11 @@ const Layout = ({
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const hasNavbar = Boolean(navbar);
   const hasSidebar = Boolean(sidebar);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen bg-background", children: [
-    hasNavbar && /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, { ...navbar }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex", children: [
-      hasSidebar && /* @__PURE__ */ jsxRuntimeExports.jsx(Sidebar, { ...sidebar }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background", children: [
+    hasNavbar && /* @__PURE__ */ jsx(Navbar, { ...navbar }),
+    /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+      hasSidebar && /* @__PURE__ */ jsx(Sidebar, { ...sidebar }),
+      /* @__PURE__ */ jsx(
         "main",
         {
           className: cn(

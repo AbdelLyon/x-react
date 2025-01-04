@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef, useState } from "react";
 import { Slider } from "@nextui-org/react";
 const defaultFormatValue = (value, formatOptions) => {
@@ -14,7 +14,7 @@ const LabelComponent = ({
   if (position === "none") {
     return null;
   }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsx(
     "p",
     {
       className: `text-small font-medium text-default-500 ${className} ${position === "top" ? "order-first" : "order-last"}`,
@@ -43,13 +43,13 @@ const RangeSlider = forwardRef(
     };
     const formattedValue = formatValue ? formatValue(value) : defaultFormatValue(value, formatOptions);
     const labelContent = renderLabel ? renderLabel(value) : `${label}: ${formattedValue}`;
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    return /* @__PURE__ */ jsxs(
       "div",
       {
         ref,
         className: `flex h-max w-full max-w-md flex-col items-start justify-center gap-2 ${containerClassName}`,
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsx(
             LabelComponent,
             {
               position: labelPosition,
@@ -57,7 +57,7 @@ const RangeSlider = forwardRef(
               className: labelClassName
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsx(
             Slider,
             {
               value,

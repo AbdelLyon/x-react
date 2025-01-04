@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { CheckboxGroup as CheckboxGroup$1, Checkbox } from "@nextui-org/react";
 import { Checkbox as Checkbox2 } from "@nextui-org/react";
@@ -21,7 +21,7 @@ const CheckboxGroup = forwardRef(
       label: "text-small",
       wrapper: ""
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       CheckboxGroup$1,
       {
         ref,
@@ -34,7 +34,7 @@ const CheckboxGroup = forwardRef(
         },
         children: items.map((item) => {
           var _a, _b;
-          return /* @__PURE__ */ jsxRuntimeExports.jsx(
+          return /* @__PURE__ */ jsx(
             Checkbox,
             {
               ...item,

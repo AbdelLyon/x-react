@@ -1,8 +1,8 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { NextUIProvider as NextUIProvider$1 } from "@nextui-org/react";
 const NextUIProvider = (props) => {
   const { children, ...rest } = props;
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(NextUIProvider$1, { ...rest, children });
+  return /* @__PURE__ */ jsx(NextUIProvider$1, { ...rest, children });
 };
 export {
   NextUIProvider

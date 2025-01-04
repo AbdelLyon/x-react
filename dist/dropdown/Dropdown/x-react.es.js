@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Dropdown as Dropdown$1, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/react";
 const Dropdown = forwardRef(
@@ -8,7 +8,7 @@ const Dropdown = forwardRef(
         onItemPress(item);
       }
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    return /* @__PURE__ */ jsxs(
       Dropdown$1,
       {
         ref,
@@ -20,15 +20,15 @@ const Dropdown = forwardRef(
         },
         ...props,
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownTrigger, { children: trigger }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(DropdownMenu, { className: "p-3", ...dropdownMenuProps, children: sections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsx(DropdownTrigger, { children: trigger }),
+          /* @__PURE__ */ jsx(DropdownMenu, { className: "p-3", ...dropdownMenuProps, children: sections.map((section) => /* @__PURE__ */ jsx(
             DropdownSection,
             {
               showDivider: section.showDivider,
               "aria-label": section.label,
               children: section.items.map((item) => {
                 const { key, label, href, ...remainingProps } = item;
-                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                return /* @__PURE__ */ jsx(
                   DropdownItem,
                   {
                     onPress: () => {

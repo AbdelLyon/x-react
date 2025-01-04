@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Progress as Progress$1 } from "@nextui-org/react";
 const defaultProps = {
@@ -34,7 +34,7 @@ const Progress = forwardRef(
       }
       return formattedValue;
     };
-    const labelComponent = labelPosition === "none" ? void 0 : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    const labelComponent = labelPosition === "none" ? void 0 : /* @__PURE__ */ jsxs(
       "div",
       {
         className: `
@@ -44,8 +44,8 @@ const Progress = forwardRef(
       ${labelPosition === "top" ? "order-first" : "order-last"}
     `,
         children: [
-          label !== void 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: label }),
-          showValueLabel && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: getValueLabel() })
+          label !== void 0 && /* @__PURE__ */ jsx("span", { children: label }),
+          showValueLabel && /* @__PURE__ */ jsx("span", { children: getValueLabel() })
         ]
       }
     );
@@ -60,14 +60,14 @@ const Progress = forwardRef(
         base: `w-full ${typeof (classNames == null ? void 0 : classNames.base) === "string" && classNames.base}`
       }
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    return /* @__PURE__ */ jsxs(
       "div",
       {
         ref,
         className: `flex w-full max-w-md flex-col gap-2 ${containerClassName}`,
         children: [
           labelComponent,
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Progress$1, { ...defaultProps, ...progressProps })
+          /* @__PURE__ */ jsx(Progress$1, { ...defaultProps, ...progressProps })
         ]
       }
     );

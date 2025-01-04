@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import "next-themes";
 import { useState } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/x-react.es.js";
@@ -26,7 +26,7 @@ function InfiniteSelect({
     shouldUseLoader: false,
     onLoadMore
   });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsx(
     Select,
     {
       className,
@@ -35,7 +35,7 @@ function InfiniteSelect({
       scrollRef: scrollerRef,
       selectionMode,
       onOpenChange: setIsOpen,
-      children: (item) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { children: renderItem(item) }, getItemKey(item))
+      children: (item) => /* @__PURE__ */ jsx(SelectItem, { children: renderItem(item) }, getItemKey(item))
     }
   );
 }

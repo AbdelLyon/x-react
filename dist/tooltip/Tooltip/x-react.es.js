@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { Tooltip as Tooltip$1 } from "@nextui-org/react";
 const Tooltip = ({
   trigger,
@@ -23,7 +23,7 @@ const Tooltip = ({
   disableAnimation = false,
   ...props
 }) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsx(
     Tooltip$1,
     {
       content,

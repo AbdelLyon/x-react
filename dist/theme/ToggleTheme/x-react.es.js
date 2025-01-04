@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { IconSunFilled, IconMoonFilled } from "@tabler/icons-react";
 import { cn } from "../../utils/x-react.es.js";
 import { useTheme } from "../../hooks/useTheme/x-react.es.js";
@@ -10,7 +10,7 @@ const ToggleTheme = ({
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxs(
     "button",
     {
       className: cn(
@@ -19,8 +19,8 @@ const ToggleTheme = ({
       ),
       onClick: handleClick,
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(IconSunFilled, { className: "hidden dark:block", size: 22 }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(IconMoonFilled, { className: "dark:hidden", size: 22 })
+        /* @__PURE__ */ jsx(IconSunFilled, { className: "hidden dark:block", size: 22 }),
+        /* @__PURE__ */ jsx(IconMoonFilled, { className: "dark:hidden", size: 22 })
       ]
     }
   );

@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Alert as Alert$1, Button } from "@nextui-org/react";
 const Alert = forwardRef(
@@ -20,7 +20,7 @@ const Alert = forwardRef(
     if (isVisible === false) {
       return null;
     }
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       Alert$1,
       {
         ...otherProps,
@@ -28,7 +28,7 @@ const Alert = forwardRef(
         isClosable,
         onVisibleChange: handleVisibilityChange,
         onClose: handleClose,
-        closeButton: isClosable !== void 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        closeButton: isClosable !== void 0 ? /* @__PURE__ */ jsx(
           Button,
           {
             size: "sm",

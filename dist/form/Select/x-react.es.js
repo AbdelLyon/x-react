@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Select as Select$1, SelectItem } from "@nextui-org/react";
 const Select = forwardRef(
@@ -10,7 +10,7 @@ const Select = forwardRef(
     classNames,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       Select$1,
       {
         ref,
@@ -23,7 +23,7 @@ const Select = forwardRef(
         selectedKeys: value,
         defaultSelectedKeys: defaultValue,
         ...props,
-        children: options.map((option) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        children: options.map((option) => /* @__PURE__ */ jsx(
           SelectItem,
           {
             description: option.description,

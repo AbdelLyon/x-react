@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Card as Card$1, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 const Card = forwardRef(
@@ -21,7 +21,7 @@ const Card = forwardRef(
     footerProps,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    return /* @__PURE__ */ jsxs(
       Card$1,
       {
         ref,
@@ -39,9 +39,9 @@ const Card = forwardRef(
         className: classNames == null ? void 0 : classNames.base,
         ...props,
         children: [
-          header !== void 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: classNames == null ? void 0 : classNames.header, children: header }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CardBody, { className: classNames == null ? void 0 : classNames.body, children }),
-          footer !== void 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(CardFooter, { className: classNames == null ? void 0 : classNames.footer, ...footerProps, children: footer })
+          header !== void 0 && /* @__PURE__ */ jsx(CardHeader, { className: classNames == null ? void 0 : classNames.header, children: header }),
+          /* @__PURE__ */ jsx(CardBody, { className: classNames == null ? void 0 : classNames.body, children }),
+          footer !== void 0 && /* @__PURE__ */ jsx(CardFooter, { className: classNames == null ? void 0 : classNames.footer, ...footerProps, children: footer })
         ]
       }
     );

@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Switch as Switch$1 } from "@nextui-org/react";
 const Switch = forwardRef(
@@ -8,7 +8,7 @@ const Switch = forwardRef(
       height: typeof height === "number" ? `${height}px` : height,
       ...style
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Switch$1, { ref, style: combinedStyle, ...props });
+    return /* @__PURE__ */ jsx(Switch$1, { ref, style: combinedStyle, ...props });
   }
 );
 Switch.displayName = "Switch";

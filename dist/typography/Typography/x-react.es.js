@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../../utils/x-react.es.js";
 const VARIANT_STYLES = {
@@ -46,7 +46,7 @@ const Typography = forwardRef(
       truncate !== void 0 && "truncate",
       className
     );
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Component, { ref, className: classes, ...props, children });
+    return /* @__PURE__ */ jsx(Component, { ref, className: classes, ...props, children });
   }
 );
 Typography.displayName = "Typography";

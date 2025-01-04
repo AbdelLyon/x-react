@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../../utils/x-react.es.js";
 const Section = forwardRef(
@@ -12,7 +12,7 @@ const Section = forwardRef(
       },
       className
     );
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { ref, className: sectionClasses, children });
+    return /* @__PURE__ */ jsx("section", { ref, className: sectionClasses, children });
   }
 );
 Section.displayName = "Section";

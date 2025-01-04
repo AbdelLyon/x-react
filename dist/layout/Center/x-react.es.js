@@ -1,9 +1,9 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../../utils/x-react.es.js";
 const Center = forwardRef(
   ({ children, inline = false, className }, ref) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       "div",
       {
         ref,

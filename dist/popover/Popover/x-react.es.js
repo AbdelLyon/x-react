@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Popover as Popover$1, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 const Popover = forwardRef(
@@ -31,7 +31,7 @@ const Popover = forwardRef(
     placement = "bottom",
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    return /* @__PURE__ */ jsxs(
       Popover$1,
       {
         ref,
@@ -42,8 +42,8 @@ const Popover = forwardRef(
         isOpen: props.isOpen,
         ...props,
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverTrigger, { children: trigger }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(PopoverContent, { className: contentClassName, ...popoverContentProps, children: props.children })
+          /* @__PURE__ */ jsx(PopoverTrigger, { children: trigger }),
+          /* @__PURE__ */ jsx(PopoverContent, { className: contentClassName, ...popoverContentProps, children: props.children })
         ]
       }
     );

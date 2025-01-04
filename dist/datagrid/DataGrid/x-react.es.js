@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx, jsxs } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/x-react.es.js";
 import { cn } from "../../utils/x-react.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
@@ -31,7 +31,7 @@ function DataGrid({
   });
   const variantClasses = GRID_VARIANTS[variant];
   if (isLoading) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       DataGridSkeleton,
       {
         columns: columns.length,
@@ -41,7 +41,7 @@ function DataGrid({
       }
     );
   }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxs(
     Table,
     {
       "aria-label": "data-grid",
@@ -53,19 +53,19 @@ function DataGrid({
       },
       onScroll: handleGridScroll,
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsx(
           TableHeader,
           {
             columns: processedColumns,
             ...childrenProps == null ? void 0 : childrenProps.tableHeaderProps,
-            children: (column) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            children: (column) => /* @__PURE__ */ jsx(
               TableColumn,
               {
                 "aria-label": extractColumnHeader(column),
                 ...childrenProps == null ? void 0 : childrenProps.tableColumnProps,
-                children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
                   column.header,
-                  column.sortable !== false && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  column.sortable !== false && /* @__PURE__ */ jsxs(
                     "div",
                     {
                       className: cn("relative size-4 cursor-pointer"),
@@ -73,7 +73,7 @@ function DataGrid({
                       role: "button",
                       "aria-label": formatSortHeader(column.header),
                       children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        /* @__PURE__ */ jsx(
                           IconChevronUp,
                           {
                             size: 16,
@@ -83,7 +83,7 @@ function DataGrid({
                             )
                           }
                         ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        /* @__PURE__ */ jsx(
                           IconChevronDown,
                           {
                             size: 16,
@@ -102,8 +102,8 @@ function DataGrid({
             )
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { items: rows, ...childrenProps == null ? void 0 : childrenProps.tableBodyProps, children: (row) => {
-          return /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { ...childrenProps == null ? void 0 : childrenProps.tableRowProps, children: (columnKey) => /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { ...childrenProps == null ? void 0 : childrenProps.tableCellProps, children: extractCellValue(columnKey, row, columns) }) }, row.id);
+        /* @__PURE__ */ jsx(TableBody, { items: rows, ...childrenProps == null ? void 0 : childrenProps.tableBodyProps, children: (row) => {
+          return /* @__PURE__ */ jsx(TableRow, { ...childrenProps == null ? void 0 : childrenProps.tableRowProps, children: (columnKey) => /* @__PURE__ */ jsx(TableCell, { ...childrenProps == null ? void 0 : childrenProps.tableCellProps, children: extractCellValue(columnKey, row, columns) }) }, row.id);
         } })
       ]
     }

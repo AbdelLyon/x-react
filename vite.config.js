@@ -12,43 +12,44 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import tailwindcss from "tailwindcss";
-// Configuration des modules
-var MODULES = {
-    core: ["utils", "hooks", "theme", "providers", "HOC"],
-    ui: [
-        "button",
-        "modal",
-        "accordion",
-        "alert",
-        "avatar",
-        "card",
-        "form",
-        "popover",
-        "dropdown",
-        "image",
-        "slider",
-        "progress",
-        "spiner",
-        "drawer",
-        "chip",
-        "tooltip",
-        "tabs",
-        "pagination",
-        "typography",
-    ],
-    layout: ["navbar", "sidebar", "layout"],
-    data: ["datagrid", "chart"],
-    icons: ["icons"],
-    date: ["datepicker"],
-};
-// Configuration des dépendances externes
+var MODULES = [
+    "button",
+    "modal",
+    "utils",
+    "hooks",
+    "providers",
+    "theme",
+    "accordion",
+    "alert",
+    "avatar",
+    "card",
+    "icons",
+    "form",
+    "popover",
+    "dropdown",
+    "image",
+    "slider",
+    "progress",
+    "spiner",
+    "datagrid",
+    "drawer",
+    "chip",
+    "datepicker",
+    "navbar",
+    "sidebar",
+    "layout",
+    "tooltip",
+    "tabs",
+    "pagination",
+    "typography",
+    "HOC",
+    "chart",
+];
 var EXTERNAL_DEPS = {
     peer: ["react", "react-dom", "framer-motion", "@tabler/icons-react"],
     dependencies: ["@nextui-org/react", "clsx", "next-themes"],
     optional: ["react-chartjs-2", "chart.js", "@internationalized/date"],
 };
-// Utilitaire pour aplatir l'objet des modules
-var flattenModules = Object.values(MODULES).flat();
 export default defineConfig({
     plugins: [
         react(),
@@ -56,29 +57,38 @@ export default defineConfig({
             exclude: ["src/data/**/*", "src/tests/**/*"],
             rollupTypes: true,
             insertTypesEntry: true,
+            logLevel: "error",
+            compilerOptions: {
+                skipLibCheck: true,
+                emitDeclarationOnly: true,
+                noEmit: false,
+                declarationMap: false,
+            },
         }),
     ],
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "./src"),
-            "@core": path.resolve(__dirname, "./src/core"),
-            "@ui": path.resolve(__dirname, "./src/ui"),
-            "@utils": path.resolve(__dirname, "./src/utils"),
         },
     },
     css: {
         postcss: {
             plugins: [tailwindcss],
         },
-        modules: {
-            localsConvention: "camelCase",
-        },
     },
     build: {
+        sourcemap: true,
+        minify: "terser",
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true,
+            },
+        },
         lib: {
-            entry: Object.fromEntries(flattenModules.map(function (module) { return [
+            entry: Object.fromEntries(MODULES.map(function (module) { return [
                 module,
-                path.resolve(__dirname, "src/".concat(module)),
+                path.resolve(__dirname, "src/".concat(module, "/index.ts")),
             ]; })),
             name: "x-react",
             formats: ["es"],
@@ -87,8 +97,14 @@ export default defineConfig({
             },
         },
         rollupOptions: {
-            external: __spreadArray(__spreadArray(__spreadArray([], EXTERNAL_DEPS.peer, true), EXTERNAL_DEPS.dependencies, true), EXTERNAL_DEPS.optional, true),
+            external: __spreadArray(__spreadArray(__spreadArray(__spreadArray([], EXTERNAL_DEPS.peer, true), EXTERNAL_DEPS.dependencies, true), EXTERNAL_DEPS.optional, true), [
+                /^react\//,
+                /^node_modules\//,
+            ], false),
             output: {
+                preserveModules: true,
+                preserveModulesRoot: "src",
+                exports: "named",
                 globals: {
                     react: "React",
                     "react-dom": "ReactDOM",
@@ -98,23 +114,10 @@ export default defineConfig({
                     "chart.js": "Chart",
                     "react-chartjs-2": "ReactChartJS",
                 },
-                preserveModules: true,
-                preserveModulesRoot: "src",
-                exports: "named",
-                sourcemap: true,
-            },
-        },
-        sourcemap: true,
-        minify: "terser",
-        terserOptions: {
-            compress: {
-                drop_console: true,
-                drop_debugger: true,
             },
         },
     },
     optimizeDeps: {
-        include: EXTERNAL_DEPS.dependencies,
         exclude: __spreadArray(__spreadArray([], EXTERNAL_DEPS.peer, true), EXTERNAL_DEPS.optional, true),
     },
 });

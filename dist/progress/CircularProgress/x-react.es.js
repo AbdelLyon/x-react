@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef, useState, useEffect } from "react";
 import { CircularProgress as CircularProgress$1 } from "@nextui-org/react";
 const defaultProps = {
@@ -79,7 +79,7 @@ const CircularProgress = forwardRef(
       size,
       classNames
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(CircularProgress$1, { ...circularProgressProps });
+    return /* @__PURE__ */ jsx(CircularProgress$1, { ...circularProgressProps });
   }
 );
 CircularProgress.displayName = "CircularProgress";

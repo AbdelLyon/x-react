@@ -1,10 +1,10 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { ThemeProvider as ThemeProvider$1 } from "next-themes";
 const ThemeProvider = ({
   children,
   ...props
 }) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsx(
     ThemeProvider$1,
     {
       defaultTheme: "light",

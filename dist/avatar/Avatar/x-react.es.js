@@ -1,8 +1,8 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx, jsxs } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Avatar as Avatar$1, useAvatarGroup, AvatarGroupProvider, User } from "@nextui-org/react";
 const Avatar = forwardRef((props, ref) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Avatar$1, { ref, ...props });
+  return /* @__PURE__ */ jsx(Avatar$1, { ref, ...props });
 });
 Avatar.displayName = "Avatar";
 const AvatarGroup = forwardRef(
@@ -12,13 +12,13 @@ const AvatarGroup = forwardRef(
       clones,
       context,
       remainingCount,
-      renderCount = (count) => /* @__PURE__ */ jsxRuntimeExports.jsx(Avatar, { name: `+${count}` }),
+      renderCount = (count) => /* @__PURE__ */ jsx(Avatar, { name: `+${count}` }),
       getAvatarGroupProps
     } = useAvatarGroup({
       ref,
       ...props
     });
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Component, { ...getAvatarGroupProps(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AvatarGroupProvider, { value: context, children: [
+    return /* @__PURE__ */ jsx(Component, { ...getAvatarGroupProps(), children: /* @__PURE__ */ jsxs(AvatarGroupProvider, { value: context, children: [
       clones,
       remainingCount > 0 && renderCount(remainingCount)
     ] }) });
@@ -27,7 +27,7 @@ const AvatarGroup = forwardRef(
 AvatarGroup.displayName = "AvatarGroup";
 const UserAvatar = forwardRef(
   (props, ref) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(User, { ref, ...props });
+    return /* @__PURE__ */ jsx(User, { ref, ...props });
   }
 );
 UserAvatar.displayName = "UserAvatar";

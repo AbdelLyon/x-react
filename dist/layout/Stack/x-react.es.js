@@ -1,9 +1,9 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../../utils/x-react.es.js";
 const Stack = forwardRef(
   ({ children, spacing = 4, align = "start", justify = "start", className }, ref) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       "div",
       {
         ref,

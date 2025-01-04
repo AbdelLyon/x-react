@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { DatePicker as DatePicker$1, DateRangePicker as DateRangePicker$1 } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
@@ -31,7 +31,7 @@ const DatePicker = forwardRef(
     ...props
   }, ref) => {
     const { classNames: propClassNames, ...restProps } = props;
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
       DatePicker$1,
       {
         ref,
@@ -71,7 +71,7 @@ const DateRangePicker = forwardRef(
     ...props
   }, ref) => {
     const { classNames: propClassNames, ...restProps } = props;
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
       DateRangePicker$1,
       {
         ref,

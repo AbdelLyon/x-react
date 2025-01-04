@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../../utils/x-react.es.js";
 const Grid = forwardRef(
@@ -29,7 +29,7 @@ const Grid = forwardRef(
       gap.y !== void 0 && `gap-y-${gap.y}`,
       className
     );
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref, className: gridClasses, children: data ? data.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(GridItem, { colSpan: item.colSpan, children: item.content }, item.id)) : children });
+    return /* @__PURE__ */ jsx("div", { ref, className: gridClasses, children: data ? data.map((item) => /* @__PURE__ */ jsx(GridItem, { colSpan: item.colSpan, children: item.content }, item.id)) : children });
   }
 );
 Grid.displayName = "Grid";
@@ -43,7 +43,7 @@ const GridItem = forwardRef(
       (colSpan == null ? void 0 : colSpan.xl) !== void 0 && `xl:col-span-${colSpan.xl}`,
       className
     );
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref, className: itemClasses, children });
+    return /* @__PURE__ */ jsx("div", { ref, className: itemClasses, children });
   }
 );
 GridItem.displayName = "GridItem";

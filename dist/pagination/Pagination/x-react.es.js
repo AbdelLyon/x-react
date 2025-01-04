@@ -1,10 +1,10 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Pagination as Pagination$1 } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
 const Pagination = forwardRef(
   ({ containerClasses, classNames, ...props }, ref) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: cn("w-full flex justify-center", containerClasses), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx("div", { className: cn("w-full flex justify-center", containerClasses), children: /* @__PURE__ */ jsx(
       Pagination$1,
       {
         ref,

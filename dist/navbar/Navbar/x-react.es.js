@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
@@ -27,7 +27,7 @@ const Navbar = forwardRef(
       onItemClick == null ? void 0 : onItemClick(item);
       onMenuOpenChange == null ? void 0 : onMenuOpenChange(false);
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    return /* @__PURE__ */ jsxs(
       Navbar$1,
       {
         ref,
@@ -41,18 +41,18 @@ const Navbar = forwardRef(
         onMenuOpenChange,
         ...props,
         children: [
-          isMobile && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          isMobile && /* @__PURE__ */ jsx(NavbarContent, { children: /* @__PURE__ */ jsx(
             NavbarMenuToggle,
             {
               "aria-label": isMenuOpen === true ? "Close menu" : "Open menu"
             }
           ) }),
-          !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxRuntimeExports.jsxs(NavbarContent, { justify: "start", children: [
-            !isTablet && appName !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarItem, { className: "w-[247px] border-r-2 border-default", children: appName }),
-            appLogo !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarItem, { children: appLogo })
+          !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxs(NavbarContent, { justify: "start", children: [
+            !isTablet && appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "w-[247px] border-r-2 border-default", children: appName }),
+            appLogo !== null && /* @__PURE__ */ jsx(NavbarItem, { children: appLogo })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(NavbarContent, { justify: "end", ...contentProps, children: [
-            isDesktop && navigationItems.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarItem, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          /* @__PURE__ */ jsxs(NavbarContent, { justify: "end", ...contentProps, children: [
+            isDesktop && navigationItems.map((item) => /* @__PURE__ */ jsx(NavbarItem, { children: /* @__PURE__ */ jsxs(
               Link,
               {
                 className: cn(
@@ -70,9 +70,9 @@ const Navbar = forwardRef(
                 ]
               }
             ) }, item.key)),
-            profile !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarItem, { children: profile })
+            profile !== null && /* @__PURE__ */ jsx(NavbarItem, { children: profile })
           ] }),
-          !isDesktop && /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarMenu, { ...menuProps, children: menuItems.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          !isDesktop && /* @__PURE__ */ jsx(NavbarMenu, { ...menuProps, children: menuItems.map((item) => /* @__PURE__ */ jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxs(
             Link,
             {
               className: cn(

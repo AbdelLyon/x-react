@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { forwardRef, useState, useCallback } from "react";
 import { useDisclosure, Modal as Modal$1, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react";
 import { cn } from "../../utils/x-react.es.js";
@@ -34,8 +34,8 @@ const ModalButtons = ({
   };
   const hasValidCloseLabel = isValidButtonLabel(buttonCloseLabel);
   const hasValidActionButton = isValidButtonLabel(buttonActionLabel) && onAction !== void 0;
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    hasValidCloseLabel && /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    hasValidCloseLabel && /* @__PURE__ */ jsx(
       Button,
       {
         className: cn("border-primary/50", buttonCloseProps == null ? void 0 : buttonCloseProps.className),
@@ -46,7 +46,7 @@ const ModalButtons = ({
         children: buttonCloseLabel
       }
     ),
-    hasValidActionButton && /* @__PURE__ */ jsxRuntimeExports.jsx(
+    hasValidActionButton && /* @__PURE__ */ jsx(
       Button,
       {
         onPress: handleAction,
@@ -101,8 +101,8 @@ const Modal = forwardRef(
       footer: cn(defaultClassNames.footer, classNames == null ? void 0 : classNames.footer),
       backdrop: cn(classNames == null ? void 0 : classNames.backdrop)
     };
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx(
         "div",
         {
           role: "button",
@@ -113,7 +113,7 @@ const Modal = forwardRef(
           children: trigger
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
+      /* @__PURE__ */ jsx(
         Modal$1,
         {
           ref,
@@ -122,10 +122,10 @@ const Modal = forwardRef(
           isOpen,
           onClose,
           ...props,
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModalContent, { children: () => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            title !== void 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(ModalHeader, { className: modalClassNames.header, children: title }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(ModalBody, { className: modalClassNames.body, children }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(ModalFooter, { className: modalClassNames.footer, children: footer !== void 0 ? footer : /* @__PURE__ */ jsxRuntimeExports.jsx(
+          children: /* @__PURE__ */ jsx(ModalContent, { children: () => /* @__PURE__ */ jsxs(Fragment, { children: [
+            title !== void 0 && /* @__PURE__ */ jsx(ModalHeader, { className: modalClassNames.header, children: title }),
+            /* @__PURE__ */ jsx(ModalBody, { className: modalClassNames.body, children }),
+            /* @__PURE__ */ jsx(ModalFooter, { className: modalClassNames.footer, children: footer !== void 0 ? footer : /* @__PURE__ */ jsx(
               ModalButtons,
               {
                 buttonCloseLabel,

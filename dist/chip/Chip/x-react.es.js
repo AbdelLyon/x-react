@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime/x-react.es.js";
+import { jsx } from "react/jsx-runtime";
 import { Chip as Chip$1 } from "@nextui-org/react";
 import { forwardRef } from "react";
 const Chip = forwardRef(
@@ -17,7 +17,7 @@ const Chip = forwardRef(
     onClose,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsx(
       Chip$1,
       {
         ref,
