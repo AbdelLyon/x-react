@@ -1,55 +1,53 @@
-import { jsx } from "react/jsx-runtime";
-import { Tooltip as Tooltip$1 } from "@nextui-org/react";
-const Tooltip = ({
-  trigger,
-  content,
-  size = "md",
-  color = "default",
-  radius = "sm",
-  shadow = "sm",
-  placement = "top",
-  delay = 0,
-  closeDelay = 500,
-  offset = 7,
-  containerPadding = 12,
-  crossOffset = 0,
-  showArrow = false,
-  shouldFlip = true,
-  triggerScaleOnOpen = true,
-  isKeyboardDismissDisabled = false,
-  isDismissable = false,
-  shouldCloseOnBlur = true,
-  isDisabled = false,
-  disableAnimation = false,
-  ...props
-}) => {
-  return /* @__PURE__ */ jsx(
-    Tooltip$1,
-    {
-      content,
-      size,
-      color,
-      radius,
-      shadow,
-      placement,
-      delay,
-      closeDelay,
-      offset,
-      containerPadding,
-      crossOffset,
-      showArrow,
-      shouldFlip,
-      triggerScaleOnOpen,
-      isKeyboardDismissDisabled,
-      isDismissable,
-      shouldCloseOnBlur,
-      isDisabled,
-      disableAnimation,
-      ...props,
-      children: trigger
-    }
-  );
-};
+import { jsx as g } from "react/jsx-runtime";
+import { Tooltip as k } from "@nextui-org/react";
+const w = ({
+  trigger: o,
+  content: t,
+  size: e = "md",
+  color: r = "default",
+  radius: l = "sm",
+  shadow: s = "sm",
+  placement: f = "top",
+  delay: a = 0,
+  closeDelay: m = 500,
+  offset: p = 7,
+  containerPadding: i = 12,
+  crossOffset: u = 0,
+  showArrow: d = !1,
+  shouldFlip: n = !0,
+  triggerScaleOnOpen: T = !0,
+  isKeyboardDismissDisabled: c = !1,
+  isDismissable: x = !1,
+  shouldCloseOnBlur: h = !0,
+  isDisabled: j = !1,
+  disableAnimation: $ = !1,
+  ...b
+}) => /* @__PURE__ */ g(
+  k,
+  {
+    content: t,
+    size: e,
+    color: r,
+    radius: l,
+    shadow: s,
+    placement: f,
+    delay: a,
+    closeDelay: m,
+    offset: p,
+    containerPadding: i,
+    crossOffset: u,
+    showArrow: d,
+    shouldFlip: n,
+    triggerScaleOnOpen: T,
+    isKeyboardDismissDisabled: c,
+    isDismissable: x,
+    shouldCloseOnBlur: h,
+    isDisabled: j,
+    disableAnimation: $,
+    ...b,
+    children: o
+  }
+);
 export {
-  Tooltip
+  w as Tooltip
 };

@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Navbar } from "./Navbar/x-react.es.js";
+import { Navbar as m } from "./Navbar/x-react.es.js";
 export {
-  Navbar
+  m as Navbar
 };

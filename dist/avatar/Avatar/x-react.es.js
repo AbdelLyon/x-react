@@ -1,39 +1,35 @@
-import { jsx, jsxs } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Avatar as Avatar$1, useAvatarGroup, AvatarGroupProvider, User } from "@nextui-org/react";
-const Avatar = forwardRef((props, ref) => {
-  return /* @__PURE__ */ jsx(Avatar$1, { ref, ...props });
-});
-Avatar.displayName = "Avatar";
-const AvatarGroup = forwardRef(
-  (props, ref) => {
+import { jsx as t, jsxs as A } from "react/jsx-runtime";
+import { forwardRef as e } from "react";
+import { Avatar as d, useAvatarGroup as c, AvatarGroupProvider as l, User as f } from "@nextui-org/react";
+const o = e((r, a) => /* @__PURE__ */ t(d, { ref: a, ...r }));
+o.displayName = "Avatar";
+const G = e(
+  (r, a) => {
     const {
-      Component,
-      clones,
-      context,
-      remainingCount,
-      renderCount = (count) => /* @__PURE__ */ jsx(Avatar, { name: `+${count}` }),
-      getAvatarGroupProps
-    } = useAvatarGroup({
-      ref,
-      ...props
+      Component: s,
+      clones: p,
+      context: v,
+      remainingCount: n,
+      renderCount: m = (u) => /* @__PURE__ */ t(o, { name: `+${u}` }),
+      getAvatarGroupProps: i
+    } = c({
+      ref: a,
+      ...r
     });
-    return /* @__PURE__ */ jsx(Component, { ...getAvatarGroupProps(), children: /* @__PURE__ */ jsxs(AvatarGroupProvider, { value: context, children: [
-      clones,
-      remainingCount > 0 && renderCount(remainingCount)
+    return /* @__PURE__ */ t(s, { ...i(), children: /* @__PURE__ */ A(l, { value: v, children: [
+      p,
+      n > 0 && m(n)
     ] }) });
   }
 );
-AvatarGroup.displayName = "AvatarGroup";
-const UserAvatar = forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(User, { ref, ...props });
-  }
+G.displayName = "AvatarGroup";
+const x = e(
+  (r, a) => /* @__PURE__ */ t(f, { ref: a, ...r })
 );
-UserAvatar.displayName = "UserAvatar";
-Avatar.displayName = "Avatar";
+x.displayName = "UserAvatar";
+o.displayName = "Avatar";
 export {
-  Avatar,
-  AvatarGroup,
-  UserAvatar
+  o as Avatar,
+  G as AvatarGroup,
+  x as UserAvatar
 };

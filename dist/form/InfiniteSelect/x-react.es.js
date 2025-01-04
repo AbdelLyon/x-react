@@ -1,44 +1,43 @@
-import { jsx } from "react/jsx-runtime";
+import { jsx as o } from "react/jsx-runtime";
 import "next-themes";
-import { useState } from "react";
-import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/x-react.es.js";
+import { useState as I } from "react";
+import { useInfiniteScroll as S } from "../../hooks/useInfiniteScroll/x-react.es.js";
 import "clsx";
-import { useInfiniteList } from "../../hooks/useInfiniteList/x-react.es.js";
-import { Select, SelectItem } from "@nextui-org/react";
-function InfiniteSelect({
-  fetchFunction,
-  fetchDelay = 0,
-  limit = 10,
-  className = "max-w-xs",
-  renderItem,
-  getItemKey,
-  selectionMode = "single"
+import "tailwind-merge";
+import { useInfiniteList as x } from "../../hooks/useInfiniteList/x-react.es.js";
+import { Select as L, SelectItem as g } from "@nextui-org/react";
+function U({
+  fetchFunction: r,
+  fetchDelay: t = 0,
+  limit: i = 10,
+  className: n = "max-w-xs",
+  renderItem: s,
+  getItemKey: l,
+  selectionMode: m = "single"
 }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const { items, hasMore, isLoading, onLoadMore } = useInfiniteList({
-    fetchFunction,
-    fetchDelay,
-    limit
+  const [f, c] = I(!1), { items: p, hasMore: a, isLoading: d, onLoadMore: u } = x({
+    fetchFunction: r,
+    fetchDelay: t,
+    limit: i
+  }), [, h] = S({
+    hasMore: a,
+    isEnabled: f,
+    shouldUseLoader: !1,
+    onLoadMore: u
   });
-  const [, scrollerRef] = useInfiniteScroll({
-    hasMore,
-    isEnabled: isOpen,
-    shouldUseLoader: false,
-    onLoadMore
-  });
-  return /* @__PURE__ */ jsx(
-    Select,
+  return /* @__PURE__ */ o(
+    L,
     {
-      className,
-      isLoading,
-      items,
-      scrollRef: scrollerRef,
-      selectionMode,
-      onOpenChange: setIsOpen,
-      children: (item) => /* @__PURE__ */ jsx(SelectItem, { children: renderItem(item) }, getItemKey(item))
+      className: n,
+      isLoading: d,
+      items: p,
+      scrollRef: h,
+      selectionMode: m,
+      onOpenChange: c,
+      children: (e) => /* @__PURE__ */ o(g, { children: s(e) }, l(e))
     }
   );
 }
 export {
-  InfiniteSelect
+  U as InfiniteSelect
 };

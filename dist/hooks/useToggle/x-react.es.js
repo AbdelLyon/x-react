@@ -1,16 +1,14 @@
-import { useReducer } from "react";
-const useToggle = (options = [false, true]) => {
-  const reducer = (state, action) => {
-    const value = action instanceof Function ? action(state[0]) : action;
-    const index = Math.abs(state.indexOf(value));
-    return [...state.slice(index), ...state.slice(0, index)];
-  };
-  const [[currentOption], toggle] = useReducer(reducer, [...options]);
+import { useReducer as i } from "react";
+const d = (o = [!1, !0]) => {
+  const c = (e, n) => {
+    const t = n instanceof Function ? n(e[0]) : n, r = Math.abs(e.indexOf(t));
+    return [...e.slice(r), ...e.slice(0, r)];
+  }, [[u], s] = i(c, [...o]);
   return [
-    currentOption,
-    toggle
+    u,
+    s
   ];
 };
 export {
-  useToggle
+  d as useToggle
 };

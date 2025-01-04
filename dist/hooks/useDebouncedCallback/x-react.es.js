@@ -1,17 +1,14 @@
-import { useRef, useEffect } from "react";
-import { useCallbackRef } from "../useCallbackRef/x-react.es.js";
-const useDebouncedCallback = (callback, delay) => {
-  const handleCallback = useCallbackRef(callback);
-  const debounceTimerRef = useRef(0);
-  useEffect(() => () => window.clearTimeout(debounceTimerRef.current), []);
-  return (...args) => {
-    window.clearTimeout(debounceTimerRef.current);
-    debounceTimerRef.current = window.setTimeout(
-      () => handleCallback(...args),
-      delay
+import { useRef as n, useEffect as u } from "react";
+import { useCallbackRef as a } from "../useCallbackRef/x-react.es.js";
+const m = (o, r) => {
+  const t = a(o), e = n(0);
+  return u(() => () => window.clearTimeout(e.current), []), (...c) => {
+    window.clearTimeout(e.current), e.current = window.setTimeout(
+      () => t(...c),
+      r
     );
   };
 };
 export {
-  useDebouncedCallback
+  m as useDebouncedCallback
 };

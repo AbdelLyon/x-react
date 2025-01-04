@@ -1,72 +1,68 @@
-import { jsx, jsxs } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { cn } from "../../utils/x-react.es.js";
-import { Link } from "@nextui-org/react";
+import { jsx as d, jsxs as x } from "react/jsx-runtime";
+import { forwardRef as u } from "react";
+import { cn as p } from "../../utils/x-react.es.js";
+import { Link as a } from "@nextui-org/react";
 import "next-themes";
-import { useResponsive } from "../../hooks/useResponsive/x-react.es.js";
+import { useResponsive as c } from "../../hooks/useResponsive/x-react.es.js";
 /* empty css                         */
-import { Tooltip } from "../../tooltip/Tooltip/x-react.es.js";
-const Sidebar = forwardRef(
-  ({ items = [], classNames, onItemClick }, ref) => {
-    const { isDesktop, isTablet } = useResponsive();
-    if (!isDesktop && !isTablet) {
+import { Tooltip as g } from "../../tooltip/Tooltip/x-react.es.js";
+const y = u(
+  ({ items: f = [], classNames: e, onItemClick: t }, l) => {
+    const { isDesktop: n, isTablet: o } = c();
+    if (!n && !o)
       return null;
-    }
-    const renderLink = (item) => {
-      const linkContent = /* @__PURE__ */ jsxs(
-        Link,
+    const b = (r) => {
+      const i = /* @__PURE__ */ x(
+        a,
         {
-          className: cn(
+          className: p(
             "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
             {
-              "border-l-2 border-primary bg-content1 text-primary": item.isActive,
-              "justify-center": isTablet
+              "border-l-2 border-primary bg-content1 text-primary": r.isActive,
+              "justify-center": o
             },
-            classNames?.item
+            e == null ? void 0 : e.item
           ),
-          onPress: () => onItemClick?.(item),
+          onPress: () => t == null ? void 0 : t(r),
           children: [
-            item.startContent,
-            isDesktop ? item.label : null,
-            item.endContent
+            r.startContent,
+            n ? r.label : null,
+            r.endContent
           ]
         },
-        item.key
+        r.key
       );
-      if (isTablet) {
-        return /* @__PURE__ */ jsx(
-          Tooltip,
-          {
-            trigger: linkContent,
-            content: item.label,
-            placement: "right",
-            delay: 0,
-            closeDelay: 0,
-            className: "border border-default"
-          },
-          item.key
-        );
-      }
-      return linkContent;
+      return o ? /* @__PURE__ */ d(
+        g,
+        {
+          trigger: i,
+          content: r.label,
+          placement: "right",
+          delay: 0,
+          closeDelay: 0,
+          className: "border border-default"
+        },
+        r.key
+      ) : i;
     };
-    return /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ d(
       "aside",
       {
-        ref,
-        className: cn(
+        ref: l,
+        className: p(
           "fixed left-0 h-screen flex-col bg-[#212324] border-r border-default",
           {
-            "w-[270px]": isDesktop,
-            "w-[90px]": isTablet
+            "w-[270px]": n,
+            "w-[90px]": o
           },
-          classNames?.base
+          e == null ? void 0 : e.base
         ),
-        children: /* @__PURE__ */ jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: items.map(renderLink) })
+        children: /* @__PURE__ */ d("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: f.map(b) })
       }
     );
   }
 );
-Sidebar.displayName = "Sidebar";
+y.displayName = "Sidebar";
 export {
-  Sidebar
+  y as Sidebar
 };

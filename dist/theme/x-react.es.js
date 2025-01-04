@@ -1,5 +1,5 @@
 /* empty css                      */
-import { ToggleTheme } from "./ToggleTheme/x-react.es.js";
+import { ToggleTheme as r } from "./ToggleTheme/x-react.es.js";
 export {
-  ToggleTheme
+  r as ToggleTheme
 };

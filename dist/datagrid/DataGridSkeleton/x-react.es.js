@@ -1,21 +1,20 @@
-import { jsxs, jsx } from "react/jsx-runtime";
-import { Table, TableHeader, TableColumn, Skeleton, TableBody, TableRow, TableCell } from "@nextui-org/react";
-import { cn } from "../../utils/x-react.es.js";
-import { GRID_VARIANTS } from "../../data/default/x-react.es.js";
-const DataGridSkeleton = ({
-  columns = 5,
-  rows = 5,
-  checkboxSelection = true,
-  variant = "unstyled",
-  className
+import { jsxs as p, jsx as a } from "react/jsx-runtime";
+import { Table as f, TableHeader as h, TableColumn as N, Skeleton as r, TableBody as T, TableRow as b, TableCell as y } from "@nextui-org/react";
+import { cn as m } from "../../utils/x-react.es.js";
+import { GRID_VARIANTS as A } from "../../data/default/x-react.es.js";
+const z = ({
+  columns: d = 5,
+  rows: i = 5,
+  checkboxSelection: e = !0,
+  variant: o = "unstyled",
+  className: u
 }) => {
-  const variantClasses = GRID_VARIANTS[variant];
-  const actualColumns = checkboxSelection ? columns + 1 : columns;
-  return /* @__PURE__ */ jsxs(Table, { radius: "sm", "aria-label": "Loading data", className, children: [
-    /* @__PURE__ */ jsx(TableHeader, { className: cn(variantClasses.thead), children: Array(actualColumns).fill(null).map((_, index) => /* @__PURE__ */ jsx(TableColumn, { className: cn(variantClasses.th), children: index === 0 && checkboxSelection ? /* @__PURE__ */ jsx(Skeleton, { className: "size-4 rounded-md" }) : /* @__PURE__ */ jsx(Skeleton, { className: "h-4 w-24 rounded-md" }) }, index)) }),
-    /* @__PURE__ */ jsx(TableBody, { children: Array(rows).fill(null).map((_, rowIndex) => /* @__PURE__ */ jsx(TableRow, { className: cn(variantClasses.tr), children: Array(actualColumns).fill(null).map((_2, colIndex) => /* @__PURE__ */ jsx(TableCell, { children: colIndex === 0 && checkboxSelection ? /* @__PURE__ */ jsx(Skeleton, { className: "size-4 rounded-md" }) : /* @__PURE__ */ jsx(Skeleton, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, colIndex)) }, rowIndex)) })
+  const s = A[o], n = e ? d + 1 : d;
+  return /* @__PURE__ */ p(f, { radius: "sm", "aria-label": "Loading data", className: u, children: [
+    /* @__PURE__ */ a(h, { className: m(s.thead), children: Array(n).fill(null).map((c, l) => /* @__PURE__ */ a(N, { className: m(s.th), children: l === 0 && e ? /* @__PURE__ */ a(r, { className: "size-4 rounded-md" }) : /* @__PURE__ */ a(r, { className: "h-4 w-24 rounded-md" }) }, l)) }),
+    /* @__PURE__ */ a(T, { children: Array(i).fill(null).map((c, l) => /* @__PURE__ */ a(b, { className: m(s.tr), children: Array(n).fill(null).map((w, t) => /* @__PURE__ */ a(y, { children: t === 0 && e ? /* @__PURE__ */ a(r, { className: "size-4 rounded-md" }) : /* @__PURE__ */ a(r, { className: "h-4 w-full max-w-[200px] rounded-md" }) }, t)) }, l)) })
   ] });
 };
 export {
-  DataGridSkeleton
+  z as DataGridSkeleton
 };

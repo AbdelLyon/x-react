@@ -1,5 +1,5 @@
 /* empty css                      */
-import { WithLoading } from "./WithLoading/x-react.es.js";
+import { WithLoading as t } from "./WithLoading/x-react.es.js";
 export {
-  WithLoading
+  t as WithLoading
 };

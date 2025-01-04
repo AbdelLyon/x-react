@@ -1,42 +1,24 @@
-import { useMediaQuery } from "../useMediaQuery/x-react.es.js";
-const MEDIA_QUERIES = {
+import { useMediaQuery as i } from "../useMediaQuery/x-react.es.js";
+const o = {
   desktop: "(min-width: 1024px)",
   tablet: "(min-width: 768px) and (max-width: 1023px)"
-};
-const useResponsive = (customQuery) => {
-  const isDesktop = useMediaQuery(MEDIA_QUERIES.desktop);
-  const isTablet = useMediaQuery(MEDIA_QUERIES.tablet);
-  const isMobile = !isDesktop && !isTablet;
-  const customMatch = useMediaQuery(
-    typeof customQuery === "string" && customQuery.length > 0 ? customQuery : ""
-  );
-  const getBreakpoint = () => {
-    if (isDesktop === true) {
-      return "isDesktop";
-    }
-    if (isTablet === true) {
-      return "isTablet";
-    }
-    return "isMobile";
-  };
-  const isBreakpoint = (breakpoint) => {
-    const breakpoints = {
-      isDesktop,
-      isTablet,
-      isMobile
-    };
-    return breakpoints[breakpoint] === true;
-  };
-  const hasValidCustomQuery = typeof customQuery === "string" && customQuery.length > 0;
+}, h = (t) => {
+  const e = i(o.desktop), s = i(o.tablet), n = !e && !s, r = i(
+    typeof t == "string" && t.length > 0 ? t : ""
+  ), p = () => e === !0 ? "isDesktop" : s === !0 ? "isTablet" : "isMobile", a = (d) => ({
+    isDesktop: e,
+    isTablet: s,
+    isMobile: n
+  })[d] === !0, c = typeof t == "string" && t.length > 0;
   return {
-    isDesktop,
-    isTablet,
-    isMobile,
-    matches: hasValidCustomQuery ? customMatch : void 0,
-    getBreakpoint,
-    isBreakpoint
+    isDesktop: e,
+    isTablet: s,
+    isMobile: n,
+    matches: c ? r : void 0,
+    getBreakpoint: p,
+    isBreakpoint: a
   };
 };
 export {
-  useResponsive
+  h as useResponsive
 };

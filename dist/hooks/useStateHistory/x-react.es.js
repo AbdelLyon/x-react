@@ -1,46 +1,45 @@
-import { useState } from "react";
-const useStateHistory = (initialValue) => {
-  const [state, setState] = useState({
-    history: [initialValue],
+import { useState as c } from "react";
+const y = (o) => {
+  const [e, s] = c({
+    history: [o],
     current: 0
-  });
-  const handlers = {
-    set: (value) => {
-      setState((currentState) => {
-        const nextState = [
-          ...currentState.history.slice(0, currentState.current + 1),
-          value
+  }), n = {
+    set: (r) => {
+      s((t) => {
+        const h = [
+          ...t.history.slice(0, t.current + 1),
+          r
         ];
         return {
-          history: nextState,
-          current: nextState.length - 1
+          history: h,
+          current: h.length - 1
         };
       });
     },
-    back: (steps = 1) => {
-      setState((currentState) => ({
-        history: currentState.history,
-        current: Math.max(0, currentState.current - steps)
+    back: (r = 1) => {
+      s((t) => ({
+        history: t.history,
+        current: Math.max(0, t.current - r)
       }));
     },
-    forward: (steps = 1) => {
-      setState((currentState) => ({
-        history: currentState.history,
+    forward: (r = 1) => {
+      s((t) => ({
+        history: t.history,
         current: Math.min(
-          currentState.history.length - 1,
-          currentState.current + steps
+          t.history.length - 1,
+          t.current + r
         )
       }));
     },
     reset: () => {
-      setState({
-        history: [initialValue],
+      s({
+        history: [o],
         current: 0
       });
     }
   };
-  return [state.history[state.current], handlers, state];
+  return [e.history[e.current], n, e];
 };
 export {
-  useStateHistory
+  y as useStateHistory
 };

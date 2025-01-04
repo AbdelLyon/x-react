@@ -1,34 +1,14 @@
-import { useState } from "react";
-const useDisclosure = (initialState = false, callbacks) => {
-  const { onOpen, onClose } = callbacks || {};
-  const [opened, setOpened] = useState(initialState);
-  const open = () => {
-    setOpened((isOpened) => {
-      if (!isOpened) {
-        onOpen?.();
-        return true;
-      }
-      return isOpened;
-    });
+import { useState as l } from "react";
+const i = (c = !1, f) => {
+  const { onOpen: e, onClose: r } = f || {}, [o, s] = l(c), n = () => {
+    s((t) => t || (e == null || e(), !0));
+  }, u = () => {
+    s((t) => t && (r == null || r(), !1));
   };
-  const close = () => {
-    setOpened((isOpened) => {
-      if (isOpened) {
-        onClose?.();
-        return false;
-      }
-      return isOpened;
-    });
-  };
-  const toggle = () => {
-    if (opened) {
-      close();
-    } else {
-      open();
-    }
-  };
-  return [opened, { open, close, toggle }];
+  return [o, { open: n, close: u, toggle: () => {
+    o ? u() : n();
+  } }];
 };
 export {
-  useDisclosure
+  i as useDisclosure
 };

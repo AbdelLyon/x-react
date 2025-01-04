@@ -1,24 +1,24 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { cn } from "../../utils/x-react.es.js";
-const Container = forwardRef(
-  ({ children, maxWidth = "lg", className }, ref) => {
-    const containerClasses = cn(
+import { jsx as m } from "react/jsx-runtime";
+import { forwardRef as o } from "react";
+import { cn as a } from "../../utils/x-react.es.js";
+const c = o(
+  ({ children: r, maxWidth: e = "lg", className: s }, n) => {
+    const l = a(
       "mx-auto px-4",
       {
-        "max-w-screen-sm": maxWidth === "sm",
-        "max-w-screen-md": maxWidth === "md",
-        "max-w-screen-lg": maxWidth === "lg",
-        "max-w-screen-xl": maxWidth === "xl",
-        "max-w-screen-2xl": maxWidth === "2xl",
-        "max-w-full": maxWidth === "full"
+        "max-w-screen-sm": e === "sm",
+        "max-w-screen-md": e === "md",
+        "max-w-screen-lg": e === "lg",
+        "max-w-screen-xl": e === "xl",
+        "max-w-screen-2xl": e === "2xl",
+        "max-w-full": e === "full"
       },
-      className
+      s
     );
-    return /* @__PURE__ */ jsx("div", { ref, className: containerClasses, children });
+    return /* @__PURE__ */ m("div", { ref: n, className: l, children: r });
   }
 );
-Container.displayName = "Container";
+c.displayName = "Container";
 export {
-  Container
+  c as Container
 };

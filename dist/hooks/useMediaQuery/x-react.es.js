@@ -1,48 +1,34 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-function attachMediaListener(query, callback) {
-  query.addEventListener("change", callback);
-  return () => query.removeEventListener("change", callback);
+import { useState as s, useRef as d, useCallback as f, useEffect as h } from "react";
+function l(e, t) {
+  return e.addEventListener("change", t), () => e.removeEventListener("change", t);
 }
-function getInitialValue(query, initialValue) {
-  if (typeof initialValue === "boolean") {
-    return initialValue;
-  }
-  if (typeof window !== "undefined" && "matchMedia" in window) {
+function m(e, t) {
+  if (typeof t == "boolean")
+    return t;
+  if (typeof window < "u" && "matchMedia" in window)
     try {
-      return window.matchMedia(query).matches;
-    } catch (e) {
-      console.warn("Error while matching media query:", e);
-      return false;
+      return window.matchMedia(e).matches;
+    } catch (n) {
+      return console.warn("Error while matching media query:", n), !1;
     }
-  }
-  return false;
+  return !1;
 }
-function useMediaQuery(query, options = {}) {
-  const { getInitialValueInEffect = true, initialValue } = options;
-  const [matches, setMatches] = useState(
-    () => getInitialValueInEffect ? initialValue ?? false : getInitialValue(query, initialValue)
-  );
-  const queryRef = useRef(null);
-  const handleChange = useCallback((event) => {
-    setMatches(event.matches);
+function g(e, t = {}) {
+  const { getInitialValueInEffect: n = !0, initialValue: a } = t, [u, o] = s(
+    () => n ? a ?? !1 : m(e, a)
+  ), r = d(null), c = f((i) => {
+    o(i.matches);
   }, []);
-  useEffect(() => {
-    if (typeof window === "undefined" || !("matchMedia" in window)) {
-      return void 0;
-    }
-    try {
-      queryRef.current = window.matchMedia(query);
-      if (getInitialValueInEffect) {
-        setMatches(queryRef.current.matches);
+  return h(() => {
+    if (!(typeof window > "u" || !("matchMedia" in window)))
+      try {
+        return r.current = window.matchMedia(e), n && o(r.current.matches), l(r.current, c);
+      } catch (i) {
+        console.error("Error setting up media query:", i);
+        return;
       }
-      return attachMediaListener(queryRef.current, handleChange);
-    } catch (e) {
-      console.error("Error setting up media query:", e);
-      return void 0;
-    }
-  }, [query, getInitialValueInEffect, handleChange]);
-  return matches;
+  }, [e, n, c]), u;
 }
 export {
-  useMediaQuery
+  g as useMediaQuery
 };

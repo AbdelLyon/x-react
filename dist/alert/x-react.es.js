@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Alert } from "./Alert/x-react.es.js";
+import { Alert as e } from "./Alert/x-react.es.js";
 export {
-  Alert
+  e as Alert
 };

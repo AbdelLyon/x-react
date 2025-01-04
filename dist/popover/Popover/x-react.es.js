@@ -1,13 +1,13 @@
-import { jsxs, jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Popover as Popover$1, PopoverTrigger, PopoverContent } from "@nextui-org/react";
-const Popover = forwardRef(
+import { jsxs as d, jsx as r } from "react/jsx-runtime";
+import { forwardRef as m } from "react";
+import { Popover as y, PopoverTrigger as v, PopoverContent as l } from "@nextui-org/react";
+const P = m(
   ({
-    trigger,
-    contentClassName,
-    popoverContentProps,
-    radius = "sm",
-    motionProps = {
+    trigger: i,
+    contentClassName: t,
+    popoverContentProps: e,
+    radius: n = "sm",
+    motionProps: a = {
       variants: {
         enter: {
           y: 0,
@@ -27,29 +27,27 @@ const Popover = forwardRef(
         }
       }
     },
-    offset = 10,
-    placement = "bottom",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxs(
-      Popover$1,
-      {
-        ref,
-        motionProps,
-        offset,
-        placement,
-        radius,
-        isOpen: props.isOpen,
-        ...props,
-        children: [
-          /* @__PURE__ */ jsx(PopoverTrigger, { children: trigger }),
-          /* @__PURE__ */ jsx(PopoverContent, { className: contentClassName, ...popoverContentProps, children: props.children })
-        ]
-      }
-    );
-  }
+    offset: p = 10,
+    placement: s = "bottom",
+    ...o
+  }, c) => /* @__PURE__ */ d(
+    y,
+    {
+      ref: c,
+      motionProps: a,
+      offset: p,
+      placement: s,
+      radius: n,
+      isOpen: o.isOpen,
+      ...o,
+      children: [
+        /* @__PURE__ */ r(v, { children: i }),
+        /* @__PURE__ */ r(l, { className: t, ...e, children: o.children })
+      ]
+    }
+  )
 );
-Popover.displayName = "Popover";
+P.displayName = "Popover";
 export {
-  Popover
+  P as Popover
 };

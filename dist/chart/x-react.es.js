@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Chart } from "./Chart/x-react.es.js";
+import { Chart as m } from "./Chart/x-react.es.js";
 export {
-  Chart
+  m as Chart
 };

@@ -1,44 +1,42 @@
-import { jsx } from "react/jsx-runtime";
-import { Chip as Chip$1 } from "@nextui-org/react";
-import { forwardRef } from "react";
-const Chip = forwardRef(
+import { jsx as u } from "react/jsx-runtime";
+import { Chip as n } from "@nextui-org/react";
+import { forwardRef as x } from "react";
+const c = x(
   ({
-    children,
-    avatar,
-    startContent,
-    endContent,
-    variant = "solid",
-    color = "default",
-    size = "md",
-    radius = "full",
-    isDisabled = false,
-    className,
-    classNames,
-    onClose,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      Chip$1,
-      {
-        ref,
-        avatar,
-        startContent,
-        endContent,
-        variant,
-        color,
-        size,
-        radius,
-        isDisabled,
-        className,
-        classNames,
-        onClose,
-        ...props,
-        children
-      }
-    );
-  }
+    children: r,
+    avatar: o,
+    startContent: i,
+    endContent: p,
+    variant: f = "solid",
+    color: m = "default",
+    size: t = "md",
+    radius: a = "full",
+    isDisabled: e = !1,
+    className: l,
+    classNames: s,
+    onClose: d,
+    ...h
+  }, C) => /* @__PURE__ */ u(
+    n,
+    {
+      ref: C,
+      avatar: o,
+      startContent: i,
+      endContent: p,
+      variant: f,
+      color: m,
+      size: t,
+      radius: a,
+      isDisabled: e,
+      className: l,
+      classNames: s,
+      onClose: d,
+      ...h,
+      children: r
+    }
+  )
 );
-Chip.displayName = "Chip";
+c.displayName = "Chip";
 export {
-  Chip
+  c as Chip
 };

@@ -1,139 +1,124 @@
-import { jsxs, Fragment, jsx } from "react/jsx-runtime";
-import { forwardRef, useState, useCallback } from "react";
-import { useDisclosure, Modal as Modal$1, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react";
-import { cn } from "../../utils/x-react.es.js";
+import { jsxs as k, Fragment as B, jsx as d } from "react/jsx-runtime";
+import { forwardRef as I, useState as R, useCallback as w } from "react";
+import { useDisclosure as S, Modal as $, ModalContent as z, ModalHeader as G, ModalBody as J, ModalFooter as L } from "@nextui-org/react";
+import { cn as n } from "../../utils/x-react.es.js";
 /* empty css                         */
-import { Button } from "../../button/Button/x-react.es.js";
+import { Button as v } from "../../button/Button/x-react.es.js";
 /* empty css                              */
-const defaultClassNames = {
+const c = {
   closeButton: "absolute right-4 top-4",
   base: "bg-background border border-default shadow-lg dark:shadow-none rounded-lg",
   header: "flex flex-col gap-1",
   footer: "flex justify-end gap-2"
-};
-const defaultButtonProps = {
+}, D = {
   color: "primary",
   radius: "sm"
-};
-const isValidButtonLabel = (label) => typeof label === "string" && label.length > 0;
-const ModalButtons = ({
-  buttonCloseLabel = "Close",
-  buttonActionLabel,
-  buttonCloseProps,
-  buttonActionProps,
-  onAction,
-  onClose
+}, j = (e) => typeof e == "string" && e.length > 0, Q = ({
+  buttonCloseLabel: e = "Close",
+  buttonActionLabel: i,
+  buttonCloseProps: o,
+  buttonActionProps: y,
+  onAction: t,
+  onClose: f
 }) => {
-  const handleAction = async () => {
+  const p = async () => {
     try {
-      await onAction?.();
-      onClose();
-    } catch (error) {
-      console.error("Modal action failed:", error);
+      await (t == null ? void 0 : t()), f();
+    } catch (h) {
+      console.error("Modal action failed:", h);
     }
-  };
-  const hasValidCloseLabel = isValidButtonLabel(buttonCloseLabel);
-  const hasValidActionButton = isValidButtonLabel(buttonActionLabel) && onAction !== void 0;
-  return /* @__PURE__ */ jsxs(Fragment, { children: [
-    hasValidCloseLabel && /* @__PURE__ */ jsx(
-      Button,
+  }, u = j(e), g = j(i) && t !== void 0;
+  return /* @__PURE__ */ k(B, { children: [
+    u && /* @__PURE__ */ d(
+      v,
       {
-        className: cn("border-primary/50", buttonCloseProps?.className),
-        variant: buttonCloseProps?.variant ?? "bordered",
-        onPress: onClose,
-        ...defaultButtonProps,
-        ...buttonCloseProps,
-        children: buttonCloseLabel
+        className: n("border-primary/50", o == null ? void 0 : o.className),
+        variant: (o == null ? void 0 : o.variant) ?? "bordered",
+        onPress: f,
+        ...D,
+        ...o,
+        children: e
       }
     ),
-    hasValidActionButton && /* @__PURE__ */ jsx(
-      Button,
+    g && /* @__PURE__ */ d(
+      v,
       {
-        onPress: handleAction,
-        ...defaultButtonProps,
-        ...buttonActionProps,
-        children: buttonActionLabel
+        onPress: p,
+        ...D,
+        ...y,
+        children: i
       }
     )
   ] });
-};
-const Modal = forwardRef(
+}, T = I(
   ({
-    trigger,
-    title,
-    footer,
-    children,
-    onAction,
-    buttonCloseLabel,
-    buttonActionLabel,
-    buttonCloseProps,
-    buttonActionProps,
-    defaultBackdrop = "opaque",
-    onOpenChange,
-    classNames,
-    ...props
-  }, ref) => {
-    const { isOpen, onOpen, onClose } = useDisclosure({
-      onChange: onOpenChange
-    });
-    const [backdrop, setBackdrop] = useState(defaultBackdrop);
-    const handleOpen = useCallback(
-      (backdropType = defaultBackdrop) => {
-        setBackdrop(backdropType);
-        onOpen();
+    trigger: e,
+    title: i,
+    footer: o,
+    children: y,
+    onAction: t,
+    buttonCloseLabel: f,
+    buttonActionLabel: p,
+    buttonCloseProps: u,
+    buttonActionProps: g,
+    defaultBackdrop: h = "opaque",
+    onOpenChange: O,
+    classNames: r,
+    ...V
+  }, F) => {
+    const { isOpen: K, onOpen: b, onClose: x } = S({
+      onChange: O
+    }), [q, E] = R(h), M = w(
+      (a = h) => {
+        E(a), b();
       },
-      [defaultBackdrop, onOpen]
-    );
-    const handleKeyDown = useCallback(
-      (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          handleOpen();
-        }
+      [h, b]
+    ), H = w(
+      (a) => {
+        (a.key === "Enter" || a.key === " ") && (a.preventDefault(), M());
       },
-      [handleOpen]
-    );
-    const modalClassNames = {
-      closeButton: cn(defaultClassNames.closeButton, classNames?.closeButton),
-      base: cn(defaultClassNames.base, classNames?.base),
-      header: cn(defaultClassNames.header, classNames?.header),
-      body: cn(classNames?.body),
-      footer: cn(defaultClassNames.footer, classNames?.footer),
-      backdrop: cn(classNames?.backdrop)
+      [M]
+    ), l = {
+      closeButton: n(c.closeButton, r == null ? void 0 : r.closeButton),
+      base: n(c.base, r == null ? void 0 : r.base),
+      header: n(c.header, r == null ? void 0 : r.header),
+      body: n(r == null ? void 0 : r.body),
+      footer: n(c.footer, r == null ? void 0 : r.footer),
+      backdrop: n(r == null ? void 0 : r.backdrop)
     };
-    return /* @__PURE__ */ jsxs(Fragment, { children: [
-      /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ k(B, { children: [
+      /* @__PURE__ */ d(
         "div",
         {
           role: "button",
           tabIndex: 0,
-          onClick: () => handleOpen(),
-          onKeyDown: handleKeyDown,
+          onClick: () => M(),
+          onKeyDown: H,
           className: "inline-block",
-          children: trigger
+          children: e
         }
       ),
-      /* @__PURE__ */ jsx(
-        Modal$1,
+      /* @__PURE__ */ d(
+        $,
         {
-          ref,
-          backdrop,
-          classNames: modalClassNames,
-          isOpen,
-          onClose,
-          ...props,
-          children: /* @__PURE__ */ jsx(ModalContent, { children: () => /* @__PURE__ */ jsxs(Fragment, { children: [
-            title !== void 0 && /* @__PURE__ */ jsx(ModalHeader, { className: modalClassNames.header, children: title }),
-            /* @__PURE__ */ jsx(ModalBody, { className: modalClassNames.body, children }),
-            /* @__PURE__ */ jsx(ModalFooter, { className: modalClassNames.footer, children: footer !== void 0 ? footer : /* @__PURE__ */ jsx(
-              ModalButtons,
+          ref: F,
+          backdrop: q,
+          classNames: l,
+          isOpen: K,
+          onClose: x,
+          ...V,
+          children: /* @__PURE__ */ d(z, { children: () => /* @__PURE__ */ k(B, { children: [
+            i !== void 0 && /* @__PURE__ */ d(G, { className: l.header, children: i }),
+            /* @__PURE__ */ d(J, { className: l.body, children: y }),
+            /* @__PURE__ */ d(L, { className: l.footer, children: o !== void 0 ? o : /* @__PURE__ */ d(
+              Q,
               {
-                buttonCloseLabel,
-                buttonActionLabel,
-                buttonCloseProps,
-                buttonActionProps,
-                onAction,
-                onClose
+                buttonCloseLabel: f,
+                buttonActionLabel: p,
+                buttonCloseProps: u,
+                buttonActionProps: g,
+                onAction: t,
+                onClose: x
               }
             ) })
           ] }) })
@@ -142,7 +127,7 @@ const Modal = forwardRef(
     ] });
   }
 );
-Modal.displayName = "Modal";
+T.displayName = "Modal";
 export {
-  Modal
+  T as Modal
 };

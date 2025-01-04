@@ -1,94 +1,91 @@
-import { jsx, jsxs } from "react/jsx-runtime";
-import { useDataGridState } from "../useDataGridState/x-react.es.js";
-import { cn } from "../../utils/x-react.es.js";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
-import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
-import { DataGridSkeleton } from "../DataGridSkeleton/x-react.es.js";
-import { GRID_VARIANTS } from "../../data/default/x-react.es.js";
-function DataGrid({
-  rows,
-  columns,
-  onSortChange,
-  variant = "unstyled",
-  isLoading = false,
-  onGridScrollEnd,
-  childrenProps,
-  ...props
+import { jsx as t, jsxs as m } from "react/jsx-runtime";
+import { useDataGridState as v } from "../useDataGridState/x-react.es.js";
+import { cn as o } from "../../utils/x-react.es.js";
+import { Table as D, TableHeader as G, TableColumn as H, TableBody as I, TableRow as R, TableCell as w } from "@nextui-org/react";
+import { IconChevronUp as z, IconChevronDown as j } from "@tabler/icons-react";
+import { DataGridSkeleton as A } from "../DataGridSkeleton/x-react.es.js";
+import { GRID_VARIANTS as B } from "../../data/default/x-react.es.js";
+function K({
+  rows: b,
+  columns: i,
+  onSortChange: n,
+  variant: r = "unstyled",
+  isLoading: y = !1,
+  onGridScrollEnd: d,
+  childrenProps: e,
+  ...l
 }) {
+  var C, c;
   const {
-    sortConfig,
-    processedColumns,
-    formatSortHeader,
-    extractCellValue,
-    extractColumnHeader,
-    onSort,
-    handleGridScroll
-  } = useDataGridState({
-    onSortChange,
-    columns,
-    onGridScrollEnd
-  });
-  const variantClasses = GRID_VARIANTS[variant];
-  if (isLoading) {
-    return /* @__PURE__ */ jsx(
-      DataGridSkeleton,
-      {
-        columns: columns.length,
-        checkboxSelection: props.showSelectionCheckboxes,
-        variant,
-        rows: rows.length
-      }
-    );
-  }
-  return /* @__PURE__ */ jsxs(
-    Table,
+    sortConfig: s,
+    processedColumns: N,
+    formatSortHeader: S,
+    extractCellValue: u,
+    extractColumnHeader: x,
+    onSort: k,
+    handleGridScroll: T
+  } = v({
+    onSortChange: n,
+    columns: i,
+    onGridScrollEnd: d
+  }), f = B[r];
+  return y ? /* @__PURE__ */ t(
+    A,
+    {
+      columns: i.length,
+      checkboxSelection: l.showSelectionCheckboxes,
+      variant: r,
+      rows: b.length
+    }
+  ) : /* @__PURE__ */ m(
+    D,
     {
       "aria-label": "data-grid",
-      ...props,
+      ...l,
       classNames: {
-        ...props.classNames,
-        th: cn(variantClasses.th, props.classNames?.th),
-        tr: cn(variantClasses.tr, props.classNames?.tr)
+        ...l.classNames,
+        th: o(f.th, (C = l.classNames) == null ? void 0 : C.th),
+        tr: o(f.tr, (c = l.classNames) == null ? void 0 : c.tr)
       },
-      onScroll: handleGridScroll,
+      onScroll: T,
       children: [
-        /* @__PURE__ */ jsx(
-          TableHeader,
+        /* @__PURE__ */ t(
+          G,
           {
-            columns: processedColumns,
-            ...childrenProps?.tableHeaderProps,
-            children: (column) => /* @__PURE__ */ jsx(
-              TableColumn,
+            columns: N,
+            ...e == null ? void 0 : e.tableHeaderProps,
+            children: (a) => /* @__PURE__ */ t(
+              H,
               {
-                "aria-label": extractColumnHeader(column),
-                ...childrenProps?.tableColumnProps,
-                children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
-                  column.header,
-                  column.sortable !== false && /* @__PURE__ */ jsxs(
+                "aria-label": x(a),
+                ...e == null ? void 0 : e.tableColumnProps,
+                children: /* @__PURE__ */ m("div", { className: "flex items-center gap-2", children: [
+                  a.header,
+                  a.sortable !== !1 && /* @__PURE__ */ m(
                     "div",
                     {
-                      className: cn("relative size-4 cursor-pointer"),
-                      onClick: () => onSort(column),
+                      className: o("relative size-4 cursor-pointer"),
+                      onClick: () => k(a),
                       role: "button",
-                      "aria-label": formatSortHeader(column.header),
+                      "aria-label": S(a.header),
                       children: [
-                        /* @__PURE__ */ jsx(
-                          IconChevronUp,
+                        /* @__PURE__ */ t(
+                          z,
                           {
                             size: 16,
-                            className: cn(
+                            className: o(
                               "absolute -top-1",
-                              sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
+                              s.field === a.key && s.direction === "asc" ? "opacity-100" : "opacity-30"
                             )
                           }
                         ),
-                        /* @__PURE__ */ jsx(
-                          IconChevronDown,
+                        /* @__PURE__ */ t(
+                          j,
                           {
                             size: 16,
-                            className: cn(
+                            className: o(
                               "absolute top-1",
-                              sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
+                              s.field === a.key && s.direction === "desc" ? "opacity-100" : "opacity-30"
                             )
                           }
                         )
@@ -97,17 +94,15 @@ function DataGrid({
                   )
                 ] })
               },
-              column.key
+              a.key
             )
           }
         ),
-        /* @__PURE__ */ jsx(TableBody, { items: rows, ...childrenProps?.tableBodyProps, children: (row) => {
-          return /* @__PURE__ */ jsx(TableRow, { ...childrenProps?.tableRowProps, children: (columnKey) => /* @__PURE__ */ jsx(TableCell, { ...childrenProps?.tableCellProps, children: extractCellValue(columnKey, row, columns) }) }, row.id);
-        } })
+        /* @__PURE__ */ t(I, { items: b, ...e == null ? void 0 : e.tableBodyProps, children: (a) => /* @__PURE__ */ t(R, { ...e == null ? void 0 : e.tableRowProps, children: (g) => /* @__PURE__ */ t(w, { ...e == null ? void 0 : e.tableCellProps, children: u(g, a, i) }) }, a.id) })
       ]
     }
   );
 }
 export {
-  DataGrid
+  K as DataGrid
 };

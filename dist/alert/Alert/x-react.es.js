@@ -1,40 +1,35 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Alert as Alert$1, Button } from "@nextui-org/react";
-const Alert = forwardRef(
+import { jsx as s } from "react/jsx-runtime";
+import { forwardRef as d } from "react";
+import { Alert as n, Button as c } from "@nextui-org/react";
+const p = d(
   ({
-    onVisibleChange,
-    onClose,
-    isVisible = true,
-    closeButtonProps,
-    isClosable = false,
-    ...otherProps
-  }, ref) => {
-    const handleVisibilityChange = (visible) => {
-      onVisibleChange?.(visible);
+    onVisibleChange: r,
+    onClose: t,
+    isVisible: a = !0,
+    closeButtonProps: m,
+    isClosable: e = !1,
+    ...o
+  }, i) => {
+    const l = (u) => {
+      r == null || r(u);
+    }, f = () => {
+      t == null || t(), l(!1);
     };
-    const handleClose = () => {
-      onClose?.();
-      handleVisibilityChange(false);
-    };
-    if (isVisible === false) {
-      return null;
-    }
-    return /* @__PURE__ */ jsx(
-      Alert$1,
+    return a === !1 ? null : /* @__PURE__ */ s(
+      n,
       {
-        ...otherProps,
-        ref,
-        isClosable,
-        onVisibleChange: handleVisibilityChange,
-        onClose: handleClose,
-        closeButton: isClosable !== void 0 ? /* @__PURE__ */ jsx(
-          Button,
+        ...o,
+        ref: i,
+        isClosable: e,
+        onVisibleChange: l,
+        onClose: f,
+        closeButton: e !== void 0 ? /* @__PURE__ */ s(
+          c,
           {
             size: "sm",
             variant: "light",
-            ...closeButtonProps,
-            onPress: handleClose,
+            ...m,
+            onPress: f,
             children: "Close"
           }
         ) : null
@@ -42,7 +37,7 @@ const Alert = forwardRef(
     );
   }
 );
-Alert.displayName = "Alert";
+p.displayName = "Alert";
 export {
-  Alert
+  p as Alert
 };

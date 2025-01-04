@@ -1,24 +1,20 @@
-import { jsxs, jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { InputOtp as InputOtp$1 } from "@nextui-org/react";
-import { cn } from "../../utils/x-react.es.js";
-const InputOtp = forwardRef(
+import { jsxs as n, jsx as e } from "react/jsx-runtime";
+import { forwardRef as f } from "react";
+import { InputOtp as m } from "@nextui-org/react";
+import { cn as a } from "../../utils/x-react.es.js";
+const i = f(
   ({
-    length = 6,
-    label = `${length} digits OTP`,
-    labelClasses,
-    containerClasses,
-    ...props
-  }, ref) => {
-    const defaultLabelClasses = "text-default-500 text-small mb-2";
-    const defaultContainerClasses = "flex flex-col";
-    return /* @__PURE__ */ jsxs("div", { ref, className: cn(defaultContainerClasses, containerClasses), children: [
-      label && /* @__PURE__ */ jsx("p", { className: cn(defaultLabelClasses, labelClasses), children: label }),
-      /* @__PURE__ */ jsx(InputOtp$1, { length, ...props })
-    ] });
-  }
+    length: t = 6,
+    label: s = `${t} digits OTP`,
+    labelClasses: l,
+    containerClasses: r,
+    ...o
+  }, p) => /* @__PURE__ */ n("div", { ref: p, className: a("flex flex-col", r), children: [
+    s && /* @__PURE__ */ e("p", { className: a("text-default-500 text-small mb-2", l), children: s }),
+    /* @__PURE__ */ e(m, { length: t, ...o })
+  ] })
 );
-InputOtp.displayName = "InputOtp";
+i.displayName = "InputOtp";
 export {
-  InputOtp
+  i as InputOtp
 };

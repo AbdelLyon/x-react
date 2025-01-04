@@ -1,68 +1,70 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { CheckboxGroup as CheckboxGroup$1, Checkbox } from "@nextui-org/react";
-import { Checkbox as Checkbox2 } from "@nextui-org/react";
-import { cn } from "../../utils/x-react.es.js";
-const CheckboxGroup = forwardRef(
+import { jsx as e } from "react/jsx-runtime";
+import { forwardRef as k } from "react";
+import { CheckboxGroup as N, Checkbox as G } from "@nextui-org/react";
+import { Checkbox as R } from "@nextui-org/react";
+import { cn as o } from "../../utils/x-react.es.js";
+const u = k(
   ({
-    items,
-    groupClasses,
-    itemClasses,
-    label = "Select options",
-    defaultValue,
-    ...props
-  }, ref) => {
-    const defaultGroupClasses = {
+    items: x,
+    groupClasses: r,
+    itemClasses: b,
+    label: n = "Select options",
+    defaultValue: d,
+    ...h
+  }, w) => {
+    const l = {
       base: "w-full",
       label: "text-medium font-semibold"
-    };
-    const defaultItemClasses = {
+    }, c = {
       base: "w-full",
       label: "text-small",
       wrapper: ""
     };
-    return /* @__PURE__ */ jsx(
-      CheckboxGroup$1,
+    return /* @__PURE__ */ e(
+      N,
       {
-        ref,
-        label,
-        defaultValue,
-        ...props,
+        ref: w,
+        label: n,
+        defaultValue: d,
+        ...h,
         classNames: {
-          base: cn(defaultGroupClasses.base, groupClasses?.base),
-          label: cn(defaultGroupClasses.label, groupClasses?.label)
+          base: o(l.base, r == null ? void 0 : r.base),
+          label: o(l.label, r == null ? void 0 : r.label)
         },
-        children: items.map((item) => /* @__PURE__ */ jsx(
-          Checkbox,
-          {
-            ...item,
-            classNames: {
-              base: cn(
-                defaultItemClasses.base,
-                itemClasses?.base,
-                item.className
-              ),
-              label: cn(
-                defaultItemClasses.label,
-                itemClasses?.label,
-                item.classNames?.label
-              ),
-              wrapper: cn(
-                defaultItemClasses.wrapper,
-                itemClasses?.wrapper,
-                item.classNames?.wrapper
-              )
+        children: x.map((a) => {
+          var p, f;
+          return /* @__PURE__ */ e(
+            G,
+            {
+              ...a,
+              classNames: {
+                base: o(
+                  c.base,
+                  b == null ? void 0 : b.base,
+                  a.className
+                ),
+                label: o(
+                  c.label,
+                  b == null ? void 0 : b.label,
+                  (p = a.classNames) == null ? void 0 : p.label
+                ),
+                wrapper: o(
+                  c.wrapper,
+                  b == null ? void 0 : b.wrapper,
+                  (f = a.classNames) == null ? void 0 : f.wrapper
+                )
+              },
+              children: a.label
             },
-            children: item.label
-          },
-          item.value
-        ))
+            a.value
+          );
+        })
       }
     );
   }
 );
-CheckboxGroup.displayName = "CheckboxGroup";
+u.displayName = "CheckboxGroup";
 export {
-  Checkbox2 as Checkbox,
-  CheckboxGroup
+  R as Checkbox,
+  u as CheckboxGroup
 };

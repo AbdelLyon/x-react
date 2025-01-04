@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
-const useMounted = () => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  return mounted;
+import { useState as o, useEffect as u } from "react";
+const n = () => {
+  const [e, t] = o(!1);
+  return u(() => t(!0), []), e;
 };
 export {
-  useMounted
+  n as useMounted
 };

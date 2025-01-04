@@ -1,8 +1,8 @@
-import { useTheme as useTheme$1 } from "next-themes";
-const useTheme = () => {
-  const { setTheme, theme } = useTheme$1();
-  return { setTheme, theme };
+import { useTheme as s } from "next-themes";
+const h = () => {
+  const { setTheme: e, theme: m } = s();
+  return { setTheme: e, theme: m };
 };
 export {
-  useTheme
+  h as useTheme
 };

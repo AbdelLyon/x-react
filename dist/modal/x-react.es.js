@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Modal } from "./Modal/x-react.es.js";
+import { Modal as p } from "./Modal/x-react.es.js";
 export {
-  Modal
+  p as Modal
 };

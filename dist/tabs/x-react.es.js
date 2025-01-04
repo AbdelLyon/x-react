@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Tabs } from "./Tabs/x-react.es.js";
+import { Tabs as p } from "./Tabs/x-react.es.js";
 export {
-  Tabs
+  p as Tabs
 };

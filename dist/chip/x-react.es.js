@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Chip } from "./Chip/x-react.es.js";
+import { Chip as i } from "./Chip/x-react.es.js";
 export {
-  Chip
+  i as Chip
 };

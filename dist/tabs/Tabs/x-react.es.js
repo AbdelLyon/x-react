@@ -1,74 +1,67 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Tabs as Tabs$1, Tab } from "@nextui-org/react";
-import { cn } from "../../utils/x-react.es.js";
-const Tabs = forwardRef(
+import { jsx as l } from "react/jsx-runtime";
+import { forwardRef as x } from "react";
+import { Tabs as L, Tab as R } from "@nextui-org/react";
+import { cn as j } from "../../utils/x-react.es.js";
+const k = x(
   ({
-    items,
-    defaultActiveTab,
-    onTabChange,
-    renderTabContent,
-    variant = "solid",
-    color = "primary",
-    size = "md",
-    radius = "md",
-    fullWidth = false,
-    placement = "top",
-    isVertical = false,
-    disableAnimation = false,
-    disableCursorAnimation = false,
-    destroyInactiveTabPanel = true,
-    ...props
-  }, ref) => {
-    const handleSelectionChange = (key) => {
-      onTabChange?.(key.toString());
-    };
-    const defaultContent = (item) => item.content;
-    const contentRenderer = renderTabContent || defaultContent;
-    const getVariantStyles = () => {
-      if (variant === "bordered") {
-        return "border-1 border-default";
-      }
-      return "";
-    };
-    return /* @__PURE__ */ jsx(
-      Tabs$1,
+    items: o,
+    defaultActiveTab: d,
+    onTabChange: t,
+    renderTabContent: n,
+    variant: s = "solid",
+    color: f = "primary",
+    size: c = "md",
+    radius: i = "md",
+    fullWidth: m = !1,
+    placement: u = "top",
+    isVertical: b = !1,
+    disableAnimation: p = !1,
+    disableCursorAnimation: y = !1,
+    destroyInactiveTabPanel: S = !0,
+    ...r
+  }, N) => {
+    var a;
+    const h = (e) => {
+      t == null || t(e.toString());
+    }, V = n || ((e) => e.content), g = () => s === "bordered" ? "border-1 border-default" : "";
+    return /* @__PURE__ */ l(
+      L,
       {
-        ref,
-        variant,
-        color,
-        size,
-        radius,
-        fullWidth,
-        placement,
-        isVertical,
-        disableAnimation,
-        disableCursorAnimation,
-        destroyInactiveTabPanel,
-        defaultSelectedKey: defaultActiveTab,
+        ref: N,
+        variant: s,
+        color: f,
+        size: c,
+        radius: i,
+        fullWidth: m,
+        placement: u,
+        isVertical: b,
+        disableAnimation: p,
+        disableCursorAnimation: y,
+        destroyInactiveTabPanel: S,
+        defaultSelectedKey: d,
         classNames: {
-          ...props.classNames,
-          tabList: cn(getVariantStyles(), props.classNames?.tabList)
+          ...r.classNames,
+          tabList: j(g(), (a = r.classNames) == null ? void 0 : a.tabList)
         },
-        onSelectionChange: handleSelectionChange,
-        ...props,
-        children: items.map((item) => /* @__PURE__ */ jsx(
-          Tab,
+        onSelectionChange: h,
+        ...r,
+        children: o.map((e) => /* @__PURE__ */ l(
+          R,
           {
-            title: item.title,
-            titleValue: item.titleValue,
-            href: item.href,
-            target: item.target,
-            isDisabled: item.disabled,
-            children: contentRenderer(item)
+            title: e.title,
+            titleValue: e.titleValue,
+            href: e.href,
+            target: e.target,
+            isDisabled: e.disabled,
+            children: V(e)
           },
-          item.key
+          e.key
         ))
       }
     );
   }
 );
-Tabs.displayName = "Tabs";
+k.displayName = "Tabs";
 export {
-  Tabs
+  k as Tabs
 };

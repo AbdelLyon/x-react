@@ -1,72 +1,49 @@
-import { debounce } from "../../utils/x-react.es.js";
-import { useRef, useCallback, useLayoutEffect } from "react";
-const useInfiniteScroll = (props = {}) => {
+import { debounce as g } from "../../utils/x-react.es.js";
+import { useRef as t, useCallback as x, useLayoutEffect as R } from "react";
+const I = (b = {}) => {
   const {
-    hasMore = true,
-    distance = 250,
-    isEnabled = true,
-    shouldUseLoader = true,
-    onLoadMore
-  } = props;
-  const scrollContainerRef = useRef(null);
-  const loaderRef = useRef(null);
-  const observerRef = useRef(null);
-  const isLoadingRef = useRef(false);
-  const loadMore = useCallback(() => {
-    let timer;
-    if (!isLoadingRef.current && hasMore && onLoadMore) {
-      isLoadingRef.current = true;
-      onLoadMore();
-      timer = setTimeout(() => {
-        isLoadingRef.current = false;
-      }, 100);
-    }
-    return () => clearTimeout(timer);
-  }, [hasMore, onLoadMore]);
-  useLayoutEffect(() => {
-    const scrollContainerNode = scrollContainerRef.current;
-    if (!isEnabled || !scrollContainerNode || !hasMore) {
+    hasMore: r = !0,
+    distance: o = 250,
+    isEnabled: i = !0,
+    shouldUseLoader: u = !0,
+    onLoadMore: n
+  } = b, a = t(null), f = t(null), s = t(null), c = t(!1), l = x(() => {
+    let e;
+    return !c.current && r && n && (c.current = !0, n(), e = setTimeout(() => {
+      c.current = !1;
+    }, 100)), () => clearTimeout(e);
+  }, [r, n]);
+  return R(() => {
+    const e = a.current;
+    if (!i || !e || !r)
       return;
-    }
-    if (shouldUseLoader) {
-      const loaderNode = loaderRef.current;
-      if (!loaderNode) {
+    if (u) {
+      const m = f.current;
+      if (!m)
         return;
-      }
-      const options = {
-        root: scrollContainerNode,
-        rootMargin: `0px 0px ${distance}px 0px`,
+      const h = {
+        root: e,
+        rootMargin: `0px 0px ${o}px 0px`,
         threshold: 0.1
-      };
-      const observer = new IntersectionObserver((entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          loadMore();
-        }
-      }, options);
-      observer.observe(loaderNode);
-      observerRef.current = observer;
-      return () => {
-        if (observerRef.current) {
-          observerRef.current.disconnect();
-        }
+      }, p = new IntersectionObserver((v) => {
+        const [L] = v;
+        L.isIntersecting && l();
+      }, h);
+      return p.observe(m), s.current = p, () => {
+        s.current && s.current.disconnect();
       };
     }
-    const debouncedCheckIfNearBottom = debounce(() => {
-      if (scrollContainerNode.scrollHeight - scrollContainerNode.scrollTop <= scrollContainerNode.clientHeight + distance) {
-        loadMore();
-      }
+    const d = g(() => {
+      e.scrollHeight - e.scrollTop <= e.clientHeight + o && l();
     }, 100);
-    scrollContainerNode.addEventListener("scroll", debouncedCheckIfNearBottom);
-    return () => {
-      scrollContainerNode.removeEventListener(
+    return e.addEventListener("scroll", d), () => {
+      e.removeEventListener(
         "scroll",
-        debouncedCheckIfNearBottom
+        d
       );
     };
-  }, [hasMore, distance, isEnabled, shouldUseLoader, loadMore]);
-  return [loaderRef, scrollContainerRef];
+  }, [r, o, i, u, l]), [f, a];
 };
 export {
-  useInfiniteScroll
+  I as useInfiniteScroll
 };

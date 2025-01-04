@@ -1,6 +1,6 @@
 /* empty css                      */
-import { DatePicker, DateRangePicker } from "./DatePicker/x-react.es.js";
+import { DatePicker as a, DateRangePicker as i } from "./DatePicker/x-react.es.js";
 export {
-  DatePicker,
-  DateRangePicker
+  a as DatePicker,
+  i as DateRangePicker
 };

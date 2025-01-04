@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Popover } from "./Popover/x-react.es.js";
+import { Popover as e } from "./Popover/x-react.es.js";
 export {
-  Popover
+  e as Popover
 };

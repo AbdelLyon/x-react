@@ -1,101 +1,99 @@
-import { jsxs, jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
-import { cn } from "../../utils/x-react.es.js";
+import { jsxs as n, jsx as e } from "react/jsx-runtime";
+import { forwardRef as T } from "react";
+import { Navbar as D, NavbarContent as u, NavbarMenuToggle as $, NavbarItem as b, Link as c, NavbarMenu as q, NavbarMenuItem as z } from "@nextui-org/react";
+import { cn as x } from "../../utils/x-react.es.js";
 import "next-themes";
-import { useResponsive } from "../../hooks/useResponsive/x-react.es.js";
-const Navbar = forwardRef(
+import { useResponsive as B } from "../../hooks/useResponsive/x-react.es.js";
+const E = T(
   ({
-    appName,
-    appLogo,
-    profile,
-    navigationItems = [],
-    menuItems = [],
-    contentProps,
-    menuProps,
-    onItemClick,
-    className,
-    classNames,
-    isMenuOpen,
-    onMenuOpenChange,
-    ...props
-  }, ref) => {
-    const { isDesktop, isMobile, isTablet } = useResponsive();
-    const handleItemPress = (item) => {
-      item.onPress?.();
-      onItemClick?.(item);
-      onMenuOpenChange?.(false);
+    appName: l,
+    appLogo: a,
+    profile: f,
+    navigationItems: y = [],
+    menuItems: p = [],
+    contentProps: g,
+    menuProps: w,
+    onItemClick: t,
+    className: j,
+    classNames: d,
+    isMenuOpen: i,
+    onMenuOpenChange: o,
+    ...P
+  }, A) => {
+    const { isDesktop: v, isMobile: s, isTablet: N } = B(), R = (r) => {
+      var h;
+      (h = r.onPress) == null || h.call(r), t == null || t(r), o == null || o(!1);
     };
-    return /* @__PURE__ */ jsxs(
-      Navbar$1,
+    return /* @__PURE__ */ n(
+      D,
       {
-        ref,
-        className,
+        ref: A,
+        className: j,
         classNames: {
           base: "bg-white dark:bg-background",
           wrapper: "max-w-full",
-          ...classNames
+          ...d
         },
-        isMenuOpen,
-        onMenuOpenChange,
-        ...props,
+        isMenuOpen: i,
+        onMenuOpenChange: o,
+        ...P,
         children: [
-          isMobile && /* @__PURE__ */ jsx(NavbarContent, { children: /* @__PURE__ */ jsx(
-            NavbarMenuToggle,
+          s && /* @__PURE__ */ e(u, { children: /* @__PURE__ */ e(
+            $,
             {
-              "aria-label": isMenuOpen === true ? "Close menu" : "Open menu"
+              "aria-label": i === !0 ? "Close menu" : "Open menu"
             }
           ) }),
-          !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxs(NavbarContent, { justify: "start", children: [
-            !isTablet && appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "w-[247px] border-r-2 border-default", children: appName }),
-            appLogo !== null && /* @__PURE__ */ jsx(NavbarItem, { children: appLogo })
+          !s && (l !== null || a !== null) && /* @__PURE__ */ n(u, { justify: "start", children: [
+            !N && l !== null && /* @__PURE__ */ e(b, { className: "w-[247px] border-r-2 border-default", children: l }),
+            a !== null && /* @__PURE__ */ e(b, { children: a })
           ] }),
-          /* @__PURE__ */ jsxs(NavbarContent, { justify: "end", ...contentProps, children: [
-            isDesktop && navigationItems.map((item) => /* @__PURE__ */ jsx(NavbarItem, { children: /* @__PURE__ */ jsxs(
-              Link,
+          /* @__PURE__ */ n(u, { justify: "end", ...g, children: [
+            v && y.map((r) => /* @__PURE__ */ e(b, { children: /* @__PURE__ */ n(
+              c,
               {
-                className: cn(
+                className: x(
                   "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
-                    "border-l-2 border-primary bg-content1 text-primary": item.isActive
+                    "border-l-2 border-primary bg-content1 text-primary": r.isActive
                   },
-                  classNames?.item
+                  d == null ? void 0 : d.item
                 ),
-                onPress: () => handleItemPress(item),
+                onPress: () => R(r),
                 children: [
-                  item.startContent,
-                  item.label,
-                  item.endContent
+                  r.startContent,
+                  r.label,
+                  r.endContent
                 ]
               }
-            ) }, item.key)),
-            profile !== null && /* @__PURE__ */ jsx(NavbarItem, { children: profile })
+            ) }, r.key)),
+            f !== null && /* @__PURE__ */ e(b, { children: f })
           ] }),
-          !isDesktop && /* @__PURE__ */ jsx(NavbarMenu, { ...menuProps, children: menuItems.map((item) => /* @__PURE__ */ jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxs(
-            Link,
+          !v && /* @__PURE__ */ e(q, { ...w, children: p.map((r) => /* @__PURE__ */ e(z, { children: /* @__PURE__ */ n(
+            c,
             {
-              className: cn(
+              className: x(
                 "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                 {
-                  "border-l-2 border-primary bg-content1 text-primary": item.isActive
+                  "border-l-2 border-primary bg-content1 text-primary": r.isActive
                 },
-                classNames?.item
+                d == null ? void 0 : d.item
               ),
-              onPress: () => onItemClick?.(item),
+              onPress: () => t == null ? void 0 : t(r),
               children: [
-                item.startContent,
-                item.label,
-                item.endContent
+                r.startContent,
+                r.label,
+                r.endContent
               ]
             },
-            item.key
-          ) }, item.key)) })
+            r.key
+          ) }, r.key)) })
         ]
       }
     );
   }
 );
-Navbar.displayName = "Navbar";
+E.displayName = "Navbar";
 export {
-  Navbar
+  E as Navbar
 };

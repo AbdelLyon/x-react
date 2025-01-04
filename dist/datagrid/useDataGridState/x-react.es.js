@@ -1,72 +1,54 @@
-import { useState } from "react";
-const useDataGridState = ({
-  columns,
-  onSortChange,
-  onGridScrollEnd
+import { useState as c } from "react";
+const H = ({
+  columns: o,
+  onSortChange: l,
+  onGridScrollEnd: s
 }) => {
-  const [sortConfig, setSortConfig] = useState({
+  const [f, d] = c({
     field: null,
     direction: "asc"
-  });
-  const processedColumns = columns.map((column, index) => ({
-    ...column,
-    key: typeof column.field === "string" ? String(column.field) : String(index),
-    header: column.header
+  }), a = o.map((e, t) => ({
+    ...e,
+    key: typeof e.field == "string" ? String(e.field) : String(t),
+    header: e.header
   }));
-  const extractColumnHeader = (column) => {
-    return typeof column.header === "string" && column.header.length > 0 ? column.header : typeof column.key === "string" && column.key.length > 0 ? column.key : "Column";
-  };
-  const formatSortHeader = (header) => {
-    return typeof header === "string" && header.length > 0 ? `Sort by ${header}` : "Sort column";
-  };
-  const extractCellValue = (columnKey, row, columns2) => {
-    const column = columns2.find(
-      (c) => typeof c.field === "string" && String(c.field) === String(columnKey)
-    );
-    if (column === void 0) {
-      return null;
-    }
-    if (column.cell !== void 0) {
-      return column.cell(row);
-    }
-    if (typeof column.field === "string" && column.field.length > 0 && column.field in row) {
-      const value = row[column.field];
-      return typeof value === "string" || typeof value === "number" ? String(value) : null;
-    }
-    return null;
-  };
-  const onSort = (column) => {
-    const matchedColumn = columns.find(
-      (c) => typeof c.field === "string" && c.field.length > 0 && String(c.field) === column.key
-    );
-    const columnField = matchedColumn?.field;
-    if (columnField !== void 0 && columnField !== "actions") {
-      setSortConfig({
-        field: columnField,
-        direction: sortConfig.direction === "asc" ? "desc" : "asc"
-      });
-      onSortChange?.(
-        columnField,
-        sortConfig.direction === "asc" ? "desc" : "asc"
-      );
-    }
-  };
-  const handleGridScroll = (e) => {
-    const element = e.currentTarget;
-    if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
-      onGridScrollEnd?.();
-    }
-  };
   return {
-    sortConfig,
-    onSort,
-    extractCellValue,
-    extractColumnHeader,
-    formatSortHeader,
-    processedColumns,
-    handleGridScroll
+    sortConfig: f,
+    onSort: (e) => {
+      const t = o.find(
+        (i) => typeof i.field == "string" && i.field.length > 0 && String(i.field) === e.key
+      ), r = t == null ? void 0 : t.field;
+      r !== void 0 && r !== "actions" && (d({
+        field: r,
+        direction: f.direction === "asc" ? "desc" : "asc"
+      }), l == null || l(
+        r,
+        f.direction === "asc" ? "desc" : "asc"
+      ));
+    },
+    extractCellValue: (e, t, r) => {
+      const i = r.find(
+        (n) => typeof n.field == "string" && String(n.field) === String(e)
+      );
+      if (i === void 0)
+        return null;
+      if (i.cell !== void 0)
+        return i.cell(t);
+      if (typeof i.field == "string" && i.field.length > 0 && i.field in t) {
+        const n = t[i.field];
+        return typeof n == "string" || typeof n == "number" ? String(n) : null;
+      }
+      return null;
+    },
+    extractColumnHeader: (e) => typeof e.header == "string" && e.header.length > 0 ? e.header : typeof e.key == "string" && e.key.length > 0 ? e.key : "Column",
+    formatSortHeader: (e) => typeof e == "string" && e.length > 0 ? `Sort by ${e}` : "Sort column",
+    processedColumns: a,
+    handleGridScroll: (e) => {
+      const t = e.currentTarget;
+      t.scrollTop + t.clientHeight >= t.scrollHeight && (s == null || s());
+    }
   };
 };
 export {
-  useDataGridState
+  H as useDataGridState
 };

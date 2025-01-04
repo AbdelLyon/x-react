@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Drawer } from "./Drawer/x-react.es.js";
+import { Drawer as m } from "./Drawer/x-react.es.js";
 export {
-  Drawer
+  m as Drawer
 };

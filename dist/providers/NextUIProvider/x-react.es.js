@@ -1,9 +1,9 @@
-import { jsx } from "react/jsx-runtime";
-import { NextUIProvider as NextUIProvider$1 } from "@nextui-org/react";
-const NextUIProvider = (props) => {
-  const { children, ...rest } = props;
-  return /* @__PURE__ */ jsx(NextUIProvider$1, { ...rest, children });
+import { jsx as t } from "react/jsx-runtime";
+import { NextUIProvider as i } from "@nextui-org/react";
+const d = (r) => {
+  const { children: e, ...o } = r;
+  return /* @__PURE__ */ t(i, { ...o, children: e });
 };
 export {
-  NextUIProvider
+  d as NextUIProvider
 };

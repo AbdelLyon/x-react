@@ -1,61 +1,47 @@
-import { useState, useCallback, useEffect } from "react";
-function getStorageValue(key, defaultValue) {
-  if (typeof window === "undefined") {
-    return defaultValue;
-  }
+import { useState as u, useCallback as s, useEffect as g } from "react";
+function w(a, e) {
+  if (typeof window > "u")
+    return e;
   try {
-    const item = window.localStorage.getItem(key);
-    if (item === null) {
-      return defaultValue;
-    }
-    return JSON.parse(item);
-  } catch (error) {
-    console.warn(`Error reading localStorage key "${key}":`, error);
-    return defaultValue;
+    const r = window.localStorage.getItem(a);
+    return r === null ? e : JSON.parse(r);
+  } catch (r) {
+    return console.warn(`Error reading localStorage key "${a}":`, r), e;
   }
 }
-const useLocalStorage = (props) => {
-  const { key, defaultValue } = props;
-  const [storedValue, setStoredValue] = useState(
-    () => getStorageValue(key, defaultValue)
-  );
-  const setValue = useCallback(
-    (value) => {
+const d = (a) => {
+  const { key: e, defaultValue: r } = a, [c, n] = u(
+    () => w(e, r)
+  ), l = s(
+    (t) => {
       try {
-        const valueToStore = value instanceof Function ? value(storedValue) : value;
-        setStoredValue(valueToStore);
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      } catch (error) {
-        console.warn(`Error setting localStorage key "${key}":`, error);
+        const o = t instanceof Function ? t(c) : t;
+        n(o), window.localStorage.setItem(e, JSON.stringify(o));
+      } catch (o) {
+        console.warn(`Error setting localStorage key "${e}":`, o);
       }
     },
-    [key, storedValue]
-  );
-  const removeValue = useCallback(() => {
+    [e, c]
+  ), i = s(() => {
     try {
-      window.localStorage.removeItem(key);
-      setStoredValue(defaultValue);
-    } catch (error) {
-      console.warn(`Error removing localStorage key "${key}":`, error);
+      window.localStorage.removeItem(e), n(r);
+    } catch (t) {
+      console.warn(`Error removing localStorage key "${e}":`, t);
     }
-  }, [key, defaultValue]);
-  useEffect(() => {
-    const handleStorageChange = (event) => {
-      if (event.key === key && event.newValue !== null) {
+  }, [e, r]);
+  return g(() => {
+    const t = (o) => {
+      if (o.key === e && o.newValue !== null)
         try {
-          setStoredValue(JSON.parse(event.newValue));
+          n(JSON.parse(o.newValue));
         } catch {
-          setStoredValue(defaultValue);
+          n(r);
         }
-      } else if (event.key === key) {
-        setStoredValue(defaultValue);
-      }
+      else o.key === e && n(r);
     };
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, [key, defaultValue]);
-  return [storedValue, setValue, removeValue];
+    return window.addEventListener("storage", t), () => window.removeEventListener("storage", t);
+  }, [e, r]), [c, l, i];
 };
 export {
-  useLocalStorage
+  d as useLocalStorage
 };

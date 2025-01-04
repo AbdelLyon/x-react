@@ -1,53 +1,51 @@
-import { jsxs, jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Card as Card$1, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
-const Card = forwardRef(
+import { jsxs as B, jsx as d } from "react/jsx-runtime";
+import { forwardRef as F } from "react";
+import { Card as H, CardHeader as R, CardBody as $, CardFooter as k } from "@nextui-org/react";
+const q = F(
   ({
-    children,
-    shadow = "md",
-    radius = "lg",
-    fullWidth = false,
-    isHoverable = false,
-    isPressable = false,
-    isBlurred = false,
-    isFooterBlurred = false,
-    isDisabled = false,
-    disableAnimation = false,
-    disableRipple = false,
-    allowTextSelectionOnPress = false,
-    classNames,
-    header,
-    footer,
-    footerProps,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxs(
-      Card$1,
-      {
-        ref,
-        shadow,
-        radius,
-        fullWidth,
-        isHoverable,
-        isPressable,
-        isBlurred,
-        isFooterBlurred,
-        isDisabled,
-        disableAnimation,
-        disableRipple,
-        allowTextSelectionOnPress,
-        className: classNames?.base,
-        ...props,
-        children: [
-          header !== void 0 && /* @__PURE__ */ jsx(CardHeader, { className: classNames?.header, children: header }),
-          /* @__PURE__ */ jsx(CardBody, { className: classNames?.body, children }),
-          footer !== void 0 && /* @__PURE__ */ jsx(CardFooter, { className: classNames?.footer, ...footerProps, children: footer })
-        ]
-      }
-    );
-  }
+    children: i,
+    shadow: t = "md",
+    radius: C = "lg",
+    fullWidth: e = !1,
+    isHoverable: n = !1,
+    isPressable: p = !1,
+    isBlurred: h = !1,
+    isFooterBlurred: x = !1,
+    isDisabled: y = !1,
+    disableAnimation: b = !1,
+    disableRipple: j = !1,
+    allowTextSelectionOnPress: v = !1,
+    classNames: r,
+    header: o,
+    footer: f,
+    footerProps: g,
+    ...u
+  }, w) => /* @__PURE__ */ B(
+    H,
+    {
+      ref: w,
+      shadow: t,
+      radius: C,
+      fullWidth: e,
+      isHoverable: n,
+      isPressable: p,
+      isBlurred: h,
+      isFooterBlurred: x,
+      isDisabled: y,
+      disableAnimation: b,
+      disableRipple: j,
+      allowTextSelectionOnPress: v,
+      className: r == null ? void 0 : r.base,
+      ...u,
+      children: [
+        o !== void 0 && /* @__PURE__ */ d(R, { className: r == null ? void 0 : r.header, children: o }),
+        /* @__PURE__ */ d($, { className: r == null ? void 0 : r.body, children: i }),
+        f !== void 0 && /* @__PURE__ */ d(k, { className: r == null ? void 0 : r.footer, ...g, children: f })
+      ]
+    }
+  )
 );
-Card.displayName = "Card";
+q.displayName = "Card";
 export {
-  Card
+  q as Card
 };

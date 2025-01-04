@@ -1,53 +1,53 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { cn } from "../../utils/x-react.es.js";
-const Grid = forwardRef(
+import { jsx as t } from "react/jsx-runtime";
+import { forwardRef as g } from "react";
+import { cn as v } from "../../utils/x-react.es.js";
+const y = g(
   ({
-    children,
-    data,
-    columns = {
+    children: s,
+    data: d,
+    columns: i = {
       default: 1,
       sm: 2,
       md: 3,
       lg: 4,
       xl: 4
     },
-    gap = {
+    gap: r = {
       x: 4,
       y: 4
     },
-    className
-  }, ref) => {
-    const gridClasses = cn(
+    className: e
+  }, $) => {
+    const f = v(
       "grid",
-      `grid-cols-${columns.default}`,
-      columns.sm !== void 0 && `sm:grid-cols-${columns.sm}`,
-      columns.md !== void 0 && `md:grid-cols-${columns.md}`,
-      columns.lg !== void 0 && `lg:grid-cols-${columns.lg}`,
-      columns.xl !== void 0 && `xl:grid-cols-${columns.xl}`,
-      gap.x !== void 0 && `gap-x-${gap.x}`,
-      gap.y !== void 0 && `gap-y-${gap.y}`,
-      className
+      `grid-cols-${i.default}`,
+      i.sm !== void 0 && `sm:grid-cols-${i.sm}`,
+      i.md !== void 0 && `md:grid-cols-${i.md}`,
+      i.lg !== void 0 && `lg:grid-cols-${i.lg}`,
+      i.xl !== void 0 && `xl:grid-cols-${i.xl}`,
+      r.x !== void 0 && `gap-x-${r.x}`,
+      r.y !== void 0 && `gap-y-${r.y}`,
+      e
     );
-    return /* @__PURE__ */ jsx("div", { ref, className: gridClasses, children: data ? data.map((item) => /* @__PURE__ */ jsx(GridItem, { colSpan: item.colSpan, children: item.content }, item.id)) : children });
+    return /* @__PURE__ */ t("div", { ref: $, className: f, children: d ? d.map((m) => /* @__PURE__ */ t(x, { colSpan: m.colSpan, children: m.content }, m.id)) : s });
   }
 );
-Grid.displayName = "Grid";
-const GridItem = forwardRef(
-  ({ children, colSpan, className }, ref) => {
-    const itemClasses = cn(
-      colSpan?.default !== void 0 && `col-span-${colSpan.default}`,
-      colSpan?.sm !== void 0 && `sm:col-span-${colSpan.sm}`,
-      colSpan?.md !== void 0 && `md:col-span-${colSpan.md}`,
-      colSpan?.lg !== void 0 && `lg:col-span-${colSpan.lg}`,
-      colSpan?.xl !== void 0 && `xl:col-span-${colSpan.xl}`,
-      className
+y.displayName = "Grid";
+const x = g(
+  ({ children: s, colSpan: d, className: i }, r) => {
+    const e = v(
+      (d == null ? void 0 : d.default) !== void 0 && `col-span-${d.default}`,
+      (d == null ? void 0 : d.sm) !== void 0 && `sm:col-span-${d.sm}`,
+      (d == null ? void 0 : d.md) !== void 0 && `md:col-span-${d.md}`,
+      (d == null ? void 0 : d.lg) !== void 0 && `lg:col-span-${d.lg}`,
+      (d == null ? void 0 : d.xl) !== void 0 && `xl:col-span-${d.xl}`,
+      i
     );
-    return /* @__PURE__ */ jsx("div", { ref, className: itemClasses, children });
+    return /* @__PURE__ */ t("div", { ref: r, className: e, children: s });
   }
 );
-GridItem.displayName = "GridItem";
+x.displayName = "GridItem";
 export {
-  Grid,
-  GridItem
+  y as Grid,
+  x as GridItem
 };

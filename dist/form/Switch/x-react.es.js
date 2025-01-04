@@ -1,17 +1,17 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Switch as Switch$1 } from "@nextui-org/react";
-const Switch = forwardRef(
-  ({ width, height, style, ...props }, ref) => {
-    const combinedStyle = {
-      width: typeof width === "number" ? `${width}px` : width,
-      height: typeof height === "number" ? `${height}px` : height,
-      ...style
+import { jsx as c } from "react/jsx-runtime";
+import { forwardRef as f } from "react";
+import { Switch as i } from "@nextui-org/react";
+const n = f(
+  ({ width: o, height: r, style: t, ...e }, m) => {
+    const p = {
+      width: typeof o == "number" ? `${o}px` : o,
+      height: typeof r == "number" ? `${r}px` : r,
+      ...t
     };
-    return /* @__PURE__ */ jsx(Switch$1, { ref, style: combinedStyle, ...props });
+    return /* @__PURE__ */ c(i, { ref: m, style: p, ...e });
   }
 );
-Switch.displayName = "Switch";
+n.displayName = "Switch";
 export {
-  Switch
+  n as Switch
 };

@@ -1,23 +1,16 @@
-import { useState, useRef } from "react";
-const useIntersection = (options) => {
-  const [entry, setEntry] = useState(null);
-  const observer = useRef(null);
-  const ref = (element) => {
-    if (observer.current) {
-      observer.current.disconnect();
-      observer.current = null;
-    }
-    if (element === null) {
-      setEntry(null);
+import { useState as c, useRef as o } from "react";
+const i = (t) => {
+  const [u, e] = c(null), r = o(null);
+  return { ref: (n) => {
+    if (r.current && (r.current.disconnect(), r.current = null), n === null) {
+      e(null);
       return;
     }
-    observer.current = new IntersectionObserver(([_entry]) => {
-      setEntry(_entry);
-    }, options);
-    observer.current.observe(element);
-  };
-  return { ref, entry };
+    r.current = new IntersectionObserver(([s]) => {
+      e(s);
+    }, t), r.current.observe(n);
+  }, entry: u };
 };
 export {
-  useIntersection
+  i as useIntersection
 };

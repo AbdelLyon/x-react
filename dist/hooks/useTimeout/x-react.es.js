@@ -1,28 +1,14 @@
-import { useRef, useEffect } from "react";
-const useTimeout = (callback, delay, { autoInvoke = false } = {}) => {
-  const timeoutRef = useRef(null);
-  const start = (...params) => {
-    if (timeoutRef.current === void 0) {
-      timeoutRef.current = window.setTimeout(() => {
-        callback(...params);
-        timeoutRef.current = null;
-      }, delay);
-    }
+import { useRef as i, useEffect as l } from "react";
+const f = (n, e, { autoInvoke: o = !1 } = {}) => {
+  const t = i(null), r = (...c) => {
+    t.current === void 0 && (t.current = window.setTimeout(() => {
+      n(...c), t.current = null;
+    }, e));
+  }, u = () => {
+    t.current !== null && (window.clearTimeout(t.current), t.current = null);
   };
-  const clear = () => {
-    if (timeoutRef.current !== null) {
-      window.clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  };
-  useEffect(() => {
-    if (autoInvoke) {
-      start();
-    }
-    return clear;
-  }, [delay]);
-  return { start, clear };
+  return l(() => (o && r(), u), [e]), { start: r, clear: u };
 };
 export {
-  useTimeout
+  f as useTimeout
 };

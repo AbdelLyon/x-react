@@ -1,21 +1,21 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { cn } from "../../utils/x-react.es.js";
-const Section = forwardRef(
-  ({ children, spacing = "md", className }, ref) => {
-    const sectionClasses = cn(
+import { jsx as s } from "react/jsx-runtime";
+import { forwardRef as p } from "react";
+import { cn as c } from "../../utils/x-react.es.js";
+const f = p(
+  ({ children: m, spacing: o = "md", className: r }, t) => {
+    const e = c(
       {
-        "py-4": spacing === "sm",
-        "py-8": spacing === "md",
-        "py-12": spacing === "lg",
-        "py-16": spacing === "xl"
+        "py-4": o === "sm",
+        "py-8": o === "md",
+        "py-12": o === "lg",
+        "py-16": o === "xl"
       },
-      className
+      r
     );
-    return /* @__PURE__ */ jsx("section", { ref, className: sectionClasses, children });
+    return /* @__PURE__ */ s("section", { ref: t, className: e, children: m });
   }
 );
-Section.displayName = "Section";
+f.displayName = "Section";
 export {
-  Section
+  f as Section
 };

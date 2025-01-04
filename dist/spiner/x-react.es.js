@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Spinner } from "./Spiner/x-react.es.js";
+import { Spinner as e } from "./Spiner/x-react.es.js";
 export {
-  Spinner
+  e as Spinner
 };

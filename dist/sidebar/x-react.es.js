@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Sidebar } from "./Sidebar/x-react.es.js";
+import { Sidebar as i } from "./Sidebar/x-react.es.js";
 export {
-  Sidebar
+  i as Sidebar
 };

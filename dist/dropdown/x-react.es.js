@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Dropdown } from "./Dropdown/x-react.es.js";
+import { Dropdown as m } from "./Dropdown/x-react.es.js";
 export {
-  Dropdown
+  m as Dropdown
 };

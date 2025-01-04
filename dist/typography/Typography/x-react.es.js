@@ -1,7 +1,7 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { cn } from "../../utils/x-react.es.js";
-const VARIANT_STYLES = {
+import { jsx as f } from "react/jsx-runtime";
+import { forwardRef as a } from "react";
+import { cn as b } from "../../utils/x-react.es.js";
+const c = {
   h1: "text-4xl md:text-5xl font-bold",
   h2: "text-3xl md:text-4xl font-bold",
   h3: "text-2xl md:text-3xl font-bold",
@@ -12,44 +12,41 @@ const VARIANT_STYLES = {
   small: "text-sm",
   caption: "text-xs",
   overline: "text-xs uppercase tracking-wider"
-};
-const WEIGHT_STYLES = {
+}, p = {
   light: "font-light",
   normal: "font-normal",
   medium: "font-medium",
   semibold: "font-semibold",
   bold: "font-bold"
-};
-const ALIGN_STYLES = {
+}, h = {
   left: "text-left",
   center: "text-center",
   right: "text-right",
   justify: "text-justify"
-};
-const Typography = forwardRef(
+}, g = a(
   ({
-    children,
-    as: Component = "p",
-    variant = "base",
-    weight,
-    align,
-    color,
-    truncate,
-    className,
-    ...props
-  }, ref) => {
-    const classes = cn(
-      VARIANT_STYLES[variant],
-      weight && WEIGHT_STYLES[weight],
-      align && ALIGN_STYLES[align],
-      color !== void 0 && `text-${color}`,
-      truncate !== void 0 && "truncate",
-      className
+    children: x,
+    as: l = "p",
+    variant: s = "base",
+    weight: t,
+    align: e,
+    color: o,
+    truncate: m,
+    className: n,
+    ...d
+  }, r) => {
+    const i = b(
+      c[s],
+      t && p[t],
+      e && h[e],
+      o !== void 0 && `text-${o}`,
+      m !== void 0 && "truncate",
+      n
     );
-    return /* @__PURE__ */ jsx(Component, { ref, className: classes, ...props, children });
+    return /* @__PURE__ */ f(l, { ref: r, className: i, ...d, children: x });
   }
 );
-Typography.displayName = "Typography";
+g.displayName = "Typography";
 export {
-  Typography
+  g as Typography
 };

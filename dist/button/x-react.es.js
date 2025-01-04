@@ -1,7 +1,7 @@
 /* empty css                      */
-import { Button } from "./Button/x-react.es.js";
-import { Buttons } from "./Buttons/x-react.es.js";
+import { Button as m } from "./Button/x-react.es.js";
+import { Buttons as e } from "./Buttons/x-react.es.js";
 export {
-  Button,
-  Buttons
+  m as Button,
+  e as Buttons
 };

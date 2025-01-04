@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Card } from "./Card/x-react.es.js";
+import { Card as p } from "./Card/x-react.es.js";
 export {
-  Card
+  p as Card
 };

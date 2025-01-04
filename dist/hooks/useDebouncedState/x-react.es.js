@@ -1,28 +1,14 @@
-import { useState, useRef, useEffect } from "react";
-const useDebouncedState = (defaultValue, wait, options = { leading: false }) => {
-  const [value, setValue] = useState(defaultValue);
-  const timeoutRef = useRef(null);
-  const leadingRef = useRef(true);
-  const clearTimeout = () => {
-    if (timeoutRef.current !== null) {
-      window.clearTimeout(timeoutRef.current);
-    }
+import { useState as i, useRef as c, useEffect as d } from "react";
+const S = (o, l, s = { leading: !1 }) => {
+  const [a, u] = i(o), e = c(null), t = c(!0), n = () => {
+    e.current !== null && window.clearTimeout(e.current);
   };
-  useEffect(() => clearTimeout, []);
-  const debouncedSetValue = (newValue) => {
-    clearTimeout();
-    if (leadingRef.current && options.leading) {
-      setValue(newValue);
-    } else {
-      timeoutRef.current = window.setTimeout(() => {
-        leadingRef.current = true;
-        setValue(newValue);
-      }, wait);
-    }
-    leadingRef.current = false;
-  };
-  return [value, debouncedSetValue];
+  return d(() => n, []), [a, (r) => {
+    n(), t.current && s.leading ? u(r) : e.current = window.setTimeout(() => {
+      t.current = !0, u(r);
+    }, l), t.current = !1;
+  }];
 };
 export {
-  useDebouncedState
+  S as useDebouncedState
 };

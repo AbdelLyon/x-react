@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Pagination } from "./Pagination/x-react.es.js";
+import { Pagination as t } from "./Pagination/x-react.es.js";
 export {
-  Pagination
+  t as Pagination
 };

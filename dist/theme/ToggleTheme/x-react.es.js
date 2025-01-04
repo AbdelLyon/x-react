@@ -1,30 +1,28 @@
-import { jsxs, jsx } from "react/jsx-runtime";
-import { IconSunFilled, IconMoonFilled } from "@tabler/icons-react";
-import { cn } from "../../utils/x-react.es.js";
-import { useTheme } from "../../hooks/useTheme/x-react.es.js";
-const ToggleTheme = ({
-  className
+import { jsxs as i, jsx as e } from "react/jsx-runtime";
+import { IconSunFilled as s, IconMoonFilled as l } from "@tabler/icons-react";
+import { cn as m } from "../../utils/x-react.es.js";
+import { useTheme as c } from "../../hooks/useTheme/x-react.es.js";
+const T = ({
+  className: o
 }) => {
-  const { setTheme, theme } = useTheme();
-  const handleClick = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
+  const { setTheme: n, theme: r } = c(), t = () => {
+    n(r === "light" ? "dark" : "light");
   };
-  return /* @__PURE__ */ jsxs(
+  return /* @__PURE__ */ i(
     "button",
     {
-      className: cn(
+      className: m(
         "cursor-pointer transition-all hover:opacity-80 ",
-        className
+        o
       ),
-      onClick: handleClick,
+      onClick: t,
       children: [
-        /* @__PURE__ */ jsx(IconSunFilled, { className: "hidden dark:block", size: 22 }),
-        /* @__PURE__ */ jsx(IconMoonFilled, { className: "dark:hidden", size: 22 })
+        /* @__PURE__ */ e(s, { className: "hidden dark:block", size: 22 }),
+        /* @__PURE__ */ e(l, { className: "dark:hidden", size: 22 })
       ]
     }
   );
 };
 export {
-  ToggleTheme
+  T as ToggleTheme
 };

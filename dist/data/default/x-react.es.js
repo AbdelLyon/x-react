@@ -1,4 +1,4 @@
-const GRID_VARIANTS = {
+const t = {
   bordered: {
     thead: "bg-content2",
     th: "py4 bg-content2 py-4 h-12",
@@ -16,5 +16,5 @@ const GRID_VARIANTS = {
   }
 };
 export {
-  GRID_VARIANTS
+  t as GRID_VARIANTS
 };

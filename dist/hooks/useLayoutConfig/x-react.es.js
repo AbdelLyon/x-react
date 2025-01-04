@@ -1,16 +1,16 @@
-const useLayoutConfig = (options = {}) => {
-  const { navbar, sidebar } = options;
+const o = (s = {}) => {
+  const { navbar: a, sidebar: e } = s;
   return {
-    navbar: navbar ? {
+    navbar: a ? {
       className: "fixed top-0 z-40",
-      ...navbar
+      ...a
     } : void 0,
-    sidebar: sidebar ? {
+    sidebar: e ? {
       className: "fixed z-30",
-      ...sidebar
+      ...e
     } : void 0
   };
 };
 export {
-  useLayoutConfig
+  o as useLayoutConfig
 };

@@ -1,9 +1,8 @@
-import { useReducer } from "react";
-const reducer = (value) => (value + 1) % 1e6;
-const useRerender = () => {
-  const [, update] = useReducer(reducer, 0);
-  return update;
+import { useReducer as r } from "react";
+const t = (e) => (e + 1) % 1e6, u = () => {
+  const [, e] = r(t, 0);
+  return e;
 };
 export {
-  useRerender
+  u as useRerender
 };

@@ -1,46 +1,41 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Textarea as Textarea$1 } from "@nextui-org/react";
-import { cn } from "../../utils/x-react.es.js";
-const Textarea = forwardRef(
+import { jsx as b } from "react/jsx-runtime";
+import { forwardRef as R } from "react";
+import { Textarea as S } from "@nextui-org/react";
+import { cn as u } from "../../utils/x-react.es.js";
+const V = R(
   ({
-    variant = "bordered",
-    color = "default",
-    size = "md",
-    radius = "md",
-    labelPlacement = "inside",
-    fullWidth = true,
-    isRequired = false,
-    isReadOnly = false,
-    isDisabled = false,
-    containerClasses,
-    width,
-    height,
-    style,
-    customValidation,
-    validate,
-    ...props
-  }, ref) => {
-    const combinedStyle = {
-      width: typeof width === "number" ? `${width}px` : width,
-      height: typeof height === "number" ? `${height}px` : height,
-      ...style
-    };
-    const combinedValidate = (value) => {
-      if (customValidation) {
-        const customResult = customValidation(value);
-        if (typeof customResult === "string") {
-          return customResult;
-        }
-        if (customResult === false) {
+    variant: d = "bordered",
+    color: s = "default",
+    size: i = "md",
+    radius: l = "md",
+    labelPlacement: c = "inside",
+    fullWidth: g = !0,
+    isRequired: p = !1,
+    isReadOnly: m = !1,
+    isDisabled: h = !1,
+    containerClasses: x,
+    width: r,
+    height: t,
+    style: y,
+    customValidation: n,
+    validate: a,
+    ...j
+  }, k) => {
+    const w = {
+      width: typeof r == "number" ? `${r}px` : r,
+      height: typeof t == "number" ? `${t}px` : t,
+      ...y
+    }, T = (f) => {
+      if (n) {
+        const o = n(f);
+        if (typeof o == "string")
+          return o;
+        if (o === !1)
           return "Validation failed";
-        }
       }
-      return validate?.(value) ?? true;
-    };
-    const { classNames: propClassNames, ...restProps } = props;
-    const getVariantStyles = () => {
-      switch (variant) {
+      return (a == null ? void 0 : a(f)) ?? !0;
+    }, { classNames: e, ...v } = j, $ = () => {
+      switch (d) {
         case "bordered":
           return [
             "border-1",
@@ -97,32 +92,32 @@ const Textarea = forwardRef(
           ].join(" ");
       }
     };
-    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
-      Textarea$1,
+    return /* @__PURE__ */ b("div", { className: u("w-full", x), children: /* @__PURE__ */ b(
+      S,
       {
-        ref,
-        variant,
-        color,
-        size,
-        radius,
-        labelPlacement,
-        fullWidth,
-        isRequired,
-        isReadOnly,
-        isDisabled,
-        validate: combinedValidate,
-        style: combinedStyle,
+        ref: k,
+        variant: d,
+        color: s,
+        size: i,
+        radius: l,
+        labelPlacement: c,
+        fullWidth: g,
+        isRequired: p,
+        isReadOnly: m,
+        isDisabled: h,
+        validate: T,
+        style: w,
         classNames: {
-          ...propClassNames,
-          inputWrapper: cn(getVariantStyles(), propClassNames?.inputWrapper),
-          input: cn("text-base", propClassNames?.input)
+          ...e,
+          inputWrapper: u($(), e == null ? void 0 : e.inputWrapper),
+          input: u("text-base", e == null ? void 0 : e.input)
         },
-        ...restProps
+        ...v
       }
     ) });
   }
 );
-Textarea.displayName = "Textarea";
+V.displayName = "Textarea";
 export {
-  Textarea
+  V as Textarea
 };

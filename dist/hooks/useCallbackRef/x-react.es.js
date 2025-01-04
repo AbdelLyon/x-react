@@ -1,11 +1,13 @@
-import { useRef, useEffect } from "react";
-const useCallbackRef = (callback) => {
-  const callbackRef = useRef(callback);
-  useEffect(() => {
-    callbackRef.current = callback;
-  });
-  return (...args) => callbackRef.current?.(...args);
+import { useRef as n, useEffect as o } from "react";
+const f = (r) => {
+  const e = n(r);
+  return o(() => {
+    e.current = r;
+  }), (...u) => {
+    var t;
+    return (t = e.current) == null ? void 0 : t.call(e, ...u);
+  };
 };
 export {
-  useCallbackRef
+  f as useCallbackRef
 };

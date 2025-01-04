@@ -1,7 +1,7 @@
 /* empty css                      */
-import { Avatar, AvatarGroup, UserAvatar } from "./Avatar/x-react.es.js";
+import { Avatar as o, AvatarGroup as p, UserAvatar as v } from "./Avatar/x-react.es.js";
 export {
-  Avatar,
-  AvatarGroup,
-  UserAvatar
+  o as Avatar,
+  p as AvatarGroup,
+  v as UserAvatar
 };

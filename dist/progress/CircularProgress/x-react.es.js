@@ -1,88 +1,83 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef, useState, useEffect } from "react";
-import { CircularProgress as CircularProgress$1 } from "@nextui-org/react";
-const defaultProps = {
+import { jsx as N } from "react/jsx-runtime";
+import { forwardRef as S, useState as j, useEffect as k } from "react";
+import { CircularProgress as x } from "@nextui-org/react";
+const e = {
   color: "primary",
   size: "md",
   strokeWidth: 3,
-  showValueLabel: false,
+  showValueLabel: !1,
   formatOptions: { style: "percent" },
   value: 0,
   minValue: 0,
   maxValue: 100
-};
-const defaultIncrementProps = {
-  autoIncrement: false,
+}, n = {
+  autoIncrement: !1,
   incrementInterval: 500,
   incrementStep: 10
-};
-const CircularProgress = forwardRef(
+}, z = S(
   ({
     // Auto-increment props
-    autoIncrement = defaultIncrementProps.autoIncrement,
-    incrementInterval = defaultIncrementProps.incrementInterval,
-    incrementStep = defaultIncrementProps.incrementStep,
-    onValueChange,
+    autoIncrement: a = n.autoIncrement,
+    incrementInterval: l = n.incrementInterval,
+    incrementStep: i = n.incrementStep,
+    onValueChange: t,
     // NextUI props
-    value = defaultProps.value,
-    minValue = defaultProps.minValue,
-    maxValue = defaultProps.maxValue,
-    formatOptions = defaultProps.formatOptions,
-    valueLabel,
-    classNames,
-    showValueLabel,
-    color,
-    size,
-    ...nextUIProps
-  }, ref) => {
-    const [currentValue, setCurrentValue] = useState(value);
-    useEffect(() => {
-      if (!autoIncrement) {
-        setCurrentValue(value);
+    value: o = e.value,
+    minValue: r = e.minValue,
+    maxValue: s = e.maxValue,
+    formatOptions: u = e.formatOptions,
+    valueLabel: f,
+    classNames: v,
+    showValueLabel: I,
+    color: b,
+    size: w,
+    ...g
+  }, y) => {
+    const [m, p] = j(o);
+    k(() => {
+      if (!a) {
+        p(o);
         return;
       }
-      const interval = setInterval(() => {
-        setCurrentValue((v) => {
-          const newValue = v >= maxValue ? minValue : v + incrementStep;
-          onValueChange?.(newValue);
-          return newValue;
+      const c = setInterval(() => {
+        p((d) => {
+          const P = d >= s ? r : d + i;
+          return t == null || t(P), P;
         });
-      }, incrementInterval);
-      return () => clearInterval(interval);
+      }, l);
+      return () => clearInterval(c);
     }, [
-      autoIncrement,
-      value,
-      incrementInterval,
-      incrementStep,
-      maxValue,
-      minValue,
-      onValueChange
+      a,
+      o,
+      l,
+      i,
+      s,
+      r,
+      t
     ]);
-    const getValueLabel = () => {
-      if (valueLabel !== void 0) {
-        return valueLabel;
-      }
-      const percentage = (currentValue - minValue) / (maxValue - minValue);
-      return new Intl.NumberFormat(void 0, formatOptions).format(percentage);
+    const L = {
+      ...e,
+      ...g,
+      ref: y,
+      value: m,
+      minValue: r,
+      maxValue: s,
+      formatOptions: u,
+      valueLabel: (() => {
+        if (f !== void 0)
+          return f;
+        const c = (m - r) / (s - r);
+        return new Intl.NumberFormat(void 0, u).format(c);
+      })(),
+      showValueLabel: I,
+      color: b,
+      size: w,
+      classNames: v
     };
-    const circularProgressProps = {
-      ...defaultProps,
-      ...nextUIProps,
-      ref,
-      value: currentValue,
-      minValue,
-      maxValue,
-      formatOptions,
-      valueLabel: getValueLabel(),
-      showValueLabel,
-      color,
-      size,
-      classNames
-    };
-    return /* @__PURE__ */ jsx(CircularProgress$1, { ...circularProgressProps });
+    return /* @__PURE__ */ N(x, { ...L });
   }
 );
-CircularProgress.displayName = "CircularProgress";
+z.displayName = "CircularProgress";
 export {
-  CircularProgress
+  z as CircularProgress
 };

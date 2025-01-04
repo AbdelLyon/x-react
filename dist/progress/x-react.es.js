@@ -1,7 +1,7 @@
 /* empty css                      */
-import { Progress } from "./Progress/x-react.es.js";
-import { CircularProgress } from "./CircularProgress/x-react.es.js";
+import { Progress as s } from "./Progress/x-react.es.js";
+import { CircularProgress as p } from "./CircularProgress/x-react.es.js";
 export {
-  CircularProgress,
-  Progress
+  p as CircularProgress,
+  s as Progress
 };

@@ -1,17 +1,17 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { ScrollShadow } from "@nextui-org/react";
-const Scroll = forwardRef(
-  ({ width = "100%", height = "100%", style, ...props }, ref) => {
-    const combinedStyle = {
-      width: typeof width === "number" ? `${width}px` : width,
-      height: typeof height === "number" ? `${height}px` : height,
-      ...style
+import { jsx as t } from "react/jsx-runtime";
+import { forwardRef as f } from "react";
+import { ScrollShadow as c } from "@nextui-org/react";
+const n = f(
+  ({ width: o = "100%", height: r = "100%", style: e, ...m }, l) => {
+    const p = {
+      width: typeof o == "number" ? `${o}px` : o,
+      height: typeof r == "number" ? `${r}px` : r,
+      ...e
     };
-    return /* @__PURE__ */ jsx(ScrollShadow, { ref, style: combinedStyle, ...props });
+    return /* @__PURE__ */ t(c, { ref: l, style: p, ...m });
   }
 );
-Scroll.displayName = "Scroll";
+n.displayName = "Scroll";
 export {
-  Scroll
+  n as Scroll
 };

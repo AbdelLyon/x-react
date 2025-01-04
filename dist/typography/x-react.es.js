@@ -1,5 +1,5 @@
 /* empty css                      */
-import { Typography } from "./Typography/x-react.es.js";
+import { Typography as m } from "./Typography/x-react.es.js";
 export {
-  Typography
+  m as Typography
 };

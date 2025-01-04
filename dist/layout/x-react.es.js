@@ -1,18 +1,18 @@
 /* empty css                      */
-import { Layout } from "./Layout/x-react.es.js";
-import { Scroll } from "./Scroll/x-react.es.js";
-import { Center } from "./Center/x-react.es.js";
-import { Container } from "./Container/x-react.es.js";
-import { Grid, GridItem } from "./Grid/x-react.es.js";
-import { Section } from "./Section/x-react.es.js";
-import { Stack } from "./Stack/x-react.es.js";
+import { Layout as e } from "./Layout/x-react.es.js";
+import { Scroll as p } from "./Scroll/x-react.es.js";
+import { Center as x } from "./Center/x-react.es.js";
+import { Container as n } from "./Container/x-react.es.js";
+import { Grid as c, GridItem as S } from "./Grid/x-react.es.js";
+import { Section as l } from "./Section/x-react.es.js";
+import { Stack as G } from "./Stack/x-react.es.js";
 export {
-  Center,
-  Container,
-  Grid,
-  GridItem,
-  Layout,
-  Scroll,
-  Section,
-  Stack
+  x as Center,
+  n as Container,
+  c as Grid,
+  S as GridItem,
+  e as Layout,
+  p as Scroll,
+  l as Section,
+  G as Stack
 };

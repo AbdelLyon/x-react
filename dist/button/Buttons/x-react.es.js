@@ -1,13 +1,11 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { ButtonGroup } from "@nextui-org/react";
-import { Button } from "../Button/x-react.es.js";
-const Buttons = forwardRef(
-  ({ buttons, ...props }, ref) => {
-    return /* @__PURE__ */ jsx(ButtonGroup, { ref, ...props, children: buttons.map(({ key, label, buttonProps }) => /* @__PURE__ */ jsx(Button, { ...buttonProps, children: label }, key)) });
-  }
+import { jsx as o } from "react/jsx-runtime";
+import { forwardRef as e } from "react";
+import { ButtonGroup as f } from "@nextui-org/react";
+import { Button as u } from "../Button/x-react.es.js";
+const s = e(
+  ({ buttons: r, ...t }, m) => /* @__PURE__ */ o(f, { ref: m, ...t, children: r.map(({ key: n, label: p, buttonProps: i }) => /* @__PURE__ */ o(u, { ...i, children: p }, n)) })
 );
-Buttons.displayName = "Buttons";
+s.displayName = "Buttons";
 export {
-  Buttons
+  s as Buttons
 };

@@ -1,20 +1,14 @@
-import { limitValue } from "../../utils/x-react.es.js";
-import { useState } from "react";
-const DEFAULT_OPTIONS = {
-  min: -Infinity,
-  max: Infinity
-};
-const useCounter = (initialValue = 0, options) => {
-  const { min, max } = { ...DEFAULT_OPTIONS, ...options };
-  const [count, setCount] = useState(
-    limitValue(initialValue, min, max)
+import { limitValue as o } from "../../utils/x-react.es.js";
+import { useState as i } from "react";
+const u = {
+  min: -1 / 0,
+  max: 1 / 0
+}, y = (r = 0, c) => {
+  const { min: t, max: e } = { ...u, ...c }, [m, s] = i(
+    o(r, t, e)
   );
-  const increment = () => setCount((current) => limitValue(current + 1, min, max));
-  const decrement = () => setCount((current) => limitValue(current - 1, min, max));
-  const set = (value) => setCount(limitValue(value, min, max));
-  const reset = () => setCount(limitValue(initialValue, min, max));
-  return [count, { increment, decrement, set, reset }];
+  return [m, { increment: () => s((n) => o(n + 1, t, e)), decrement: () => s((n) => o(n - 1, t, e)), set: (n) => s(o(n, t, e)), reset: () => s(o(r, t, e)) }];
 };
 export {
-  useCounter
+  y as useCounter
 };

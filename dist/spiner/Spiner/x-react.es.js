@@ -1,21 +1,19 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
-import { Spinner as Spinner$1 } from "@nextui-org/react";
-const Spinner = forwardRef(
-  ({ color = "default", size = "md", strokeWidth = 4, ...props }, ref) => {
-    return /* @__PURE__ */ jsx(
-      Spinner$1,
-      {
-        ref,
-        color,
-        size,
-        strokeWidth,
-        ...props
-      }
-    );
-  }
+import { jsx as i } from "react/jsx-runtime";
+import { forwardRef as m } from "react";
+import { Spinner as t } from "@nextui-org/react";
+const f = m(
+  ({ color: r = "default", size: n = "md", strokeWidth: e = 4, ...o }, p) => /* @__PURE__ */ i(
+    t,
+    {
+      ref: p,
+      color: r,
+      size: n,
+      strokeWidth: e,
+      ...o
+    }
+  )
 );
-Spinner.displayName = "Spinner";
+f.displayName = "Spinner";
 export {
-  Spinner
+  f as Spinner
 };

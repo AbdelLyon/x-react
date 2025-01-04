@@ -1,46 +1,35 @@
-import { useState, useEffect } from "react";
-function useInfiniteList({
-  fetchFunction,
-  fetchDelay = 0,
-  limit = 10
+import { useState as t, useEffect as L } from "react";
+function v({
+  fetchFunction: f,
+  fetchDelay: c = 0,
+  limit: n = 10
 }) {
-  const [items, setItems] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [offset, setOffset] = useState(0);
-  const loadItems = async (currentOffset) => {
+  const [m, u] = t([]), [d, h] = t(!0), [l, a] = t(!1), [o, w] = t(0), i = async (e) => {
     try {
-      setIsLoading(true);
-      if (offset > 0) {
-        await new Promise((resolve) => setTimeout(resolve, fetchDelay));
-      }
-      const { items: newItems, hasMore: moreAvailable } = await fetchFunction(
-        currentOffset,
-        limit
+      a(!0), o > 0 && await new Promise((r) => setTimeout(r, c));
+      const { items: s, hasMore: I } = await f(
+        e,
+        n
       );
-      setHasMore(moreAvailable);
-      setItems((prevItems) => [...prevItems, ...newItems]);
-    } catch (error) {
-      console.error("There was an error with the fetch operation:", error);
+      h(I), u((r) => [...r, ...s]);
+    } catch (s) {
+      console.error("There was an error with the fetch operation:", s);
     } finally {
-      setIsLoading(false);
+      a(!1);
     }
   };
-  useEffect(() => {
-    void loadItems(offset);
-  }, []);
-  const onLoadMore = () => {
-    const newOffset = offset + limit;
-    setOffset(newOffset);
-    void loadItems(newOffset);
-  };
-  return {
-    items,
-    hasMore,
-    isLoading,
-    onLoadMore
+  return L(() => {
+    i(o);
+  }, []), {
+    items: m,
+    hasMore: d,
+    isLoading: l,
+    onLoadMore: () => {
+      const e = o + n;
+      w(e), i(e);
+    }
   };
 }
 export {
-  useInfiniteList
+  v as useInfiniteList
 };

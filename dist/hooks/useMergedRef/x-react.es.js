@@ -1,18 +1,8 @@
-const assignRef = (ref, value) => {
-  if (typeof ref === "function") {
-    ref(value);
-  } else if (typeof ref === "object" && ref !== null && "current" in ref) {
-    ref.current = value;
-  }
-};
-const mergeRefs = (...refs) => {
-  return (node) => {
-    refs.forEach((ref) => assignRef(ref, node));
-  };
-};
-const useMergedRef = (...refs) => {
-  return mergeRefs(...refs);
-};
+const o = (e, n) => {
+  typeof e == "function" ? e(n) : typeof e == "object" && e !== null && "current" in e && (e.current = n);
+}, c = (...e) => (n) => {
+  e.forEach((t) => o(t, n));
+}, s = (...e) => c(...e);
 export {
-  useMergedRef
+  s as useMergedRef
 };

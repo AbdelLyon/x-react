@@ -1,43 +1,14 @@
-import { useState, useRef, useEffect } from "react";
-const useInterval = (fn, interval, { autoInvoke = false } = {}) => {
-  const [active, setActive] = useState(false);
-  const intervalRef = useRef(null);
-  const fnRef = useRef(fn);
-  const start = () => {
-    setActive((old) => {
-      if (!old && (intervalRef.current === null || intervalRef.current === -1)) {
-        intervalRef.current = window.setInterval(fnRef.current, interval);
-      }
-      return true;
-    });
+import { useState as w, useRef as l, useEffect as f } from "react";
+const I = (s, c, { autoInvoke: a = !1 } = {}) => {
+  const [t, u] = w(!1), e = l(null), o = l(s), r = () => {
+    u((v) => (!v && (e.current === null || e.current === -1) && (e.current = window.setInterval(o.current, c)), !0));
+  }, n = () => {
+    u(!1), window.clearInterval(e.current ?? -1), e.current = -1;
+  }, i = () => {
+    t ? n() : r();
   };
-  const stop = () => {
-    setActive(false);
-    window.clearInterval(intervalRef.current ?? -1);
-    intervalRef.current = -1;
-  };
-  const toggle = () => {
-    if (active) {
-      stop();
-    } else {
-      start();
-    }
-  };
-  useEffect(() => {
-    fnRef.current = fn;
-    if (active) {
-      start();
-    }
-    return stop;
-  }, [fn, active, interval]);
-  useEffect(() => {
-    if (autoInvoke) {
-      start();
-    }
-    return () => stop();
-  }, []);
-  return { start, stop, toggle, active };
+  return f(() => (o.current = s, t && r(), n), [s, t, c]), f(() => (a && r(), () => n()), []), { start: r, stop: n, toggle: i, active: t };
 };
 export {
-  useInterval
+  I as useInterval
 };

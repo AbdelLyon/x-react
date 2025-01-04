@@ -1,16 +1,14 @@
-import { useRef, useEffect } from "react";
-const useEvent = (type, listener, options) => {
-  const ref = useRef(null);
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.addEventListener(type, listener, options);
-      const currentRef = ref.current;
-      return () => currentRef?.removeEventListener(type, listener, options);
+import { useRef as c, useEffect as f } from "react";
+const o = (e, n, t) => {
+  const r = c(null);
+  return f(() => {
+    if (r.current) {
+      r.current.addEventListener(e, n, t);
+      const u = r.current;
+      return () => u == null ? void 0 : u.removeEventListener(e, n, t);
     }
-    return void 0;
-  }, [listener, options, type]);
-  return ref;
+  }, [n, t, e]), r;
 };
 export {
-  useEvent
+  o as useEvent
 };

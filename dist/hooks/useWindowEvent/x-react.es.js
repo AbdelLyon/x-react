@@ -1,10 +1,7 @@
-import { useEffect } from "react";
-const useWindowEvent = (type, listener, options) => {
-  useEffect(() => {
-    window.addEventListener(type, listener, options);
-    return () => window.removeEventListener(type, listener, options);
-  }, [type, listener]);
+import { useEffect as r } from "react";
+const t = (e, n, o) => {
+  r(() => (window.addEventListener(e, n, o), () => window.removeEventListener(e, n, o)), [e, n]);
 };
 export {
-  useWindowEvent
+  t as useWindowEvent
 };

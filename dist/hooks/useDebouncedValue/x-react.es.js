@@ -1,34 +1,14 @@
-import { useState, useRef, useEffect } from "react";
-const useDebouncedValue = (value, wait, options = { leading: false }) => {
-  const [_value, setValue] = useState(value);
-  const mountedRef = useRef(false);
-  const timeoutRef = useRef(null);
-  const cooldownRef = useRef(false);
-  const cancel = () => {
-    if (timeoutRef.current !== null) {
-      window.clearTimeout(timeoutRef.current);
-    }
+import { useState as a, useRef as u, useEffect as f } from "react";
+const m = (e, c, o = { leading: !1 }) => {
+  const [i, s] = a(e), l = u(!1), t = u(null), n = u(!1), r = () => {
+    t.current !== null && window.clearTimeout(t.current);
   };
-  useEffect(() => {
-    if (mountedRef.current) {
-      if (!cooldownRef.current && options.leading) {
-        cooldownRef.current = true;
-        setValue(value);
-      } else {
-        cancel();
-        timeoutRef.current = window.setTimeout(() => {
-          cooldownRef.current = false;
-          setValue(value);
-        }, wait);
-      }
-    }
-  }, [value, options.leading, wait]);
-  useEffect(() => {
-    mountedRef.current = true;
-    return cancel;
-  }, []);
-  return [_value, cancel];
+  return f(() => {
+    l.current && (!n.current && o.leading ? (n.current = !0, s(e)) : (r(), t.current = window.setTimeout(() => {
+      n.current = !1, s(e);
+    }, c)));
+  }, [e, o.leading, c]), f(() => (l.current = !0, r), []), [i, r];
 };
 export {
-  useDebouncedValue
+  m as useDebouncedValue
 };

@@ -1,71 +1,58 @@
-import { jsxs, jsx } from "react/jsx-runtime";
-import { forwardRef, useState } from "react";
-import { Slider } from "@nextui-org/react";
-const defaultFormatValue = (value, formatOptions) => {
-  return value.map(
-    (v) => formatOptions ? new Intl.NumberFormat(void 0, formatOptions).format(v) : v
-  ).join(" – ");
-};
-const LabelComponent = ({
-  position,
-  content,
-  className
-}) => {
-  if (position === "none") {
-    return null;
+import { jsxs as j, jsx as o } from "react/jsx-runtime";
+import { forwardRef as S, useState as w } from "react";
+import { Slider as R } from "@nextui-org/react";
+const b = (e, r) => e.map(
+  (t) => r ? new Intl.NumberFormat(void 0, r).format(t) : t
+).join(" – "), h = ({
+  position: e,
+  content: r,
+  className: t
+}) => e === "none" ? null : /* @__PURE__ */ o(
+  "p",
+  {
+    className: `text-small font-medium text-default-500 ${t} ${e === "top" ? "order-first" : "order-last"}`,
+    children: r
   }
-  return /* @__PURE__ */ jsx(
-    "p",
-    {
-      className: `text-small font-medium text-default-500 ${className} ${position === "top" ? "order-first" : "order-last"}`,
-      children: content
-    }
-  );
-};
-const RangeSlider = forwardRef(
+), v = S(
   ({
-    sliderProps,
-    initialValue = [0, 100],
-    formatOptions,
-    label,
-    labelPosition = "bottom",
-    formatValue,
-    renderLabel,
-    onChange,
-    containerClassName,
-    labelClassName
-  }, ref) => {
-    const [value, setValue] = useState(initialValue);
-    const handleChange = (newValue) => {
-      const typedValue = Array.isArray(newValue) ? newValue : [newValue];
-      setValue(typedValue);
-      onChange?.(typedValue);
-    };
-    const formattedValue = formatValue ? formatValue(value) : defaultFormatValue(value, formatOptions);
-    const labelContent = renderLabel ? renderLabel(value) : `${label}: ${formattedValue}`;
-    return /* @__PURE__ */ jsxs(
+    sliderProps: e,
+    initialValue: r = [0, 100],
+    formatOptions: t,
+    label: m,
+    labelPosition: i = "bottom",
+    formatValue: n,
+    renderLabel: d,
+    onChange: s,
+    containerClassName: u,
+    labelClassName: f
+  }, x) => {
+    const [a, p] = w(r), N = (l) => {
+      const c = Array.isArray(l) ? l : [l];
+      p(c), s == null || s(c);
+    }, y = n ? n(a) : b(a, t), $ = d ? d(a) : `${m}: ${y}`;
+    return /* @__PURE__ */ j(
       "div",
       {
-        ref,
-        className: `flex h-max w-full max-w-md flex-col items-start justify-center gap-2 ${containerClassName}`,
+        ref: x,
+        className: `flex h-max w-full max-w-md flex-col items-start justify-center gap-2 ${u}`,
         children: [
-          /* @__PURE__ */ jsx(
-            LabelComponent,
+          /* @__PURE__ */ o(
+            h,
             {
-              position: labelPosition,
-              content: labelContent,
-              className: labelClassName
+              position: i,
+              content: $,
+              className: f
             }
           ),
-          /* @__PURE__ */ jsx(
-            Slider,
+          /* @__PURE__ */ o(
+            R,
             {
-              value,
-              onChange: handleChange,
-              label,
+              value: a,
+              onChange: N,
+              label: m,
               className: "max-w-md",
-              formatOptions,
-              ...sliderProps
+              formatOptions: t,
+              ...e
             }
           )
         ]
@@ -73,7 +60,7 @@ const RangeSlider = forwardRef(
     );
   }
 );
-RangeSlider.displayName = "RangeSlider";
+v.displayName = "RangeSlider";
 export {
-  RangeSlider
+  v as RangeSlider
 };

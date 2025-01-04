@@ -1,51 +1,45 @@
-import { jsx } from "react/jsx-runtime";
-import { forwardRef, useState } from "react";
-import { Input as Input$1 } from "@nextui-org/react";
-import { cn } from "../../utils/x-react.es.js";
-import { IconEye, IconEyeOff } from "@tabler/icons-react";
-const Input = forwardRef(
+import { jsx as e } from "react/jsx-runtime";
+import { forwardRef as R, useState as S } from "react";
+import { Input as T } from "@nextui-org/react";
+import { cn as f } from "../../utils/x-react.es.js";
+import { IconEye as V, IconEyeOff as W } from "@tabler/icons-react";
+const C = R(
   ({
-    variant = "bordered",
-    color = "default",
-    size = "md",
-    radius = "md",
-    labelPlacement = "inside",
-    fullWidth = true,
-    isClearable = false,
-    isRequired = false,
-    isReadOnly = false,
-    isDisabled = false,
-    containerClasses,
-    customValidation,
-    validate,
-    type,
-    ...props
-  }, ref) => {
-    const [inputType, setInputType] = useState(type);
-    const combinedValidate = (value) => {
-      if (customValidation) {
-        const customResult = customValidation(value);
-        if (typeof customResult === "string") {
-          return customResult;
-        }
-        if (customResult) {
+    variant: n = "bordered",
+    color: i = "default",
+    size: c = "md",
+    radius: l = "md",
+    labelPlacement: p = "inside",
+    fullWidth: b = !0,
+    isClearable: g = !1,
+    isRequired: m = !1,
+    isReadOnly: h = !1,
+    isDisabled: w = !1,
+    containerClasses: y,
+    customValidation: u,
+    validate: t,
+    type: d,
+    ...k
+  }, I) => {
+    const [o, j] = S(d), v = (s) => {
+      if (u) {
+        const a = u(s);
+        if (typeof a == "string")
+          return a;
+        if (a)
           return "Validation failed";
-        }
       }
-      return validate?.(value) ?? true;
-    };
-    const endContent = type === "password" ? /* @__PURE__ */ jsx(
+      return (t == null ? void 0 : t(s)) ?? !0;
+    }, N = d === "password" ? /* @__PURE__ */ e(
       "button",
       {
         className: "opacity-40 focus:outline-none",
         type: "button",
-        onClick: () => setInputType(inputType === "password" ? "text" : "password"),
-        children: inputType === "password" ? /* @__PURE__ */ jsx(IconEye, { className: "pointer-events-none" }) : /* @__PURE__ */ jsx(IconEyeOff, { className: "pointer-events-none" })
+        onClick: () => j(o === "password" ? "text" : "password"),
+        children: o === "password" ? /* @__PURE__ */ e(V, { className: "pointer-events-none" }) : /* @__PURE__ */ e(W, { className: "pointer-events-none" })
       }
-    ) : void 0;
-    const { classNames: propClassNames, ...restProps } = props;
-    const getVariantStyles = () => {
-      switch (variant) {
+    ) : void 0, { classNames: r, ...x } = k, E = () => {
+      switch (n) {
         case "bordered":
           return [
             "border-1",
@@ -103,33 +97,33 @@ const Input = forwardRef(
           ].join(" ");
       }
     };
-    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
-      Input$1,
+    return /* @__PURE__ */ e("div", { className: f("w-full", y), children: /* @__PURE__ */ e(
+      T,
       {
-        ref,
-        variant,
-        color,
-        size,
-        radius,
-        labelPlacement,
-        fullWidth,
-        isClearable,
-        isRequired,
-        isReadOnly,
-        isDisabled,
-        validate: combinedValidate,
+        ref: I,
+        variant: n,
+        color: i,
+        size: c,
+        radius: l,
+        labelPlacement: p,
+        fullWidth: b,
+        isClearable: g,
+        isRequired: m,
+        isReadOnly: h,
+        isDisabled: w,
+        validate: v,
         classNames: {
-          ...propClassNames,
-          inputWrapper: cn(getVariantStyles(), propClassNames?.inputWrapper)
+          ...r,
+          inputWrapper: f(E(), r == null ? void 0 : r.inputWrapper)
         },
-        endContent,
-        type: inputType,
-        ...restProps
+        endContent: N,
+        type: o,
+        ...x
       }
     ) });
   }
 );
-Input.displayName = "Input";
+C.displayName = "Input";
 export {
-  Input
+  C as Input
 };

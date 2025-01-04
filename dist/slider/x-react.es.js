@@ -1,5 +1,5 @@
 /* empty css                      */
-import { RangeSlider } from "./Slider/x-react.es.js";
+import { RangeSlider as i } from "./Slider/x-react.es.js";
 export {
-  RangeSlider
+  i as RangeSlider
 };

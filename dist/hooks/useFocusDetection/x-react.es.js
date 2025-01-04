@@ -1,46 +1,25 @@
-import { useRef, useState, useEffect } from "react";
-const containsRelatedTarget = (event) => {
-  if (event.currentTarget instanceof HTMLElement && event.relatedTarget instanceof HTMLElement) {
-    return event.currentTarget.contains(event.relatedTarget);
-  }
-  return false;
-};
-const useFocusDetection = ({
-  onBlur,
-  onFocus
+import { useRef as u, useState as d, useEffect as l } from "react";
+const m = (e) => e.currentTarget instanceof HTMLElement && e.relatedTarget instanceof HTMLElement ? e.currentTarget.contains(e.relatedTarget) : !1, T = ({
+  onBlur: e,
+  onFocus: s
 } = {}) => {
-  const ref = useRef(null);
-  const [focused, setFocused] = useState(false);
-  const focusedRef = useRef(false);
-  const _setFocused = (value) => {
-    setFocused(value);
-    focusedRef.current = value;
+  const n = u(null), [o, i] = d(!1), c = u(!1), f = (r) => {
+    i(r), c.current = r;
   };
-  useEffect(() => {
-    const handleFocusIn = (event) => {
-      if (!focusedRef.current) {
-        _setFocused(true);
-        onFocus?.(event);
-      }
+  return l(() => {
+    const r = (t) => {
+      c.current || (f(!0), s == null || s(t));
+    }, a = (t) => {
+      c.current && !m(t) && (f(!1), e == null || e(t));
     };
-    const handleFocusOut = (event) => {
-      if (focusedRef.current && !containsRelatedTarget(event)) {
-        _setFocused(false);
-        onBlur?.(event);
-      }
-    };
-    if (ref.current) {
-      const element = ref.current;
-      element.addEventListener("focusin", handleFocusIn);
-      element.addEventListener("focusout", handleFocusOut);
-      return () => {
-        element.removeEventListener("focusin", handleFocusIn);
-        element.removeEventListener("focusout", handleFocusOut);
+    if (n.current) {
+      const t = n.current;
+      return t.addEventListener("focusin", r), t.addEventListener("focusout", a), () => {
+        t.removeEventListener("focusin", r), t.removeEventListener("focusout", a);
       };
     }
-  }, [onFocus, onBlur]);
-  return { ref, focused };
+  }, [s, e]), { ref: n, focused: o };
 };
 export {
-  useFocusDetection
+  T as useFocusDetection
 };
