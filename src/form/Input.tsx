@@ -230,7 +230,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             "after:absolute",
             "after:bottom-[-1px]",
             "after:left-0",
-            "after:w-full",
             "after:h-[2px]",
             "after:origin-center",
             "after:transition-transform",
