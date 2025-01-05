@@ -91,8 +91,8 @@
       "types": "./dist/slider/Slider.d.ts"
     },
     "./progress": {
-      "import": "./dist/progress/Progress/index.es.js",
-      "types": "./dist/progress/Progress.d.ts"
+      "import": "./dist/progress/index.es.js",
+      "types": "./dist/progress/index.d.ts"
     },
     "./spiner": {
       "import": "./dist/spiner/Spiner/index.es.js",
