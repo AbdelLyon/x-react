@@ -43,6 +43,15 @@ export default defineConfig({
     react(),
     dts({
       exclude: ["src/data/**/*", "src/tests/**/*"],
+      rollupTypes: true,
+      compilerOptions: {
+        emitDeclarationOnly: true,
+        preserveSymlinks: false,
+      },
+      beforeWriteFile: (filePath, content) => ({
+        filePath: filePath.replace(/\.js\.d\.ts$/, ".d.ts"),
+        content,
+      }),
     }),
   ],
 
@@ -56,20 +65,28 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss],
     },
+    modules: {
+      generateScopedName: "[name]__[local]__[hash:base64:5]",
+    },
   },
 
   build: {
+    target: "es2020",
+    minify: "esbuild",
+    sourcemap: true,
     lib: {
-      entry: Object.fromEntries(
-        modules.map((module) => [
-          module,
-          path.resolve(__dirname, `src/${module}`),
-        ]),
-      ),
+      entry: {
+        // index: path.resolve(__dirname, "src/index.ts"),
+        ...Object.fromEntries(
+          modules.map((module) => [
+            module,
+            path.resolve(__dirname, `src/${module}/index.ts`),
+          ]),
+        ),
+      },
       name: "x-react",
       formats: ["es"],
-      fileName: (format, entryName) =>
-        `${entryName ? entryName + "/" : ""}x-react.${format}.js`,
+      fileName: (format, entryName) => `${entryName}/index.${format}.js`,
     },
 
     rollupOptions: {
@@ -85,20 +102,38 @@ export default defineConfig({
         "chart.js",
         "tailwind-merge",
         /^react\/.*/,
-        /^node_modules\/.*/,
+        /^@?[a-zA-Z\-]+\/.*/,
       ],
       output: {
         preserveModules: true,
         preserveModulesRoot: "src",
+        entryFileNames: "[name]/index.js",
+        chunkFileNames: "chunks/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash][extname]",
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
           tailwindcss: "tailwindcss",
         },
+        exports: "named",
+        inlineDynamicImports: false,
       },
       treeshake: {
         moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false,
       },
     },
+
+    commonjsOptions: {
+      include: [],
+      extensions: [".js", ".cjs", ".jsx", ".tsx", ".ts"],
+      strictRequires: true,
+      transformMixedEsModules: true,
+    },
+  },
+
+  optimizeDeps: {
+    exclude: ["react", "react-dom"],
   },
 });
