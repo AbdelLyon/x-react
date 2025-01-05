@@ -123,8 +123,8 @@
       "types": "./dist/sidebar/Sidebar.d.ts"
     },
     "./layout": {
-      "import": "./dist/layout/Layout/index.es.js",
-      "types": "./dist/layout/Layout.d.ts"
+      "import": "./dist/layout/index.es.js",
+      "types": "./dist/layout/index.d.ts"
     },
     "./tooltip": {
       "import": "./dist/tooltip/Tooltip/index.es.js",
