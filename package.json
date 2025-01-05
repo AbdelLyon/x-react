@@ -22,137 +22,129 @@
   "license": "MIT",
   "exports": {
     "./style.css": "./dist/x-react.css",
-    ".": {
-      "import": "./dist/index.esm.js",
-      "types": "./dist/index.d.ts"
-    },
     "./button": {
       "import": "./dist/button/Button/index.es.js",
-      "types": "./dist/button/index.d.ts"
+      "types": "./dist/button/Button.d.ts"
     },
     "./buttons": {
       "import": "./dist/buttons/Buttons/index.es.js",
-      "types": "./dist/buttons/index.d.ts"
+      "types": "./dist/buttons/Buttons.d.ts"
     },
     "./modal": {
       "import": "./dist/modal/Modal/index.es.js",
-      "types": "./dist/modal/index.d.ts"
+      "types": "./dist/modal/Modal.d.ts"
     },
     "./utils": {
-      "import": "./dist/utils/utils.es.js",
-      "types": "./dist/utils/index.d.ts"
+      "import": "./dist/utils/uUils/index.es.js",
+      "types": "./dist/utils/uUils.d.ts"
     },
     "./hooks": {
-      "import": "./dist/hooks/hooks.es.js",
-      "types": "./dist/hooks/index.d.ts"
+      "import": "./dist/hooks/Hooks/index.es.js",
+      "types": "./dist/hooks/Hooks.d.ts"
     },
     "./providers": {
-      "import": "./dist/providers/providers.es.js",
-      "types": "./dist/providers/index.d.ts"
+      "import": "./dist/providers/Providers/index.es.js",
+      "types": "./dist/providers/Providers.d.ts"
     },
     "./theme": {
-      "import": "./dist/theme/theme.es.js",
-      "types": "./dist/theme/index.d.ts"
+      "import": "./dist/theme/Theme/index.es.js",
+      "types": "./dist/theme/Theme.d.ts"
     },
     "./accordion": {
-      "import": "./dist/accordion/accordion.es.js",
-      "types": "./dist/accordion/index.d.ts"
+      "import": "./dist/accordion/Accordion/index.es.js",
+      "types": "./dist/accordion/Accordion.d.ts"
     },
     "./alert": {
-      "import": "./dist/alert/alert.es.js",
-      "types": "./dist/alert/index.d.ts"
+      "import": "./dist/alert/Alert/index.es.js",
+      "types": "./dist/alert/Alert.d.ts"
     },
     "./avatar": {
       "import": "./dist/avatar/Avatar/index.es.js",
       "types": "./dist/avatar/Avatar.d.ts"
     },
     "./card": {
-      "import": "./dist/card/card.es.js",
-      "types": "./dist/card/index.d.ts"
-    },
-    "./icons": {
-      "import": "./dist/icons/icons.es.js",
-      "types": "./dist/icons/index.d.ts"
+      "import": "./dist/card/Card/index.es.js",
+      "types": "./dist/card/Card.d.ts"
     },
     "./form": {
-      "import": "./dist/form/form.es.js",
-      "types": "./dist/form/index.d.ts"
+      "import": "./dist/form/Form/index.es.js",
+      "types": "./dist/form/Form.d.ts"
     },
     "./popover": {
-      "import": "./dist/popover/popover.es.js",
-      "types": "./dist/popover/index.d.ts"
+      "import": "./dist/popover/Popover/index.es.js",
+      "types": "./dist/popover/Popover.d.ts"
     },
     "./dropdown": {
-      "import": "./dist/dropdown/dropdown.es.js",
-      "types": "./dist/dropdown/index.d.ts"
+      "import": "./dist/dropdown/Dropdown/index.es.js",
+      "types": "./dist/dropdown/Dropdown.d.ts"
     },
     "./image": {
-      "import": "./dist/image/image.es.js",
-      "types": "./dist/image/index.d.ts"
+      "import": "./dist/image/Image/index.es.js",
+      "types": "./dist/image/Image.d.ts"
     },
     "./slider": {
-      "import": "./dist/slider/slider.es.js",
-      "types": "./dist/slider/index.d.ts"
+      "import": "./dist/slider/Slider/index.es.js",
+      "types": "./dist/slider/Slider.d.ts"
     },
     "./progress": {
-      "import": "./dist/progress/progress.es.js",
-      "types": "./dist/progress/index.d.ts"
+      "import": "./dist/progress/Progress/index.es.js",
+      "types": "./dist/progress/Progress.d.ts"
     },
     "./spiner": {
-      "import": "./dist/spiner/spiner.es.js",
-      "types": "./dist/spiner/index.d.ts"
+      "import": "./dist/spiner/Spiner/index.es.js",
+      "types": "./dist/spiner/Spiner.d.ts"
     },
     "./datagrid": {
-      "import": "./dist/datagrid/datagrid.es.js",
-      "types": "./dist/datagrid/index.d.ts"
+      "import": "./dist/datagrid/Datagrid/index.es.js",
+      "types": "./dist/datagrid/Datagrid.d.ts"
     },
     "./datepicker": {
-      "import": "./dist/datepicker/datepicker.es.js",
-      "types": "./dist/datepicker/index.d.ts"
+      "import": "./dist/datepicker/Datepicker/index.es.js",
+      "types": "./dist/datepicker/Datepicker.d.ts"
     },
     "./chip": {
-      "import": "./dist/chip/chip.es.js",
-      "types": "./dist/chip/index.d.ts"
+      "import": "./dist/chip/Chip/index.es.js",
+      "types": "./dist/chip/Chip.d.ts"
     },
     "./drawer": {
-      "import": "./dist/drawer/drawer.es.js",
-      "types": "./dist/drawer/index.d.ts"
+      "import": "./dist/drawer/Drawer/index.es.js",
+      "types": "./dist/drawer/Drawer.d.ts"
     },
     "./navbar": {
-      "import": "./dist/navbar/navbar.es.js",
-      "types": "./dist/navbar/index.d.ts"
+      "import": "./dist/navbar/Navbar/index.es.js",
+      "types": "./dist/navbar/Navbar.d.ts"
     },
     "./sidebar": {
-      "import": "./dist/sidebar/sidebar.es.js",
-      "types": "./dist/sidebar/index.d.ts"
+      "import": "./dist/sidebar/Sidebar/index.es.js",
+      "types": "./dist/sidebar/Sidebar.d.ts"
     },
     "./layout": {
-      "import": "./dist/layout/layout.es.js",
-      "types": "./dist/layout/index.d.ts"
+      "import": "./dist/layout/Layout/index.es.js",
+      "types": "./dist/layout/Layout.d.ts"
     },
     "./tooltip": {
-      "import": "./dist/tooltip/tooltip.es.js",
-      "types": "./dist/tooltip/index.d.ts"
+      "import": "./dist/tooltip/Tooltip/index.es.js",
+      "types": "./dist/tooltip/Tooltip.d.ts"
     },
     "./tabs": {
-      "import": "./dist/tabs/tabs.es.js",
-      "types": "./dist/tabs/index.d.ts"
+      "import": "./dist/tabs/Tabs/index.es.js",
+      "types": "./dist/tabs/Tabs.d.ts"
     },
     "./pagination": {
-      "import": "./dist/pagination/pagination.es.js",
-      "types": "./dist/pagination/index.d.ts"
+      "import": "./dist/pagination/Pagination/index.es.js",
+      "types": "./dist/pagination/Pagination.d.ts"
     },
     "./typography": {
-      "import": "./dist/typography/typography.es.js",
-      "types": "./dist/typography/index.d.ts"
+      "import": "./dist/typography/Typography/index.es.js",
+      "types": "./dist/typography/Typography.d.ts"
     },
     "./HOC": {
-      "import": "./dist/HOC/HOC.es.js",
-      "types": "./dist/HOC/index.d.ts"
+      "import": "./dist/HOC/HOC/index.es.js",
+      "types": "./dist/HOC/HOC.d.ts"
     },
     "./chart": {
-      "import": "./dist/chart/chart.es.js",
-      "types": "./dist/chart/index.d.ts"
+      "import": "./dist/chart/Chart/index..es.js",
+      "types": "./dist/chart/Chart.d.ts"
     }
   },
   "typesVersions": {
