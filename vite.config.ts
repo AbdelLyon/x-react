@@ -1,13 +1,8 @@
-import { fileURLToPath } from "node:url";
-import path from "node:path";
+import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import tailwindcss from "tailwindcss";
-import { visualizer } from "rollup-plugin-visualizer";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const modules = [
   "utils",
@@ -48,18 +43,6 @@ export default defineConfig({
     react(),
     dts({
       exclude: ["src/data/**/*", "src/tests/**/*"],
-      compilerOptions: {
-        emitDeclarationOnly: true,
-        preserveSymlinks: false,
-      },
-      beforeWriteFile: (filePath, content) => ({
-        filePath: filePath.replace(/\.js\.d\.ts$/, ".d.ts"),
-        content,
-      }),
-    }),
-    visualizer({
-      filename: "./bundle-stats.html",
-      open: true,
     }),
   ],
 
@@ -76,37 +59,20 @@ export default defineConfig({
   },
 
   build: {
-    target: "es2020",
-    minify: "esbuild",
-    sourcemap: true,
-    rollupOptions: {
-      input: Object.fromEntries(
+    lib: {
+      entry: Object.fromEntries(
         modules.map((module) => [
           module,
-          path.resolve(__dirname, `src/${module}/index.ts`),
+          path.resolve(__dirname, `src/${module}`),
         ]),
       ),
-      output: {
-        chunkFileNames: (chunkInfo) =>
-          `chunks/${chunkInfo.name.replace("/", "-")}-[hash].js`,
-        entryFileNames: "[name]/index.js",
-        assetFileNames: "assets/[name]-[hash][extname]",
-        manualChunks: (id) => {
-          if (id.includes("node_modules")) {
-            return "vendor";
-          }
-          if (id.includes("/src/")) {
-            return id.toString().split("/src/")[1].split("/")[0];
-          }
-        },
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          tailwindcss: "tailwindcss",
-        },
-        exports: "named",
-        inlineDynamicImports: false,
-      },
+      name: "x-react",
+      formats: ["es"],
+      fileName: (format, entryName) =>
+        `${entryName ? entryName + "/" : ""}x-react.${format}.js`,
+    },
+
+    rollupOptions: {
       external: [
         "react",
         "react-dom",
@@ -119,17 +85,20 @@ export default defineConfig({
         "chart.js",
         "tailwind-merge",
         /^react\/.*/,
-        /^@?[a-zA-Z\-]+\/.*/,
+        /^node_modules\/.*/,
       ],
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: "src",
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          tailwindcss: "tailwindcss",
+        },
+      },
       treeshake: {
         moduleSideEffects: false,
-        propertyReadSideEffects: false,
-        tryCatchDeoptimization: false,
       },
     },
-  },
-
-  optimizeDeps: {
-    exclude: ["react", "react-dom"],
   },
 });
