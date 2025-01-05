@@ -159,11 +159,12 @@
     }
   },
   "scripts": {
-    "clean": "rimraf dist *.log",
-    "build": "pnpm clean && tsc -b && vite build",
+    "clean": "rimraf node_modules pnpm-lock.yaml dist *.log",
+    "build": "pnpm clean && pnpm install && tsc -b && vite build",
     "test": "vitest",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "reset": "pnpm clean && pnpm install && pnpm build"
   },
   "dependencies": {
     "@nextui-org/react": "^2.6.10",
