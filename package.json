@@ -63,7 +63,7 @@
       "types": "./dist/alert/index.d.ts"
     },
     "./avatar": {
-      "import": "./dist/avatar/avatar/Avatar/index.es.js",
+      "import": "./dist/avatar/Avatar/index.es.js",
       "types": "./dist/avatar/index.d.ts"
     },
     "./card": {
