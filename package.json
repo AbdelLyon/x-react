@@ -23,7 +23,7 @@
   "exports": {
     "./style.css": "./dist/x-react.css",
     "./button": {
-      "import": "./dist/button/button.es.js",
+      "import": "./dist/button/Buuton/button.es.js",
       "types": "./dist/button/index.d.ts"
     },
     "./buttons": {
@@ -59,7 +59,7 @@
       "types": "./dist/alert/index.d.ts"
     },
     "./avatar": {
-      "import": "./dist/avatar/avatar.es.js",
+      "import": "./dist/avatar/Avatar/avatar.es.js",
       "types": "./dist/avatar/index.d.ts"
     },
     "./card": {
