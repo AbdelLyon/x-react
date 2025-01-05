@@ -27,15 +27,15 @@
       "types": "./dist/index.d.ts"
     },
     "./button": {
-      "import": "./dist/button/button.es.js",
+      "import": "./dist/button/Button/index.es.js",
       "types": "./dist/button/index.d.ts"
     },
     "./buttons": {
-      "import": "./dist/buttons/buttons.es.js",
+      "import": "./dist/buttons/Buttons/index.es.js",
       "types": "./dist/buttons/index.d.ts"
     },
     "./modal": {
-      "import": "./dist/modal/modal.es.js",
+      "import": "./dist/modal/Modal/index.es.js",
       "types": "./dist/modal/index.d.ts"
     },
     "./utils": {
@@ -63,7 +63,7 @@
       "types": "./dist/alert/index.d.ts"
     },
     "./avatar": {
-      "import": "./dist/avatar/avatar.es.js",
+      "import": "./dist/avatar/avatar/Avatar/index.es.js",
       "types": "./dist/avatar/index.d.ts"
     },
     "./card": {
