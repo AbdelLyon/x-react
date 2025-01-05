@@ -1,5 +1,4 @@
 export { useTheme } from './useTheme';
-export { useLayoutConfig } from './useLayoutConfig';
 export { useMediaQuery, type UseMediaQueryOptions, } from './useMediaQuery';
 export { useResponsive } from './useResponsive';
 export { useClickOutside } from './useClickOutside';

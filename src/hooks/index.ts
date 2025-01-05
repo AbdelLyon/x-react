@@ -1,6 +1,5 @@
 // Theming and layout
 export { useTheme } from "@/hooks/useTheme";
-export { useLayoutConfig } from "@/hooks/useLayoutConfig";
 
 // Responsiveness and media queries
 export {

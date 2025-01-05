@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { useLayoutConfig } from "../hooks/useLayoutConfig";
+import { useLayoutConfig } from "../layout/useLayoutConfig";
 
 interface TestConfig {
   className?: string;

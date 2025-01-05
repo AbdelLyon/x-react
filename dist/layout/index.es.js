@@ -6,6 +6,7 @@ import { Container } from "./Container/index.es.js";
 import { Grid, GridItem } from "./Grid/index.es.js";
 import { Section } from "./Section/index.es.js";
 import { Stack } from "./Stack/index.es.js";
+import { useLayoutConfig } from "./useLayoutConfig/index.es.js";
 export {
   Center,
   Container,
@@ -14,5 +15,6 @@ export {
   Layout,
   Scroll,
   Section,
-  Stack
+  Stack,
+  useLayoutConfig
 };

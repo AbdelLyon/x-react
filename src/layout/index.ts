@@ -6,3 +6,4 @@ export { Container } from "@/layout/Container";
 export { Grid, GridItem } from "@/layout/Grid";
 export { Section } from "@/layout/Section";
 export { Stack } from "@/layout/Stack";
+export { useLayoutConfig } from "@/layout/useLayoutConfig";

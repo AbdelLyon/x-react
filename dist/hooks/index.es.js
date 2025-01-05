@@ -1,5 +1,4 @@
 import { useTheme } from "./useTheme/index.es.js";
-import { useLayoutConfig } from "./useLayoutConfig/index.es.js";
 import { useMediaQuery } from "./useMediaQuery/index.es.js";
 import { useResponsive } from "./useResponsive/index.es.js";
 import { useClickOutside } from "./useClickOutside/index.es.js";
@@ -37,7 +36,6 @@ export {
   useInfiniteScroll,
   useIntersection,
   useInterval,
-  useLayoutConfig,
   useLocalStorage,
   useMediaQuery,
   useMergedRef,
