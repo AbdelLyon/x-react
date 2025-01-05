@@ -50,6 +50,10 @@
       "import": "./dist/theme/index.es.js",
       "types": "./dist/theme/index.d.ts"
     },
+    "./icons": {
+      "import": "./dist/icons/index.es.js",
+      "types": "./dist/icons/index.d.ts"
+    },
     "./accordion": {
       "import": "./dist/accordion/Accordion/index.es.js",
       "types": "./dist/accordion/Accordion.d.ts"
