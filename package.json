@@ -79,8 +79,8 @@
       "types": "./dist/dropdown/Dropdown.d.ts"
     },
     "./image": {
-      "import": "./dist/image/Image/index.es.js",
-      "types": "./dist/image/Image.d.ts"
+      "import": "./dist/image/index.es.js",
+      "types": "./dist/image/index.d.ts"
     },
     "./slider": {
       "import": "./dist/slider/Slider/index.es.js",
@@ -99,8 +99,8 @@
       "types": "./dist/datagrid/Datagrid.d.ts"
     },
     "./datepicker": {
-      "import": "./dist/datepicker/Datepicker/index.es.js",
-      "types": "./dist/datepicker/Datepicker.d.ts"
+      "import": "./dist/datepicker/DatePicker/index.es.js",
+      "types": "./dist/datepicker/DatePicker.d.ts"
     },
     "./chip": {
       "import": "./dist/chip/Chip/index.es.js",
@@ -143,7 +143,7 @@
       "types": "./dist/HOC/HOC.d.ts"
     },
     "./chart": {
-      "import": "./dist/chart/Chart/index..es.js",
+      "import": "./dist/chart/Chart/index.es.js",
       "types": "./dist/chart/Chart.d.ts"
     }
   },
