@@ -47,8 +47,8 @@
       "types": "./dist/providers/index.d.ts"
     },
     "./theme": {
-      "import": "./dist/theme/Theme/index.es.js",
-      "types": "./dist/theme/Theme.d.ts"
+      "import": "./dist/theme/index.es.js",
+      "types": "./dist/theme/index.d.ts"
     },
     "./accordion": {
       "import": "./dist/accordion/Accordion/index.es.js",
