@@ -52,7 +52,6 @@ export default defineConfig({
         react(),
         dts({
             exclude: ["src/data/**/*", "src/tests/**/*"],
-            rollupTypes: true,
             compilerOptions: {
                 emitDeclarationOnly: true,
                 preserveSymlinks: false,
@@ -72,9 +71,9 @@ export default defineConfig({
         postcss: {
             plugins: [tailwindcss],
         },
-        modules: {
-            generateScopedName: "[name]__[local]__[hash:base64:5]",
-        },
+        // modules: {
+        //   generateScopedName: "[name]__[local]__[hash:base64:5]",
+        // },
     },
     build: {
         target: "es2020",

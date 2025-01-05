@@ -148,7 +148,8 @@
     }
   },
   "scripts": {
-    "build": "tsc -b && vite build",
+    "clean": "rimraf dist *.log",
+    "build": "pnpm clean && tsc -b && vite build",
     "test": "vitest",
     "lint": "eslint .",
     "preview": "vite preview"
