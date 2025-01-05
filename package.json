@@ -64,7 +64,7 @@
     },
     "./avatar": {
       "import": "./dist/avatar/Avatar/index.es.js",
-      "types": "./dist/avatar/index.d.ts"
+      "types": "./dist/Avatar/index.d.ts"
     },
     "./card": {
       "import": "./dist/card/card.es.js",
