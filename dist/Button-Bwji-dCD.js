@@ -1,17 +1,17 @@
 import { jsx as o, jsxs as x, Fragment as y } from "react/jsx-runtime";
 import { forwardRef as N } from "react";
 import { Button as u } from "@nextui-org/react";
-import { cn as t } from "../../../utils/utils.es.js";
+import { cn as t } from "./utils/utils.es.js";
 const j = N(
   ({
     fullWidth: b = !1,
     isLoading: p = !1,
     isDisabled: h = !1,
     startContent: a,
-    endContent: l,
-    className: v = "",
+    endContent: s,
+    className: B = "",
     LinkComponent: e,
-    variant: s = "solid",
+    variant: l = "solid",
     classNames: n = {
       base: "",
       beforeContent: "",
@@ -19,7 +19,7 @@ const j = N(
       content: ""
     },
     href: r,
-    children: B,
+    children: v,
     target: i,
     rel: w,
     ...d
@@ -29,11 +29,11 @@ const j = N(
       b && "w-full",
       p && "opacity-50 cursor-not-allowed",
       n.base,
-      v
+      B
     ), m = () => /* @__PURE__ */ x(y, { children: [
       a !== void 0 && /* @__PURE__ */ o("span", { className: t("mr-2", n.beforeContent), children: a }),
-      /* @__PURE__ */ o("span", { className: n.content, children: B }),
-      l !== void 0 && /* @__PURE__ */ o("span", { className: t("ml-2", n.afterContent), children: l })
+      /* @__PURE__ */ o("span", { className: n.content, children: v }),
+      s !== void 0 && /* @__PURE__ */ o("span", { className: t("ml-2", n.afterContent), children: s })
     ] });
     return r !== void 0 && r.length > 0 && e !== void 0 && e !== void 0 ? /* @__PURE__ */ o(
       u,
@@ -41,7 +41,7 @@ const j = N(
         ref: c,
         ...d,
         as: e,
-        variant: s,
+        variant: l,
         className: f,
         href: r,
         rel: i === "_blank" ? "noopener noreferrer" : w,
@@ -53,7 +53,7 @@ const j = N(
       {
         ref: c,
         ...d,
-        variant: s,
+        variant: l,
         className: f,
         isDisabled: h,
         children: /* @__PURE__ */ o(m, {})
@@ -63,5 +63,5 @@ const j = N(
 );
 j.displayName = "Button";
 export {
-  j as Button
+  j as B
 };

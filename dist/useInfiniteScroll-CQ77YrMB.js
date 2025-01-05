@@ -1,11 +1,11 @@
-import { debounce as g } from "../../../utils/utils.es.js";
+import { debounce as g } from "./utils/utils.es.js";
 import { useRef as t, useCallback as x, useLayoutEffect as R } from "react";
 const I = (b = {}) => {
   const {
     hasMore: r = !0,
     distance: o = 250,
-    isEnabled: i = !0,
-    shouldUseLoader: u = !0,
+    isEnabled: u = !0,
+    shouldUseLoader: i = !0,
     onLoadMore: n
   } = b, a = t(null), f = t(null), s = t(null), c = t(!1), l = x(() => {
     let e;
@@ -15,9 +15,9 @@ const I = (b = {}) => {
   }, [r, n]);
   return R(() => {
     const e = a.current;
-    if (!i || !e || !r)
+    if (!u || !e || !r)
       return;
-    if (u) {
+    if (i) {
       const m = f.current;
       if (!m)
         return;
@@ -42,8 +42,8 @@ const I = (b = {}) => {
         d
       );
     };
-  }, [r, o, i, u, l]), [f, a];
+  }, [r, o, u, i, l]), [f, a];
 };
 export {
-  I as useInfiniteScroll
+  I as u
 };

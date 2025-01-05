@@ -81,7 +81,6 @@ export default defineConfig({
                 /^node_modules\/.*/,
             ],
             output: {
-                preserveModules: true,
                 preserveModulesRoot: "src",
                 globals: {
                     react: "React",
