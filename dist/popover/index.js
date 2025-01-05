@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Popover as e } from "./Popover/index.js";
-export {
-  e as Popover
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

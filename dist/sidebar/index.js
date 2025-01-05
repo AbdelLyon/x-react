@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Sidebar as i } from "./Sidebar/index.js";
-export {
-  i as Sidebar
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

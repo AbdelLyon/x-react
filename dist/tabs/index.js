@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Tabs as p } from "./Tabs/index.js";
-export {
-  p as Tabs
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

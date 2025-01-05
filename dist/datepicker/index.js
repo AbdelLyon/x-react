@@ -1,7 +1,2 @@
-/* empty css                 */
-import { DatePicker as a, DateRangePicker as i } from "./DatePicker/index.js";
-export {
-  a as DatePicker,
-  i as DateRangePicker
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

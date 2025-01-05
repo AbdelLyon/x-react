@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Chip as i } from "./Chip/index.js";
-export {
-  i as Chip
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

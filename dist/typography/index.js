@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Typography as m } from "./Typography/index.js";
-export {
-  m as Typography
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

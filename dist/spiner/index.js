@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Spinner as e } from "./Spiner/index.js";
-export {
-  e as Spinner
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

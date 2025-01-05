@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Alert as e } from "./Alert/index.js";
-export {
-  e as Alert
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

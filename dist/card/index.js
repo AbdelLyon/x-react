@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Card as p } from "./Card/index.js";
-export {
-  p as Card
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,2 @@
-/* empty css                 */
-import { ToggleTheme as r } from "./ToggleTheme/index.js";
-export {
-  r as ToggleTheme
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

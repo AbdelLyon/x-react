@@ -1,6 +1,2 @@
-/* empty css                 */
-import { Pagination as t } from "./Pagination/index.js";
-export {
-  t as Pagination
-};
+/* empty css                          */
 //# sourceMappingURL=index.js.map

@@ -1,19 +1,12 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-import path from "path";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import tailwindcss from "tailwindcss";
+import { visualizer } from "rollup-plugin-visualizer";
+var __filename = fileURLToPath(import.meta.url);
+var __dirname = path.dirname(__filename);
 var modules = [
     "utils",
     "button",
@@ -61,6 +54,10 @@ export default defineConfig({
                 content: content,
             }); },
         }),
+        visualizer({
+            filename: "./bundle-stats.html",
+            open: true,
+        }),
     ],
     resolve: {
         alias: {
@@ -71,24 +68,38 @@ export default defineConfig({
         postcss: {
             plugins: [tailwindcss],
         },
-        // modules: {
-        //   generateScopedName: "[name]__[local]__[hash:base64:5]",
-        // },
     },
     build: {
         target: "es2020",
         minify: "esbuild",
         sourcemap: true,
-        lib: {
-            entry: __assign({}, Object.fromEntries(modules.map(function (module) { return [
+        rollupOptions: {
+            input: Object.fromEntries(modules.map(function (module) { return [
                 module,
                 path.resolve(__dirname, "src/".concat(module, "/index.ts")),
-            ]; }))),
-            name: "x-react",
-            formats: ["es"],
-            fileName: function (format, entryName) { return "".concat(entryName, "/index.").concat(format, ".js"); },
-        },
-        rollupOptions: {
+            ]; })),
+            output: {
+                chunkFileNames: function (chunkInfo) {
+                    return "chunks/".concat(chunkInfo.name.replace("/", "-"), "-[hash].js");
+                },
+                entryFileNames: "[name]/index.js",
+                assetFileNames: "assets/[name]-[hash][extname]",
+                manualChunks: function (id) {
+                    if (id.includes("node_modules")) {
+                        return "vendor";
+                    }
+                    if (id.includes("/src/")) {
+                        return id.toString().split("/src/")[1].split("/")[0];
+                    }
+                },
+                globals: {
+                    react: "React",
+                    "react-dom": "ReactDOM",
+                    tailwindcss: "tailwindcss",
+                },
+                exports: "named",
+                inlineDynamicImports: false,
+            },
             external: [
                 "react",
                 "react-dom",
@@ -103,31 +114,11 @@ export default defineConfig({
                 /^react\/.*/,
                 /^@?[a-zA-Z\-]+\/.*/,
             ],
-            output: {
-                preserveModules: true,
-                preserveModulesRoot: "src",
-                entryFileNames: "[name]/index.js",
-                chunkFileNames: "chunks/[name]-[hash].js",
-                assetFileNames: "assets/[name]-[hash][extname]",
-                globals: {
-                    react: "React",
-                    "react-dom": "ReactDOM",
-                    tailwindcss: "tailwindcss",
-                },
-                exports: "named",
-                inlineDynamicImports: false,
-            },
             treeshake: {
                 moduleSideEffects: false,
                 propertyReadSideEffects: false,
                 tryCatchDeoptimization: false,
             },
-        },
-        commonjsOptions: {
-            include: [],
-            extensions: [".js", ".cjs", ".jsx", ".tsx", ".ts"],
-            strictRequires: true,
-            transformMixedEsModules: true,
         },
     },
     optimizeDeps: {
