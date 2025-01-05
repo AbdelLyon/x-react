@@ -1,8 +1,9 @@
-import { Button, Buttons } from "@/button";
+import { Button } from "@/button";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { userEvent } from "@testing-library/user-event";
 import type { ComponentType, AnchorHTMLAttributes } from "react";
+import { Buttons } from "@/buttons";
 
 describe("Composant Button", () => {
   describe("Rendu de base", () => {

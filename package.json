@@ -1,15 +1,22 @@
 {
   "name": "x-react",
-  "private": true,
   "version": "0.0.0",
+  "description": "Xefi React Package",
   "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
-  "description": "Xefi React Package",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AbdelLyon/x-react.git"
+    "url": "https://github.com/AbdelLyon/x-react.git",
+    "directory": "packages/react"
   },
   "author": "DailyApps",
   "license": "MIT",
@@ -18,6 +25,10 @@
     "./button": {
       "import": "./dist/button/button.es.js",
       "types": "./dist/button/index.d.ts"
+    },
+    "./buttons": {
+      "import": "./dist/buttons/buttons.es.js",
+      "types": "./dist/buttons/index.d.ts"
     },
     "./modal": {
       "import": "./dist/modal/modal.es.js",
