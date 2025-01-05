@@ -174,13 +174,12 @@ export default defineConfig({
         lib: {
             entry: __assign({ style: "src/index.css" }, Object.fromEntries(modules.map(function (module) { return [
                 module,
-                path.resolve(__dirname, "src/".concat(module)),
+                path.resolve(__dirname, "src/".concat(module, "/index.ts")),
             ]; }))),
             name: "x-react",
             formats: ["es"],
-            fileName: function (format, entryName) {
-                return "".concat(entryName ? entryName + "/" : "").concat(entryName, ".").concat(format, ".js");
-            },
+            // fileName: (format, entryName) =>
+            //   `${entryName ? entryName + "/" : ""}${entryName}.${format}.js`,
         },
         rollupOptions: {
             external: [
@@ -211,7 +210,7 @@ export default defineConfig({
                     "react-chartjs-2": "ReactChartJS",
                 },
                 entryFileNames: function (chunkInfo) {
-                    return "".concat(chunkInfo.name, "/index.js");
+                    return "".concat(chunkInfo.name, "/index.es.js");
                 },
                 assetFileNames: function (chunkInfo) {
                     var _a;
