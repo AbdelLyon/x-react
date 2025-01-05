@@ -13,151 +13,145 @@
   },
   "author": "DailyApps",
   "license": "MIT",
-  "tsup": {
-    "entry": [
-      "src/index.ts"
-    ],
-    "splitting": false,
-    "sourcemap": true,
-    "clean": true
-  },
   "exports": {
-    "./style.css": "./dist/style.css",
-    ".": {
-      "import": "./dist/index/index.js",
-      "types": "./dist/index/index.d.ts"
+    "./style.css": "./dist/x-react.css",
+    "./button": {
+      "import": "./dist/button/x-react.es.js",
+      "types": "./dist/button/index.d.ts"
+    },
+    "./modal": {
+      "import": "./dist/modal/x-react.es.js",
+      "types": "./dist/modal/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils/x-react.es.js",
+      "types": "./dist/utils/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/x-react.es.js",
+      "types": "./dist/hooks/index.d.ts"
+    },
+    "./providers": {
+      "import": "./dist/providers/x-react.es.js",
+      "types": "./dist/providers/index.d.ts"
+    },
+    "./theme": {
+      "import": "./dist/theme/x-react.es.js",
+      "types": "./dist/theme/index.d.ts"
     },
     "./accordion": {
-      "import": "./dist/accordion/index.js",
+      "import": "./dist/accordion/x-react.es.js",
       "types": "./dist/accordion/index.d.ts"
     },
     "./alert": {
-      "import": "./dist/alert/index.js",
+      "import": "./dist/alert/x-react.es.js",
       "types": "./dist/alert/index.d.ts"
     },
     "./avatar": {
-      "import": "./dist/avatar/index.js",
+      "import": "./dist/avatar/x-react.es.js",
       "types": "./dist/avatar/index.d.ts"
     },
-    "./button": {
-      "import": "./dist/button/index.js",
-      "types": "./dist/button/index.d.ts"
-    },
     "./card": {
-      "import": "./dist/card/index.js",
+      "import": "./dist/card/x-react.es.js",
       "types": "./dist/card/index.d.ts"
     },
-    "./chart": {
-      "import": "./dist/chart/index.js",
-      "types": "./dist/chart/index.d.ts"
+    "./icons": {
+      "import": "./dist/icons/x-react.es.js",
+      "types": "./dist/icons/index.d.ts"
     },
-    "./chip": {
-      "import": "./dist/chip/index.js",
-      "types": "./dist/chip/index.d.ts"
+    "./form": {
+      "import": "./dist/form/x-react.es.js",
+      "types": "./dist/form/index.d.ts"
+    },
+    "./popover": {
+      "import": "./dist/popover/x-react.es.js",
+      "types": "./dist/popover/index.d.ts"
+    },
+    "./dropdown": {
+      "import": "./dist/dropdown/x-react.es.js",
+      "types": "./dist/dropdown/index.d.ts"
+    },
+    "./image": {
+      "import": "./dist/image/x-react.es.js",
+      "types": "./dist/image/index.d.ts"
+    },
+    "./slider": {
+      "import": "./dist/slider/x-react.es.js",
+      "types": "./dist/slider/index.d.ts"
+    },
+    "./progress": {
+      "import": "./dist/progress/x-react.es.js",
+      "types": "./dist/progress/index.d.ts"
+    },
+    "./spiner": {
+      "import": "./dist/spiner/x-react.es.js",
+      "types": "./dist/spiner/index.d.ts"
     },
     "./datagrid": {
-      "import": "./dist/datagrid/index.js",
+      "import": "./dist/datagrid/x-react.es.js",
       "types": "./dist/datagrid/index.d.ts"
     },
     "./datepicker": {
-      "import": "./dist/datepicker/index.js",
+      "import": "./dist/datepicker/x-react.es.js",
       "types": "./dist/datepicker/index.d.ts"
     },
+    "./chip": {
+      "import": "./dist/chip/x-react.es.js",
+      "types": "./dist/chip/index.d.ts"
+    },
     "./drawer": {
-      "import": "./dist/drawer/index.js",
+      "import": "./dist/drawer/x-react.es.js",
       "types": "./dist/drawer/index.d.ts"
     },
-    "./dropdown": {
-      "import": "./dist/dropdown/index.js",
-      "types": "./dist/dropdown/index.d.ts"
-    },
-    "./form": {
-      "import": "./dist/form/index.js",
-      "types": "./dist/form/index.d.ts"
-    },
-    "./HOC": {
-      "import": "./dist/HOC/index.js",
-      "types": "./dist/HOC/index.d.ts"
-    },
-    "./hooks": {
-      "import": "./dist/hooks/index.js",
-      "types": "./dist/hooks/index.d.ts"
-    },
-    "./icons": {
-      "import": "./dist/icons/index.js",
-      "types": "./dist/icons/index.d.ts"
-    },
-    "./image": {
-      "import": "./dist/image/index.js",
-      "types": "./dist/image/index.d.ts"
-    },
-    "./layout": {
-      "import": "./dist/layout/index.js",
-      "types": "./dist/layout/index.d.ts"
-    },
-    "./modal": {
-      "import": "./dist/modal/index.js",
-      "types": "./dist/modal/index.d.ts"
-    },
     "./navbar": {
-      "import": "./dist/navbar/index.js",
+      "import": "./dist/navbar/x-react.es.js",
       "types": "./dist/navbar/index.d.ts"
     },
-    "./pagination": {
-      "import": "./dist/pagination/index.js",
-      "types": "./dist/pagination/index.d.ts"
-    },
-    "./popover": {
-      "import": "./dist/popover/index.js",
-      "types": "./dist/popover/index.d.ts"
-    },
-    "./progress": {
-      "import": "./dist/progress/index.js",
-      "types": "./dist/progress/index.d.ts"
-    },
-    "./providers": {
-      "import": "./dist/providers/index.js",
-      "types": "./dist/providers/index.d.ts"
-    },
     "./sidebar": {
-      "import": "./dist/sidebar/index.js",
+      "import": "./dist/sidebar/x-react.es.js",
       "types": "./dist/sidebar/index.d.ts"
     },
-    "./slider": {
-      "import": "./dist/slider/index.js",
-      "types": "./dist/slider/index.d.ts"
-    },
-    "./spiner": {
-      "import": "./dist/spiner/index.js",
-      "types": "./dist/spiner/index.d.ts"
-    },
-    "./tabs": {
-      "import": "./dist/tabs/index.js",
-      "types": "./dist/tabs/index.d.ts"
-    },
-    "./theme": {
-      "import": "./dist/theme/index.js",
-      "types": "./dist/theme/index.d.ts"
+    "./layout": {
+      "import": "./dist/layout/x-react.es.js",
+      "types": "./dist/layout/index.d.ts"
     },
     "./tooltip": {
-      "import": "./dist/tooltip/index.js",
+      "import": "./dist/tooltip/x-react.es.js",
       "types": "./dist/tooltip/index.d.ts"
     },
+    "./tabs": {
+      "import": "./dist/tabs/x-react.es.js",
+      "types": "./dist/tabs/index.d.ts"
+    },
+    "./pagination": {
+      "import": "./dist/pagination/x-react.es.js",
+      "types": "./dist/pagination/index.d.ts"
+    },
     "./typography": {
-      "import": "./dist/typography/index.js",
+      "import": "./dist/typography/x-react.es.js",
       "types": "./dist/typography/index.d.ts"
     },
-    "./utils": {
-      "import": "./dist/utils/index.js",
-      "types": "./dist/utils/index.d.ts"
+    "./HOC": {
+      "import": "./dist/HOC/x-react.es.js",
+      "types": "./dist/HOC/index.d.ts"
+    },
+    "./chart": {
+      "import": "./dist/chart/x-react.es.js",
+      "types": "./dist/chart/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*/index.d.ts"
+      ]
     }
   },
   "scripts": {
-    "clean": "rimraf dist *.log",
-    "build": "pnpm clean && vite build",
-    "build:fresh": "pnpm clean && pnpm build",
+    "build": "tsc -b && vite build",
     "test": "vitest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@nextui-org/react": "^2.6.10",
@@ -166,10 +160,10 @@
     "tailwind-merge": "^2.6.0"
   },
   "peerDependencies": {
-    "@tabler/icons-react": "^3.26.0",
-    "framer-motion": "^11.15.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "framer-motion": "^11.15.0",
+    "@tabler/icons-react": "^3.26.0"
   },
   "optionalDependencies": {
     "@internationalized/date": "^3.6.0",
@@ -186,6 +180,7 @@
     "@types/react-dom": "^19.0.2",
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "@typescript-eslint/parser": "^8.18.2",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",
     "eslint-plugin-react-hooks": "^5.1.0",
@@ -195,11 +190,13 @@
     "jsdom": "^25.0.1",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
-    "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.17",
-    "tsup": "^8.3.5",
     "typescript": "~5.6.3",
     "typescript-eslint": "^8.18.2",
-    "vitest": "^2.1.8"
+    "vite": "^6.0.6",
+    "vite-plugin-dts": "^4.4.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^2.1.8",
+    "@vitejs/plugin-react-swc": "^3.7.2"
   }
 }
