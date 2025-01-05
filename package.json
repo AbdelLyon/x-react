@@ -95,8 +95,8 @@
       "types": "./dist/spiner/Spiner.d.ts"
     },
     "./datagrid": {
-      "import": "./dist/datagrid/Datagrid/index.es.js",
-      "types": "./dist/datagrid/Datagrid.d.ts"
+      "import": "./dist/datagrid/DataGrid/index.es.js",
+      "types": "./dist/datagrid/DataGrid.d.ts"
     },
     "./datepicker": {
       "import": "./dist/datepicker/DatePicker/index.es.js",
