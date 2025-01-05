@@ -16,9 +16,9 @@ const modules = [
   "popover",
   "dropdown",
   "image",
-  "slider",
+  // "slider",
   // "progress",
-  "spiner",
+  // "spiner",
   // "datagrid",
   // "drawer",
   // "chip",
@@ -35,9 +35,9 @@ const modules = [
 ];
 
 export default defineConfig({
-  entry: Object.fromEntries([
+  entry: Object.fromEntries(
     modules.map((module) => [`${module}/index`, `src/${module}/index.ts`]),
-  ]),
+  ),
   format: ["esm"],
   dts: {
     resolve: true,
@@ -47,7 +47,6 @@ export default defineConfig({
       ),
     },
   },
-
   clean: true,
   outDir: "dist",
   splitting: false,
