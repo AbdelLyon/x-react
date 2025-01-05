@@ -24,7 +24,7 @@
     "./style.css": "./dist/style.css",
     "./button": {
       "import": "./dist/button/Button/index.es.js",
-      "types": "./dist/button/Button.d.ts"
+      "types": "./dist/button/index.d.ts"
     },
     "./buttons": {
       "import": "./dist/buttons/Buttons/index.es.js",
