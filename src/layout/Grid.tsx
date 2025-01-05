@@ -1,4 +1,4 @@
-import type { ReactNode, ForwardedRef } from "react";
+import type { ReactNode, ForwardedRef, JSX } from "react";
 import { forwardRef } from "react";
 import { cn } from "@/utils";
 
@@ -51,7 +51,7 @@ export const Grid = forwardRef(
       className,
     }: GridProps,
     ref: ForwardedRef<HTMLDivElement>,
-  ) => {
+  ): JSX.Element => {
     const gridClasses = cn(
       "grid",
       `grid-cols-${columns.default}`,
@@ -67,11 +67,13 @@ export const Grid = forwardRef(
     return (
       <div ref={ref} className={gridClasses}>
         {data
-          ? data.map((item) => (
-              <GridItem key={item.id} colSpan={item.colSpan}>
-                {item.content}
-              </GridItem>
-            ))
+          ? data.map(
+              (item): JSX.Element => (
+                <GridItem key={item.id} colSpan={item.colSpan}>
+                  {item.content}
+                </GridItem>
+              ),
+            )
           : children}
       </div>
     );
@@ -96,7 +98,7 @@ export const GridItem = forwardRef(
   (
     { children, colSpan, className }: GridItemProps,
     ref: ForwardedRef<HTMLDivElement>,
-  ) => {
+  ): JSX.Element => {
     const itemClasses = cn(
       colSpan?.default !== undefined && `col-span-${colSpan.default}`,
       colSpan?.sm !== undefined && `sm:col-span-${colSpan.sm}`,

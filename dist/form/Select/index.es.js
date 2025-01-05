@@ -47,16 +47,18 @@ const Select = forwardRef(
         selectedKeys: value,
         defaultSelectedKeys: defaultValue
       }, props), {
-        children: options.map((option) => /* @__PURE__ */ jsx(
-          SelectItem,
-          {
-            description: option.description,
-            startContent: option.icon,
-            className: "text-small",
-            children: option.label
-          },
-          option.key
-        ))
+        children: options.map(
+          (option) => /* @__PURE__ */ jsx(
+            SelectItem,
+            {
+              description: option.description,
+              startContent: option.icon,
+              className: "text-small",
+              children: option.label
+            },
+            option.key
+          )
+        )
       })
     );
   }

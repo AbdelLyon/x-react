@@ -1,74 +1,79 @@
+import type { ToggleReturn } from "@/hooks/useToggle";
 import { useToggle } from "@/hooks/useToggle";
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
-describe("useToggle", () => {
-  it("devrait initialiser avec la première valeur des options par défaut", () => {
-    const { result } = renderHook(() => useToggle());
+describe("useToggle", (): void => {
+  it("devrait initialiser avec la première valeur des options par défaut", (): void => {
+    const { result } = renderHook((): ToggleReturn<boolean> => useToggle());
     expect(result.current[0]).toBe(false);
   });
 
-  it("devrait basculer entre true et false par défaut", () => {
-    const { result } = renderHook(() => useToggle());
+  it("devrait basculer entre true et false par défaut", (): void => {
+    const { result } = renderHook((): ToggleReturn<boolean> => useToggle());
 
-    act(() => {
+    act((): void => {
       result.current[1]();
     });
     expect(result.current[0]).toBe(true);
 
-    act(() => {
+    act((): void => {
       result.current[1]();
     });
     expect(result.current[0]).toBe(false);
   });
 
-  it("devrait accepter des options personnalisées", () => {
+  it("devrait accepter des options personnalisées", (): void => {
     const options = [1, 2, 3] as const;
-    const { result } = renderHook(() => useToggle(options));
+    const { result } = renderHook(
+      (): ToggleReturn<2 | 3 | 1> => useToggle(options),
+    );
 
     expect(result.current[0]).toBe(1);
 
-    act(() => {
+    act((): void => {
       result.current[1]();
     });
     expect(result.current[0]).toBe(2);
 
-    act(() => {
+    act((): void => {
       result.current[1]();
     });
     expect(result.current[0]).toBe(3);
 
-    act(() => {
+    act((): void => {
       result.current[1]();
     });
     expect(result.current[0]).toBe(1);
   });
 
-  it("devrait permettre de basculer vers une valeur spécifique", () => {
+  it("devrait permettre de basculer vers une valeur spécifique", (): void => {
     const options = [1, 2, 3] as const;
-    const { result } = renderHook(() => useToggle(options));
+    const { result } = renderHook(
+      (): ToggleReturn<2 | 1 | 3> => useToggle(options),
+    );
 
-    act(() => {
+    act((): void => {
       result.current[1](3);
     });
     expect(result.current[0]).toBe(3);
 
-    act(() => {
+    act((): void => {
       result.current[1](1);
     });
     expect(result.current[0]).toBe(1);
   });
 
-  it("devrait gérer les fonctions de mise à jour", () => {
-    const { result } = renderHook(() => useToggle());
+  it("devrait gérer les fonctions de mise à jour", (): void => {
+    const { result } = renderHook((): ToggleReturn<boolean> => useToggle());
 
-    act(() => {
-      result.current[1]((prev: boolean) => !prev);
+    act((): void => {
+      result.current[1]((prev: boolean): boolean => !prev);
     });
     expect(result.current[0]).toBe(true);
 
-    act(() => {
-      result.current[1]((prev: boolean) => !prev);
+    act((): void => {
+      result.current[1]((prev: boolean): boolean => !prev);
     });
     expect(result.current[0]).toBe(false);
   });

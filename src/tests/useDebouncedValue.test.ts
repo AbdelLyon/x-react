@@ -2,35 +2,39 @@ import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-describe("useDebouncedValue", () => {
-  beforeEach(() => {
+describe("useDebouncedValue", (): void => {
+  beforeEach((): void => {
     vi.useFakeTimers();
   });
 
-  it("devrait initialiser avec la valeur fournie", () => {
-    const { result } = renderHook(() => useDebouncedValue("initial", 100));
+  it("devrait initialiser avec la valeur fournie", (): void => {
+    const { result } = renderHook((): readonly [string, () => void] =>
+      useDebouncedValue("initial", 100),
+    );
     expect(result.current[0]).toBe("initial");
   });
 
-  it("devrait mettre à jour la valeur après le délai", () => {
+  it("devrait mettre à jour la valeur après le délai", (): void => {
     const { result, rerender } = renderHook(
-      ({ value }) => useDebouncedValue(value, 100),
+      ({ value }): readonly [string, () => void] =>
+        useDebouncedValue(value, 100),
       { initialProps: { value: "initial" } },
     );
 
     rerender({ value: "nouvelle valeur" });
     expect(result.current[0]).toBe("initial");
 
-    act(() => {
+    act((): void => {
       vi.advanceTimersByTime(100);
     });
 
     expect(result.current[0]).toBe("nouvelle valeur");
   });
 
-  it("devrait annuler les mises à jour précédentes", () => {
+  it("devrait annuler les mises à jour précédentes", (): void => {
     const { result, rerender } = renderHook(
-      ({ value }) => useDebouncedValue(value, 100),
+      ({ value }): readonly [string, () => void] =>
+        useDebouncedValue(value, 100),
       { initialProps: { value: "initial" } },
     );
 
@@ -40,16 +44,17 @@ describe("useDebouncedValue", () => {
 
     expect(result.current[0]).toBe("initial");
 
-    act(() => {
+    act((): void => {
       vi.advanceTimersByTime(100);
     });
 
     expect(result.current[0]).toBe("valeur3");
   });
 
-  it("devrait mettre à jour immédiatement avec l'option leading", () => {
+  it("devrait mettre à jour immédiatement avec l'option leading", (): void => {
     const { result, rerender } = renderHook(
-      ({ value }) => useDebouncedValue(value, 100, { leading: true }),
+      ({ value }): readonly [string, () => void] =>
+        useDebouncedValue(value, 100, { leading: true }),
       { initialProps: { value: "initial" } },
     );
 
@@ -57,29 +62,31 @@ describe("useDebouncedValue", () => {
     expect(result.current[0]).toBe("nouvelle valeur");
   });
 
-  it("devrait permettre d'annuler une mise à jour en attente", () => {
+  it("devrait permettre d'annuler une mise à jour en attente", (): void => {
     const { result, rerender } = renderHook(
-      ({ value }) => useDebouncedValue(value, 100),
+      ({ value }): readonly [string, () => void] =>
+        useDebouncedValue(value, 100),
       { initialProps: { value: "initial" } },
     );
 
     rerender({ value: "nouvelle valeur" });
 
-    act(() => {
-      result.current[1](); // Appel de la fonction cancel
+    act((): void => {
+      result.current[1]();
     });
 
-    act(() => {
+    act((): void => {
       vi.advanceTimersByTime(100);
     });
 
     expect(result.current[0]).toBe("initial");
   });
 
-  it("devrait nettoyer le timer au démontage", () => {
+  it("devrait nettoyer le timer au démontage", (): void => {
     const clearTimeoutSpy = vi.spyOn(window, "clearTimeout");
     const { rerender, unmount } = renderHook(
-      ({ value }) => useDebouncedValue(value, 100),
+      ({ value }): readonly [string, () => void] =>
+        useDebouncedValue(value, 100),
       { initialProps: { value: "initial" } },
     );
 

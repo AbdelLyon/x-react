@@ -16,14 +16,14 @@ export const useDebouncedValue = <T>(
     }
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     if (mountedRef.current) {
       if (!cooldownRef.current && options.leading) {
         cooldownRef.current = true;
         setValue(value);
       } else {
         cancel();
-        timeoutRef.current = window.setTimeout(() => {
+        timeoutRef.current = window.setTimeout((): void => {
           cooldownRef.current = false;
           setValue(value);
         }, wait);
@@ -31,7 +31,7 @@ export const useDebouncedValue = <T>(
     }
   }, [value, options.leading, wait]);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     mountedRef.current = true;
     return cancel;
   }, []);

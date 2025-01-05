@@ -132,7 +132,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const { isOpen, onOpen, onClose } = useDisclosure({
       onChange: onOpenChange,
     });
@@ -170,7 +170,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         <div
           role="button"
           tabIndex={0}
-          onClick={() => handleOpen()}
+          onClick={(): void => handleOpen()}
           onKeyDown={handleKeyDown}
           className="inline-block"
         >
@@ -186,7 +186,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           {...props}
         >
           <ModalContent>
-            {() => (
+            {(): JSX.Element => (
               <>
                 {title !== undefined && (
                   <ModalHeader className={modalClassNames.header}>

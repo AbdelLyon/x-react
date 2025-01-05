@@ -1,5 +1,5 @@
 // Center.tsx
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
 import { cn } from "@/utils";
 
@@ -10,7 +10,7 @@ interface CenterProps {
 }
 
 export const Center = forwardRef<HTMLDivElement, CenterProps>(
-  ({ children, inline = false, className }, ref) => {
+  ({ children, inline = false, className }, ref): JSX.Element => {
     return (
       <div
         ref={ref}

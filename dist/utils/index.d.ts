@@ -14,4 +14,5 @@ type DebouncedFunction<Args extends unknown[]> = {
     cancel: () => void;
 };
 export declare function debounce<Callback extends (...args: never[]) => unknown, Args extends Parameters<Callback>>(callback: Callback, delay?: number): DebouncedFunction<Args>;
+export declare function chain(...callbacks: unknown[]): (...args: unknown[]) => void;
 export {};

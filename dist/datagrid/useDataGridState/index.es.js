@@ -27,10 +27,12 @@ const useDataGridState = ({
     field: null,
     direction: "asc"
   });
-  const processedColumns = columns.map((column, index) => __spreadProps(__spreadValues({}, column), {
-    key: typeof column.field === "string" ? String(column.field) : String(index),
-    header: column.header
-  }));
+  const processedColumns = columns.map(
+    (column, index) => __spreadProps(__spreadValues({}, column), {
+      key: typeof column.field === "string" ? String(column.field) : String(index),
+      header: column.header
+    })
+  );
   const extractColumnHeader = (column) => {
     return typeof column.header === "string" && column.header.length > 0 ? column.header : typeof column.key === "string" && column.key.length > 0 ? column.key : "Column";
   };

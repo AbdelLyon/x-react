@@ -1,17 +1,38 @@
 // Chart.test.tsx
+import type { Mock } from "vitest";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render } from "@testing-library/react";
 import * as ReactChartJS2 from "react-chartjs-2";
 import { Chart } from "@/chart";
+import type { JSX } from "react";
 
-vi.mock("react-chartjs-2", () => ({
-  Chart: vi.fn(({ options }) => (
-    <div data-testid="mock-chart">{options?.plugins?.title?.text}</div>
-  )),
-}));
+vi.mock(
+  "react-chartjs-2",
+  (): {
+    Chart: Mock<
+      ({
+        options,
+      }: {
+        options: {
+          plugins: {
+            title: {
+              text: string;
+            };
+          };
+        };
+      }) => JSX.Element
+    >;
+  } => ({
+    Chart: vi.fn(
+      ({ options }): JSX.Element => (
+        <div data-testid="mock-chart">{options?.plugins?.title?.text}</div>
+      ),
+    ),
+  }),
+);
 
-describe("Chart Component", () => {
-  beforeEach(() => {
+describe("Chart Component", (): void => {
+  beforeEach((): void => {
     vi.clearAllMocks();
   });
 
@@ -59,12 +80,12 @@ describe("Chart Component", () => {
   };
 
   // Tests existants
-  it("devrait se rendre avec les props par défaut", () => {
+  it("devrait se rendre avec les props par défaut", (): void => {
     const { container } = render(<Chart type="bar" data={mockBarData} />);
     expect(container.firstChild).toHaveClass("relative");
   });
 
-  it("devrait se rendre avec un titre personnalisé", () => {
+  it("devrait se rendre avec un titre personnalisé", (): void => {
     render(<Chart type="bar" data={mockBarData} title="Test Chart" />);
 
     const chartComponent = ReactChartJS2.Chart as unknown as ReturnType<
@@ -74,8 +95,8 @@ describe("Chart Component", () => {
     expect(options.plugins.title.text).toBe("Test Chart");
   });
 
-  describe("Types de graphiques", () => {
-    it("devrait rendre un graphique en ligne avec les options appropriées", () => {
+  describe("Types de graphiques", (): void => {
+    it("devrait rendre un graphique en ligne avec les options appropriées", (): void => {
       render(
         <Chart
           type="line"
@@ -100,7 +121,7 @@ describe("Chart Component", () => {
       expect(props.options.scales.y.beginAtZero).toBe(true);
     });
 
-    it("devrait rendre un graphique en donut avec la configuration correcte", () => {
+    it("devrait rendre un graphique en donut avec la configuration correcte", (): void => {
       render(
         <Chart
           type="doughnut"
@@ -121,7 +142,7 @@ describe("Chart Component", () => {
       expect(props.options.cutout).toBe("70%");
     });
 
-    it("devrait rendre un graphique en aire polaire avec les options spécifiques", () => {
+    it("devrait rendre un graphique en aire polaire avec les options spécifiques", (): void => {
       render(
         <Chart
           type="polarArea"
@@ -146,7 +167,7 @@ describe("Chart Component", () => {
       expect(props.options.scales.r.beginAtZero).toBe(true);
     });
 
-    it("devrait gérer correctement les options de légende spécifiques au type", () => {
+    it("devrait gérer correctement les options de légende spécifiques au type", (): void => {
       render(
         <Chart
           type="doughnut"
@@ -173,7 +194,7 @@ describe("Chart Component", () => {
       expect(options.plugins.legend.labels.padding).toBe(20);
     });
 
-    it("devrait fusionner correctement les options par défaut avec les options personnalisées", () => {
+    it("devrait fusionner correctement les options par défaut avec les options personnalisées", (): void => {
       const customOptions = {
         responsive: false,
         plugins: {

@@ -81,17 +81,11 @@ const Drawer = forwardRef(
       "buttonActionProps",
       "classNames"
     ]);
-    const [
-      opened,
-      {
-        close,
-        open
-      }
-    ] = useDisclosure();
+    const { onOpen, onClose, isOpen } = useDisclosure();
     const handleAction = () => __async(void 0, null, function* () {
       try {
         yield onAction == null ? void 0 : onAction();
-        close();
+        onClose();
       } catch (error) {
         console.error("Action failed:", error);
       }
@@ -99,7 +93,7 @@ const Drawer = forwardRef(
     const handleKeyDown = (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        open();
+        onOpen();
       }
     };
     const renderButtons = () => {
@@ -145,7 +139,7 @@ const Drawer = forwardRef(
         {
           role: "button",
           tabIndex: 0,
-          onClick: open,
+          onClick: onOpen,
           onKeyDown: handleKeyDown,
           className: "inline-block",
           children: trigger
@@ -155,8 +149,8 @@ const Drawer = forwardRef(
         Drawer$1,
         __spreadProps(__spreadValues({
           ref,
-          isOpen: opened,
-          onClose: close,
+          isOpen,
+          onClose,
           classNames: drawerClassNames
         }, nextUIProps), {
           children: /* @__PURE__ */ jsx(DrawerContent, { children: () => /* @__PURE__ */ jsxs(Fragment, { children: [

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
 import type { TabsProps as NextUITabsProps } from "@nextui-org/tabs";
 import { Tabs as TabsRoot, Tab } from "@nextui-org/tabs";
@@ -41,7 +41,7 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const handleSelectionChange = (key: React.Key): void => {
       onTabChange?.(key.toString());
     };
@@ -77,18 +77,20 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
         onSelectionChange={handleSelectionChange}
         {...props}
       >
-        {items.map((item) => (
-          <Tab
-            key={item.key}
-            title={item.title}
-            titleValue={item.titleValue}
-            href={item.href}
-            target={item.target}
-            isDisabled={item.disabled}
-          >
-            {contentRenderer(item)}
-          </Tab>
-        ))}
+        {items.map(
+          (item): JSX.Element => (
+            <Tab
+              key={item.key}
+              title={item.title}
+              titleValue={item.titleValue}
+              href={item.href}
+              target={item.target}
+              isDisabled={item.disabled}
+            >
+              {contentRenderer(item)}
+            </Tab>
+          ),
+        )}
       </TabsRoot>
     );
   },

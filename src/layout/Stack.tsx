@@ -1,5 +1,5 @@
 // Stack.tsx
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
 import { cn } from "@/utils";
 
@@ -15,7 +15,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
   (
     { children, spacing = 4, align = "start", justify = "start", className },
     ref,
-  ) => {
+  ): JSX.Element => {
     return (
       <div
         ref={ref}

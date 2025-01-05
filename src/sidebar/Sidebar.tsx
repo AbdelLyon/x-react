@@ -17,7 +17,7 @@ export interface SidebarProps {
 }
 
 export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
-  ({ items = [], classNames, onItemClick }, ref) => {
+  ({ items = [], classNames, onItemClick }, ref): JSX.Element | null => {
     const { isDesktop, isTablet } = useResponsive();
 
     if (!isDesktop && !isTablet) {
@@ -37,7 +37,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             },
             classNames?.item,
           )}
-          onPress={() => onItemClick?.(item)}
+          onPress={(): void => onItemClick?.(item)}
         >
           {item.startContent}
           {isDesktop ? item.label : null}

@@ -2,16 +2,16 @@ import { Avatar, AvatarGroup, UserAvatar } from "@/avatar";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
-describe("Composants Avatar", () => {
-  describe("Avatar", () => {
-    describe("Rendu de base", () => {
-      it("devrait rendre un avatar sans props", () => {
+describe("Composants Avatar", (): void => {
+  describe("Avatar", (): void => {
+    describe("Rendu de base", (): void => {
+      it("devrait rendre un avatar sans props", (): void => {
         render(<Avatar />);
         const avatar = screen.getByRole("img", { name: "avatar" });
         expect(avatar).toBeInTheDocument();
       });
 
-      it("devrait rendre une image quand src est fourni", () => {
+      it("devrait rendre une image quand src est fourni", (): void => {
         const testSrc = "test.jpg";
         render(<Avatar src={testSrc} alt="Mon avatar" />);
 
@@ -20,15 +20,15 @@ describe("Composants Avatar", () => {
         expect(img).toHaveAttribute("alt", "Mon avatar");
       });
 
-      it("devrait afficher le texte du nom", () => {
+      it("devrait afficher le texte du nom", (): void => {
         render(<Avatar name="John Doe" />);
         const avatar = screen.getByRole("img", { name: "John Doe" });
         expect(avatar).toHaveTextContent("Joh");
       });
     });
 
-    describe("Styles et variants", () => {
-      it("devrait appliquer les classes de base", () => {
+    describe("Styles et variants", (): void => {
+      it("devrait appliquer les classes de base", (): void => {
         const { container } = render(<Avatar />);
         const avatar = container.firstChild;
         expect(avatar).toHaveClass(
@@ -39,15 +39,15 @@ describe("Composants Avatar", () => {
         );
       });
 
-      it("devrait supporter différentes tailles", () => {
+      it("devrait supporter différentes tailles", (): void => {
         render(<Avatar size="lg" />);
         const avatar = screen.getByRole("img").parentElement;
         expect(avatar).toHaveClass("w-14", "h-14");
       });
     });
 
-    describe("Comportements", () => {
-      it("devrait afficher le fallback si spécifié", () => {
+    describe("Comportements", (): void => {
+      it("devrait afficher le fallback si spécifié", (): void => {
         render(
           <Avatar
             src="invalid.jpg"
@@ -60,8 +60,8 @@ describe("Composants Avatar", () => {
     });
   });
 
-  describe("AvatarGroup", () => {
-    it("devrait rendre un groupe simple", () => {
+  describe("AvatarGroup", (): void => {
+    it("devrait rendre un groupe simple", (): void => {
       render(
         <AvatarGroup>
           <Avatar name="User 1" />
@@ -74,7 +74,7 @@ describe("Composants Avatar", () => {
       expect(screen.getAllByRole("img")).toHaveLength(2);
     });
 
-    it("devrait respecter la limite max", () => {
+    it("devrait respecter la limite max", (): void => {
       render(
         <AvatarGroup max={1} total={3}>
           <Avatar name="User 1" />
@@ -90,7 +90,7 @@ describe("Composants Avatar", () => {
       expect(avatars[avatars.length - 1]).toHaveTextContent("+3");
     });
 
-    it("devrait appliquer les styles de groupe", () => {
+    it("devrait appliquer les styles de groupe", (): void => {
       render(
         <AvatarGroup className="size-6">
           <Avatar />
@@ -102,15 +102,15 @@ describe("Composants Avatar", () => {
     });
   });
 
-  describe("User", () => {
-    it("devrait rendre les informations de base", () => {
+  describe("User", (): void => {
+    it("devrait rendre les informations de base", (): void => {
       render(<UserAvatar name="John Doe" description="Developer" />);
 
       expect(screen.getByText("John Doe")).toBeInTheDocument();
       expect(screen.getByText("Developer")).toBeInTheDocument();
     });
 
-    it("devrait inclure un avatar", () => {
+    it("devrait inclure un avatar", (): void => {
       render(
         <UserAvatar
           name="John Doe"
@@ -125,7 +125,7 @@ describe("Composants Avatar", () => {
       expect(avatar).toHaveAttribute("alt", "John");
     });
 
-    it("devrait accepter des contenus personnalisés", () => {
+    it("devrait accepter des contenus personnalisés", (): void => {
       render(
         <UserAvatar
           name={<span data-testid="custom-name">John</span>}

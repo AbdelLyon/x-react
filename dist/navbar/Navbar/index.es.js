@@ -95,45 +95,49 @@ const Navbar = forwardRef(
             appLogo !== null && /* @__PURE__ */ jsx(NavbarItem, { children: appLogo })
           ] }),
           /* @__PURE__ */ jsxs(NavbarContent, __spreadProps(__spreadValues({ justify: "end" }, contentProps), { children: [
-            isDesktop && navigationItems.map((item) => /* @__PURE__ */ jsx(NavbarItem, { children: /* @__PURE__ */ jsxs(
+            isDesktop && navigationItems.map(
+              (item) => /* @__PURE__ */ jsx(NavbarItem, { children: /* @__PURE__ */ jsxs(
+                Link,
+                {
+                  className: cn(
+                    "p-2 hover:bg-content1 rounded-md text-foreground",
+                    {
+                      "border-l-2 border-primary bg-content1 text-primary": item.isActive
+                    },
+                    classNames == null ? void 0 : classNames.item
+                  ),
+                  onPress: () => handleItemPress(item),
+                  children: [
+                    item.startContent,
+                    item.label,
+                    item.endContent
+                  ]
+                }
+              ) }, item.key)
+            ),
+            profile !== null && /* @__PURE__ */ jsx(NavbarItem, { children: profile })
+          ] })),
+          !isDesktop && /* @__PURE__ */ jsx(NavbarMenu, __spreadProps(__spreadValues({}, menuProps), { children: menuItems.map(
+            (item) => /* @__PURE__ */ jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxs(
               Link,
               {
                 className: cn(
-                  "p-2 hover:bg-content1 rounded-md text-foreground",
+                  "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                   {
                     "border-l-2 border-primary bg-content1 text-primary": item.isActive
                   },
                   classNames == null ? void 0 : classNames.item
                 ),
-                onPress: () => handleItemPress(item),
+                onPress: () => onItemClick == null ? void 0 : onItemClick(item),
                 children: [
                   item.startContent,
                   item.label,
                   item.endContent
                 ]
-              }
-            ) }, item.key)),
-            profile !== null && /* @__PURE__ */ jsx(NavbarItem, { children: profile })
-          ] })),
-          !isDesktop && /* @__PURE__ */ jsx(NavbarMenu, __spreadProps(__spreadValues({}, menuProps), { children: menuItems.map((item) => /* @__PURE__ */ jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxs(
-            Link,
-            {
-              className: cn(
-                "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
-                {
-                  "border-l-2 border-primary bg-content1 text-primary": item.isActive
-                },
-                classNames == null ? void 0 : classNames.item
-              ),
-              onPress: () => onItemClick == null ? void 0 : onItemClick(item),
-              children: [
-                item.startContent,
-                item.label,
-                item.endContent
-              ]
-            },
-            item.key
-          ) }, item.key)) }))
+              },
+              item.key
+            ) }, item.key)
+          ) }))
         ]
       })
     );

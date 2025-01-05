@@ -9,7 +9,7 @@ interface SortConfig<T> {
     field: keyof T | null;
     direction: SortOrder;
 }
-interface DataGridState<T> {
+export interface DataGridState<T> {
     sortConfig: SortConfig<T>;
     processedColumns: ExtendedColumn<T>[];
     onSort: (column: ExtendedColumn<T>) => void;

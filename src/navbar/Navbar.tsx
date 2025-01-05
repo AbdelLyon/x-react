@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
 import type {
   NavbarContentProps,
@@ -52,7 +52,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const { isDesktop, isMobile, isTablet } = useResponsive();
 
     const handleItemPress = (item: Item): void => {
@@ -95,51 +95,55 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
         <NavbarContent justify="end" {...contentProps}>
           {isDesktop &&
-            navigationItems.map((item) => (
-              <NavbarItem key={item.key}>
-                <Link
-                  className={cn(
-                    "p-2 hover:bg-content1 rounded-md text-foreground",
-                    {
-                      "border-l-2 border-primary bg-content1 text-primary":
-                        item.isActive,
-                    },
-                    classNames?.item,
-                  )}
-                  onPress={() => handleItemPress(item)}
-                >
-                  {item.startContent}
-                  {item.label}
-                  {item.endContent}
-                </Link>
-              </NavbarItem>
-            ))}
+            navigationItems.map(
+              (item): JSX.Element => (
+                <NavbarItem key={item.key}>
+                  <Link
+                    className={cn(
+                      "p-2 hover:bg-content1 rounded-md text-foreground",
+                      {
+                        "border-l-2 border-primary bg-content1 text-primary":
+                          item.isActive,
+                      },
+                      classNames?.item,
+                    )}
+                    onPress={(): void => handleItemPress(item)}
+                  >
+                    {item.startContent}
+                    {item.label}
+                    {item.endContent}
+                  </Link>
+                </NavbarItem>
+              ),
+            )}
           {profile !== null && <NavbarItem>{profile}</NavbarItem>}
         </NavbarContent>
 
         {/* Mobile Menu */}
         {!isDesktop && (
           <NavbarMenu {...menuProps}>
-            {menuItems.map((item) => (
-              <NavbarMenuItem key={item.key}>
-                <Link
-                  key={item.key}
-                  className={cn(
-                    "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
-                    {
-                      "border-l-2 border-primary bg-content1 text-primary":
-                        item.isActive,
-                    },
-                    classNames?.item,
-                  )}
-                  onPress={() => onItemClick?.(item)}
-                >
-                  {item.startContent}
-                  {item.label}
-                  {item.endContent}
-                </Link>
-              </NavbarMenuItem>
-            ))}
+            {menuItems.map(
+              (item): JSX.Element => (
+                <NavbarMenuItem key={item.key}>
+                  <Link
+                    key={item.key}
+                    className={cn(
+                      "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
+                      {
+                        "border-l-2 border-primary bg-content1 text-primary":
+                          item.isActive,
+                      },
+                      classNames?.item,
+                    )}
+                    onPress={(): void => onItemClick?.(item)}
+                  >
+                    {item.startContent}
+                    {item.label}
+                    {item.endContent}
+                  </Link>
+                </NavbarMenuItem>
+              ),
+            )}
           </NavbarMenu>
         )}
       </NavbarRoot>

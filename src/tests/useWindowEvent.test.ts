@@ -2,12 +2,12 @@ import { useWindowEvent } from "@/hooks/useWindowEvent";
 import { renderHook } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 
-describe("useWindowEvent", () => {
-  it("devrait ajouter un event listener à window", () => {
+describe("useWindowEvent", (): void => {
+  it("devrait ajouter un event listener à window", (): void => {
     const addEventListenerSpy = vi.spyOn(window, "addEventListener");
     const listener = vi.fn();
 
-    renderHook(() => useWindowEvent("click", listener));
+    renderHook((): void => useWindowEvent("click", listener));
 
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       "click",
@@ -16,11 +16,13 @@ describe("useWindowEvent", () => {
     );
   });
 
-  it("devrait supprimer l'event listener au démontage", () => {
+  it("devrait supprimer l'event listener au démontage", (): void => {
     const removeEventListenerSpy = vi.spyOn(window, "removeEventListener");
     const listener = vi.fn();
 
-    const { unmount } = renderHook(() => useWindowEvent("click", listener));
+    const { unmount } = renderHook((): void =>
+      useWindowEvent("click", listener),
+    );
     unmount();
 
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
@@ -30,12 +32,12 @@ describe("useWindowEvent", () => {
     );
   });
 
-  it("devrait prendre en compte les options", () => {
+  it("devrait prendre en compte les options", (): void => {
     const addEventListenerSpy = vi.spyOn(window, "addEventListener");
     const listener = vi.fn();
     const options = { capture: true };
 
-    renderHook(() => useWindowEvent("click", listener, options));
+    renderHook((): void => useWindowEvent("click", listener, options));
 
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       "click",
@@ -44,13 +46,13 @@ describe("useWindowEvent", () => {
     );
   });
 
-  it("devrait mettre à jour l'event listener si le type change", () => {
+  it("devrait mettre à jour l'event listener si le type change", (): void => {
     const addEventListenerSpy = vi.spyOn(window, "addEventListener");
     const removeEventListenerSpy = vi.spyOn(window, "removeEventListener");
     const listener = vi.fn();
 
     const { rerender } = renderHook(
-      ({ type }) => useWindowEvent(type, listener),
+      ({ type }): void => useWindowEvent(type, listener),
       { initialProps: { type: "click" } },
     );
 

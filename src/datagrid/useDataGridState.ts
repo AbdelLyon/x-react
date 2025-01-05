@@ -12,7 +12,7 @@ interface SortConfig<T> {
   direction: SortOrder;
 }
 
-interface DataGridState<T> {
+export interface DataGridState<T> {
   sortConfig: SortConfig<T>;
   processedColumns: ExtendedColumn<T>[];
   onSort: (column: ExtendedColumn<T>) => void;
@@ -47,12 +47,14 @@ export const useDataGridState = <T extends DataGridRow>({
     direction: "asc",
   });
 
-  const processedColumns = columns.map((column, index) => ({
-    ...column,
-    key:
-      typeof column.field === "string" ? String(column.field) : String(index),
-    header: column.header,
-  }));
+  const processedColumns = columns.map(
+    (column, index): ExtendedColumn<T> => ({
+      ...column,
+      key:
+        typeof column.field === "string" ? String(column.field) : String(index),
+      header: column.header,
+    }),
+  );
 
   const extractColumnHeader = (column: ExtendedColumn<T>): string => {
     return typeof column.header === "string" && column.header.length > 0
@@ -74,7 +76,7 @@ export const useDataGridState = <T extends DataGridRow>({
     columns: ColumnDefinition<T>[],
   ): React.ReactNode => {
     const column = columns.find(
-      (c) =>
+      (c): c is ColumnDefinition<T> =>
         typeof c.field === "string" && String(c.field) === String(columnKey),
     );
 
@@ -102,7 +104,7 @@ export const useDataGridState = <T extends DataGridRow>({
 
   const onSort = (column: ExtendedColumn<T>): void => {
     const matchedColumn = columns.find(
-      (c) =>
+      (c): c is ColumnDefinition<T> =>
         typeof c.field === "string" &&
         c.field.length > 0 &&
         String(c.field) === column.key,

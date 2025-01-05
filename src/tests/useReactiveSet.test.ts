@@ -1,25 +1,30 @@
+import type { ReactiveSet } from "@/hooks/useReactiveSet";
 import { useReactiveSet } from "@/hooks/useReactiveSet";
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
-describe("useReactiveSet", () => {
-  it("devrait créer un Set vide si aucune valeur initiale n'est fournie", () => {
-    const { result } = renderHook(() => useReactiveSet());
+describe("useReactiveSet", (): void => {
+  it("devrait créer un Set vide si aucune valeur initiale n'est fournie", (): void => {
+    const { result } = renderHook((): ReactiveSet<unknown> => useReactiveSet());
     expect(result.current.size).toBe(0);
   });
 
-  it("devrait initialiser avec les valeurs fournies", () => {
+  it("devrait initialiser avec les valeurs fournies", (): void => {
     const initialValues = [1, 2, 3];
-    const { result } = renderHook(() => useReactiveSet(initialValues));
+    const { result } = renderHook(
+      (): ReactiveSet<unknown> => useReactiveSet(initialValues),
+    );
 
     expect(result.current.size).toBe(3);
     expect(Array.from(result.current)).toEqual(initialValues);
   });
 
-  it("devrait permettre d'ajouter des éléments", () => {
-    const { result } = renderHook(() => useReactiveSet<number>());
+  it("devrait permettre d'ajouter des éléments", (): void => {
+    const { result } = renderHook(
+      (): ReactiveSet<unknown> => useReactiveSet<number>(),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.add(1);
     });
 
@@ -27,10 +32,12 @@ describe("useReactiveSet", () => {
     expect(result.current.has(1)).toBe(true);
   });
 
-  it("devrait permettre de supprimer des éléments", () => {
-    const { result } = renderHook(() => useReactiveSet([1, 2, 3]));
+  it("devrait permettre de supprimer des éléments", (): void => {
+    const { result } = renderHook(
+      (): ReactiveSet<unknown> => useReactiveSet([1, 2, 3]),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.delete(2);
     });
 
@@ -38,20 +45,24 @@ describe("useReactiveSet", () => {
     expect(result.current.has(2)).toBe(false);
   });
 
-  it("devrait permettre de vider le Set", () => {
-    const { result } = renderHook(() => useReactiveSet([1, 2, 3]));
+  it("devrait permettre de vider le Set", (): void => {
+    const { result } = renderHook(
+      (): ReactiveSet<unknown> => useReactiveSet([1, 2, 3]),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.clear();
     });
 
     expect(result.current.size).toBe(0);
   });
 
-  it("devrait maintenir l'unicité des valeurs", () => {
-    const { result } = renderHook(() => useReactiveSet<number>());
+  it("devrait maintenir l'unicité des valeurs", (): void => {
+    const { result } = renderHook(
+      (): ReactiveSet<unknown> => useReactiveSet<number>(),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.add(1);
       result.current.add(1);
     });
@@ -59,10 +70,12 @@ describe("useReactiveSet", () => {
     expect(result.current.size).toBe(1);
   });
 
-  it("devrait fonctionner avec différents types de données", () => {
-    const { result } = renderHook(() => useReactiveSet<string | number>());
+  it("devrait fonctionner avec différents types de données", (): void => {
+    const { result } = renderHook(
+      (): ReactiveSet<unknown> => useReactiveSet<string | number>(),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.add(1);
       result.current.add("test");
     });

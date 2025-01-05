@@ -66,7 +66,7 @@ export function DataGrid<T extends { id: string | number }>({
         columns={processedColumns}
         {...childrenProps?.tableHeaderProps}
       >
-        {(column) => (
+        {(column): JSX.Element => (
           <TableColumn
             key={column.key}
             aria-label={extractColumnHeader(column)}
@@ -77,7 +77,7 @@ export function DataGrid<T extends { id: string | number }>({
               {column.sortable !== false && (
                 <div
                   className={cn("relative size-4 cursor-pointer")}
-                  onClick={() => onSort(column)}
+                  onClick={(): void => onSort(column)}
                   role="button"
                   aria-label={formatSortHeader(column.header)}
                 >
@@ -108,10 +108,10 @@ export function DataGrid<T extends { id: string | number }>({
         )}
       </TableHeader>
       <TableBody items={rows} {...childrenProps?.tableBodyProps}>
-        {(row: T) => {
+        {(row: T): JSX.Element => {
           return (
             <TableRow key={row.id} {...childrenProps?.tableRowProps}>
-              {(columnKey) => (
+              {(columnKey): JSX.Element => (
                 <TableCell {...childrenProps?.tableCellProps}>
                   {extractCellValue(columnKey, row, columns)}
                 </TableCell>

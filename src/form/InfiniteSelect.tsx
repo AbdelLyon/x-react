@@ -53,7 +53,7 @@ export function InfiniteSelect<T extends object>({
       selectionMode={selectionMode}
       onOpenChange={setIsOpen}
     >
-      {(item: T) => (
+      {(item: T): JSX.Element => (
         <SelectItem key={getItemKey(item)}>{renderItem(item)}</SelectItem>
       )}
     </Select>

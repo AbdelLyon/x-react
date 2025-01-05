@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef, useState } from "react";
 import type { InputProps as InputRootProps } from "@nextui-org/input";
 import { Input as InputRoot } from "@nextui-org/input";
@@ -31,7 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const [inputType, setInputType] = useState(type);
 
     const combinedValidate = (
@@ -54,7 +55,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <button
           className="opacity-40 focus:outline-none"
           type="button"
-          onClick={() =>
+          onClick={(): void =>
             setInputType(inputType === "password" ? "text" : "password")
           }
         >

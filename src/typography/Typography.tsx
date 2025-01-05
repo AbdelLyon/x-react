@@ -1,4 +1,4 @@
-import type { ReactNode, ElementType } from "react";
+import type { ReactNode, ElementType, JSX } from "react";
 
 export interface TypographyProps {
   children: ReactNode;
@@ -66,7 +66,7 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const classes = cn(
       VARIANT_STYLES[variant],
       weight && WEIGHT_STYLES[weight],

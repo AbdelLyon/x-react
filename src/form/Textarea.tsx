@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { TextAreaProps as TextAreaRootProps } from "@nextui-org/input";
 import { Textarea as TextareaRoot } from "@nextui-org/input";
@@ -33,7 +34,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const combinedStyle = {
       width: typeof width === "number" ? `${width}px` : width,
       height: typeof height === "number" ? `${height}px` : height,

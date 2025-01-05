@@ -7,9 +7,9 @@ export const useWindowEvent = <K extends string>(
     : (this: Window, ev: CustomEvent) => void,
   options?: boolean | AddEventListenerOptions,
 ): void => {
-  useEffect(() => {
+  useEffect((): (() => void) => {
     window.addEventListener(type, listener as EventListener, options);
-    return () =>
+    return (): void =>
       window.removeEventListener(type, listener as EventListener, options);
   }, [type, listener]);
 };

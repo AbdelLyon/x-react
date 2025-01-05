@@ -24,9 +24,9 @@ export const useCounter = (
   );
 
   const increment = (): void =>
-    setCount((current) => limitValue(current + 1, min, max));
+    setCount((current): number => limitValue(current + 1, min, max));
   const decrement = (): void =>
-    setCount((current) => limitValue(current - 1, min, max));
+    setCount((current): number => limitValue(current - 1, min, max));
   const set = (value: number): void => setCount(limitValue(value, min, max));
   const reset = (): void => setCount(limitValue(initialValue, min, max));
 

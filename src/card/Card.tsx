@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
 import type {
   CardFooterProps,
@@ -40,7 +40,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     return (
       <NextUICard
         ref={ref}

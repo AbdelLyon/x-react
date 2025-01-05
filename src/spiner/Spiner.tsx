@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { SpinnerProps as SpinnerRootProps } from "@nextui-org/spinner";
 import { Spinner as SpinnerRoot } from "@nextui-org/spinner";
@@ -11,7 +12,10 @@ interface SpinnerProps extends Omit<SpinnerRootProps, "label" | "labelColor"> {
 }
 
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
-  ({ color = "default", size = "md", strokeWidth = 4, ...props }, ref) => {
+  (
+    { color = "default", size = "md", strokeWidth = 4, ...props },
+    ref,
+  ): JSX.Element => {
     return (
       <SpinnerRoot
         ref={ref}

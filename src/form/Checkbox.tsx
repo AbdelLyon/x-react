@@ -34,7 +34,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxWrapperProps>(
       ...props
     },
     ref,
-  ) => {
+  ): React.ReactNode => {
     const defaultGroupClasses = {
       base: "w-full",
       label: "text-medium font-semibold",
@@ -57,31 +57,33 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxWrapperProps>(
           label: cn(defaultGroupClasses.label, groupClasses?.label),
         }}
       >
-        {items.map((item) => (
-          <Checkbox
-            key={item.value}
-            {...item}
-            classNames={{
-              base: cn(
-                defaultItemClasses.base,
-                itemClasses?.base,
-                item.className,
-              ),
-              label: cn(
-                defaultItemClasses.label,
-                itemClasses?.label,
-                item.classNames?.label,
-              ),
-              wrapper: cn(
-                defaultItemClasses.wrapper,
-                itemClasses?.wrapper,
-                item.classNames?.wrapper,
-              ),
-            }}
-          >
-            {item.label}
-          </Checkbox>
-        ))}
+        {items.map(
+          (item): React.ReactNode => (
+            <Checkbox
+              key={item.value}
+              {...item}
+              classNames={{
+                base: cn(
+                  defaultItemClasses.base,
+                  itemClasses?.base,
+                  item.className,
+                ),
+                label: cn(
+                  defaultItemClasses.label,
+                  itemClasses?.label,
+                  item.classNames?.label,
+                ),
+                wrapper: cn(
+                  defaultItemClasses.wrapper,
+                  itemClasses?.wrapper,
+                  item.classNames?.wrapper,
+                ),
+              }}
+            >
+              {item.label}
+            </Checkbox>
+          ),
+        )}
       </CheckboxGroupRoot>
     );
   },

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef, useState } from "react";
 import type { SliderProps } from "@nextui-org/slider";
 import { Slider as SliderRoot } from "@nextui-org/slider";
@@ -33,7 +33,7 @@ const defaultFormatValue = (
   formatOptions?: Intl.NumberFormatOptions,
 ): string => {
   return value
-    .map((v) =>
+    .map((v): string | number =>
       formatOptions
         ? new Intl.NumberFormat(undefined, formatOptions).format(v)
         : v,
@@ -74,7 +74,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       labelClassName,
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const [value, setValue] = useState<number[]>(initialValue);
 
     const handleChange = (newValue: number | number[]): void => {

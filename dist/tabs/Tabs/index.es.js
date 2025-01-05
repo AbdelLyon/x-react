@@ -98,18 +98,20 @@ const Tabs = forwardRef(
         }),
         onSelectionChange: handleSelectionChange
       }, props), {
-        children: items.map((item) => /* @__PURE__ */ jsx(
-          Tab,
-          {
-            title: item.title,
-            titleValue: item.titleValue,
-            href: item.href,
-            target: item.target,
-            isDisabled: item.disabled,
-            children: contentRenderer(item)
-          },
-          item.key
-        ))
+        children: items.map(
+          (item) => /* @__PURE__ */ jsx(
+            Tab,
+            {
+              title: item.title,
+              titleValue: item.titleValue,
+              href: item.href,
+              target: item.target,
+              isDisabled: item.disabled,
+              children: contentRenderer(item)
+            },
+            item.key
+          )
+        )
       })
     );
   }

@@ -71,7 +71,7 @@ export function debounce<
       clearTimeout(timeoutId);
     }
 
-    timeoutId = setTimeout(() => {
+    timeoutId = setTimeout((): void => {
       if (latestArgs) {
         callback.apply(this, latestArgs);
       }
@@ -89,4 +89,14 @@ export function debounce<
   };
 
   return debouncedFn;
+}
+
+export function chain(...callbacks: unknown[]): (...args: unknown[]) => void {
+  return (...args: unknown[]): void => {
+    for (const callback of callbacks) {
+      if (typeof callback === "function") {
+        callback(...args);
+      }
+    }
+  };
 }

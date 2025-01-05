@@ -32,29 +32,18 @@ export default tseslint.config(
       tailwindcss: tailwindcss,
     },
     rules: {
-      // React Hooks
+      // React Hooks rules
       ...reactHooks.configs.recommended.rules,
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
 
-      // React Refresh
+      // React Refresh rules
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
       ],
 
-      // TypeScript
-      "@typescript-eslint/explicit-function-return-type": [
-        "error",
-        {
-          allowExpressions: true,
-          allowTypedFunctionExpressions: true,
-          allowHigherOrderFunctions: true,
-          allowDirectConstAssertionInArrowFunctions: true,
-          allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-        },
-      ],
-      "@typescript-eslint/explicit-module-boundary-types": "error",
+      // TypeScript rules
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
@@ -71,16 +60,39 @@ export default tseslint.config(
           prefer: "type-imports",
         },
       ],
-      "@typescript-eslint/strict-boolean-expressions": "error",
+      "@typescript-eslint/strict-boolean-expressions": [
+        "warn",
+        {
+          allowString: true,
+          allowNumber: true,
+          allowNullableString: true,
+          allowNullableNumber: true,
+          allowNullableObject: true,
+          allowNullableBoolean: true,
+          allowAny: true,
+          allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: true,
+        },
+      ],
+      "@typescript-eslint/explicit-function-return-type": [
+        "error",
+        {
+          allowExpressions: false,
+          allowTypedFunctionExpressions: false,
+          allowHigherOrderFunctions: false,
+          allowDirectConstAssertionInArrowFunctions: false,
+          allowConciseArrowFunctionExpressionsStartingWithVoid: false,
+        },
+      ],
+      "@typescript-eslint/explicit-module-boundary-types": "error",
 
-      // Tailwind
+      // Tailwind rules
       "tailwindcss/classnames-order": "warn",
       "tailwindcss/enforces-negative-arbitrary-values": "warn",
       "tailwindcss/enforces-shorthand": "warn",
       "tailwindcss/no-custom-classname": "warn",
       "tailwindcss/no-contradicting-classname": "error",
 
-      // Générales
+      // General rules
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "no-debugger": "error",
       "prefer-const": "error",

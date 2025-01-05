@@ -2,7 +2,7 @@ import { Accordion } from "@/accordion";
 import { render } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
-describe("Accordion", () => {
+describe("Accordion", (): void => {
   const defaultItems = [
     {
       key: "1",
@@ -16,26 +16,26 @@ describe("Accordion", () => {
     },
   ];
 
-  it("renders all accordion items", () => {
+  it("renders all accordion items", (): void => {
     const { getAllByRole } = render(<Accordion items={defaultItems} />);
     const accordionButtons = getAllByRole("button");
     expect(accordionButtons).toHaveLength(defaultItems.length);
   });
 
-  it("displays correct titles", () => {
+  it("displays correct titles", (): void => {
     const { getByText } = render(<Accordion items={defaultItems} />);
-    defaultItems.forEach((item) => {
+    defaultItems.forEach((item): void => {
       expect(getByText(item.title)).toBeTruthy();
     });
   });
 
-  it("applies default classes", () => {
+  it("applies default classes", (): void => {
     const { container } = render(<Accordion items={defaultItems} />);
     const accordionItems = container.querySelectorAll('[class*="text-lg"]');
     expect(accordionItems.length).toBeGreaterThan(0);
   });
 
-  it("applies custom item classes", () => {
+  it("applies custom item classes", (): void => {
     const { container } = render(
       <Accordion
         items={defaultItems}
@@ -52,7 +52,7 @@ describe("Accordion", () => {
     expect(titleClasses.length).toBeGreaterThan(0);
   });
 
-  it("handles splitted variant", () => {
+  it("handles splitted variant", (): void => {
     const { container } = render(
       <Accordion items={defaultItems} variant="splitted" />,
     );
@@ -63,18 +63,18 @@ describe("Accordion", () => {
     expect(splittedItems.length).toBeGreaterThan(0);
   });
 
-  it("renders with minimal props", () => {
+  it("renders with minimal props", (): void => {
     const minimalItems = [{ key: "1", title: "Minimal Item" }];
     const { getByText } = render(<Accordion items={minimalItems} />);
     expect(getByText("Minimal Item")).toBeTruthy();
   });
 
-  it("handles empty items array", () => {
+  it("handles empty items array", (): void => {
     const { container } = render(<Accordion items={[]} />);
     expect(container.firstChild?.childNodes.length).toBe(0);
   });
 
-  it("passes through accordion props", () => {
+  it("passes through accordion props", (): void => {
     const { container } = render(
       <Accordion
         items={defaultItems}

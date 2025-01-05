@@ -32,7 +32,9 @@ function useInfiniteList({
     try {
       setIsLoading(true);
       if (offset > 0) {
-        yield new Promise((resolve) => setTimeout(resolve, fetchDelay));
+        yield new Promise(
+          (resolve) => setTimeout(resolve, fetchDelay)
+        );
       }
       const { items: newItems, hasMore: moreAvailable } = yield fetchFunction(
         currentOffset,

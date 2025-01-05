@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { DropdownProps, DropdownMenuProps } from "@nextui-org/dropdown";
 import {
@@ -37,7 +38,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
   (
     { trigger, sections, dropdownMenuProps, onItemPress, classNames, ...props },
     ref,
-  ) => {
+  ): JSX.Element => {
     const handleItemPress = (item: DropdownItemConfig): void => {
       if (onItemPress) {
         onItemPress(item);
@@ -57,28 +58,30 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(
       >
         <DropdownTrigger>{trigger}</DropdownTrigger>
         <DropdownMenu className="p-3" {...dropdownMenuProps}>
-          {sections.map((section) => (
-            <DropdownSection
-              key={section.key}
-              showDivider={section.showDivider}
-              aria-label={section.label}
-            >
-              {section.items.map((item) => {
-                const { key, label, href, ...remainingProps } = item;
-                return (
-                  <DropdownItem
-                    key={key}
-                    onPress={() => {
-                      handleItemPress({ ...item, href });
-                    }}
-                    {...remainingProps}
-                  >
-                    {label}
-                  </DropdownItem>
-                );
-              })}
-            </DropdownSection>
-          ))}
+          {sections.map(
+            (section): JSX.Element => (
+              <DropdownSection
+                key={section.key}
+                showDivider={section.showDivider}
+                aria-label={section.label}
+              >
+                {section.items.map((item): JSX.Element => {
+                  const { key, label, href, ...remainingProps } = item;
+                  return (
+                    <DropdownItem
+                      key={key}
+                      onPress={(): void => {
+                        handleItemPress({ ...item, href });
+                      }}
+                      {...remainingProps}
+                    >
+                      {label}
+                    </DropdownItem>
+                  );
+                })}
+              </DropdownSection>
+            ),
+          )}
         </DropdownMenu>
       </DropdownRoot>
     );

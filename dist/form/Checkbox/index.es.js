@@ -69,33 +69,35 @@ const CheckboxGroup = forwardRef(
           base: cn(defaultGroupClasses.base, groupClasses == null ? void 0 : groupClasses.base),
           label: cn(defaultGroupClasses.label, groupClasses == null ? void 0 : groupClasses.label)
         },
-        children: items.map((item) => {
-          var _a2, _b2;
-          return /* @__PURE__ */ jsx(
-            Checkbox,
-            __spreadProps(__spreadValues({}, item), {
-              classNames: {
-                base: cn(
-                  defaultItemClasses.base,
-                  itemClasses == null ? void 0 : itemClasses.base,
-                  item.className
-                ),
-                label: cn(
-                  defaultItemClasses.label,
-                  itemClasses == null ? void 0 : itemClasses.label,
-                  (_a2 = item.classNames) == null ? void 0 : _a2.label
-                ),
-                wrapper: cn(
-                  defaultItemClasses.wrapper,
-                  itemClasses == null ? void 0 : itemClasses.wrapper,
-                  (_b2 = item.classNames) == null ? void 0 : _b2.wrapper
-                )
-              },
-              children: item.label
-            }),
-            item.value
-          );
-        })
+        children: items.map(
+          (item) => {
+            var _a2, _b2;
+            return /* @__PURE__ */ jsx(
+              Checkbox,
+              __spreadProps(__spreadValues({}, item), {
+                classNames: {
+                  base: cn(
+                    defaultItemClasses.base,
+                    itemClasses == null ? void 0 : itemClasses.base,
+                    item.className
+                  ),
+                  label: cn(
+                    defaultItemClasses.label,
+                    itemClasses == null ? void 0 : itemClasses.label,
+                    (_a2 = item.classNames) == null ? void 0 : _a2.label
+                  ),
+                  wrapper: cn(
+                    defaultItemClasses.wrapper,
+                    itemClasses == null ? void 0 : itemClasses.wrapper,
+                    (_b2 = item.classNames) == null ? void 0 : _b2.wrapper
+                  )
+                },
+                children: item.label
+              }),
+              item.value
+            );
+          }
+        )
       })
     );
   }

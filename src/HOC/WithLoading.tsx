@@ -1,13 +1,13 @@
 import type { ComponentType, JSX } from "react";
 
 interface WithLoadingProps {
-  loading: boolean;
+  loading?: boolean;
 }
 
 export const WithLoading = <T extends object>(
   WrappedComponent: ComponentType<T>,
-  LoadingComponent: ComponentType = () => <div>Loading...</div>,
-) => {
+  LoadingComponent: ComponentType = (): JSX.Element => <div>Loading...</div>,
+): ((props: T & WithLoadingProps) => JSX.Element) => {
   return function WithLoadingComponent({
     loading,
     ...props

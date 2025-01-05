@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { PaginationProps as PaginationRootProps } from "@nextui-org/pagination";
 import { Pagination as PaginationRoot } from "@nextui-org/pagination";
@@ -8,7 +9,7 @@ export interface PaginationProps extends PaginationRootProps {
 }
 
 export const Pagination = forwardRef<HTMLUListElement, PaginationProps>(
-  ({ containerClasses, classNames, ...props }, ref) => {
+  ({ containerClasses, classNames, ...props }, ref): JSX.Element => {
     return (
       <div className={cn("w-full flex justify-center", containerClasses)}>
         <PaginationRoot

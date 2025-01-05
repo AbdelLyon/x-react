@@ -36,7 +36,9 @@ import { Button } from "../../button/Button/index.es.js";
 const Buttons = forwardRef(
   (_a, ref) => {
     var _b = _a, { buttons } = _b, props = __objRest(_b, ["buttons"]);
-    return /* @__PURE__ */ jsx(ButtonGroup, __spreadProps(__spreadValues({ ref }, props), { children: buttons.map(({ key, label, buttonProps }) => /* @__PURE__ */ jsx(Button, __spreadProps(__spreadValues({}, buttonProps), { children: label }), key)) }));
+    return /* @__PURE__ */ jsx(ButtonGroup, __spreadProps(__spreadValues({ ref }, props), { children: buttons.map(
+      ({ key, label, buttonProps }) => /* @__PURE__ */ jsx(Button, __spreadProps(__spreadValues({}, buttonProps), { children: label }), key)
+    ) }));
   }
 );
 Buttons.displayName = "Buttons";

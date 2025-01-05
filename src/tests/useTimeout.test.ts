@@ -19,7 +19,7 @@ export const useTimeout = (
   const start = (...params: unknown[]): void => {
     // Correction ici : vérifier null au lieu de undefined
     if (timeoutRef.current === null) {
-      timeoutRef.current = window.setTimeout(() => {
+      timeoutRef.current = window.setTimeout((): void => {
         callback(...params);
         timeoutRef.current = null;
       }, delay);
@@ -33,7 +33,7 @@ export const useTimeout = (
     }
   };
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     if (autoInvoke) {
       start();
     }
@@ -47,24 +47,28 @@ export const useTimeout = (
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-describe("useTimeout", () => {
-  beforeEach(() => {
+describe("useTimeout", (): void => {
+  beforeEach((): void => {
     vi.useFakeTimers();
     vi.clearAllTimers();
   });
 
-  it("devrait retourner les méthodes start et clear", () => {
-    const { result } = renderHook(() => useTimeout(() => {}, 1000));
+  it("devrait retourner les méthodes start et clear", (): void => {
+    const { result } = renderHook(
+      (): UseTimeoutReturn => useTimeout((): void => {}, 1000),
+    );
 
     expect(typeof result.current.start).toBe("function");
     expect(typeof result.current.clear).toBe("function");
   });
 
-  it("devrait exécuter le callback après le délai", () => {
+  it("devrait exécuter le callback après le délai", (): void => {
     const callback = vi.fn();
-    const { result } = renderHook(() => useTimeout(callback, 1000));
+    const { result } = renderHook(
+      (): UseTimeoutReturn => useTimeout(callback, 1000),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.start();
     });
 
@@ -73,20 +77,24 @@ describe("useTimeout", () => {
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  it("devrait démarrer automatiquement avec autoInvoke", () => {
+  it("devrait démarrer automatiquement avec autoInvoke", (): void => {
     const callback = vi.fn();
-    renderHook(() => useTimeout(callback, 1000, { autoInvoke: true }));
+    renderHook(
+      (): UseTimeoutReturn => useTimeout(callback, 1000, { autoInvoke: true }),
+    );
 
     expect(callback).not.toHaveBeenCalled();
     vi.advanceTimersByTime(1000);
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  it("devrait pouvoir être annulé", () => {
+  it("devrait pouvoir être annulé", (): void => {
     const callback = vi.fn();
-    const { result } = renderHook(() => useTimeout(callback, 1000));
+    const { result } = renderHook(
+      (): UseTimeoutReturn => useTimeout(callback, 1000),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.start();
       result.current.clear();
     });
@@ -95,11 +103,13 @@ describe("useTimeout", () => {
     expect(callback).not.toHaveBeenCalled();
   });
 
-  it("devrait passer les paramètres au callback", () => {
+  it("devrait passer les paramètres au callback", (): void => {
     const callback = vi.fn();
-    const { result } = renderHook(() => useTimeout(callback, 1000));
+    const { result } = renderHook(
+      (): UseTimeoutReturn => useTimeout(callback, 1000),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.start("test", 123);
     });
 
@@ -107,10 +117,10 @@ describe("useTimeout", () => {
     expect(callback).toHaveBeenCalledWith("test", 123);
   });
 
-  it("devrait nettoyer le timeout au démontage", () => {
+  it("devrait nettoyer le timeout au démontage", (): void => {
     const callback = vi.fn();
-    const { unmount } = renderHook(() =>
-      useTimeout(callback, 1000, { autoInvoke: true }),
+    const { unmount } = renderHook(
+      (): UseTimeoutReturn => useTimeout(callback, 1000, { autoInvoke: true }),
     );
 
     unmount();
@@ -118,11 +128,13 @@ describe("useTimeout", () => {
     expect(callback).not.toHaveBeenCalled();
   });
 
-  it("ne devrait pas démarrer plusieurs timeouts simultanément", () => {
+  it("ne devrait pas démarrer plusieurs timeouts simultanément", (): void => {
     const callback = vi.fn();
-    const { result } = renderHook(() => useTimeout(callback, 1000));
+    const { result } = renderHook(
+      (): UseTimeoutReturn => useTimeout(callback, 1000),
+    );
 
-    act(() => {
+    act((): void => {
       result.current.start();
       result.current.start();
       result.current.start();

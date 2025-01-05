@@ -21,9 +21,11 @@ import { jsx, jsxs } from "react/jsx-runtime";
 import { User } from "@nextui-org/user";
 import { forwardRef } from "react";
 import { Avatar as Avatar$1, useAvatarGroup, AvatarGroupProvider } from "@nextui-org/avatar";
-const Avatar = forwardRef((props, ref) => {
-  return /* @__PURE__ */ jsx(Avatar$1, __spreadValues({ ref }, props));
-});
+const Avatar = forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(Avatar$1, __spreadValues({ ref }, props));
+  }
+);
 Avatar.displayName = "Avatar";
 const AvatarGroup = forwardRef(
   (props, ref) => {

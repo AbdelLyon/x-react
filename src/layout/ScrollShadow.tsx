@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { ScrollShadowProps } from "@nextui-org/scroll-shadow";
 import { ScrollShadow } from "@nextui-org/scroll-shadow";
@@ -8,7 +9,7 @@ interface ScrollProps extends ScrollShadowProps {
 }
 
 export const Scroll = forwardRef<HTMLDivElement, ScrollProps>(
-  ({ width = "100%", height = "100%", style, ...props }, ref) => {
+  ({ width = "100%", height = "100%", style, ...props }, ref): JSX.Element => {
     const combinedStyle = {
       width: typeof width === "number" ? `${width}px` : width,
       height: typeof height === "number" ? `${height}px` : height,

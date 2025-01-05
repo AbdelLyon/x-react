@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
 import type { CircularProgressProps as CircularProgressRootProps } from "@nextui-org/progress";
 import { CircularProgress as CircularProgressRoot } from "@nextui-org/progress";
@@ -57,24 +57,24 @@ export const CircularProgress = forwardRef<
       ...nextUIProps
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const [currentValue, setCurrentValue] = useState(value);
 
-    useEffect(() => {
+    useEffect((): (() => void) | undefined => {
       if (!autoIncrement) {
         setCurrentValue(value);
         return;
       }
 
-      const interval = setInterval(() => {
-        setCurrentValue((v) => {
+      const interval = setInterval((): void => {
+        setCurrentValue((v): number => {
           const newValue = v >= maxValue ? minValue : v + incrementStep;
           onValueChange?.(newValue);
           return newValue;
         });
       }, incrementInterval);
 
-      return () => clearInterval(interval);
+      return (): void => clearInterval(interval);
     }, [
       autoIncrement,
       value,

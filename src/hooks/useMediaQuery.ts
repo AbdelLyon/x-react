@@ -10,7 +10,7 @@ function attachMediaListener(
   callback: (event: MediaQueryListEvent) => void,
 ): () => void {
   query.addEventListener("change", callback);
-  return () => query.removeEventListener("change", callback);
+  return (): void => query.removeEventListener("change", callback);
 }
 
 function getInitialValue(query: string, initialValue?: boolean): boolean {
@@ -36,18 +36,18 @@ export function useMediaQuery(
 ): boolean {
   const { getInitialValueInEffect = true, initialValue } = options;
 
-  const [matches, setMatches] = useState<boolean>(() =>
+  const [matches, setMatches] = useState<boolean>((): boolean =>
     getInitialValueInEffect
       ? (initialValue ?? false)
       : getInitialValue(query, initialValue),
   );
 
   const queryRef = useRef<MediaQueryList | null>(null);
-  const handleChange = useCallback((event: MediaQueryListEvent) => {
+  const handleChange = useCallback((event: MediaQueryListEvent): void => {
     setMatches(event.matches);
   }, []);
 
-  useEffect(() => {
+  useEffect((): (() => void) | undefined => {
     if (typeof window === "undefined" || !("matchMedia" in window)) {
       return undefined;
     }

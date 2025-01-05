@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useRerender } from "./useRerender";
 
-type ReactiveSet<T> = Set<T>;
+export type ReactiveSet<T> = Set<T>;
 
 export const useReactiveSet = <T>(values?: T[]): ReactiveSet<T> => {
   const setRef = useRef<ReactiveSet<T>>(new Set(values));

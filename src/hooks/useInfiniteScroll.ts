@@ -25,21 +25,21 @@ export const useInfiniteScroll = (
   const observerRef = useRef<IntersectionObserver | null>(null);
   const isLoadingRef = useRef(false);
 
-  const loadMore = useCallback(() => {
+  const loadMore = useCallback((): (() => void) => {
     let timer: ReturnType<typeof setTimeout>;
 
     if (!isLoadingRef.current && hasMore && onLoadMore) {
       isLoadingRef.current = true;
       onLoadMore();
-      timer = setTimeout(() => {
+      timer = setTimeout((): void => {
         isLoadingRef.current = false;
       }, 100);
     }
 
-    return () => clearTimeout(timer);
+    return (): void => clearTimeout(timer);
   }, [hasMore, onLoadMore]);
 
-  useLayoutEffect(() => {
+  useLayoutEffect((): (() => void) | undefined => {
     const scrollContainerNode = scrollContainerRef.current;
 
     if (!isEnabled || !scrollContainerNode || !hasMore) {
@@ -59,7 +59,7 @@ export const useInfiniteScroll = (
         threshold: 0.1,
       };
 
-      const observer = new IntersectionObserver((entries) => {
+      const observer = new IntersectionObserver((entries): void => {
         const [entry] = entries;
 
         if (entry.isIntersecting) {
@@ -70,14 +70,14 @@ export const useInfiniteScroll = (
       observer.observe(loaderNode);
       observerRef.current = observer;
 
-      return () => {
+      return (): void => {
         if (observerRef.current) {
           observerRef.current.disconnect();
         }
       };
     }
 
-    const debouncedCheckIfNearBottom = debounce(() => {
+    const debouncedCheckIfNearBottom = debounce((): void => {
       if (
         scrollContainerNode.scrollHeight - scrollContainerNode.scrollTop <=
         scrollContainerNode.clientHeight + distance
@@ -88,7 +88,7 @@ export const useInfiniteScroll = (
 
     scrollContainerNode.addEventListener("scroll", debouncedCheckIfNearBottom);
 
-    return () => {
+    return (): void => {
       scrollContainerNode.removeEventListener(
         "scroll",
         debouncedCheckIfNearBottom,

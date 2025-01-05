@@ -1,7 +1,7 @@
 import type { Ref } from "react";
 
 type PossibleRef<T> = Ref<T> | undefined;
-type MergedRefCallback<T> = (node: T | null) => void;
+export type MergedRefCallback<T> = (node: T | null) => void;
 
 const assignRef = <T>(ref: PossibleRef<T>, value: T | null): void => {
   if (typeof ref === "function") {
@@ -13,7 +13,7 @@ const assignRef = <T>(ref: PossibleRef<T>, value: T | null): void => {
 
 const mergeRefs = <T>(...refs: PossibleRef<T>[]): MergedRefCallback<T> => {
   return (node: T | null): void => {
-    refs.forEach((ref) => assignRef(ref, node));
+    refs.forEach((ref): void => assignRef(ref, node));
   };
 };
 

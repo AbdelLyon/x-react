@@ -1,4 +1,5 @@
 import { Chip as ChipRoot, type ChipProps } from "@nextui-org/chip";
+import type { JSX } from "react";
 import { forwardRef } from "react";
 
 export const Chip = forwardRef<HTMLDivElement, ChipProps>(
@@ -19,7 +20,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     return (
       <ChipRoot
         ref={ref}

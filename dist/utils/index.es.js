@@ -51,8 +51,18 @@ function debounce(callback, delay = 0) {
   };
   return debouncedFn;
 }
+function chain(...callbacks) {
+  return (...args) => {
+    for (const callback of callbacks) {
+      if (typeof callback === "function") {
+        callback(...args);
+      }
+    }
+  };
+}
 export {
   capitalizeFirstLetter,
+  chain,
   cn,
   concatenateWithSpace,
   debounce,

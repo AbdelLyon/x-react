@@ -18,7 +18,7 @@ export const useTimeout = (
 
   const start = (...params: unknown[]): void => {
     if (timeoutRef.current === undefined) {
-      timeoutRef.current = window.setTimeout(() => {
+      timeoutRef.current = window.setTimeout((): void => {
         callback(...params);
         timeoutRef.current = null;
       }, delay);
@@ -32,7 +32,7 @@ export const useTimeout = (
     }
   };
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     if (autoInvoke) {
       start();
     }

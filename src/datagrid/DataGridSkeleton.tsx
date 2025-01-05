@@ -34,35 +34,41 @@ export const DataGridSkeleton = ({
       <TableHeader className={cn(variantClasses.thead)}>
         {Array(actualColumns)
           .fill(null)
-          .map((_, index) => (
-            <TableColumn key={index} className={cn(variantClasses.th)}>
-              {index === 0 && checkboxSelection ? (
-                <Skeleton className="size-4 rounded-md" />
-              ) : (
-                <Skeleton className="h-4 w-24 rounded-md" />
-              )}
-            </TableColumn>
-          ))}
+          .map(
+            (_, index): JSX.Element => (
+              <TableColumn key={index} className={cn(variantClasses.th)}>
+                {index === 0 && checkboxSelection ? (
+                  <Skeleton className="size-4 rounded-md" />
+                ) : (
+                  <Skeleton className="h-4 w-24 rounded-md" />
+                )}
+              </TableColumn>
+            ),
+          )}
       </TableHeader>
 
       <TableBody>
         {Array(rows)
           .fill(null)
-          .map((_, rowIndex) => (
-            <TableRow key={rowIndex} className={cn(variantClasses.tr)}>
-              {Array(actualColumns)
-                .fill(null)
-                .map((_, colIndex) => (
-                  <TableCell key={colIndex}>
-                    {colIndex === 0 && checkboxSelection ? (
-                      <Skeleton className="size-4 rounded-md" />
-                    ) : (
-                      <Skeleton className="h-4 w-full max-w-[200px] rounded-md" />
-                    )}
-                  </TableCell>
-                ))}
-            </TableRow>
-          ))}
+          .map(
+            (_, rowIndex): JSX.Element => (
+              <TableRow key={rowIndex} className={cn(variantClasses.tr)}>
+                {Array(actualColumns)
+                  .fill(null)
+                  .map(
+                    (_, colIndex): JSX.Element => (
+                      <TableCell key={colIndex}>
+                        {colIndex === 0 && checkboxSelection ? (
+                          <Skeleton className="size-4 rounded-md" />
+                        ) : (
+                          <Skeleton className="h-4 w-full max-w-[200px] rounded-md" />
+                        )}
+                      </TableCell>
+                    ),
+                  )}
+              </TableRow>
+            ),
+          )}
       </TableBody>
     </Table>
   );

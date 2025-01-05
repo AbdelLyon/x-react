@@ -1,6 +1,7 @@
 import type { ColumnDefinition } from "@/datagrid";
 import { DataGrid } from "@/datagrid";
 import { render, screen, fireEvent } from "@testing-library/react";
+import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 interface TestData {
@@ -9,7 +10,7 @@ interface TestData {
   age: number;
 }
 
-describe("Composant DataGrid", () => {
+describe("Composant DataGrid", (): void => {
   const testData: TestData[] = [
     { id: 1, name: "John Doe", age: 30 },
     { id: 2, name: "Jane Smith", age: 25 },
@@ -29,8 +30,8 @@ describe("Composant DataGrid", () => {
     },
   ];
 
-  describe("Rendu de Base", () => {
-    it("devrait rendre correctement les colonnes et les données", () => {
+  describe("Rendu de Base", (): void => {
+    it("devrait rendre correctement les colonnes et les données", (): void => {
       render(<DataGrid rows={testData} columns={columns} />);
 
       // Vérification des en-têtes
@@ -42,14 +43,14 @@ describe("Composant DataGrid", () => {
       expect(screen.getByText("30")).toBeInTheDocument();
     });
 
-    it("devrait rendre un état vide quand aucune donnée n'est fournie", () => {
+    it("devrait rendre un état vide quand aucune donnée n'est fournie", (): void => {
       render(<DataGrid rows={[]} columns={columns} />);
       // Vérification de l'état vide selon l'implémentation
     });
   });
 
-  describe("État de Chargement", () => {
-    it("devrait rendre un skeleton de chargement", () => {
+  describe("État de Chargement", (): void => {
+    it("devrait rendre un skeleton de chargement", (): void => {
       const { container } = render(
         <DataGrid rows={testData} columns={columns} isLoading={true} />,
       );
@@ -63,8 +64,8 @@ describe("Composant DataGrid", () => {
     });
   });
 
-  describe("Tri", () => {
-    it("devrait gérer le tri des colonnes", () => {
+  describe("Tri", (): void => {
+    it("devrait gérer le tri des colonnes", (): void => {
       const onSort = vi.fn();
       render(
         <DataGrid rows={testData} columns={columns} onSortChange={onSort} />,
@@ -82,14 +83,14 @@ describe("Composant DataGrid", () => {
     });
   });
 
-  describe("Rendu Personnalisé", () => {
-    it("devrait rendre le contenu personnalisé des cellules", () => {
+  describe("Rendu Personnalisé", (): void => {
+    it("devrait rendre le contenu personnalisé des cellules", (): void => {
       const colonnesPersonnalisees = [
         ...columns,
         {
           field: "actions" as const,
           header: "Actions",
-          cell: () => <button>Modifier</button>,
+          cell: (): ReactNode => <button>Modifier</button>,
         },
       ];
 
@@ -100,8 +101,8 @@ describe("Composant DataGrid", () => {
     });
   });
 
-  describe("Style et Variantes", () => {
-    it("devrait appliquer les styles de variante", () => {
+  describe("Style et Variantes", (): void => {
+    it("devrait appliquer les styles de variante", (): void => {
       const { container } = render(
         <DataGrid rows={testData} columns={columns} variant="bordered" />,
       );
@@ -111,8 +112,8 @@ describe("Composant DataGrid", () => {
     });
   });
 
-  describe("Accessibilité", () => {
-    it("devrait avoir les attributs ARIA corrects", () => {
+  describe("Accessibilité", (): void => {
+    it("devrait avoir les attributs ARIA corrects", (): void => {
       render(<DataGrid rows={testData} columns={columns} />);
 
       expect(screen.getByRole("grid")).toHaveAttribute(

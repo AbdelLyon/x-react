@@ -31,7 +31,7 @@ export const useFocusDetection = <T extends HTMLElement>({
     focusedRef.current = value;
   };
 
-  useEffect(() => {
+  useEffect((): (() => void) | undefined => {
     const handleFocusIn = (event: FocusEvent): void => {
       if (!focusedRef.current) {
         _setFocused(true);
@@ -51,7 +51,7 @@ export const useFocusDetection = <T extends HTMLElement>({
       element.addEventListener("focusin", handleFocusIn);
       element.addEventListener("focusout", handleFocusOut);
 
-      return () => {
+      return (): void => {
         element.removeEventListener("focusin", handleFocusIn);
         element.removeEventListener("focusout", handleFocusOut);
       };

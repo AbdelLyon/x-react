@@ -27,12 +27,12 @@ export const useLocalStorage = <T>(
 ): readonly [T, (value: T | ((val: T) => T)) => void, () => void] => {
   const { key, defaultValue } = props;
 
-  const [storedValue, setStoredValue] = useState<T>(() =>
-    getStorageValue(key, defaultValue),
+  const [storedValue, setStoredValue] = useState<T>(
+    (): T => getStorageValue(key, defaultValue),
   );
 
   const setValue = useCallback(
-    (value: T | ((val: T) => T)) => {
+    (value: T | ((val: T) => T)): void => {
       try {
         const valueToStore =
           value instanceof Function ? value(storedValue) : value;
@@ -45,17 +45,17 @@ export const useLocalStorage = <T>(
     [key, storedValue],
   );
 
-  const removeValue = useCallback(() => {
+  const removeValue = (): void => {
     try {
       window.localStorage.removeItem(key);
       setStoredValue(defaultValue);
     } catch (error) {
       console.warn(`Error removing localStorage key "${key}":`, error);
     }
-  }, [key, defaultValue]);
+  };
 
   // Synchroniser avec les autres onglets/fenêtres
-  useEffect(() => {
+  useEffect((): (() => void) => {
     const handleStorageChange = (event: StorageEvent): void => {
       if (event.key === key && event.newValue !== null) {
         try {
@@ -69,7 +69,8 @@ export const useLocalStorage = <T>(
     };
 
     window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    return (): void =>
+      window.removeEventListener("storage", handleStorageChange);
   }, [key, defaultValue]);
 
   return [storedValue, setValue, removeValue] as const;

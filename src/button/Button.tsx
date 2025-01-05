@@ -1,4 +1,9 @@
-import type { AnchorHTMLAttributes, ComponentType, ReactNode } from "react";
+import type {
+  AnchorHTMLAttributes,
+  ComponentType,
+  JSX,
+  ReactNode,
+} from "react";
 import { forwardRef } from "react";
 import type { ButtonProps as ButtonRootProps } from "@nextui-org/button";
 import { Button as ButtonRoot } from "@nextui-org/button";
@@ -38,7 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const baseStyles = cn(
       "transition-none font-normal border-1 rounded-md",
       fullWidth && "w-full",

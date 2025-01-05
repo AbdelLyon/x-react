@@ -31,14 +31,14 @@ const useLocalStorage = (props) => {
     },
     [key, storedValue]
   );
-  const removeValue = useCallback(() => {
+  const removeValue = () => {
     try {
       window.localStorage.removeItem(key);
       setStoredValue(defaultValue);
     } catch (error) {
       console.warn(`Error removing localStorage key "${key}":`, error);
     }
-  }, [key, defaultValue]);
+  };
   useEffect(() => {
     const handleStorageChange = (event) => {
       if (event.key === key && event.newValue !== null) {

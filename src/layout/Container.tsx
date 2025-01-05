@@ -1,5 +1,5 @@
 // src/components/ui/layout/Container.tsx
-import type { ReactNode, ForwardedRef } from "react";
+import type { ReactNode, ForwardedRef, JSX } from "react";
 import { forwardRef } from "react";
 import { cn } from "@/utils";
 
@@ -13,7 +13,7 @@ export const Container = forwardRef(
   (
     { children, maxWidth = "lg", className }: ContainerProps,
     ref: ForwardedRef<HTMLDivElement>,
-  ) => {
+  ): JSX.Element => {
     const containerClasses = cn(
       "mx-auto px-4",
       {

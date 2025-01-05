@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import { cn } from "@/utils";
 import type { AccordionItemProps, AccordionProps } from "@nextui-org/accordion";
@@ -21,7 +22,7 @@ interface AccordionWrapperProps extends Omit<AccordionProps, "children"> {
 }
 
 export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
-  ({ items, itemClasses, ...accordionProps }, ref) => {
+  ({ items, itemClasses, ...accordionProps }, ref): JSX.Element => {
     const defaultItemClasses = {
       base: cn("w-full shadow-none ", {
         "bg-white dark:bg-content1 border-1 border-default rounded-md":
@@ -49,7 +50,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
           title: cn(defaultItemClasses.title, itemClasses?.title),
         }}
       >
-        {items.map((item) => {
+        {items.map((item): JSX.Element => {
           const { content, ...itemProps } = item;
           return (
             <AccordionItem

@@ -9,7 +9,7 @@ export const useClickOutside = <T extends HTMLElement>(
 ): React.RefObject<T | null> => {
   const ref = useRef<T>(null);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     const listener = (event: Event): void => {
       const { target } = event ?? {};
       if (Array.isArray(nodes)) {
@@ -18,7 +18,7 @@ export const useClickOutside = <T extends HTMLElement>(
           (!document.body.contains(target as Node) &&
             (target as HTMLElement).tagName !== "HTML");
         const shouldTrigger = nodes.every(
-          (node) => !!node && !event.composedPath().includes(node),
+          (node): boolean => !!node && !event.composedPath().includes(node),
         );
         if (shouldTrigger && !shouldIgnore) {
           handler();
@@ -28,12 +28,12 @@ export const useClickOutside = <T extends HTMLElement>(
       }
     };
 
-    (events || DEFAULT_EVENTS).forEach((fn) =>
+    (events || DEFAULT_EVENTS).forEach((fn): void =>
       document.addEventListener(fn, listener),
     );
 
-    return () => {
-      (events || DEFAULT_EVENTS).forEach((fn) =>
+    return (): void => {
+      (events || DEFAULT_EVENTS).forEach((fn): void =>
         document.removeEventListener(fn, listener),
       );
     };

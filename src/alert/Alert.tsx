@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { ButtonProps } from "@nextui-org/button";
 import type { AlertProps } from "@nextui-org/alert";
@@ -21,7 +22,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
       ...otherProps
     },
     ref,
-  ) => {
+  ): JSX.Element | null => {
     const handleVisibilityChange = (visible: boolean): void => {
       onVisibleChange?.(visible);
     };

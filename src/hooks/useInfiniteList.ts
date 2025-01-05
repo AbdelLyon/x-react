@@ -37,7 +37,9 @@ export function useInfiniteList<T>({
     try {
       setIsLoading(true);
       if (offset > 0) {
-        await new Promise((resolve) => setTimeout(resolve, fetchDelay));
+        await new Promise(
+          (resolve): NodeJS.Timeout => setTimeout(resolve, fetchDelay),
+        );
       }
 
       const { items: newItems, hasMore: moreAvailable } = await fetchFunction(
@@ -46,7 +48,7 @@ export function useInfiniteList<T>({
       );
 
       setHasMore(moreAvailable);
-      setItems((prevItems) => [...prevItems, ...newItems]);
+      setItems((prevItems): T[] => [...prevItems, ...newItems]);
     } catch (error) {
       console.error("There was an error with the fetch operation:", error);
     } finally {
@@ -54,7 +56,7 @@ export function useInfiniteList<T>({
     }
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     void loadItems(offset);
   }, []);
 

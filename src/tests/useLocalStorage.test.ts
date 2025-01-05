@@ -2,13 +2,19 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { renderHook } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
-describe("useLocalStorage", () => {
-  it("devrait retourner la valeur par défaut", () => {
-    const { result } = renderHook(() =>
-      useLocalStorage({
-        key: "test",
-        defaultValue: "default",
-      }),
+type Storage = readonly [
+  string,
+  (value: string | ((val: string) => string)) => void,
+  () => void,
+];
+describe("useLocalStorage", (): void => {
+  it("devrait retourner la valeur par défaut", (): void => {
+    const { result } = renderHook(
+      (): Storage =>
+        useLocalStorage({
+          key: "test",
+          defaultValue: "default",
+        }),
     );
 
     expect(result.current[0]).toBe("default");

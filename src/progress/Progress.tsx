@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
 import type { ProgressProps as ProgressRootProps } from "@nextui-org/progress";
 import { Progress as ProgressRoor } from "@nextui-org/progress";
@@ -41,7 +41,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       ...nextUIProps
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const getValueLabel = (): string => {
       const formattedValue = new Intl.NumberFormat(
         undefined,

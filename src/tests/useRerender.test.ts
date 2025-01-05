@@ -2,40 +2,40 @@ import { useRerender } from "@/hooks/useRerender";
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
-describe("useRerender", () => {
-  it("devrait retourner une fonction de mise à jour", () => {
-    const { result } = renderHook(() => useRerender());
+describe("useRerender", (): void => {
+  it("devrait retourner une fonction de mise à jour", (): void => {
+    const { result } = renderHook((): (() => void) => useRerender());
     expect(typeof result.current).toBe("function");
   });
 
-  it("devrait déclencher un nouveau rendu quand appelé", () => {
+  it("devrait déclencher un nouveau rendu quand appelé", (): void => {
     let renderCount = 0;
-    const { result } = renderHook(() => {
+    const { result } = renderHook((): (() => void) => {
       renderCount++;
       return useRerender();
     });
 
     expect(renderCount).toBe(1);
 
-    act(() => {
+    act((): void => {
       result.current();
     });
 
     expect(renderCount).toBe(2);
   });
 
-  it("devrait permettre des rendus multiples", () => {
+  it("devrait permettre des rendus multiples", (): void => {
     let renderCount = 0;
-    const { result } = renderHook(() => {
+    const { result } = renderHook((): (() => void) => {
       renderCount++;
       return useRerender();
     });
 
-    act(() => {
+    act((): void => {
       result.current();
     });
 
-    act(() => {
+    act((): void => {
       result.current();
     });
 

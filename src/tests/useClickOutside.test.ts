@@ -2,26 +2,30 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { renderHook } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-describe("useClickOutside hook", () => {
-  beforeEach(() => {
+describe("useClickOutside hook", (): void => {
+  beforeEach((): void => {
     document.body.innerHTML = "";
   });
 
-  afterEach(() => {
+  afterEach((): void => {
     vi.clearAllMocks();
   });
 
-  it("devrait retourner un objet ref", () => {
+  it("devrait retourner un objet ref", (): void => {
     const handler = vi.fn();
-    const { result } = renderHook(() => useClickOutside(handler));
+    const { result } = renderHook(
+      (): React.RefObject<HTMLElement | null> => useClickOutside(handler),
+    );
 
     expect(result.current).toHaveProperty("current");
     expect(result.current.current).toBe(null);
   });
 
-  it("devrait appeler le handler quand on clique en dehors de l'élément ciblé", () => {
+  it("devrait appeler le handler quand on clique en dehors de l'élément ciblé", (): void => {
     const handler = vi.fn();
-    const { result } = renderHook(() => useClickOutside(handler));
+    const { result } = renderHook(
+      (): React.RefObject<HTMLElement | null> => useClickOutside(handler),
+    );
 
     const refElement = document.createElement("div");
     document.body.appendChild(refElement);
@@ -44,9 +48,11 @@ describe("useClickOutside hook", () => {
     expect(handler).toHaveBeenCalledTimes(1);
   });
 
-  it("devrait ignorer les clics à l'intérieur de l'élément ciblé", () => {
+  it("devrait ignorer les clics à l'intérieur de l'élément ciblé", (): void => {
     const handler = vi.fn();
-    const { result } = renderHook(() => useClickOutside(handler));
+    const { result } = renderHook(
+      (): React.RefObject<HTMLElement | null> => useClickOutside(handler),
+    );
 
     const refElement = document.createElement("div");
     document.body.appendChild(refElement);
@@ -66,14 +72,17 @@ describe("useClickOutside hook", () => {
     expect(handler).not.toHaveBeenCalled();
   });
 
-  it("devrait respecter les nodes à ignorer", () => {
+  it("devrait respecter les nodes à ignorer", (): void => {
     const handler = vi.fn();
     const ignoreNode = document.createElement("div");
     document.body.appendChild(ignoreNode);
 
     const mockComposedPath = vi.fn().mockReturnValue([ignoreNode]);
 
-    renderHook(() => useClickOutside(handler, null, [ignoreNode]));
+    renderHook(
+      (): React.RefObject<HTMLElement | null> =>
+        useClickOutside(handler, null, [ignoreNode]),
+    );
 
     const event = new MouseEvent("mousedown", {
       bubbles: true,
@@ -85,9 +94,11 @@ describe("useClickOutside hook", () => {
     expect(handler).not.toHaveBeenCalled();
   });
 
-  it("devrait ignorer les éléments avec data-ignore-outside-clicks", () => {
+  it("devrait ignorer les éléments avec data-ignore-outside-clicks", (): void => {
     const handler = vi.fn();
-    renderHook(() => useClickOutside(handler));
+    renderHook(
+      (): React.RefObject<HTMLElement | null> => useClickOutside(handler),
+    );
 
     const ignoredElement = document.createElement("div");
     ignoredElement.setAttribute("data-ignore-outside-clicks", "");

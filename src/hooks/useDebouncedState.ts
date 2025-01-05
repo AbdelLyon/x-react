@@ -15,14 +15,14 @@ export const useDebouncedState = <T>(
       window.clearTimeout(timeoutRef.current);
     }
   };
-  useEffect(() => clearTimeout, []);
+  useEffect((): (() => void) => clearTimeout, []);
 
   const debouncedSetValue = (newValue: SetStateAction<T>): void => {
     clearTimeout();
     if (leadingRef.current && options.leading) {
       setValue(newValue);
     } else {
-      timeoutRef.current = window.setTimeout(() => {
+      timeoutRef.current = window.setTimeout((): void => {
         leadingRef.current = true;
         setValue(newValue);
       }, wait);

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
 import {
   Drawer as DrawerRoot,
@@ -57,20 +57,13 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       ...nextUIProps
     },
     ref,
-  ) => {
-    const [
-      opened,
-      {
-        close,
-
-        open,
-      },
-    ] = useDisclosure();
+  ): JSX.Element => {
+    const { onOpen, onClose, isOpen } = useDisclosure();
 
     const handleAction = async (): Promise<void> => {
       try {
         await onAction?.();
-        close();
+        onClose();
       } catch (error) {
         console.error("Action failed:", error);
       }
@@ -81,7 +74,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
     ): void => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        open();
+        onOpen();
       }
     };
 
@@ -137,7 +130,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
         <div
           role="button"
           tabIndex={0}
-          onClick={open}
+          onClick={onOpen}
           onKeyDown={handleKeyDown}
           className="inline-block"
         >
@@ -146,13 +139,13 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
         <DrawerRoot
           ref={ref}
-          isOpen={opened}
-          onClose={close}
+          isOpen={isOpen}
+          onClose={onClose}
           classNames={drawerClassNames}
           {...nextUIProps}
         >
           <DrawerContent>
-            {() => (
+            {(): JSX.Element => (
               <>
                 {title !== undefined && (
                   <DrawerHeader className={drawerClassNames.header}>

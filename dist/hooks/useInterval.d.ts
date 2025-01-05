@@ -1,7 +1,7 @@
 interface UseIntervalOptions {
     autoInvoke?: boolean;
 }
-interface UseIntervalReturn {
+export interface UseIntervalReturn {
     start: () => void;
     stop: () => void;
     toggle: () => void;

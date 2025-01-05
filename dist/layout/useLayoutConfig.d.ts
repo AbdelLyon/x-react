@@ -2,7 +2,7 @@ type UseLayoutConfigOptions<T> = {
     navbar?: Partial<T>;
     sidebar?: Partial<T>;
 };
-type LayoutConfig<T> = {
+export type LayoutConfig<T> = {
     navbar?: Partial<T>;
     sidebar?: Partial<T>;
 };

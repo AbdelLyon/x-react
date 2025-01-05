@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { SelectProps as NextUISelectProps } from "@nextui-org/select";
 import { Select as NextUISelect, SelectItem } from "@nextui-org/select";
@@ -19,7 +20,10 @@ interface SelectProps
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ options = [], value, defaultValue, classNames, ...props }, ref) => {
+  (
+    { options = [], value, defaultValue, classNames, ...props },
+    ref,
+  ): JSX.Element => {
     return (
       <NextUISelect
         ref={ref}
@@ -33,16 +37,18 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         defaultSelectedKeys={defaultValue}
         {...props}
       >
-        {options.map((option) => (
-          <SelectItem
-            key={option.key}
-            description={option.description}
-            startContent={option.icon}
-            className="text-small"
-          >
-            {option.label}
-          </SelectItem>
-        ))}
+        {options.map(
+          (option): JSX.Element => (
+            <SelectItem
+              key={option.key}
+              description={option.description}
+              startContent={option.icon}
+              className="text-small"
+            >
+              {option.label}
+            </SelectItem>
+          ),
+        )}
       </NextUISelect>
     );
   },

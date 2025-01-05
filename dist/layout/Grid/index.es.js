@@ -29,7 +29,9 @@ const Grid = forwardRef(
       gap.y !== void 0 && `gap-y-${gap.y}`,
       className
     );
-    return /* @__PURE__ */ jsx("div", { ref, className: gridClasses, children: data ? data.map((item) => /* @__PURE__ */ jsx(GridItem, { colSpan: item.colSpan, children: item.content }, item.id)) : children });
+    return /* @__PURE__ */ jsx("div", { ref, className: gridClasses, children: data ? data.map(
+      (item) => /* @__PURE__ */ jsx(GridItem, { colSpan: item.colSpan, children: item.content }, item.id)
+    ) : children });
   }
 );
 Grid.displayName = "Grid";

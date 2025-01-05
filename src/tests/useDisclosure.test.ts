@@ -1,110 +1,172 @@
-import { useDisclosure } from "@/hooks/useDisclosure";
-import { act, renderHook } from "@testing-library/react";
+import { useDisclosure } from "@/hooks";
+import type { UseDisclosureReturn } from "@/hooks/useDisclosure";
+import { renderHook, act } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-describe("hooks/use-disclosure", () => {
-  describe("Gestion basique de l'état", () => {
-    it("devrait initialiser avec l'état par défaut correct", () => {
-      const { result } = renderHook(() => useDisclosure(true));
-      expect(result.current[0]).toBe(true);
+describe("useDisclosure", (): void => {
+  it("should initialize with default values", (): void => {
+    const { result } = renderHook((): UseDisclosureReturn => useDisclosure());
+
+    expect(result.current.isOpen).toBe(false);
+    expect(result.current.isControlled).toBe(false);
+    expect(typeof result.current.onOpen).toBe("function");
+    expect(typeof result.current.onClose).toBe("function");
+    expect(typeof result.current.onOpenChange).toBe("function");
+    expect(typeof result.current.getButtonProps).toBe("function");
+    expect(typeof result.current.getDisclosureProps).toBe("function");
+  });
+
+  it("should initialize with defaultOpen=true", (): void => {
+    const { result } = renderHook(
+      (): UseDisclosureReturn => useDisclosure({ defaultOpen: true }),
+    );
+    expect(result.current.isOpen).toBe(true);
+  });
+
+  it("should handle controlled mode", (): void => {
+    const { result } = renderHook(
+      (): UseDisclosureReturn => useDisclosure({ isOpen: true }),
+    );
+    expect(result.current.isControlled).toBe(true);
+    expect(result.current.isOpen).toBe(true);
+  });
+
+  it("should call onChange when state changes in uncontrolled mode", (): void => {
+    const onChange = vi.fn();
+    const { result } = renderHook(
+      (): UseDisclosureReturn => useDisclosure({ onChange }),
+    );
+
+    act((): void => {
+      result.current.onOpen();
     });
 
-    it("devrait changer l'état à faux lors de l'appel à fermer", () => {
-      const { result } = renderHook(() => useDisclosure(true));
+    expect(onChange).toHaveBeenCalledWith(true);
+  });
 
-      act(() => result.current[1].close());
+  it("should call onOpen callback", (): void => {
+    const onOpen = vi.fn();
+    const { result } = renderHook(
+      (): UseDisclosureReturn => useDisclosure({ onOpen }),
+    );
 
-      expect(result.current[0]).toBe(false);
+    act((): void => {
+      result.current.onOpen();
     });
 
-    it("devrait changer l'état à vrai lors de l'appel à ouvrir", () => {
-      const { result } = renderHook(() => useDisclosure(false));
+    expect(onOpen).toHaveBeenCalled();
+  });
 
-      act(() => result.current[1].open());
+  it("should call onClose callback", (): void => {
+    const onClose = vi.fn();
+    const { result } = renderHook(
+      (): UseDisclosureReturn =>
+        useDisclosure({
+          defaultOpen: true,
+          onClose,
+        }),
+    );
 
-      expect(result.current[0]).toBe(true);
+    act((): void => {
+      result.current.onClose();
     });
 
-    it("devrait basculer correctement l'état lors de l'appel à basculer", () => {
-      const { result } = renderHook(() => useDisclosure(false));
-      expect(result.current[0]).toBe(false);
+    expect(onClose).toHaveBeenCalled();
+  });
 
-      act(() => result.current[1].toggle());
-      expect(result.current[0]).toBe(true);
+  it("should toggle state with onOpenChange", (): void => {
+    const { result } = renderHook((): UseDisclosureReturn => useDisclosure());
 
-      act(() => result.current[1].toggle());
-      expect(result.current[0]).toBe(false);
+    act((): void => {
+      result.current.onOpenChange();
+    });
+    expect(result.current.isOpen).toBe(true);
+
+    act((): void => {
+      result.current.onOpenChange();
+    });
+    expect(result.current.isOpen).toBe(false);
+  });
+
+  describe("getButtonProps", (): void => {
+    it("should return correct button props", (): void => {
+      const { result } = renderHook((): UseDisclosureReturn => useDisclosure());
+      const buttonProps = result.current.getButtonProps();
+
+      expect(buttonProps).toHaveProperty("aria-expanded", false);
+      expect(buttonProps).toHaveProperty("aria-controls");
+      expect(buttonProps).toHaveProperty("onClick");
+    });
+
+    it("should merge custom props", (): void => {
+      const { result } = renderHook((): UseDisclosureReturn => useDisclosure());
+      const customProps = { className: "test", disabled: true };
+      const buttonProps = result.current.getButtonProps(customProps);
+
+      expect(buttonProps).toEqual(expect.objectContaining(customProps));
     });
   });
 
-  describe("Gestion des callbacks", () => {
-    it("devrait appeler onClose uniquement lorsque l'état passe de vrai à faux", () => {
-      const onClose = vi.fn();
-      const { result } = renderHook(() => useDisclosure(true, { onClose }));
-      expect(onClose).not.toHaveBeenCalled();
+  describe("getDisclosureProps", (): void => {
+    it("should return correct disclosure props", (): void => {
+      const { result } = renderHook((): UseDisclosureReturn => useDisclosure());
+      const disclosureProps = result.current.getDisclosureProps();
 
-      act(() => result.current[1].close());
-      expect(onClose).toHaveBeenCalledTimes(1);
-
-      act(() => result.current[1].close());
-      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(disclosureProps).toHaveProperty("hidden", true);
+      expect(disclosureProps).toHaveProperty("id");
     });
 
-    it("devrait appeler onOpen uniquement lorsque l'état passe de faux à vrai", () => {
-      const onOpen = vi.fn();
-      const { result } = renderHook(() => useDisclosure(false, { onOpen }));
-      expect(onOpen).not.toHaveBeenCalled();
+    it("should merge custom props", (): void => {
+      const { result } = renderHook((): UseDisclosureReturn => useDisclosure());
+      const customProps = { className: "test" };
+      const disclosureProps = result.current.getDisclosureProps(customProps);
 
-      act(() => result.current[1].open());
-      expect(onOpen).toHaveBeenCalledTimes(1);
-
-      act(() => result.current[1].open());
-      expect(onOpen).toHaveBeenCalledTimes(1);
-    });
-
-    it("devrait appeler les callbacks appropriés lors du basculement d'état", () => {
-      const onClose = vi.fn();
-      const onOpen = vi.fn();
-      const { result } = renderHook(() =>
-        useDisclosure(false, { onOpen, onClose }),
-      );
-
-      expect(onOpen).not.toHaveBeenCalled();
-      expect(onClose).not.toHaveBeenCalled();
-
-      // Premier basculement : faux -> vrai
-      act(() => result.current[1].toggle());
-      expect(onOpen).toHaveBeenCalledTimes(1);
-      expect(onClose).not.toHaveBeenCalled();
-
-      // Deuxième basculement : vrai -> faux
-      act(() => result.current[1].toggle());
-      expect(onOpen).toHaveBeenCalledTimes(1);
-      expect(onClose).toHaveBeenCalledTimes(1);
-
-      // Troisième basculement : faux -> vrai
-      act(() => result.current[1].toggle());
-      expect(onOpen).toHaveBeenCalledTimes(2);
-      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(disclosureProps).toEqual(expect.objectContaining(customProps));
     });
   });
 
-  describe("Cas limites", () => {
-    it("ne devrait pas déclencher de callbacks quand l'état ne change pas", () => {
-      const onClose = vi.fn();
-      const onOpen = vi.fn();
-      const { result } = renderHook(() =>
-        useDisclosure(true, { onOpen, onClose }),
-      );
+  it("should handle custom id", (): void => {
+    const customId = "custom-id";
+    const { result } = renderHook(
+      (): UseDisclosureReturn => useDisclosure({ id: customId }),
+    );
 
-      act(() => result.current[1].open());
-      expect(onOpen).not.toHaveBeenCalled();
+    const buttonProps = result.current.getButtonProps();
+    const disclosureProps = result.current.getDisclosureProps();
 
-      act(() => result.current[1].close());
-      expect(onClose).toHaveBeenCalledTimes(1);
+    expect(buttonProps["aria-controls"]).toBe(customId);
+    expect(disclosureProps.id).toBe(customId);
+  });
 
-      act(() => result.current[1].close());
-      expect(onClose).toHaveBeenCalledTimes(1);
-    });
+  it("should warn when changing from controlled to uncontrolled", (): void => {
+    const consoleSpy = vi.spyOn(console, "warn");
+    const { rerender } = renderHook(
+      (props): UseDisclosureReturn => useDisclosure(props),
+      {
+        initialProps: { isOpen: true },
+      },
+    );
+
+    rerender();
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining("changed from controlled to uncontrolled"),
+    );
+  });
+
+  it("should warn when changing from uncontrolled to controlled", (): void => {
+    const consoleSpy = vi.spyOn(console, "warn");
+    const { rerender } = renderHook(
+      (props): UseDisclosureReturn => useDisclosure(props),
+      {
+        initialProps: {},
+      },
+    );
+
+    rerender({ isOpen: true });
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining("changed from uncontrolled to controlled"),
+    );
   });
 });

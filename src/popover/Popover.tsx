@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { PopoverProps, PopoverContentProps } from "@nextui-org/popover";
 import {
@@ -46,7 +47,7 @@ export const Popover = forwardRef<HTMLDivElement, PropsPopover>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     return (
       <PopoverRoot
         ref={ref}

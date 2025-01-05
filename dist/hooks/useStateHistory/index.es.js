@@ -18,19 +18,23 @@ const useStateHistory = (initialValue) => {
       });
     },
     back: (steps = 1) => {
-      setState((currentState) => ({
-        history: currentState.history,
-        current: Math.max(0, currentState.current - steps)
-      }));
+      setState(
+        (currentState) => ({
+          history: currentState.history,
+          current: Math.max(0, currentState.current - steps)
+        })
+      );
     },
     forward: (steps = 1) => {
-      setState((currentState) => ({
-        history: currentState.history,
-        current: Math.min(
-          currentState.history.length - 1,
-          currentState.current + steps
-        )
-      }));
+      setState(
+        (currentState) => ({
+          history: currentState.history,
+          current: Math.min(
+            currentState.history.length - 1,
+            currentState.current + steps
+          )
+        })
+      );
     },
     reset: () => {
       setState({

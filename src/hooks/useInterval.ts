@@ -4,7 +4,7 @@ interface UseIntervalOptions {
   autoInvoke?: boolean;
 }
 
-interface UseIntervalReturn {
+export interface UseIntervalReturn {
   start: () => void;
   stop: () => void;
   toggle: () => void;
@@ -21,7 +21,7 @@ export const useInterval = (
   const fnRef = useRef<() => void>(fn);
 
   const start = (): void => {
-    setActive((old) => {
+    setActive((old): boolean => {
       if (
         !old &&
         (intervalRef.current === null || intervalRef.current === -1)
@@ -46,7 +46,7 @@ export const useInterval = (
     }
   };
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     fnRef.current = fn;
     if (active) {
       start();
@@ -54,11 +54,11 @@ export const useInterval = (
     return stop;
   }, [fn, active, interval]);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     if (autoInvoke) {
       start();
     }
-    return () => stop();
+    return (): void => stop();
   }, []);
 
   return { start, stop, toggle, active };

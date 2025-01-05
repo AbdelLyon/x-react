@@ -1,4 +1,5 @@
 import type { DateValue } from "@internationalized/date";
+import type { JSX } from "react";
 import { forwardRef } from "react";
 import type {
   DatePickerProps as DatePickerRootProps,
@@ -61,7 +62,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const { classNames: propClassNames, ...restProps } = props;
 
     return (
@@ -107,7 +108,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
       ...props
     },
     ref,
-  ) => {
+  ): JSX.Element => {
     const { classNames: propClassNames, ...restProps } = props;
 
     return (

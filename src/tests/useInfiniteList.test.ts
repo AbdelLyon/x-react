@@ -1,7 +1,10 @@
 // useInfiniteList.test.tsx
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import type { FetchFunctionReturn } from "../hooks/useInfiniteList";
+import type {
+  FetchFunctionReturn,
+  UseInfiniteListReturn,
+} from "../hooks/useInfiniteList";
 import { useInfiniteList } from "../hooks/useInfiniteList";
 
 // Mock data
@@ -19,12 +22,17 @@ const mockData: TestItem[] = [
 ];
 
 // Mock fetch function
-const createMockFetch = (delay = 0) => {
+const createMockFetch = (
+  delay = 0,
+): ((
+  offset: number,
+  limit: number,
+) => Promise<FetchFunctionReturn<TestItem>>) => {
   return async (
     offset: number,
     limit: number,
   ): Promise<FetchFunctionReturn<TestItem>> => {
-    await new Promise((resolve) => setTimeout(resolve, delay));
+    await new Promise((resolve): NodeJS.Timeout => setTimeout(resolve, delay));
 
     const items = mockData.slice(offset, offset + limit);
     const hasMore = offset + limit < mockData.length;
@@ -33,41 +41,43 @@ const createMockFetch = (delay = 0) => {
   };
 };
 
-describe("useInfiniteList", () => {
-  beforeEach(() => {
+describe("useInfiniteList", (): void => {
+  beforeEach((): void => {
     vi.useFakeTimers();
   });
 
-  it("should initialize with empty state", async () => {
-    const { result, unmount } = renderHook(() =>
-      useInfiniteList({
-        fetchFunction: createMockFetch(),
-        limit: 2,
-      }),
+  it("should initialize with empty state", async (): Promise<void> => {
+    const { result, unmount } = renderHook(
+      (): UseInfiniteListReturn<TestItem> =>
+        useInfiniteList({
+          fetchFunction: createMockFetch(),
+          limit: 2,
+        }),
     );
 
     expect(result.current.items).toEqual([]);
     expect(result.current.hasMore).toBe(true);
     expect(result.current.isLoading).toBe(true);
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       await vi.runAllTimersAsync();
     });
 
     expect(result.current.isLoading).toBe(false);
     unmount();
   });
-  it("should load initial items", async () => {
-    const { result } = renderHook(() =>
-      useInfiniteList({
-        fetchFunction: createMockFetch(),
-        limit: 2,
-      }),
+  it("should load initial items", async (): Promise<void> => {
+    const { result } = renderHook(
+      (): UseInfiniteListReturn<TestItem> =>
+        useInfiniteList({
+          fetchFunction: createMockFetch(),
+          limit: 2,
+        }),
     );
 
     expect(result.current.isLoading).toBe(true);
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       await vi.runAllTimersAsync();
     });
 
@@ -79,21 +89,22 @@ describe("useInfiniteList", () => {
     expect(result.current.isLoading).toBe(false);
   });
 
-  it("should load more items when onLoadMore is called", async () => {
-    const { result } = renderHook(() =>
-      useInfiniteList({
-        fetchFunction: createMockFetch(),
-        limit: 2,
-      }),
+  it("should load more items when onLoadMore is called", async (): Promise<void> => {
+    const { result } = renderHook(
+      (): UseInfiniteListReturn<TestItem> =>
+        useInfiniteList({
+          fetchFunction: createMockFetch(),
+          limit: 2,
+        }),
     );
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       await vi.runAllTimersAsync();
     });
 
     expect(result.current.items).toHaveLength(2);
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       result.current.onLoadMore();
       await vi.runAllTimersAsync();
     });
@@ -102,51 +113,53 @@ describe("useInfiniteList", () => {
     expect(result.current.hasMore).toBe(true);
   });
 
-  it("should handle fetchDelay correctly", async () => {
-    const { result } = renderHook(() =>
-      useInfiniteList({
-        fetchFunction: createMockFetch(),
-        fetchDelay: 1000,
-        limit: 2,
-      }),
+  it("should handle fetchDelay correctly", async (): Promise<void> => {
+    const { result } = renderHook(
+      (): UseInfiniteListReturn<TestItem> =>
+        useInfiniteList({
+          fetchFunction: createMockFetch(),
+          fetchDelay: 1000,
+          limit: 2,
+        }),
     );
 
     expect(result.current.isLoading).toBe(true);
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       await vi.runAllTimersAsync();
     });
 
     expect(result.current.isLoading).toBe(false);
 
-    act(() => {
+    act((): void => {
       result.current.onLoadMore();
     });
 
     expect(result.current.isLoading).toBe(true);
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       await vi.advanceTimersByTime(1000);
     });
 
     expect(result.current.isLoading).toBe(false);
   });
 
-  it("should set hasMore to false when all items are loaded", async () => {
-    const { result } = renderHook(() =>
-      useInfiniteList({
-        fetchFunction: createMockFetch(),
-        limit: 3,
-      }),
+  it("should set hasMore to false when all items are loaded", async (): Promise<void> => {
+    const { result } = renderHook(
+      (): UseInfiniteListReturn<TestItem> =>
+        useInfiniteList({
+          fetchFunction: createMockFetch(),
+          limit: 3,
+        }),
     );
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       await vi.runAllTimersAsync();
     });
 
     expect(result.current.hasMore).toBe(true);
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       result.current.onLoadMore();
       await vi.runAllTimersAsync();
     });
@@ -155,23 +168,24 @@ describe("useInfiniteList", () => {
     expect(result.current.hasMore).toBe(false);
   });
 
-  it("should handle fetch errors gracefully", async () => {
+  it("should handle fetch errors gracefully", async (): Promise<void> => {
     const mockErrorFetch = (): never => {
       throw new Error("Fetch error");
     };
 
     const consoleError = vi
       .spyOn(console, "error")
-      .mockImplementation(() => {});
+      .mockImplementation((): void => {});
 
-    const { result } = renderHook(() =>
-      useInfiniteList({
-        fetchFunction: mockErrorFetch,
-        limit: 2,
-      }),
+    const { result } = renderHook(
+      (): UseInfiniteListReturn<TestItem> =>
+        useInfiniteList({
+          fetchFunction: mockErrorFetch,
+          limit: 2,
+        }),
     );
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       await vi.runAllTimersAsync();
     });
 
@@ -182,10 +196,10 @@ describe("useInfiniteList", () => {
     consoleError.mockRestore();
   });
 
-  it("should maintain existing items when fetch fails", async () => {
+  it("should maintain existing items when fetch fails", async (): Promise<void> => {
     const consoleError = vi
       .spyOn(console, "error")
-      .mockImplementation(() => {}); // 👈 Ajouter ceci
+      .mockImplementation((): void => {});
 
     let shouldFail = false;
     const mockFetchWithError = (
@@ -198,14 +212,15 @@ describe("useInfiniteList", () => {
       return createMockFetch()(offset, limit);
     };
 
-    const { result } = renderHook(() =>
-      useInfiniteList({
-        fetchFunction: mockFetchWithError,
-        limit: 2,
-      }),
+    const { result } = renderHook(
+      (): UseInfiniteListReturn<TestItem> =>
+        useInfiniteList({
+          fetchFunction: mockFetchWithError,
+          limit: 2,
+        }),
     );
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       await vi.runAllTimersAsync();
     });
 
@@ -213,7 +228,7 @@ describe("useInfiniteList", () => {
 
     shouldFail = true;
 
-    await act(async () => {
+    await act(async (): Promise<void> => {
       result.current.onLoadMore();
       await vi.runAllTimersAsync();
     });

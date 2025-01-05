@@ -5,9 +5,10 @@ export const useCallbackRef = <T extends (...args: unknown[]) => unknown>(
 ): T => {
   const callbackRef = useRef(callback);
 
-  useEffect(() => {
+  useEffect((): void => {
     callbackRef.current = callback;
   });
 
-  return ((...args: Parameters<T>) => callbackRef.current?.(...args)) as T;
+  return ((...args: Parameters<T>): unknown =>
+    callbackRef.current?.(...args)) as T;
 };

@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import type { LayoutConfig } from "../layout/useLayoutConfig";
 import { useLayoutConfig } from "../layout/useLayoutConfig";
 
 interface TestConfig {
@@ -9,27 +10,32 @@ interface TestConfig {
   items?: Array<{ id: string; label: string }>;
 }
 
-describe("useLayoutConfig", () => {
-  describe("Initialisation", () => {
-    it("devrait retourner undefined pour navbar et sidebar sans options", () => {
-      const { result } = renderHook(() => useLayoutConfig<TestConfig>());
+describe("useLayoutConfig", (): void => {
+  describe("Initialisation", (): void => {
+    it("devrait retourner undefined pour navbar et sidebar sans options", (): void => {
+      const { result } = renderHook(
+        (): LayoutConfig<TestConfig> => useLayoutConfig<TestConfig>(),
+      );
 
       expect(result.current.navbar).toBeUndefined();
       expect(result.current.sidebar).toBeUndefined();
     });
 
-    it("devrait retourner undefined avec un objet vide", () => {
-      const { result } = renderHook(() => useLayoutConfig<TestConfig>({}));
+    it("devrait retourner undefined avec un objet vide", (): void => {
+      const { result } = renderHook(
+        (): LayoutConfig<TestConfig> => useLayoutConfig<TestConfig>({}),
+      );
 
       expect(result.current.navbar).toBeUndefined();
       expect(result.current.sidebar).toBeUndefined();
     });
   });
 
-  describe("Navbar", () => {
-    it("devrait appliquer les classes par défaut avec config vide", () => {
-      const { result } = renderHook(() =>
-        useLayoutConfig<TestConfig>({ navbar: {} }),
+  describe("Navbar", (): void => {
+    it("devrait appliquer les classes par défaut avec config vide", (): void => {
+      const { result } = renderHook(
+        (): LayoutConfig<TestConfig> =>
+          useLayoutConfig<TestConfig>({ navbar: {} }),
       );
 
       expect(result.current.navbar).toEqual({
@@ -37,15 +43,16 @@ describe("useLayoutConfig", () => {
       });
     });
 
-    it("devrait surcharger les valeurs par défaut avec les options fournies", () => {
+    it("devrait surcharger les valeurs par défaut avec les options fournies", (): void => {
       const navConfig = {
         title: "Test App",
         isOpen: true,
         className: "custom-class",
       };
 
-      const { result } = renderHook(() =>
-        useLayoutConfig<TestConfig>({ navbar: navConfig }),
+      const { result } = renderHook(
+        (): LayoutConfig<TestConfig> =>
+          useLayoutConfig<TestConfig>({ navbar: navConfig }),
       );
 
       expect(result.current.navbar).toEqual({
@@ -56,10 +63,11 @@ describe("useLayoutConfig", () => {
     });
   });
 
-  describe("Sidebar", () => {
-    it("devrait appliquer les classes par défaut avec config vide", () => {
-      const { result } = renderHook(() =>
-        useLayoutConfig<TestConfig>({ sidebar: {} }),
+  describe("Sidebar", (): void => {
+    it("devrait appliquer les classes par défaut avec config vide", (): void => {
+      const { result } = renderHook(
+        (): LayoutConfig<TestConfig> =>
+          useLayoutConfig<TestConfig>({ sidebar: {} }),
       );
 
       expect(result.current.sidebar).toEqual({
@@ -67,15 +75,16 @@ describe("useLayoutConfig", () => {
       });
     });
 
-    it("devrait surcharger les valeurs par défaut avec les options fournies", () => {
+    it("devrait surcharger les valeurs par défaut avec les options fournies", (): void => {
       const sideConfig = {
         items: [{ id: "1", label: "Item 1" }],
         isOpen: false,
         className: "custom-class",
       };
 
-      const { result } = renderHook(() =>
-        useLayoutConfig<TestConfig>({ sidebar: sideConfig }),
+      const { result } = renderHook(
+        (): LayoutConfig<TestConfig> =>
+          useLayoutConfig<TestConfig>({ sidebar: sideConfig }),
       );
 
       expect(result.current.sidebar).toEqual({
@@ -86,8 +95,8 @@ describe("useLayoutConfig", () => {
     });
   });
 
-  describe("Configuration complète", () => {
-    it("devrait gérer la configuration simultanée", () => {
+  describe("Configuration complète", (): void => {
+    it("devrait gérer la configuration simultanée", (): void => {
       const config = {
         navbar: {
           title: "App",
@@ -101,7 +110,9 @@ describe("useLayoutConfig", () => {
         },
       };
 
-      const { result } = renderHook(() => useLayoutConfig<TestConfig>(config));
+      const { result } = renderHook(
+        (): LayoutConfig<TestConfig> => useLayoutConfig<TestConfig>(config),
+      );
 
       expect(result.current.navbar).toEqual({
         title: "App",
@@ -117,8 +128,8 @@ describe("useLayoutConfig", () => {
     });
   });
 
-  describe("Gestion des valeurs undefined", () => {
-    it("devrait gérer les propriétés undefined", () => {
+  describe("Gestion des valeurs undefined", (): void => {
+    it("devrait gérer les propriétés undefined", (): void => {
       const config = {
         navbar: {
           title: undefined,
@@ -130,7 +141,9 @@ describe("useLayoutConfig", () => {
         },
       };
 
-      const { result } = renderHook(() => useLayoutConfig<TestConfig>(config));
+      const { result } = renderHook(
+        (): LayoutConfig<TestConfig> => useLayoutConfig<TestConfig>(config),
+      );
 
       expect(result.current.navbar).toEqual({
         title: undefined,

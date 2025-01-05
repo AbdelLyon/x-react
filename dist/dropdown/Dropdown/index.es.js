@@ -52,28 +52,30 @@ const Dropdown = forwardRef(
       }, props), {
         children: [
           /* @__PURE__ */ jsx(DropdownTrigger, { children: trigger }),
-          /* @__PURE__ */ jsx(DropdownMenu, __spreadProps(__spreadValues({ className: "p-3" }, dropdownMenuProps), { children: sections.map((section) => /* @__PURE__ */ jsx(
-            DropdownSection,
-            {
-              showDivider: section.showDivider,
-              "aria-label": section.label,
-              children: section.items.map((item) => {
-                const _a2 = item, { key, label, href } = _a2, remainingProps = __objRest(_a2, ["key", "label", "href"]);
-                return /* @__PURE__ */ jsx(
-                  DropdownItem,
-                  __spreadProps(__spreadValues({
-                    onPress: () => {
-                      handleItemPress(__spreadProps(__spreadValues({}, item), { href }));
-                    }
-                  }, remainingProps), {
-                    children: label
-                  }),
-                  key
-                );
-              })
-            },
-            section.key
-          )) }))
+          /* @__PURE__ */ jsx(DropdownMenu, __spreadProps(__spreadValues({ className: "p-3" }, dropdownMenuProps), { children: sections.map(
+            (section) => /* @__PURE__ */ jsx(
+              DropdownSection,
+              {
+                showDivider: section.showDivider,
+                "aria-label": section.label,
+                children: section.items.map((item) => {
+                  const _a2 = item, { key, label, href } = _a2, remainingProps = __objRest(_a2, ["key", "label", "href"]);
+                  return /* @__PURE__ */ jsx(
+                    DropdownItem,
+                    __spreadProps(__spreadValues({
+                      onPress: () => {
+                        handleItemPress(__spreadProps(__spreadValues({}, item), { href }));
+                      }
+                    }, remainingProps), {
+                      children: label
+                    }),
+                    key
+                  );
+                })
+              },
+              section.key
+            )
+          ) }))
         ]
       })
     );

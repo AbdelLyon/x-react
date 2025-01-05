@@ -1,3 +1,4 @@
+import type { DataGridState } from "@/datagrid/useDataGridState";
 import { useDataGridState } from "@/datagrid/useDataGridState";
 import { renderHook, act } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
@@ -9,28 +10,29 @@ type MockRow = {
   actions?: string;
 };
 
-describe("useDataGridState", () => {
+describe("useDataGridState", (): void => {
   const mockColumns: ColumnDefinition<MockRow>[] = [
     {
       field: "id",
       header: "ID",
-      cell: (row) => String(row.id),
+      cell: (row): string => String(row.id),
     },
     {
       field: "name",
       header: "Name",
       sortable: true,
-      cell: (row) => row.name ?? "",
+      cell: (row): string => row.name ?? "",
     },
   ];
 
-  describe("Initialisation", () => {
-    it("devrait initialiser l'état correctement", () => {
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: mockColumns,
-          onSortChange: vi.fn(),
-        }),
+  describe("Initialisation", (): void => {
+    it("devrait initialiser l'état correctement", (): void => {
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: mockColumns,
+            onSortChange: vi.fn(),
+          }),
       );
 
       expect(result.current.sortConfig).toEqual({
@@ -40,11 +42,12 @@ describe("useDataGridState", () => {
       expect(result.current.processedColumns).toHaveLength(2);
     });
 
-    it("devrait traiter les colonnes correctement", () => {
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: mockColumns,
-        }),
+    it("devrait traiter les colonnes correctement", (): void => {
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: mockColumns,
+          }),
       );
 
       expect(result.current.processedColumns[0]).toMatchObject({
@@ -55,18 +58,18 @@ describe("useDataGridState", () => {
     });
   });
 
-  describe("Tri des colonnes", () => {
-    it("devrait gérer le cycle de tri", () => {
+  describe("Tri des colonnes", (): void => {
+    it("devrait gérer le cycle de tri", (): void => {
       const onSortChange = vi.fn();
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: mockColumns,
-          onSortChange,
-        }),
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: mockColumns,
+            onSortChange,
+          }),
       );
 
-      // Premier tri
-      act(() => {
+      act((): void => {
         result.current.onSort(result.current.processedColumns[1]);
       });
 
@@ -76,8 +79,7 @@ describe("useDataGridState", () => {
       });
       expect(onSortChange).toHaveBeenCalledWith("name", "desc");
 
-      // Deuxième tri
-      act(() => {
+      act((): void => {
         result.current.onSort(result.current.processedColumns[1]);
       });
 
@@ -88,24 +90,25 @@ describe("useDataGridState", () => {
       expect(onSortChange).toHaveBeenCalledWith("name", "asc");
     });
 
-    it("ne devrait pas trier les colonnes de type 'actions'", () => {
+    it("ne devrait pas trier les colonnes de type 'actions'", (): void => {
       const onSortChange = vi.fn();
       const columnsWithActions: ColumnDefinition<MockRow>[] = [
         {
           field: "actions",
           header: "Actions",
-          cell: () => null,
+          cell: (): null => null,
         },
       ];
 
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: columnsWithActions,
-          onSortChange,
-        }),
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: columnsWithActions,
+            onSortChange,
+          }),
       );
 
-      act(() => {
+      act((): void => {
         result.current.onSort(result.current.processedColumns[0]);
       });
 
@@ -114,14 +117,15 @@ describe("useDataGridState", () => {
     });
   });
 
-  describe("Gestion du scroll", () => {
-    it("devrait déclencher onGridScrollEnd au scroll final", () => {
+  describe("Gestion du scroll", (): void => {
+    it("devrait déclencher onGridScrollEnd au scroll final", (): void => {
       const onGridScrollEnd = vi.fn();
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: mockColumns,
-          onGridScrollEnd,
-        }),
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: mockColumns,
+            onGridScrollEnd,
+          }),
       );
 
       const mockEvent = {
@@ -132,20 +136,21 @@ describe("useDataGridState", () => {
         },
       } as unknown as React.UIEvent<HTMLDivElement>;
 
-      act(() => {
+      act((): void => {
         result.current.handleGridScroll(mockEvent);
       });
 
       expect(onGridScrollEnd).toHaveBeenCalled();
     });
 
-    it("ne devrait pas déclencher onGridScrollEnd si le scroll n'est pas à la fin", () => {
+    it("ne devrait pas déclencher onGridScrollEnd si le scroll n'est pas à la fin", (): void => {
       const onGridScrollEnd = vi.fn();
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: mockColumns,
-          onGridScrollEnd,
-        }),
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: mockColumns,
+            onGridScrollEnd,
+          }),
       );
 
       const mockEvent = {
@@ -156,7 +161,7 @@ describe("useDataGridState", () => {
         },
       } as unknown as React.UIEvent<HTMLDivElement>;
 
-      act(() => {
+      act((): void => {
         result.current.handleGridScroll(mockEvent);
       });
 
@@ -164,12 +169,13 @@ describe("useDataGridState", () => {
     });
   });
 
-  describe("Gestion des cellules", () => {
-    it("devrait extraire correctement les valeurs des cellules", () => {
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: mockColumns,
-        }),
+  describe("Gestion des cellules", (): void => {
+    it("devrait extraire correctement les valeurs des cellules", (): void => {
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: mockColumns,
+          }),
       );
 
       const mockRow: MockRow = { id: "1", name: "Test" };
@@ -182,19 +188,20 @@ describe("useDataGridState", () => {
       ).toBe("Test");
     });
 
-    it("devrait gérer les cellules personnalisées", () => {
+    it("devrait gérer les cellules personnalisées", (): void => {
       const customColumns: ColumnDefinition<MockRow>[] = [
         {
           field: "id",
           header: "ID",
-          cell: (row) => `Custom ${row.id}`,
+          cell: (row): string => `Custom ${row.id}`,
         },
       ];
 
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: customColumns,
-        }),
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: customColumns,
+          }),
       );
 
       const mockRow: MockRow = { id: "1" };
@@ -203,11 +210,12 @@ describe("useDataGridState", () => {
       ).toBe("Custom 1");
     });
 
-    it("devrait retourner null pour une colonne inexistante", () => {
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: mockColumns,
-        }),
+    it("devrait retourner null pour une colonne inexistante", (): void => {
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: mockColumns,
+          }),
       );
 
       const mockRow: MockRow = { id: "1" };
@@ -217,12 +225,13 @@ describe("useDataGridState", () => {
     });
   });
 
-  describe("Gestion des en-têtes", () => {
-    it("devrait générer les en-têtes appropriés", () => {
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: mockColumns,
-        }),
+  describe("Gestion des en-têtes", (): void => {
+    it("devrait générer les en-têtes appropriés", (): void => {
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: mockColumns,
+          }),
       );
 
       const column = result.current.processedColumns[1];
@@ -231,11 +240,12 @@ describe("useDataGridState", () => {
       expect(result.current.formatSortHeader("")).toBe("Sort column");
     });
 
-    it("devrait utiliser des valeurs par défaut pour les en-têtes vides", () => {
-      const { result } = renderHook(() =>
-        useDataGridState({
-          columns: [{ ...mockColumns[0], header: "" }],
-        }),
+    it("devrait utiliser des valeurs par défaut pour les en-têtes vides", (): void => {
+      const { result } = renderHook(
+        (): DataGridState<MockRow> =>
+          useDataGridState({
+            columns: [{ ...mockColumns[0], header: "" }],
+          }),
       );
 
       const column = result.current.processedColumns[0];
