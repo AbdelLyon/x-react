@@ -1,6 +1,6 @@
 import "@/index.css";
 export { Layout, type LayoutProps } from "@/layout/Layout";
-export { Scroll } from "@/layout/Scroll";
+export { Scroll } from "@/layout/ScrollShadow";
 export { Center } from "@/layout/Center";
 export { Container } from "@/layout/Container";
 export { Grid, GridItem } from "@/layout/Grid";

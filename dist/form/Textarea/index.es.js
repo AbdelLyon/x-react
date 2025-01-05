@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Textarea as Textarea$1 } from "@nextui-org/react";
+import { Textarea as Textarea$1 } from "@nextui-org/input";
 import { cn } from "../../utils/index.es.js";
 const Textarea = forwardRef(
   (_a, ref) => {

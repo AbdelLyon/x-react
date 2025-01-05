@@ -1,13 +1,13 @@
+import type { DateValue } from "@internationalized/date";
 import { forwardRef } from "react";
 import type {
   DatePickerProps as DatePickerRootProps,
   DateRangePickerProps as DateRangePickerRootProps,
-  DateValue,
-} from "@nextui-org/react";
+} from "@nextui-org/date-picker";
 import {
   DatePicker as DatePickerRoot,
   DateRangePicker as DateRangePickerRoot,
-} from "@nextui-org/react";
+} from "@nextui-org/date-picker";
 import { cn } from "@/utils";
 
 type BaseProps = {

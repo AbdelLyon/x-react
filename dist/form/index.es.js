@@ -7,7 +7,7 @@ import { Textarea } from "./Textarea/index.es.js";
 import { Switch } from "./Switch/index.es.js";
 import { Select } from "./Select/index.es.js";
 import { InfiniteSelect } from "./InfiniteSelect/index.es.js";
-import { Checkbox } from "@nextui-org/react";
+import { Checkbox } from "@nextui-org/checkbox";
 export {
   Checkbox,
   CheckboxGroup,

@@ -1,4 +1,4 @@
-import { InputProps as InputRootProps } from '@nextui-org/react';
+import { InputProps as InputRootProps } from '@nextui-org/input';
 type InputProps = InputRootProps & {
     containerClasses?: string;
     customValidation?: (value: string) => boolean | string;

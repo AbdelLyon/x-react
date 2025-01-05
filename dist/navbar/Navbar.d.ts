@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { NavbarContentProps, NavbarMenuProps, NavbarProps as NavbarRootProps } from '@nextui-org/react';
+import { NavbarContentProps, NavbarMenuProps, NavbarProps as NavbarRootProps } from '@nextui-org/navbar';
 import { Item } from '../types/navigation';
 export type NavbarProps = {
     appName?: ReactNode;

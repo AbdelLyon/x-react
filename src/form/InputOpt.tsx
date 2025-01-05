@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import type { InputOtpProps } from "@nextui-org/react";
-import { InputOtp as NextUIInputOtp } from "@nextui-org/react";
+import type { InputOtpProps } from "@nextui-org/input-otp";
+import { InputOtp as NextUIInputOtp } from "@nextui-org/input-otp";
 import { cn } from "@/utils";
 
 type InputOtpWrapperProps = {
@@ -8,25 +8,16 @@ type InputOtpWrapperProps = {
   label?: string;
   labelClasses?: string;
   containerClasses?: string;
-} & Omit<InputOtpProps, "length">
+} & Omit<InputOtpProps, "length">;
 
 export const InputOtp = forwardRef<HTMLDivElement, InputOtpWrapperProps>(
-  (
-    {
-      length = 6,
-      label = `${length} digits OTP`,
-      labelClasses,
-      containerClasses,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ length = 6, label, labelClasses, containerClasses, ...props }, ref) => {
     const defaultLabelClasses = "text-default-500 text-small mb-2";
     const defaultContainerClasses = "flex flex-col";
 
     return (
       <div ref={ref} className={cn(defaultContainerClasses, containerClasses)}>
-        {label && (
+        {label !== undefined && (
           <p className={cn(defaultLabelClasses, labelClasses)}>{label}</p>
         )}
         <NextUIInputOtp length={length} {...props} />

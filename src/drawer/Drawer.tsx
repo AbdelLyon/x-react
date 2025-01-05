@@ -6,11 +6,11 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
-  useDisclosure,
   type DrawerProps as DrawerRootProps,
-} from "@nextui-org/react";
+} from "@nextui-org/drawer";
 import { cn } from "@/utils";
 import { Button, type ButtonProps } from "@/button";
+import { useDisclosure } from "@/hooks";
 
 interface DrawerClassNames {
   wrapper?: string;
@@ -58,12 +58,19 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
     },
     ref,
   ) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [
+      opened,
+      {
+        close,
+
+        open,
+      },
+    ] = useDisclosure();
 
     const handleAction = async (): Promise<void> => {
       try {
         await onAction?.();
-        onClose();
+        close();
       } catch (error) {
         console.error("Action failed:", error);
       }
@@ -74,7 +81,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
     ): void => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        onOpen();
+        open();
       }
     };
 
@@ -94,7 +101,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
             <Button
               {...defaultButtonProps}
               variant="bordered"
-              onPress={onClose}
+              onPress={close}
               className={cn("border-primary/50", buttonCloseProps?.className)}
               {...buttonCloseProps}
             >
@@ -130,7 +137,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
         <div
           role="button"
           tabIndex={0}
-          onClick={onOpen}
+          onClick={open}
           onKeyDown={handleKeyDown}
           className="inline-block"
         >
@@ -139,8 +146,8 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
         <DrawerRoot
           ref={ref}
-          isOpen={isOpen}
-          onClose={onClose}
+          isOpen={opened}
+          onClose={close}
           classNames={drawerClassNames}
           {...nextUIProps}
         >

@@ -1,4 +1,4 @@
-import { TextAreaProps as TextAreaRootProps } from '@nextui-org/react';
+import { TextAreaProps as TextAreaRootProps } from '@nextui-org/input';
 type TextareaProps = TextAreaRootProps & {
     containerClasses?: string;
     width?: string | number;

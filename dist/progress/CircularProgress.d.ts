@@ -1,4 +1,4 @@
-import { CircularProgressProps as CircularProgressRootProps } from '@nextui-org/react';
+import { CircularProgressProps as CircularProgressRootProps } from '@nextui-org/progress';
 type AdditionalCircularProgressProps = {
     autoIncrement?: boolean;
     incrementInterval?: number;

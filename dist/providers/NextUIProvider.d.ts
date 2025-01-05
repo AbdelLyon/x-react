@@ -1,4 +1,4 @@
-import { NextUIProviderProps as ProviderProps } from '@nextui-org/react';
+import { NextUIProviderProps as ProviderProps } from '@nextui-org/system';
 import { JSX, ReactNode } from 'react';
 type AppProviderProps = {
     children: ReactNode;

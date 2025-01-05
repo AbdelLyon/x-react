@@ -1,6 +1,8 @@
 import { forwardRef } from "react";
-import type { AlertProps, ButtonProps } from "@nextui-org/react";
-import { Alert as AlertRoot, Button } from "@nextui-org/react";
+import type { ButtonProps } from "@nextui-org/button";
+import type { AlertProps } from "@nextui-org/alert";
+import { Alert as AlertRoot } from "@nextui-org/alert";
+import { Button } from "@/button";
 
 interface Props extends AlertProps {
   closeButtonProps?: ButtonProps;

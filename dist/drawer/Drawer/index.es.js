@@ -51,8 +51,9 @@ var __async = (__this, __arguments, generator) => {
 };
 import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { useDisclosure, Drawer as Drawer$1, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@nextui-org/react";
+import { Drawer as Drawer$1, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@nextui-org/drawer";
 import { cn } from "../../utils/index.es.js";
+import { useDisclosure } from "../../hooks/useDisclosure/index.es.js";
 import { Button } from "../../button/Button/index.es.js";
 const isValidButtonLabel = (label) => typeof label === "string" && label.length > 0;
 const Drawer = forwardRef(
@@ -80,11 +81,17 @@ const Drawer = forwardRef(
       "buttonActionProps",
       "classNames"
     ]);
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [
+      opened,
+      {
+        close,
+        open
+      }
+    ] = useDisclosure();
     const handleAction = () => __async(void 0, null, function* () {
       try {
         yield onAction == null ? void 0 : onAction();
-        onClose();
+        close();
       } catch (error) {
         console.error("Action failed:", error);
       }
@@ -92,7 +99,7 @@ const Drawer = forwardRef(
     const handleKeyDown = (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        onOpen();
+        open();
       }
     };
     const renderButtons = () => {
@@ -107,7 +114,7 @@ const Drawer = forwardRef(
           Button,
           __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, defaultButtonProps), {
             variant: "bordered",
-            onPress: onClose,
+            onPress: close,
             className: cn("border-primary/50", buttonCloseProps == null ? void 0 : buttonCloseProps.className)
           }), buttonCloseProps), {
             children: buttonCloseLabel
@@ -138,7 +145,7 @@ const Drawer = forwardRef(
         {
           role: "button",
           tabIndex: 0,
-          onClick: onOpen,
+          onClick: open,
           onKeyDown: handleKeyDown,
           className: "inline-block",
           children: trigger
@@ -148,8 +155,8 @@ const Drawer = forwardRef(
         Drawer$1,
         __spreadProps(__spreadValues({
           ref,
-          isOpen,
-          onClose,
+          isOpen: opened,
+          onClose: close,
           classNames: drawerClassNames
         }, nextUIProps), {
           children: /* @__PURE__ */ jsx(DrawerContent, { children: () => /* @__PURE__ */ jsxs(Fragment, { children: [

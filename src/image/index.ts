@@ -1,2 +1,2 @@
 import "@/index.css";
-export { Image } from "@nextui-org/react";
+export { Image } from "@nextui-org/image";

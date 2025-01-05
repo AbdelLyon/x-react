@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Progress as Progress$1 } from "@nextui-org/react";
+import { Progress as Progress$1 } from "@nextui-org/progress";
 const defaultProps = {
   size: "md",
   color: "primary",

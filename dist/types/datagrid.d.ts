@@ -1,4 +1,4 @@
-import { TableBodyProps, TableCellProps, TableColumnProps, TableHeaderProps, TableProps, TableRowProps } from '@nextui-org/react';
+import { TableBodyProps, TableCellProps, TableColumnProps, TableHeaderProps, TableProps, TableRowProps } from '@nextui-org/table';
 export interface SortConfig<T> {
     key: keyof T | null;
     direction: "asc" | "desc";

@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx } from "react/jsx-runtime";
-import { Chip as Chip$1 } from "@nextui-org/react";
+import { Chip as Chip$1 } from "@nextui-org/chip";
 import { forwardRef } from "react";
 const Chip = forwardRef(
   (_a, ref) => {

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { DrawerProps as DrawerRootProps } from '@nextui-org/react';
+import { DrawerProps as DrawerRootProps } from '@nextui-org/drawer';
 import { ButtonProps } from '../button';
 interface DrawerClassNames {
     wrapper?: string;

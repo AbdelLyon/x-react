@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ComponentType, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { ButtonProps as ButtonRootProps } from "@nextui-org/react";
-import { Button as ButtonRoot } from "@nextui-org/react";
+import type { ButtonProps as ButtonRootProps } from "@nextui-org/button";
+import { Button as ButtonRoot } from "@nextui-org/button";
 import { cn } from "@/utils";
 
 export interface ButtonProps extends ButtonRootProps {

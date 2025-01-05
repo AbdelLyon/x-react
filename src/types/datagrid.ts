@@ -6,7 +6,7 @@ import type {
   TableHeaderProps,
   TableProps,
   TableRowProps,
-} from "@nextui-org/react";
+} from "@nextui-org/table";
 
 // Basic types
 export interface SortConfig<T> {

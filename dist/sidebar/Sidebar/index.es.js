@@ -1,7 +1,7 @@
 import { jsx, jsxs } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../../utils/index.es.js";
-import { Link } from "@nextui-org/react";
+import { Link } from "@nextui-org/link";
 import { useResponsive } from "../../hooks/useResponsive/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
 const Sidebar = forwardRef(

@@ -1,6 +1,6 @@
 import { jsx } from "react/jsx-runtime";
 import { useInfiniteList } from "../../hooks/useInfiniteList/index.es.js";
-import { Select, SelectItem } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/select";
 import { useState } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 function InfiniteSelect({

@@ -31,21 +31,10 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Select as Select$1, SelectItem } from "@nextui-org/react";
+import { Select as Select$1, SelectItem } from "@nextui-org/select";
 const Select = forwardRef(
   (_a, ref) => {
-    var _b = _a, {
-      options: options = [],
-      value,
-      defaultValue,
-      classNames
-    } = _b, props = __objRest(_b, [
-      // Options
-      "options",
-      "value",
-      "defaultValue",
-      "classNames"
-    ]);
+    var _b = _a, { options = [], value, defaultValue, classNames } = _b, props = __objRest(_b, ["options", "value", "defaultValue", "classNames"]);
     return /* @__PURE__ */ jsx(
       Select$1,
       __spreadProps(__spreadValues({

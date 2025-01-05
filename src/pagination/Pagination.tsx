@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import type { PaginationProps as PaginationRootProps } from "@nextui-org/react";
-import { Pagination as PaginationRoot } from "@nextui-org/react";
+import type { PaginationProps as PaginationRootProps } from "@nextui-org/pagination";
+import { Pagination as PaginationRoot } from "@nextui-org/pagination";
 import { cn } from "@/utils";
 
 export interface PaginationProps extends PaginationRootProps {

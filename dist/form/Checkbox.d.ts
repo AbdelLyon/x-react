@@ -1,4 +1,4 @@
-import { CheckboxGroupProps, CheckboxProps, Checkbox } from '@nextui-org/react';
+import { CheckboxGroupProps, CheckboxProps, Checkbox } from '@nextui-org/checkbox';
 type CheckboxItemProps = {
     label?: React.ReactNode;
 } & Omit<CheckboxProps, "children">;

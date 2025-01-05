@@ -1,4 +1,4 @@
-import { Skeleton } from "@nextui-org/react";
+import { Skeleton } from "@nextui-org/skeleton";
 import {
   Table,
   TableHeader,
@@ -6,7 +6,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "@nextui-org/react";
+} from "@nextui-org/table";
 import { cn } from "@/utils";
 import type { JSX } from "react";
 import { GRID_VARIANTS } from "@/data/default";

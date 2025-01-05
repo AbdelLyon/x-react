@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import type { ScrollShadowProps } from "@nextui-org/react";
-import { ScrollShadow } from "@nextui-org/react";
+import type { ScrollShadowProps } from "@nextui-org/scroll-shadow";
+import { ScrollShadow } from "@nextui-org/scroll-shadow";
 
 interface ScrollProps extends ScrollShadowProps {
   width?: string | number;

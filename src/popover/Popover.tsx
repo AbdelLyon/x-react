@@ -1,12 +1,10 @@
 import { forwardRef } from "react";
-import type {
-  PopoverProps,
-  PopoverContentProps} from "@nextui-org/react";
+import type { PopoverProps, PopoverContentProps } from "@nextui-org/popover";
 import {
   Popover as PopoverRoot,
   PopoverTrigger,
-  PopoverContent
-} from "@nextui-org/react";
+  PopoverContent,
+} from "@nextui-org/popover";
 import type { Radius } from "@/types/types";
 
 export type PropsPopover = {
@@ -14,7 +12,7 @@ export type PropsPopover = {
   contentClassName?: string;
   popoverContentProps?: PopoverContentProps;
   radius?: Radius;
-} & Omit<PopoverProps, "content">
+} & Omit<PopoverProps, "content">;
 
 export const Popover = forwardRef<HTMLDivElement, PropsPopover>(
   (

@@ -1,4 +1,4 @@
-import { SwitchProps as SwitchRootProp } from '@nextui-org/react';
+import { SwitchProps as SwitchRootProp } from '@nextui-org/switch';
 type SwitchProps = {
     width?: string | number;
     height?: string | number;

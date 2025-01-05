@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Tabs as Tabs$1, Tab } from "@nextui-org/react";
+import { Tabs as Tabs$1, Tab } from "@nextui-org/tabs";
 import { cn } from "../../utils/index.es.js";
 const Tabs = forwardRef(
   (_a, ref) => {
@@ -71,7 +71,7 @@ const Tabs = forwardRef(
       onTabChange == null ? void 0 : onTabChange(key.toString());
     };
     const defaultContent = (item) => item.content;
-    const contentRenderer = renderTabContent || defaultContent;
+    const contentRenderer = renderTabContent != null ? renderTabContent : defaultContent;
     const getVariantStyles = () => {
       if (variant === "bordered") {
         return "border-1 border-default";

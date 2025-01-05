@@ -1,5 +1,5 @@
 export { Layout, type LayoutProps } from './Layout';
-export { Scroll } from './Scroll';
+export { Scroll } from './ScrollShadow';
 export { Center } from './Center';
 export { Container } from './Container';
 export { Grid, GridItem } from './Grid';

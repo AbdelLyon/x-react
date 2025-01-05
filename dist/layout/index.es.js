@@ -1,6 +1,6 @@
 /* empty css                */
 import { Layout } from "./Layout/index.es.js";
-import { Scroll } from "./Scroll/index.es.js";
+import { Scroll } from "./ScrollShadow/index.es.js";
 import { Center } from "./Center/index.es.js";
 import { Container } from "./Container/index.es.js";
 import { Grid, GridItem } from "./Grid/index.es.js";

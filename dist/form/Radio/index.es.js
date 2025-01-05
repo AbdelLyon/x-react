@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { RadioGroup as RadioGroup$1, Radio } from "@nextui-org/react";
+import { RadioGroup as RadioGroup$1, Radio } from "@nextui-org/radio";
 import { cn } from "../../utils/index.es.js";
 const RadioGroup = forwardRef(
   (_a, ref) => {

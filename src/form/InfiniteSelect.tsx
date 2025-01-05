@@ -1,6 +1,6 @@
 import { useInfiniteScroll } from "@/hooks";
 import { useInfiniteList } from "@/hooks/useInfiniteList";
-import { Select, SelectItem } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/select";
 import type { JSX } from "react";
 import { useState } from "react";
 

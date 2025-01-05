@@ -1,4 +1,4 @@
-import { ScrollShadowProps } from '@nextui-org/react';
+import { ScrollShadowProps } from '@nextui-org/scroll-shadow';
 interface ScrollProps extends ScrollShadowProps {
     width?: string | number;
     height?: string | number;

@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import type { TextAreaProps as TextAreaRootProps } from "@nextui-org/react";
-import { Textarea as TextareaRoot } from "@nextui-org/react";
+import type { TextAreaProps as TextAreaRootProps } from "@nextui-org/input";
+import { Textarea as TextareaRoot } from "@nextui-org/input";
 import { cn } from "@/utils";
 
 type ValidationError = string | string[];

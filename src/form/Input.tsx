@@ -1,6 +1,6 @@
 import { forwardRef, useState } from "react";
-import type { InputProps as InputRootProps } from "@nextui-org/react";
-import { Input as InputRoot } from "@nextui-org/react";
+import type { InputProps as InputRootProps } from "@nextui-org/input";
+import { Input as InputRoot } from "@nextui-org/input";
 import { cn } from "@/utils";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 

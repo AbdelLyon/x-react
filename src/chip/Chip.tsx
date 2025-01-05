@@ -1,4 +1,4 @@
-import { Chip as ChipRoot, type ChipProps } from "@nextui-org/react";
+import { Chip as ChipRoot, type ChipProps } from "@nextui-org/chip";
 import { forwardRef } from "react";
 
 export const Chip = forwardRef<HTMLDivElement, ChipProps>(

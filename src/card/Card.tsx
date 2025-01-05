@@ -3,13 +3,13 @@ import { forwardRef } from "react";
 import type {
   CardFooterProps,
   CardProps as NextUICardProps,
-} from "@nextui-org/react";
+} from "@nextui-org/card";
 import {
   Card as NextUICard,
   CardHeader,
   CardBody,
   CardFooter,
-} from "@nextui-org/react";
+} from "@nextui-org/card";
 
 interface CardProps extends NextUICardProps {
   header?: ReactNode;

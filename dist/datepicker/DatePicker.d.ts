@@ -1,4 +1,5 @@
-import { DatePickerProps as DatePickerRootProps, DateRangePickerProps as DateRangePickerRootProps, DateValue } from '@nextui-org/react';
+import { DateValue } from '@internationalized/date';
+import { DatePickerProps as DatePickerRootProps, DateRangePickerProps as DateRangePickerRootProps } from '@nextui-org/date-picker';
 type BaseProps = {
     containerClasses?: string;
     variant?: "bordered" | "flat" | "faded" | "underlined";

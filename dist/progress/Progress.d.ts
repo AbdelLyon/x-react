@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ProgressProps as ProgressRootProps } from '@nextui-org/react';
+import { ProgressProps as ProgressRootProps } from '@nextui-org/progress';
 type AdditionalProgressProps = {
     label?: ReactNode;
     labelPosition?: "top" | "bottom" | "none";

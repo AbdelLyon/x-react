@@ -1,5 +1,6 @@
 import { jsxs, jsx } from "react/jsx-runtime";
-import { Table, TableHeader, TableColumn, Skeleton, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { Skeleton } from "@nextui-org/skeleton";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table";
 import { cn } from "../../utils/index.es.js";
 import { GRID_VARIANTS } from "../../data/default/index.es.js";
 const DataGridSkeleton = ({

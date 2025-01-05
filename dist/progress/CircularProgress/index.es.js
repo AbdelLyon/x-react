@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef, useState, useEffect } from "react";
-import { CircularProgress as CircularProgress$1 } from "@nextui-org/react";
+import { CircularProgress as CircularProgress$1 } from "@nextui-org/progress";
 const defaultProps = {
   color: "primary",
   size: "md",

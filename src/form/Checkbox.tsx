@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
-import type { CheckboxGroupProps, CheckboxProps } from "@nextui-org/react";
+import type { CheckboxGroupProps, CheckboxProps } from "@nextui-org/checkbox";
 import {
   CheckboxGroup as CheckboxGroupRoot,
   Checkbox,
-} from "@nextui-org/react";
+} from "@nextui-org/checkbox";
 import { cn } from "@/utils";
 
 type CheckboxItemProps = {

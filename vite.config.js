@@ -14,6 +14,15 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 // const modules = [
 //   "utils",
 //   "button",
@@ -147,6 +156,40 @@ var modules = [
     "HOC",
     "chart",
 ];
+var nextUIDependencies = [
+    "@nextui-org/accordion",
+    "@nextui-org/alert",
+    "@nextui-org/avatar",
+    "@nextui-org/button",
+    "@nextui-org/card",
+    "@nextui-org/checkbox",
+    "@nextui-org/chip",
+    "@nextui-org/date-picker",
+    "@nextui-org/drawer",
+    "@nextui-org/dropdown",
+    "@nextui-org/image",
+    "@nextui-org/input",
+    "@nextui-org/input-otp",
+    "@nextui-org/link",
+    "@nextui-org/modal",
+    "@nextui-org/navbar",
+    "@nextui-org/pagination",
+    "@nextui-org/popover",
+    "@nextui-org/progress",
+    "@nextui-org/radio",
+    "@nextui-org/scroll-shadow",
+    "@nextui-org/select",
+    "@nextui-org/skeleton",
+    "@nextui-org/slider",
+    "@nextui-org/spinner",
+    "@nextui-org/switch",
+    "@nextui-org/system",
+    "@nextui-org/table",
+    "@nextui-org/tabs",
+    "@nextui-org/theme",
+    "@nextui-org/tooltip",
+    "@nextui-org/user",
+];
 export default defineConfig({
     plugins: [
         react(),
@@ -178,37 +221,31 @@ export default defineConfig({
             ]; }))),
             name: "x-react",
             formats: ["es"],
-            // fileName: (format, entryName) =>
-            //   `${entryName ? entryName + "/" : ""}${entryName}.${format}.js`,
         },
         rollupOptions: {
-            external: [
+            external: __spreadArray(__spreadArray([
                 "react",
                 "react-dom",
-                "@nextui-org/react",
+                "framer-motion",
                 "@tabler/icons-react",
                 "@vitejs/plugin-react-swc",
                 "clsx",
                 "next-themes",
                 "react-chartjs-2",
                 "chart.js",
-                "tailwind-merge",
+                "tailwind-merge"
+            ], nextUIDependencies, true), [
                 /^react\/.*/,
                 /^node_modules\/.*/,
-            ],
+            ], false),
             output: {
                 preserveModulesRoot: "src",
                 preserveModules: true,
                 exports: "named",
-                globals: {
-                    react: "React",
-                    "react-dom": "ReactDOM",
-                    "framer-motion": "FramerMotion",
-                    "@tabler/icons-react": "TablerIcons",
-                    "@nextui-org/react": "NextUI",
-                    "chart.js": "Chart",
-                    "react-chartjs-2": "ReactChartJS",
-                },
+                globals: __assign({ react: "React", "react-dom": "ReactDOM", "framer-motion": "FramerMotion", "@tabler/icons-react": "TablerIcons", "chart.js": "Chart", "react-chartjs-2": "ReactChartJS" }, Object.fromEntries(nextUIDependencies.map(function (dep) { return [
+                    dep,
+                    dep.replace(/@nextui-org\//, "NextUI"),
+                ]; }))),
                 entryFileNames: function (chunkInfo) {
                     return "".concat(chunkInfo.name, "/index.es.js");
                 },

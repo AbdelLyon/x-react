@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { DatePicker as DatePicker$1, DateRangePicker as DateRangePicker$1 } from "@nextui-org/react";
+import { DatePicker as DatePicker$1, DateRangePicker as DateRangePicker$1 } from "@nextui-org/date-picker";
 import { cn } from "../../utils/index.es.js";
 const getVariantStyles = (variant = "bordered") => {
   switch (variant) {

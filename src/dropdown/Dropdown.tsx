@@ -1,12 +1,12 @@
 import { forwardRef } from "react";
-import type { DropdownProps, DropdownMenuProps } from "@nextui-org/react";
+import type { DropdownProps, DropdownMenuProps } from "@nextui-org/dropdown";
 import {
   Dropdown as DropdownRoot,
   DropdownTrigger,
   DropdownMenu,
   DropdownSection,
   DropdownItem,
-} from "@nextui-org/react";
+} from "@nextui-org/dropdown";
 
 export type DropdownItemConfig = {
   key: string;

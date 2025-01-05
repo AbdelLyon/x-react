@@ -28,25 +28,15 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { InputOtp as InputOtp$1 } from "@nextui-org/react";
+import { InputOtp as InputOtp$1 } from "@nextui-org/input-otp";
 import { cn } from "../../utils/index.es.js";
 const InputOtp = forwardRef(
   (_a, ref) => {
-    var _b = _a, {
-      length = 6,
-      label = `${length} digits OTP`,
-      labelClasses,
-      containerClasses
-    } = _b, props = __objRest(_b, [
-      "length",
-      "label",
-      "labelClasses",
-      "containerClasses"
-    ]);
+    var _b = _a, { length = 6, label, labelClasses, containerClasses } = _b, props = __objRest(_b, ["length", "label", "labelClasses", "containerClasses"]);
     const defaultLabelClasses = "text-default-500 text-small mb-2";
     const defaultContainerClasses = "flex flex-col";
     return /* @__PURE__ */ jsxs("div", { ref, className: cn(defaultContainerClasses, containerClasses), children: [
-      label && /* @__PURE__ */ jsx("p", { className: cn(defaultLabelClasses, labelClasses), children: label }),
+      label !== void 0 && /* @__PURE__ */ jsx("p", { className: cn(defaultLabelClasses, labelClasses), children: label }),
       /* @__PURE__ */ jsx(InputOtp$1, __spreadValues({ length }, props))
     ] });
   }

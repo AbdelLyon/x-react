@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Pagination as Pagination$1 } from "@nextui-org/react";
+import { Pagination as Pagination$1 } from "@nextui-org/pagination";
 import { cn } from "../../utils/index.es.js";
 const Pagination = forwardRef(
   (_a, ref) => {

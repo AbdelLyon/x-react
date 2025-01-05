@@ -18,8 +18,9 @@ var __spreadValues = (a, b) => {
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { jsx, jsxs } from "react/jsx-runtime";
+import { User } from "@nextui-org/user";
 import { forwardRef } from "react";
-import { Avatar as Avatar$1, useAvatarGroup, AvatarGroupProvider, User } from "@nextui-org/react";
+import { Avatar as Avatar$1, useAvatarGroup, AvatarGroupProvider } from "@nextui-org/avatar";
 const Avatar = forwardRef((props, ref) => {
   return /* @__PURE__ */ jsx(Avatar$1, __spreadValues({ ref }, props));
 });

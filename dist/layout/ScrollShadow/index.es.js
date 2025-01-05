@@ -28,7 +28,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { ScrollShadow } from "@nextui-org/react";
+import { ScrollShadow } from "@nextui-org/scroll-shadow";
 const Scroll = forwardRef(
   (_a, ref) => {
     var _b = _a, { width = "100%", height = "100%", style } = _b, props = __objRest(_b, ["width", "height", "style"]);

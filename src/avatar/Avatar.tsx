@@ -1,12 +1,11 @@
-import type { AvatarProps, UserProps } from "@nextui-org/react";
+import { User as UserRoot, type UserProps } from "@nextui-org/user";
 import { forwardRef } from "react";
-import type { AvatarGroupProps } from "@nextui-org/react";
+import type { AvatarGroupProps, AvatarProps } from "@nextui-org/avatar";
 import {
   Avatar as AvatarRoot,
-  User as UserRoot,
   useAvatarGroup,
   AvatarGroupProvider,
-} from "@nextui-org/react";
+} from "@nextui-org/avatar";
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   return <AvatarRoot ref={ref} {...props} />;

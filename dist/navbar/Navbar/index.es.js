@@ -31,8 +31,9 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, NavbarMenu, NavbarMenuItem } from "@nextui-org/navbar";
 import { cn } from "../../utils/index.es.js";
+import { Link } from "@nextui-org/link";
 import { useResponsive } from "../../hooks/useResponsive/index.es.js";
 const Navbar = forwardRef(
   (_a, ref) => {

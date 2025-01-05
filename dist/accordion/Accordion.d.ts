@@ -1,4 +1,4 @@
-import { AccordionProps, AccordionItemProps } from '@nextui-org/react';
+import { AccordionItemProps, AccordionProps } from '@nextui-org/accordion';
 export interface ExtendedAccordionItemProps extends Omit<AccordionItemProps, "content"> {
     content?: React.ReactNode;
 }

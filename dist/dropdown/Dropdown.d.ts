@@ -1,4 +1,4 @@
-import { DropdownProps, DropdownMenuProps } from '@nextui-org/react';
+import { DropdownProps, DropdownMenuProps } from '@nextui-org/dropdown';
 export type DropdownItemConfig = {
     key: string;
     label: string;

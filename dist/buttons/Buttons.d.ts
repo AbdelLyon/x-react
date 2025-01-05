@@ -1,4 +1,4 @@
-import { ButtonGroupProps, ButtonProps } from '@nextui-org/react';
+import { ButtonGroupProps, ButtonProps } from '@nextui-org/button';
 export interface ButtonsProps extends ButtonGroupProps {
     buttons: Array<{
         key: string | number;

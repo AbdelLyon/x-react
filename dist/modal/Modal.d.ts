@@ -1,4 +1,4 @@
-import { ModalProps as ModalPropsRoot } from '@nextui-org/react';
+import { ModalProps as ModalPropsRoot } from '@nextui-org/modal';
 import { ButtonProps } from '../button';
 type Backdrop = ModalPropsRoot["backdrop"];
 interface ModalClassNames {

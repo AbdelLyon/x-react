@@ -4,7 +4,7 @@ import type {
   NavbarContentProps,
   NavbarMenuProps,
   NavbarProps as NavbarRootProps,
-} from "@nextui-org/react";
+} from "@nextui-org/navbar";
 import {
   Navbar as NavbarRoot,
   NavbarContent,
@@ -12,11 +12,11 @@ import {
   NavbarMenuToggle,
   NavbarItem,
   NavbarMenuItem,
-  Link,
-} from "@nextui-org/react";
+} from "@nextui-org/navbar";
 import { cn } from "@/utils";
 import type { Item } from "@/types/navigation";
 import { useResponsive } from "@/hooks";
+import { Link } from "@nextui-org/link";
 
 export type NavbarProps = {
   appName?: ReactNode;

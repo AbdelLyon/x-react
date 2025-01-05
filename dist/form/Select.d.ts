@@ -1,4 +1,5 @@
-import { SelectProps as NextUISelectProps, Selection } from '@nextui-org/react';
+import { SelectProps as NextUISelectProps } from '@nextui-org/select';
+import { Selection } from '@nextui-org/table';
 export interface SelectOption {
     key: string;
     label: string;

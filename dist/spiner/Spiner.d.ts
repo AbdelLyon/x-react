@@ -1,6 +1,6 @@
-import { SpinnerProps as NextUISpinnerProps } from '@nextui-org/react';
+import { SpinnerProps as SpinnerRootProps } from '@nextui-org/spinner';
 import { Color, Size } from '../types/types';
-interface SpinnerProps extends Omit<NextUISpinnerProps, "label" | "labelColor"> {
+interface SpinnerProps extends Omit<SpinnerRootProps, "label" | "labelColor"> {
     color?: Color;
     size?: Size;
     disableAnimation?: boolean;

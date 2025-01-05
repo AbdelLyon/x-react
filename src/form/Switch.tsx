@@ -1,14 +1,11 @@
 import { forwardRef } from "react";
-import type {
-  SwitchProps as SwitchRootProp} from "@nextui-org/react";
-import {
-  Switch as NextUISwitch
-} from "@nextui-org/react";
+import type { SwitchProps as SwitchRootProp } from "@nextui-org/switch";
+import { Switch as SwitchRoot } from "@nextui-org/switch";
 
 type SwitchProps = {
   width?: string | number;
   height?: string | number;
-} & SwitchRootProp
+} & SwitchRootProp;
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   ({ width, height, style, ...props }, ref) => {
@@ -18,7 +15,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       ...style,
     };
 
-    return <NextUISwitch ref={ref} style={combinedStyle} {...props} />;
+    return <SwitchRoot ref={ref} style={combinedStyle} {...props} />;
   },
 );
 

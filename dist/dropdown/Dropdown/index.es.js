@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Dropdown as Dropdown$1, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/react";
+import { Dropdown as Dropdown$1, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/dropdown";
 const Dropdown = forwardRef(
   (_a, ref) => {
     var _b = _a, { trigger, sections, dropdownMenuProps, onItemPress, classNames } = _b, props = __objRest(_b, ["trigger", "sections", "dropdownMenuProps", "onItemPress", "classNames"]);

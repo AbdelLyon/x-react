@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { forwardRef, useState } from "react";
-import type { SliderProps } from "@nextui-org/react";
-import { Slider as SliderRoot } from "@nextui-org/react";
+import type { SliderProps } from "@nextui-org/slider";
+import { Slider as SliderRoot } from "@nextui-org/slider";
 
 interface FormatConfig {
   formatOptions?: Intl.NumberFormatOptions;

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import type { TabsProps as NextUITabsProps } from "@nextui-org/react";
-import { Tabs as TabsRoot, Tab } from "@nextui-org/react";
+import type { TabsProps as NextUITabsProps } from "@nextui-org/tabs";
+import { Tabs as TabsRoot, Tab } from "@nextui-org/tabs";
 import { cn } from "@/utils";
 
 export interface TabItem {
@@ -47,7 +47,7 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
     };
 
     const defaultContent = (item: TabItem): ReactNode => item.content;
-    const contentRenderer = renderTabContent || defaultContent;
+    const contentRenderer = renderTabContent ?? defaultContent;
 
     const getVariantStyles = (): string => {
       if (variant === "bordered") {

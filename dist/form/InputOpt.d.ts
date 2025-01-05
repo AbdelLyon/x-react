@@ -1,4 +1,4 @@
-import { InputOtpProps } from '@nextui-org/react';
+import { InputOtpProps } from '@nextui-org/input-otp';
 type InputOtpWrapperProps = {
     length?: number;
     label?: string;

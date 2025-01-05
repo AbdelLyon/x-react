@@ -31,7 +31,8 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Alert as Alert$1, Button } from "@nextui-org/react";
+import { Alert as Alert$1 } from "@nextui-org/alert";
+import { Button } from "../../button/Button/index.es.js";
 const Alert = forwardRef(
   (_a, ref) => {
     var _b = _a, {

@@ -31,8 +31,8 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { CheckboxGroup as CheckboxGroup$1, Checkbox } from "@nextui-org/react";
-import { Checkbox as Checkbox2 } from "@nextui-org/react";
+import { CheckboxGroup as CheckboxGroup$1, Checkbox } from "@nextui-org/checkbox";
+import { Checkbox as Checkbox2 } from "@nextui-org/checkbox";
 import { cn } from "../../utils/index.es.js";
 const CheckboxGroup = forwardRef(
   (_a, ref) => {

@@ -1,4 +1,4 @@
-import { PaginationProps as PaginationRootProps } from '@nextui-org/react';
+import { PaginationProps as PaginationRootProps } from '@nextui-org/pagination';
 export interface PaginationProps extends PaginationRootProps {
     containerClasses?: string;
 }

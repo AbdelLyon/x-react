@@ -1,4 +1,3 @@
-// src/hoc/withLoading.tsx
 import type { ComponentType, JSX } from "react";
 
 interface WithLoadingProps {

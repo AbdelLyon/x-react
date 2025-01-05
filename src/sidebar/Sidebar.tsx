@@ -2,9 +2,9 @@ import type { JSX } from "react";
 import { forwardRef } from "react";
 import { cn } from "@/utils";
 import type { Item } from "@/types/navigation";
-import { Link } from "@nextui-org/react";
 import { useResponsive } from "@/hooks";
 import { Tooltip } from "@/tooltip";
+import { Link } from "@nextui-org/link";
 
 export interface SidebarProps {
   items?: Item[];

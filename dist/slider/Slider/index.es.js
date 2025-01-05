@@ -16,7 +16,7 @@ var __spreadValues = (a, b) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef, useState } from "react";
-import { Slider } from "@nextui-org/react";
+import { Slider } from "@nextui-org/slider";
 const defaultFormatValue = (value, formatOptions) => {
   return value.map(
     (v) => formatOptions ? new Intl.NumberFormat(void 0, formatOptions).format(v) : v
