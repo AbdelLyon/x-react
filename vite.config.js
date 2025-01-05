@@ -61,9 +61,7 @@ export default defineConfig({
             ]; })),
             name: "x-react",
             formats: ["es"],
-            fileName: function (format, entryName) {
-                return "".concat(entryName ? entryName + "/" : "", "x-react.").concat(format, ".js");
-            },
+            fileName: function (format, entryName) { return "".concat(entryName, ".").concat(format, ".js"); },
         },
         rollupOptions: {
             external: [

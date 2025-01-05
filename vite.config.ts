@@ -68,8 +68,7 @@ export default defineConfig({
       ),
       name: "x-react",
       formats: ["es"],
-      fileName: (format, entryName) =>
-        `${entryName ? entryName + "/" : ""}x-react.${format}.js`,
+      fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
 
     rollupOptions: {
