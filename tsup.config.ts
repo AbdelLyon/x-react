@@ -1,3 +1,4 @@
+// tsup.config.ts
 import { defineConfig } from "tsup";
 
 const modules = [
@@ -34,30 +35,19 @@ const modules = [
   "chart",
 ];
 
-export default defineConfig({
-  // Points d'entrée pour chaque module
+export default defineConfig((options) => ({
   entry: Object.fromEntries(
     modules.map((module) => [module, `src/${module}/index.ts`]),
   ),
-
-  // Configuration de base
-  format: ["esm"],
-  target: "es2020",
-  platform: "browser",
+  dts: true,
+  clean: true,
   outDir: "dist",
-
-  // Optimisations
-  clean: true, // Nettoie le dossier dist avant le build
-  splitting: false, // Désactive le code splitting
-  minify: false, // Désactive la minification
-  treeshake: true, // Active le tree shaking
+  format: ["esm"],
+  outExtension: () => ({
+    js: ".es.js",
+  }),
   sourcemap: true,
-  skipNodeModulesBundle: true,
-
-  // TypeScript
-  dts: true, // Génère les fichiers de types
-
-  // Dépendances externes
+  treeshake: true,
   external: [
     "react",
     "react-dom",
@@ -68,15 +58,12 @@ export default defineConfig({
     "react-chartjs-2",
     "chart.js",
     "tailwind-merge",
+    "framer-motion",
   ],
-
-  // Options esbuild
-  esbuildOptions(options) {
-    options.jsx = "automatic";
-  },
-
-  // Support CSS
   loader: {
     ".css": "css",
   },
-});
+  esbuildOptions(options) {
+    options.jsx = "automatic";
+  },
+}));

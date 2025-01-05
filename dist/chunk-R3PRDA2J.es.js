@@ -1,0 +1,102 @@
+import { useResponsive } from './chunk-ZOFUAQAT.es.js';
+import { cn } from './chunk-HWWI3HGE.es.js';
+import { forwardRef } from 'react';
+import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, Link, NavbarMenu, NavbarMenuItem } from '@nextui-org/react';
+import { jsxs, jsx } from 'react/jsx-runtime';
+
+var Navbar = forwardRef(
+  ({
+    appName,
+    appLogo,
+    profile,
+    navigationItems = [],
+    menuItems = [],
+    contentProps,
+    menuProps,
+    onItemClick,
+    className,
+    classNames,
+    isMenuOpen,
+    onMenuOpenChange,
+    ...props
+  }, ref) => {
+    const { isDesktop, isMobile, isTablet } = useResponsive();
+    const handleItemPress = (item) => {
+      item.onPress?.();
+      onItemClick?.(item);
+      onMenuOpenChange?.(false);
+    };
+    return /* @__PURE__ */ jsxs(
+      Navbar$1,
+      {
+        ref,
+        className,
+        classNames: {
+          base: "bg-white dark:bg-background",
+          wrapper: "max-w-full",
+          ...classNames
+        },
+        isMenuOpen,
+        onMenuOpenChange,
+        ...props,
+        children: [
+          isMobile && /* @__PURE__ */ jsx(NavbarContent, { children: /* @__PURE__ */ jsx(
+            NavbarMenuToggle,
+            {
+              "aria-label": isMenuOpen === true ? "Close menu" : "Open menu"
+            }
+          ) }),
+          !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxs(NavbarContent, { justify: "start", children: [
+            !isTablet && appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "w-[247px] border-r-2 border-default", children: appName }),
+            appLogo !== null && /* @__PURE__ */ jsx(NavbarItem, { children: appLogo })
+          ] }),
+          /* @__PURE__ */ jsxs(NavbarContent, { justify: "end", ...contentProps, children: [
+            isDesktop && navigationItems.map((item) => /* @__PURE__ */ jsx(NavbarItem, { children: /* @__PURE__ */ jsxs(
+              Link,
+              {
+                className: cn(
+                  "p-2 hover:bg-content1 rounded-md text-foreground",
+                  {
+                    "border-l-2 border-primary bg-content1 text-primary": item.isActive
+                  },
+                  classNames?.item
+                ),
+                onPress: () => handleItemPress(item),
+                children: [
+                  item.startContent,
+                  item.label,
+                  item.endContent
+                ]
+              }
+            ) }, item.key)),
+            profile !== null && /* @__PURE__ */ jsx(NavbarItem, { children: profile })
+          ] }),
+          !isDesktop && /* @__PURE__ */ jsx(NavbarMenu, { ...menuProps, children: menuItems.map((item) => /* @__PURE__ */ jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxs(
+            Link,
+            {
+              className: cn(
+                "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
+                {
+                  "border-l-2 border-primary bg-content1 text-primary": item.isActive
+                },
+                classNames?.item
+              ),
+              onPress: () => onItemClick?.(item),
+              children: [
+                item.startContent,
+                item.label,
+                item.endContent
+              ]
+            },
+            item.key
+          ) }, item.key)) })
+        ]
+      }
+    );
+  }
+);
+Navbar.displayName = "Navbar";
+
+export { Navbar };
+//# sourceMappingURL=chunk-R3PRDA2J.es.js.map
+//# sourceMappingURL=chunk-R3PRDA2J.es.js.map
