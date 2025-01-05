@@ -21,7 +21,7 @@
   "author": "DailyApps",
   "license": "MIT",
   "exports": {
-    "./style.css": "./dist/x-react.css",
+    "./style.css": "./dist/style.css",
     "./button": {
       "import": "./dist/button/Button/index.es.js",
       "types": "./dist/button/Button.d.ts"
