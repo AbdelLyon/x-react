@@ -1,36 +1,59 @@
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import "../image/image.es.js";
-import { jsx as t, jsxs as A } from "react/jsx-runtime";
-import { forwardRef as o } from "react";
-import { Avatar as d, useAvatarGroup as c, AvatarGroupProvider as l, User as f } from "@nextui-org/react";
-const e = o((r, a) => /* @__PURE__ */ t(d, { ref: a, ...r }));
-e.displayName = "Avatar";
-const G = o(
-  (r, a) => {
+import { jsx, jsxs } from "react/jsx-runtime";
+import { forwardRef } from "react";
+import { Avatar as Avatar$1, useAvatarGroup, AvatarGroupProvider, User } from "@nextui-org/react";
+const Avatar = forwardRef((props, ref) => {
+  return /* @__PURE__ */ jsx(Avatar$1, __spreadValues({ ref }, props));
+});
+Avatar.displayName = "Avatar";
+const AvatarGroup = forwardRef(
+  (props, ref) => {
     const {
-      Component: s,
-      clones: p,
-      context: m,
-      remainingCount: n,
-      renderCount: v = (u) => /* @__PURE__ */ t(e, { name: `+${u}` }),
-      getAvatarGroupProps: i
-    } = c({
-      ref: a,
-      ...r
-    });
-    return /* @__PURE__ */ t(s, { ...i(), children: /* @__PURE__ */ A(l, { value: m, children: [
-      p,
-      n > 0 && v(n)
-    ] }) });
+      Component,
+      clones,
+      context,
+      remainingCount,
+      renderCount = (count) => /* @__PURE__ */ jsx(Avatar, { name: `+${count}` }),
+      getAvatarGroupProps
+    } = useAvatarGroup(__spreadValues({
+      ref
+    }, props));
+    return /* @__PURE__ */ jsx(Component, __spreadProps(__spreadValues({}, getAvatarGroupProps()), { children: /* @__PURE__ */ jsxs(AvatarGroupProvider, { value: context, children: [
+      clones,
+      remainingCount > 0 && renderCount(remainingCount)
+    ] }) }));
   }
 );
-G.displayName = "AvatarGroup";
-const x = o(
-  (r, a) => /* @__PURE__ */ t(f, { ref: a, ...r })
+AvatarGroup.displayName = "AvatarGroup";
+const UserAvatar = forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(User, __spreadValues({ ref }, props));
+  }
 );
-x.displayName = "UserAvatar";
-e.displayName = "Avatar";
+UserAvatar.displayName = "UserAvatar";
+Avatar.displayName = "Avatar";
 export {
-  e as Avatar,
-  G as AvatarGroup,
-  x as UserAvatar
+  Avatar,
+  AvatarGroup,
+  UserAvatar
 };
+//# sourceMappingURL=avatar.es.js.map

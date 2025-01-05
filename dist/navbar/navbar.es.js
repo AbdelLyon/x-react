@@ -1,99 +1,146 @@
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
 import "../image/image.es.js";
-import { jsxs as n, jsx as e } from "react/jsx-runtime";
-import { forwardRef as T } from "react";
-import { Navbar as D, NavbarContent as u, NavbarMenuToggle as $, NavbarItem as b, Link as c, NavbarMenu as q, NavbarMenuItem as z } from "@nextui-org/react";
-import { cn as x } from "../utils/utils.es.js";
-import { a as B } from "../useResponsive-C48eFL5T.js";
-const E = T(
-  ({
-    appName: a,
-    appLogo: l,
-    profile: f,
-    navigationItems: y = [],
-    menuItems: p = [],
-    contentProps: g,
-    menuProps: w,
-    onItemClick: t,
-    className: j,
-    classNames: d,
-    isMenuOpen: i,
-    onMenuOpenChange: o,
-    ...P
-  }, A) => {
-    const { isDesktop: s, isMobile: v, isTablet: N } = B(), R = (r) => {
-      var h;
-      (h = r.onPress) == null || h.call(r), t == null || t(r), o == null || o(!1);
+import { jsxs, jsx } from "react/jsx-runtime";
+import { forwardRef } from "react";
+import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import { cn } from "../utils/utils.es.js";
+import { a as useResponsive } from "../useResponsive-DIJqCacg.js";
+const Navbar = forwardRef(
+  (_a, ref) => {
+    var _b = _a, {
+      appName,
+      appLogo,
+      profile,
+      navigationItems = [],
+      menuItems = [],
+      contentProps,
+      menuProps,
+      onItemClick,
+      className,
+      classNames,
+      isMenuOpen,
+      onMenuOpenChange
+    } = _b, props = __objRest(_b, [
+      "appName",
+      "appLogo",
+      "profile",
+      "navigationItems",
+      "menuItems",
+      "contentProps",
+      "menuProps",
+      "onItemClick",
+      "className",
+      "classNames",
+      "isMenuOpen",
+      "onMenuOpenChange"
+    ]);
+    const { isDesktop, isMobile, isTablet } = useResponsive();
+    const handleItemPress = (item) => {
+      var _a2;
+      (_a2 = item.onPress) == null ? void 0 : _a2.call(item);
+      onItemClick == null ? void 0 : onItemClick(item);
+      onMenuOpenChange == null ? void 0 : onMenuOpenChange(false);
     };
-    return /* @__PURE__ */ n(
-      D,
-      {
-        ref: A,
-        className: j,
-        classNames: {
+    return /* @__PURE__ */ jsxs(
+      Navbar$1,
+      __spreadProps(__spreadValues({
+        ref,
+        className,
+        classNames: __spreadValues({
           base: "bg-white dark:bg-background",
-          wrapper: "max-w-full",
-          ...d
-        },
-        isMenuOpen: i,
-        onMenuOpenChange: o,
-        ...P,
+          wrapper: "max-w-full"
+        }, classNames),
+        isMenuOpen,
+        onMenuOpenChange
+      }, props), {
         children: [
-          v && /* @__PURE__ */ e(u, { children: /* @__PURE__ */ e(
-            $,
+          isMobile && /* @__PURE__ */ jsx(NavbarContent, { children: /* @__PURE__ */ jsx(
+            NavbarMenuToggle,
             {
-              "aria-label": i === !0 ? "Close menu" : "Open menu"
+              "aria-label": isMenuOpen === true ? "Close menu" : "Open menu"
             }
           ) }),
-          !v && (a !== null || l !== null) && /* @__PURE__ */ n(u, { justify: "start", children: [
-            !N && a !== null && /* @__PURE__ */ e(b, { className: "w-[247px] border-r-2 border-default", children: a }),
-            l !== null && /* @__PURE__ */ e(b, { children: l })
+          !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxs(NavbarContent, { justify: "start", children: [
+            !isTablet && appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "w-[247px] border-r-2 border-default", children: appName }),
+            appLogo !== null && /* @__PURE__ */ jsx(NavbarItem, { children: appLogo })
           ] }),
-          /* @__PURE__ */ n(u, { justify: "end", ...g, children: [
-            s && y.map((r) => /* @__PURE__ */ e(b, { children: /* @__PURE__ */ n(
-              c,
+          /* @__PURE__ */ jsxs(NavbarContent, __spreadProps(__spreadValues({ justify: "end" }, contentProps), { children: [
+            isDesktop && navigationItems.map((item) => /* @__PURE__ */ jsx(NavbarItem, { children: /* @__PURE__ */ jsxs(
+              Link,
               {
-                className: x(
+                className: cn(
                   "p-2 hover:bg-content1 rounded-md text-foreground",
                   {
-                    "border-l-2 border-primary bg-content1 text-primary": r.isActive
+                    "border-l-2 border-primary bg-content1 text-primary": item.isActive
                   },
-                  d == null ? void 0 : d.item
+                  classNames == null ? void 0 : classNames.item
                 ),
-                onPress: () => R(r),
+                onPress: () => handleItemPress(item),
                 children: [
-                  r.startContent,
-                  r.label,
-                  r.endContent
+                  item.startContent,
+                  item.label,
+                  item.endContent
                 ]
               }
-            ) }, r.key)),
-            f !== null && /* @__PURE__ */ e(b, { children: f })
-          ] }),
-          !s && /* @__PURE__ */ e(q, { ...w, children: p.map((r) => /* @__PURE__ */ e(z, { children: /* @__PURE__ */ n(
-            c,
+            ) }, item.key)),
+            profile !== null && /* @__PURE__ */ jsx(NavbarItem, { children: profile })
+          ] })),
+          !isDesktop && /* @__PURE__ */ jsx(NavbarMenu, __spreadProps(__spreadValues({}, menuProps), { children: menuItems.map((item) => /* @__PURE__ */ jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxs(
+            Link,
             {
-              className: x(
+              className: cn(
                 "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                 {
-                  "border-l-2 border-primary bg-content1 text-primary": r.isActive
+                  "border-l-2 border-primary bg-content1 text-primary": item.isActive
                 },
-                d == null ? void 0 : d.item
+                classNames == null ? void 0 : classNames.item
               ),
-              onPress: () => t == null ? void 0 : t(r),
+              onPress: () => onItemClick == null ? void 0 : onItemClick(item),
               children: [
-                r.startContent,
-                r.label,
-                r.endContent
+                item.startContent,
+                item.label,
+                item.endContent
               ]
             },
-            r.key
-          ) }, r.key)) })
+            item.key
+          ) }, item.key)) }))
         ]
-      }
+      })
     );
   }
 );
-E.displayName = "Navbar";
+Navbar.displayName = "Navbar";
 export {
-  E as Navbar
+  Navbar
 };
+//# sourceMappingURL=navbar.es.js.map

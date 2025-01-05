@@ -1,68 +1,122 @@
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
 import "../image/image.es.js";
-import { jsx as l } from "react/jsx-runtime";
-import { forwardRef as x } from "react";
-import { Tabs as L, Tab as R } from "@nextui-org/react";
-import { cn as j } from "../utils/utils.es.js";
-const k = x(
-  ({
-    items: o,
-    defaultActiveTab: d,
-    onTabChange: t,
-    renderTabContent: n,
-    variant: s = "solid",
-    color: f = "primary",
-    size: i = "md",
-    radius: c = "md",
-    fullWidth: m = !1,
-    placement: u = "top",
-    isVertical: b = !1,
-    disableAnimation: p = !1,
-    disableCursorAnimation: y = !1,
-    destroyInactiveTabPanel: S = !0,
-    ...r
-  }, N) => {
-    var a;
-    const h = (e) => {
-      t == null || t(e.toString());
-    }, V = n || ((e) => e.content), g = () => s === "bordered" ? "border-1 border-default" : "";
-    return /* @__PURE__ */ l(
-      L,
-      {
-        ref: N,
-        variant: s,
-        color: f,
-        size: i,
-        radius: c,
-        fullWidth: m,
-        placement: u,
-        isVertical: b,
-        disableAnimation: p,
-        disableCursorAnimation: y,
-        destroyInactiveTabPanel: S,
-        defaultSelectedKey: d,
-        classNames: {
-          ...r.classNames,
-          tabList: j(g(), (a = r.classNames) == null ? void 0 : a.tabList)
-        },
-        onSelectionChange: h,
-        ...r,
-        children: o.map((e) => /* @__PURE__ */ l(
-          R,
-          {
-            title: e.title,
-            titleValue: e.titleValue,
-            href: e.href,
-            target: e.target,
-            isDisabled: e.disabled,
-            children: V(e)
-          },
-          e.key
-        ))
+import { jsx } from "react/jsx-runtime";
+import { forwardRef } from "react";
+import { Tabs as Tabs$1, Tab } from "@nextui-org/react";
+import { cn } from "../utils/utils.es.js";
+const Tabs = forwardRef(
+  (_a, ref) => {
+    var _b = _a, {
+      items,
+      defaultActiveTab,
+      onTabChange,
+      renderTabContent,
+      variant = "solid",
+      color = "primary",
+      size = "md",
+      radius = "md",
+      fullWidth = false,
+      placement = "top",
+      isVertical = false,
+      disableAnimation = false,
+      disableCursorAnimation = false,
+      destroyInactiveTabPanel = true
+    } = _b, props = __objRest(_b, [
+      "items",
+      "defaultActiveTab",
+      "onTabChange",
+      "renderTabContent",
+      "variant",
+      "color",
+      "size",
+      "radius",
+      "fullWidth",
+      "placement",
+      "isVertical",
+      "disableAnimation",
+      "disableCursorAnimation",
+      "destroyInactiveTabPanel"
+    ]);
+    var _a2;
+    const handleSelectionChange = (key) => {
+      onTabChange == null ? void 0 : onTabChange(key.toString());
+    };
+    const defaultContent = (item) => item.content;
+    const contentRenderer = renderTabContent || defaultContent;
+    const getVariantStyles = () => {
+      if (variant === "bordered") {
+        return "border-1 border-default";
       }
+      return "";
+    };
+    return /* @__PURE__ */ jsx(
+      Tabs$1,
+      __spreadProps(__spreadValues({
+        ref,
+        variant,
+        color,
+        size,
+        radius,
+        fullWidth,
+        placement,
+        isVertical,
+        disableAnimation,
+        disableCursorAnimation,
+        destroyInactiveTabPanel,
+        defaultSelectedKey: defaultActiveTab,
+        classNames: __spreadProps(__spreadValues({}, props.classNames), {
+          tabList: cn(getVariantStyles(), (_a2 = props.classNames) == null ? void 0 : _a2.tabList)
+        }),
+        onSelectionChange: handleSelectionChange
+      }, props), {
+        children: items.map((item) => /* @__PURE__ */ jsx(
+          Tab,
+          {
+            title: item.title,
+            titleValue: item.titleValue,
+            href: item.href,
+            target: item.target,
+            isDisabled: item.disabled,
+            children: contentRenderer(item)
+          },
+          item.key
+        ))
+      })
     );
   }
 );
-k.displayName = "Tabs";
+Tabs.displayName = "Tabs";
 export {
-  k as Tabs
+  Tabs
 };
+//# sourceMappingURL=tabs.es.js.map

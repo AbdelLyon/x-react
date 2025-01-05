@@ -1,8 +1,39 @@
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
 import "../image/image.es.js";
-import { jsx as f } from "react/jsx-runtime";
-import { forwardRef as a } from "react";
-import { cn as b } from "../utils/utils.es.js";
-const p = {
+import { jsx } from "react/jsx-runtime";
+import { forwardRef } from "react";
+import { cn } from "../utils/utils.es.js";
+const VARIANT_STYLES = {
   h1: "text-4xl md:text-5xl font-bold",
   h2: "text-3xl md:text-4xl font-bold",
   h3: "text-2xl md:text-3xl font-bold",
@@ -13,41 +44,54 @@ const p = {
   small: "text-sm",
   caption: "text-xs",
   overline: "text-xs uppercase tracking-wider"
-}, c = {
+};
+const WEIGHT_STYLES = {
   light: "font-light",
   normal: "font-normal",
   medium: "font-medium",
   semibold: "font-semibold",
   bold: "font-bold"
-}, h = {
+};
+const ALIGN_STYLES = {
   left: "text-left",
   center: "text-center",
   right: "text-right",
   justify: "text-justify"
-}, g = a(
-  ({
-    children: x,
-    as: l = "p",
-    variant: s = "base",
-    weight: t,
-    align: e,
-    color: o,
-    truncate: m,
-    className: n,
-    ...r
-  }, d) => {
-    const i = b(
-      p[s],
-      t && c[t],
-      e && h[e],
-      o !== void 0 && `text-${o}`,
-      m !== void 0 && "truncate",
-      n
+};
+const Typography = forwardRef(
+  (_a, ref) => {
+    var _b = _a, {
+      children,
+      as: Component = "p",
+      variant = "base",
+      weight,
+      align,
+      color,
+      truncate,
+      className
+    } = _b, props = __objRest(_b, [
+      "children",
+      "as",
+      "variant",
+      "weight",
+      "align",
+      "color",
+      "truncate",
+      "className"
+    ]);
+    const classes = cn(
+      VARIANT_STYLES[variant],
+      weight && WEIGHT_STYLES[weight],
+      align && ALIGN_STYLES[align],
+      color !== void 0 && `text-${color}`,
+      truncate !== void 0 && "truncate",
+      className
     );
-    return /* @__PURE__ */ f(l, { ref: d, className: i, ...r, children: x });
+    return /* @__PURE__ */ jsx(Component, __spreadProps(__spreadValues({ ref, className: classes }, props), { children }));
   }
 );
-g.displayName = "Typography";
+Typography.displayName = "Typography";
 export {
-  g as Typography
+  Typography
 };
+//# sourceMappingURL=typography.es.js.map

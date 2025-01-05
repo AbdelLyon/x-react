@@ -1,4 +1,5 @@
-import { Image as o } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 export {
-  o as Image
+  Image
 };
+//# sourceMappingURL=image.es.js.map

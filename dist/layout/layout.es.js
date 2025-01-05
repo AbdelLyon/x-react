@@ -1,174 +1,212 @@
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
 import "../image/image.es.js";
-import { jsxs as x, jsx as d } from "react/jsx-runtime";
-import { u as c } from "../useResponsive-C48eFL5T.js";
-import { Navbar as y } from "../navbar/navbar.es.js";
-import { Sidebar as v } from "../sidebar/sidebar.es.js";
-import { cn as o } from "../utils/utils.es.js";
-import { forwardRef as a } from "react";
-import { ScrollShadow as u } from "@nextui-org/react";
-const I = ({
-  children: r,
-  navbar: e,
-  sidebar: s,
-  className: t
+import { jsxs, jsx } from "react/jsx-runtime";
+import { u as useMediaQuery } from "../useResponsive-DIJqCacg.js";
+import { Navbar } from "../navbar/navbar.es.js";
+import { Sidebar } from "../sidebar/sidebar.es.js";
+import { cn } from "../utils/utils.es.js";
+import { forwardRef } from "react";
+import { ScrollShadow } from "@nextui-org/react";
+const Layout = ({
+  children,
+  navbar,
+  sidebar,
+  className
 }) => {
-  const i = c("(min-width: 1024px)"), m = c("(min-width: 768px) and (max-width: 1023px)"), n = !!e, l = !!s;
-  return /* @__PURE__ */ x("div", { className: "min-h-screen bg-background", children: [
-    n && /* @__PURE__ */ d(y, { ...e }),
-    /* @__PURE__ */ x("div", { className: "flex", children: [
-      l && /* @__PURE__ */ d(v, { ...s }),
-      /* @__PURE__ */ d(
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
+  const hasNavbar = Boolean(navbar);
+  const hasSidebar = Boolean(sidebar);
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background", children: [
+    hasNavbar && /* @__PURE__ */ jsx(Navbar, __spreadValues({}, navbar)),
+    /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+      hasSidebar && /* @__PURE__ */ jsx(Sidebar, __spreadValues({}, sidebar)),
+      /* @__PURE__ */ jsx(
         "main",
         {
-          className: o(
+          className: cn(
             "flex-1 px-4 transition-all duration-200",
             {
-              "pt-16": n,
-              "ml-0": !l || !m && !i,
-              "ml-[90px]": l && m,
-              "ml-[270px]": l && i,
-              "px-4 sm:px-6 md:px-8 lg:px-12": !0
+              "pt-16": hasNavbar,
+              "ml-0": !hasSidebar || !isTablet && !isDesktop,
+              "ml-[90px]": hasSidebar && isTablet,
+              "ml-[270px]": hasSidebar && isDesktop,
+              "px-4 sm:px-6 md:px-8 lg:px-12": true
             },
-            t
+            className
           ),
-          children: r
+          children
         }
       )
     ] })
   ] });
-}, N = a(
-  ({ width: r = "100%", height: e = "100%", style: s, ...t }, i) => {
-    const m = {
-      width: typeof r == "number" ? `${r}px` : r,
-      height: typeof e == "number" ? `${e}px` : e,
-      ...s
-    };
-    return /* @__PURE__ */ d(u, { ref: i, style: m, ...t });
+};
+const Scroll = forwardRef(
+  (_a, ref) => {
+    var _b = _a, { width = "100%", height = "100%", style } = _b, props = __objRest(_b, ["width", "height", "style"]);
+    const combinedStyle = __spreadValues({
+      width: typeof width === "number" ? `${width}px` : width,
+      height: typeof height === "number" ? `${height}px` : height
+    }, style);
+    return /* @__PURE__ */ jsx(ScrollShadow, __spreadValues({ ref, style: combinedStyle }, props));
   }
 );
-N.displayName = "Scroll";
-const D = a(
-  ({ children: r, inline: e = !1, className: s }, t) => /* @__PURE__ */ d(
-    "div",
-    {
-      ref: t,
-      className: o(
-        e ? "inline-flex" : "flex",
-        "items-center justify-center",
-        s
-      ),
-      children: r
-    }
-  )
-), g = a(
-  ({ children: r, maxWidth: e = "lg", className: s }, t) => {
-    const i = o(
+Scroll.displayName = "Scroll";
+const Center = forwardRef(
+  ({ children, inline = false, className }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          inline ? "inline-flex" : "flex",
+          "items-center justify-center",
+          className
+        ),
+        children
+      }
+    );
+  }
+);
+const Container = forwardRef(
+  ({ children, maxWidth = "lg", className }, ref) => {
+    const containerClasses = cn(
       "mx-auto px-4",
       {
-        "max-w-screen-sm": e === "sm",
-        "max-w-screen-md": e === "md",
-        "max-w-screen-lg": e === "lg",
-        "max-w-screen-xl": e === "xl",
-        "max-w-screen-2xl": e === "2xl",
-        "max-w-full": e === "full"
+        "max-w-screen-sm": maxWidth === "sm",
+        "max-w-screen-md": maxWidth === "md",
+        "max-w-screen-lg": maxWidth === "lg",
+        "max-w-screen-xl": maxWidth === "xl",
+        "max-w-screen-2xl": maxWidth === "2xl",
+        "max-w-full": maxWidth === "full"
       },
-      s
+      className
     );
-    return /* @__PURE__ */ d("div", { ref: t, className: i, children: r });
+    return /* @__PURE__ */ jsx("div", { ref, className: containerClasses, children });
   }
 );
-g.displayName = "Container";
-const $ = a(
+Container.displayName = "Container";
+const Grid = forwardRef(
   ({
-    children: r,
-    data: e,
-    columns: s = {
+    children,
+    data,
+    columns = {
       default: 1,
       sm: 2,
       md: 3,
       lg: 4,
       xl: 4
     },
-    gap: t = {
+    gap = {
       x: 4,
       y: 4
     },
-    className: i
-  }, m) => {
-    const n = o(
+    className
+  }, ref) => {
+    const gridClasses = cn(
       "grid",
-      `grid-cols-${s.default}`,
-      s.sm !== void 0 && `sm:grid-cols-${s.sm}`,
-      s.md !== void 0 && `md:grid-cols-${s.md}`,
-      s.lg !== void 0 && `lg:grid-cols-${s.lg}`,
-      s.xl !== void 0 && `xl:grid-cols-${s.xl}`,
-      t.x !== void 0 && `gap-x-${t.x}`,
-      t.y !== void 0 && `gap-y-${t.y}`,
-      i
+      `grid-cols-${columns.default}`,
+      columns.sm !== void 0 && `sm:grid-cols-${columns.sm}`,
+      columns.md !== void 0 && `md:grid-cols-${columns.md}`,
+      columns.lg !== void 0 && `lg:grid-cols-${columns.lg}`,
+      columns.xl !== void 0 && `xl:grid-cols-${columns.xl}`,
+      gap.x !== void 0 && `gap-x-${gap.x}`,
+      gap.y !== void 0 && `gap-y-${gap.y}`,
+      className
     );
-    return /* @__PURE__ */ d("div", { ref: m, className: n, children: e ? e.map((l) => /* @__PURE__ */ d(f, { colSpan: l.colSpan, children: l.content }, l.id)) : r });
+    return /* @__PURE__ */ jsx("div", { ref, className: gridClasses, children: data ? data.map((item) => /* @__PURE__ */ jsx(GridItem, { colSpan: item.colSpan, children: item.content }, item.id)) : children });
   }
 );
-$.displayName = "Grid";
-const f = a(
-  ({ children: r, colSpan: e, className: s }, t) => {
-    const i = o(
-      (e == null ? void 0 : e.default) !== void 0 && `col-span-${e.default}`,
-      (e == null ? void 0 : e.sm) !== void 0 && `sm:col-span-${e.sm}`,
-      (e == null ? void 0 : e.md) !== void 0 && `md:col-span-${e.md}`,
-      (e == null ? void 0 : e.lg) !== void 0 && `lg:col-span-${e.lg}`,
-      (e == null ? void 0 : e.xl) !== void 0 && `xl:col-span-${e.xl}`,
-      s
+Grid.displayName = "Grid";
+const GridItem = forwardRef(
+  ({ children, colSpan, className }, ref) => {
+    const itemClasses = cn(
+      (colSpan == null ? void 0 : colSpan.default) !== void 0 && `col-span-${colSpan.default}`,
+      (colSpan == null ? void 0 : colSpan.sm) !== void 0 && `sm:col-span-${colSpan.sm}`,
+      (colSpan == null ? void 0 : colSpan.md) !== void 0 && `md:col-span-${colSpan.md}`,
+      (colSpan == null ? void 0 : colSpan.lg) !== void 0 && `lg:col-span-${colSpan.lg}`,
+      (colSpan == null ? void 0 : colSpan.xl) !== void 0 && `xl:col-span-${colSpan.xl}`,
+      className
     );
-    return /* @__PURE__ */ d("div", { ref: t, className: i, children: r });
+    return /* @__PURE__ */ jsx("div", { ref, className: itemClasses, children });
   }
 );
-f.displayName = "GridItem";
-const w = a(
-  ({ children: r, spacing: e = "md", className: s }, t) => {
-    const i = o(
+GridItem.displayName = "GridItem";
+const Section = forwardRef(
+  ({ children, spacing = "md", className }, ref) => {
+    const sectionClasses = cn(
       {
-        "py-4": e === "sm",
-        "py-8": e === "md",
-        "py-12": e === "lg",
-        "py-16": e === "xl"
+        "py-4": spacing === "sm",
+        "py-8": spacing === "md",
+        "py-12": spacing === "lg",
+        "py-16": spacing === "xl"
       },
-      s
+      className
     );
-    return /* @__PURE__ */ d("section", { ref: t, className: i, children: r });
+    return /* @__PURE__ */ jsx("section", { ref, className: sectionClasses, children });
   }
 );
-w.displayName = "Section";
-const L = a(
-  ({ children: r, spacing: e = 4, align: s = "start", justify: t = "start", className: i }, m) => /* @__PURE__ */ d(
-    "div",
-    {
-      ref: m,
-      className: o(
-        "flex flex-col",
-        `gap-${e}`,
-        {
-          "items-start": s === "start",
-          "items-center": s === "center",
-          "items-end": s === "end",
-          "justify-start": t === "start",
-          "justify-center": t === "center",
-          "justify-end": t === "end",
-          "justify-between": t === "between"
-        },
-        i
-      ),
-      children: r
-    }
-  )
+Section.displayName = "Section";
+const Stack = forwardRef(
+  ({ children, spacing = 4, align = "start", justify = "start", className }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          "flex flex-col",
+          `gap-${spacing}`,
+          {
+            "items-start": align === "start",
+            "items-center": align === "center",
+            "items-end": align === "end",
+            "justify-start": justify === "start",
+            "justify-center": justify === "center",
+            "justify-end": justify === "end",
+            "justify-between": justify === "between"
+          },
+          className
+        ),
+        children
+      }
+    );
+  }
 );
 export {
-  D as Center,
-  g as Container,
-  $ as Grid,
-  f as GridItem,
-  I as Layout,
-  N as Scroll,
-  w as Section,
-  L as Stack
+  Center,
+  Container,
+  Grid,
+  GridItem,
+  Layout,
+  Scroll,
+  Section,
+  Stack
 };
+//# sourceMappingURL=layout.es.js.map

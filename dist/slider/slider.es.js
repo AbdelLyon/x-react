@@ -1,67 +1,96 @@
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 import "../image/image.es.js";
-import { jsxs as j, jsx as l } from "react/jsx-runtime";
-import { forwardRef as S, useState as w } from "react";
-import { Slider as R } from "@nextui-org/react";
-const b = (e, r) => e.map(
-  (t) => r ? new Intl.NumberFormat(void 0, r).format(t) : t
-).join(" – "), h = ({
-  position: e,
-  content: r,
-  className: t
-}) => e === "none" ? null : /* @__PURE__ */ l(
-  "p",
-  {
-    className: `text-small font-medium text-default-500 ${t} ${e === "top" ? "order-first" : "order-last"}`,
-    children: r
+import { jsxs, jsx } from "react/jsx-runtime";
+import { forwardRef, useState } from "react";
+import { Slider } from "@nextui-org/react";
+const defaultFormatValue = (value, formatOptions) => {
+  return value.map(
+    (v) => formatOptions ? new Intl.NumberFormat(void 0, formatOptions).format(v) : v
+  ).join(" – ");
+};
+const LabelComponent = ({
+  position,
+  content,
+  className
+}) => {
+  if (position === "none") {
+    return null;
   }
-), v = S(
+  return /* @__PURE__ */ jsx(
+    "p",
+    {
+      className: `text-small font-medium text-default-500 ${className} ${position === "top" ? "order-first" : "order-last"}`,
+      children: content
+    }
+  );
+};
+const RangeSlider = forwardRef(
   ({
-    sliderProps: e,
-    initialValue: r = [0, 100],
-    formatOptions: t,
-    label: m,
-    labelPosition: i = "bottom",
-    formatValue: n,
-    renderLabel: d,
-    onChange: o,
-    containerClassName: u,
-    labelClassName: f
-  }, p) => {
-    const [a, x] = w(r), N = (s) => {
-      const c = Array.isArray(s) ? s : [s];
-      x(c), o == null || o(c);
-    }, y = n ? n(a) : b(a, t), $ = d ? d(a) : `${m}: ${y}`;
-    return /* @__PURE__ */ j(
+    sliderProps,
+    initialValue = [0, 100],
+    formatOptions,
+    label,
+    labelPosition = "bottom",
+    formatValue,
+    renderLabel,
+    onChange,
+    containerClassName,
+    labelClassName
+  }, ref) => {
+    const [value, setValue] = useState(initialValue);
+    const handleChange = (newValue) => {
+      const typedValue = Array.isArray(newValue) ? newValue : [newValue];
+      setValue(typedValue);
+      onChange == null ? void 0 : onChange(typedValue);
+    };
+    const formattedValue = formatValue ? formatValue(value) : defaultFormatValue(value, formatOptions);
+    const labelContent = renderLabel ? renderLabel(value) : `${label}: ${formattedValue}`;
+    return /* @__PURE__ */ jsxs(
       "div",
       {
-        ref: p,
-        className: `flex h-max w-full max-w-md flex-col items-start justify-center gap-2 ${u}`,
+        ref,
+        className: `flex h-max w-full max-w-md flex-col items-start justify-center gap-2 ${containerClassName}`,
         children: [
-          /* @__PURE__ */ l(
-            h,
+          /* @__PURE__ */ jsx(
+            LabelComponent,
             {
-              position: i,
-              content: $,
-              className: f
+              position: labelPosition,
+              content: labelContent,
+              className: labelClassName
             }
           ),
-          /* @__PURE__ */ l(
-            R,
-            {
-              value: a,
-              onChange: N,
-              label: m,
+          /* @__PURE__ */ jsx(
+            Slider,
+            __spreadValues({
+              value,
+              onChange: handleChange,
+              label,
               className: "max-w-md",
-              formatOptions: t,
-              ...e
-            }
+              formatOptions
+            }, sliderProps)
           )
         ]
       }
     );
   }
 );
-v.displayName = "RangeSlider";
+RangeSlider.displayName = "RangeSlider";
 export {
-  v as RangeSlider
+  RangeSlider
 };
+//# sourceMappingURL=slider.es.js.map

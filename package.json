@@ -172,7 +172,9 @@
     "react-chartjs-2": "^5.2.0"
   },
   "devDependencies": {
+    "@emotion/react": "^11.14.0",
     "@eslint/js": "^9.17.0",
+    "@swc/plugin-emotion": "^8.0.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
@@ -194,9 +196,11 @@
     "prettier": "^3.4.2",
     "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.17",
+    "terser": "^5.37.0",
     "typescript": "~5.6.3",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.6",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-dts": "^4.4.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8"

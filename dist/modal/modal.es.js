@@ -1,132 +1,211 @@
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
 import "../image/image.es.js";
-import { jsxs as M, Fragment as k, jsx as d } from "react/jsx-runtime";
-import { forwardRef as I, useState as R, useCallback as w } from "react";
-import { useDisclosure as S, Modal as $, ModalContent as z, ModalHeader as G, ModalBody as J, ModalFooter as L } from "@nextui-org/react";
-import { cn as n } from "../utils/utils.es.js";
-import { B as v } from "../Button-Bwji-dCD.js";
-const c = {
+import { jsxs, Fragment, jsx } from "react/jsx-runtime";
+import { forwardRef, useState, useCallback } from "react";
+import { useDisclosure, Modal as Modal$1, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react";
+import { cn } from "../utils/utils.es.js";
+import { B as Button } from "../Button-DbRLWMRU.js";
+const defaultClassNames = {
   closeButton: "absolute right-4 top-4",
   base: "bg-background border border-default shadow-lg dark:shadow-none rounded-lg",
   header: "flex flex-col gap-1",
   footer: "flex justify-end gap-2"
-}, D = {
+};
+const defaultButtonProps = {
   color: "primary",
   radius: "sm"
-}, j = (e) => typeof e == "string" && e.length > 0, Q = ({
-  buttonCloseLabel: e = "Close",
-  buttonActionLabel: i,
-  buttonCloseProps: o,
-  buttonActionProps: y,
-  onAction: t,
-  onClose: f
+};
+const isValidButtonLabel = (label) => typeof label === "string" && label.length > 0;
+const ModalButtons = ({
+  buttonCloseLabel = "Close",
+  buttonActionLabel,
+  buttonCloseProps,
+  buttonActionProps,
+  onAction,
+  onClose
 }) => {
-  const p = async () => {
+  var _a;
+  const handleAction = () => __async(void 0, null, function* () {
     try {
-      await (t == null ? void 0 : t()), f();
-    } catch (h) {
-      console.error("Modal action failed:", h);
+      yield onAction == null ? void 0 : onAction();
+      onClose();
+    } catch (error) {
+      console.error("Modal action failed:", error);
     }
-  }, u = j(e), g = j(i) && t !== void 0;
-  return /* @__PURE__ */ M(k, { children: [
-    u && /* @__PURE__ */ d(
-      v,
-      {
-        className: n("border-primary/50", o == null ? void 0 : o.className),
-        variant: (o == null ? void 0 : o.variant) ?? "bordered",
-        onPress: f,
-        ...D,
-        ...o,
-        children: e
-      }
+  });
+  const hasValidCloseLabel = isValidButtonLabel(buttonCloseLabel);
+  const hasValidActionButton = isValidButtonLabel(buttonActionLabel) && onAction !== void 0;
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    hasValidCloseLabel && /* @__PURE__ */ jsx(
+      Button,
+      __spreadProps(__spreadValues(__spreadValues({
+        className: cn("border-primary/50", buttonCloseProps == null ? void 0 : buttonCloseProps.className),
+        variant: (_a = buttonCloseProps == null ? void 0 : buttonCloseProps.variant) != null ? _a : "bordered",
+        onPress: onClose
+      }, defaultButtonProps), buttonCloseProps), {
+        children: buttonCloseLabel
+      })
     ),
-    g && /* @__PURE__ */ d(
-      v,
-      {
-        onPress: p,
-        ...D,
-        ...y,
-        children: i
-      }
+    hasValidActionButton && /* @__PURE__ */ jsx(
+      Button,
+      __spreadProps(__spreadValues(__spreadValues({
+        onPress: handleAction
+      }, defaultButtonProps), buttonActionProps), {
+        children: buttonActionLabel
+      })
     )
   ] });
-}, T = I(
-  ({
-    trigger: e,
-    title: i,
-    footer: o,
-    children: y,
-    onAction: t,
-    buttonCloseLabel: f,
-    buttonActionLabel: p,
-    buttonCloseProps: u,
-    buttonActionProps: g,
-    defaultBackdrop: h = "opaque",
-    onOpenChange: O,
-    classNames: r,
-    ...V
-  }, F) => {
-    const { isOpen: K, onOpen: b, onClose: x } = S({
-      onChange: O
-    }), [q, E] = R(h), B = w(
-      (a = h) => {
-        E(a), b();
+};
+const Modal = forwardRef(
+  (_a, ref) => {
+    var _b = _a, {
+      trigger,
+      title,
+      footer,
+      children,
+      onAction,
+      buttonCloseLabel,
+      buttonActionLabel,
+      buttonCloseProps,
+      buttonActionProps,
+      defaultBackdrop = "opaque",
+      onOpenChange,
+      classNames
+    } = _b, props = __objRest(_b, [
+      "trigger",
+      "title",
+      "footer",
+      "children",
+      "onAction",
+      "buttonCloseLabel",
+      "buttonActionLabel",
+      "buttonCloseProps",
+      "buttonActionProps",
+      "defaultBackdrop",
+      "onOpenChange",
+      "classNames"
+    ]);
+    const { isOpen, onOpen, onClose } = useDisclosure({
+      onChange: onOpenChange
+    });
+    const [backdrop, setBackdrop] = useState(defaultBackdrop);
+    const handleOpen = useCallback(
+      (backdropType = defaultBackdrop) => {
+        setBackdrop(backdropType);
+        onOpen();
       },
-      [h, b]
-    ), H = w(
-      (a) => {
-        (a.key === "Enter" || a.key === " ") && (a.preventDefault(), B());
+      [defaultBackdrop, onOpen]
+    );
+    const handleKeyDown = useCallback(
+      (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          handleOpen();
+        }
       },
-      [B]
-    ), l = {
-      closeButton: n(c.closeButton, r == null ? void 0 : r.closeButton),
-      base: n(c.base, r == null ? void 0 : r.base),
-      header: n(c.header, r == null ? void 0 : r.header),
-      body: n(r == null ? void 0 : r.body),
-      footer: n(c.footer, r == null ? void 0 : r.footer),
-      backdrop: n(r == null ? void 0 : r.backdrop)
+      [handleOpen]
+    );
+    const modalClassNames = {
+      closeButton: cn(defaultClassNames.closeButton, classNames == null ? void 0 : classNames.closeButton),
+      base: cn(defaultClassNames.base, classNames == null ? void 0 : classNames.base),
+      header: cn(defaultClassNames.header, classNames == null ? void 0 : classNames.header),
+      body: cn(classNames == null ? void 0 : classNames.body),
+      footer: cn(defaultClassNames.footer, classNames == null ? void 0 : classNames.footer),
+      backdrop: cn(classNames == null ? void 0 : classNames.backdrop)
     };
-    return /* @__PURE__ */ M(k, { children: [
-      /* @__PURE__ */ d(
+    return /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx(
         "div",
         {
           role: "button",
           tabIndex: 0,
-          onClick: () => B(),
-          onKeyDown: H,
+          onClick: () => handleOpen(),
+          onKeyDown: handleKeyDown,
           className: "inline-block",
-          children: e
+          children: trigger
         }
       ),
-      /* @__PURE__ */ d(
-        $,
-        {
-          ref: F,
-          backdrop: q,
-          classNames: l,
-          isOpen: K,
-          onClose: x,
-          ...V,
-          children: /* @__PURE__ */ d(z, { children: () => /* @__PURE__ */ M(k, { children: [
-            i !== void 0 && /* @__PURE__ */ d(G, { className: l.header, children: i }),
-            /* @__PURE__ */ d(J, { className: l.body, children: y }),
-            /* @__PURE__ */ d(L, { className: l.footer, children: o !== void 0 ? o : /* @__PURE__ */ d(
-              Q,
+      /* @__PURE__ */ jsx(
+        Modal$1,
+        __spreadProps(__spreadValues({
+          ref,
+          backdrop,
+          classNames: modalClassNames,
+          isOpen,
+          onClose
+        }, props), {
+          children: /* @__PURE__ */ jsx(ModalContent, { children: () => /* @__PURE__ */ jsxs(Fragment, { children: [
+            title !== void 0 && /* @__PURE__ */ jsx(ModalHeader, { className: modalClassNames.header, children: title }),
+            /* @__PURE__ */ jsx(ModalBody, { className: modalClassNames.body, children }),
+            /* @__PURE__ */ jsx(ModalFooter, { className: modalClassNames.footer, children: footer !== void 0 ? footer : /* @__PURE__ */ jsx(
+              ModalButtons,
               {
-                buttonCloseLabel: f,
-                buttonActionLabel: p,
-                buttonCloseProps: u,
-                buttonActionProps: g,
-                onAction: t,
-                onClose: x
+                buttonCloseLabel,
+                buttonActionLabel,
+                buttonCloseProps,
+                buttonActionProps,
+                onAction,
+                onClose
               }
             ) })
           ] }) })
-        }
+        })
       )
     ] });
   }
 );
-T.displayName = "Modal";
+Modal.displayName = "Modal";
 export {
-  T as Modal
+  Modal
 };
+//# sourceMappingURL=modal.es.js.map

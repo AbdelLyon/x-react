@@ -1,53 +1,87 @@
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
 import "../image/image.es.js";
-import { jsxs as f, jsx as o } from "react/jsx-runtime";
-import { forwardRef as h } from "react";
-import { Dropdown as D, DropdownTrigger as u, DropdownMenu as g, DropdownSection as k, DropdownItem as x } from "@nextui-org/react";
-const y = h(
-  ({ trigger: n, sections: a, dropdownMenuProps: p, onItemPress: e, classNames: s, ...i }, l) => {
-    const m = (r) => {
-      e && e(r);
+import { jsxs, jsx } from "react/jsx-runtime";
+import { forwardRef } from "react";
+import { Dropdown as Dropdown$1, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/react";
+const Dropdown = forwardRef(
+  (_a, ref) => {
+    var _b = _a, { trigger, sections, dropdownMenuProps, onItemPress, classNames } = _b, props = __objRest(_b, ["trigger", "sections", "dropdownMenuProps", "onItemPress", "classNames"]);
+    const handleItemPress = (item) => {
+      if (onItemPress) {
+        onItemPress(item);
+      }
     };
-    return /* @__PURE__ */ f(
-      D,
-      {
-        ref: l,
-        showArrow: !0,
-        classNames: {
+    return /* @__PURE__ */ jsxs(
+      Dropdown$1,
+      __spreadProps(__spreadValues({
+        ref,
+        showArrow: true,
+        classNames: __spreadValues({
           base: "before:bg-default-200",
-          content: "p-0 border border-default bg-background",
-          ...s
-        },
-        ...i,
+          content: "p-0 border border-default bg-background"
+        }, classNames)
+      }, props), {
         children: [
-          /* @__PURE__ */ o(u, { children: n }),
-          /* @__PURE__ */ o(g, { className: "p-3", ...p, children: a.map((r) => /* @__PURE__ */ o(
-            k,
+          /* @__PURE__ */ jsx(DropdownTrigger, { children: trigger }),
+          /* @__PURE__ */ jsx(DropdownMenu, __spreadProps(__spreadValues({ className: "p-3" }, dropdownMenuProps), { children: sections.map((section) => /* @__PURE__ */ jsx(
+            DropdownSection,
             {
-              showDivider: r.showDivider,
-              "aria-label": r.label,
-              children: r.items.map((d) => {
-                const { key: t, label: w, href: b, ...c } = d;
-                return /* @__PURE__ */ o(
-                  x,
-                  {
+              showDivider: section.showDivider,
+              "aria-label": section.label,
+              children: section.items.map((item) => {
+                const _a2 = item, { key, label, href } = _a2, remainingProps = __objRest(_a2, ["key", "label", "href"]);
+                return /* @__PURE__ */ jsx(
+                  DropdownItem,
+                  __spreadProps(__spreadValues({
                     onPress: () => {
-                      m({ ...d, href: b });
-                    },
-                    ...c,
-                    children: w
-                  },
-                  t
+                      handleItemPress(__spreadProps(__spreadValues({}, item), { href }));
+                    }
+                  }, remainingProps), {
+                    children: label
+                  }),
+                  key
                 );
               })
             },
-            r.key
-          )) })
+            section.key
+          )) }))
         ]
-      }
+      })
     );
   }
 );
-y.displayName = "Dropdown";
+Dropdown.displayName = "Dropdown";
 export {
-  y as Dropdown
+  Dropdown
 };
+//# sourceMappingURL=dropdown.es.js.map
