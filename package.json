@@ -39,8 +39,8 @@
       "types": "./dist/utils/uUils.d.ts"
     },
     "./hooks": {
-      "import": "./dist/hooks/Hooks/index.es.js",
-      "types": "./dist/hooks/Hooks.d.ts"
+      "import": "./dist/hooks/index.es.js",
+      "types": "./dist/hooks/index.d.ts"
     },
     "./providers": {
       "import": "./dist/providers/Providers/index.es.js",
