@@ -1,11 +1,10 @@
-// tsup.config.ts
 import { defineConfig } from "tsup";
 
 const modules = [
   "utils",
   "button",
   "modal",
-  "hooks",
+  // "hooks",
   "theme",
   "providers",
   "accordion",
@@ -18,34 +17,40 @@ const modules = [
   "dropdown",
   "image",
   "slider",
-  "progress",
+  // "progress",
   "spiner",
-  "datagrid",
-  "drawer",
-  "chip",
-  "datepicker",
-  "navbar",
-  "sidebar",
-  "layout",
-  "tooltip",
-  "tabs",
-  "pagination",
-  "typography",
-  "HOC",
-  "chart",
+  // "datagrid",
+  // "drawer",
+  // "chip",
+  // "datepicker",
+  // "navbar",
+  // "sidebar",
+  // "layout",
+  // "tooltip",
+  // "tabs",
+  // "pagination",
+  // "typography",
+  // "HOC",
+  // "chart",
 ];
 
-export default defineConfig((options) => ({
-  entry: Object.fromEntries(
-    modules.map((module) => [module, `src/${module}/index.ts`]),
-  ),
-  dts: true,
+export default defineConfig({
+  entry: Object.fromEntries([
+    modules.map((module) => [`${module}/index`, `src/${module}/index.ts`]),
+  ]),
+  format: ["esm"],
+  dts: {
+    resolve: true,
+    entry: {
+      ...Object.fromEntries(
+        modules.map((module) => [`${module}/index`, `src/${module}/index.ts`]),
+      ),
+    },
+  },
+
   clean: true,
   outDir: "dist",
-  format: ["esm"],
-  outExtension: () => ({
-    js: ".es.js",
-  }),
+  splitting: false,
   sourcemap: true,
   treeshake: true,
   external: [
@@ -58,7 +63,6 @@ export default defineConfig((options) => ({
     "react-chartjs-2",
     "chart.js",
     "tailwind-merge",
-    "framer-motion",
   ],
   loader: {
     ".css": "css",
@@ -66,4 +70,4 @@ export default defineConfig((options) => ({
   esbuildOptions(options) {
     options.jsx = "automatic";
   },
-}));
+});

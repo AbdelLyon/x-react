@@ -13,183 +13,152 @@
   },
   "author": "DailyApps",
   "license": "MIT",
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
+  },
   "exports": {
-    "./style.css": "./dist/x-react.css",
+    "./style.css": "./dist/style.css",
     ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./button": {
-      "import": "./dist/button.esm.js",
-      "require": "./dist/button.cjs.js",
-      "types": "./dist/button.d.ts"
-    },
-    "./modal": {
-      "import": "./dist/modal.esm.js",
-      "require": "./dist/modal.cjs.js",
-      "types": "./dist/modal.d.ts"
-    },
-    "./utils": {
-      "import": "./dist/utils.esm.js",
-      "require": "./dist/utils.cjs.js",
-      "types": "./dist/utils.d.ts"
-    },
-    "./hooks": {
-      "import": "./dist/hooks.esm.js",
-      "require": "./dist/hooks.cjs.js",
-      "types": "./dist/hooks.d.ts"
-    },
-    "./providers": {
-      "import": "./dist/providers.esm.js",
-      "require": "./dist/providers.cjs.js",
-      "types": "./dist/providers.d.ts"
-    },
-    "./theme": {
-      "import": "./dist/theme.esm.js",
-      "require": "./dist/theme.cjs.js",
-      "types": "./dist/theme.d.ts"
+      "import": "./dist/index/index.js",
+      "types": "./dist/index/index.d.ts"
     },
     "./accordion": {
-      "import": "./dist/accordion.esm.js",
-      "require": "./dist/accordion.cjs.js",
-      "types": "./dist/accordion.d.ts"
+      "import": "./dist/accordion/index.js",
+      "types": "./dist/accordion/index.d.ts"
     },
     "./alert": {
-      "import": "./dist/alert.esm.js",
-      "require": "./dist/alert.cjs.js",
-      "types": "./dist/alert.d.ts"
+      "import": "./dist/alert/index.js",
+      "types": "./dist/alert/index.d.ts"
     },
     "./avatar": {
-      "import": "./dist/avatar.esm.js",
-      "require": "./dist/avatar.cjs.js",
-      "types": "./dist/avatar.d.ts"
+      "import": "./dist/avatar/index.js",
+      "types": "./dist/avatar/index.d.ts"
+    },
+    "./button": {
+      "import": "./dist/button/index.js",
+      "types": "./dist/button/index.d.ts"
     },
     "./card": {
-      "import": "./dist/card.esm.js",
-      "require": "./dist/card.cjs.js",
-      "types": "./dist/card.d.ts"
-    },
-    "./icons": {
-      "import": "./dist/icons.esm.js",
-      "require": "./dist/icons.cjs.js",
-      "types": "./dist/icons.d.ts"
-    },
-    "./form": {
-      "import": "./dist/form.esm.js",
-      "require": "./dist/form.cjs.js",
-      "types": "./dist/form.d.ts"
-    },
-    "./popover": {
-      "import": "./dist/popover.esm.js",
-      "require": "./dist/popover.cjs.js",
-      "types": "./dist/popover.d.ts"
-    },
-    "./dropdown": {
-      "import": "./dist/dropdown.esm.js",
-      "require": "./dist/dropdown.cjs.js",
-      "types": "./dist/dropdown.d.ts"
-    },
-    "./image": {
-      "import": "./dist/image.esm.js",
-      "require": "./dist/image.cjs.js",
-      "types": "./dist/image.d.ts"
-    },
-    "./slider": {
-      "import": "./dist/slider.esm.js",
-      "require": "./dist/slider.cjs.js",
-      "types": "./dist/slider.d.ts"
-    },
-    "./progress": {
-      "import": "./dist/progress.esm.js",
-      "require": "./dist/progress.cjs.js",
-      "types": "./dist/progress.d.ts"
-    },
-    "./spiner": {
-      "import": "./dist/spiner.esm.js",
-      "require": "./dist/spiner.cjs.js",
-      "types": "./dist/spiner.d.ts"
-    },
-    "./datagrid": {
-      "import": "./dist/datagrid.esm.js",
-      "require": "./dist/datagrid.cjs.js",
-      "types": "./dist/datagrid.d.ts"
-    },
-    "./datepicker": {
-      "import": "./dist/datepicker.esm.js",
-      "require": "./dist/datepicker.cjs.js",
-      "types": "./dist/datepicker.d.ts"
-    },
-    "./chip": {
-      "import": "./dist/chip.esm.js",
-      "require": "./dist/chip.cjs.js",
-      "types": "./dist/chip.d.ts"
-    },
-    "./drawer": {
-      "import": "./dist/drawer.esm.js",
-      "require": "./dist/drawer.cjs.js",
-      "types": "./dist/drawer.d.ts"
-    },
-    "./navbar": {
-      "import": "./dist/navbar.esm.js",
-      "require": "./dist/navbar.cjs.js",
-      "types": "./dist/navbar.d.ts"
-    },
-    "./sidebar": {
-      "import": "./dist/sidebar.esm.js",
-      "require": "./dist/sidebar.cjs.js",
-      "types": "./dist/sidebar.d.ts"
-    },
-    "./layout": {
-      "import": "./dist/layout.esm.js",
-      "require": "./dist/layout.cjs.js",
-      "types": "./dist/layout.d.ts"
-    },
-    "./tooltip": {
-      "import": "./dist/tooltip.esm.js",
-      "require": "./dist/tooltip.cjs.js",
-      "types": "./dist/tooltip.d.ts"
-    },
-    "./tabs": {
-      "import": "./dist/tabs.esm.js",
-      "require": "./dist/tabs.cjs.js",
-      "types": "./dist/tabs.d.ts"
-    },
-    "./pagination": {
-      "import": "./dist/pagination.esm.js",
-      "require": "./dist/pagination.cjs.js",
-      "types": "./dist/pagination.d.ts"
-    },
-    "./typography": {
-      "import": "./dist/typography.esm.js",
-      "require": "./dist/typography.cjs.js",
-      "types": "./dist/typography.d.ts"
-    },
-    "./HOC": {
-      "import": "./dist/HOC.esm.js",
-      "require": "./dist/HOC.cjs.js",
-      "types": "./dist/HOC.d.ts"
+      "import": "./dist/card/index.js",
+      "types": "./dist/card/index.d.ts"
     },
     "./chart": {
-      "import": "./dist/chart.esm.js",
-      "require": "./dist/chart.cjs.js",
-      "types": "./dist/chart.d.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*/index.d.ts"
-      ]
+      "import": "./dist/chart/index.js",
+      "types": "./dist/chart/index.d.ts"
+    },
+    "./chip": {
+      "import": "./dist/chip/index.js",
+      "types": "./dist/chip/index.d.ts"
+    },
+    "./datagrid": {
+      "import": "./dist/datagrid/index.js",
+      "types": "./dist/datagrid/index.d.ts"
+    },
+    "./datepicker": {
+      "import": "./dist/datepicker/index.js",
+      "types": "./dist/datepicker/index.d.ts"
+    },
+    "./drawer": {
+      "import": "./dist/drawer/index.js",
+      "types": "./dist/drawer/index.d.ts"
+    },
+    "./dropdown": {
+      "import": "./dist/dropdown/index.js",
+      "types": "./dist/dropdown/index.d.ts"
+    },
+    "./form": {
+      "import": "./dist/form/index.js",
+      "types": "./dist/form/index.d.ts"
+    },
+    "./HOC": {
+      "import": "./dist/HOC/index.js",
+      "types": "./dist/HOC/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/index.js",
+      "types": "./dist/hooks/index.d.ts"
+    },
+    "./icons": {
+      "import": "./dist/icons/index.js",
+      "types": "./dist/icons/index.d.ts"
+    },
+    "./image": {
+      "import": "./dist/image/index.js",
+      "types": "./dist/image/index.d.ts"
+    },
+    "./layout": {
+      "import": "./dist/layout/index.js",
+      "types": "./dist/layout/index.d.ts"
+    },
+    "./modal": {
+      "import": "./dist/modal/index.js",
+      "types": "./dist/modal/index.d.ts"
+    },
+    "./navbar": {
+      "import": "./dist/navbar/index.js",
+      "types": "./dist/navbar/index.d.ts"
+    },
+    "./pagination": {
+      "import": "./dist/pagination/index.js",
+      "types": "./dist/pagination/index.d.ts"
+    },
+    "./popover": {
+      "import": "./dist/popover/index.js",
+      "types": "./dist/popover/index.d.ts"
+    },
+    "./progress": {
+      "import": "./dist/progress/index.js",
+      "types": "./dist/progress/index.d.ts"
+    },
+    "./providers": {
+      "import": "./dist/providers/index.js",
+      "types": "./dist/providers/index.d.ts"
+    },
+    "./sidebar": {
+      "import": "./dist/sidebar/index.js",
+      "types": "./dist/sidebar/index.d.ts"
+    },
+    "./slider": {
+      "import": "./dist/slider/index.js",
+      "types": "./dist/slider/index.d.ts"
+    },
+    "./spiner": {
+      "import": "./dist/spiner/index.js",
+      "types": "./dist/spiner/index.d.ts"
+    },
+    "./tabs": {
+      "import": "./dist/tabs/index.js",
+      "types": "./dist/tabs/index.d.ts"
+    },
+    "./theme": {
+      "import": "./dist/theme/index.js",
+      "types": "./dist/theme/index.d.ts"
+    },
+    "./tooltip": {
+      "import": "./dist/tooltip/index.js",
+      "types": "./dist/tooltip/index.d.ts"
+    },
+    "./typography": {
+      "import": "./dist/typography/index.js",
+      "types": "./dist/typography/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
     }
   },
   "scripts": {
     "clean": "rimraf dist *.log",
-    "build": "pnpm clean && tsc -b && NODE_OPTIONS='--max-old-space-size=8192' tsup",
-    "build:fresh": "npm run clean && npm run build",
+    "build": "pnpm clean && tsup",
+    "build:fresh": "pnpm clean && pnpm build",
     "test": "vitest",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "tailwind": "pnpm tailwindcss -i ./index.css  -o ./dist/tailwind.css "
   },
   "dependencies": {
     "@nextui-org/react": "^2.6.10",
@@ -218,8 +187,6 @@
     "@types/react-dom": "^19.0.2",
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "@typescript-eslint/parser": "^8.18.2",
-    "@vitejs/plugin-react": "^4.3.4",
-    "@vitejs/plugin-react-swc": "^3.7.2",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",
     "eslint-plugin-react-hooks": "^5.1.0",
@@ -234,9 +201,6 @@
     "tsup": "^8.3.5",
     "typescript": "~5.6.3",
     "typescript-eslint": "^8.18.2",
-    "vite": "^6.0.6",
-    "vite-plugin-dts": "^4.4.0",
-    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8"
   }
 }
