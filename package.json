@@ -154,11 +154,10 @@
   },
   "scripts": {
     "clean": "rimraf dist *.log",
-    "build": "pnpm clean && tsup",
+    "build": "pnpm clean && vite build",
     "build:fresh": "pnpm clean && pnpm build",
     "test": "vitest",
-    "lint": "eslint .",
-    "tailwind": "pnpm tailwindcss -i ./index.css  -o ./dist/tailwind.css "
+    "lint": "eslint ."
   },
   "dependencies": {
     "@nextui-org/react": "^2.6.10",
