@@ -115,12 +115,12 @@
       "types": "./dist/drawer/Drawer.d.ts"
     },
     "./navbar": {
-      "import": "./dist/navbar/Navbar/index.es.js",
-      "types": "./dist/navbar/Navbar.d.ts"
+      "import": "./dist/navbar/index.es.js",
+      "types": "./dist/navbar/index.d.ts"
     },
     "./sidebar": {
-      "import": "./dist/sidebar/Sidebar/index.es.js",
-      "types": "./dist/sidebar/Sidebar.d.ts"
+      "import": "./dist/sidebar/index.es.js",
+      "types": "./dist/sidebar/index.d.ts"
     },
     "./layout": {
       "import": "./dist/layout/index.es.js",
