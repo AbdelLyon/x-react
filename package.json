@@ -35,16 +35,16 @@
       "types": "./dist/modal/Modal.d.ts"
     },
     "./utils": {
-      "import": "./dist/utils/uUils/index.es.js",
-      "types": "./dist/utils/uUils.d.ts"
+      "import": "./dist/utils/index.es.js",
+      "types": "./dist/utils/index.d.ts"
     },
     "./hooks": {
       "import": "./dist/hooks/index.es.js",
       "types": "./dist/hooks/index.d.ts"
     },
     "./providers": {
-      "import": "./dist/providers/Providers/index.es.js",
-      "types": "./dist/providers/Providers.d.ts"
+      "import": "./dist/providers/index.es.js",
+      "types": "./dist/providers/index.d.ts"
     },
     "./theme": {
       "import": "./dist/theme/Theme/index.es.js",
@@ -67,8 +67,8 @@
       "types": "./dist/card/Card.d.ts"
     },
     "./form": {
-      "import": "./dist/form/Form/index.es.js",
-      "types": "./dist/form/Form.d.ts"
+      "import": "./dist/form/index.es.js",
+      "types": "./dist/form/index.d.ts"
     },
     "./popover": {
       "import": "./dist/popover/Popover/index.es.js",
