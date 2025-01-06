@@ -56,7 +56,7 @@ const Sidebar = ({
     {
       ref,
       className: cn(
-        "fixed left-0 h-screen flex-col bg-[#212324] border-r border-default",
+        "fixed left-0 h-screen flex flex-col bg-[#212324] border-r border-default",
         {
           "w-[270px]": isDesktop,
           "w-[90px]": isTablet
@@ -64,8 +64,8 @@ const Sidebar = ({
         classNames == null ? void 0 : classNames.base
       ),
       children: [
-        /* @__PURE__ */ jsx("nav", { className: "flex flex-1 flex-col gap-2 p-4", children: items.map(renderLink) }),
-        bgImage
+        /* @__PURE__ */ jsx("nav", { className: "flex-1 flex-col gap-2 p-4", children: items.map(renderLink) }),
+        /* @__PURE__ */ jsx("div", { className: "mb-4 h-full", children: bgImage })
       ]
     }
   );

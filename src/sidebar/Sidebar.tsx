@@ -71,7 +71,7 @@ export const Sidebar = ({
     <aside
       ref={ref}
       className={cn(
-        "fixed left-0 h-screen flex-col bg-[#212324] border-r border-default",
+        "fixed left-0 h-screen flex flex-col bg-[#212324] border-r border-default",
         {
           "w-[270px]": isDesktop,
           "w-[90px]": isTablet,
@@ -79,10 +79,8 @@ export const Sidebar = ({
         classNames?.base,
       )}
     >
-      <nav className="flex flex-1 flex-col gap-2 p-4">
-        {items.map(renderLink)}
-      </nav>
-      {bgImage}
+      <nav className="flex-1 flex-col gap-2 p-4">{items.map(renderLink)}</nav>
+      <div className="mb-4 h-full">{bgImage}</div>
     </aside>
   );
 };
