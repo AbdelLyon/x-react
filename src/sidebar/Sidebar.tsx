@@ -80,7 +80,7 @@ export const Sidebar = ({
       )}
     >
       <nav className="flex-1 flex-col gap-2 p-4">{items.map(renderLink)}</nav>
-      <div className="mb-4 h-full">{bgImage}</div>
+      <div className="flex h-full justify-end ">{bgImage}</div>
     </aside>
   );
 };
