@@ -65,7 +65,7 @@ const Sidebar = ({
       ),
       children: [
         /* @__PURE__ */ jsx("nav", { className: "flex-1 flex-col gap-2 p-4", children: items.map(renderLink) }),
-        /* @__PURE__ */ jsx("div", { className: "flex h-full justify-end ", children: bgImage })
+        bgImage
       ]
     }
   );
