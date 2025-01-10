@@ -1,7 +1,7 @@
 import type { JSX } from "react";
-import { forwardRef } from "react";
-import type { ButtonGroupProps, ButtonProps } from "@nextui-org/button";
+import type { ButtonGroupProps } from "@nextui-org/button";
 import { ButtonGroup } from "@nextui-org/button";
+import type { ButtonProps } from "@/button/Button";
 import { Button } from "@/button/Button";
 
 export interface ButtonsProps extends ButtonGroupProps {
@@ -12,20 +12,16 @@ export interface ButtonsProps extends ButtonGroupProps {
   }>;
 }
 
-export const Buttons = forwardRef<HTMLDivElement, ButtonsProps>(
-  ({ buttons, ...props }, ref): JSX.Element => {
-    return (
-      <ButtonGroup ref={ref} {...props}>
-        {buttons.map(
-          ({ key, label, buttonProps }): JSX.Element => (
-            <Button key={key} {...buttonProps}>
-              {label}
-            </Button>
-          ),
-        )}
-      </ButtonGroup>
-    );
-  },
-);
-
-Buttons.displayName = "Buttons";
+export const Buttons = ({ buttons, ...props }: ButtonsProps): JSX.Element => {
+  return (
+    <ButtonGroup {...props}>
+      {buttons.map(
+        ({ key, label, buttonProps }): JSX.Element => (
+          <Button key={key} {...buttonProps}>
+            {label}
+          </Button>
+        ),
+      )}
+    </ButtonGroup>
+  );
+};
