@@ -49,7 +49,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
               size="sm"
               variant="light"
               {...closeButtonProps}
-              onPress={handleClose}
+              onClick={handleClose}
             >
               Close
             </Button>

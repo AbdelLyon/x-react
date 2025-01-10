@@ -8,7 +8,7 @@ import type { ButtonProps as ButtonRootProps } from "@nextui-org/button";
 import { Button as ButtonRoot } from "@nextui-org/button";
 import { cn } from "@/utils";
 
-export interface ButtonProps extends ButtonRootProps {
+export interface ButtonProps extends Omit<ButtonRootProps, "onPress"> {
   LinkComponent?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
   classNames?: {
     base?: string;
@@ -16,12 +16,12 @@ export interface ButtonProps extends ButtonRootProps {
     afterContent?: string;
     content?: string;
   };
-  onCLick?: () => void;
+  onClick?: () => void;
   rounded?: ButtonProps["radius"];
 }
 
 export const Button = ({
-  onCLick,
+  onClick,
   rounded,
   startContent,
   endContent,
@@ -73,7 +73,7 @@ export const Button = ({
         href={href}
         rel={target === "_blank" ? "noopener noreferrer" : rel}
         target={target}
-        onPress={onCLick}
+        onPress={onClick}
         radius={rounded}
         {...props}
       >
@@ -85,7 +85,7 @@ export const Button = ({
   return (
     <ButtonRoot
       className={baseStyles}
-      onPress={onCLick}
+      onPress={onClick}
       radius={rounded}
       {...props}
     >

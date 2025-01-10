@@ -90,7 +90,7 @@ const ModalButtons = ({
       __spreadProps(__spreadValues(__spreadValues({
         className: cn("border-primary/50", buttonCloseProps == null ? void 0 : buttonCloseProps.className),
         variant: (_a = buttonCloseProps == null ? void 0 : buttonCloseProps.variant) != null ? _a : "bordered",
-        onPress: onClose
+        onClick: onClose
       }, defaultButtonProps), buttonCloseProps), {
         children: buttonCloseLabel
       })
@@ -98,7 +98,7 @@ const ModalButtons = ({
     hasValidActionButton && /* @__PURE__ */ jsx(
       Button,
       __spreadProps(__spreadValues(__spreadValues({
-        onPress: handleAction
+        onClick: handleAction
       }, defaultButtonProps), buttonActionProps), {
         children: buttonActionLabel
       })

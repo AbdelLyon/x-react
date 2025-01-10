@@ -82,9 +82,9 @@ describe("Composant Button", (): void => {
   });
 
   describe("Gestion des événements", (): void => {
-    it("devrait appeler la fonction `onPress` au clic", (): void => {
+    it("devrait appeler la fonction `onClick` au clic", (): void => {
       const handleClick = vi.fn();
-      render(<Button onPress={handleClick}>Test</Button>);
+      render(<Button onClick={handleClick}>Test</Button>);
 
       act((): void => {
         fireEvent.click(screen.getByRole("button"));
@@ -93,10 +93,10 @@ describe("Composant Button", (): void => {
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
-    it("ne devrait pas appeler `onPress` si le bouton est désactivé", (): void => {
+    it("ne devrait pas appeler `onClick` si le bouton est désactivé", (): void => {
       const handleClick = vi.fn();
       render(
-        <Button isDisabled onPress={handleClick}>
+        <Button isDisabled onClick={handleClick}>
           Test
         </Button>,
       );
@@ -112,7 +112,7 @@ describe("Composant Button", (): void => {
 
 describe("Composant Buttons", (): void => {
   const mockButtons = [
-    { key: "1", label: "Bouton 1", buttonProps: { onPress: vi.fn() } },
+    { key: "1", label: "Bouton 1", buttonProps: { onClick: vi.fn() } },
     { key: "2", label: "Bouton 2", buttonProps: { isDisabled: true } },
   ];
 
@@ -152,7 +152,7 @@ describe("Composant Buttons", (): void => {
   });
 
   describe("Interactions", (): void => {
-    it("devrait appeler `onPress` lorsque le bouton est cliqué", async (): Promise<void> => {
+    it("devrait appeler `onClick` lorsque le bouton est cliqué", async (): Promise<void> => {
       const user = userEvent.setup();
       render(<Buttons buttons={mockButtons} />);
 
@@ -161,7 +161,7 @@ describe("Composant Buttons", (): void => {
         await user.click(button);
       });
 
-      expect(mockButtons[0].buttonProps?.onPress).toHaveBeenCalledTimes(1);
+      expect(mockButtons[0].buttonProps?.onClick).toHaveBeenCalledTimes(1);
     });
   });
 

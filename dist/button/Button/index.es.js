@@ -34,7 +34,7 @@ import { Button as Button$1 } from "@nextui-org/button";
 import { cn } from "../../utils/index.es.js";
 const Button = (_a) => {
   var _b = _a, {
-    onCLick,
+    onClick,
     rounded,
     startContent,
     endContent,
@@ -50,7 +50,7 @@ const Button = (_a) => {
     target,
     rel
   } = _b, props = __objRest(_b, [
-    "onCLick",
+    "onClick",
     "rounded",
     "startContent",
     "endContent",
@@ -83,7 +83,7 @@ const Button = (_a) => {
         href,
         rel: target === "_blank" ? "noopener noreferrer" : rel,
         target,
-        onPress: onCLick,
+        onPress: onClick,
         radius: rounded
       }, props), {
         children: /* @__PURE__ */ jsx(Content, {})
@@ -94,7 +94,7 @@ const Button = (_a) => {
     Button$1,
     __spreadProps(__spreadValues({
       className: baseStyles,
-      onPress: onCLick,
+      onPress: onClick,
       radius: rounded
     }, props), {
       children: /* @__PURE__ */ jsx(Content, {})

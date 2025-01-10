@@ -71,7 +71,7 @@ const Alert = forwardRef(
             size: "sm",
             variant: "light"
           }, closeButtonProps), {
-            onPress: handleClose,
+            onClick: handleClose,
             children: "Close"
           })
         ) : null

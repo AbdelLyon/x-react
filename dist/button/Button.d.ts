@@ -1,6 +1,6 @@
 import { AnchorHTMLAttributes, ComponentType, JSX } from 'react';
 import { ButtonProps as ButtonRootProps } from '@nextui-org/button';
-export interface ButtonProps extends ButtonRootProps {
+export interface ButtonProps extends Omit<ButtonRootProps, "onPress"> {
     LinkComponent?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
     classNames?: {
         base?: string;
@@ -8,7 +8,7 @@ export interface ButtonProps extends ButtonRootProps {
         afterContent?: string;
         content?: string;
     };
-    onCLick?: () => void;
+    onClick?: () => void;
     rounded?: ButtonProps["radius"];
 }
-export declare const Button: ({ onCLick, rounded, startContent, endContent, LinkComponent, classNames, href, children, target, rel, ...props }: ButtonProps) => JSX.Element;
+export declare const Button: ({ onClick, rounded, startContent, endContent, LinkComponent, classNames, href, children, target, rel, ...props }: ButtonProps) => JSX.Element;

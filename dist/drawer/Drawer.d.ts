@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { JSX, ReactNode } from 'react';
 import { DrawerProps as DrawerRootProps } from '@nextui-org/drawer';
 import { ButtonProps } from '../button';
 interface DrawerClassNames {
@@ -23,5 +23,5 @@ interface AdditionalDrawerProps {
     classNames?: DrawerClassNames;
 }
 export type DrawerProps = Omit<DrawerRootProps, keyof AdditionalDrawerProps> & AdditionalDrawerProps;
-export declare const Drawer: import('react').ForwardRefExoticComponent<Omit<DrawerProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
+export declare const Drawer: ({ trigger, title, children, footer, buttonCloseLabel, buttonActionLabel, onAction, buttonCloseProps, buttonActionProps, classNames, ...props }: DrawerProps) => JSX.Element;
 export {};

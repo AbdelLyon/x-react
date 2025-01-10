@@ -93,7 +93,7 @@ const ModalButtons = ({
         <Button
           className={cn("border-primary/50", buttonCloseProps?.className)}
           variant={buttonCloseProps?.variant ?? "bordered"}
-          onPress={onClose}
+          onClick={onClose}
           {...defaultButtonProps}
           {...buttonCloseProps}
         >
@@ -103,7 +103,7 @@ const ModalButtons = ({
 
       {hasValidActionButton && (
         <Button
-          onPress={handleAction}
+          onClick={handleAction}
           {...defaultButtonProps}
           {...buttonActionProps}
         >
