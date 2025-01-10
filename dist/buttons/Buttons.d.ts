@@ -1,4 +1,6 @@
-import { ButtonGroupProps, ButtonProps } from '@nextui-org/button';
+import { JSX } from 'react';
+import { ButtonGroupProps } from '@nextui-org/button';
+import { ButtonProps } from '../button/Button';
 export interface ButtonsProps extends ButtonGroupProps {
     buttons: Array<{
         key: string | number;
@@ -6,4 +8,4 @@ export interface ButtonsProps extends ButtonGroupProps {
         buttonProps?: ButtonProps;
     }>;
 }
-export declare const Buttons: import('react').ForwardRefExoticComponent<Omit<ButtonsProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
+export declare const Buttons: ({ buttons, ...props }: ButtonsProps) => JSX.Element;
