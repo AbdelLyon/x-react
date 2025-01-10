@@ -30,88 +30,77 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
-import { forwardRef } from "react";
 import { Button as Button$1 } from "@nextui-org/button";
 import { cn } from "../../utils/index.es.js";
-const Button = forwardRef(
-  (_a, ref) => {
-    var _b = _a, {
-      fullWidth = false,
-      isLoading = false,
-      isDisabled = false,
-      startContent,
-      endContent,
-      className = "",
-      LinkComponent,
-      variant = "solid",
-      classNames = {
-        base: "",
-        beforeContent: "",
-        afterContent: "",
-        content: ""
-      },
-      href,
-      children,
-      target,
-      rel
-    } = _b, props = __objRest(_b, [
-      "fullWidth",
-      "isLoading",
-      "isDisabled",
-      "startContent",
-      "endContent",
-      "className",
-      "LinkComponent",
-      "variant",
-      "classNames",
-      "href",
-      "children",
-      "target",
-      "rel"
-    ]);
-    const baseStyles = cn(
-      "transition-none font-normal border-1 rounded-md",
-      fullWidth && "w-full",
-      isLoading && "opacity-50 cursor-not-allowed",
-      classNames.base,
-      className
-    );
-    const Content = () => /* @__PURE__ */ jsxs(Fragment, { children: [
-      startContent !== void 0 && /* @__PURE__ */ jsx("span", { className: cn("mr-2", classNames.beforeContent), children: startContent }),
-      /* @__PURE__ */ jsx("span", { className: classNames.content, children }),
-      endContent !== void 0 && /* @__PURE__ */ jsx("span", { className: cn("ml-2", classNames.afterContent), children: endContent })
-    ] });
-    const hasValidLink = href !== void 0 && href.length > 0 && LinkComponent !== void 0 && LinkComponent !== void 0;
-    if (hasValidLink) {
-      return /* @__PURE__ */ jsx(
-        Button$1,
-        __spreadProps(__spreadValues({
-          ref
-        }, props), {
-          as: LinkComponent,
-          variant,
-          className: baseStyles,
-          href,
-          rel: target === "_blank" ? "noopener noreferrer" : rel,
-          target,
-          children: /* @__PURE__ */ jsx(Content, {})
-        })
-      );
-    }
+const Button = (_a) => {
+  var _b = _a, {
+    onCLick,
+    rounded,
+    startContent,
+    endContent,
+    LinkComponent,
+    classNames = {
+      base: "",
+      beforeContent: "",
+      afterContent: "",
+      content: ""
+    },
+    href,
+    children,
+    target,
+    rel
+  } = _b, props = __objRest(_b, [
+    "onCLick",
+    "rounded",
+    "startContent",
+    "endContent",
+    "LinkComponent",
+    "classNames",
+    "href",
+    "children",
+    "target",
+    "rel"
+  ]);
+  const baseStyles = cn(
+    "transition-none font-normal border-1 rounded border-default",
+    props.fullWidth && "w-full",
+    props.isLoading && "opacity-50 cursor-not-allowed",
+    classNames.base,
+    props.className
+  );
+  const Content = () => /* @__PURE__ */ jsxs(Fragment, { children: [
+    startContent !== void 0 && /* @__PURE__ */ jsx("span", { className: cn("mr-2", classNames.beforeContent), children: startContent }),
+    /* @__PURE__ */ jsx("span", { className: classNames.content, children }),
+    endContent !== void 0 && /* @__PURE__ */ jsx("span", { className: cn("ml-2", classNames.afterContent), children: endContent })
+  ] });
+  const hasValidLink = href !== void 0 && href.length > 0 && LinkComponent !== void 0;
+  if (hasValidLink) {
     return /* @__PURE__ */ jsx(
       Button$1,
       __spreadProps(__spreadValues({
-        ref
-      }, props), {
-        variant,
+        as: LinkComponent,
         className: baseStyles,
-        isDisabled,
+        href,
+        rel: target === "_blank" ? "noopener noreferrer" : rel,
+        target,
+        onPress: onCLick,
+        radius: rounded
+      }, props), {
         children: /* @__PURE__ */ jsx(Content, {})
       })
     );
   }
-);
-Button.displayName = "Button";
+  return /* @__PURE__ */ jsx(
+    Button$1,
+    __spreadProps(__spreadValues({
+      className: baseStyles,
+      onPress: onCLick,
+      radius: rounded
+    }, props), {
+      children: /* @__PURE__ */ jsx(Content, {})
+    })
+  );
+};
 export {
   Button
 };

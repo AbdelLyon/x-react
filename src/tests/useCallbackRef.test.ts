@@ -3,7 +3,6 @@ import { renderHook } from "@testing-library/react";
 import type { Mock } from "vitest";
 import { describe, it, expect, vi } from "vitest";
 
-// Définition des types
 type CallbackFunction = (...args: unknown[]) => void;
 type MockCallback = Mock<CallbackFunction>;
 

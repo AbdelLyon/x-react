@@ -55,7 +55,7 @@ const Alert = forwardRef(
       onClose == null ? void 0 : onClose();
       handleVisibilityChange(false);
     };
-    if (isVisible === false) {
+    if (!isVisible) {
       return null;
     }
     return /* @__PURE__ */ jsx(
@@ -65,7 +65,7 @@ const Alert = forwardRef(
         isClosable,
         onVisibleChange: handleVisibilityChange,
         onClose: handleClose,
-        closeButton: isClosable !== void 0 ? /* @__PURE__ */ jsx(
+        closeButton: isClosable ? /* @__PURE__ */ jsx(
           Button,
           __spreadProps(__spreadValues({
             size: "sm",

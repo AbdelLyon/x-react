@@ -32,7 +32,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
       handleVisibilityChange(false);
     };
 
-    if (isVisible === false) {
+    if (!isVisible) {
       return null;
     }
 
@@ -44,7 +44,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
         onVisibleChange={handleVisibilityChange}
         onClose={handleClose}
         closeButton={
-          isClosable !== undefined ? (
+          isClosable ? (
             <Button
               size="sm"
               variant="light"
