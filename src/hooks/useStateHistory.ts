@@ -12,16 +12,11 @@ export interface StateHistory<T> {
   current: number;
 }
 
-export type UseStateHistoryReturn<T> = [
-  T,
-  UseStateHistoryHandlers<T>,
-  StateHistory<T>,
-];
-
-type State<T> = {
-  history: T[];
-  current: number;
-};
+export interface UseStateHistoryReturn<T> {
+  value: T;
+  handlers: UseStateHistoryHandlers<T>;
+  state: StateHistory<T>;
+}
 
 export const useStateHistory = <T>(
   initialValue: T,
@@ -33,7 +28,7 @@ export const useStateHistory = <T>(
 
   const handlers: UseStateHistoryHandlers<T> = {
     set: (value: T): void => {
-      setState((currentState): State<T> => {
+      setState((currentState): StateHistory<T> => {
         const nextState = [
           ...currentState.history.slice(0, currentState.current + 1),
           value,
@@ -47,7 +42,7 @@ export const useStateHistory = <T>(
 
     back: (steps: number = 1): void => {
       setState(
-        (currentState): State<T> => ({
+        (currentState): StateHistory<T> => ({
           history: currentState.history,
           current: Math.max(0, currentState.current - steps),
         }),
@@ -56,7 +51,7 @@ export const useStateHistory = <T>(
 
     forward: (steps: number = 1): void => {
       setState(
-        (currentState): State<T> => ({
+        (currentState): StateHistory<T> => ({
           history: currentState.history,
           current: Math.min(
             currentState.history.length - 1,
@@ -74,5 +69,9 @@ export const useStateHistory = <T>(
     },
   };
 
-  return [state.history[state.current], handlers, state];
+  return {
+    value: state.history[state.current],
+    handlers,
+    state,
+  };
 };

@@ -9,9 +9,9 @@ describe("useStateHistory", (): void => {
       (): UseStateHistoryReturn<string> => useStateHistory("initial"),
     );
 
-    expect(result.current[0]).toBe("initial");
-    expect(result.current[2].history).toEqual(["initial"]);
-    expect(result.current[2].current).toBe(0);
+    expect(result.current.value).toBe("initial");
+    expect(result.current.state.history).toEqual(["initial"]);
+    expect(result.current.state.current).toBe(0);
   });
 
   it("devrait permettre d'ajouter de nouvelles valeurs", (): void => {
@@ -20,12 +20,15 @@ describe("useStateHistory", (): void => {
     );
 
     act((): void => {
-      result.current[1].set("nouvelle valeur");
+      result.current.handlers.set("nouvelle valeur");
     });
 
-    expect(result.current[0]).toBe("nouvelle valeur");
-    expect(result.current[2].history).toEqual(["initial", "nouvelle valeur"]);
-    expect(result.current[2].current).toBe(1);
+    expect(result.current.value).toBe("nouvelle valeur");
+    expect(result.current.state.history).toEqual([
+      "initial",
+      "nouvelle valeur",
+    ]);
+    expect(result.current.state.current).toBe(1);
   });
 
   it("devrait permettre de naviguer en arrière", (): void => {
@@ -34,16 +37,16 @@ describe("useStateHistory", (): void => {
     );
 
     act((): void => {
-      result.current[1].set("valeur 1");
-      result.current[1].set("valeur 2");
+      result.current.handlers.set("valeur 1");
+      result.current.handlers.set("valeur 2");
     });
 
     act((): void => {
-      result.current[1].back();
+      result.current.handlers.back();
     });
 
-    expect(result.current[0]).toBe("valeur 1");
-    expect(result.current[2].current).toBe(1);
+    expect(result.current.value).toBe("valeur 1");
+    expect(result.current.state.current).toBe(1);
   });
 
   it("devrait permettre de naviguer en avant", (): void => {
@@ -52,14 +55,14 @@ describe("useStateHistory", (): void => {
     );
 
     act((): void => {
-      result.current[1].set("valeur 1");
-      result.current[1].set("valeur 2");
-      result.current[1].back(2);
-      result.current[1].forward();
+      result.current.handlers.set("valeur 1");
+      result.current.handlers.set("valeur 2");
+      result.current.handlers.back(2);
+      result.current.handlers.forward();
     });
 
-    expect(result.current[0]).toBe("valeur 1");
-    expect(result.current[2].current).toBe(1);
+    expect(result.current.value).toBe("valeur 1");
+    expect(result.current.state.current).toBe(1);
   });
 
   it("devrait permettre de réinitialiser l'historique", (): void => {
@@ -68,14 +71,14 @@ describe("useStateHistory", (): void => {
     );
 
     act((): void => {
-      result.current[1].set("valeur 1");
-      result.current[1].set("valeur 2");
-      result.current[1].reset();
+      result.current.handlers.set("valeur 1");
+      result.current.handlers.set("valeur 2");
+      result.current.handlers.reset();
     });
 
-    expect(result.current[0]).toBe("initial");
-    expect(result.current[2].history).toEqual(["initial"]);
-    expect(result.current[2].current).toBe(0);
+    expect(result.current.value).toBe("initial");
+    expect(result.current.state.history).toEqual(["initial"]);
+    expect(result.current.state.current).toBe(0);
   });
 
   it("devrait gérer les limites de navigation", (): void => {
@@ -84,18 +87,18 @@ describe("useStateHistory", (): void => {
     );
 
     act((): void => {
-      result.current[1].back(10);
+      result.current.handlers.back(10);
     });
 
-    expect(result.current[0]).toBe("initial");
-    expect(result.current[2].current).toBe(0);
+    expect(result.current.value).toBe("initial");
+    expect(result.current.state.current).toBe(0);
 
     act((): void => {
-      result.current[1].forward(10);
+      result.current.handlers.forward(10);
     });
 
-    expect(result.current[0]).toBe("initial");
-    expect(result.current[2].current).toBe(0);
+    expect(result.current.value).toBe("initial");
+    expect(result.current.state.current).toBe(0);
   });
 
   it("devrait tronquer l'historique futur lors d'un nouvel ajout", (): void => {
@@ -104,17 +107,17 @@ describe("useStateHistory", (): void => {
     );
 
     act((): void => {
-      result.current[1].set("valeur 1");
-      result.current[1].set("valeur 2");
-      result.current[1].back(1);
-      result.current[1].set("nouvelle valeur");
+      result.current.handlers.set("valeur 1");
+      result.current.handlers.set("valeur 2");
+      result.current.handlers.back(1);
+      result.current.handlers.set("nouvelle valeur");
     });
 
-    expect(result.current[2].history).toEqual([
+    expect(result.current.state.history).toEqual([
       "initial",
       "valeur 1",
       "nouvelle valeur",
     ]);
-    expect(result.current[0]).toBe("nouvelle valeur");
+    expect(result.current.value).toBe("nouvelle valeur");
   });
 });

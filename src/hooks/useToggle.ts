@@ -5,10 +5,11 @@ type ToggleReducer<T> = (
   state: readonly T[],
   action: ToggleReducerAction<T>,
 ) => T[];
-export type ToggleReturn<T> = readonly [
-  T,
-  (value?: ToggleReducerAction<T>) => void,
-];
+
+export type ToggleReturn<T> = {
+  current: T;
+  toggle: (value?: ToggleReducerAction<T>) => void;
+};
 
 export const useToggle = <T = boolean>(
   options: readonly T[] = [false, true] as unknown as readonly T[],
@@ -21,8 +22,8 @@ export const useToggle = <T = boolean>(
 
   const [[currentOption], toggle] = useReducer(reducer, [...options]);
 
-  return [
-    currentOption,
-    toggle as (value?: ToggleReducerAction<T>) => void,
-  ] as const;
+  return {
+    current: currentOption,
+    toggle: toggle as (value?: ToggleReducerAction<T>) => void,
+  };
 };
