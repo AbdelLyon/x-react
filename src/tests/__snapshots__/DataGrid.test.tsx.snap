@@ -1,0 +1,1184 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec contenu personnalisé des cellules 1`] = `
+<div>
+  <div
+    class="flex flex-col relative gap-4 w-full"
+  >
+    <div
+      class="p-4 z-0 flex flex-col relative justify-between gap-4 bg-content1 overflow-auto rounded-large shadow-small w-full"
+    >
+      <table
+        aria-describedby=""
+        aria-label="data-grid"
+        class="min-w-full h-auto table-auto w-full"
+        id="react-aria-:r6:"
+        role="grid"
+        tabindex="0"
+      >
+        <thead
+          class="[&>tr]:first:rounded-lg"
+          role="rowgroup"
+        >
+          <tr
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            role="row"
+          >
+            <th
+              aria-label="Nom"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="name"
+              id="react-aria-:r6:-name"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Nom
+                <div
+                  aria-label="Sort by Nom"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+            <th
+              aria-label="Âge"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="age"
+              id="react-aria-:r6:-age"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Âge
+                <div
+                  aria-label="Sort by Âge"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+            <th
+              aria-label="Actions"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="actions"
+              id="react-aria-:r6:-actions"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Actions
+                <div
+                  aria-label="Sort by Actions"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr
+            aria-hidden="true"
+            class="w-px h-px block"
+            style="margin-left: 0.25rem; margin-top: 0.25rem;"
+            tabindex="-1"
+          />
+        </thead>
+        <tbody
+          role="rowgroup"
+        >
+          <tr
+            aria-labelledby="react-aria-:r6:-1-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-first="true"
+            data-key="1"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="11name"
+              id="react-aria-:r6:-1-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                John Doe
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="11age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                30
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="11actions"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <button>
+                Modifier
+              </button>
+            </td>
+          </tr>
+          <tr
+            aria-labelledby="react-aria-:r6:-2-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-key="2"
+            data-middle="true"
+            data-odd="true"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="22name"
+              id="react-aria-:r6:-2-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                Jane Smith
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="22age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                25
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="22actions"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <button>
+                Modifier
+              </button>
+            </td>
+          </tr>
+          <tr
+            aria-labelledby="react-aria-:r6:-3-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-key="3"
+            data-last="true"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="33name"
+              id="react-aria-:r6:-3-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                Bob Johnson
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="33age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                35
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="33actions"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <button>
+                Modifier
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec données de base 1`] = `
+<div>
+  <div
+    class="flex flex-col relative gap-4 w-full"
+  >
+    <div
+      class="p-4 z-0 flex flex-col relative justify-between gap-4 bg-content1 overflow-auto rounded-large shadow-small w-full"
+    >
+      <table
+        aria-describedby=""
+        aria-label="data-grid"
+        class="min-w-full h-auto table-auto w-full"
+        id="react-aria-:r0:"
+        role="grid"
+        tabindex="0"
+      >
+        <thead
+          class="[&>tr]:first:rounded-lg"
+          role="rowgroup"
+        >
+          <tr
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            role="row"
+          >
+            <th
+              aria-label="Nom"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="name"
+              id="react-aria-:r0:-name"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Nom
+                <div
+                  aria-label="Sort by Nom"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+            <th
+              aria-label="Âge"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="age"
+              id="react-aria-:r0:-age"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Âge
+                <div
+                  aria-label="Sort by Âge"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr
+            aria-hidden="true"
+            class="w-px h-px block"
+            style="margin-left: 0.25rem; margin-top: 0.25rem;"
+            tabindex="-1"
+          />
+        </thead>
+        <tbody
+          role="rowgroup"
+        >
+          <tr
+            aria-labelledby="react-aria-:r0:-1-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-first="true"
+            data-key="1"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="11name"
+              id="react-aria-:r0:-1-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                John Doe
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="11age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                30
+              </span>
+            </td>
+          </tr>
+          <tr
+            aria-labelledby="react-aria-:r0:-2-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-key="2"
+            data-middle="true"
+            data-odd="true"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="22name"
+              id="react-aria-:r0:-2-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                Jane Smith
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="22age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                25
+              </span>
+            </td>
+          </tr>
+          <tr
+            aria-labelledby="react-aria-:r0:-3-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-key="3"
+            data-last="true"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="33name"
+              id="react-aria-:r0:-3-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                Bob Johnson
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="33age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                35
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec variante de style 1`] = `
+<div>
+  <div
+    class="flex flex-col relative gap-4 w-full"
+  >
+    <div
+      class="p-4 z-0 flex flex-col relative justify-between gap-4 bg-content1 overflow-auto rounded-large shadow-small w-full"
+    >
+      <table
+        aria-describedby=""
+        aria-label="data-grid"
+        class="min-w-full h-auto table-auto w-full"
+        id="react-aria-:r8:"
+        role="grid"
+        tabindex="0"
+      >
+        <thead
+          class="[&>tr]:first:rounded-lg"
+          role="rowgroup"
+        >
+          <tr
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
+            role="row"
+          >
+            <th
+              aria-label="Nom"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="name"
+              id="react-aria-:r8:-name"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Nom
+                <div
+                  aria-label="Sort by Nom"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+            <th
+              aria-label="Âge"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="age"
+              id="react-aria-:r8:-age"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Âge
+                <div
+                  aria-label="Sort by Âge"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr
+            aria-hidden="true"
+            class="w-px h-px block"
+            style="margin-left: 0.25rem; margin-top: 0.25rem;"
+            tabindex="-1"
+          />
+        </thead>
+        <tbody
+          role="rowgroup"
+        >
+          <tr
+            aria-labelledby="react-aria-:r8:-1-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
+            data-first="true"
+            data-key="1"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="11name"
+              id="react-aria-:r8:-1-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                John Doe
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="11age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                30
+              </span>
+            </td>
+          </tr>
+          <tr
+            aria-labelledby="react-aria-:r8:-2-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
+            data-key="2"
+            data-middle="true"
+            data-odd="true"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="22name"
+              id="react-aria-:r8:-2-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                Jane Smith
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="22age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                25
+              </span>
+            </td>
+          </tr>
+          <tr
+            aria-labelledby="react-aria-:r8:-3-name"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
+            data-key="3"
+            data-last="true"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="33name"
+              id="react-aria-:r8:-3-name"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <span>
+                Bob Johnson
+              </span>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="33age"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <span>
+                35
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en état de chargement 1`] = `
+<div>
+  <div
+    class="flex flex-col relative gap-4 w-full"
+  >
+    <div
+      class="p-4 z-0 flex flex-col relative justify-between gap-4 bg-content1 overflow-auto rounded-small shadow-small w-full"
+    >
+      <table
+        aria-describedby=""
+        aria-label="Loading data"
+        class="min-w-full h-auto table-auto w-full"
+        id="react-aria-:r4:"
+        role="grid"
+        tabindex="0"
+      >
+        <thead
+          class="[&>tr]:first:rounded-lg"
+          role="rowgroup"
+        >
+          <tr
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
+            role="row"
+          >
+            <th
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="0"
+              id="react-aria-:r4:-0"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 size-4 rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </th>
+            <th
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="1"
+              id="react-aria-:r4:-1"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 h-4 w-24 rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </th>
+            <th
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="2"
+              id="react-aria-:r4:-2"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 h-4 w-24 rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </th>
+          </tr>
+          <tr
+            aria-hidden="true"
+            class="w-px h-px block"
+            style="margin-left: 0.25rem; margin-top: 0.25rem;"
+            tabindex="-1"
+          />
+        </thead>
+        <tbody
+          role="rowgroup"
+        >
+          <tr
+            aria-labelledby="react-aria-:r4:-0-0"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-first="true"
+            data-key="0"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="0"
+              id="react-aria-:r4:-0-0"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 size-4 rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="1"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 h-4 w-full max-w-[200px] rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="2"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 h-4 w-full max-w-[200px] rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+          </tr>
+          <tr
+            aria-labelledby="react-aria-:r4:-1-0"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-key="1"
+            data-middle="true"
+            data-odd="true"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="0"
+              id="react-aria-:r4:-1-0"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 size-4 rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="1"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 h-4 w-full max-w-[200px] rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="2"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 h-4 w-full max-w-[200px] rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+          </tr>
+          <tr
+            aria-labelledby="react-aria-:r4:-2-0"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            data-key="2"
+            data-last="true"
+            role="row"
+            tabindex="-1"
+          >
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="0"
+              id="react-aria-:r4:-2-0"
+              role="rowheader"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 size-4 rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="1"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 h-4 w-full max-w-[200px] rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+            <td
+              class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
+              data-key="2"
+              role="gridcell"
+              tabindex="-1"
+            >
+              <div
+                class="group relative overflow-hidden bg-content3 dark:bg-content2 pointer-events-none before:opacity-100 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:border-t before:border-content4/30 before:bg-gradient-to-r before:from-transparent before:via-content4 dark:before:via-default-700/10 before:to-transparent after:opacity-100 after:absolute after:inset-0 after:-z-10 after:bg-content3 dark:after:bg-content2 data-[loaded=true]:pointer-events-auto data-[loaded=true]:overflow-visible data-[loaded=true]:!bg-transparent data-[loaded=true]:before:opacity-0 data-[loaded=true]:before:-z-10 data-[loaded=true]:before:animate-none data-[loaded=true]:after:opacity-0 transition-background !duration-300 h-4 w-full max-w-[200px] rounded-md"
+              >
+                <div
+                  class="opacity-0 group-data-[loaded=true]:opacity-100 transition-opacity motion-reduce:transition-none !duration-300"
+                />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot sans données 1`] = `
+<div>
+  <div
+    class="flex flex-col relative gap-4 w-full"
+  >
+    <div
+      class="p-4 z-0 flex flex-col relative justify-between gap-4 bg-content1 overflow-auto rounded-large shadow-small w-full"
+    >
+      <table
+        aria-describedby=""
+        aria-label="data-grid"
+        class="min-w-full h-auto table-auto w-full"
+        id="react-aria-:r2:"
+        role="grid"
+        tabindex="0"
+      >
+        <thead
+          class="[&>tr]:first:rounded-lg"
+          role="rowgroup"
+        >
+          <tr
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
+            role="row"
+          >
+            <th
+              aria-label="Nom"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="name"
+              id="react-aria-:r2:-name"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Nom
+                <div
+                  aria-label="Sort by Nom"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+            <th
+              aria-label="Âge"
+              class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
+              data-key="age"
+              id="react-aria-:r2:-age"
+              role="columnheader"
+              tabindex="-1"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                Âge
+                <div
+                  aria-label="Sort by Âge"
+                  class="relative size-4 cursor-pointer"
+                  role="button"
+                >
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-up absolute -top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 15l6 -6l6 6"
+                    />
+                  </svg>
+                  <svg
+                    class="tabler-icon tabler-icon-chevron-down absolute top-1 opacity-30"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9l6 6l6 -6"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr
+            aria-hidden="true"
+            class="w-px h-px block"
+            style="margin-left: 0.25rem; margin-top: 0.25rem;"
+            tabindex="-1"
+          />
+        </thead>
+        <tbody
+          data-empty="true"
+          role="rowgroup"
+        />
+      </table>
+    </div>
+  </div>
+</div>
+`;

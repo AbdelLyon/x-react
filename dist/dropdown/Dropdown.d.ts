@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { DropdownProps, DropdownMenuProps } from '@nextui-org/dropdown';
 export type DropdownItemConfig = {
     key: string;
@@ -21,5 +22,5 @@ type Props = {
     dropdownMenuProps?: DropdownMenuProps;
     onItemPress?: (item: DropdownItemConfig) => void;
 } & Omit<DropdownProps, "trigger" | "children">;
-export declare const Dropdown: import('react').ForwardRefExoticComponent<Omit<Props, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
+export declare const Dropdown: ({ trigger, sections, dropdownMenuProps, onItemPress, classNames, ...props }: Props) => JSX.Element;
 export {};

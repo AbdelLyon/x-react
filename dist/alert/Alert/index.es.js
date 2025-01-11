@@ -32,20 +32,17 @@ var __objRest = (source, exclude) => {
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Alert as Alert$1 } from "@nextui-org/alert";
-import { Button } from "../../button/Button/index.es.js";
 const Alert = forwardRef(
   (_a, ref) => {
     var _b = _a, {
       onVisibleChange,
       onClose,
       isVisible = true,
-      closeButtonProps,
       isClosable = false
     } = _b, otherProps = __objRest(_b, [
       "onVisibleChange",
       "onClose",
       "isVisible",
-      "closeButtonProps",
       "isClosable"
     ]);
     const handleVisibilityChange = (visible) => {
@@ -64,17 +61,7 @@ const Alert = forwardRef(
         ref,
         isClosable,
         onVisibleChange: handleVisibilityChange,
-        onClose: handleClose,
-        closeButton: isClosable ? /* @__PURE__ */ jsx(
-          Button,
-          __spreadProps(__spreadValues({
-            size: "sm",
-            variant: "light"
-          }, closeButtonProps), {
-            onClick: handleClose,
-            children: "Close"
-          })
-        ) : null
+        onClose: handleClose
       })
     );
   }

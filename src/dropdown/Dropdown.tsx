@@ -1,5 +1,4 @@
 import type { JSX } from "react";
-import { forwardRef } from "react";
 import type { DropdownProps, DropdownMenuProps } from "@nextui-org/dropdown";
 import {
   Dropdown as DropdownRoot,
@@ -34,58 +33,57 @@ type Props = {
   onItemPress?: (item: DropdownItemConfig) => void;
 } & Omit<DropdownProps, "trigger" | "children">;
 
-export const Dropdown = forwardRef<HTMLDivElement, Props>(
-  (
-    { trigger, sections, dropdownMenuProps, onItemPress, classNames, ...props },
-    ref,
-  ): JSX.Element => {
-    const handleItemPress = (item: DropdownItemConfig): void => {
-      if (onItemPress) {
-        onItemPress(item);
-      }
-    };
+export const Dropdown = ({
+  trigger,
+  sections,
+  dropdownMenuProps,
+  onItemPress,
+  classNames,
+  ...props
+}: Props): JSX.Element => {
+  const handleItemPress = (item: DropdownItemConfig): void => {
+    if (onItemPress) {
+      onItemPress(item);
+    }
+  };
 
-    return (
-      <DropdownRoot
-        ref={ref}
-        showArrow
-        classNames={{
-          base: "before:bg-default-200",
-          content: "p-0 border border-default bg-background",
-          ...classNames,
-        }}
-        {...props}
-      >
-        <DropdownTrigger>{trigger}</DropdownTrigger>
-        <DropdownMenu className="p-3" {...dropdownMenuProps}>
-          {sections.map(
-            (section): JSX.Element => (
-              <DropdownSection
-                key={section.key}
-                showDivider={section.showDivider}
-                aria-label={section.label}
-              >
-                {section.items.map((item): JSX.Element => {
-                  const { key, label, href, ...remainingProps } = item;
-                  return (
-                    <DropdownItem
-                      key={key}
-                      onPress={(): void => {
-                        handleItemPress({ ...item, href });
-                      }}
-                      {...remainingProps}
-                    >
-                      {label}
-                    </DropdownItem>
-                  );
-                })}
-              </DropdownSection>
-            ),
-          )}
-        </DropdownMenu>
-      </DropdownRoot>
-    );
-  },
-);
-
-Dropdown.displayName = "Dropdown";
+  return (
+    <DropdownRoot
+      showArrow
+      classNames={{
+        base: "before:bg-default-200",
+        content: "p-0 border border-default bg-background",
+        ...classNames,
+      }}
+      {...props}
+    >
+      <DropdownTrigger>{trigger}</DropdownTrigger>
+      <DropdownMenu className="p-3" {...dropdownMenuProps}>
+        {sections.map(
+          (section): JSX.Element => (
+            <DropdownSection
+              key={section.key}
+              showDivider={section.showDivider}
+              aria-label={section.label}
+            >
+              {section.items.map((item): JSX.Element => {
+                const { key, label, href, ...remainingProps } = item;
+                return (
+                  <DropdownItem
+                    key={key}
+                    onPress={(): void => {
+                      handleItemPress({ ...item, href });
+                    }}
+                    {...remainingProps}
+                  >
+                    {label}
+                  </DropdownItem>
+                );
+              })}
+            </DropdownSection>
+          ),
+        )}
+      </DropdownMenu>
+    </DropdownRoot>
+  );
+};

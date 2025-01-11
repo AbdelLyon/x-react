@@ -3,7 +3,6 @@ import { forwardRef } from "react";
 import type { ButtonProps } from "@nextui-org/button";
 import type { AlertProps } from "@nextui-org/alert";
 import { Alert as AlertRoot } from "@nextui-org/alert";
-import { Button } from "@/button";
 
 interface Props extends AlertProps {
   closeButtonProps?: ButtonProps;
@@ -17,7 +16,6 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
       onVisibleChange,
       onClose,
       isVisible = true,
-      closeButtonProps,
       isClosable = false,
       ...otherProps
     },
@@ -43,18 +41,6 @@ export const Alert = forwardRef<HTMLDivElement, Props>(
         isClosable={isClosable}
         onVisibleChange={handleVisibilityChange}
         onClose={handleClose}
-        closeButton={
-          isClosable ? (
-            <Button
-              size="sm"
-              variant="light"
-              {...closeButtonProps}
-              onClick={handleClose}
-            >
-              Close
-            </Button>
-          ) : null
-        }
       />
     );
   },

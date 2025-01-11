@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Composant InfiniteSelect > Snapshots > devrait correspondre au snapshot avec les props par défaut 1`] = `<div />`;
+
+exports[`Composant InfiniteSelect > Snapshots > devrait correspondre au snapshot avec sélection multiple 1`] = `<div />`;

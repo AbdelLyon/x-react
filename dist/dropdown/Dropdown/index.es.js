@@ -30,58 +30,65 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsxs, jsx } from "react/jsx-runtime";
-import { forwardRef } from "react";
 import { Dropdown as Dropdown$1, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/dropdown";
-const Dropdown = forwardRef(
-  (_a, ref) => {
-    var _b = _a, { trigger, sections, dropdownMenuProps, onItemPress, classNames } = _b, props = __objRest(_b, ["trigger", "sections", "dropdownMenuProps", "onItemPress", "classNames"]);
-    const handleItemPress = (item) => {
-      if (onItemPress) {
-        onItemPress(item);
-      }
-    };
-    return /* @__PURE__ */ jsxs(
-      Dropdown$1,
-      __spreadProps(__spreadValues({
-        ref,
-        showArrow: true,
-        classNames: __spreadValues({
-          base: "before:bg-default-200",
-          content: "p-0 border border-default bg-background"
-        }, classNames)
-      }, props), {
-        children: [
-          /* @__PURE__ */ jsx(DropdownTrigger, { children: trigger }),
-          /* @__PURE__ */ jsx(DropdownMenu, __spreadProps(__spreadValues({ className: "p-3" }, dropdownMenuProps), { children: sections.map(
-            (section) => /* @__PURE__ */ jsx(
-              DropdownSection,
-              {
-                showDivider: section.showDivider,
-                "aria-label": section.label,
-                children: section.items.map((item) => {
-                  const _a2 = item, { key, label, href } = _a2, remainingProps = __objRest(_a2, ["key", "label", "href"]);
-                  return /* @__PURE__ */ jsx(
-                    DropdownItem,
-                    __spreadProps(__spreadValues({
-                      onPress: () => {
-                        handleItemPress(__spreadProps(__spreadValues({}, item), { href }));
-                      }
-                    }, remainingProps), {
-                      children: label
-                    }),
-                    key
-                  );
-                })
-              },
-              section.key
-            )
-          ) }))
-        ]
-      })
-    );
-  }
-);
-Dropdown.displayName = "Dropdown";
+const Dropdown = (_a) => {
+  var _b = _a, {
+    trigger,
+    sections,
+    dropdownMenuProps,
+    onItemPress,
+    classNames
+  } = _b, props = __objRest(_b, [
+    "trigger",
+    "sections",
+    "dropdownMenuProps",
+    "onItemPress",
+    "classNames"
+  ]);
+  const handleItemPress = (item) => {
+    if (onItemPress) {
+      onItemPress(item);
+    }
+  };
+  return /* @__PURE__ */ jsxs(
+    Dropdown$1,
+    __spreadProps(__spreadValues({
+      showArrow: true,
+      classNames: __spreadValues({
+        base: "before:bg-default-200",
+        content: "p-0 border border-default bg-background"
+      }, classNames)
+    }, props), {
+      children: [
+        /* @__PURE__ */ jsx(DropdownTrigger, { children: trigger }),
+        /* @__PURE__ */ jsx(DropdownMenu, __spreadProps(__spreadValues({ className: "p-3" }, dropdownMenuProps), { children: sections.map(
+          (section) => /* @__PURE__ */ jsx(
+            DropdownSection,
+            {
+              showDivider: section.showDivider,
+              "aria-label": section.label,
+              children: section.items.map((item) => {
+                const _a2 = item, { key, label, href } = _a2, remainingProps = __objRest(_a2, ["key", "label", "href"]);
+                return /* @__PURE__ */ jsx(
+                  DropdownItem,
+                  __spreadProps(__spreadValues({
+                    onPress: () => {
+                      handleItemPress(__spreadProps(__spreadValues({}, item), { href }));
+                    }
+                  }, remainingProps), {
+                    children: label
+                  }),
+                  key
+                );
+              })
+            },
+            section.key
+          )
+        ) }))
+      ]
+    })
+  );
+};
 export {
   Dropdown
 };

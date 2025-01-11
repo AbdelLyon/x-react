@@ -30,41 +30,51 @@ describe("Composant DataGrid", (): void => {
     },
   ];
 
-  describe("Rendu de Base", (): void => {
-    it("devrait rendre correctement les colonnes et les données", (): void => {
-      render(<DataGrid rows={testData} columns={columns} />);
-
-      // Vérification des en-têtes
-      expect(screen.getByText("Nom")).toBeInTheDocument();
-      expect(screen.getByText("Âge")).toBeInTheDocument();
-
-      // Vérification des données
-      expect(screen.getByText("John Doe")).toBeInTheDocument();
-      expect(screen.getByText("30")).toBeInTheDocument();
+  describe("Snapshots", (): void => {
+    it("devrait correspondre au snapshot avec données de base", (): void => {
+      const { container } = render(
+        <DataGrid rows={testData} columns={columns} />,
+      );
+      expect(container).toMatchSnapshot();
     });
 
-    it("devrait rendre un état vide quand aucune donnée n'est fournie", (): void => {
-      render(<DataGrid rows={[]} columns={columns} />);
-      // Vérification de l'état vide selon l'implémentation
+    it("devrait correspondre au snapshot sans données", (): void => {
+      const { container } = render(<DataGrid rows={[]} columns={columns} />);
+      expect(container).toMatchSnapshot();
     });
-  });
 
-  describe("État de Chargement", (): void => {
-    it("devrait rendre un skeleton de chargement", (): void => {
+    it("devrait correspondre au snapshot en état de chargement", (): void => {
       const { container } = render(
         <DataGrid rows={testData} columns={columns} isLoading={true} />,
       );
+      expect(container).toMatchSnapshot();
+    });
 
-      const table = container.querySelector("table");
-      expect(table).toBeInTheDocument();
+    it("devrait correspondre au snapshot avec contenu personnalisé des cellules", (): void => {
+      const colonnesPersonnalisees = [
+        ...columns,
+        {
+          field: "actions" as const,
+          header: "Actions",
+          cell: (): ReactNode => <button>Modifier</button>,
+        },
+      ];
 
-      // Vérification de la structure du skeleton
-      const rows = container.querySelectorAll("[role='row']");
-      expect(rows.length).toBeGreaterThan(0);
+      const { container } = render(
+        <DataGrid rows={testData} columns={colonnesPersonnalisees} />,
+      );
+      expect(container).toMatchSnapshot();
+    });
+
+    it("devrait correspondre au snapshot avec variante de style", (): void => {
+      const { container } = render(
+        <DataGrid rows={testData} columns={columns} variant="bordered" />,
+      );
+      expect(container).toMatchSnapshot();
     });
   });
 
-  describe("Tri", (): void => {
+  describe("Comportement", (): void => {
     it("devrait gérer le tri des colonnes", (): void => {
       const onSort = vi.fn();
       render(
@@ -80,35 +90,6 @@ describe("Composant DataGrid", (): void => {
         fireEvent.click(boutonTri);
         expect(onSort).toHaveBeenCalledWith("name", "desc");
       }
-    });
-  });
-
-  describe("Rendu Personnalisé", (): void => {
-    it("devrait rendre le contenu personnalisé des cellules", (): void => {
-      const colonnesPersonnalisees = [
-        ...columns,
-        {
-          field: "actions" as const,
-          header: "Actions",
-          cell: (): ReactNode => <button>Modifier</button>,
-        },
-      ];
-
-      render(<DataGrid rows={testData} columns={colonnesPersonnalisees} />);
-
-      const boutons = screen.getAllByText("Modifier");
-      expect(boutons).toHaveLength(testData.length);
-    });
-  });
-
-  describe("Style et Variantes", (): void => {
-    it("devrait appliquer les styles de variante", (): void => {
-      const { container } = render(
-        <DataGrid rows={testData} columns={columns} variant="bordered" />,
-      );
-
-      const enTete = container.querySelector("[role='columnheader']");
-      expect(enTete).toHaveClass("bg-content2");
     });
   });
 

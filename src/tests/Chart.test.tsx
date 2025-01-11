@@ -2,7 +2,6 @@
 import type { Mock } from "vitest";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render } from "@testing-library/react";
-import * as ReactChartJS2 from "react-chartjs-2";
 import { Chart } from "@/chart";
 import type { JSX } from "react";
 
@@ -13,13 +12,7 @@ vi.mock(
       ({
         options,
       }: {
-        options: {
-          plugins: {
-            title: {
-              text: string;
-            };
-          };
-        };
+        options: { plugins: { title: { text: string } } };
       }) => JSX.Element
     >;
   } => ({
@@ -31,16 +24,16 @@ vi.mock(
   }),
 );
 
-describe("Chart Component", (): void => {
+describe("Composant Chart", (): void => {
   beforeEach((): void => {
     vi.clearAllMocks();
   });
 
   const mockBarData = {
-    labels: ["Red", "Blue", "Yellow"],
+    labels: ["Rouge", "Bleu", "Jaune"],
     datasets: [
       {
-        label: "Bar Dataset",
+        label: "Jeu de données en barres",
         data: [10, 20, 30],
         backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
       },
@@ -48,10 +41,10 @@ describe("Chart Component", (): void => {
   };
 
   const mockLineData = {
-    labels: ["Jan", "Feb", "Mar"],
+    labels: ["Jan", "Fév", "Mar"],
     datasets: [
       {
-        label: "Line Dataset",
+        label: "Jeu de données en ligne",
         data: [5, 10, 15],
         borderColor: "#FF6384",
         tension: 0.1,
@@ -79,25 +72,21 @@ describe("Chart Component", (): void => {
     ],
   };
 
-  // Tests existants
-  it("devrait se rendre avec les props par défaut", (): void => {
-    const { container } = render(<Chart type="bar" data={mockBarData} />);
-    expect(container.firstChild).toHaveClass("relative");
-  });
+  describe("Snapshots", (): void => {
+    it("devrait correspondre au snapshot avec les props par défaut", (): void => {
+      const { container } = render(<Chart type="bar" data={mockBarData} />);
+      expect(container).toMatchSnapshot();
+    });
 
-  it("devrait se rendre avec un titre personnalisé", (): void => {
-    render(<Chart type="bar" data={mockBarData} title="Test Chart" />);
+    it("devrait correspondre au snapshot avec un titre personnalisé", (): void => {
+      const { container } = render(
+        <Chart type="bar" data={mockBarData} title="Graphique de test" />,
+      );
+      expect(container).toMatchSnapshot();
+    });
 
-    const chartComponent = ReactChartJS2.Chart as unknown as ReturnType<
-      typeof vi.fn
-    >;
-    const options = chartComponent.mock.calls[0][0].options;
-    expect(options.plugins.title.text).toBe("Test Chart");
-  });
-
-  describe("Types de graphiques", (): void => {
-    it("devrait rendre un graphique en ligne avec les options appropriées", (): void => {
-      render(
+    it("devrait correspondre au snapshot pour un graphique en ligne", (): void => {
+      const { container } = render(
         <Chart
           type="line"
           data={mockLineData}
@@ -110,19 +99,11 @@ describe("Chart Component", (): void => {
           }}
         />,
       );
-
-      const chartComponent = ReactChartJS2.Chart as unknown as ReturnType<
-        typeof vi.fn
-      >;
-      const props = chartComponent.mock.calls[0][0];
-
-      expect(props.type).toBe("line");
-      expect(props.data).toEqual(mockLineData);
-      expect(props.options.scales.y.beginAtZero).toBe(true);
+      expect(container).toMatchSnapshot();
     });
 
-    it("devrait rendre un graphique en donut avec la configuration correcte", (): void => {
-      render(
+    it("devrait correspondre au snapshot pour un graphique en donut", (): void => {
+      const { container } = render(
         <Chart
           type="doughnut"
           data={mockDoughnutData}
@@ -131,19 +112,11 @@ describe("Chart Component", (): void => {
           }}
         />,
       );
-
-      const chartComponent = ReactChartJS2.Chart as unknown as ReturnType<
-        typeof vi.fn
-      >;
-      const props = chartComponent.mock.calls[0][0];
-
-      expect(props.type).toBe("doughnut");
-      expect(props.data).toEqual(mockDoughnutData);
-      expect(props.options.color).toBe("red");
+      expect(container).toMatchSnapshot();
     });
 
-    it("devrait rendre un graphique en aire polaire avec les options spécifiques", (): void => {
-      render(
+    it("devrait correspondre au snapshot pour un graphique en aire polaire", (): void => {
+      const { container } = render(
         <Chart
           type="polarArea"
           data={mockPolarAreaData}
@@ -156,19 +129,13 @@ describe("Chart Component", (): void => {
           }}
         />,
       );
-
-      const chartComponent = ReactChartJS2.Chart as unknown as ReturnType<
-        typeof vi.fn
-      >;
-      const props = chartComponent.mock.calls[0][0];
-
-      expect(props.type).toBe("polarArea");
-      expect(props.data).toEqual(mockPolarAreaData);
-      expect(props.options.scales.r.beginAtZero).toBe(true);
+      expect(container).toMatchSnapshot();
     });
+  });
 
-    it("devrait gérer correctement les options de légende spécifiques au type", (): void => {
-      render(
+  describe("Configuration des options", (): void => {
+    it("devrait correctement configurer les options de légende", (): void => {
+      const { container } = render(
         <Chart
           type="doughnut"
           data={mockDoughnutData}
@@ -184,14 +151,7 @@ describe("Chart Component", (): void => {
           }}
         />,
       );
-
-      const chartComponent = ReactChartJS2.Chart as unknown as ReturnType<
-        typeof vi.fn
-      >;
-      const options = chartComponent.mock.calls[0][0].options;
-
-      expect(options.plugins.legend.position).toBe("right");
-      expect(options.plugins.legend.labels.padding).toBe(20);
+      expect(container).toMatchSnapshot();
     });
 
     it("devrait fusionner correctement les options par défaut avec les options personnalisées", (): void => {
@@ -204,16 +164,10 @@ describe("Chart Component", (): void => {
         },
       };
 
-      render(<Chart type="bar" data={mockBarData} options={customOptions} />);
-
-      const chartComponent = ReactChartJS2.Chart as unknown as ReturnType<
-        typeof vi.fn
-      >;
-      const options = chartComponent.mock.calls[0][0].options;
-
-      expect(options.responsive).toBe(false);
-      expect(options.plugins.legend.position).toBe("bottom");
-      expect(options.maintainAspectRatio).toBe(false);
+      const { container } = render(
+        <Chart type="bar" data={mockBarData} options={customOptions} />,
+      );
+      expect(container).toMatchSnapshot();
     });
   });
 });

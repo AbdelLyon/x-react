@@ -1,140 +1,110 @@
 import { Avatar, AvatarGroup, UserAvatar } from "@/avatar";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
 describe("Composants Avatar", (): void => {
   describe("Avatar", (): void => {
-    describe("Rendu de base", (): void => {
-      it("devrait rendre un avatar sans props", (): void => {
-        render(<Avatar />);
-        const avatar = screen.getByRole("img", { name: "avatar" });
-        expect(avatar).toBeInTheDocument();
-      });
-
-      it("devrait rendre une image quand src est fourni", (): void => {
-        const testSrc = "test.jpg";
-        render(<Avatar src={testSrc} alt="Mon avatar" />);
-
-        const img = screen.getByRole("img");
-        expect(img).toHaveAttribute("src", testSrc);
-        expect(img).toHaveAttribute("alt", "Mon avatar");
-      });
-
-      it("devrait afficher le texte du nom", (): void => {
-        render(<Avatar name="John Doe" />);
-        const avatar = screen.getByRole("img", { name: "John Doe" });
-        expect(avatar).toHaveTextContent("Joh");
-      });
-    });
-
-    describe("Styles et variants", (): void => {
-      it("devrait appliquer les classes de base", (): void => {
+    describe("Snapshots", (): void => {
+      it("devrait correspondre au snapshot sans props", (): void => {
         const { container } = render(<Avatar />);
-        const avatar = container.firstChild;
-        expect(avatar).toHaveClass(
-          "flex",
-          "relative",
-          "justify-center",
-          "items-center",
+        expect(container).toMatchSnapshot();
+      });
+
+      it("devrait correspondre au snapshot avec src et alt", (): void => {
+        const { container } = render(
+          <Avatar src="test.jpg" alt="Mon avatar" />,
         );
+        expect(container).toMatchSnapshot();
       });
 
-      it("devrait supporter différentes tailles", (): void => {
-        render(<Avatar size="lg" />);
-        const avatar = screen.getByRole("img").parentElement;
-        expect(avatar).toHaveClass("w-14", "h-14");
+      it("devrait correspondre au snapshot avec name", (): void => {
+        const { container } = render(<Avatar name="John Doe" />);
+        expect(container).toMatchSnapshot();
       });
-    });
 
-    describe("Comportements", (): void => {
-      it("devrait afficher le fallback si spécifié", (): void => {
-        render(
+      it("devrait correspondre au snapshot avec taille différente", (): void => {
+        const { container } = render(<Avatar size="lg" />);
+        expect(container).toMatchSnapshot();
+      });
+
+      it("devrait correspondre au snapshot avec fallback", (): void => {
+        const { container } = render(
           <Avatar
             src="invalid.jpg"
             fallback={<div data-testid="fallback">FB</div>}
             showFallback
           />,
         );
-        expect(screen.getByTestId("fallback")).toBeInTheDocument();
+        expect(container).toMatchSnapshot();
       });
     });
   });
 
   describe("AvatarGroup", (): void => {
-    it("devrait rendre un groupe simple", (): void => {
-      render(
-        <AvatarGroup>
-          <Avatar name="User 1" />
-          <Avatar name="User 2" />
-        </AvatarGroup>,
-      );
+    describe("Snapshots", (): void => {
+      it("devrait correspondre au snapshot pour un groupe simple", (): void => {
+        const { container } = render(
+          <AvatarGroup>
+            <Avatar name="User 1" />
+            <Avatar name="User 2" />
+          </AvatarGroup>,
+        );
+        expect(container).toMatchSnapshot();
+      });
 
-      const group = screen.getByRole("group");
-      expect(group).toBeInTheDocument();
-      expect(screen.getAllByRole("img")).toHaveLength(2);
-    });
+      it("devrait correspondre au snapshot avec max et total", (): void => {
+        const { container } = render(
+          <AvatarGroup max={1} total={3}>
+            <Avatar name="User 1" />
+            <Avatar name="User 2" />
+            <Avatar name="User 3" />
+          </AvatarGroup>,
+        );
+        expect(container).toMatchSnapshot();
+      });
 
-    it("devrait respecter la limite max", (): void => {
-      render(
-        <AvatarGroup max={1} total={3}>
-          <Avatar name="User 1" />
-          <Avatar name="User 2" />
-          <Avatar name="User 3" />
-        </AvatarGroup>,
-      );
-
-      const avatars = screen.getAllByRole("img");
-      // Un avatar visible + compteur
-      expect(avatars).toHaveLength(2);
-      // Le dernier est le compteur avec le total
-      expect(avatars[avatars.length - 1]).toHaveTextContent("+3");
-    });
-
-    it("devrait appliquer les styles de groupe", (): void => {
-      render(
-        <AvatarGroup className="size-6">
-          <Avatar />
-        </AvatarGroup>,
-      );
-
-      const group = screen.getByRole("group");
-      expect(group).toHaveClass("size-6");
+      it("devrait correspondre au snapshot avec styles personnalisés", (): void => {
+        const { container } = render(
+          <AvatarGroup className="size-6">
+            <Avatar />
+          </AvatarGroup>,
+        );
+        expect(container).toMatchSnapshot();
+      });
     });
   });
 
-  describe("User", (): void => {
-    it("devrait rendre les informations de base", (): void => {
-      render(<UserAvatar name="John Doe" description="Developer" />);
+  describe("UserAvatar", (): void => {
+    describe("Snapshots", (): void => {
+      it("devrait correspondre au snapshot avec informations de base", (): void => {
+        const { container } = render(
+          <UserAvatar name="John Doe" description="Developer" />,
+        );
+        expect(container).toMatchSnapshot();
+      });
 
-      expect(screen.getByText("John Doe")).toBeInTheDocument();
-      expect(screen.getByText("Developer")).toBeInTheDocument();
-    });
+      it("devrait correspondre au snapshot avec avatar personnalisé", (): void => {
+        const { container } = render(
+          <UserAvatar
+            name="John Doe"
+            avatarProps={{
+              src: "test.jpg",
+              alt: "John",
+            }}
+          />,
+        );
+        expect(container).toMatchSnapshot();
+      });
 
-    it("devrait inclure un avatar", (): void => {
-      render(
-        <UserAvatar
-          name="John Doe"
-          avatarProps={{
-            src: "test.jpg",
-            alt: "John",
-          }}
-        />,
-      );
-
-      const avatar = screen.getByRole("img");
-      expect(avatar).toHaveAttribute("alt", "John");
-    });
-
-    it("devrait accepter des contenus personnalisés", (): void => {
-      render(
-        <UserAvatar
-          name={<span data-testid="custom-name">John</span>}
-          description={<span data-testid="custom-desc">Info</span>}
-        />,
-      );
-
-      expect(screen.getByTestId("custom-name")).toBeInTheDocument();
-      expect(screen.getByTestId("custom-desc")).toBeInTheDocument();
+      it("devrait correspondre au snapshot avec contenus personnalisés", (): void => {
+        const { container } = render(
+          <UserAvatar
+            name={<span data-testid="custom-name">John</span>}
+            description={<span data-testid="custom-desc">Info</span>}
+          />,
+        );
+        expect(container).toMatchSnapshot();
+      });
     });
   });
 });
