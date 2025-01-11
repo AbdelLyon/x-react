@@ -1,7 +1,7 @@
 // src/components/ui/layout/Container.tsx
 import type { ReactNode, ForwardedRef, JSX } from "react";
 import { forwardRef } from "react";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 interface ContainerProps {
   children: ReactNode;
@@ -14,7 +14,7 @@ export const Container = forwardRef(
     { children, maxWidth = "lg", className }: ContainerProps,
     ref: ForwardedRef<HTMLDivElement>,
   ): JSX.Element => {
-    const containerClasses = cn(
+    const containerClasses = mergeTailwindClasses(
       "mx-auto px-4",
       {
         "max-w-screen-sm": maxWidth === "sm",

@@ -7,7 +7,7 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/table";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import type { JSX } from "react";
 import { GRID_VARIANTS } from "@/data/default";
 
@@ -31,12 +31,15 @@ export const DataGridSkeleton = ({
 
   return (
     <Table radius="sm" aria-label="Loading data" className={className}>
-      <TableHeader className={cn(variantClasses.thead)}>
+      <TableHeader className={mergeTailwindClasses(variantClasses.thead)}>
         {Array(actualColumns)
           .fill(null)
           .map(
             (_, index): JSX.Element => (
-              <TableColumn key={index} className={cn(variantClasses.th)}>
+              <TableColumn
+                key={index}
+                className={mergeTailwindClasses(variantClasses.th)}
+              >
                 {index === 0 && checkboxSelection ? (
                   <Skeleton className="size-4 rounded-md" />
                 ) : (
@@ -52,7 +55,10 @@ export const DataGridSkeleton = ({
           .fill(null)
           .map(
             (_, rowIndex): JSX.Element => (
-              <TableRow key={rowIndex} className={cn(variantClasses.tr)}>
+              <TableRow
+                key={rowIndex}
+                className={mergeTailwindClasses(variantClasses.tr)}
+              >
                 {Array(actualColumns)
                   .fill(null)
                   .map(

@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { DatePicker as DatePicker$1, DateRangePicker as DateRangePicker$1 } from "@nextui-org/date-picker";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const getVariantStyles = (variant = "bordered") => {
   switch (variant) {
     case "bordered":
@@ -73,7 +73,7 @@ const DatePicker = forwardRef(
       "containerClasses"
     ]);
     const _a2 = props, { classNames: propClassNames } = _a2, restProps = __objRest(_a2, ["classNames"]);
-    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ jsx("div", { className: mergeTailwindClasses("w-full", containerClasses), children: /* @__PURE__ */ jsx(
       DatePicker$1,
       __spreadValues({
         ref,
@@ -87,7 +87,7 @@ const DatePicker = forwardRef(
         isReadOnly,
         isDisabled,
         classNames: __spreadProps(__spreadValues({}, propClassNames), {
-          inputWrapper: cn(
+          inputWrapper: mergeTailwindClasses(
             getVariantStyles(variant),
             propClassNames == null ? void 0 : propClassNames.inputWrapper
           )
@@ -122,7 +122,7 @@ const DateRangePicker = forwardRef(
       "containerClasses"
     ]);
     const _a = props, { classNames: propClassNames } = _a, restProps = __objRest(_a, ["classNames"]);
-    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ jsx("div", { className: mergeTailwindClasses("w-full", containerClasses), children: /* @__PURE__ */ jsx(
       DateRangePicker$1,
       __spreadValues({
         ref,
@@ -136,7 +136,10 @@ const DateRangePicker = forwardRef(
         isReadOnly,
         isDisabled,
         classNames: __spreadProps(__spreadValues({}, propClassNames), {
-          base: cn(getVariantStyles(variant), propClassNames == null ? void 0 : propClassNames.base)
+          base: mergeTailwindClasses(
+            getVariantStyles(variant),
+            propClassNames == null ? void 0 : propClassNames.base
+          )
         })
       }, restProps)
     ) });

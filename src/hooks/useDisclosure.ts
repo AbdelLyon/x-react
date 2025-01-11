@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { useCallbackRef } from "./useCallbackRef";
-import { chain } from "@/utils";
+import { chainCallbacks } from "@/utils";
 import { useControlledState } from "./useControlledState";
 
 export interface UseDisclosureProps {
@@ -83,7 +83,7 @@ export const useDisclosure = (
     ...props,
     "aria-expanded": isOpen,
     "aria-controls": id,
-    onClick: chain(props.onClick, onOpenChange),
+    onClick: chainCallbacks(props.onClick, onOpenChange),
   });
 
   const getDisclosureProps = (

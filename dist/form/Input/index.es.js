@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsx } from "react/jsx-runtime";
 import { forwardRef, useState } from "react";
 import { Input as Input$1 } from "@nextui-org/input";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 const Input = forwardRef(
   (_a, ref) => {
@@ -150,7 +150,7 @@ const Input = forwardRef(
           ].join(" ");
       }
     };
-    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ jsx("div", { className: mergeTailwindClasses("w-full", containerClasses), children: /* @__PURE__ */ jsx(
       Input$1,
       __spreadValues({
         ref,
@@ -166,7 +166,10 @@ const Input = forwardRef(
         isDisabled,
         validate: combinedValidate,
         classNames: __spreadProps(__spreadValues({}, propClassNames), {
-          inputWrapper: cn(getVariantStyles(), propClassNames == null ? void 0 : propClassNames.inputWrapper)
+          inputWrapper: mergeTailwindClasses(
+            getVariantStyles(),
+            propClassNames == null ? void 0 : propClassNames.inputWrapper
+          )
         }),
         endContent,
         type: inputType

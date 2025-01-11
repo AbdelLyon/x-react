@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { Button as Button$1 } from "@nextui-org/button";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Button = (_a) => {
   var _b = _a, {
     onClick,
@@ -61,7 +61,7 @@ const Button = (_a) => {
     "target",
     "rel"
   ]);
-  const baseStyles = cn(
+  const baseStyles = mergeTailwindClasses(
     "transition-none font-normal border-1 rounded border-default",
     props.fullWidth && "w-full",
     props.isLoading && "opacity-50 cursor-not-allowed",
@@ -69,9 +69,15 @@ const Button = (_a) => {
     props.className
   );
   const Content = () => /* @__PURE__ */ jsxs(Fragment, { children: [
-    startContent !== void 0 && /* @__PURE__ */ jsx("span", { className: cn("mr-2", classNames.beforeContent), children: startContent }),
+    startContent !== void 0 && /* @__PURE__ */ jsx(
+      "span",
+      {
+        className: mergeTailwindClasses("mr-2", classNames.beforeContent),
+        children: startContent
+      }
+    ),
     /* @__PURE__ */ jsx("span", { className: classNames.content, children }),
-    endContent !== void 0 && /* @__PURE__ */ jsx("span", { className: cn("ml-2", classNames.afterContent), children: endContent })
+    endContent !== void 0 && /* @__PURE__ */ jsx("span", { className: mergeTailwindClasses("ml-2", classNames.afterContent), children: endContent })
   ] });
   const hasValidLink = href !== void 0 && href.length > 0 && LinkComponent !== void 0;
   if (hasValidLink) {

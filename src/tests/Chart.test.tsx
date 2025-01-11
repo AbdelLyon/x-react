@@ -127,7 +127,7 @@ describe("Chart Component", (): void => {
           type="doughnut"
           data={mockDoughnutData}
           options={{
-            cutout: "70%",
+            color: "red",
           }}
         />,
       );
@@ -139,7 +139,7 @@ describe("Chart Component", (): void => {
 
       expect(props.type).toBe("doughnut");
       expect(props.data).toEqual(mockDoughnutData);
-      expect(props.options.cutout).toBe("70%");
+      expect(props.options.color).toBe("red");
     });
 
     it("devrait rendre un graphique en aire polaire avec les options spécifiques", (): void => {

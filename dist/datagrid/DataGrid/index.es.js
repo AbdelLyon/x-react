@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/index.es.js";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table";
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
 import { DataGridSkeleton } from "../DataGridSkeleton/index.es.js";
@@ -86,8 +86,8 @@ function DataGrid(_a) {
       "aria-label": "data-grid"
     }, props), {
       classNames: __spreadProps(__spreadValues({}, props.classNames), {
-        th: cn(variantClasses.th, (_a2 = props.classNames) == null ? void 0 : _a2.th),
-        tr: cn(variantClasses.tr, (_b2 = props.classNames) == null ? void 0 : _b2.tr)
+        th: mergeTailwindClasses(variantClasses.th, (_a2 = props.classNames) == null ? void 0 : _a2.th),
+        tr: mergeTailwindClasses(variantClasses.tr, (_b2 = props.classNames) == null ? void 0 : _b2.tr)
       }),
       onScroll: handleGridScroll,
       children: [
@@ -106,7 +106,9 @@ function DataGrid(_a) {
                   column.sortable !== false && /* @__PURE__ */ jsxs(
                     "div",
                     {
-                      className: cn("relative size-4 cursor-pointer"),
+                      className: mergeTailwindClasses(
+                        "relative size-4 cursor-pointer"
+                      ),
                       onClick: () => onSort(column),
                       role: "button",
                       "aria-label": formatSortHeader(column.header),
@@ -115,7 +117,7 @@ function DataGrid(_a) {
                           IconChevronUp,
                           {
                             size: 16,
-                            className: cn(
+                            className: mergeTailwindClasses(
                               "absolute -top-1",
                               sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
                             )
@@ -125,7 +127,7 @@ function DataGrid(_a) {
                           IconChevronDown,
                           {
                             size: 16,
-                            className: cn(
+                            className: mergeTailwindClasses(
                               "absolute top-1",
                               sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
                             )

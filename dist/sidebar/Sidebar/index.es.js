@@ -1,5 +1,5 @@
 import { jsxs, jsx } from "react/jsx-runtime";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Link } from "@nextui-org/link";
 import { useResponsive } from "../../hooks/useResponsive/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
@@ -18,7 +18,7 @@ const Sidebar = ({
     const linkContent = /* @__PURE__ */ jsxs(
       Link,
       {
-        className: cn(
+        className: mergeTailwindClasses(
           "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
           {
             "border-l-2 border-primary bg-content1 text-primary": item.isActive,
@@ -55,7 +55,7 @@ const Sidebar = ({
     "aside",
     {
       ref,
-      className: cn(
+      className: mergeTailwindClasses(
         "fixed left-0 h-screen flex flex-col bg-[#212324] border-r border-default",
         {
           "w-[270px]": isDesktop,

@@ -52,7 +52,7 @@ var __async = (__this, __arguments, generator) => {
 import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { forwardRef, useState, useCallback } from "react";
 import { useDisclosure, Modal as Modal$1, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/modal";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Button } from "../../button/Button/index.es.js";
 const defaultClassNames = {
   closeButton: "absolute right-4 top-4",
@@ -88,7 +88,10 @@ const ModalButtons = ({
     hasValidCloseLabel && /* @__PURE__ */ jsx(
       Button,
       __spreadProps(__spreadValues(__spreadValues({
-        className: cn("border-primary/50", buttonCloseProps == null ? void 0 : buttonCloseProps.className),
+        className: mergeTailwindClasses(
+          "border-primary/50",
+          buttonCloseProps == null ? void 0 : buttonCloseProps.className
+        ),
         variant: (_a = buttonCloseProps == null ? void 0 : buttonCloseProps.variant) != null ? _a : "bordered",
         onClick: onClose
       }, defaultButtonProps), buttonCloseProps), {
@@ -155,12 +158,21 @@ const Modal = forwardRef(
       [handleOpen]
     );
     const modalClassNames = {
-      closeButton: cn(defaultClassNames.closeButton, classNames == null ? void 0 : classNames.closeButton),
-      base: cn(defaultClassNames.base, classNames == null ? void 0 : classNames.base),
-      header: cn(defaultClassNames.header, classNames == null ? void 0 : classNames.header),
-      body: cn(classNames == null ? void 0 : classNames.body),
-      footer: cn(defaultClassNames.footer, classNames == null ? void 0 : classNames.footer),
-      backdrop: cn(classNames == null ? void 0 : classNames.backdrop)
+      closeButton: mergeTailwindClasses(
+        defaultClassNames.closeButton,
+        classNames == null ? void 0 : classNames.closeButton
+      ),
+      base: mergeTailwindClasses(defaultClassNames.base, classNames == null ? void 0 : classNames.base),
+      header: mergeTailwindClasses(
+        defaultClassNames.header,
+        classNames == null ? void 0 : classNames.header
+      ),
+      body: mergeTailwindClasses(classNames == null ? void 0 : classNames.body),
+      footer: mergeTailwindClasses(
+        defaultClassNames.footer,
+        classNames == null ? void 0 : classNames.footer
+      ),
+      backdrop: mergeTailwindClasses(classNames == null ? void 0 : classNames.backdrop)
     };
     return /* @__PURE__ */ jsxs(Fragment, { children: [
       /* @__PURE__ */ jsx(

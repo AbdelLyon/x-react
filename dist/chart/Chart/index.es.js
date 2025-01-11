@@ -27,10 +27,10 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx } from "react/jsx-runtime";
-import { cn } from "../../utils/index.es.js";
+import { forwardRef } from "react";
 import { Chart as Chart$1, CategoryScale, LinearScale, Title, Tooltip, Legend, RadialLinearScale, BarElement, ArcElement, PointElement, LineElement, BarController, DoughnutController, ScatterController, PolarAreaController } from "chart.js";
-import { useRef } from "react";
 import { Chart as Chart$2, getElementAtEvent } from "react-chartjs-2";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 Chart$1.register(
   CategoryScale,
   LinearScale,
@@ -54,110 +54,114 @@ const defaultClassNames = {
   legend: "mt-4",
   tooltip: "bg-white p-2 rounded shadow-lg border text-sm"
 };
-const Chart = (_a) => {
-  var _b = _a, {
-    type,
-    data,
-    options,
-    getElementSelected,
-    classNames = {},
-    responsive = true,
-    maintainAspectRatio = false,
-    title,
-    showLegend = true,
-    showTooltip = true,
-    legendPosition = "top",
-    customTooltip
-  } = _b, props = __objRest(_b, [
-    "type",
-    "data",
-    "options",
-    "getElementSelected",
-    "classNames",
-    "responsive",
-    "maintainAspectRatio",
-    "title",
-    "showLegend",
-    "showTooltip",
-    "legendPosition",
-    "customTooltip"
-  ]);
-  const chartRef = useRef(null);
-  const mergedClassNames = {
-    root: cn(defaultClassNames.root, classNames.root),
-    canvas: cn(defaultClassNames.canvas, classNames.canvas),
-    title: cn(defaultClassNames.title, classNames.title),
-    legend: cn(defaultClassNames.legend, classNames.legend),
-    tooltip: cn(defaultClassNames.tooltip, classNames.tooltip)
-  };
-  const handleClick = (event) => {
-    if (chartRef.current !== null) {
-      const element = getElementAtEvent(
-        chartRef.current,
-        event
-      );
-      if (element.length > 0 && getElementSelected) {
-        getElementSelected(element);
-      }
-    }
-  };
-  const defaultOptions = {
-    responsive,
-    maintainAspectRatio,
-    plugins: {
-      title: title !== void 0 ? {
-        display: true,
-        text: title,
-        font: {
-          size: 16,
-          weight: "bold"
-        },
-        padding: {
-          top: 10,
-          bottom: 20
-        }
-      } : void 0,
-      legend: {
-        display: showLegend,
-        position: legendPosition
-      },
-      tooltip: showTooltip ? __spreadValues({
-        enabled: true,
-        backgroundColor: "white",
-        titleColor: "#1f2937",
-        bodyColor: "#4b5563",
-        borderColor: "#e5e7eb",
-        borderWidth: 1,
-        padding: 8,
-        cornerRadius: 4,
-        bodyFont: {
-          size: 14
-        },
-        titleFont: {
-          size: 14,
-          weight: "bold"
-        }
-      }, customTooltip && {
-        callbacks: {
-          label: customTooltip
-        }
-      }) : void 0
-    }
-  };
-  const mergedOptions = __spreadValues(__spreadValues({}, defaultOptions), options);
-  return /* @__PURE__ */ jsx("div", { className: mergedClassNames.root, children: /* @__PURE__ */ jsx(
-    Chart$2,
-    __spreadValues({
-      ref: chartRef,
-      data,
-      options: mergedOptions,
+const Chart = forwardRef(
+  (_a, ref) => {
+    var _b = _a, {
       type,
-      onClick: handleClick,
-      className: mergedClassNames.canvas
-    }, props)
-  ) });
-};
-Chart.displayName = "Chart";
+      data,
+      options,
+      getElementSelected,
+      classNames = {},
+      responsive = true,
+      maintainAspectRatio = false,
+      title,
+      showLegend = true,
+      showTooltip = true,
+      legendPosition = "top",
+      customTooltip
+    } = _b, props = __objRest(_b, [
+      "type",
+      "data",
+      "options",
+      "getElementSelected",
+      "classNames",
+      "responsive",
+      "maintainAspectRatio",
+      "title",
+      "showLegend",
+      "showTooltip",
+      "legendPosition",
+      "customTooltip"
+    ]);
+    const mergedClassNames = {
+      root: mergeTailwindClasses(defaultClassNames.root, classNames.root),
+      canvas: mergeTailwindClasses(defaultClassNames.canvas, classNames.canvas),
+      title: mergeTailwindClasses(defaultClassNames.title, classNames.title),
+      legend: mergeTailwindClasses(defaultClassNames.legend, classNames.legend),
+      tooltip: mergeTailwindClasses(
+        defaultClassNames.tooltip,
+        classNames.tooltip
+      )
+    };
+    const handleClick = (event) => {
+      const chartElement = event.currentTarget;
+      if (getElementSelected) {
+        const clickedElements = getElementAtEvent(
+          chartElement,
+          event
+        );
+        if (clickedElements.length > 0) {
+          getElementSelected(clickedElements);
+        }
+      }
+    };
+    const defaultOptions = {
+      responsive,
+      maintainAspectRatio,
+      plugins: {
+        // Configuration du titre
+        title: title ? {
+          display: true,
+          text: title,
+          font: {
+            size: 16,
+            weight: "bold"
+          },
+          padding: {
+            top: 10,
+            bottom: 20
+          }
+        } : void 0,
+        // Configuration de la légende
+        legend: {
+          display: showLegend,
+          position: legendPosition
+        },
+        // Configuration des info-bulles
+        tooltip: showTooltip ? __spreadValues({
+          enabled: true,
+          backgroundColor: "white",
+          titleColor: "#1f2937",
+          bodyColor: "#4b5563",
+          borderColor: "#e5e7eb",
+          borderWidth: 1,
+          padding: 8,
+          cornerRadius: 4,
+          bodyFont: { size: 14 },
+          titleFont: {
+            size: 14,
+            weight: "bold"
+          }
+        }, customTooltip && {
+          callbacks: {
+            label: customTooltip
+          }
+        }) : void 0
+      }
+    };
+    const mergedOptions = __spreadValues(__spreadValues({}, defaultOptions), options);
+    return /* @__PURE__ */ jsx("div", { ref, className: mergedClassNames.root, children: /* @__PURE__ */ jsx(
+      Chart$2,
+      __spreadValues({
+        data,
+        options: mergedOptions,
+        type,
+        onClick: handleClick,
+        className: mergedClassNames.canvas
+      }, props)
+    ) });
+  }
+);
 export {
   Chart
 };

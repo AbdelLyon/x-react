@@ -1,14 +1,16 @@
-import { cn } from "@/utils";
+import type { JSX } from "react";
+import React, { forwardRef } from "react";
 import type {
   ChartData,
   ChartOptions,
   ChartTypeRegistry,
   InteractionItem,
   TooltipItem,
+  Chart as ChartJS,
 } from "chart.js";
 import {
   CategoryScale,
-  Chart as ChartJS,
+  Chart as ChartLibrary,
   Legend,
   LinearScale,
   Title,
@@ -23,13 +25,12 @@ import {
   ScatterController,
   PolarAreaController,
 } from "chart.js";
-import type { JSX } from "react";
-import { useRef } from "react";
 import type { ChartProps } from "react-chartjs-2";
 import { Chart as ChartRoot, getElementAtEvent } from "react-chartjs-2";
+import { mergeTailwindClasses } from "@/utils";
 
-// Register Chart.js components
-ChartJS.register(
+// Enregistrement des composants Chart.js
+ChartLibrary.register(
   CategoryScale,
   LinearScale,
   Title,
@@ -46,6 +47,7 @@ ChartJS.register(
   PolarAreaController,
 );
 
+// Types
 type ChartType = keyof ChartTypeRegistry;
 
 interface ChartClassNames {
@@ -76,6 +78,7 @@ interface ChartBaseProps<T extends ChartType> {
 type Props<T extends ChartType> = ChartBaseProps<T> &
   Omit<ChartProps<T>, keyof ChartBaseProps<T>>;
 
+// Classes par défaut
 const defaultClassNames: Required<ChartClassNames> = {
   root: "relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
   canvas: "w-full h-[400px]",
@@ -84,48 +87,60 @@ const defaultClassNames: Required<ChartClassNames> = {
   tooltip: "bg-white p-2 rounded shadow-lg border text-sm",
 };
 
-export const Chart = <T extends ChartType>({
-  type,
-  data,
-  options,
-  getElementSelected,
-  classNames = {},
-  responsive = true,
-  maintainAspectRatio = false,
-  title,
-  showLegend = true,
-  showTooltip = true,
-  legendPosition = "top",
-  customTooltip,
-  ...props
-}: Props<T>): JSX.Element => {
-  const chartRef = useRef<ChartJS<T>>(null);
+// Composant Chart principal
+export const Chart = forwardRef<HTMLDivElement, Props<ChartType>>(
+  (
+    {
+      type,
+      data,
+      options,
+      getElementSelected,
+      classNames = {},
+      responsive = true,
+      maintainAspectRatio = false,
+      title,
+      showLegend = true,
+      showTooltip = true,
+      legendPosition = "top",
+      customTooltip,
+      ...props
+    },
+    ref,
+  ): JSX.Element => {
+    // Fusion des classes
+    const mergedClassNames = {
+      root: mergeTailwindClasses(defaultClassNames.root, classNames.root),
+      canvas: mergeTailwindClasses(defaultClassNames.canvas, classNames.canvas),
+      title: mergeTailwindClasses(defaultClassNames.title, classNames.title),
+      legend: mergeTailwindClasses(defaultClassNames.legend, classNames.legend),
+      tooltip: mergeTailwindClasses(
+        defaultClassNames.tooltip,
+        classNames.tooltip,
+      ),
+    };
 
-  const mergedClassNames = {
-    root: cn(defaultClassNames.root, classNames.root),
-    canvas: cn(defaultClassNames.canvas, classNames.canvas),
-    title: cn(defaultClassNames.title, classNames.title),
-    legend: cn(defaultClassNames.legend, classNames.legend),
-    tooltip: cn(defaultClassNames.tooltip, classNames.tooltip),
-  };
+    // Gestionnaire de clic
+    const handleClick = (event: React.MouseEvent<HTMLCanvasElement>): void => {
+      const chartElement = event.currentTarget;
+      if (getElementSelected) {
+        const clickedElements = getElementAtEvent(
+          chartElement as unknown as ChartJS<keyof ChartTypeRegistry>,
+          event,
+        );
 
-  const handleClick = (event: React.MouseEvent<HTMLCanvasElement>): void => {
-    if (chartRef.current !== null) {
-      const element = getElementAtEvent(
-        chartRef.current as unknown as ChartJS<keyof ChartTypeRegistry>,
-        event,
-      );
-      if (element.length > 0 && getElementSelected) {
-        getElementSelected(element);
+        if (clickedElements.length > 0) {
+          getElementSelected(clickedElements);
+        }
       }
-    }
-  };
-  const defaultOptions: ChartOptions<T> = {
-    responsive,
-    maintainAspectRatio,
-    plugins: {
-      title:
-        title !== undefined
+    };
+
+    // Options par défaut du graphique
+    const defaultOptions: ChartOptions<ChartType> = {
+      responsive,
+      maintainAspectRatio,
+      plugins: {
+        // Configuration du titre
+        title: title
           ? {
               display: true,
               text: title,
@@ -139,59 +154,61 @@ export const Chart = <T extends ChartType>({
               },
             }
           : undefined,
-      legend: {
-        display: showLegend,
-        position: legendPosition,
-      },
-      tooltip: showTooltip
-        ? {
-            enabled: true,
-            backgroundColor: "white",
-            titleColor: "#1f2937",
-            bodyColor: "#4b5563",
-            borderColor: "#e5e7eb",
-            borderWidth: 1,
-            padding: 8,
-            cornerRadius: 4,
-            bodyFont: {
-              size: 14,
-            },
-            titleFont: {
-              size: 14,
-              weight: "bold" as const,
-            },
-            ...(customTooltip && {
-              callbacks: {
-                label: customTooltip,
+
+        // Configuration de la légende
+        legend: {
+          display: showLegend,
+          position: legendPosition,
+        },
+
+        // Configuration des info-bulles
+        tooltip: showTooltip
+          ? {
+              enabled: true,
+              backgroundColor: "white",
+              titleColor: "#1f2937",
+              bodyColor: "#4b5563",
+              borderColor: "#e5e7eb",
+              borderWidth: 1,
+              padding: 8,
+              cornerRadius: 4,
+              bodyFont: { size: 14 },
+              titleFont: {
+                size: 14,
+                weight: "bold" as const,
               },
-            }),
-          }
-        : undefined,
-    },
-  } as ChartOptions<T>;
+              ...(customTooltip && {
+                callbacks: {
+                  label: customTooltip,
+                },
+              }),
+            }
+          : undefined,
+      },
+    };
 
-  const mergedOptions: ChartOptions<T> = {
-    ...defaultOptions,
-    ...options,
-  };
+    // Fusion des options
+    const mergedOptions: ChartOptions<ChartType> = {
+      ...defaultOptions,
+      ...options,
+    };
 
-  return (
-    <div className={mergedClassNames.root}>
-      <ChartRoot
-        ref={chartRef}
-        data={data}
-        options={mergedOptions}
-        type={type}
-        onClick={handleClick}
-        className={mergedClassNames.canvas}
-        {...props}
-      />
-    </div>
-  );
-};
+    return (
+      <div ref={ref} className={mergedClassNames.root}>
+        <ChartRoot
+          data={data}
+          options={mergedOptions}
+          type={type}
+          onClick={handleClick}
+          className={mergedClassNames.canvas}
+          {...props}
+        />
+      </div>
+    );
+  },
+);
 
-Chart.displayName = "Chart";
-
+// Exports des types
 export type {
   ChartType,
   ChartClassNames,

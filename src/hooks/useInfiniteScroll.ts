@@ -1,4 +1,4 @@
-import { debounce } from "@/utils";
+import { createDebouncedFunction } from "@/utils";
 import { useLayoutEffect, useRef, useCallback } from "react";
 
 export interface UseInfiniteScrollProps {
@@ -77,7 +77,7 @@ export const useInfiniteScroll = (
       };
     }
 
-    const debouncedCheckIfNearBottom = debounce((): void => {
+    const debouncedCheckIfNearBottom = createDebouncedFunction((): void => {
       if (
         scrollContainerNode.scrollHeight - scrollContainerNode.scrollTop <=
         scrollContainerNode.clientHeight + distance

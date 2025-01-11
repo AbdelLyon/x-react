@@ -2,7 +2,7 @@ import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
 import type { TabsProps as NextUITabsProps } from "@nextui-org/tabs";
 import { Tabs as TabsRoot, Tab } from "@nextui-org/tabs";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 export interface TabItem {
   key: string;
@@ -72,7 +72,10 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
         defaultSelectedKey={defaultActiveTab}
         classNames={{
           ...props.classNames,
-          tabList: cn(getVariantStyles(), props.classNames?.tabList),
+          tabList: mergeTailwindClasses(
+            getVariantStyles(),
+            props.classNames?.tabList,
+          ),
         }}
         onSelectionChange={handleSelectionChange}
         {...props}

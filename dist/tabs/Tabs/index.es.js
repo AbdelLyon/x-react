@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Tabs as Tabs$1, Tab } from "@nextui-org/tabs";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Tabs = forwardRef(
   (_a, ref) => {
     var _b = _a, {
@@ -94,7 +94,10 @@ const Tabs = forwardRef(
         destroyInactiveTabPanel,
         defaultSelectedKey: defaultActiveTab,
         classNames: __spreadProps(__spreadValues({}, props.classNames), {
-          tabList: cn(getVariantStyles(), (_a2 = props.classNames) == null ? void 0 : _a2.tabList)
+          tabList: mergeTailwindClasses(
+            getVariantStyles(),
+            (_a2 = props.classNames) == null ? void 0 : _a2.tabList
+          )
         }),
         onSelectionChange: handleSelectionChange
       }, props), {

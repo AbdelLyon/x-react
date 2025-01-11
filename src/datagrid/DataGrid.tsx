@@ -1,5 +1,5 @@
 import { useDataGridState } from "@/datagrid/useDataGridState";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import {
   Table as DataTable,
   TableHeader,
@@ -57,8 +57,8 @@ export function DataGrid<T extends { id: string | number }>({
       {...props}
       classNames={{
         ...props.classNames,
-        th: cn(variantClasses.th, props.classNames?.th),
-        tr: cn(variantClasses.tr, props.classNames?.tr),
+        th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
+        tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
       }}
       onScroll={handleGridScroll}
     >
@@ -76,14 +76,16 @@ export function DataGrid<T extends { id: string | number }>({
               {column.header}
               {column.sortable !== false && (
                 <div
-                  className={cn("relative size-4 cursor-pointer")}
+                  className={mergeTailwindClasses(
+                    "relative size-4 cursor-pointer",
+                  )}
                   onClick={(): void => onSort(column)}
                   role="button"
                   aria-label={formatSortHeader(column.header)}
                 >
                   <IconChevronUp
                     size={16}
-                    className={cn(
+                    className={mergeTailwindClasses(
                       "absolute -top-1",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "asc"
@@ -93,7 +95,7 @@ export function DataGrid<T extends { id: string | number }>({
                   />
                   <IconChevronDown
                     size={16}
-                    className={cn(
+                    className={mergeTailwindClasses(
                       "absolute top-1",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "desc"

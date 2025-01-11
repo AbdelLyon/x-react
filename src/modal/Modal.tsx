@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import { Button, type ButtonProps } from "@/button";
 
 type Backdrop = ModalPropsRoot["backdrop"];
@@ -91,7 +91,10 @@ const ModalButtons = ({
     <>
       {hasValidCloseLabel && (
         <Button
-          className={cn("border-primary/50", buttonCloseProps?.className)}
+          className={mergeTailwindClasses(
+            "border-primary/50",
+            buttonCloseProps?.className,
+          )}
           variant={buttonCloseProps?.variant ?? "bordered"}
           onClick={onClose}
           {...defaultButtonProps}
@@ -157,12 +160,21 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     );
 
     const modalClassNames = {
-      closeButton: cn(defaultClassNames.closeButton, classNames?.closeButton),
-      base: cn(defaultClassNames.base, classNames?.base),
-      header: cn(defaultClassNames.header, classNames?.header),
-      body: cn(classNames?.body),
-      footer: cn(defaultClassNames.footer, classNames?.footer),
-      backdrop: cn(classNames?.backdrop),
+      closeButton: mergeTailwindClasses(
+        defaultClassNames.closeButton,
+        classNames?.closeButton,
+      ),
+      base: mergeTailwindClasses(defaultClassNames.base, classNames?.base),
+      header: mergeTailwindClasses(
+        defaultClassNames.header,
+        classNames?.header,
+      ),
+      body: mergeTailwindClasses(classNames?.body),
+      footer: mergeTailwindClasses(
+        defaultClassNames.footer,
+        classNames?.footer,
+      ),
+      backdrop: mergeTailwindClasses(classNames?.backdrop),
     };
 
     return (

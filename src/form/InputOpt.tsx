@@ -2,7 +2,7 @@ import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { InputOtpProps } from "@nextui-org/input-otp";
 import { InputOtp as NextUIInputOtp } from "@nextui-org/input-otp";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 type InputOtpWrapperProps = {
   length?: number;
@@ -20,9 +20,19 @@ export const InputOtp = forwardRef<HTMLDivElement, InputOtpWrapperProps>(
     const defaultContainerClasses = "flex flex-col";
 
     return (
-      <div ref={ref} className={cn(defaultContainerClasses, containerClasses)}>
+      <div
+        ref={ref}
+        className={mergeTailwindClasses(
+          defaultContainerClasses,
+          containerClasses,
+        )}
+      >
         {label !== undefined && (
-          <p className={cn(defaultLabelClasses, labelClasses)}>{label}</p>
+          <p
+            className={mergeTailwindClasses(defaultLabelClasses, labelClasses)}
+          >
+            {label}
+          </p>
         )}
         <NextUIInputOtp length={length} {...props} />
       </div>

@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { RadioGroup as RadioGroup$1, Radio } from "@nextui-org/radio";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const RadioGroup = forwardRef(
   (_a, ref) => {
     var _b = _a, {
@@ -66,8 +66,14 @@ const RadioGroup = forwardRef(
         defaultValue
       }, props), {
         classNames: {
-          base: cn(defaultGroupClasses.base, groupClasses == null ? void 0 : groupClasses.base),
-          label: cn(defaultGroupClasses.label, groupClasses == null ? void 0 : groupClasses.label)
+          base: mergeTailwindClasses(
+            defaultGroupClasses.base,
+            groupClasses == null ? void 0 : groupClasses.base
+          ),
+          label: mergeTailwindClasses(
+            defaultGroupClasses.label,
+            groupClasses == null ? void 0 : groupClasses.label
+          )
         },
         children: items.map(
           (item) => {
@@ -76,22 +82,22 @@ const RadioGroup = forwardRef(
               Radio,
               __spreadProps(__spreadValues({}, item), {
                 classNames: {
-                  base: cn(
+                  base: mergeTailwindClasses(
                     defaultItemClasses.base,
                     itemClasses == null ? void 0 : itemClasses.base,
                     item.className
                   ),
-                  label: cn(
+                  label: mergeTailwindClasses(
                     defaultItemClasses.label,
                     itemClasses == null ? void 0 : itemClasses.label,
                     (_a2 = item.classNames) == null ? void 0 : _a2.label
                   ),
-                  wrapper: cn(
+                  wrapper: mergeTailwindClasses(
                     defaultItemClasses.wrapper,
                     itemClasses == null ? void 0 : itemClasses.wrapper,
                     (_b2 = item.classNames) == null ? void 0 : _b2.wrapper
                   ),
-                  control: cn(
+                  control: mergeTailwindClasses(
                     defaultItemClasses.control,
                     itemClasses == null ? void 0 : itemClasses.control,
                     (_c = item.classNames) == null ? void 0 : _c.control

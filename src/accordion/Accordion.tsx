@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import type { AccordionItemProps, AccordionProps } from "@nextui-org/accordion";
 import {
   Accordion as AccordionRoot,
@@ -24,13 +24,13 @@ interface AccordionWrapperProps extends Omit<AccordionProps, "children"> {
 export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
   ({ items, itemClasses, ...accordionProps }, ref): JSX.Element => {
     const defaultItemClasses = {
-      base: cn("w-full shadow-none ", {
+      base: mergeTailwindClasses("w-full shadow-none ", {
         "bg-white dark:bg-content1 border-1 border-default rounded-md":
           accordionProps.variant === "splitted",
       }),
       title: "text-lg font-semibold",
     };
-    const defaultClassName = cn(
+    const defaultClassName = mergeTailwindClasses(
       "rounded-md",
       {
         "border-1 border-default": accordionProps.variant === "bordered",
@@ -46,8 +46,14 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
         itemClasses={{
           ...defaultItemClasses,
           ...itemClasses,
-          base: cn(defaultItemClasses.base, itemClasses?.base),
-          title: cn(defaultItemClasses.title, itemClasses?.title),
+          base: mergeTailwindClasses(
+            defaultItemClasses.base,
+            itemClasses?.base,
+          ),
+          title: mergeTailwindClasses(
+            defaultItemClasses.title,
+            itemClasses?.title,
+          ),
         }}
       >
         {items.map((item): JSX.Element => {

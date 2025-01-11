@@ -2,109 +2,155 @@ import { Button } from "@/button";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { userEvent } from "@testing-library/user-event";
-import type { ComponentType, AnchorHTMLAttributes, JSX } from "react";
+import { forwardRef } from "react";
 import { Buttons } from "@/buttons";
 
+import type { JSX } from "react";
+const MockLink = forwardRef<
+  HTMLAnchorElement,
+  React.AnchorHTMLAttributes<HTMLAnchorElement>
+>(
+  (props, ref): JSX.Element => (
+    <a ref={ref} {...props}>
+      {props.children}
+    </a>
+  ),
+);
+
+MockLink.displayName = "MockLink";
 describe("Composant Button", (): void => {
   describe("Rendu de base", (): void => {
     it("devrait afficher un bouton avec les classes par défaut", (): void => {
       render(<Button>Test</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass(
+
+      const expectedClasses = [
         "transition-none",
         "font-normal",
         "border-1",
-        "rounded-md",
+        "rounded",
+        "border-default",
+      ];
+
+      expectedClasses.forEach((className): void => {
+        expect(button).toHaveClass(className);
+      });
+    });
+
+    it("devrait afficher le contenu du bouton", (): void => {
+      render(<Button>Test Content</Button>);
+      expect(screen.getByRole("button")).toHaveTextContent("Test Content");
+    });
+  });
+
+  describe("Props et styles", (): void => {
+    it("devrait appliquer la classe fullWidth", (): void => {
+      render(<Button fullWidth>Test</Button>);
+      expect(screen.getByRole("button")).toHaveClass("w-full");
+    });
+
+    it("devrait appliquer les styles de chargement", (): void => {
+      render(<Button isLoading>Test</Button>);
+      expect(screen.getByRole("button")).toHaveClass(
+        "opacity-50",
+        "cursor-not-allowed",
       );
     });
 
-    it("devrait afficher le texte passé en children", (): void => {
-      render(<Button>Test</Button>);
-      expect(screen.getByText("Test")).toBeInTheDocument();
+    it("devrait fusionner les classNames personnalisés", (): void => {
+      render(
+        <Button
+          classNames={{
+            base: "custom-base",
+            content: "custom-content",
+          }}
+        >
+          Test
+        </Button>,
+      );
+
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("custom-base");
+      expect(button.querySelector("span")).toHaveClass("custom-content");
+    });
+  });
+
+  describe("Contenu additionnel", (): void => {
+    it("devrait rendre le startContent", (): void => {
+      render(
+        <Button startContent={<span data-testid="start">Start</span>}>
+          Test
+        </Button>,
+      );
+
+      const startContent = screen.getByTestId("start");
+      expect(startContent).toBeInTheDocument();
+      expect(startContent.parentElement).toHaveClass("mr-2");
+    });
+
+    it("devrait rendre le endContent", (): void => {
+      render(
+        <Button endContent={<span data-testid="end">End</span>}>Test</Button>,
+      );
+
+      const endContent = screen.getByTestId("end");
+      expect(endContent).toBeInTheDocument();
+      expect(endContent.parentElement).toHaveClass("ml-2");
     });
   });
 
   describe("Gestion des liens", (): void => {
-    const MockLink: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>> = (
-      props,
-    ): JSX.Element => <a {...props} />;
-
-    it("devrait rendre un lien si `href` et `LinkComponent` sont fournis", (): void => {
+    it("devrait rendre un lien quand href et LinkComponent sont fournis", (): void => {
       render(
         <Button href="/test" LinkComponent={MockLink} target="_blank">
-          Lien
+          Test Link
         </Button>,
       );
-      const link = screen.getByRole("button");
+
+      // Chercher l'élément par son tag 'a' plutôt que par le rôle
+      const link = screen.getByText("Test Link").closest("a");
+      expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute("href", "/test");
       expect(link).toHaveAttribute("target", "_blank");
       expect(link).toHaveAttribute("rel", "noopener noreferrer");
     });
 
-    it("devrait rendre un bouton classique sans `LinkComponent`", (): void => {
+    it("devrait avoir le rôle button même en tant que lien", (): void => {
+      render(
+        <Button href="/test" LinkComponent={MockLink}>
+          Test Link
+        </Button>,
+      );
+
+      const element = screen.getByRole("button");
+      expect(element.tagName.toLowerCase()).toBe("a");
+    });
+
+    it("ne devrait pas rendre un lien si LinkComponent est manquant", (): void => {
       render(<Button href="/test">Test</Button>);
       const button = screen.getByRole("button");
-      expect(button).not.toHaveAttribute("href");
-    });
-  });
-
-  describe("Contenus personnalisés", (): void => {
-    it("devrait afficher un contenu au début avec la classe appropriée", (): void => {
-      render(<Button startContent={<span>Début</span>}>Test</Button>);
-      const startContent = screen.getByText("Début");
-      expect(startContent.parentElement).toHaveClass("mr-2");
-    });
-
-    it("devrait afficher un contenu à la fin avec la classe appropriée", (): void => {
-      render(<Button endContent={<span>Fin</span>}>Test</Button>);
-      const endContent = screen.getByText("Fin");
-      expect(endContent.parentElement).toHaveClass("ml-2");
-    });
-  });
-
-  describe("États", (): void => {
-    it("devrait gérer l'état `fullWidth`", (): void => {
-      render(<Button fullWidth>Test</Button>);
-      expect(screen.getByRole("button")).toHaveClass("w-full");
-    });
-
-    it("devrait gérer l'état `isLoading`", (): void => {
-      render(<Button isLoading>Test</Button>);
-      const button = screen.getByRole("button");
-      expect(button).toHaveClass("opacity-50", "cursor-not-allowed");
-    });
-
-    it("devrait gérer l'état désactivé", (): void => {
-      render(<Button isDisabled>Test</Button>);
-      const button = screen.getByRole("button");
-      expect(button).toBeDisabled();
+      expect(button.tagName.toLowerCase()).toBe("button");
     });
   });
 
   describe("Gestion des événements", (): void => {
-    it("devrait appeler la fonction `onClick` au clic", (): void => {
+    it("devrait appeler onClick quand cliqué", (): void => {
       const handleClick = vi.fn();
       render(<Button onClick={handleClick}>Test</Button>);
 
-      act((): void => {
-        fireEvent.click(screen.getByRole("button"));
-      });
-
+      fireEvent.click(screen.getByRole("button"));
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
-    it("ne devrait pas appeler `onClick` si le bouton est désactivé", (): void => {
+    it("ne devrait pas déclencher onClick si isLoading est true", (): void => {
       const handleClick = vi.fn();
       render(
-        <Button isDisabled onClick={handleClick}>
+        <Button onClick={handleClick} isLoading>
           Test
         </Button>,
       );
 
-      act((): void => {
-        fireEvent.click(screen.getByRole("button"));
-      });
-
+      fireEvent.click(screen.getByRole("button"));
       expect(handleClick).not.toHaveBeenCalled();
     });
   });

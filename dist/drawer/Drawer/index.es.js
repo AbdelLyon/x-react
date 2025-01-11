@@ -51,7 +51,7 @@ var __async = (__this, __arguments, generator) => {
 };
 import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { Drawer as Drawer$1, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@nextui-org/drawer";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { useDisclosure } from "../../hooks/useDisclosure/index.es.js";
 import { Button } from "../../button/Button/index.es.js";
 const isValidButtonLabel = (label) => typeof label === "string" && label.length > 0;
@@ -107,7 +107,10 @@ const Drawer = (_a) => {
         __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, defaultButtonProps), {
           variant: "bordered",
           onClick: close,
-          className: cn("border-primary/50", buttonCloseProps == null ? void 0 : buttonCloseProps.className)
+          className: mergeTailwindClasses(
+            "border-primary/50",
+            buttonCloseProps == null ? void 0 : buttonCloseProps.className
+          )
         }), buttonCloseProps), {
           children: buttonCloseLabel
         })
@@ -123,13 +126,16 @@ const Drawer = (_a) => {
     ] });
   };
   const drawerClassNames = {
-    wrapper: cn(classNames.wrapper),
-    base: cn("bg-background rounded-none", classNames.base),
-    backdrop: cn(classNames.backdrop),
-    closeButton: cn("absolute right-4 top-4", classNames.closeButton),
-    header: cn(classNames.header),
-    body: cn(classNames.body),
-    footer: cn(classNames.footer)
+    wrapper: mergeTailwindClasses(classNames.wrapper),
+    base: mergeTailwindClasses("bg-background rounded-none", classNames.base),
+    backdrop: mergeTailwindClasses(classNames.backdrop),
+    closeButton: mergeTailwindClasses(
+      "absolute right-4 top-4",
+      classNames.closeButton
+    ),
+    header: mergeTailwindClasses(classNames.header),
+    body: mergeTailwindClasses(classNames.body),
+    footer: mergeTailwindClasses(classNames.footer)
   };
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsx(

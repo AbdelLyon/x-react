@@ -22,7 +22,7 @@ export interface TypographyProps {
 }
 
 import { forwardRef } from "react";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 const VARIANT_STYLES = {
   h1: "text-4xl md:text-5xl font-bold",
@@ -67,7 +67,7 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(
     },
     ref,
   ): JSX.Element => {
-    const classes = cn(
+    const classes = mergeTailwindClasses(
       VARIANT_STYLES[variant],
       weight && WEIGHT_STYLES[weight],
       align && ALIGN_STYLES[align],

@@ -19,7 +19,7 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { useId } from "react";
 import { useCallbackRef } from "../useCallbackRef/index.es.js";
-import { chain } from "../../utils/index.es.js";
+import { chainCallbacks } from "../../utils/index.es.js";
 import { useControlledState } from "../useControlledState/index.es.js";
 const useDisclosure = (props = {}) => {
   const {
@@ -63,7 +63,7 @@ const useDisclosure = (props = {}) => {
   const getButtonProps = (props2 = {}) => __spreadProps(__spreadValues({}, props2), {
     "aria-expanded": isOpen,
     "aria-controls": id,
-    onClick: chain(props2.onClick, onOpenChange)
+    onClick: chainCallbacks(props2.onClick, onOpenChange)
   });
   const getDisclosureProps = (props2 = {}) => __spreadProps(__spreadValues({}, props2), {
     hidden: !isOpen,

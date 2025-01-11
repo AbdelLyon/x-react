@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, NavbarMenu, NavbarMenuItem } from "@nextui-org/navbar";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Link } from "@nextui-org/link";
 import { useResponsive } from "../../hooks/useResponsive/index.es.js";
 const Navbar = forwardRef(
@@ -99,7 +99,7 @@ const Navbar = forwardRef(
               (item) => /* @__PURE__ */ jsx(NavbarItem, { children: /* @__PURE__ */ jsxs(
                 Link,
                 {
-                  className: cn(
+                  className: mergeTailwindClasses(
                     "p-2 hover:bg-content1 rounded-md text-foreground",
                     {
                       "border-l-2 border-primary bg-content1 text-primary": item.isActive
@@ -121,7 +121,7 @@ const Navbar = forwardRef(
             (item) => /* @__PURE__ */ jsx(NavbarMenuItem, { children: /* @__PURE__ */ jsxs(
               Link,
               {
-                className: cn(
+                className: mergeTailwindClasses(
                   "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                   {
                     "border-l-2 border-primary bg-content1 text-primary": item.isActive

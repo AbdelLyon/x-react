@@ -4,7 +4,7 @@ import {
   CheckboxGroup as CheckboxGroupRoot,
   Checkbox,
 } from "@nextui-org/checkbox";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 type CheckboxItemProps = {
   label?: React.ReactNode;
@@ -53,8 +53,14 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxWrapperProps>(
         defaultValue={defaultValue}
         {...props}
         classNames={{
-          base: cn(defaultGroupClasses.base, groupClasses?.base),
-          label: cn(defaultGroupClasses.label, groupClasses?.label),
+          base: mergeTailwindClasses(
+            defaultGroupClasses.base,
+            groupClasses?.base,
+          ),
+          label: mergeTailwindClasses(
+            defaultGroupClasses.label,
+            groupClasses?.label,
+          ),
         }}
       >
         {items.map(
@@ -63,17 +69,17 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxWrapperProps>(
               key={item.value}
               {...item}
               classNames={{
-                base: cn(
+                base: mergeTailwindClasses(
                   defaultItemClasses.base,
                   itemClasses?.base,
                   item.className,
                 ),
-                label: cn(
+                label: mergeTailwindClasses(
                   defaultItemClasses.label,
                   itemClasses?.label,
                   item.classNames?.label,
                 ),
-                wrapper: cn(
+                wrapper: mergeTailwindClasses(
                   defaultItemClasses.wrapper,
                   itemClasses?.wrapper,
                   item.classNames?.wrapper,

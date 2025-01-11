@@ -1,5 +1,5 @@
 import type { JSX, ReactNode } from "react";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import type { Item } from "@/types/navigation";
 import { useResponsive } from "@/hooks";
 import { Tooltip } from "@/tooltip";
@@ -34,7 +34,7 @@ export const Sidebar = ({
     const linkContent = (
       <Link
         key={item.key}
-        className={cn(
+        className={mergeTailwindClasses(
           "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
           {
             "border-l-2 border-primary bg-content1 text-primary": item.isActive,
@@ -70,7 +70,7 @@ export const Sidebar = ({
   return (
     <aside
       ref={ref}
-      className={cn(
+      className={mergeTailwindClasses(
         "fixed left-0 h-screen flex flex-col bg-[#212324] border-r border-default",
         {
           "w-[270px]": isDesktop,

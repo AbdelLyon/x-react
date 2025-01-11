@@ -7,7 +7,7 @@ import {
   DrawerFooter,
   type DrawerProps as DrawerRootProps,
 } from "@nextui-org/drawer";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import { Button, type ButtonProps } from "@/button";
 import { useDisclosure } from "@/hooks";
 
@@ -88,7 +88,10 @@ export const Drawer = ({
             {...defaultButtonProps}
             variant="bordered"
             onClick={close}
-            className={cn("border-primary/50", buttonCloseProps?.className)}
+            className={mergeTailwindClasses(
+              "border-primary/50",
+              buttonCloseProps?.className,
+            )}
             {...buttonCloseProps}
           >
             {buttonCloseLabel}
@@ -109,13 +112,16 @@ export const Drawer = ({
   };
 
   const drawerClassNames = {
-    wrapper: cn(classNames.wrapper),
-    base: cn("bg-background rounded-none", classNames.base),
-    backdrop: cn(classNames.backdrop),
-    closeButton: cn("absolute right-4 top-4", classNames.closeButton),
-    header: cn(classNames.header),
-    body: cn(classNames.body),
-    footer: cn(classNames.footer),
+    wrapper: mergeTailwindClasses(classNames.wrapper),
+    base: mergeTailwindClasses("bg-background rounded-none", classNames.base),
+    backdrop: mergeTailwindClasses(classNames.backdrop),
+    closeButton: mergeTailwindClasses(
+      "absolute right-4 top-4",
+      classNames.closeButton,
+    ),
+    header: mergeTailwindClasses(classNames.header),
+    body: mergeTailwindClasses(classNames.body),
+    footer: mergeTailwindClasses(classNames.footer),
   };
 
   return (

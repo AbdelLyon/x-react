@@ -13,7 +13,7 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import type { Item } from "@/types/navigation";
 import { useResponsive } from "@/hooks";
 import { Link } from "@nextui-org/link";
@@ -99,7 +99,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
               (item): JSX.Element => (
                 <NavbarItem key={item.key}>
                   <Link
-                    className={cn(
+                    className={mergeTailwindClasses(
                       "p-2 hover:bg-content1 rounded-md text-foreground",
                       {
                         "border-l-2 border-primary bg-content1 text-primary":
@@ -127,7 +127,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                 <NavbarMenuItem key={item.key}>
                   <Link
                     key={item.key}
-                    className={cn(
+                    className={mergeTailwindClasses(
                       "flex items-center gap-3 p-3 text-foreground hover:bg-content1 rounded-md cursor-pointer",
                       {
                         "border-l-2 border-primary bg-content1 text-primary":

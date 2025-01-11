@@ -11,7 +11,7 @@ import { Navbar } from "@/navbar/Navbar";
 import type { SidebarProps } from "@/sidebar/Sidebar";
 import { Sidebar } from "@/sidebar/Sidebar";
 
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import type { JSX } from "react";
 
 export const Layout = ({
@@ -35,7 +35,7 @@ export const Layout = ({
         {hasSidebar && <Sidebar {...sidebar} />}
 
         <main
-          className={cn(
+          className={mergeTailwindClasses(
             "flex-1 px-4 transition-all duration-200",
             {
               "pt-16": hasNavbar,

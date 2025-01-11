@@ -31,18 +31,18 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef, createElement } from "react";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Accordion as Accordion$1, AccordionItem } from "@nextui-org/accordion";
 const Accordion = forwardRef(
   (_a, ref) => {
     var _b = _a, { items, itemClasses } = _b, accordionProps = __objRest(_b, ["items", "itemClasses"]);
     const defaultItemClasses = {
-      base: cn("w-full shadow-none ", {
+      base: mergeTailwindClasses("w-full shadow-none ", {
         "bg-white dark:bg-content1 border-1 border-default rounded-md": accordionProps.variant === "splitted"
       }),
       title: "text-lg font-semibold"
     };
-    const defaultClassName = cn(
+    const defaultClassName = mergeTailwindClasses(
       "rounded-md",
       {
         "border-1 border-default": accordionProps.variant === "bordered"
@@ -56,8 +56,14 @@ const Accordion = forwardRef(
       }, accordionProps), {
         className: defaultClassName,
         itemClasses: __spreadProps(__spreadValues(__spreadValues({}, defaultItemClasses), itemClasses), {
-          base: cn(defaultItemClasses.base, itemClasses == null ? void 0 : itemClasses.base),
-          title: cn(defaultItemClasses.title, itemClasses == null ? void 0 : itemClasses.title)
+          base: mergeTailwindClasses(
+            defaultItemClasses.base,
+            itemClasses == null ? void 0 : itemClasses.base
+          ),
+          title: mergeTailwindClasses(
+            defaultItemClasses.title,
+            itemClasses == null ? void 0 : itemClasses.title
+          )
         }),
         children: items.map((item) => {
           const _a2 = item, { content } = _a2, itemProps = __objRest(_a2, ["content"]);

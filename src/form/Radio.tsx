@@ -2,7 +2,7 @@ import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { RadioGroupProps, RadioProps } from "@nextui-org/radio";
 import { RadioGroup as RadioGroupRoot, Radio } from "@nextui-org/radio";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 type RadioItemProps = {
   label?: React.ReactNode;
@@ -53,8 +53,14 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioWrapperProps>(
         defaultValue={defaultValue}
         {...props}
         classNames={{
-          base: cn(defaultGroupClasses.base, groupClasses?.base),
-          label: cn(defaultGroupClasses.label, groupClasses?.label),
+          base: mergeTailwindClasses(
+            defaultGroupClasses.base,
+            groupClasses?.base,
+          ),
+          label: mergeTailwindClasses(
+            defaultGroupClasses.label,
+            groupClasses?.label,
+          ),
         }}
       >
         {items.map(
@@ -63,22 +69,22 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioWrapperProps>(
               key={item.value}
               {...item}
               classNames={{
-                base: cn(
+                base: mergeTailwindClasses(
                   defaultItemClasses.base,
                   itemClasses?.base,
                   item.className,
                 ),
-                label: cn(
+                label: mergeTailwindClasses(
                   defaultItemClasses.label,
                   itemClasses?.label,
                   item.classNames?.label,
                 ),
-                wrapper: cn(
+                wrapper: mergeTailwindClasses(
                   defaultItemClasses.wrapper,
                   itemClasses?.wrapper,
                   item.classNames?.wrapper,
                 ),
-                control: cn(
+                control: mergeTailwindClasses(
                   defaultItemClasses.control,
                   itemClasses?.control,
                   item.classNames?.control,

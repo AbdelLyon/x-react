@@ -1,6 +1,6 @@
 import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
 
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import { useTheme } from "@/hooks/useTheme";
 import type { JSX } from "react";
 
@@ -19,7 +19,7 @@ export const ToggleTheme = ({
 
   return (
     <button
-      className={cn(
+      className={mergeTailwindClasses(
         "cursor-pointer transition-all hover:opacity-80 ",
         className,
       )}

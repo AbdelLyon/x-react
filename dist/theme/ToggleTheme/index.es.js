@@ -1,6 +1,6 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { IconSunFilled, IconMoonFilled } from "@tabler/icons-react";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { useTheme } from "../../hooks/useTheme/index.es.js";
 const ToggleTheme = ({
   className
@@ -13,7 +13,7 @@ const ToggleTheme = ({
   return /* @__PURE__ */ jsxs(
     "button",
     {
-      className: cn(
+      className: mergeTailwindClasses(
         "cursor-pointer transition-all hover:opacity-80 ",
         className
       ),

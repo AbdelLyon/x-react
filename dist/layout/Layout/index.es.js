@@ -18,7 +18,7 @@ import { jsxs, jsx } from "react/jsx-runtime";
 import { useMediaQuery } from "../../hooks/useMediaQuery/index.es.js";
 import { Navbar } from "../../navbar/Navbar/index.es.js";
 import { Sidebar } from "../../sidebar/Sidebar/index.es.js";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Layout = ({
   children,
   navbar,
@@ -36,7 +36,7 @@ const Layout = ({
       /* @__PURE__ */ jsx(
         "main",
         {
-          className: cn(
+          className: mergeTailwindClasses(
             "flex-1 px-4 transition-all duration-200",
             {
               "pt-16": hasNavbar,

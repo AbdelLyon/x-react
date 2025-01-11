@@ -1,4 +1,4 @@
-import { debounce } from "../../utils/index.es.js";
+import { createDebouncedFunction } from "../../utils/index.es.js";
 import { useRef, useCallback, useLayoutEffect } from "react";
 const useInfiniteScroll = (props = {}) => {
   const {
@@ -52,7 +52,7 @@ const useInfiniteScroll = (props = {}) => {
         }
       };
     }
-    const debouncedCheckIfNearBottom = debounce(() => {
+    const debouncedCheckIfNearBottom = createDebouncedFunction(() => {
       if (scrollContainerNode.scrollHeight - scrollContainerNode.scrollTop <= scrollContainerNode.clientHeight + distance) {
         loadMore();
       }

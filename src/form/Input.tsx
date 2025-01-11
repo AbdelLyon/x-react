@@ -2,7 +2,7 @@ import type { JSX } from "react";
 import { forwardRef, useState } from "react";
 import type { InputProps as InputRootProps } from "@nextui-org/input";
 import { Input as InputRoot } from "@nextui-org/input";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 type ValidationError = string | string[];
@@ -135,7 +135,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className={cn("w-full", containerClasses)}>
+      <div className={mergeTailwindClasses("w-full", containerClasses)}>
         <InputRoot
           ref={ref}
           variant={variant}
@@ -151,7 +151,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           validate={combinedValidate}
           classNames={{
             ...propClassNames,
-            inputWrapper: cn(getVariantStyles(), propClassNames?.inputWrapper),
+            inputWrapper: mergeTailwindClasses(
+              getVariantStyles(),
+              propClassNames?.inputWrapper,
+            ),
           }}
           endContent={endContent}
           type={inputType}

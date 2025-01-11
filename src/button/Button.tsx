@@ -6,7 +6,7 @@ import type {
 } from "react";
 import type { ButtonProps as ButtonRootProps } from "@nextui-org/button";
 import { Button as ButtonRoot } from "@nextui-org/button";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 export interface ButtonProps extends Omit<ButtonRootProps, "onPress"> {
   LinkComponent?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
@@ -38,7 +38,7 @@ export const Button = ({
   rel,
   ...props
 }: ButtonProps): JSX.Element => {
-  const baseStyles = cn(
+  const baseStyles = mergeTailwindClasses(
     "transition-none font-normal border-1 rounded border-default",
     props.fullWidth && "w-full",
     props.isLoading && "opacity-50 cursor-not-allowed",
@@ -49,13 +49,15 @@ export const Button = ({
   const Content = (): ReactNode => (
     <>
       {startContent !== undefined && (
-        <span className={cn("mr-2", classNames.beforeContent)}>
+        <span
+          className={mergeTailwindClasses("mr-2", classNames.beforeContent)}
+        >
           {startContent}
         </span>
       )}
       <span className={classNames.content}>{children}</span>
       {endContent !== undefined && (
-        <span className={cn("ml-2", classNames.afterContent)}>
+        <span className={mergeTailwindClasses("ml-2", classNames.afterContent)}>
           {endContent}
         </span>
       )}

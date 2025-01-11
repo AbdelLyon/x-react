@@ -9,7 +9,7 @@ import {
   DatePicker as DatePickerRoot,
   DateRangePicker as DateRangePickerRoot,
 } from "@nextui-org/date-picker";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 type BaseProps = {
   containerClasses?: string;
@@ -66,7 +66,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const { classNames: propClassNames, ...restProps } = props;
 
     return (
-      <div className={cn("w-full", containerClasses)}>
+      <div className={mergeTailwindClasses("w-full", containerClasses)}>
         <DatePickerRoot
           ref={ref}
           variant={variant}
@@ -80,7 +80,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           isDisabled={isDisabled}
           classNames={{
             ...propClassNames,
-            inputWrapper: cn(
+            inputWrapper: mergeTailwindClasses(
               getVariantStyles(variant),
               propClassNames?.inputWrapper,
             ),
@@ -112,7 +112,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
     const { classNames: propClassNames, ...restProps } = props;
 
     return (
-      <div className={cn("w-full", containerClasses)}>
+      <div className={mergeTailwindClasses("w-full", containerClasses)}>
         <DateRangePickerRoot
           ref={ref}
           variant={variant}
@@ -126,7 +126,10 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
           isDisabled={isDisabled}
           classNames={{
             ...propClassNames,
-            base: cn(getVariantStyles(variant), propClassNames?.base),
+            base: mergeTailwindClasses(
+              getVariantStyles(variant),
+              propClassNames?.base,
+            ),
           }}
           {...restProps}
         />

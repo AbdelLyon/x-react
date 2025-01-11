@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const VARIANT_STYLES = {
   h1: "text-4xl md:text-5xl font-bold",
   h2: "text-3xl md:text-4xl font-bold",
@@ -78,7 +78,7 @@ const Typography = forwardRef(
       "truncate",
       "className"
     ]);
-    const classes = cn(
+    const classes = mergeTailwindClasses(
       VARIANT_STYLES[variant],
       weight && WEIGHT_STYLES[weight],
       align && ALIGN_STYLES[align],

@@ -1,4 +1,4 @@
-import { limitValue } from "@/utils";
+import { clampNumber } from "@/utils";
 import { useState } from "react";
 
 const DEFAULT_OPTIONS = {
@@ -20,15 +20,15 @@ export const useCounter = (
 ] => {
   const { min, max } = { ...DEFAULT_OPTIONS, ...options };
   const [count, setCount] = useState<number>(
-    limitValue(initialValue, min, max),
+    clampNumber(initialValue, min, max),
   );
 
   const increment = (): void =>
-    setCount((current): number => limitValue(current + 1, min, max));
+    setCount((current): number => clampNumber(current + 1, min, max));
   const decrement = (): void =>
-    setCount((current): number => limitValue(current - 1, min, max));
-  const set = (value: number): void => setCount(limitValue(value, min, max));
-  const reset = (): void => setCount(limitValue(initialValue, min, max));
+    setCount((current): number => clampNumber(current - 1, min, max));
+  const set = (value: number): void => setCount(clampNumber(value, min, max));
+  const reset = (): void => setCount(clampNumber(initialValue, min, max));
 
   return [count, { increment, decrement, set, reset }] as const;
 };

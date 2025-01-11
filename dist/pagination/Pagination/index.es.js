@@ -32,22 +32,40 @@ var __objRest = (source, exclude) => {
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Pagination as Pagination$1 } from "@nextui-org/pagination";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Pagination = forwardRef(
   (_a, ref) => {
     var _b = _a, { containerClasses, classNames } = _b, props = __objRest(_b, ["containerClasses", "classNames"]);
-    return /* @__PURE__ */ jsx("div", { className: cn("w-full flex justify-center", containerClasses), children: /* @__PURE__ */ jsx(
-      Pagination$1,
-      __spreadValues({
-        ref,
-        classNames: __spreadProps(__spreadValues({}, classNames), {
-          base: cn("gap-2", classNames == null ? void 0 : classNames.base),
-          item: cn("data-[hover=true]:bg-default-100", classNames == null ? void 0 : classNames.item),
-          prev: cn("data-[hover=true]:bg-default-100", classNames == null ? void 0 : classNames.prev),
-          next: cn("data-[hover=true]:bg-default-100", classNames == null ? void 0 : classNames.next)
-        })
-      }, props)
-    ) });
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        className: mergeTailwindClasses(
+          "w-full flex justify-center",
+          containerClasses
+        ),
+        children: /* @__PURE__ */ jsx(
+          Pagination$1,
+          __spreadValues({
+            ref,
+            classNames: __spreadProps(__spreadValues({}, classNames), {
+              base: mergeTailwindClasses("gap-2", classNames == null ? void 0 : classNames.base),
+              item: mergeTailwindClasses(
+                "data-[hover=true]:bg-default-100",
+                classNames == null ? void 0 : classNames.item
+              ),
+              prev: mergeTailwindClasses(
+                "data-[hover=true]:bg-default-100",
+                classNames == null ? void 0 : classNames.prev
+              ),
+              next: mergeTailwindClasses(
+                "data-[hover=true]:bg-default-100",
+                classNames == null ? void 0 : classNames.next
+              )
+            })
+          }, props)
+        )
+      }
+    );
   }
 );
 Pagination.displayName = "Pagination";

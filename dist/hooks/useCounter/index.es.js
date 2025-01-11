@@ -14,7 +14,7 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-import { limitValue } from "../../utils/index.es.js";
+import { clampNumber } from "../../utils/index.es.js";
 import { useState } from "react";
 const DEFAULT_OPTIONS = {
   min: -Infinity,
@@ -23,12 +23,12 @@ const DEFAULT_OPTIONS = {
 const useCounter = (initialValue = 0, options) => {
   const { min, max } = __spreadValues(__spreadValues({}, DEFAULT_OPTIONS), options);
   const [count, setCount] = useState(
-    limitValue(initialValue, min, max)
+    clampNumber(initialValue, min, max)
   );
-  const increment = () => setCount((current) => limitValue(current + 1, min, max));
-  const decrement = () => setCount((current) => limitValue(current - 1, min, max));
-  const set = (value) => setCount(limitValue(value, min, max));
-  const reset = () => setCount(limitValue(initialValue, min, max));
+  const increment = () => setCount((current) => clampNumber(current + 1, min, max));
+  const decrement = () => setCount((current) => clampNumber(current - 1, min, max));
+  const set = (value) => setCount(clampNumber(value, min, max));
+  const reset = () => setCount(clampNumber(initialValue, min, max));
   return [count, { increment, decrement, set, reset }];
 };
 export {

@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Textarea as Textarea$1 } from "@nextui-org/input";
-import { cn } from "../../utils/index.es.js";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Textarea = forwardRef(
   (_a, ref) => {
     var _b = _a, {
@@ -144,7 +144,7 @@ const Textarea = forwardRef(
           ].join(" ");
       }
     };
-    return /* @__PURE__ */ jsx("div", { className: cn("w-full", containerClasses), children: /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ jsx("div", { className: mergeTailwindClasses("w-full", containerClasses), children: /* @__PURE__ */ jsx(
       Textarea$1,
       __spreadValues({
         ref,
@@ -160,8 +160,11 @@ const Textarea = forwardRef(
         validate: combinedValidate,
         style: combinedStyle,
         classNames: __spreadProps(__spreadValues({}, propClassNames), {
-          inputWrapper: cn(getVariantStyles(), propClassNames == null ? void 0 : propClassNames.inputWrapper),
-          input: cn("text-base", propClassNames == null ? void 0 : propClassNames.input)
+          inputWrapper: mergeTailwindClasses(
+            getVariantStyles(),
+            propClassNames == null ? void 0 : propClassNames.inputWrapper
+          ),
+          input: mergeTailwindClasses("text-base", propClassNames == null ? void 0 : propClassNames.input)
         })
       }, restProps)
     ) });

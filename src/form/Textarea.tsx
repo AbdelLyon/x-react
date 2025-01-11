@@ -2,7 +2,7 @@ import type { JSX } from "react";
 import { forwardRef } from "react";
 import type { TextAreaProps as TextAreaRootProps } from "@nextui-org/input";
 import { Textarea as TextareaRoot } from "@nextui-org/input";
-import { cn } from "@/utils";
+import { mergeTailwindClasses } from "@/utils";
 
 type ValidationError = string | string[];
 
@@ -122,7 +122,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     };
 
     return (
-      <div className={cn("w-full", containerClasses)}>
+      <div className={mergeTailwindClasses("w-full", containerClasses)}>
         <TextareaRoot
           ref={ref}
           variant={variant}
@@ -138,8 +138,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           style={combinedStyle}
           classNames={{
             ...propClassNames,
-            inputWrapper: cn(getVariantStyles(), propClassNames?.inputWrapper),
-            input: cn("text-base", propClassNames?.input),
+            inputWrapper: mergeTailwindClasses(
+              getVariantStyles(),
+              propClassNames?.inputWrapper,
+            ),
+            input: mergeTailwindClasses("text-base", propClassNames?.input),
           }}
           {...restProps}
         />
