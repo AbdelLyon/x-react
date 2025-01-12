@@ -6,10 +6,10 @@ const useToggle = (options = [false, true]) => {
     return [...state.slice(index), ...state.slice(0, index)];
   };
   const [[currentOption], toggle] = useReducer(reducer, [...options]);
-  return [
-    currentOption,
+  return {
+    current: currentOption,
     toggle
-  ];
+  };
 };
 export {
   useToggle

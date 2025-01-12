@@ -43,7 +43,11 @@ const useStateHistory = (initialValue) => {
       });
     }
   };
-  return [state.history[state.current], handlers, state];
+  return {
+    value: state.history[state.current],
+    handlers,
+    state
+  };
 };
 export {
   useStateHistory

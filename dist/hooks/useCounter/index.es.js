@@ -22,14 +22,18 @@ const DEFAULT_OPTIONS = {
 };
 const useCounter = (initialValue = 0, options) => {
   const { min, max } = __spreadValues(__spreadValues({}, DEFAULT_OPTIONS), options);
-  const [count, setCount] = useState(
-    clampNumber(initialValue, min, max)
-  );
+  const [count, setCount] = useState(clampNumber(initialValue, min, max));
   const increment = () => setCount((current) => clampNumber(current + 1, min, max));
   const decrement = () => setCount((current) => clampNumber(current - 1, min, max));
   const set = (value) => setCount(clampNumber(value, min, max));
   const reset = () => setCount(clampNumber(initialValue, min, max));
-  return [count, { increment, decrement, set, reset }];
+  return {
+    count,
+    increment,
+    decrement,
+    set,
+    reset
+  };
 };
 export {
   useCounter

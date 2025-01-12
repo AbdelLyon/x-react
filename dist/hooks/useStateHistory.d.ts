@@ -8,9 +8,9 @@ export interface StateHistory<T> {
     history: T[];
     current: number;
 }
-export type UseStateHistoryReturn<T> = [
-    T,
-    UseStateHistoryHandlers<T>,
-    StateHistory<T>
-];
+export interface UseStateHistoryReturn<T> {
+    value: T;
+    handlers: UseStateHistoryHandlers<T>;
+    state: StateHistory<T>;
+}
 export declare const useStateHistory: <T>(initialValue: T) => UseStateHistoryReturn<T>;

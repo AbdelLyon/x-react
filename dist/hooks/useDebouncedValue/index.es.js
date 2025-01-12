@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 const useDebouncedValue = (value, wait, options = { leading: false }) => {
-  const [_value, setValue] = useState(value);
+  const [debouncedValue, setDebouncedValue] = useState(value);
   const mountedRef = useRef(false);
   const timeoutRef = useRef(null);
   const cooldownRef = useRef(false);
@@ -13,12 +13,12 @@ const useDebouncedValue = (value, wait, options = { leading: false }) => {
     if (mountedRef.current) {
       if (!cooldownRef.current && options.leading) {
         cooldownRef.current = true;
-        setValue(value);
+        setDebouncedValue(value);
       } else {
         cancel();
         timeoutRef.current = window.setTimeout(() => {
           cooldownRef.current = false;
-          setValue(value);
+          setDebouncedValue(value);
         }, wait);
       }
     }
@@ -27,7 +27,7 @@ const useDebouncedValue = (value, wait, options = { leading: false }) => {
     mountedRef.current = true;
     return cancel;
   }, []);
-  return [_value, cancel];
+  return { debouncedValue, cancel };
 };
 export {
   useDebouncedValue
