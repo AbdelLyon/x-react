@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 import { forwardRef, useState, useCallback } from "react";
-import type { ModalProps as ModalPropsRoot } from "@nextui-org/modal";
+import type { ModalProps as ModalPropsRoot } from "@heroui/react";
 import {
   Modal as ModalRoot,
   ModalContent,
@@ -8,7 +8,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from "@nextui-org/modal";
+} from "@heroui/react";
 
 import { mergeTailwindClasses } from "@/utils";
 import { Button, type ButtonProps } from "@/button";

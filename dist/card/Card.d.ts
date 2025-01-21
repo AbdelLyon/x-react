@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { CardFooterProps, CardProps as NextUICardProps } from '@nextui-org/card';
+import { CardFooterProps, CardProps as NextUICardProps } from '@heroui/react';
 interface CardProps extends NextUICardProps {
     header?: ReactNode;
     footer?: ReactNode;

@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { SpinnerProps as SpinnerRootProps } from "@nextui-org/spinner";
-import { Spinner as SpinnerRoot } from "@nextui-org/spinner";
+import type { SpinnerProps as SpinnerRootProps } from "@heroui/react";
+import { Spinner as SpinnerRoot } from "@heroui/react";
 import type { Color, Size } from "@/types/types";
 
 interface SpinnerProps extends Omit<SpinnerRootProps, "label" | "labelColor"> {

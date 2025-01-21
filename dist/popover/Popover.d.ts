@@ -1,4 +1,4 @@
-import { PopoverProps, PopoverContentProps } from '@nextui-org/popover';
+import { PopoverProps, PopoverContentProps } from '@heroui/react';
 import { Radius } from '../types/types';
 export type PropsPopover = {
     trigger: React.ReactNode;

@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef, useState } from "react";
-import { Input as Input$1 } from "@nextui-org/input";
+import { Input as Input$1 } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 const Input = forwardRef(

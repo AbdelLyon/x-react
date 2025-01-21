@@ -3,7 +3,7 @@ import { mergeTailwindClasses } from "@/utils";
 import type { Item } from "@/types/navigation";
 import { useResponsive } from "@/hooks";
 import { Tooltip } from "@/tooltip";
-import { Link } from "@nextui-org/link";
+import { Link } from "@heroui/react";
 
 export interface SidebarProps {
   items?: Item[];

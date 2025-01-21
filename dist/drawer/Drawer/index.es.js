@@ -50,7 +50,7 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { jsxs, Fragment, jsx } from "react/jsx-runtime";
-import { Drawer as Drawer$1, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@nextui-org/drawer";
+import { Drawer as Drawer$1, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { useDisclosure } from "../../hooks/useDisclosure/index.es.js";
 import { Button } from "../../button/Button/index.es.js";

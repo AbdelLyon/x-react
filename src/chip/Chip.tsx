@@ -1,4 +1,4 @@
-import { Chip as ChipRoot, type ChipProps } from "@nextui-org/chip";
+import { Chip as ChipRoot, type ChipProps } from "@heroui/react";
 import type { JSX } from "react";
 import { forwardRef } from "react";
 

@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { forwardRef, useState } from "react";
-import type { InputProps as InputRootProps } from "@nextui-org/input";
-import { Input as InputRoot } from "@nextui-org/input";
+import type { InputProps as InputRootProps } from "@heroui/react";
+import { Input as InputRoot } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 

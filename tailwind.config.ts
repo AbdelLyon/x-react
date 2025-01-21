@@ -1,4 +1,4 @@
-import { nextui, ThemeColors } from "@nextui-org/theme";
+import { heroui, ThemeColors } from "@heroui/react";
 
 interface Colors extends Partial<ThemeColors> {
   outline: {
@@ -14,7 +14,7 @@ module.exports = {
   ],
   darkMode: "class",
   plugins: [
-    nextui({
+    heroui({
       themes: {
         light: {
           colors: {

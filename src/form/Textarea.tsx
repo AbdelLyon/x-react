@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { TextAreaProps as TextAreaRootProps } from "@nextui-org/input";
-import { Textarea as TextareaRoot } from "@nextui-org/input";
+import type { TextAreaProps as TextAreaRootProps } from "@heroui/react";
+import { Textarea as TextareaRoot } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 
 type ValidationError = string | string[];

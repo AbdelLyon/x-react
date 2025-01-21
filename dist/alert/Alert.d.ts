@@ -1,5 +1,4 @@
-import { ButtonProps } from '@nextui-org/button';
-import { AlertProps } from '@nextui-org/alert';
+import { ButtonProps, AlertProps } from '@heroui/react';
 interface Props extends AlertProps {
     closeButtonProps?: ButtonProps;
     onVisibleChange?: (isVisible: boolean) => void;

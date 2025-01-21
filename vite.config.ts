@@ -38,46 +38,12 @@ const modules = [
   "HOC",
   "chart",
 ];
-const nextUIDependencies = [
-  "@nextui-org/accordion",
-  "@nextui-org/alert",
-  "@nextui-org/avatar",
-  "@nextui-org/button",
-  "@nextui-org/card",
-  "@nextui-org/checkbox",
-  "@nextui-org/chip",
-  "@nextui-org/date-picker",
-  "@nextui-org/drawer",
-  "@nextui-org/dropdown",
-  "@nextui-org/image",
-  "@nextui-org/input",
-  "@nextui-org/input-otp",
-  "@nextui-org/link",
-  "@nextui-org/modal",
-  "@nextui-org/navbar",
-  "@nextui-org/pagination",
-  "@nextui-org/popover",
-  "@nextui-org/progress",
-  "@nextui-org/radio",
-  "@nextui-org/scroll-shadow",
-  "@nextui-org/select",
-  "@nextui-org/skeleton",
-  "@nextui-org/slider",
-  "@nextui-org/spinner",
-  "@nextui-org/switch",
-  "@nextui-org/system",
-  "@nextui-org/table",
-  "@nextui-org/tabs",
-  "@nextui-org/theme",
-  "@nextui-org/tooltip",
-  "@nextui-org/user",
-];
 
 export default defineConfig({
   plugins: [
     react(),
     dts({
-      exclude: ["src/data/**/*", "src/tests/**/*"],
+      exclude: ["src/tests/**/*"],
     }),
   ],
 
@@ -127,7 +93,7 @@ export default defineConfig({
         "react-chartjs-2",
         "chart.js",
         "tailwind-merge",
-        ...nextUIDependencies,
+        "@heroui/react",
         /^react\/.*/,
         /^node_modules\/.*/,
       ],
@@ -143,12 +109,7 @@ export default defineConfig({
           "@tabler/icons-react": "TablerIcons",
           "chart.js": "Chart",
           "react-chartjs-2": "ReactChartJS",
-          ...Object.fromEntries(
-            nextUIDependencies.map((dep) => [
-              dep,
-              dep.replace(/@nextui-org\//, "NextUI"),
-            ]),
-          ),
+          "@heroui/react": "HerouiReact",
         },
         entryFileNames: (chunkInfo) => {
           return `${chunkInfo.name}/index.es.js`;

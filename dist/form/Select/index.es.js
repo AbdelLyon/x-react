@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Select as Select$1, SelectItem } from "@nextui-org/select";
+import { Select as Select$1, SelectItem } from "@heroui/react";
 const Select = forwardRef(
   (_a, ref) => {
     var _b = _a, { options = [], value, defaultValue, classNames } = _b, props = __objRest(_b, ["options", "value", "defaultValue", "classNames"]);

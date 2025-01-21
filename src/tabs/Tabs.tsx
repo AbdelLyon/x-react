@@ -1,7 +1,7 @@
 import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { TabsProps as NextUITabsProps } from "@nextui-org/tabs";
-import { Tabs as TabsRoot, Tab } from "@nextui-org/tabs";
+import type { TabsProps as NextUITabsProps } from "@heroui/react";
+import { Tabs as TabsRoot, Tab } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 
 export interface TabItem {

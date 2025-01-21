@@ -1,4 +1,3 @@
-// src/components/ui/layout/Container.tsx
 import type { ReactNode, ForwardedRef, JSX } from "react";
 import { forwardRef } from "react";
 import { mergeTailwindClasses } from "@/utils";

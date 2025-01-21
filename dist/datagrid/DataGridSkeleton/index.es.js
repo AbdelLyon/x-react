@@ -1,8 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
-import { Skeleton } from "@nextui-org/skeleton";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table";
+import { Table, TableHeader, TableColumn, Skeleton, TableBody, TableRow, TableCell } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { GRID_VARIANTS } from "../../data/default/index.es.js";
+import { GRID_VARIANTS } from "../variants/index.es.js";
 const DataGridSkeleton = ({
   columns = 5,
   rows = 5,

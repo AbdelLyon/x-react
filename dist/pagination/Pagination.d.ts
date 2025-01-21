@@ -1,4 +1,4 @@
-import { PaginationProps as PaginationRootProps } from '@nextui-org/pagination';
+import { PaginationProps as PaginationRootProps } from '@heroui/react';
 export interface PaginationProps extends PaginationRootProps {
     containerClasses?: string;
 }

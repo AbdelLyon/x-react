@@ -1,11 +1,11 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { PopoverProps, PopoverContentProps } from "@nextui-org/popover";
+import type { PopoverProps, PopoverContentProps } from "@heroui/react";
 import {
   Popover as PopoverRoot,
   PopoverTrigger,
   PopoverContent,
-} from "@nextui-org/popover";
+} from "@heroui/react";
 import type { Radius } from "@/types/types";
 
 export type PropsPopover = {

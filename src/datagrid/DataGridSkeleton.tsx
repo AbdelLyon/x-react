@@ -1,4 +1,3 @@
-import { Skeleton } from "@nextui-org/skeleton";
 import {
   Table,
   TableHeader,
@@ -6,10 +5,11 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "@nextui-org/table";
+  Skeleton,
+} from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 import type { JSX } from "react";
-import { GRID_VARIANTS } from "@/data/default";
+import { GRID_VARIANTS } from "./variants";
 
 interface DataGridSkeletonProps {
   columns: number;

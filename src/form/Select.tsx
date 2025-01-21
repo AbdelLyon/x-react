@@ -1,8 +1,10 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { SelectProps as NextUISelectProps } from "@nextui-org/select";
-import { Select as NextUISelect, SelectItem } from "@nextui-org/select";
-import type { Selection } from "@nextui-org/table";
+import type {
+  SelectProps as NextUISelectProps,
+  Selection,
+} from "@heroui/react";
+import { Select as NextUISelect, SelectItem } from "@heroui/react";
 
 export interface SelectOption {
   key: string;

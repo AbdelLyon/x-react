@@ -51,7 +51,7 @@ var __async = (__this, __arguments, generator) => {
 };
 import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { forwardRef, useState, useCallback } from "react";
-import { useDisclosure, Modal as Modal$1, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/modal";
+import { useDisclosure, Modal as Modal$1, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Button } from "../../button/Button/index.es.js";
 const defaultClassNames = {

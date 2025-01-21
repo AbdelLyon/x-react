@@ -32,10 +32,10 @@ var __objRest = (source, exclude) => {
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/index.es.js";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/react";
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
 import { DataGridSkeleton } from "../DataGridSkeleton/index.es.js";
-import { GRID_VARIANTS } from "../../data/default/index.es.js";
+import { GRID_VARIANTS } from "../variants/index.es.js";
 function DataGrid(_a) {
   var _b = _a, {
     rows,

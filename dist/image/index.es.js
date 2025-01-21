@@ -1,5 +1,5 @@
 /* empty css                */
-import { Image } from "@nextui-org/image";
+import { Image } from "@heroui/react";
 export {
   Image
 };

@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, ComponentType, JSX } from 'react';
-import { ButtonProps as ButtonRootProps } from '@nextui-org/button';
+import { ButtonProps as ButtonRootProps } from '@heroui/react';
 export interface ButtonProps extends Omit<ButtonRootProps, "onPress"> {
     LinkComponent?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
     classNames?: {

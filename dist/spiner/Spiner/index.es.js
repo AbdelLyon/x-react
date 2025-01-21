@@ -28,7 +28,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Spinner as Spinner$1 } from "@nextui-org/spinner";
+import { Spinner as Spinner$1 } from "@heroui/react";
 const Spinner = forwardRef(
   (_a, ref) => {
     var _b = _a, { color = "default", size = "md", strokeWidth = 4 } = _b, props = __objRest(_b, ["color", "size", "strokeWidth"]);

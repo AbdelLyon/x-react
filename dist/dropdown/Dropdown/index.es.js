@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsxs, jsx } from "react/jsx-runtime";
-import { Dropdown as Dropdown$1, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/dropdown";
+import { Dropdown as Dropdown$1, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@heroui/react";
 const Dropdown = (_a) => {
   var _b = _a, {
     trigger,

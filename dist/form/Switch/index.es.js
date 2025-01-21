@@ -28,7 +28,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Switch as Switch$1 } from "@nextui-org/switch";
+import { Switch as Switch$1 } from "@heroui/react";
 const Switch = forwardRef(
   (_a, ref) => {
     var _b = _a, { width, height, style } = _b, props = __objRest(_b, ["width", "height", "style"]);

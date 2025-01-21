@@ -1,8 +1,7 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { ButtonProps } from "@nextui-org/button";
-import type { AlertProps } from "@nextui-org/alert";
-import { Alert as AlertRoot } from "@nextui-org/alert";
+import type { ButtonProps, AlertProps } from "@heroui/react";
+import { Alert as AlertRoot } from "@heroui/react";
 
 interface Props extends AlertProps {
   closeButtonProps?: ButtonProps;

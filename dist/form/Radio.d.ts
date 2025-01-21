@@ -1,4 +1,4 @@
-import { RadioGroupProps, RadioProps } from '@nextui-org/radio';
+import { RadioGroupProps, RadioProps } from '@heroui/react';
 type RadioItemProps = {
     label?: React.ReactNode;
 } & Omit<RadioProps, "children">;

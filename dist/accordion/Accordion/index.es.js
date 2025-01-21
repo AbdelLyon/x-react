@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsx } from "react/jsx-runtime";
 import { forwardRef, createElement } from "react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Accordion as Accordion$1, AccordionItem } from "@nextui-org/accordion";
+import { Accordion as Accordion$1, AccordionItem } from "@heroui/react";
 const Accordion = forwardRef(
   (_a, ref) => {
     var _b = _a, { items, itemClasses } = _b, accordionProps = __objRest(_b, ["items", "itemClasses"]);

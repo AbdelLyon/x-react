@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { SliderProps } from '@nextui-org/slider';
+import { SliderProps } from '@heroui/react';
 interface FormatConfig {
     formatOptions?: Intl.NumberFormatOptions;
     formatValue?: (value: number[]) => string;

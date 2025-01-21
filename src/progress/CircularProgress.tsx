@@ -1,7 +1,7 @@
 import type { JSX, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
-import type { CircularProgressProps as CircularProgressRootProps } from "@nextui-org/progress";
-import { CircularProgress as CircularProgressRoot } from "@nextui-org/progress";
+import type { CircularProgressProps as CircularProgressRootProps } from "@heroui/react";
+import { CircularProgress as CircularProgressRoot } from "@heroui/react";
 
 type AdditionalCircularProgressProps = {
   autoIncrement?: boolean;

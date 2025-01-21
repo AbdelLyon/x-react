@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { RadioGroupProps, RadioProps } from "@nextui-org/radio";
-import { RadioGroup as RadioGroupRoot, Radio } from "@nextui-org/radio";
+import type { RadioGroupProps, RadioProps } from "@heroui/react";
+import { RadioGroup as RadioGroupRoot, Radio } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 
 type RadioItemProps = {

@@ -6,7 +6,7 @@ import {
   DrawerBody,
   DrawerFooter,
   type DrawerProps as DrawerRootProps,
-} from "@nextui-org/drawer";
+} from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 import { Button, type ButtonProps } from "@/button";
 import { useDisclosure } from "@/hooks";

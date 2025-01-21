@@ -4,11 +4,11 @@ import { forwardRef } from "react";
 import type {
   DatePickerProps as DatePickerRootProps,
   DateRangePickerProps as DateRangePickerRootProps,
-} from "@nextui-org/date-picker";
+} from "@heroui/react";
 import {
   DatePicker as DatePickerRoot,
   DateRangePicker as DateRangePickerRoot,
-} from "@nextui-org/date-picker";
+} from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 
 type BaseProps = {

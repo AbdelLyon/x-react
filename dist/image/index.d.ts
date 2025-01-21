@@ -1,1 +1,1 @@
-export { Image } from '@nextui-org/image';
+export { Image } from '@heroui/react';

@@ -1,5 +1,5 @@
 import { JSX } from 'react';
-import { DropdownProps, DropdownMenuProps } from '@nextui-org/dropdown';
+import { DropdownProps, DropdownMenuProps } from '@heroui/react';
 export type DropdownItemConfig = {
     key: string;
     label: string;

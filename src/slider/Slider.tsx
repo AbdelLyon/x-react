@@ -1,7 +1,7 @@
 import type { JSX, ReactNode } from "react";
 import { forwardRef, useState } from "react";
-import type { SliderProps } from "@nextui-org/slider";
-import { Slider as SliderRoot } from "@nextui-org/slider";
+import type { SliderProps } from "@heroui/react";
+import { Slider as SliderRoot } from "@heroui/react";
 
 interface FormatConfig {
   formatOptions?: Intl.NumberFormatOptions;

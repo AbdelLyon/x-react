@@ -1,4 +1,4 @@
-import { TabsProps as NextUITabsProps } from '@nextui-org/tabs';
+import { TabsProps as NextUITabsProps } from '@heroui/react';
 export interface TabItem {
     key: string;
     title: React.ReactNode;

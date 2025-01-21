@@ -12,7 +12,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
         aria-describedby=""
         aria-label="data-grid"
         class="min-w-full h-auto table-auto w-full"
-        id="react-aria-:r6:"
+        id="react-aria-:r12:"
         role="grid"
         tabindex="0"
       >
@@ -28,7 +28,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
               aria-label="Nom"
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="name"
-              id="react-aria-:r6:-name"
+              id="react-aria-:r12:-name"
               role="columnheader"
               tabindex="-1"
             >
@@ -80,7 +80,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
               aria-label="Âge"
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="age"
-              id="react-aria-:r6:-age"
+              id="react-aria-:r12:-age"
               role="columnheader"
               tabindex="-1"
             >
@@ -132,7 +132,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
               aria-label="Actions"
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="actions"
-              id="react-aria-:r6:-actions"
+              id="react-aria-:r12:-actions"
               role="columnheader"
               tabindex="-1"
             >
@@ -192,17 +192,18 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
           role="rowgroup"
         >
           <tr
-            aria-labelledby="react-aria-:r6:-1-name"
+            aria-labelledby="react-aria-:r12:-1-name"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
             data-first="true"
             data-key="1"
+            id="react-aria-:r17:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="11name"
-              id="react-aria-:r6:-1-name"
+              id="react-aria-:r12:-1-name"
               role="rowheader"
               tabindex="-1"
             >
@@ -213,6 +214,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="11age"
+              id="react-aria-:r19:"
               role="gridcell"
               tabindex="-1"
             >
@@ -223,6 +225,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="11actions"
+              id="react-aria-:r1a:"
               role="gridcell"
               tabindex="-1"
             >
@@ -232,18 +235,19 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             </td>
           </tr>
           <tr
-            aria-labelledby="react-aria-:r6:-2-name"
+            aria-labelledby="react-aria-:r12:-2-name"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
             data-key="2"
             data-middle="true"
             data-odd="true"
+            id="react-aria-:r1b:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="22name"
-              id="react-aria-:r6:-2-name"
+              id="react-aria-:r12:-2-name"
               role="rowheader"
               tabindex="-1"
             >
@@ -254,6 +258,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="22age"
+              id="react-aria-:r1d:"
               role="gridcell"
               tabindex="-1"
             >
@@ -264,6 +269,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="22actions"
+              id="react-aria-:r1e:"
               role="gridcell"
               tabindex="-1"
             >
@@ -273,17 +279,18 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             </td>
           </tr>
           <tr
-            aria-labelledby="react-aria-:r6:-3-name"
+            aria-labelledby="react-aria-:r12:-3-name"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
             data-key="3"
             data-last="true"
+            id="react-aria-:r1f:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="33name"
-              id="react-aria-:r6:-3-name"
+              id="react-aria-:r12:-3-name"
               role="rowheader"
               tabindex="-1"
             >
@@ -294,6 +301,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="33age"
+              id="react-aria-:r1h:"
               role="gridcell"
               tabindex="-1"
             >
@@ -304,6 +312,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="33actions"
+              id="react-aria-:r1i:"
               role="gridcell"
               tabindex="-1"
             >
@@ -463,6 +472,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
             data-first="true"
             data-key="1"
+            id="react-aria-:r4:"
             role="row"
             tabindex="-1"
           >
@@ -480,6 +490,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="11age"
+              id="react-aria-:r6:"
               role="gridcell"
               tabindex="-1"
             >
@@ -494,6 +505,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             data-key="2"
             data-middle="true"
             data-odd="true"
+            id="react-aria-:r7:"
             role="row"
             tabindex="-1"
           >
@@ -511,6 +523,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="22age"
+              id="react-aria-:r9:"
               role="gridcell"
               tabindex="-1"
             >
@@ -524,6 +537,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
             data-key="3"
             data-last="true"
+            id="react-aria-:ra:"
             role="row"
             tabindex="-1"
           >
@@ -541,6 +555,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="33age"
+              id="react-aria-:rc:"
               role="gridcell"
               tabindex="-1"
             >
@@ -568,7 +583,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
         aria-describedby=""
         aria-label="data-grid"
         class="min-w-full h-auto table-auto w-full"
-        id="react-aria-:r8:"
+        id="react-aria-:r1j:"
         role="grid"
         tabindex="0"
       >
@@ -584,7 +599,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
               aria-label="Nom"
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="name"
-              id="react-aria-:r8:-name"
+              id="react-aria-:r1j:-name"
               role="columnheader"
               tabindex="-1"
             >
@@ -636,7 +651,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
               aria-label="Âge"
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="age"
-              id="react-aria-:r8:-age"
+              id="react-aria-:r1j:-age"
               role="columnheader"
               tabindex="-1"
             >
@@ -696,17 +711,18 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
           role="rowgroup"
         >
           <tr
-            aria-labelledby="react-aria-:r8:-1-name"
+            aria-labelledby="react-aria-:r1j:-1-name"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
             data-first="true"
             data-key="1"
+            id="react-aria-:r1n:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="11name"
-              id="react-aria-:r8:-1-name"
+              id="react-aria-:r1j:-1-name"
               role="rowheader"
               tabindex="-1"
             >
@@ -717,6 +733,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="11age"
+              id="react-aria-:r1p:"
               role="gridcell"
               tabindex="-1"
             >
@@ -726,18 +743,19 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             </td>
           </tr>
           <tr
-            aria-labelledby="react-aria-:r8:-2-name"
+            aria-labelledby="react-aria-:r1j:-2-name"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
             data-key="2"
             data-middle="true"
             data-odd="true"
+            id="react-aria-:r1q:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="22name"
-              id="react-aria-:r8:-2-name"
+              id="react-aria-:r1j:-2-name"
               role="rowheader"
               tabindex="-1"
             >
@@ -748,6 +766,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="22age"
+              id="react-aria-:r1s:"
               role="gridcell"
               tabindex="-1"
             >
@@ -757,17 +776,18 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             </td>
           </tr>
           <tr
-            aria-labelledby="react-aria-:r8:-3-name"
+            aria-labelledby="react-aria-:r1j:-3-name"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
             data-key="3"
             data-last="true"
+            id="react-aria-:r1t:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="33name"
-              id="react-aria-:r8:-3-name"
+              id="react-aria-:r1j:-3-name"
               role="rowheader"
               tabindex="-1"
             >
@@ -778,6 +798,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="33age"
+              id="react-aria-:r1v:"
               role="gridcell"
               tabindex="-1"
             >
@@ -805,7 +826,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
         aria-describedby=""
         aria-label="Loading data"
         class="min-w-full h-auto table-auto w-full"
-        id="react-aria-:r4:"
+        id="react-aria-:rh:"
         role="grid"
         tabindex="0"
       >
@@ -820,7 +841,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <th
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="0"
-              id="react-aria-:r4:-0"
+              id="react-aria-:rh:-0"
               role="columnheader"
               tabindex="-1"
             >
@@ -835,7 +856,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <th
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="1"
-              id="react-aria-:r4:-1"
+              id="react-aria-:rh:-1"
               role="columnheader"
               tabindex="-1"
             >
@@ -850,7 +871,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <th
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="2"
-              id="react-aria-:r4:-2"
+              id="react-aria-:rh:-2"
               role="columnheader"
               tabindex="-1"
             >
@@ -874,17 +895,18 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
           role="rowgroup"
         >
           <tr
-            aria-labelledby="react-aria-:r4:-0-0"
+            aria-labelledby="react-aria-:rh:-0-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
             data-first="true"
             data-key="0"
+            id="react-aria-:rm:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="0"
-              id="react-aria-:r4:-0-0"
+              id="react-aria-:rh:-0-0"
               role="rowheader"
               tabindex="-1"
             >
@@ -899,6 +921,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="1"
+              id="react-aria-:ro:"
               role="gridcell"
               tabindex="-1"
             >
@@ -913,6 +936,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="2"
+              id="react-aria-:rp:"
               role="gridcell"
               tabindex="-1"
             >
@@ -926,18 +950,19 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             </td>
           </tr>
           <tr
-            aria-labelledby="react-aria-:r4:-1-0"
+            aria-labelledby="react-aria-:rh:-1-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
             data-key="1"
             data-middle="true"
             data-odd="true"
+            id="react-aria-:rq:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="0"
-              id="react-aria-:r4:-1-0"
+              id="react-aria-:rh:-1-0"
               role="rowheader"
               tabindex="-1"
             >
@@ -952,6 +977,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="1"
+              id="react-aria-:rs:"
               role="gridcell"
               tabindex="-1"
             >
@@ -966,6 +992,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="2"
+              id="react-aria-:rt:"
               role="gridcell"
               tabindex="-1"
             >
@@ -979,17 +1006,18 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             </td>
           </tr>
           <tr
-            aria-labelledby="react-aria-:r4:-2-0"
+            aria-labelledby="react-aria-:rh:-2-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 hover:bg-content2 h-12"
             data-key="2"
             data-last="true"
+            id="react-aria-:ru:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="0"
-              id="react-aria-:r4:-2-0"
+              id="react-aria-:rh:-2-0"
               role="rowheader"
               tabindex="-1"
             >
@@ -1004,6 +1032,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="1"
+              id="react-aria-:r10:"
               role="gridcell"
               tabindex="-1"
             >
@@ -1018,6 +1047,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot en é
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground first:before:rounded-s-lg last:before:rounded-e-lg text-start"
               data-key="2"
+              id="react-aria-:r11:"
               role="gridcell"
               tabindex="-1"
             >
@@ -1049,7 +1079,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot sans 
         aria-describedby=""
         aria-label="data-grid"
         class="min-w-full h-auto table-auto w-full"
-        id="react-aria-:r2:"
+        id="react-aria-:rd:"
         role="grid"
         tabindex="0"
       >
@@ -1065,7 +1095,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot sans 
               aria-label="Nom"
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="name"
-              id="react-aria-:r2:-name"
+              id="react-aria-:rd:-name"
               role="columnheader"
               tabindex="-1"
             >
@@ -1117,7 +1147,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot sans 
               aria-label="Âge"
               class="group/th px-3 align-middle whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start py4 bg-content2 py-4 h-12"
               data-key="age"
-              id="react-aria-:r2:-age"
+              id="react-aria-:rd:-age"
               role="columnheader"
               tabindex="-1"
             >

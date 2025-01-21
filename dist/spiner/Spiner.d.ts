@@ -1,4 +1,4 @@
-import { SpinnerProps as SpinnerRootProps } from '@nextui-org/spinner';
+import { SpinnerProps as SpinnerRootProps } from '@heroui/react';
 import { Color, Size } from '../types/types';
 interface SpinnerProps extends Omit<SpinnerRootProps, "label" | "labelColor"> {
     color?: Color;

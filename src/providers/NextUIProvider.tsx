@@ -1,5 +1,5 @@
-import type { NextUIProviderProps as ProviderProps } from "@nextui-org/system";
-import { NextUIProvider as Provider } from "@nextui-org/system";
+import type { HeroUIProviderProps as ProviderProps } from "@heroui/react";
+import { HeroUIProvider as Provider } from "@heroui/react";
 import type { JSX } from "react";
 import { type ReactNode } from "react";
 

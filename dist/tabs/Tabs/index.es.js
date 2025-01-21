@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Tabs as Tabs$1, Tab } from "@nextui-org/tabs";
+import { Tabs as Tabs$1, Tab } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Tabs = forwardRef(
   (_a, ref) => {

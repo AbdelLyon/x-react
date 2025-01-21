@@ -6,9 +6,8 @@ import type {
   TableHeaderProps,
   TableProps,
   TableRowProps,
-} from "@nextui-org/table";
+} from "@heroui/react";
 
-// Basic types
 export interface SortConfig<T> {
   key: keyof T | null;
   direction: "asc" | "desc";
@@ -16,7 +15,6 @@ export interface SortConfig<T> {
 
 export type SortDirection = "asc" | "desc";
 
-// types/datagrid/columns.ts
 interface ColumnBase<T> {
   header: React.ReactNode;
   footer?: (data: T[]) => React.ReactNode;
@@ -40,8 +38,6 @@ export type ExtendedColumn<T> = ColumnDefinition<T> & {
   key: string;
   header: React.ReactNode;
 };
-
-// types/datagrid/components.ts
 
 export interface DataGridComponentProps<T> {
   tableHeaderProps?: Omit<TableHeaderProps<T>, "columns" | "children">;

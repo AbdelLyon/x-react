@@ -1,4 +1,4 @@
-import { ModalProps as ModalPropsRoot } from '@nextui-org/modal';
+import { ModalProps as ModalPropsRoot } from '@heroui/react';
 import { ButtonProps } from '../button';
 type Backdrop = ModalPropsRoot["backdrop"];
 interface ModalClassNames {

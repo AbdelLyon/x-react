@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
-import { Button as Button$1 } from "@nextui-org/button";
+import { Button as Button$1 } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Button = (_a) => {
   var _b = _a, {

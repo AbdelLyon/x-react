@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx } from "react/jsx-runtime";
-import { ButtonGroup } from "@nextui-org/button";
+import { ButtonGroup } from "@heroui/react";
 import { Button } from "../../button/Button/index.es.js";
 const Buttons = (_a) => {
   var _b = _a, { buttons } = _b, props = __objRest(_b, ["buttons"]);

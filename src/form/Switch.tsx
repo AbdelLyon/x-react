@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { SwitchProps as SwitchRootProp } from "@nextui-org/switch";
-import { Switch as SwitchRoot } from "@nextui-org/switch";
+import type { SwitchProps as SwitchRootProp } from "@heroui/react";
+import { Switch as SwitchRoot } from "@heroui/react";
 
 type SwitchProps = {
   width?: string | number;

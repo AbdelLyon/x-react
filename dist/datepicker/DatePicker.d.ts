@@ -1,5 +1,5 @@
 import { DateValue } from '@internationalized/date';
-import { DatePickerProps as DatePickerRootProps, DateRangePickerProps as DateRangePickerRootProps } from '@nextui-org/date-picker';
+import { DatePickerProps as DatePickerRootProps, DateRangePickerProps as DateRangePickerRootProps } from '@heroui/react';
 type BaseProps = {
     containerClasses?: string;
     variant?: "bordered" | "flat" | "faded" | "underlined";

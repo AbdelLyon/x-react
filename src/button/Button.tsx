@@ -4,8 +4,8 @@ import type {
   JSX,
   ReactNode,
 } from "react";
-import type { ButtonProps as ButtonRootProps } from "@nextui-org/button";
-import { Button as ButtonRoot } from "@nextui-org/button";
+import type { ButtonProps as ButtonRootProps } from "@heroui/react";
+import { Button as ButtonRoot } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 
 export interface ButtonProps extends Omit<ButtonRootProps, "onPress"> {

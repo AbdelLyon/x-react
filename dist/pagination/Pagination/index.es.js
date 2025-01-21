@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Pagination as Pagination$1 } from "@nextui-org/pagination";
+import { Pagination as Pagination$1 } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Pagination = forwardRef(
   (_a, ref) => {

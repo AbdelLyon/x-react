@@ -1,7 +1,7 @@
 import type { JSX, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { ProgressProps as ProgressRootProps } from "@nextui-org/progress";
-import { Progress as ProgressRoor } from "@nextui-org/progress";
+import type { ProgressProps as ProgressRootProps } from "@heroui/react";
+import { Progress as ProgressRoor } from "@heroui/react";
 
 type AdditionalProgressProps = {
   label?: ReactNode;

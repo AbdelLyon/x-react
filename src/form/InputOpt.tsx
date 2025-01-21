@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { InputOtpProps } from "@nextui-org/input-otp";
-import { InputOtp as NextUIInputOtp } from "@nextui-org/input-otp";
+import type { InputOtpProps } from "@heroui/react";
+import { InputOtp as NextUIInputOtp } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 
 type InputOtpWrapperProps = {

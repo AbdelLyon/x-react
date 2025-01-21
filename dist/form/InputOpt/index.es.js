@@ -28,7 +28,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { InputOtp as InputOtp$1 } from "@nextui-org/input-otp";
+import { InputOtp as InputOtp$1 } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 const InputOtp = forwardRef(
   (_a, ref) => {

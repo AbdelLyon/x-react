@@ -1,6 +1,6 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Link } from "@nextui-org/link";
+import { Link } from "@heroui/react";
 import { useResponsive } from "../../hooks/useResponsive/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
 const Sidebar = ({

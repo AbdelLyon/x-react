@@ -30,10 +30,10 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx } from "react/jsx-runtime";
-import { NextUIProvider as NextUIProvider$1 } from "@nextui-org/system";
+import { HeroUIProvider } from "@heroui/react";
 const NextUIProvider = (props) => {
   const _a = props, { children } = _a, rest = __objRest(_a, ["children"]);
-  return /* @__PURE__ */ jsx(NextUIProvider$1, __spreadProps(__spreadValues({}, rest), { children }));
+  return /* @__PURE__ */ jsx(HeroUIProvider, __spreadProps(__spreadValues({}, rest), { children }));
 };
 export {
   NextUIProvider

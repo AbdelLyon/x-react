@@ -1,9 +1,6 @@
 import { forwardRef } from "react";
-import type { CheckboxGroupProps, CheckboxProps } from "@nextui-org/checkbox";
-import {
-  CheckboxGroup as CheckboxGroupRoot,
-  Checkbox,
-} from "@nextui-org/checkbox";
+import type { CheckboxGroupProps, CheckboxProps } from "@heroui/react";
+import { CheckboxGroup as CheckboxGroupRoot, Checkbox } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 
 type CheckboxItemProps = {

@@ -1,12 +1,12 @@
-import { User as UserRoot, type UserProps } from "@nextui-org/user";
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { AvatarGroupProps, AvatarProps } from "@nextui-org/avatar";
+import type { AvatarGroupProps, AvatarProps, UserProps } from "@heroui/react";
 import {
   Avatar as AvatarRoot,
+  User as UserRoot,
   useAvatarGroup,
   AvatarGroupProvider,
-} from "@nextui-org/avatar";
+} from "@heroui/react";
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   (props, ref): JSX.Element => {

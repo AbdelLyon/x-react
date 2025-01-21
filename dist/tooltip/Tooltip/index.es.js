@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx } from "react/jsx-runtime";
-import { Tooltip as Tooltip$1 } from "@nextui-org/tooltip";
+import { Tooltip as Tooltip$1 } from "@heroui/react";
 const Tooltip = (_a) => {
   var _b = _a, {
     trigger,

@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Popover as Popover$1, PopoverTrigger, PopoverContent } from "@nextui-org/popover";
+import { Popover as Popover$1, PopoverTrigger, PopoverContent } from "@heroui/react";
 const Popover = forwardRef(
   (_a, ref) => {
     var _b = _a, {

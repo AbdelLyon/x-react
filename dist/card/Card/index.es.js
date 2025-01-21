@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Card as Card$1, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
+import { Card as Card$1, CardHeader, CardBody, CardFooter } from "@heroui/react";
 const Card = forwardRef(
   (_a, ref) => {
     var _b = _a, {

@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
-import type { PaginationProps as PaginationRootProps } from "@nextui-org/pagination";
-import { Pagination as PaginationRoot } from "@nextui-org/pagination";
+import type { PaginationProps as PaginationRootProps } from "@heroui/react";
+import { Pagination as PaginationRoot } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 
 export interface PaginationProps extends PaginationRootProps {

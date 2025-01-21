@@ -1,11 +1,8 @@
 import type { JSX } from "react";
 import { forwardRef } from "react";
 import { mergeTailwindClasses } from "@/utils";
-import type { AccordionItemProps, AccordionProps } from "@nextui-org/accordion";
-import {
-  Accordion as AccordionRoot,
-  AccordionItem,
-} from "@nextui-org/accordion";
+import type { AccordionItemProps, AccordionProps } from "@heroui/react";
+import { Accordion as AccordionRoot, AccordionItem } from "@heroui/react";
 
 export interface ExtendedAccordionItemProps
   extends Omit<AccordionItemProps, "content"> {

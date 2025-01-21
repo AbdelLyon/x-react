@@ -7,12 +7,12 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "@nextui-org/table";
+} from "@heroui/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import type { DataGridProps } from "@/types/datagrid";
-import { GRID_VARIANTS } from "@/data/default";
+import { GRID_VARIANTS } from "./variants";
 
 export function DataGrid<T extends { id: string | number }>({
   rows,

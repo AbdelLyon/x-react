@@ -1,6 +1,6 @@
 import type { JSX } from "react";
-import type { ButtonGroupProps } from "@nextui-org/button";
-import { ButtonGroup } from "@nextui-org/button";
+import type { ButtonGroupProps } from "@heroui/react";
+import { ButtonGroup } from "@heroui/react";
 import type { ButtonProps } from "@/button/Button";
 import { Button } from "@/button/Button";
 
