@@ -28,10 +28,10 @@ var __objRest = (source, exclude) => {
 };
 import { jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Chart as Chart$1, CategoryScale, LinearScale, Title, Tooltip, Legend, RadialLinearScale, BarElement, ArcElement, PointElement, LineElement, BarController, DoughnutController, ScatterController, PolarAreaController } from "chart.js";
-import { Chart as Chart$2, getElementAtEvent } from "react-chartjs-2";
+import { Chart as Chart$2, CategoryScale, LinearScale, Title, Tooltip, Legend, RadialLinearScale, BarElement, ArcElement, PointElement, LineElement, BarController, DoughnutController, ScatterController, PolarAreaController } from "chart.js";
+import { Chart as Chart$1, getElementAtEvent } from "react-chartjs-2";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-Chart$1.register(
+Chart$2.register(
   CategoryScale,
   LinearScale,
   Title,
@@ -151,7 +151,7 @@ const Chart = forwardRef(
     };
     const mergedOptions = __spreadValues(__spreadValues({}, defaultOptions), options);
     return /* @__PURE__ */ jsx("div", { ref, className: mergedClassNames.root, children: /* @__PURE__ */ jsx(
-      Chart$2,
+      Chart$1,
       __spreadValues({
         data,
         options: mergedOptions,
