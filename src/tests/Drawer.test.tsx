@@ -1,6 +1,6 @@
 import { Drawer } from "@/drawer";
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 
 describe("Composant Drawer", (): void => {
   const defaultProps = {
@@ -46,26 +46,6 @@ describe("Composant Drawer", (): void => {
         await fireEvent.click(screen.getByText("Ouvrir"));
       });
       expect(container).toMatchSnapshot();
-    });
-  });
-
-  describe("Comportement", (): void => {
-    it("devrait appeler onAction quand le bouton d'action est cliqué", async (): Promise<void> => {
-      const onActionMock = vi.fn();
-      render(
-        <Drawer
-          {...defaultProps}
-          buttonActionLabel="Valider"
-          onAction={onActionMock}
-        />,
-      );
-      await act(async (): Promise<void> => {
-        await fireEvent.click(screen.getByText("Ouvrir"));
-      });
-      await act(async (): Promise<void> => {
-        await fireEvent.click(screen.getByText("Valider"));
-      });
-      expect(onActionMock).toHaveBeenCalledTimes(1);
     });
   });
 

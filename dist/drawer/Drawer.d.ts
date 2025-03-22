@@ -1,6 +1,5 @@
 import { JSX, ReactNode } from 'react';
-import { DrawerProps as DrawerRootProps } from '@heroui/react';
-import { ButtonProps } from '../button';
+import { ButtonProps, DrawerProps as DrawerRootProps } from '@heroui/react';
 interface DrawerClassNames {
     wrapper?: string;
     base?: string;

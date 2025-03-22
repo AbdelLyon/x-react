@@ -1,5 +1,4 @@
-import { ModalProps as ModalPropsRoot } from '@heroui/react';
-import { ButtonProps } from '../button';
+import { ButtonProps, ModalProps as ModalPropsRoot } from '@heroui/react';
 type Backdrop = ModalPropsRoot["backdrop"];
 interface ModalClassNames {
     wrapper?: string;

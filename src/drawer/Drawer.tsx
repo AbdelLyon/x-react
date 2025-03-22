@@ -1,4 +1,5 @@
 import type { JSX, ReactNode } from "react";
+import type { ButtonProps } from "@heroui/react";
 import {
   Drawer as DrawerRoot,
   DrawerContent,
@@ -8,7 +9,7 @@ import {
   type DrawerProps as DrawerRootProps,
 } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
-import { Button, type ButtonProps } from "@/button";
+import { Button } from "@/button";
 import { useDisclosure } from "@/hooks";
 
 interface DrawerClassNames {

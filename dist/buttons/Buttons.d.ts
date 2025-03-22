@@ -1,6 +1,5 @@
 import { JSX } from 'react';
-import { ButtonGroupProps } from '@heroui/react';
-import { ButtonProps } from '../button/Button';
+import { ButtonGroupProps, ButtonProps } from '@heroui/react';
 export interface ButtonsProps extends ButtonGroupProps {
     buttons: Array<{
         key: string | number;

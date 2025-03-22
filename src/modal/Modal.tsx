@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 import { forwardRef, useState, useCallback } from "react";
-import type { ModalProps as ModalPropsRoot } from "@heroui/react";
+import type { ButtonProps, ModalProps as ModalPropsRoot } from "@heroui/react";
 import {
   Modal as ModalRoot,
   ModalContent,
@@ -11,7 +11,7 @@ import {
 } from "@heroui/react";
 
 import { mergeTailwindClasses } from "@/utils";
-import { Button, type ButtonProps } from "@/button";
+import { Button } from "@/button";
 
 type Backdrop = ModalPropsRoot["backdrop"];
 
