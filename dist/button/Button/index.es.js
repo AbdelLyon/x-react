@@ -15,9 +15,9 @@ var __spreadValues = (a, b) => {
   return a;
 };
 import { jsx } from "react/jsx-runtime";
-import { button } from "@heroui/react";
+import { Button as Button$1 } from "@heroui/react";
 const Button = (props) => {
-  return /* @__PURE__ */ jsx(button, __spreadValues({ color: "primary", className: props.className }, props));
+  return /* @__PURE__ */ jsx(Button$1, __spreadValues({ color: "primary", className: props.className }, props));
 };
 export {
   Button
