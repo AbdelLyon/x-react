@@ -15,6 +15,7 @@ export interface SidebarProps {
   bgImage?: ReactNode;
   ref?: React.RefObject<HTMLElement>;
   onItemClick?: (item: Item) => void;
+  action?: ReactNode;
 }
 
 export const Sidebar = ({
@@ -23,6 +24,7 @@ export const Sidebar = ({
   bgImage,
   onItemClick,
   ref,
+  action,
 }: SidebarProps): JSX.Element | null => {
   const { isDesktop, isTablet } = useResponsive();
 
@@ -35,7 +37,7 @@ export const Sidebar = ({
       <Link
         key={item.key}
         className={mergeTailwindClasses(
-          "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
+          "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer text-sm",
           {
             "border-l-2 border-primary bg-content1 text-primary": item.isActive,
             "justify-center": isTablet,
@@ -79,6 +81,7 @@ export const Sidebar = ({
         classNames?.base,
       )}
     >
+      {action}
       <nav className="flex-1 flex-col gap-2 p-4">{items.map(renderLink)}</nav>
       {bgImage}
     </aside>

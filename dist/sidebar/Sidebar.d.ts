@@ -10,5 +10,6 @@ export interface SidebarProps {
     bgImage?: ReactNode;
     ref?: React.RefObject<HTMLElement>;
     onItemClick?: (item: Item) => void;
+    action?: ReactNode;
 }
-export declare const Sidebar: ({ items, classNames, bgImage, onItemClick, ref, }: SidebarProps) => JSX.Element | null;
+export declare const Sidebar: ({ items, classNames, bgImage, onItemClick, ref, action, }: SidebarProps) => JSX.Element | null;

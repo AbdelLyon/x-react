@@ -8,7 +8,8 @@ const Sidebar = ({
   classNames,
   bgImage,
   onItemClick,
-  ref
+  ref,
+  action
 }) => {
   const { isDesktop, isTablet } = useResponsive();
   if (!isDesktop && !isTablet) {
@@ -19,7 +20,7 @@ const Sidebar = ({
       Link,
       {
         className: mergeTailwindClasses(
-          "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer",
+          "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer text-sm",
           {
             "border-l-2 border-primary bg-content1 text-primary": item.isActive,
             "justify-center": isTablet
@@ -64,6 +65,7 @@ const Sidebar = ({
         classNames == null ? void 0 : classNames.base
       ),
       children: [
+        action,
         /* @__PURE__ */ jsx("nav", { className: "flex-1 flex-col gap-2 p-4", children: items.map(renderLink) }),
         bgImage
       ]
