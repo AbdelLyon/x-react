@@ -41,8 +41,8 @@ const Sidebar = ({
             {
               className: mergeTailwindClasses({
                 "": isDesktop,
-                "flex items-center justify-center w-10 h-10 rounded-full": isTablet && !item.isActive,
-                "flex items-center justify-center w-10 h-10 rounded-l-md bg-primary/10": isTablet && item.isActive
+                "flex items-center justify-center w-9 h-9": isTablet && !item.isActive,
+                "flex items-center justify-center w-9 h-9 bg-primary/10": isTablet && item.isActive
               }),
               children: item.startContent
             }
@@ -79,30 +79,35 @@ const Sidebar = ({
     return linkContent;
   };
   const actionButton = actionClick && /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsx("div", { className: "flex justify-center", children: /* @__PURE__ */ jsx(
-      Button,
-      {
-        color: actionColor,
-        radius: "none",
-        className: mergeTailwindClasses(
-          "transition-all",
-          {
-            "mt-6 w-[85%] justify-start px-3": isDesktop,
-            "m-0 w-full h-auto p-3 flex items-center justify-center": isTablet
-          },
-          classNames == null ? void 0 : classNames.action
-        ),
-        startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 rounded-none bg-white p-1", children: actionIcon }) : null,
-        onPress: actionClick,
-        children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex size-10 items-center justify-center", children: actionIcon })
-      }
-    ) }),
+    /* @__PURE__ */ jsxs("div", { className: "flex justify-center py-3", children: [
+      " ",
+      /* @__PURE__ */ jsx(
+        Button,
+        {
+          color: actionColor,
+          radius: "none",
+          className: mergeTailwindClasses(
+            "transition-all",
+            {
+              "w-[85%] justify-start px-3": isDesktop,
+              "w-[62px] h-[38px] p-0 flex items-center justify-center": isTablet
+              // Dimensions précises
+            },
+            classNames == null ? void 0 : classNames.action
+          ),
+          startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 bg-white p-1", children: actionIcon }) : null,
+          onPress: actionClick,
+          children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center", children: actionIcon })
+        }
+      )
+    ] }),
     showDivider && /* @__PURE__ */ jsx(
       "hr",
       {
         className: mergeTailwindClasses("border border-border", {
-          "mx-4 my-6": isDesktop,
-          "mx-auto my-4 w-8": isTablet
+          "mx-4 my-3": isDesktop,
+          "mx-auto my-4 w-10": isTablet
+          // Espacement parfait avant les éléments
         })
       }
     )
@@ -126,7 +131,8 @@ const Sidebar = ({
           {
             className: mergeTailwindClasses("flex-1", {
               "p-4": isDesktop,
-              "py-4 px-2": isTablet
+              "pt-2 px-2": isTablet
+              // Ajustement du padding top pour un meilleur espacement après le divider
             }),
             children: /* @__PURE__ */ jsx(
               "div",
@@ -134,6 +140,7 @@ const Sidebar = ({
                 className: mergeTailwindClasses("flex flex-col", {
                   "gap-2": isDesktop,
                   "gap-4 items-center": isTablet
+                  // Espacement parfait entre les éléments
                 }),
                 children: items.map(renderLink)
               }
