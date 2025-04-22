@@ -1,4 +1,4 @@
-import { JSX, ReactNode } from 'react';
+import { default as React, JSX, ReactNode } from 'react';
 import { Item } from '../types/navigation';
 import { Color } from '../types/types';
 export interface SidebarProps {
@@ -13,7 +13,9 @@ export interface SidebarProps {
     ref?: React.RefObject<HTMLElement>;
     onItemClick?: (item: Item) => void;
     actionLabel?: string;
-    actionIcon?: ReactNode;
+    actionIcon?: React.ReactElement<{
+        className?: string;
+    }>;
     actionColor?: Color;
     actionClick?: () => void;
     showDivider?: boolean;

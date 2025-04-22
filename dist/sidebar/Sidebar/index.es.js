@@ -1,4 +1,5 @@
-import { jsxs, Fragment, jsx } from "react/jsx-runtime";
+import { jsxs, jsx, Fragment } from "react/jsx-runtime";
+import { cloneElement } from "react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Button, Link } from "@heroui/react";
 import { IconPlus } from "@tabler/icons-react";
@@ -11,7 +12,7 @@ const Sidebar = ({
   onItemClick,
   ref,
   actionLabel,
-  actionIcon = /* @__PURE__ */ jsx(IconPlus, { className: "rounded-sm text-primary" }),
+  actionIcon = /* @__PURE__ */ jsx(IconPlus, { className: "rounded-sm" }),
   actionColor = "primary",
   actionClick,
   showDivider = true
@@ -47,7 +48,7 @@ const Sidebar = ({
               children: item.startContent
             }
           ),
-          isDesktop ? /* @__PURE__ */ jsx("span", { children: item.label }) : null,
+          isDesktop && /* @__PURE__ */ jsx("span", { children: item.label }),
           item.endContent !== null && /* @__PURE__ */ jsx(
             "div",
             {
@@ -62,51 +63,65 @@ const Sidebar = ({
       },
       item.key
     );
-    if (isTablet) {
-      return /* @__PURE__ */ jsx(
-        Tooltip,
-        {
-          trigger: linkContent,
-          content: item.label,
-          placement: "right",
-          delay: 0,
-          closeDelay: 0,
-          className: "border border-border px-2 py-1 shadow-lg"
-        },
-        item.key
-      );
-    }
-    return linkContent;
+    return isTablet ? /* @__PURE__ */ jsx(
+      Tooltip,
+      {
+        trigger: linkContent,
+        content: item.label,
+        placement: "right",
+        delay: 0,
+        closeDelay: 0,
+        className: "border border-border px-2 py-1 shadow-lg"
+      },
+      item.key
+    ) : linkContent;
   };
-  const actionButton = actionClick && /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsx("div", { className: "flex justify-center py-3", children: /* @__PURE__ */ jsx(
-      Button,
-      {
-        color: actionColor,
-        radius: "none",
-        className: mergeTailwindClasses(
-          "transition-all",
-          {
-            "w-[85%] justify-start px-3": isDesktop,
-            "w-12 h-[40px] p-0 flex items-center rounded-ee-sm justify-center": isTablet
-          },
-          classNames == null ? void 0 : classNames.action
-        ),
-        startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 bg-white p-1", children: actionIcon }) : null,
-        onPress: actionClick,
-        children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center", children: actionIcon })
-      }
-    ) }),
-    showDivider && /* @__PURE__ */ jsx(
-      "hr",
-      {
-        className: mergeTailwindClasses("border border-border", {
-          "mx-4 my-3": isDesktop,
-          "mx-auto my-4 w-10": isTablet
-        })
-      }
-    )
-  ] });
+  const renderActionButton = () => {
+    if (!actionClick) {
+      return null;
+    }
+    const desktopIcon = cloneElement(actionIcon, {
+      className: mergeTailwindClasses(
+        "text-primary",
+        actionIcon.props.className || ""
+      )
+    });
+    const tabletIcon = cloneElement(actionIcon, {
+      className: mergeTailwindClasses(
+        "text-white",
+        actionIcon.props.className || ""
+      )
+    });
+    return /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx("div", { className: "flex justify-center py-3", children: /* @__PURE__ */ jsx(
+        Button,
+        {
+          color: actionColor,
+          radius: "none",
+          className: mergeTailwindClasses(
+            "transition-all",
+            {
+              "w-[85%] justify-start px-3": isDesktop,
+              "w-12 h-[40px] p-0 flex items-center rounded-ee-sm justify-center": isTablet
+            },
+            classNames == null ? void 0 : classNames.action
+          ),
+          startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 bg-white p-1", children: desktopIcon }) : null,
+          onPress: actionClick,
+          children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center", children: tabletIcon })
+        }
+      ) }),
+      showDivider && /* @__PURE__ */ jsx(
+        "hr",
+        {
+          className: mergeTailwindClasses("border border-border", {
+            "mx-4 my-3": isDesktop,
+            "mx-auto my-4 w-10": isTablet
+          })
+        }
+      )
+    ] });
+  };
   return /* @__PURE__ */ jsxs(
     "aside",
     {
@@ -120,7 +135,7 @@ const Sidebar = ({
         classNames == null ? void 0 : classNames.base
       ),
       children: [
-        actionButton,
+        renderActionButton(),
         /* @__PURE__ */ jsx(
           "nav",
           {

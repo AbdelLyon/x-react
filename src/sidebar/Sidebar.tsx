@@ -1,4 +1,4 @@
-import type { JSX, ReactNode } from "react";
+import React, { cloneElement, type JSX, type ReactNode } from "react";
 import { mergeTailwindClasses } from "@/utils";
 import type { Item } from "@/types/navigation";
 import { useResponsive } from "@/hooks";
@@ -20,7 +20,7 @@ export interface SidebarProps {
   ref?: React.RefObject<HTMLElement>;
   onItemClick?: (item: Item) => void;
   actionLabel?: string;
-  actionIcon?: ReactNode;
+  actionIcon?: React.ReactElement<{ className?: string }>;
   actionColor?: Color;
   actionClick?: () => void;
   showDivider?: boolean;
@@ -33,7 +33,7 @@ export const Sidebar = ({
   onItemClick,
   ref,
   actionLabel,
-  actionIcon = <IconPlus className="rounded-sm text-primary" />,
+  actionIcon = <IconPlus className="rounded-sm" />,
   actionColor = "primary",
   actionClick,
   showDivider = true,
@@ -72,7 +72,7 @@ export const Sidebar = ({
         >
           {item.startContent}
         </div>
-        {isDesktop ? <span>{item.label}</span> : null}
+        {isDesktop && <span>{item.label}</span>}
         {item.endContent !== null && (
           <div
             className={mergeTailwindClasses({
@@ -86,62 +86,83 @@ export const Sidebar = ({
       </Link>
     );
 
-    if (isTablet) {
-      return (
-        <Tooltip
-          trigger={linkContent}
-          key={item.key}
-          content={item.label}
-          placement="right"
-          delay={0}
-          closeDelay={0}
-          className="border border-border px-2 py-1 shadow-lg"
-        />
-      );
-    }
-
-    return linkContent;
+    // Wrap in tooltip only in tablet mode
+    return isTablet ? (
+      <Tooltip
+        trigger={linkContent}
+        key={item.key}
+        content={item.label}
+        placement="right"
+        delay={0}
+        closeDelay={0}
+        className="border border-border px-2 py-1 shadow-lg"
+      />
+    ) : (
+      linkContent
+    );
   };
 
-  const actionButton = actionClick && (
-    <>
-      <div className="flex justify-center py-3">
-        <Button
-          color={actionColor}
-          radius="none"
-          className={mergeTailwindClasses(
-            "transition-all",
-            {
-              "w-[85%] justify-start px-3": isDesktop,
-              "w-12 h-[40px] p-0 flex items-center rounded-ee-sm justify-center":
-                isTablet,
-            },
-            classNames?.action,
-          )}
-          startContent={
-            isDesktop ? (
-              <div className="mr-2 bg-white p-1">{actionIcon}</div>
-            ) : null
-          }
-          onPress={actionClick}
-        >
-          {isDesktop ? (
-            actionLabel
-          ) : (
-            <div className="flex items-center justify-center">{actionIcon}</div>
-          )}
-        </Button>
-      </div>
-      {showDivider && (
-        <hr
-          className={mergeTailwindClasses("border border-border", {
-            "mx-4 my-3": isDesktop,
-            "mx-auto my-4 w-10": isTablet,
-          })}
-        />
-      )}
-    </>
-  );
+  const renderActionButton = (): JSX.Element | null => {
+    if (!actionClick) {
+      return null;
+    }
+
+    const desktopIcon = cloneElement(actionIcon, {
+      className: mergeTailwindClasses(
+        "text-primary",
+        actionIcon.props.className || "",
+      ),
+    });
+
+    const tabletIcon = cloneElement(actionIcon, {
+      className: mergeTailwindClasses(
+        "text-white",
+        actionIcon.props.className || "",
+      ),
+    });
+
+    return (
+      <>
+        <div className="flex justify-center py-3">
+          <Button
+            color={actionColor}
+            radius="none"
+            className={mergeTailwindClasses(
+              "transition-all",
+              {
+                "w-[85%] justify-start px-3": isDesktop,
+                "w-12 h-[40px] p-0 flex items-center rounded-ee-sm justify-center":
+                  isTablet,
+              },
+              classNames?.action,
+            )}
+            startContent={
+              isDesktop ? (
+                <div className="mr-2 bg-white p-1">{desktopIcon}</div>
+              ) : null
+            }
+            onPress={actionClick}
+          >
+            {isDesktop ? (
+              actionLabel
+            ) : (
+              <div className="flex items-center justify-center">
+                {tabletIcon}
+              </div>
+            )}
+          </Button>
+        </div>
+        {showDivider && (
+          <hr
+            className={mergeTailwindClasses("border border-border", {
+              "mx-4 my-3": isDesktop,
+              "mx-auto my-4 w-10": isTablet,
+            })}
+          />
+        )}
+      </>
+    );
+  };
 
   return (
     <aside
@@ -155,7 +176,7 @@ export const Sidebar = ({
         classNames?.base,
       )}
     >
-      {actionButton}
+      {renderActionButton()}
       <nav
         className={mergeTailwindClasses("flex-1", {
           "p-4": isDesktop,
