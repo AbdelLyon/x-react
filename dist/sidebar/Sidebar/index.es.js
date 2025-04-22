@@ -83,18 +83,18 @@ const Sidebar = ({
       Button,
       {
         color: actionColor,
-        radius: isTablet ? "full" : "sm",
+        radius: "none",
         className: mergeTailwindClasses(
           "transition-all",
           {
             "mt-6 w-[85%] justify-start px-3": isDesktop,
-            "mt-6 mb-2 w-12 h-12 p-0 flex items-center justify-center": isTablet
+            "m-0 w-full h-auto p-3 flex items-center justify-center": isTablet
           },
           classNames == null ? void 0 : classNames.action
         ),
-        startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 rounded-full bg-white p-1", children: actionIcon }) : null,
+        startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 rounded-none bg-white p-1", children: actionIcon }) : null,
         onPress: actionClick,
-        children: isDesktop ? actionLabel : actionIcon
+        children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex size-10 items-center justify-center", children: actionIcon })
       }
     ) }),
     showDivider && /* @__PURE__ */ jsx(
