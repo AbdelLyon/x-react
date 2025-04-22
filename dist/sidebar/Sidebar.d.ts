@@ -6,10 +6,15 @@ export interface SidebarProps {
     classNames?: {
         base?: string;
         item?: string;
+        action?: string;
     };
     bgImage?: ReactNode;
     ref?: React.RefObject<HTMLElement>;
     onItemClick?: (item: Item) => void;
-    action?: ReactNode;
+    actionLabel?: string;
+    actionIcon?: ReactNode;
+    actionColor?: "primary" | "default" | "secondary" | "success" | "warning" | "danger";
+    actionClick?: () => void;
+    showDivider?: boolean;
 }
-export declare const Sidebar: ({ items, classNames, bgImage, onItemClick, ref, action, }: SidebarProps) => JSX.Element | null;
+export declare const Sidebar: ({ items, classNames, bgImage, onItemClick, ref, actionLabel, actionIcon, actionColor, actionClick, showDivider, }: SidebarProps) => JSX.Element | null;

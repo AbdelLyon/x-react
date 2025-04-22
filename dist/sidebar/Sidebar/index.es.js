@@ -1,6 +1,7 @@
-import { jsxs, jsx } from "react/jsx-runtime";
+import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Link } from "@heroui/react";
+import { Button, Link } from "@heroui/react";
+import { IconPlus } from "@tabler/icons-react";
 import { useResponsive } from "../../hooks/useResponsive/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
 const Sidebar = ({
@@ -9,7 +10,11 @@ const Sidebar = ({
   bgImage,
   onItemClick,
   ref,
-  action
+  actionLabel,
+  actionIcon = /* @__PURE__ */ jsx(IconPlus, { className: "text-primary" }),
+  actionColor = "primary",
+  actionClick,
+  showDivider = true
 }) => {
   const { isDesktop, isTablet } = useResponsive();
   if (!isDesktop && !isTablet) {
@@ -52,6 +57,27 @@ const Sidebar = ({
     }
     return linkContent;
   };
+  const actionButton = actionClick && /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx("div", { className: "flex justify-center", children: /* @__PURE__ */ jsx(
+      Button,
+      {
+        color: actionColor,
+        radius: "none",
+        className: mergeTailwindClasses(
+          "mt-6 justify-start",
+          {
+            "w-56": isDesktop,
+            "w-16 px-0": isTablet
+          },
+          classNames == null ? void 0 : classNames.action
+        ),
+        startContent: /* @__PURE__ */ jsx("div", { className: "mr-2 bg-white", children: actionIcon }),
+        onPress: actionClick,
+        children: isDesktop ? actionLabel : null
+      }
+    ) }),
+    showDivider && /* @__PURE__ */ jsx("hr", { className: "mx-4 my-6 border border-border" })
+  ] });
   return /* @__PURE__ */ jsxs(
     "aside",
     {
@@ -65,7 +91,7 @@ const Sidebar = ({
         classNames == null ? void 0 : classNames.base
       ),
       children: [
-        action,
+        actionButton,
         /* @__PURE__ */ jsx("nav", { className: "flex-1 flex-col gap-2 p-4", children: items.map(renderLink) }),
         bgImage
       ]
