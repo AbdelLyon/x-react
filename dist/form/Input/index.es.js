@@ -128,7 +128,7 @@ const Input = forwardRef(
             "border-b-1",
             "rounded-none",
             "bg-transparent",
-            "border-default",
+            "border-border",
             "h-12",
             // Underline effect
             "after:bg-outline",

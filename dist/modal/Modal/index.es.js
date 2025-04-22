@@ -56,7 +56,7 @@ import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Button } from "../../button/Button/index.es.js";
 const defaultClassNames = {
   closeButton: "absolute right-4 top-4",
-  base: "bg-background border border-default shadow-lg dark:shadow-none rounded-lg",
+  base: "bg-background border border-border shadow-lg dark:shadow-none rounded-lg",
   header: "flex flex-col gap-1",
   footer: "flex justify-end gap-2"
 };

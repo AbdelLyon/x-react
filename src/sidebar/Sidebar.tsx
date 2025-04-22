@@ -59,7 +59,7 @@ export const Sidebar = ({
           placement="right"
           delay={0}
           closeDelay={0}
-          className="border border-default"
+          className="border border-border"
         />
       );
     }
@@ -71,7 +71,7 @@ export const Sidebar = ({
     <aside
       ref={ref}
       className={mergeTailwindClasses(
-        "fixed left-0 h-screen flex flex-col bg-[#212324] border-r border-default",
+        "fixed left-0 h-screen flex flex-col bg-[#212324] border-r border-border",
         {
           "w-[270px]": isDesktop,
           "w-[90px]": isTablet,

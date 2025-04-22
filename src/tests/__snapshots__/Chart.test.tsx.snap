@@ -3,7 +3,7 @@
 exports[`Composant Chart > Configuration des options > devrait correctement configurer les options de légende 1`] = `
 <div>
   <div
-    class="relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
+    class="relative w-full h-max flex flex-col items-center border border-border justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
   >
     <div
       data-testid="mock-chart"
@@ -15,7 +15,7 @@ exports[`Composant Chart > Configuration des options > devrait correctement conf
 exports[`Composant Chart > Configuration des options > devrait fusionner correctement les options par défaut avec les options personnalisées 1`] = `
 <div>
   <div
-    class="relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
+    class="relative w-full h-max flex flex-col items-center border border-border justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
   >
     <div
       data-testid="mock-chart"
@@ -27,7 +27,7 @@ exports[`Composant Chart > Configuration des options > devrait fusionner correct
 exports[`Composant Chart > Snapshots > devrait correspondre au snapshot avec les props par défaut 1`] = `
 <div>
   <div
-    class="relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
+    class="relative w-full h-max flex flex-col items-center border border-border justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
   >
     <div
       data-testid="mock-chart"
@@ -39,7 +39,7 @@ exports[`Composant Chart > Snapshots > devrait correspondre au snapshot avec les
 exports[`Composant Chart > Snapshots > devrait correspondre au snapshot avec un titre personnalisé 1`] = `
 <div>
   <div
-    class="relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
+    class="relative w-full h-max flex flex-col items-center border border-border justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
   >
     <div
       data-testid="mock-chart"
@@ -53,7 +53,7 @@ exports[`Composant Chart > Snapshots > devrait correspondre au snapshot avec un 
 exports[`Composant Chart > Snapshots > devrait correspondre au snapshot pour un graphique en aire polaire 1`] = `
 <div>
   <div
-    class="relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
+    class="relative w-full h-max flex flex-col items-center border border-border justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
   >
     <div
       data-testid="mock-chart"
@@ -65,7 +65,7 @@ exports[`Composant Chart > Snapshots > devrait correspondre au snapshot pour un 
 exports[`Composant Chart > Snapshots > devrait correspondre au snapshot pour un graphique en donut 1`] = `
 <div>
   <div
-    class="relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
+    class="relative w-full h-max flex flex-col items-center border border-border justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
   >
     <div
       data-testid="mock-chart"
@@ -77,7 +77,7 @@ exports[`Composant Chart > Snapshots > devrait correspondre au snapshot pour un 
 exports[`Composant Chart > Snapshots > devrait correspondre au snapshot pour un graphique en ligne 1`] = `
 <div>
   <div
-    class="relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
+    class="relative w-full h-max flex flex-col items-center border border-border justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl"
   >
     <div
       data-testid="mock-chart"

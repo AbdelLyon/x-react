@@ -8,7 +8,7 @@ exports[`Composant Alert > Snapshots > devrait correspondre au snapshot avec des
     role="alert"
   >
     <div
-      class="flex-none relative w-9 h-9 rounded-full grid place-items-center bg-default-50 dark:bg-default-100 border-default-200 shadow-small border-1"
+      class="flex-none relative w-9 h-9 rounded-full grid place-items-center bg-default-50 dark:bg-default-100 border-border-200 shadow-small border-1"
     >
       <svg
         class="fill-current w-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

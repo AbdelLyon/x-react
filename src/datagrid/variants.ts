@@ -2,7 +2,7 @@ export const GRID_VARIANTS = {
   bordered: {
     thead: "bg-content2",
     th: "py4 bg-content2 py-4 h-12",
-    tr: "py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12",
+    tr: "py-4 border-b border-border last:border-b-0 hover:bg-content2 h-12",
   },
   striped: {
     thead: "bg-content2",

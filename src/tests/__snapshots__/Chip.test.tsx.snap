@@ -177,7 +177,7 @@ exports[`Composant Chip > Snapshots > devrait correspondre au snapshot avec diff
 exports[`Composant Chip > Snapshots > devrait correspondre au snapshot avec différentes variantes 2`] = `
 <div>
   <div
-    class="relative max-w-fit min-w-min inline-flex items-center justify-between box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full bg-transparent border-default text-foreground"
+    class="relative max-w-fit min-w-min inline-flex items-center justify-between box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full bg-transparent border-border text-foreground"
   >
     <span
       class="flex-1 text-inherit font-normal px-2"
@@ -222,7 +222,7 @@ exports[`Composant Chip > Snapshots > devrait correspondre au snapshot avec diff
 exports[`Composant Chip > Snapshots > devrait correspondre au snapshot avec différentes variantes 5`] = `
 <div>
   <div
-    class="relative max-w-fit min-w-min inline-flex items-center justify-between box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full border-default bg-default-100 text-default-foreground"
+    class="relative max-w-fit min-w-min inline-flex items-center justify-between box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full border-border bg-default-100 text-default-foreground"
   >
     <span
       class="flex-1 text-inherit font-normal px-2"

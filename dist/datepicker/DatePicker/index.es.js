@@ -42,7 +42,7 @@ const getVariantStyles = (variant = "bordered") => {
     case "faded":
       return "border-transparent bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:border-outline h-12";
     case "underlined":
-      return "border-b-1 rounded-none bg-transparent border-default-200 dark:border-default-100 data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
+      return "border-b-1 rounded-none bg-transparent border-border-200 dark:border-border-100 data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
     default:
       return "bg-white dark:bg-background data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
   }

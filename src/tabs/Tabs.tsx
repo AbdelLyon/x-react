@@ -51,7 +51,7 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
 
     const getVariantStyles = (): string => {
       if (variant === "bordered") {
-        return "border-1 border-default";
+        return "border-1 border-border";
       }
       return "";
     };

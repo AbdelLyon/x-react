@@ -52,7 +52,7 @@ export const Dropdown = ({
       showArrow
       classNames={{
         base: "before:bg-default-200",
-        content: "p-0 border border-default bg-background",
+        content: "p-0 border border-border bg-background",
         ...classNames,
       }}
       {...props}

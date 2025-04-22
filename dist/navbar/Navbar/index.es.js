@@ -90,7 +90,7 @@ const Navbar = forwardRef(
             }
           ) }),
           !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxs(NavbarContent, { justify: "start", children: [
-            !isTablet && appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "w-[247px] border-r-2 border-default", children: appName }),
+            !isTablet && appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "w-[247px] border-r-2 border-border", children: appName }),
             appLogo !== null && /* @__PURE__ */ jsx(NavbarItem, { children: appLogo })
           ] }),
           /* @__PURE__ */ jsxs(NavbarContent, __spreadProps(__spreadValues({ justify: "end" }, contentProps), { children: [

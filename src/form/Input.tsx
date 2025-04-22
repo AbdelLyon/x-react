@@ -109,7 +109,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             "border-b-1",
             "rounded-none",
             "bg-transparent",
-            "border-default",
+            "border-border",
             "h-12",
             // Underline effect
 

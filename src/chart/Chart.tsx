@@ -80,7 +80,7 @@ type Props<T extends ChartType> = ChartBaseProps<T> &
 
 // Classes par défaut
 const defaultClassNames: Required<ChartClassNames> = {
-  root: "relative w-full h-max flex flex-col items-center border border-default justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
+  root: "relative w-full h-max flex flex-col items-center border border-border justify-center bg-white dark:bg-content1 p-6 shadow-md rounded-xl",
   canvas: "w-full h-[400px]",
   title: "text-lg font-semibold text-center mb-4",
   legend: "mt-4",

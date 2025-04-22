@@ -38,14 +38,14 @@ const Accordion = forwardRef(
     var _b = _a, { items, itemClasses } = _b, accordionProps = __objRest(_b, ["items", "itemClasses"]);
     const defaultItemClasses = {
       base: mergeTailwindClasses("w-full shadow-none ", {
-        "bg-white dark:bg-content1 border-1 border-default rounded-md": accordionProps.variant === "splitted"
+        "bg-white dark:bg-content1 border-1 border-border rounded-md": accordionProps.variant === "splitted"
       }),
       title: "text-lg font-semibold"
     };
     const defaultClassName = mergeTailwindClasses(
       "rounded-md",
       {
-        "border-1 border-default": accordionProps.variant === "bordered"
+        "border-1 border-border": accordionProps.variant === "bordered"
       },
       accordionProps.className
     );

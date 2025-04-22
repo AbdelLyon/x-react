@@ -592,7 +592,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
           role="rowgroup"
         >
           <tr
-            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-border last:border-b-0 hover:bg-content2 h-12"
             role="row"
           >
             <th
@@ -712,7 +712,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
         >
           <tr
             aria-labelledby="react-aria-:r1j:-1-name"
-            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-border last:border-b-0 hover:bg-content2 h-12"
             data-first="true"
             data-key="1"
             id="react-aria-:r1n:"
@@ -744,7 +744,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
           </tr>
           <tr
             aria-labelledby="react-aria-:r1j:-2-name"
-            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-border last:border-b-0 hover:bg-content2 h-12"
             data-key="2"
             data-middle="true"
             data-odd="true"
@@ -777,7 +777,7 @@ exports[`Composant DataGrid > Snapshots > devrait correspondre au snapshot avec 
           </tr>
           <tr
             aria-labelledby="react-aria-:r1j:-3-name"
-            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-default last:border-b-0 hover:bg-content2 h-12"
+            class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 py-4 border-b border-border last:border-b-0 hover:bg-content2 h-12"
             data-key="3"
             data-last="true"
             id="react-aria-:r1t:"

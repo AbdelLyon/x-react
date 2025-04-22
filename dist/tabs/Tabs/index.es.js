@@ -74,7 +74,7 @@ const Tabs = forwardRef(
     const contentRenderer = renderTabContent != null ? renderTabContent : defaultContent;
     const getVariantStyles = () => {
       if (variant === "bordered") {
-        return "border-1 border-default";
+        return "border-1 border-border";
       }
       return "";
     };

@@ -98,7 +98,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             "border-b-1",
             "rounded-none",
             "bg-transparent",
-            "border-default",
+            "border-border",
             // Underline effect
             "after:bg-outline",
             // Hover

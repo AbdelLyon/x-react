@@ -22,7 +22,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
   ({ items, itemClasses, ...accordionProps }, ref): JSX.Element => {
     const defaultItemClasses = {
       base: mergeTailwindClasses("w-full shadow-none ", {
-        "bg-white dark:bg-content1 border-1 border-default rounded-md":
+        "bg-white dark:bg-content1 border-1 border-border rounded-md":
           accordionProps.variant === "splitted",
       }),
       title: "text-lg font-semibold",
@@ -30,7 +30,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionWrapperProps>(
     const defaultClassName = mergeTailwindClasses(
       "rounded-md",
       {
-        "border-1 border-default": accordionProps.variant === "bordered",
+        "border-1 border-border": accordionProps.variant === "bordered",
       },
       accordionProps.className,
     );

@@ -56,7 +56,7 @@ const Dropdown = (_a) => {
       showArrow: true,
       classNames: __spreadValues({
         base: "before:bg-default-200",
-        content: "p-0 border border-default bg-background"
+        content: "p-0 border border-border bg-background"
       }, classNames)
     }, props), {
       children: [
