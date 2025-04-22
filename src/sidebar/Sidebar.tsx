@@ -33,7 +33,7 @@ export const Sidebar = ({
   onItemClick,
   ref,
   actionLabel,
-  actionIcon = <IconPlus className="text-white" />,
+  actionIcon = <IconPlus className="rounded-sm text-primary" />,
   actionColor = "primary",
   actionClick,
   showDivider = true,
@@ -73,7 +73,7 @@ export const Sidebar = ({
           {item.startContent}
         </div>
         {isDesktop ? <span>{item.label}</span> : null}
-        {item.endContent && (
+        {item.endContent !== null && (
           <div
             className={mergeTailwindClasses({
               "": isDesktop,
@@ -106,8 +106,6 @@ export const Sidebar = ({
   const actionButton = actionClick && (
     <>
       <div className="flex justify-center py-3">
-        {" "}
-        {/* Parfait espacement vertical */}
         <Button
           color={actionColor}
           radius="none"
@@ -115,8 +113,8 @@ export const Sidebar = ({
             "transition-all",
             {
               "w-[85%] justify-start px-3": isDesktop,
-              "w-[62px] h-[38px] p-0 flex items-center justify-center":
-                isTablet, // Dimensions précises
+              "w-12 h-[40px] p-0 flex items-center rounded-ee-sm justify-center":
+                isTablet,
             },
             classNames?.action,
           )}
@@ -138,7 +136,7 @@ export const Sidebar = ({
         <hr
           className={mergeTailwindClasses("border border-border", {
             "mx-4 my-3": isDesktop,
-            "mx-auto my-4 w-10": isTablet, // Espacement parfait avant les éléments
+            "mx-auto my-4 w-10": isTablet,
           })}
         />
       )}
@@ -161,13 +159,13 @@ export const Sidebar = ({
       <nav
         className={mergeTailwindClasses("flex-1", {
           "p-4": isDesktop,
-          "pt-2 px-2": isTablet, // Ajustement du padding top pour un meilleur espacement après le divider
+          "pt-2 px-2": isTablet,
         })}
       >
         <div
           className={mergeTailwindClasses("flex flex-col", {
             "gap-2": isDesktop,
-            "gap-4 items-center": isTablet, // Espacement parfait entre les éléments
+            "gap-4 items-center": isTablet,
           })}
         >
           {items.map(renderLink)}
