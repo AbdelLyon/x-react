@@ -1,5 +1,6 @@
 import { JSX, ReactNode } from 'react';
 import { Item } from '../types/navigation';
+import { Color } from '../types/types';
 export interface SidebarProps {
     items?: Item[];
     className?: string;
@@ -13,7 +14,7 @@ export interface SidebarProps {
     onItemClick?: (item: Item) => void;
     actionLabel?: string;
     actionIcon?: ReactNode;
-    actionColor?: "primary" | "default" | "secondary" | "success" | "warning" | "danger";
+    actionColor?: Color;
     actionClick?: () => void;
     showDivider?: boolean;
 }

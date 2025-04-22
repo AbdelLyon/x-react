@@ -5,6 +5,7 @@ import { useResponsive } from "@/hooks";
 import { Tooltip } from "@/tooltip";
 import { Link } from "@heroui/react";
 import { Button } from "@heroui/react";
+import type { Color } from "@/types/types";
 import { IconPlus } from "@tabler/icons-react";
 
 export interface SidebarProps {
@@ -20,13 +21,7 @@ export interface SidebarProps {
   onItemClick?: (item: Item) => void;
   actionLabel?: string;
   actionIcon?: ReactNode;
-  actionColor?:
-    | "primary"
-    | "default"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "danger";
+  actionColor?: Color;
   actionClick?: () => void;
   showDivider?: boolean;
 }
@@ -38,7 +33,7 @@ export const Sidebar = ({
   onItemClick,
   ref,
   actionLabel,
-  actionIcon = <IconPlus className="text-primary" />,
+  actionIcon = <IconPlus className="text-white" />,
   actionColor = "primary",
   actionClick,
   showDivider = true,
@@ -54,18 +49,40 @@ export const Sidebar = ({
       <Link
         key={item.key}
         className={mergeTailwindClasses(
-          "flex items-center gap-3 p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer text-sm",
+          "flex items-center p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
           {
             "border-l-2 border-primary bg-content1 text-primary": item.isActive,
-            "justify-center": isTablet,
+            "border-l-0 border-l-primary justify-center":
+              isTablet && item.isActive,
+            "gap-3 px-3": isDesktop,
+            "w-full flex justify-center": isTablet,
           },
           classNames?.item,
         )}
         onPress={(): void => onItemClick?.(item)}
       >
-        {item.startContent}
-        {isDesktop ? item.label : null}
-        {item.endContent}
+        <div
+          className={mergeTailwindClasses({
+            "": isDesktop,
+            "flex items-center justify-center w-10 h-10 rounded-full":
+              isTablet && !item.isActive,
+            "flex items-center justify-center w-10 h-10 rounded-l-md bg-primary/10":
+              isTablet && item.isActive,
+          })}
+        >
+          {item.startContent}
+        </div>
+        {isDesktop ? <span>{item.label}</span> : null}
+        {item.endContent && (
+          <div
+            className={mergeTailwindClasses({
+              "": isDesktop,
+              "absolute right-1 top-1": isTablet,
+            })}
+          >
+            {item.endContent}
+          </div>
+        )}
       </Link>
     );
 
@@ -78,7 +95,7 @@ export const Sidebar = ({
           placement="right"
           delay={0}
           closeDelay={0}
-          className="border border-border"
+          className="border border-border px-2 py-1 shadow-lg"
         />
       );
     }
@@ -91,22 +108,34 @@ export const Sidebar = ({
       <div className="flex justify-center">
         <Button
           color={actionColor}
-          radius="none"
+          radius={isTablet ? "full" : "sm"}
           className={mergeTailwindClasses(
-            "mt-6 justify-start",
+            "transition-all",
             {
-              "w-56": isDesktop,
-              "w-16 px-0": isTablet,
+              "mt-6 w-[85%] justify-start px-3": isDesktop,
+              "mt-6 mb-2 w-12 h-12 p-0 flex items-center justify-center":
+                isTablet,
             },
             classNames?.action,
           )}
-          startContent={<div className="mr-2 bg-white">{actionIcon}</div>}
+          startContent={
+            isDesktop ? (
+              <div className="mr-2 rounded-full bg-white p-1">{actionIcon}</div>
+            ) : null
+          }
           onPress={actionClick}
         >
-          {isDesktop ? actionLabel : null}
+          {isDesktop ? actionLabel : actionIcon}
         </Button>
       </div>
-      {showDivider && <hr className="mx-4 my-6 border border-border" />}
+      {showDivider && (
+        <hr
+          className={mergeTailwindClasses("border border-border", {
+            "mx-4 my-6": isDesktop,
+            "mx-auto my-4 w-8": isTablet,
+          })}
+        />
+      )}
     </>
   );
 
@@ -117,13 +146,27 @@ export const Sidebar = ({
         "fixed left-0 h-screen flex flex-col bg-[#212324] border-r border-border",
         {
           "w-[270px]": isDesktop,
-          "w-[90px]": isTablet,
+          "w-[70px]": isTablet,
         },
         classNames?.base,
       )}
     >
       {actionButton}
-      <nav className="flex-1 flex-col gap-2 p-4">{items.map(renderLink)}</nav>
+      <nav
+        className={mergeTailwindClasses("flex-1", {
+          "p-4": isDesktop,
+          "py-4 px-2": isTablet,
+        })}
+      >
+        <div
+          className={mergeTailwindClasses("flex flex-col", {
+            "gap-2": isDesktop,
+            "gap-4 items-center": isTablet,
+          })}
+        >
+          {items.map(renderLink)}
+        </div>
+      </nav>
       {bgImage}
     </aside>
   );
