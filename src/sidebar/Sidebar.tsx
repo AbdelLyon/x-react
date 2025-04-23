@@ -49,7 +49,7 @@ export const Sidebar = ({
       <Link
         key={item.key}
         className={mergeTailwindClasses(
-          "flex items-center px-3 h-10 text-[#ebebeb] hover:text-white hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
+          "flex items-center px-3 h-11 text-[#ebebeb] hover:text-white hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
           {
             "border-l-2 border-primary bg-content1": item.isActive,
             "border-l-0 border-l-primary justify-center":
@@ -64,9 +64,9 @@ export const Sidebar = ({
         <div
           className={mergeTailwindClasses({
             "": isDesktop,
-            "flex items-center justify-center w-9 h-9":
+            "flex items-center justify-center size-9":
               isTablet && !item.isActive,
-            "flex items-center justify-center w-9 h-9 bg-primary/10":
+            "flex items-center justify-center size-9 bg-primary/10":
               isTablet && item.isActive,
           })}
         >
@@ -123,15 +123,15 @@ export const Sidebar = ({
 
     return (
       <>
-        <div className="mt-6 flex justify-center rounded-md p-2">
+        <div className="mt-6 flex justify-center p-2">
           <Button
             color={actionColor}
             radius="none"
             className={mergeTailwindClasses(
-              "transition-all h-10",
+              "transition-all h-11 rounded-md",
               {
-                "w-[85%] justify-start px-3": isDesktop,
-                "w-12 p-0 flex items-center rounded-sm justify-center":
+                "w-[90%] justify-start px-3": isDesktop,
+                "size-10 p-0 flex items-center rounded-sm justify-center":
                   isTablet,
               },
               classNames?.action,
