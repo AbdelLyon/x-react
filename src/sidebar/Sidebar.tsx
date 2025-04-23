@@ -49,9 +49,9 @@ export const Sidebar = ({
       <Link
         key={item.key}
         className={mergeTailwindClasses(
-          "flex items-center p-3 text-[#ECEDEE] hover:text-foreground hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
+          "flex items-center px-3 h-12 text-[#ebebeb] hover:text-white hover:bg-content1 rounded-sm cursor-pointer text-sm transition-all duration-200",
           {
-            "border-l-2 border-primary bg-content1 text-primary": item.isActive,
+            "border-l-2 border-primary bg-content1": item.isActive,
             "border-l-0 border-l-primary justify-center":
               isTablet && item.isActive,
             "gap-3 px-3": isDesktop,
@@ -123,15 +123,15 @@ export const Sidebar = ({
 
     return (
       <>
-        <div className="flex justify-center py-3">
+        <div className="flex justify-center rounded-sm py-3 ">
           <Button
             color={actionColor}
             radius="none"
             className={mergeTailwindClasses(
-              "transition-all",
+              "transition-all h-12",
               {
                 "w-[85%] justify-start px-3": isDesktop,
-                "w-12 h-[40px] p-0 flex items-center rounded-ee-sm justify-center":
+                "w-12 p-0 flex items-center rounded-ee-sm justify-center":
                   isTablet,
               },
               classNames?.action,
