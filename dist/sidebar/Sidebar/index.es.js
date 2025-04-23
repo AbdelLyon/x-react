@@ -99,14 +99,14 @@ const Sidebar = ({
           color: actionColor,
           radius: "none",
           className: mergeTailwindClasses(
-            "transition-all h-10 rounded-md",
+            "transition-all h-10 rounded-md mb-3 font-semibold",
             {
               "w-[90%] justify-start px-3": isDesktop,
               "size-10 p-0 flex items-center justify-center": isTablet
             },
             classNames == null ? void 0 : classNames.action
           ),
-          startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mb-2 mr-2 rounded-sm bg-white", children: desktopIcon }) : null,
+          startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 rounded-sm bg-white", children: desktopIcon }) : null,
           onPress: actionClick,
           children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center rounded-sm", children: tabletIcon })
         }
@@ -115,7 +115,7 @@ const Sidebar = ({
         "hr",
         {
           className: mergeTailwindClasses(
-            "border border-border mx-auto mb-4",
+            "border border-border mx-auto mb-3",
             {
               "w-[90%]": isDesktop,
               "w-10": isTablet

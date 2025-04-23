@@ -128,7 +128,7 @@ export const Sidebar = ({
             color={actionColor}
             radius="none"
             className={mergeTailwindClasses(
-              "transition-all h-10 rounded-md",
+              "transition-all h-10 rounded-md mb-3 font-semibold",
               {
                 "w-[90%] justify-start px-3": isDesktop,
                 "size-10 p-0 flex items-center justify-center": isTablet,
@@ -137,9 +137,7 @@ export const Sidebar = ({
             )}
             startContent={
               isDesktop ? (
-                <div className="mb-2 mr-2 rounded-sm bg-white">
-                  {desktopIcon}
-                </div>
+                <div className="mr-2 rounded-sm bg-white">{desktopIcon}</div>
               ) : null
             }
             onPress={actionClick}
@@ -156,7 +154,7 @@ export const Sidebar = ({
         {showDivider && (
           <hr
             className={mergeTailwindClasses(
-              "border border-border mx-auto mb-4",
+              "border border-border mx-auto mb-3",
               {
                 "w-[90%]": isDesktop,
                 "w-10": isTablet,
