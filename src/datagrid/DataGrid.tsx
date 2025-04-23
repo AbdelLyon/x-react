@@ -15,6 +15,7 @@ import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import type { DataGridProps } from "@/types/datagrid";
 import { GRID_VARIANTS } from "./variants";
+import { useInfiniteScroll2 } from "@/hooks/useInfiniteScroll2";
 
 export function DataGrid<T extends { id: string | number }>({
   rows,
@@ -25,8 +26,8 @@ export function DataGrid<T extends { id: string | number }>({
   isLoadingMore = false,
   hasMoreData = false,
   onGridScrollEnd,
+  fetchNextPage,
   childrenProps,
-  infiniteScrollRef,
   ...props
 }: DataGridProps<T>): JSX.Element {
   const {
@@ -43,6 +44,19 @@ export function DataGrid<T extends { id: string | number }>({
     onGridScrollEnd,
   });
 
+  // Utilisation du hook useInfiniteScroll
+  const { ref, containerRef } = useInfiniteScroll2({
+    hasMore: hasMoreData,
+    isEnabled: !isLoading && !isLoadingMore,
+    threshold: 0.1,
+    rootMargin: "0px 0px 250px 0px",
+    debounceTime: 100,
+    onLoadMore: (): void => {
+      console.log("DataGrid: InfiniteScroll triggered");
+      fetchNextPage?.();
+    },
+  });
+
   const variantClasses = GRID_VARIANTS[variant];
 
   if (isLoading && rows.length === 0) {
@@ -57,7 +71,10 @@ export function DataGrid<T extends { id: string | number }>({
   }
 
   return (
-    <div className="relative flex flex-col">
+    <div
+      className="relative flex flex-col"
+      ref={containerRef as React.RefObject<HTMLDivElement>}
+    >
       <DataTable
         aria-label="data-grid"
         {...props}
@@ -137,11 +154,13 @@ export function DataGrid<T extends { id: string | number }>({
         </div>
       )}
 
+      {/* Utiliser la référence du hook useInfiniteScroll */}
       {hasMoreData && (
         <div
-          ref={infiniteScrollRef}
+          ref={ref}
           className="h-10 w-full"
           aria-hidden="true"
+          data-testid="infinite-scroll-trigger"
         />
       )}
 

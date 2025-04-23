@@ -45,10 +45,17 @@ export interface GridScrollEndCallback {
     params: GridScrollEndParams;
     details: GridCallbackDetails;
 }
-export interface LazyLoadingOptions {
+export interface InfiniteScrollOptions {
+    /** Active ou désactive le défilement infini */
     enabled?: boolean;
+    /** Seuil d'intersection (0 à 1) pour déclencher le chargement */
     threshold?: number;
-    scrollBuffer?: number;
+    /** Marge additionnelle autour de la zone d'intersection */
+    rootMargin?: string;
+    /** Déclencher une seule fois puis se détacher */
+    triggerOnce?: boolean;
+    /** Délai en ms pour éviter les déclenchements multiples */
+    debounceTime?: number;
 }
 export type GridVariant = "bordered" | "striped" | "unstyled";
 export interface DataGridBaseProps<T> {
@@ -61,21 +68,28 @@ export interface DataGridBaseProps<T> {
     isLoading?: boolean;
     isFetching?: boolean;
 }
-export interface DataGridLazyLoadingProps {
+export interface DataGridInfiniteScrollProps {
+    /** Indique si plus de données sont en cours de chargement */
     isLoadingMore?: boolean;
+    /** Indique s'il y a plus de données à charger */
     hasMoreData?: boolean;
-    infiniteScrollRef?: React.RefObject<HTMLDivElement>;
-    lazyLoadingOptions?: LazyLoadingOptions;
+    /** Options pour configurer le comportement du défilement infini */
+    infiniteScrollOptions?: InfiniteScrollOptions;
+    /** Contenu à afficher pendant le chargement de données supplémentaires */
     loadingMoreContent?: React.ReactNode;
+    /** Contenu à afficher quand toutes les données ont été chargées */
     noMoreDataContent?: React.ReactNode;
 }
 export interface DataGridCallbacks<T> {
+    /** Callback appelé lors du changement de tri */
     onSortChange?: (column: keyof T, direction: SortDirection) => void;
+    /** Callback appelé lorsque l'utilisateur atteint la fin du tableau par défilement */
     onGridScrollEnd?: () => void;
-    onLoadMore?: () => void | Promise<void>;
+    /** Callback appelé pour charger plus de données (utilisé par le défilement infini) */
+    fetchNextPage?: () => void | Promise<void>;
 }
 export interface DataGridProps<T extends {
     id: string | number;
-}> extends DataGridBaseProps<T>, DataGridCallbacks<T>, DataGridLazyLoadingProps, Omit<TableProps, "onSortChange"> {
+}> extends DataGridBaseProps<T>, DataGridCallbacks<T>, DataGridInfiniteScrollProps, Omit<TableProps, "onSortChange"> {
 }
 export {};
