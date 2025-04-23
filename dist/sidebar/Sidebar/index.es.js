@@ -26,9 +26,9 @@ const Sidebar = ({
       Link,
       {
         className: mergeTailwindClasses(
-          "flex items-center px-3 h-11 text-[#ebebeb] hover:text-white hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
+          "flex items-center px-3 h-11 text-[#e6e6e6] hover:text-white hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
           {
-            "border-l-2 border-primary bg-content1": item.isActive,
+            "border-l-2 border-primary bg-content1 text-white": item.isActive,
             "border-l-0 border-l-primary justify-center": isTablet && item.isActive,
             "gap-3 px-3": isDesktop,
             "w-full flex justify-center": isTablet
@@ -93,7 +93,7 @@ const Sidebar = ({
       )
     });
     return /* @__PURE__ */ jsxs(Fragment, { children: [
-      /* @__PURE__ */ jsx("div", { className: "mt-6 flex justify-center p-2", children: /* @__PURE__ */ jsx(
+      /* @__PURE__ */ jsx("div", { className: "mt-6 flex justify-center", children: /* @__PURE__ */ jsx(
         Button,
         {
           color: actionColor,
@@ -101,14 +101,14 @@ const Sidebar = ({
           className: mergeTailwindClasses(
             "transition-all h-11 rounded-md",
             {
-              "w-[90%] justify-start px-3": isDesktop,
-              "size-10 p-0 flex items-center rounded-sm justify-center": isTablet
+              "w-[91%] justify-start px-3": isDesktop,
+              "size-10 p-0 flex items-center justify-center": isTablet
             },
             classNames == null ? void 0 : classNames.action
           ),
-          startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 bg-white", children: desktopIcon }) : null,
+          startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 rounded-sm bg-white", children: desktopIcon }) : null,
           onPress: actionClick,
-          children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center", children: tabletIcon })
+          children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center rounded-sm", children: tabletIcon })
         }
       ) }),
       showDivider && /* @__PURE__ */ jsx(
