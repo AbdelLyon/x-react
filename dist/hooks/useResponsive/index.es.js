@@ -4,8 +4,13 @@ const MEDIA_QUERIES = {
   tablet: "(min-width: 768px) and (max-width: 1023px)"
 };
 const useResponsive = (customQuery) => {
-  const isDesktop = useMediaQuery(MEDIA_QUERIES.desktop);
-  const isTablet = useMediaQuery(MEDIA_QUERIES.tablet);
+  const isDesktop = useMediaQuery(MEDIA_QUERIES.desktop, {
+    initialValue: true,
+    getInitialValueInEffect: true
+  });
+  const isTablet = useMediaQuery(MEDIA_QUERIES.tablet, {
+    initialValue: false
+  });
   const isMobile = !isDesktop && !isTablet;
   const customMatch = useMediaQuery(
     typeof customQuery === "string" && customQuery.length > 0 ? customQuery : ""

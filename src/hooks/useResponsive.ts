@@ -4,13 +4,13 @@ type Breakpoints = {
   isDesktop: boolean;
   isTablet: boolean;
   isMobile: boolean;
-}
+};
 
 type ResponsiveHook = {
   matches?: boolean;
   getBreakpoint: () => keyof Breakpoints;
   isBreakpoint: (breakpoint: keyof Breakpoints) => boolean;
-} & Breakpoints
+} & Breakpoints;
 
 const MEDIA_QUERIES = {
   desktop: "(min-width: 1024px)",
@@ -18,8 +18,13 @@ const MEDIA_QUERIES = {
 } as const;
 
 export const useResponsive = (customQuery?: string): ResponsiveHook => {
-  const isDesktop = useMediaQuery(MEDIA_QUERIES.desktop);
-  const isTablet = useMediaQuery(MEDIA_QUERIES.tablet);
+  const isDesktop = useMediaQuery(MEDIA_QUERIES.desktop, {
+    initialValue: true,
+    getInitialValueInEffect: true
+  });
+  const isTablet = useMediaQuery(MEDIA_QUERIES.tablet, {
+    initialValue: false
+  });
   const isMobile = !isDesktop && !isTablet;
 
   const customMatch = useMediaQuery(

@@ -18,10 +18,13 @@ function getInitialValue(query, initialValue) {
   return false;
 }
 function useMediaQuery(query, options = {}) {
-  const { getInitialValueInEffect = true, initialValue } = options;
-  const [matches, setMatches] = useState(
-    () => getInitialValueInEffect ? initialValue != null ? initialValue : false : getInitialValue(query, initialValue)
-  );
+  const { getInitialValueInEffect = false, initialValue } = options;
+  const [matches, setMatches] = useState(() => {
+    if (typeof window === "undefined") {
+      return initialValue != null ? initialValue : true;
+    }
+    return getInitialValueInEffect ? initialValue != null ? initialValue : false : getInitialValue(query, initialValue);
+  });
   const queryRef = useRef(null);
   const handleChange = useCallback((event) => {
     setMatches(event.matches);

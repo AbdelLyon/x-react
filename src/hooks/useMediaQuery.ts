@@ -29,19 +29,26 @@ function getInitialValue(query: string, initialValue?: boolean): boolean {
 
   return false;
 }
-
 export function useMediaQuery(
   query: string,
   options: UseMediaQueryOptions = {},
 ): boolean {
-  const { getInitialValueInEffect = true, initialValue } = options;
+  const { getInitialValueInEffect = false, initialValue } = options;
 
-  const [matches, setMatches] = useState<boolean>((): boolean =>
-    getInitialValueInEffect
+  // Par défaut, on suppose un écran desktop si on est côté serveur
+  const [matches, setMatches] = useState<boolean>((): boolean => {
+    // Si on est côté serveur, on présume desktop (ou la valeur spécifiée)
+    if (typeof window === "undefined") {
+      return initialValue ?? true; // Présume desktop par défaut
+    }
+
+    // Sinon, on utilise la vraie valeur
+    return getInitialValueInEffect
       ? (initialValue ?? false)
-      : getInitialValue(query, initialValue),
-  );
+      : getInitialValue(query, initialValue);
+  });
 
+  // Le reste du code reste inchangé
   const queryRef = useRef<MediaQueryList | null>(null);
   const handleChange = useCallback((event: MediaQueryListEvent): void => {
     setMatches(event.matches);
