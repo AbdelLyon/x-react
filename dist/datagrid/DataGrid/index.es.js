@@ -45,7 +45,8 @@ function DataGrid(_a) {
     variant = "unstyled",
     isLoading = false,
     isFetching = false,
-    fetchNextPage,
+    hasMoreData = true,
+    fetchNextPage: fetchNextPage,
     childrenProps
   } = _b, props = __objRest(_b, [
     "rows",
@@ -54,6 +55,8 @@ function DataGrid(_a) {
     "variant",
     "isLoading",
     "isFetching",
+    "hasMoreData",
+    // Ajout d'une prop hasMoreData
     "fetchNextPage",
     "childrenProps"
   ]);
@@ -70,8 +73,11 @@ function DataGrid(_a) {
     columns
   });
   const [loaderRef, scrollerRef] = useInfiniteScroll({
-    hasMore: isFetching,
-    onLoadMore: fetchNextPage
+    hasMore: hasMoreData,
+    onLoadMore: () => {
+      console.log("Infinite scroll triggered - Loading more data");
+      fetchNextPage == null ? void 0 : fetchNextPage();
+    }
   });
   const variantClasses = GRID_VARIANTS[variant];
   if (isLoading && rows.length === 0) {
@@ -99,7 +105,14 @@ function DataGrid(_a) {
           (_c = props.classNames) == null ? void 0 : _c.base
         )
       }),
-      bottomContent: isFetching && /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, color: "primary" }) }),
+      bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
+        Spinner,
+        {
+          ref: loaderRef,
+          color: "primary",
+          className: isFetching ? "opacity-100" : "opacity-0"
+        }
+      ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" }),
       children: [
         /* @__PURE__ */ jsx(
           TableHeader,

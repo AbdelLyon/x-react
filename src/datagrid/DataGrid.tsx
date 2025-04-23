@@ -24,6 +24,7 @@ export function DataGrid<T extends { id: string | number }>({
   variant = "unstyled",
   isLoading = false,
   isFetching = false,
+  hasMoreData = true, // Ajout d'une prop hasMoreData
   fetchNextPage,
   childrenProps,
   ...props
@@ -40,10 +41,13 @@ export function DataGrid<T extends { id: string | number }>({
     columns,
   });
 
-  // Utiliser le hook useInfiniteScroll de @heroui
+  // CORRECTION 1: Utiliser hasMoreData au lieu de isFetching pour hasMore
   const [loaderRef, scrollerRef] = useInfiniteScroll({
-    hasMore: isFetching,
-    onLoadMore: fetchNextPage,
+    hasMore: hasMoreData,
+    onLoadMore: (): void => {
+      console.log("Infinite scroll triggered - Loading more data");
+      fetchNextPage?.();
+    },
   });
 
   const variantClasses = GRID_VARIANTS[variant];
@@ -74,9 +78,17 @@ export function DataGrid<T extends { id: string | number }>({
         ),
       }}
       bottomContent={
-        isFetching && (
+        hasMoreData ? (
           <div className="flex w-full justify-center p-2">
-            <Spinner ref={loaderRef} color="primary" />
+            <Spinner
+              ref={loaderRef}
+              color="primary"
+              className={isFetching ? "opacity-100" : "opacity-0"}
+            />
+          </div>
+        ) : (
+          <div className="p-3 text-center text-gray-500">
+            Toutes les données ont été chargées
           </div>
         )
       }
