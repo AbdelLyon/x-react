@@ -15,7 +15,7 @@ import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import type { DataGridProps } from "@/types/datagrid";
 import { GRID_VARIANTS } from "./variants";
-import { useInfiniteScroll2 } from "@/hooks/useInfiniteScroll2";
+import { useInfiniteScroll } from "@/hooks";
 
 export function DataGrid<T extends { id: string | number }>({
   rows,
@@ -23,13 +23,8 @@ export function DataGrid<T extends { id: string | number }>({
   onSortChange,
   variant = "unstyled",
   isLoading = false,
-  isLoadingMore = false,
-  hasMoreData = false,
-  onGridScrollEnd,
+  isFetching = false,
   fetchNextPage,
-  infiniteScrollOptions = {},
-  loadingMoreContent,
-  noMoreDataContent,
   childrenProps,
   ...props
 }: DataGridProps<T>): JSX.Element {
@@ -40,25 +35,15 @@ export function DataGrid<T extends { id: string | number }>({
     extractCellValue,
     extractColumnHeader,
     onSort,
-    handleGridScroll,
   } = useDataGridState({
     onSortChange,
     columns,
-    onGridScrollEnd,
   });
 
-  // Utiliser votre hook useInfiniteScroll personnalisé
-  const { ref, containerRef } = useInfiniteScroll2({
-    hasMore: hasMoreData,
-    isEnabled:
-      !isLoading && !isLoadingMore && infiniteScrollOptions?.enabled !== false,
-    threshold: infiniteScrollOptions?.threshold,
-    rootMargin: infiniteScrollOptions?.rootMargin,
-    triggerOnce: infiniteScrollOptions?.triggerOnce,
-    debounceTime: infiniteScrollOptions?.debounceTime,
-    onLoadMore: (): void => {
-      fetchNextPage?.();
-    },
+  // Utiliser le hook useInfiniteScroll de @heroui
+  const [loaderRef, scrollerRef] = useInfiniteScroll({
+    hasMore: isFetching,
+    onLoadMore: fetchNextPage,
   });
 
   const variantClasses = GRID_VARIANTS[variant];
@@ -75,103 +60,96 @@ export function DataGrid<T extends { id: string | number }>({
   }
 
   return (
-    <div
-      className="relative flex flex-col"
-      ref={containerRef as React.RefObject<HTMLDivElement>}
+    <DataTable
+      aria-label="data-grid"
+      {...props}
+      baseRef={scrollerRef} // Utiliser scrollerRef comme baseRef
+      classNames={{
+        ...props.classNames,
+        th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
+        tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
+        base: mergeTailwindClasses(
+          "w-full relative max-h-[600px] overflow-auto",
+          props.classNames?.base,
+        ),
+      }}
+      bottomContent={
+        isFetching ? (
+          <div className="flex w-full justify-center p-2">
+            <Spinner ref={loaderRef} color="primary" />
+          </div>
+        ) : rows.length > 0 ? (
+          <div className="py-2 text-center text-sm text-gray-500">
+            Toutes les données ont été chargées
+          </div>
+        ) : null
+      }
     >
-      <DataTable
-        aria-label="data-grid"
-        {...props}
-        classNames={{
-          ...props.classNames,
-          th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
-          tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
-          base: mergeTailwindClasses("w-full relative", props.classNames?.base),
-        }}
-        onScroll={handleGridScroll}
+      <TableHeader
+        columns={processedColumns}
+        {...childrenProps?.tableHeaderProps}
       >
-        <TableHeader
-          columns={processedColumns}
-          {...childrenProps?.tableHeaderProps}
-        >
-          {(column): JSX.Element => (
-            <TableColumn
-              key={column.key}
-              aria-label={extractColumnHeader(column)}
-              {...childrenProps?.tableColumnProps}
-            >
-              <div className="flex items-center gap-2">
-                {column.header}
-                {column.sortable !== false && (
-                  <div
+        {(column): JSX.Element => (
+          <TableColumn
+            key={column.key}
+            aria-label={extractColumnHeader(column)}
+            {...childrenProps?.tableColumnProps}
+          >
+            <div className="flex items-center gap-2">
+              {column.header}
+              {column.sortable !== false && (
+                <div
+                  className={mergeTailwindClasses(
+                    "relative size-4 cursor-pointer",
+                  )}
+                  onClick={(): void => onSort(column)}
+                  role="button"
+                  aria-label={formatSortHeader(column.header)}
+                >
+                  <IconChevronUp
+                    size={16}
                     className={mergeTailwindClasses(
-                      "relative size-4 cursor-pointer",
+                      "absolute -top-1",
+                      sortConfig.field === column.key &&
+                        sortConfig.direction === "asc"
+                        ? "opacity-100"
+                        : "opacity-30",
                     )}
-                    onClick={(): void => onSort(column)}
-                    role="button"
-                    aria-label={formatSortHeader(column.header)}
-                  >
-                    <IconChevronUp
-                      size={16}
-                      className={mergeTailwindClasses(
-                        "absolute -top-1",
-                        sortConfig.field === column.key &&
-                          sortConfig.direction === "asc"
-                          ? "opacity-100"
-                          : "opacity-30",
-                      )}
-                    />
-                    <IconChevronDown
-                      size={16}
-                      className={mergeTailwindClasses(
-                        "absolute top-1",
-                        sortConfig.field === column.key &&
-                          sortConfig.direction === "desc"
-                          ? "opacity-100"
-                          : "opacity-30",
-                      )}
-                    />
-                  </div>
-                )}
-              </div>
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={rows} {...childrenProps?.tableBodyProps}>
-          {(row: T): JSX.Element => {
-            return (
-              <TableRow key={row.id} {...childrenProps?.tableRowProps}>
-                {(columnKey): JSX.Element => (
-                  <TableCell {...childrenProps?.tableCellProps}>
-                    {extractCellValue(columnKey, row, columns)}
-                  </TableCell>
-                )}
-              </TableRow>
-            );
-          }}
-        </TableBody>
-      </DataTable>
-
-      {isLoadingMore && (
-        <div className="flex w-full justify-center p-2">
-          {loadingMoreContent || <Spinner color="primary" size="sm" />}
-        </div>
-      )}
-
-      {hasMoreData && (
-        <div
-          ref={ref}
-          className="h-10 w-full"
-          aria-hidden="true"
-          data-testid="infinite-scroll-trigger"
-        />
-      )}
-
-      {!hasMoreData && rows.length > 0 && (
-        <div className="py-2 text-center text-sm text-gray-500">
-          {noMoreDataContent || "Toutes les données ont été chargées"}
-        </div>
-      )}
-    </div>
+                  />
+                  <IconChevronDown
+                    size={16}
+                    className={mergeTailwindClasses(
+                      "absolute top-1",
+                      sortConfig.field === column.key &&
+                        sortConfig.direction === "desc"
+                        ? "opacity-100"
+                        : "opacity-30",
+                    )}
+                  />
+                </div>
+              )}
+            </div>
+          </TableColumn>
+        )}
+      </TableHeader>
+      <TableBody
+        isLoading={isLoading && rows.length > 0}
+        items={rows}
+        loadingContent={<Spinner color="primary" />}
+        {...childrenProps?.tableBodyProps}
+      >
+        {(row: T): JSX.Element => {
+          return (
+            <TableRow key={row.id} {...childrenProps?.tableRowProps}>
+              {(columnKey): JSX.Element => (
+                <TableCell {...childrenProps?.tableCellProps}>
+                  {extractCellValue(columnKey, row, columns)}
+                </TableCell>
+              )}
+            </TableRow>
+          );
+        }}
+      </TableBody>
+    </DataTable>
   );
 }
