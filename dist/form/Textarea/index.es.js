@@ -103,7 +103,7 @@ const Textarea = forwardRef(
             "border-none",
             "bg-default-100",
             "dark:bg-default-50",
-            "data-[hover=true]:bg-default-200",
+            "data-[hover=true]:bg-content1-300-200",
             "group-data-[focus=true]:bg-default-100",
             "h-12"
           ].join(" ");
@@ -113,7 +113,7 @@ const Textarea = forwardRef(
             "border-transparent",
             "bg-default-100",
             "dark:bg-default-50",
-            "data-[hover=true]:bg-default-200",
+            "data-[hover=true]:bg-content1-300-200",
             "group-data-[focus=true]:border-outline",
             "h-12"
           ].join(" ");

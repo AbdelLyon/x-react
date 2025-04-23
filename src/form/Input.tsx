@@ -87,7 +87,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             "border-none",
             "bg-default-100",
             "dark:bg-default-50",
-            "data-[hover=true]:bg-default-200",
+            "data-[hover=true]:bg-content1-300-200",
             "group-data-[focus=true]:bg-default-100",
             "h-12",
           ].join(" ");
@@ -98,7 +98,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             "border-transparent",
             "bg-default-100",
             "dark:bg-default-50",
-            "data-[hover=true]:bg-default-200",
+            "data-[hover=true]:bg-content1-300-200",
             "group-data-[focus=true]:border-outline",
             "h-12",
           ].join(" ");

@@ -50,15 +50,15 @@ const Pagination = forwardRef(
             classNames: __spreadProps(__spreadValues({}, classNames), {
               base: mergeTailwindClasses("gap-2", classNames == null ? void 0 : classNames.base),
               item: mergeTailwindClasses(
-                "data-[hover=true]:bg-default-100",
+                "data-[hover=true]:bg-content1-300-100",
                 classNames == null ? void 0 : classNames.item
               ),
               prev: mergeTailwindClasses(
-                "data-[hover=true]:bg-default-100",
+                "data-[hover=true]:bg-content1-300-100",
                 classNames == null ? void 0 : classNames.prev
               ),
               next: mergeTailwindClasses(
-                "data-[hover=true]:bg-default-100",
+                "data-[hover=true]:bg-content1-300-100",
                 classNames == null ? void 0 : classNames.next
               )
             })

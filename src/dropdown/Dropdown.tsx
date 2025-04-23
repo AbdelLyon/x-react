@@ -70,6 +70,7 @@ export const Dropdown = ({
                 const { key, label, href, ...remainingProps } = item;
                 return (
                   <DropdownItem
+                    className="data-[hover=true]:bg-content1-300"
                     key={key}
                     onPress={(): void => {
                       handleItemPress({ ...item, href });

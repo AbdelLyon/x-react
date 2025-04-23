@@ -23,15 +23,15 @@ export const Pagination = forwardRef<HTMLUListElement, PaginationProps>(
             ...classNames,
             base: mergeTailwindClasses("gap-2", classNames?.base),
             item: mergeTailwindClasses(
-              "data-[hover=true]:bg-default-100",
+              "data-[hover=true]:bg-content1-300-100",
               classNames?.item,
             ),
             prev: mergeTailwindClasses(
-              "data-[hover=true]:bg-default-100",
+              "data-[hover=true]:bg-content1-300-100",
               classNames?.prev,
             ),
             next: mergeTailwindClasses(
-              "data-[hover=true]:bg-default-100",
+              "data-[hover=true]:bg-content1-300-100",
               classNames?.next,
             ),
           }}

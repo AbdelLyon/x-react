@@ -36,9 +36,9 @@ const getVariantStyles = (variant: string = "bordered"): string => {
     case "bordered":
       return "bg-white dark:bg-background data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12 group-data-[focus=true]:bg-content1";
     case "flat":
-      return "border-none border-1 bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-12";
+      return "border-none border-1 bg-default-100 dark:bg-default-50 data-[hover=true]:bg-content1-300-200 group-data-[focus=true]:bg-default-100 h-12";
     case "faded":
-      return "border-transparent bg-default-100 dark:bg-default-50 data-[hover=true]:bg-default-200 group-data-[focus=true]:border-outline h-12";
+      return "border-transparent bg-default-100 dark:bg-default-50 data-[hover=true]:bg-content1-300-200 group-data-[focus=true]:border-outline h-12";
     case "underlined":
       return "border-b-1 rounded-none bg-transparent border-border-200 dark:border-border-100 data-[hover=true]:border-outline group-data-[focus=true]:border-outline h-12";
     default:

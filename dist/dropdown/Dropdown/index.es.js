@@ -72,6 +72,7 @@ const Dropdown = (_a) => {
                 return /* @__PURE__ */ jsx(
                   DropdownItem,
                   __spreadProps(__spreadValues({
+                    className: "data-[hover=true]:bg-content1-300",
                     onPress: () => {
                       handleItemPress(__spreadProps(__spreadValues({}, item), { href }));
                     }
