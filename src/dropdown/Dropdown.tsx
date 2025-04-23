@@ -7,6 +7,7 @@ import {
   DropdownSection,
   DropdownItem,
 } from "@heroui/react";
+import { mergeTailwindClasses } from "@/utils";
 
 export type DropdownItemConfig = {
   key: string;
@@ -70,7 +71,10 @@ export const Dropdown = ({
                 const { key, label, href, ...remainingProps } = item;
                 return (
                   <DropdownItem
-                    className="data-[hover=true]:bg-content1-300"
+                    className={mergeTailwindClasses(
+                      "data-[hover=true]:bg-content1-300",
+                      remainingProps.className,
+                    )}
                     key={key}
                     onPress={(): void => {
                       handleItemPress({ ...item, href });

@@ -31,6 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { Dropdown as Dropdown$1, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@heroui/react";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Dropdown = (_a) => {
   var _b = _a, {
     trigger,
@@ -72,7 +73,10 @@ const Dropdown = (_a) => {
                 return /* @__PURE__ */ jsx(
                   DropdownItem,
                   __spreadProps(__spreadValues({
-                    className: "data-[hover=true]:bg-content1-300",
+                    className: mergeTailwindClasses(
+                      "data-[hover=true]:bg-content1-300",
+                      remainingProps.className
+                    ),
                     onPress: () => {
                       handleItemPress(__spreadProps(__spreadValues({}, item), { href }));
                     }
