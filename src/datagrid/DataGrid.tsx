@@ -24,7 +24,6 @@ export function DataGrid<T extends { id: string | number }>({
   variant = "unstyled",
   isLoading = false,
   isFetching = false,
-  hasMoreData = true, // Ajout d'une prop hasMoreData
   fetchNextPage,
   childrenProps,
   ...props
@@ -41,11 +40,9 @@ export function DataGrid<T extends { id: string | number }>({
     columns,
   });
 
-  // CORRECTION 1: Utiliser hasMoreData au lieu de isFetching pour hasMore
   const [loaderRef, scrollerRef] = useInfiniteScroll({
-    hasMore: hasMoreData,
+    hasMore: isFetching,
     onLoadMore: (): void => {
-      console.log("Infinite scroll triggered - Loading more data");
       fetchNextPage?.();
     },
   });
@@ -67,7 +64,7 @@ export function DataGrid<T extends { id: string | number }>({
     <DataTable
       aria-label="data-grid"
       {...props}
-      baseRef={scrollerRef} // Utiliser scrollerRef comme baseRef
+      baseRef={scrollerRef}
       classNames={{
         ...props.classNames,
         th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
@@ -78,7 +75,7 @@ export function DataGrid<T extends { id: string | number }>({
         ),
       }}
       bottomContent={
-        hasMoreData ? (
+        isFetching ? (
           <div className="flex w-full justify-center p-2">
             <Spinner
               ref={loaderRef}

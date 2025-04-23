@@ -47,7 +47,6 @@ export interface DataGridComponentProps<T> {
   tableColumnProps?: Omit<TableColumnProps<T>, "key" | "children">;
 }
 
-// types/datagrid/events.ts
 export interface GridScrollEndParams {
   visibleRows: number;
   visibleStartIndex: number;
@@ -67,21 +66,14 @@ export interface GridScrollEndCallback {
   details: GridCallbackDetails;
 }
 
-// types/datagrid/infinite-scroll.ts
 export interface InfiniteScrollOptions {
-  /** Active ou désactive le défilement infini */
   enabled?: boolean;
-  /** Seuil d'intersection (0 à 1) pour déclencher le chargement */
   threshold?: number;
-  /** Marge additionnelle autour de la zone d'intersection */
   rootMargin?: string;
-  /** Déclencher une seule fois puis se détacher */
   triggerOnce?: boolean;
-  /** Délai en ms pour éviter les déclenchements multiples */
   debounceTime?: number;
 }
 
-// types/datagrid/props.ts
 export type GridVariant = "bordered" | "striped" | "unstyled";
 
 export interface DataGridBaseProps<T> {
@@ -91,29 +83,18 @@ export interface DataGridBaseProps<T> {
   className?: string;
   footerContent?: React.ReactNode;
   variant?: GridVariant;
-  isLoading?: boolean;
-  isFetching?: boolean;
 }
 
 export interface DataGridInfiniteScrollProps {
-  /** Indique si plus de données sont en cours de chargement */
-  isLoadingMore?: boolean;
-  /** Indique s'il y a plus de données à charger */
-  hasMoreData?: boolean;
-  /** Options pour configurer le comportement du défilement infini */
+  isFetching?: boolean;
+  isLoading?: boolean;
   infiniteScrollOptions?: InfiniteScrollOptions;
-  /** Contenu à afficher pendant le chargement de données supplémentaires */
   loadingMoreContent?: React.ReactNode;
-  /** Contenu à afficher quand toutes les données ont été chargées */
   noMoreDataContent?: React.ReactNode;
 }
 
 export interface DataGridCallbacks<T> {
-  /** Callback appelé lors du changement de tri */
   onSortChange?: (column: keyof T, direction: SortDirection) => void;
-  /** Callback appelé lorsque l'utilisateur atteint la fin du tableau par défilement */
-  onGridScrollEnd?: () => void;
-  /** Callback appelé pour charger plus de données (utilisé par le défilement infini) */
   fetchNextPage?: () => void;
 }
 
