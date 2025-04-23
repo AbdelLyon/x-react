@@ -33,7 +33,7 @@ export const Sidebar = ({
   onItemClick,
   ref,
   actionLabel,
-  actionIcon = <IconPlus className="rounded-sm" />,
+  actionIcon = <IconPlus className="rounded-md" />,
   actionColor = "primary",
   actionClick,
   showDivider = true,
@@ -138,7 +138,7 @@ export const Sidebar = ({
             )}
             startContent={
               isDesktop ? (
-                <div className="mr-2 bg-white p-1">{desktopIcon}</div>
+                <div className="mr-2 bg-white">{desktopIcon}</div>
               ) : null
             }
             onPress={actionClick}

@@ -12,7 +12,7 @@ const Sidebar = ({
   onItemClick,
   ref,
   actionLabel,
-  actionIcon = /* @__PURE__ */ jsx(IconPlus, { className: "rounded-sm" }),
+  actionIcon = /* @__PURE__ */ jsx(IconPlus, { className: "rounded-md" }),
   actionColor = "primary",
   actionClick,
   showDivider = true
@@ -106,7 +106,7 @@ const Sidebar = ({
             },
             classNames == null ? void 0 : classNames.action
           ),
-          startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 bg-white p-1", children: desktopIcon }) : null,
+          startContent: isDesktop ? /* @__PURE__ */ jsx("div", { className: "mr-2 bg-white", children: desktopIcon }) : null,
           onPress: actionClick,
           children: isDesktop ? actionLabel : /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center", children: tabletIcon })
         }
