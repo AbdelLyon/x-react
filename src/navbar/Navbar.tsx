@@ -89,7 +89,9 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                 {appName}
               </NavbarItem>
             )}
-            {appLogo !== null && <NavbarItem>{appLogo}</NavbarItem>}
+            {appLogo !== null && (
+              <NavbarItem className="text-foreground">{appLogo}</NavbarItem>
+            )}
           </NavbarContent>
         )}
 

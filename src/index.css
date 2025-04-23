@@ -42,3 +42,7 @@
 :focus {
   outline: none;
 }
+
+body {
+  @apply text-foreground;
+}
