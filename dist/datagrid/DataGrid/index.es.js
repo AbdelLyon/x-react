@@ -45,6 +45,7 @@ function DataGrid(_a) {
     variant = "unstyled",
     isLoading = false,
     isFetching = false,
+    hasMoreData = true,
     fetchNextPage,
     childrenProps
   } = _b, props = __objRest(_b, [
@@ -54,6 +55,7 @@ function DataGrid(_a) {
     "variant",
     "isLoading",
     "isFetching",
+    "hasMoreData",
     "fetchNextPage",
     "childrenProps"
   ]);
@@ -70,7 +72,7 @@ function DataGrid(_a) {
     columns
   });
   const [loaderRef, scrollerRef] = useInfiniteScroll({
-    hasMore: isFetching,
+    hasMore: hasMoreData,
     onLoadMore: () => {
       fetchNextPage == null ? void 0 : fetchNextPage();
     }
@@ -101,7 +103,7 @@ function DataGrid(_a) {
           (_c = props.classNames) == null ? void 0 : _c.base
         )
       }),
-      bottomContent: isFetching ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
+      bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
         Spinner,
         {
           ref: loaderRef,

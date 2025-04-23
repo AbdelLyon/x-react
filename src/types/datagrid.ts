@@ -1,4 +1,3 @@
-// types/datagrid/base.ts
 import type {
   TableBodyProps,
   TableCellProps,
@@ -83,11 +82,13 @@ export interface DataGridBaseProps<T> {
   className?: string;
   footerContent?: React.ReactNode;
   variant?: GridVariant;
+  isLoading?: boolean;
+  isFetching?: boolean;
 }
 
 export interface DataGridInfiniteScrollProps {
-  isFetching?: boolean;
-  isLoading?: boolean;
+  isLoadingMore?: boolean;
+  hasMoreData?: boolean;
   infiniteScrollOptions?: InfiniteScrollOptions;
   loadingMoreContent?: React.ReactNode;
   noMoreDataContent?: React.ReactNode;
@@ -95,6 +96,7 @@ export interface DataGridInfiniteScrollProps {
 
 export interface DataGridCallbacks<T> {
   onSortChange?: (column: keyof T, direction: SortDirection) => void;
+  onGridScrollEnd?: () => void;
   fetchNextPage?: () => void;
 }
 

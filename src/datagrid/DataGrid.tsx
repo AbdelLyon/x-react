@@ -1,4 +1,3 @@
-// components/DataGrid/DataGrid.tsx
 import { useDataGridState } from "@/datagrid/useDataGridState";
 import { mergeTailwindClasses } from "@/utils";
 import {
@@ -24,6 +23,7 @@ export function DataGrid<T extends { id: string | number }>({
   variant = "unstyled",
   isLoading = false,
   isFetching = false,
+  hasMoreData = true,
   fetchNextPage,
   childrenProps,
   ...props
@@ -41,7 +41,7 @@ export function DataGrid<T extends { id: string | number }>({
   });
 
   const [loaderRef, scrollerRef] = useInfiniteScroll({
-    hasMore: isFetching,
+    hasMore: hasMoreData,
     onLoadMore: (): void => {
       fetchNextPage?.();
     },
@@ -75,7 +75,7 @@ export function DataGrid<T extends { id: string | number }>({
         ),
       }}
       bottomContent={
-        isFetching ? (
+        hasMoreData ? (
           <div className="flex w-full justify-center p-2">
             <Spinner
               ref={loaderRef}

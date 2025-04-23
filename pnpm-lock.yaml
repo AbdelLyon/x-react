@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@heroui/react':
-        specifier: ^2.6.14
+        specifier: ^2.7.6
         version: 2.7.6(@types/react@19.1.2)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)
       '@tabler/icons-react':
         specifier: ^3.26.0
@@ -21,7 +21,7 @@ importers:
         specifier: ^11.15.0
         version: 11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-themes:
-        specifier: ^0.4.4
+        specifier: ^0.4.6
         version: 0.4.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.0.0
@@ -37,83 +37,83 @@ importers:
         version: 2.6.0
     optionalDependencies:
       '@internationalized/date':
-        specifier: ^3.6.0
+        specifier: ^3.8.0
         version: 3.8.0
       chart.js:
-        specifier: ^4.4.7
+        specifier: ^4.4.9
         version: 4.4.9
       react-chartjs-2:
-        specifier: ^5.2.0
+        specifier: ^5.3.0
         version: 5.3.0(chart.js@4.4.9)(react@18.3.1)
     devDependencies:
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.1.2)(react@18.3.1)
       '@eslint/js':
-        specifier: ^9.17.0
+        specifier: ^9.25.1
         version: 9.25.1
       '@swc/plugin-emotion':
-        specifier: ^8.0.2
+        specifier: ^8.7.2
         version: 8.7.2
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
       '@testing-library/react':
-        specifier: ^16.1.0
+        specifier: ^16.3.0
         version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/user-event':
-        specifier: ^14.5.2
+        specifier: ^14.6.1
         version: 14.6.1(@testing-library/dom@10.4.0)
       '@types/node':
-        specifier: ^22.10.2
+        specifier: ^22.14.1
         version: 22.14.1
       '@types/react':
-        specifier: ^19.0.2
+        specifier: ^19.1.2
         version: 19.1.2
       '@types/react-dom':
-        specifier: ^19.0.2
+        specifier: ^19.1.2
         version: 19.1.2(@types/react@19.1.2)
       '@typescript-eslint/eslint-plugin':
-        specifier: ^8.18.2
+        specifier: ^8.31.0
         version: 8.31.0(@typescript-eslint/parser@8.31.0(eslint@9.25.1(jiti@1.21.7))(typescript@5.6.3))(eslint@9.25.1(jiti@1.21.7))(typescript@5.6.3)
       '@typescript-eslint/parser':
-        specifier: ^8.18.2
+        specifier: ^8.31.0
         version: 8.31.0(eslint@9.25.1(jiti@1.21.7))(typescript@5.6.3)
       '@vitejs/plugin-react':
-        specifier: ^4.3.4
+        specifier: ^4.4.1
         version: 4.4.1(vite@6.3.2(@types/node@22.14.1)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))
       '@vitejs/plugin-react-swc':
-        specifier: ^3.7.2
+        specifier: ^3.9.0
         version: 3.9.0(@swc/helpers@0.5.17)(vite@6.3.2(@types/node@22.14.1)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))
       '@vitest/coverage-v8':
-        specifier: ^2.1.8
+        specifier: ^2.1.9
         version: 2.1.9(vitest@2.1.9(@types/node@22.14.1)(jsdom@25.0.1)(terser@5.39.0))
       autoprefixer:
-        specifier: ^10.4.20
+        specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
       eslint:
-        specifier: ^9.17.0
+        specifier: ^9.25.1
         version: 9.25.1(jiti@1.21.7)
       eslint-plugin-react-hooks:
-        specifier: ^5.1.0
+        specifier: ^5.2.0
         version: 5.2.0(eslint@9.25.1(jiti@1.21.7))
       eslint-plugin-react-refresh:
-        specifier: ^0.4.16
+        specifier: ^0.4.20
         version: 0.4.20(eslint@9.25.1(jiti@1.21.7))
       eslint-plugin-tailwindcss:
-        specifier: ^3.17.5
+        specifier: ^3.18.0
         version: 3.18.0(tailwindcss@3.4.17)
       globals:
-        specifier: ^15.14.0
+        specifier: ^15.15.0
         version: 15.15.0
       jsdom:
         specifier: ^25.0.1
         version: 25.0.1
       postcss:
-        specifier: ^8.4.49
+        specifier: ^8.5.3
         version: 8.5.3
       prettier:
-        specifier: ^3.4.2
+        specifier: ^3.5.3
         version: 3.5.3
       rimraf:
         specifier: ^6.0.1
@@ -122,28 +122,28 @@ importers:
         specifier: ^3.4.17
         version: 3.4.17
       terser:
-        specifier: ^5.37.0
+        specifier: ^5.39.0
         version: 5.39.0
       typescript:
         specifier: ~5.6.3
         version: 5.6.3
       typescript-eslint:
-        specifier: ^8.18.2
+        specifier: ^8.31.0
         version: 8.31.0(eslint@9.25.1(jiti@1.21.7))(typescript@5.6.3)
       vite:
-        specifier: ^6.0.6
+        specifier: ^6.3.2
         version: 6.3.2(@types/node@22.14.1)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
       vite-plugin-compression:
         specifier: ^0.5.1
         version: 0.5.1(vite@6.3.2(@types/node@22.14.1)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))
       vite-plugin-dts:
-        specifier: ^4.4.0
+        specifier: ^4.5.3
         version: 4.5.3(@types/node@22.14.1)(rollup@4.40.0)(typescript@5.6.3)(vite@6.3.2(@types/node@22.14.1)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.6.3)(vite@6.3.2(@types/node@22.14.1)(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))
       vitest:
-        specifier: ^2.1.8
+        specifier: ^2.1.9
         version: 2.1.9(@types/node@22.14.1)(jsdom@25.0.1)(terser@5.39.0)
 
 packages:
