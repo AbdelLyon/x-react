@@ -26,7 +26,7 @@ const Sidebar = ({
       Link,
       {
         className: mergeTailwindClasses(
-          "flex items-center px-3 h-11  hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
+          "flex items-center px-3 h-11 text-slate-50 dark:text-slate-50 hover:text-white hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
           {
             "border-l-2 border-primary bg-content1 text-white": item.isActive,
             "border-l-0 border-l-primary justify-center": isTablet && item.isActive,
@@ -40,7 +40,7 @@ const Sidebar = ({
           /* @__PURE__ */ jsx(
             "div",
             {
-              className: mergeTailwindClasses("text-[#e6e6e6] hover:text-white", {
+              className: mergeTailwindClasses({
                 "": isDesktop,
                 "flex items-center justify-center size-9": isTablet && !item.isActive,
                 "flex items-center justify-center size-9 bg-primary/10": isTablet && item.isActive
@@ -48,11 +48,11 @@ const Sidebar = ({
               children: item.startContent
             }
           ),
-          isDesktop && /* @__PURE__ */ jsx("span", { className: "text-[#e6e6e6] hover:text-white", children: item.label }),
+          isDesktop && item.label,
           item.endContent !== null && /* @__PURE__ */ jsx(
             "div",
             {
-              className: mergeTailwindClasses("text-[#e6e6e6] hover:text-white", {
+              className: mergeTailwindClasses({
                 "": isDesktop,
                 "absolute right-1 top-1": isTablet
               }),
@@ -115,7 +115,7 @@ const Sidebar = ({
         "hr",
         {
           className: mergeTailwindClasses(
-            "border border-border mx-auto mb-4",
+            "border border-border mx-auto mb-3",
             {
               "w-[90%]": isDesktop,
               "w-10": isTablet
