@@ -1,10 +1,13 @@
 import { useInfiniteScroll } from "@/hooks";
 import { useInfiniteList } from "@/hooks/useInfiniteList";
+import type { SelectProps } from "@heroui/react";
 import { Select, SelectItem } from "@heroui/react";
 import type { JSX } from "react";
 import { useState } from "react";
 
-interface InfiniteSelectProps<T> {
+interface InfiniteSelectProps<T>
+  extends Omit<SelectProps, "items" | "children"> {
+  // Fetch function requirements
   fetchFunction: (
     offset: number,
     limit: number,
@@ -14,10 +17,10 @@ interface InfiniteSelectProps<T> {
   }>;
   fetchDelay?: number;
   limit?: number;
-  className?: string;
+
+  // Core functionality
   renderItem: (item: T) => React.ReactNode;
-  getItemKey: (item: T) => string | number;
-  selectionMode?: "single" | "multiple";
+  getItemKey: (item: T, index?: number) => string | number;
 }
 
 export function InfiniteSelect<T extends object>({
@@ -28,6 +31,7 @@ export function InfiniteSelect<T extends object>({
   renderItem,
   getItemKey,
   selectionMode = "single",
+  ...selectProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,7 +55,11 @@ export function InfiniteSelect<T extends object>({
       items={items}
       scrollRef={scrollerRef}
       selectionMode={selectionMode}
-      onOpenChange={setIsOpen}
+      onOpenChange={(open): void => {
+        setIsOpen(open);
+        selectProps.onOpenChange?.(open);
+      }}
+      {...selectProps}
     >
       {(item: T): JSX.Element => (
         <SelectItem key={getItemKey(item)}>{renderItem(item)}</SelectItem>
