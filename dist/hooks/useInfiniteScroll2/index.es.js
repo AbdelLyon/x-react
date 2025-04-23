@@ -1,4 +1,4 @@
-import { useInView } from "../../node_modules/.pnpm/react-intersection-observer@9.16.0_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/react-intersection-observer/dist/index/index.es.js";
+import { useInView } from "react-intersection-observer";
 import { useRef } from "react";
 const useInfiniteScroll2 = (props = {}) => {
   const {

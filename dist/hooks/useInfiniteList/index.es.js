@@ -28,7 +28,7 @@ function useInfiniteList({
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(0);
-  const loadItems = (currentOffset) => __async(this, null, function* () {
+  const loadItems = (currentOffset) => __async(null, null, function* () {
     try {
       setIsLoading(true);
       if (offset > 0) {

@@ -88,6 +88,7 @@ export default defineConfig({
         "framer-motion",
         "@tabler/icons-react",
         "@vitejs/plugin-react-swc",
+        "react-intersection-observer",
         "clsx",
         "next-themes",
         "react-chartjs-2",
@@ -110,6 +111,7 @@ export default defineConfig({
           "chart.js": "Chart",
           "react-chartjs-2": "ReactChartJS",
           "@heroui/react": "HerouiReact",
+          "react-intersection-observer": "ReactIntersectionObserver"
         },
         entryFileNames: (chunkInfo) => {
           return `${chunkInfo.name}/index.es.js`;

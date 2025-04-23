@@ -80,7 +80,7 @@ const Drawer = (_a) => {
     "classNames"
   ]);
   const { onOpen, onClose, isOpen } = useDisclosure();
-  const handleAction = () => __async(void 0, null, function* () {
+  const handleAction = () => __async(null, null, function* () {
     try {
       yield onAction == null ? void 0 : onAction();
       onClose();
