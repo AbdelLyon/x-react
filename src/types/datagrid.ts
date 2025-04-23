@@ -67,6 +67,13 @@ export interface GridScrollEndCallback {
   details: GridCallbackDetails;
 }
 
+// types/datagrid/lazy-loading.ts
+export interface LazyLoadingOptions {
+  enabled?: boolean;
+  threshold?: number;
+  scrollBuffer?: number;
+}
+
 // types/datagrid/props.ts
 export type GridVariant = "bordered" | "striped" | "unstyled";
 
@@ -81,12 +88,23 @@ export interface DataGridBaseProps<T> {
   isFetching?: boolean;
 }
 
+export interface DataGridLazyLoadingProps {
+  isLoadingMore?: boolean;
+  hasMoreData?: boolean;
+  infiniteScrollRef?: React.RefObject<HTMLDivElement>;
+  lazyLoadingOptions?: LazyLoadingOptions;
+  loadingMoreContent?: React.ReactNode;
+  noMoreDataContent?: React.ReactNode;
+}
+
 export interface DataGridCallbacks<T> {
   onSortChange?: (column: keyof T, direction: SortDirection) => void;
   onGridScrollEnd?: () => void;
+  onLoadMore?: () => void | Promise<void>;
 }
 
-export interface DataGridProps<T extends { id: string | number }>
+export interface DataGridProps<T extends { id: string | number; }>
   extends DataGridBaseProps<T>,
-    DataGridCallbacks<T>,
-    Omit<TableProps, "onSortChange"> {}
+  DataGridCallbacks<T>,
+  DataGridLazyLoadingProps,
+  Omit<TableProps, "onSortChange"> { }

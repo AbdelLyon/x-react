@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // types.ts
 type RowIdentifier = string | number;
-type DataGridRow = { id: RowIdentifier };
+type DataGridRow = { id: RowIdentifier; };
 type SortOrder = "asc" | "desc";
 
 interface SortConfig<T> {
