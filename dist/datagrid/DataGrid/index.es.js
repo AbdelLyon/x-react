@@ -99,7 +99,7 @@ function DataGrid(_a) {
           (_c = props.classNames) == null ? void 0 : _c.base
         )
       }),
-      bottomContent: isFetching ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, color: "primary" }) }) : rows.length > 0 ? /* @__PURE__ */ jsx("div", { className: "py-2 text-center text-sm text-gray-500", children: "Toutes les données ont été chargées" }) : null,
+      bottomContent: isFetching && /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, color: "primary" }) }),
       children: [
         /* @__PURE__ */ jsx(
           TableHeader,

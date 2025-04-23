@@ -74,15 +74,11 @@ export function DataGrid<T extends { id: string | number }>({
         ),
       }}
       bottomContent={
-        isFetching ? (
+        isFetching && (
           <div className="flex w-full justify-center p-2">
             <Spinner ref={loaderRef} color="primary" />
           </div>
-        ) : rows.length > 0 ? (
-          <div className="py-2 text-center text-sm text-gray-500">
-            Toutes les données ont été chargées
-          </div>
-        ) : null
+        )
       }
     >
       <TableHeader
