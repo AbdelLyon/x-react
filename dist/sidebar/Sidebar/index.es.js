@@ -99,7 +99,7 @@ const Sidebar = ({
           color: actionColor,
           radius: "none",
           className: mergeTailwindClasses(
-            "transition-all h-10 rounded-md mb-3 font-semibold",
+            "transition-all h-10 rounded-md mb-4 font-semibold",
             {
               "w-[90%] justify-start px-3": isDesktop,
               "size-10 p-0 flex items-center justify-center": isTablet
