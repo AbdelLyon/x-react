@@ -26,7 +26,7 @@ const Sidebar = ({
       Link,
       {
         className: mergeTailwindClasses(
-          "flex items-center px-3 h-11 text-[#e6e6e6] hover:text-white hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
+          "flex items-center px-3 h-11  hover:bg-content1 rounded-md cursor-pointer text-sm transition-all duration-200",
           {
             "border-l-2 border-primary bg-content1 text-white": item.isActive,
             "border-l-0 border-l-primary justify-center": isTablet && item.isActive,
@@ -40,7 +40,7 @@ const Sidebar = ({
           /* @__PURE__ */ jsx(
             "div",
             {
-              className: mergeTailwindClasses({
+              className: mergeTailwindClasses("text-[#e6e6e6] hover:text-white", {
                 "": isDesktop,
                 "flex items-center justify-center size-9": isTablet && !item.isActive,
                 "flex items-center justify-center size-9 bg-primary/10": isTablet && item.isActive
@@ -48,11 +48,11 @@ const Sidebar = ({
               children: item.startContent
             }
           ),
-          isDesktop && /* @__PURE__ */ jsx("span", { children: item.label }),
+          isDesktop && /* @__PURE__ */ jsx("span", { className: "text-[#e6e6e6] hover:text-white", children: item.label }),
           item.endContent !== null && /* @__PURE__ */ jsx(
             "div",
             {
-              className: mergeTailwindClasses({
+              className: mergeTailwindClasses("text-[#e6e6e6] hover:text-white", {
                 "": isDesktop,
                 "absolute right-1 top-1": isTablet
               }),
@@ -93,13 +93,13 @@ const Sidebar = ({
       )
     });
     return /* @__PURE__ */ jsxs(Fragment, { children: [
-      /* @__PURE__ */ jsx("div", { className: "mt-6 flex justify-center", children: /* @__PURE__ */ jsx(
+      /* @__PURE__ */ jsx("div", { className: "mt-8 flex justify-center", children: /* @__PURE__ */ jsx(
         Button,
         {
           color: actionColor,
           radius: "none",
           className: mergeTailwindClasses(
-            "transition-all h-10 rounded-md mb-4 font-semibold",
+            "transition-all h-10 rounded-md mb-6 font-semibold",
             {
               "w-[90%] justify-start px-3": isDesktop,
               "size-10 p-0 flex items-center justify-center": isTablet
@@ -115,7 +115,7 @@ const Sidebar = ({
         "hr",
         {
           className: mergeTailwindClasses(
-            "border border-border mx-auto mb-3",
+            "border border-border mx-auto mb-4",
             {
               "w-[90%]": isDesktop,
               "w-10": isTablet
