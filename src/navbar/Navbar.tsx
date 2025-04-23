@@ -85,7 +85,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {!isMobile && (appName !== null || appLogo !== null) && (
           <NavbarContent justify="start">
             {!isTablet && appName !== null && (
-              <NavbarItem className="w-[247px] border-r-2 border-border">
+              <NavbarItem className="w-[247px] border-r-2 border-border text-foreground">
                 {appName}
               </NavbarItem>
             )}
