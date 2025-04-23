@@ -168,7 +168,7 @@ export const Sidebar = ({
     <aside
       ref={ref}
       className={mergeTailwindClasses(
-        "fixed left-0 h-screen flex flex-col bg-[#212324] border-r border-border",
+        "fixed left-0 h-screen flex flex-col bg-[#191919] border-r border-border",
         {
           "w-[270px]": isDesktop,
           "w-[70px]": isTablet,
