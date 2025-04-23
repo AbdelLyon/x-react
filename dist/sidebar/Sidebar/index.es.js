@@ -101,7 +101,7 @@ const Sidebar = ({
           className: mergeTailwindClasses(
             "transition-all h-11 rounded-md",
             {
-              "w-[91%] justify-start px-3": isDesktop,
+              "w-[90%] justify-start px-3": isDesktop,
               "size-10 p-0 flex items-center justify-center": isTablet
             },
             classNames == null ? void 0 : classNames.action
@@ -114,10 +114,13 @@ const Sidebar = ({
       showDivider && /* @__PURE__ */ jsx(
         "hr",
         {
-          className: mergeTailwindClasses("border border-border", {
-            "mx-4 my-3": isDesktop,
-            "mx-auto my-4 w-10": isTablet
-          })
+          className: mergeTailwindClasses(
+            "border border-border mx-auto my-4",
+            {
+              "w-[90%]": isDesktop,
+              "w-10": isTablet
+            }
+          )
         }
       )
     ] });
