@@ -1,4 +1,4 @@
-// DataGrid.tsx
+// components/DataGrid/DataGrid.tsx
 import { useDataGridState } from "@/datagrid/useDataGridState";
 import { mergeTailwindClasses } from "@/utils";
 import {
@@ -27,6 +27,9 @@ export function DataGrid<T extends { id: string | number }>({
   hasMoreData = false,
   onGridScrollEnd,
   fetchNextPage,
+  infiniteScrollOptions = {},
+  loadingMoreContent,
+  noMoreDataContent,
   childrenProps,
   ...props
 }: DataGridProps<T>): JSX.Element {
@@ -44,15 +47,16 @@ export function DataGrid<T extends { id: string | number }>({
     onGridScrollEnd,
   });
 
-  // Utilisation du hook useInfiniteScroll
+  // Utiliser votre hook useInfiniteScroll personnalisé
   const { ref, containerRef } = useInfiniteScroll2({
     hasMore: hasMoreData,
-    isEnabled: !isLoading && !isLoadingMore,
-    threshold: 0.1,
-    rootMargin: "0px 0px 250px 0px",
-    debounceTime: 100,
+    isEnabled:
+      !isLoading && !isLoadingMore && infiniteScrollOptions?.enabled !== false,
+    threshold: infiniteScrollOptions?.threshold,
+    rootMargin: infiniteScrollOptions?.rootMargin,
+    triggerOnce: infiniteScrollOptions?.triggerOnce,
+    debounceTime: infiniteScrollOptions?.debounceTime,
     onLoadMore: (): void => {
-      console.log("DataGrid: InfiniteScroll triggered");
       fetchNextPage?.();
     },
   });
@@ -150,11 +154,10 @@ export function DataGrid<T extends { id: string | number }>({
 
       {isLoadingMore && (
         <div className="flex w-full justify-center p-2">
-          <Spinner color="primary" size="sm" />
+          {loadingMoreContent || <Spinner color="primary" size="sm" />}
         </div>
       )}
 
-      {/* Utiliser la référence du hook useInfiniteScroll */}
       {hasMoreData && (
         <div
           ref={ref}
@@ -166,7 +169,7 @@ export function DataGrid<T extends { id: string | number }>({
 
       {!hasMoreData && rows.length > 0 && (
         <div className="py-2 text-center text-sm text-gray-500">
-          Toutes les données ont été chargées
+          {noMoreDataContent || "Toutes les données ont été chargées"}
         </div>
       )}
     </div>

@@ -86,7 +86,7 @@ export interface DataGridCallbacks<T> {
     /** Callback appelé lorsque l'utilisateur atteint la fin du tableau par défilement */
     onGridScrollEnd?: () => void;
     /** Callback appelé pour charger plus de données (utilisé par le défilement infini) */
-    fetchNextPage?: () => void | Promise<void>;
+    fetchNextPage?: () => void;
 }
 export interface DataGridProps<T extends {
     id: string | number;

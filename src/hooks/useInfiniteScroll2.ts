@@ -34,7 +34,6 @@ export const useInfiniteScroll2 = (
    const isLoadingRef = useRef(false);
    const initialRender = useRef(true);
 
-   // Utiliser le hook useInView de react-intersection-observer
    const { ref, inView } = useInView({
       threshold,
       rootMargin,

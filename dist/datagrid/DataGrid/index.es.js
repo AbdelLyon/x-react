@@ -48,6 +48,9 @@ function DataGrid(_a) {
     hasMoreData = false,
     onGridScrollEnd,
     fetchNextPage,
+    infiniteScrollOptions = {},
+    loadingMoreContent,
+    noMoreDataContent,
     childrenProps
   } = _b, props = __objRest(_b, [
     "rows",
@@ -59,6 +62,9 @@ function DataGrid(_a) {
     "hasMoreData",
     "onGridScrollEnd",
     "fetchNextPage",
+    "infiniteScrollOptions",
+    "loadingMoreContent",
+    "noMoreDataContent",
     "childrenProps"
   ]);
   var _a2, _b2, _c;
@@ -77,12 +83,12 @@ function DataGrid(_a) {
   });
   const { ref, containerRef } = useInfiniteScroll2({
     hasMore: hasMoreData,
-    isEnabled: !isLoading && !isLoadingMore,
-    threshold: 0.1,
-    rootMargin: "0px 0px 250px 0px",
-    debounceTime: 100,
+    isEnabled: !isLoading && !isLoadingMore && (infiniteScrollOptions == null ? void 0 : infiniteScrollOptions.enabled) !== false,
+    threshold: infiniteScrollOptions == null ? void 0 : infiniteScrollOptions.threshold,
+    rootMargin: infiniteScrollOptions == null ? void 0 : infiniteScrollOptions.rootMargin,
+    triggerOnce: infiniteScrollOptions == null ? void 0 : infiniteScrollOptions.triggerOnce,
+    debounceTime: infiniteScrollOptions == null ? void 0 : infiniteScrollOptions.debounceTime,
     onLoadMore: () => {
-      console.log("DataGrid: InfiniteScroll triggered");
       fetchNextPage == null ? void 0 : fetchNextPage();
     }
   });
@@ -173,7 +179,7 @@ function DataGrid(_a) {
             ]
           })
         ),
-        isLoadingMore && /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(Spinner, { color: "primary", size: "sm" }) }),
+        isLoadingMore && /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: loadingMoreContent || /* @__PURE__ */ jsx(Spinner, { color: "primary", size: "sm" }) }),
         hasMoreData && /* @__PURE__ */ jsx(
           "div",
           {
@@ -183,7 +189,7 @@ function DataGrid(_a) {
             "data-testid": "infinite-scroll-trigger"
           }
         ),
-        !hasMoreData && rows.length > 0 && /* @__PURE__ */ jsx("div", { className: "py-2 text-center text-sm text-gray-500", children: "Toutes les données ont été chargées" })
+        !hasMoreData && rows.length > 0 && /* @__PURE__ */ jsx("div", { className: "py-2 text-center text-sm text-gray-500", children: noMoreDataContent || "Toutes les données ont été chargées" })
       ]
     }
   );
