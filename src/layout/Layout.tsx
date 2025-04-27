@@ -38,7 +38,7 @@ export const Layout = ({
           className={mergeTailwindClasses(
             "flex-1 px-4 transition-all duration-200",
             {
-              "pt-16": hasNavbar,
+              "pt-4": hasNavbar,
               "ml-0": !hasSidebar || (!isTablet && !isDesktop),
               "ml-[90px]": hasSidebar && isTablet,
               "ml-[270px]": hasSidebar && isDesktop,
