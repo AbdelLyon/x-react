@@ -12,7 +12,6 @@ import {
 import { mergeTailwindClasses } from "@/utils";
 
 type BaseProps = {
-  containerClasses?: string;
   variant?: "bordered" | "flat" | "faded" | "underlined";
   color?: string;
   size?: string;
@@ -58,7 +57,6 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       isRequired = false,
       isReadOnly = false,
       isDisabled = false,
-      containerClasses,
       ...props
     },
     ref,
@@ -66,28 +64,26 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const { classNames: propClassNames, ...restProps } = props;
 
     return (
-      <div className={mergeTailwindClasses("w-full", containerClasses)}>
-        <DatePickerRoot
-          ref={ref}
-          variant={variant}
-          color={color}
-          size={size}
-          radius={radius}
-          labelPlacement={labelPlacement}
-          fullWidth={fullWidth}
-          isRequired={isRequired}
-          isReadOnly={isReadOnly}
-          isDisabled={isDisabled}
-          classNames={{
-            ...propClassNames,
-            inputWrapper: mergeTailwindClasses(
-              getVariantStyles(variant),
-              propClassNames?.inputWrapper,
-            ),
-          }}
-          {...restProps}
-        />
-      </div>
+      <DatePickerRoot
+        ref={ref}
+        variant={variant}
+        color={color}
+        size={size}
+        radius={radius}
+        labelPlacement={labelPlacement}
+        fullWidth={fullWidth}
+        isRequired={isRequired}
+        isReadOnly={isReadOnly}
+        isDisabled={isDisabled}
+        classNames={{
+          ...propClassNames,
+          inputWrapper: mergeTailwindClasses(
+            getVariantStyles(variant),
+            propClassNames?.inputWrapper,
+          ),
+        }}
+        {...restProps}
+      />
     );
   },
 );
@@ -104,7 +100,6 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
       isRequired = false,
       isReadOnly = false,
       isDisabled = false,
-      containerClasses,
       ...props
     },
     ref,
@@ -112,28 +107,26 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
     const { classNames: propClassNames, ...restProps } = props;
 
     return (
-      <div className={mergeTailwindClasses("w-full", containerClasses)}>
-        <DateRangePickerRoot
-          ref={ref}
-          variant={variant}
-          color={color}
-          size={size}
-          radius={radius}
-          labelPlacement={labelPlacement}
-          fullWidth={fullWidth}
-          isRequired={isRequired}
-          isReadOnly={isReadOnly}
-          isDisabled={isDisabled}
-          classNames={{
-            ...propClassNames,
-            base: mergeTailwindClasses(
-              getVariantStyles(variant),
-              propClassNames?.base,
-            ),
-          }}
-          {...restProps}
-        />
-      </div>
+      <DateRangePickerRoot
+        ref={ref}
+        variant={variant}
+        color={color}
+        size={size}
+        radius={radius}
+        labelPlacement={labelPlacement}
+        fullWidth={fullWidth}
+        isRequired={isRequired}
+        isReadOnly={isReadOnly}
+        isDisabled={isDisabled}
+        classNames={{
+          ...propClassNames,
+          base: mergeTailwindClasses(
+            getVariantStyles(variant),
+            propClassNames?.base,
+          ),
+        }}
+        {...restProps}
+      />
     );
   },
 );
