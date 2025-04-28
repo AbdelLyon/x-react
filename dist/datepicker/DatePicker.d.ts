@@ -1,7 +1,6 @@
 import { DateValue } from '@internationalized/date';
 import { DatePickerProps as DatePickerRootProps, DateRangePickerProps as DateRangePickerRootProps } from '@heroui/react';
 type BaseProps = {
-    containerClasses?: string;
     variant?: "bordered" | "flat" | "faded" | "underlined";
     color?: string;
     size?: string;

@@ -58,8 +58,7 @@ const DatePicker = forwardRef(
       fullWidth = true,
       isRequired = false,
       isReadOnly = false,
-      isDisabled = false,
-      containerClasses
+      isDisabled = false
     } = _b, props = __objRest(_b, [
       "variant",
       "color",
@@ -69,11 +68,10 @@ const DatePicker = forwardRef(
       "fullWidth",
       "isRequired",
       "isReadOnly",
-      "isDisabled",
-      "containerClasses"
+      "isDisabled"
     ]);
     const _a2 = props, { classNames: propClassNames } = _a2, restProps = __objRest(_a2, ["classNames"]);
-    return /* @__PURE__ */ jsx("div", { className: mergeTailwindClasses("w-full", containerClasses), children: /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ jsx(
       DatePicker$1,
       __spreadValues({
         ref,
@@ -93,7 +91,7 @@ const DatePicker = forwardRef(
           )
         })
       }, restProps)
-    ) });
+    );
   }
 );
 const DateRangePicker = forwardRef(
@@ -107,8 +105,7 @@ const DateRangePicker = forwardRef(
       fullWidth = true,
       isRequired = false,
       isReadOnly = false,
-      isDisabled = false,
-      containerClasses
+      isDisabled = false
     } = _d, props = __objRest(_d, [
       "variant",
       "color",
@@ -118,11 +115,10 @@ const DateRangePicker = forwardRef(
       "fullWidth",
       "isRequired",
       "isReadOnly",
-      "isDisabled",
-      "containerClasses"
+      "isDisabled"
     ]);
     const _a = props, { classNames: propClassNames } = _a, restProps = __objRest(_a, ["classNames"]);
-    return /* @__PURE__ */ jsx("div", { className: mergeTailwindClasses("w-full", containerClasses), children: /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ jsx(
       DateRangePicker$1,
       __spreadValues({
         ref,
@@ -142,7 +138,7 @@ const DateRangePicker = forwardRef(
           )
         })
       }, restProps)
-    ) });
+    );
   }
 );
 DatePicker.displayName = "DatePicker";
