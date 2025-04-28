@@ -93,7 +93,7 @@ const ModalButtons = ({
           buttonCloseProps == null ? void 0 : buttonCloseProps.className
         ),
         variant: (_a = buttonCloseProps == null ? void 0 : buttonCloseProps.variant) != null ? _a : "bordered",
-        onClick: onClose
+        onPress: onClose
       }, defaultButtonProps), buttonCloseProps), {
         children: buttonCloseLabel
       })
@@ -101,7 +101,7 @@ const ModalButtons = ({
     hasValidActionButton && /* @__PURE__ */ jsx(
       Button,
       __spreadProps(__spreadValues(__spreadValues({
-        onClick: handleAction
+        onPress: handleAction
       }, defaultButtonProps), buttonActionProps), {
         children: buttonActionLabel
       })
@@ -148,15 +148,6 @@ const Modal = forwardRef(
       },
       [defaultBackdrop, onOpen]
     );
-    const handleKeyDown = useCallback(
-      (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          handleOpen();
-        }
-      },
-      [handleOpen]
-    );
     const modalClassNames = {
       closeButton: mergeTailwindClasses(
         defaultClassNames.closeButton,
@@ -175,17 +166,7 @@ const Modal = forwardRef(
       backdrop: mergeTailwindClasses(classNames == null ? void 0 : classNames.backdrop)
     };
     return /* @__PURE__ */ jsxs(Fragment, { children: [
-      /* @__PURE__ */ jsx(
-        "div",
-        {
-          role: "button",
-          tabIndex: 0,
-          onClick: () => handleOpen(),
-          onKeyDown: handleKeyDown,
-          className: "inline-block",
-          children: trigger
-        }
-      ),
+      /* @__PURE__ */ jsx("div", { onClick: () => handleOpen(), children: trigger }),
       /* @__PURE__ */ jsx(
         Modal$1,
         __spreadProps(__spreadValues({

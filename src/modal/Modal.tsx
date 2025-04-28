@@ -96,7 +96,7 @@ const ModalButtons = ({
             buttonCloseProps?.className,
           )}
           variant={buttonCloseProps?.variant ?? "bordered"}
-          onClick={onClose}
+          onPress={onClose}
           {...defaultButtonProps}
           {...buttonCloseProps}
         >
@@ -106,7 +106,7 @@ const ModalButtons = ({
 
       {hasValidActionButton && (
         <Button
-          onClick={handleAction}
+          onPress={handleAction}
           {...defaultButtonProps}
           {...buttonActionProps}
         >
@@ -149,16 +149,6 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       [defaultBackdrop, onOpen],
     );
 
-    const handleKeyDown = useCallback(
-      (event: React.KeyboardEvent<HTMLDivElement>): void => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          handleOpen();
-        }
-      },
-      [handleOpen],
-    );
-
     const modalClassNames = {
       closeButton: mergeTailwindClasses(
         defaultClassNames.closeButton,
@@ -179,15 +169,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     return (
       <>
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={(): void => handleOpen()}
-          onKeyDown={handleKeyDown}
-          className="inline-block"
-        >
-          {trigger}
-        </div>
+        <div onClick={(): void => handleOpen()}>{trigger}</div>
 
         <ModalRoot
           ref={ref}
