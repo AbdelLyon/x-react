@@ -186,7 +186,8 @@ function DataGrid(_a) {
                   TableCell,
                   __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
                     className: mergeTailwindClasses(
-                      (_a3 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a3.className
+                      (_a3 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a3.className,
+                      columns[rows.indexOf(row)].className
                     ),
                     children: extractCellValue(columnKey, row, columns)
                   })
