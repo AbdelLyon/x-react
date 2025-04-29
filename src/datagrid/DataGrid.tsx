@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "@heroui/react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
-import type { JSX, Ref } from "react";
+import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import type { DataGridProps } from "@/types/datagrid";
 import { GRID_VARIANTS } from "./variants";
@@ -63,110 +63,83 @@ export function DataGrid<T extends { id: string | number }>({
   }
 
   return (
-    <div className="flex w-full flex-col overflow-hidden rounded-md border border-border dark:bg-background">
-      <div className="w-full">
-        <table className="w-full">
-          <thead>
-            <tr>
-              {processedColumns.map(
-                (column): JSX.Element => (
-                  <th
-                    key={column.key}
-                    className={mergeTailwindClasses(
-                      variantClasses.th,
-                      props.classNames?.th,
-                    )}
-                    aria-label={extractColumnHeader(column)}
-                  >
-                    <div className="flex items-center gap-2">
-                      {column.header}
-                      {column.sortable !== false && (
-                        <div
-                          className={mergeTailwindClasses(
-                            "relative size-4 cursor-pointer",
-                          )}
-                          onClick={(): void => onSort(column)}
-                          role="button"
-                          aria-label={formatSortHeader(column.header)}
-                        >
-                          <IconChevronUp
-                            size={16}
-                            className={mergeTailwindClasses(
-                              "absolute -top-1",
-                              sortConfig.field === column.key &&
-                                sortConfig.direction === "asc"
-                                ? "opacity-100"
-                                : "opacity-30",
-                            )}
-                          />
-                          <IconChevronDown
-                            size={16}
-                            className={mergeTailwindClasses(
-                              "absolute top-1",
-                              sortConfig.field === column.key &&
-                                sortConfig.direction === "desc"
-                                ? "opacity-100"
-                                : "opacity-30",
-                            )}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </th>
-                ),
-              )}
-            </tr>
-          </thead>
-        </table>
-      </div>
-
-      <div
-        ref={scrollerRef as Ref<HTMLDivElement>}
-        className={mergeTailwindClasses(
-          "w-full relative overflow-auto",
-          props.classNames?.base,
-        )}
-        style={{ maxHeight: "calc(100vh - 350px)" }}
+    <div className="w-full overflow-hidden rounded-md border border-border dark:bg-background">
+      <DataTable
+        aria-label="data-grid"
+        {...props}
+        baseRef={scrollerRef}
+        classNames={{
+          ...props.classNames,
+          wrapper: mergeTailwindClasses(
+            "dark:bg-background border-0 p-0",
+            props.classNames?.wrapper,
+          ),
+          th: mergeTailwindClasses(
+            variantClasses.th,
+            props.classNames?.th,
+            "sticky top-0 z-10",
+          ),
+          tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
+          base: mergeTailwindClasses("w-full relative", props.classNames?.base),
+        }}
       >
-        <DataTable
-          aria-label="data-grid"
-          hideHeader={true}
-          {...props}
-          classNames={{
-            ...props.classNames,
-            wrapper: mergeTailwindClasses(
-              "dark:bg-background p-0",
-              props.classNames?.wrapper,
-            ),
-            tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
-            base: mergeTailwindClasses("w-full", props.classNames?.base),
-          }}
+        <TableHeader
+          columns={processedColumns}
+          {...childrenProps?.tableHeaderProps}
         >
-          <TableHeader
-            columns={processedColumns}
-            {...childrenProps?.tableHeaderProps}
-          >
-            {(column): JSX.Element => (
-              <TableColumn
-                key={column.key}
-                aria-label={extractColumnHeader(column)}
-                {...childrenProps?.tableColumnProps}
-              >
+          {(column): JSX.Element => (
+            <TableColumn
+              key={column.key}
+              aria-label={extractColumnHeader(column)}
+              {...childrenProps?.tableColumnProps}
+            >
+              <div className="flex items-center gap-2">
                 {column.header}
-              </TableColumn>
-            )}
-          </TableHeader>
+                {column.sortable !== false && (
+                  <div
+                    className={mergeTailwindClasses(
+                      "relative size-4 cursor-pointer",
+                    )}
+                    onClick={(): void => onSort(column)}
+                    role="button"
+                    aria-label={formatSortHeader(column.header)}
+                  >
+                    <IconChevronUp
+                      size={16}
+                      className={mergeTailwindClasses(
+                        "absolute -top-1",
+                        sortConfig.field === column.key &&
+                          sortConfig.direction === "asc"
+                          ? "opacity-100"
+                          : "opacity-30",
+                      )}
+                    />
+                    <IconChevronDown
+                      size={16}
+                      className={mergeTailwindClasses(
+                        "absolute top-1",
+                        sortConfig.field === column.key &&
+                          sortConfig.direction === "desc"
+                          ? "opacity-100"
+                          : "opacity-30",
+                      )}
+                    />
+                  </div>
+                )}
+              </div>
+            </TableColumn>
+          )}
+        </TableHeader>
 
+        <div
+          className="overflow-auto"
+          style={{ maxHeight: "calc(100vh - 350px)" }}
+        >
           <TableBody
             isLoading={isLoading}
             items={rows}
             loadingContent={<Spinner color="primary" />}
             {...childrenProps?.tableBodyProps}
-            emptyContent={
-              <div className="p-4 text-center text-gray-500">
-                Aucune donnée à afficher
-              </div>
-            }
           >
             {(row: T): JSX.Element => {
               return (
@@ -186,10 +159,9 @@ export function DataGrid<T extends { id: string | number }>({
               );
             }}
           </TableBody>
-        </DataTable>
-      </div>
+        </div>
+      </DataTable>
 
-      {/* Footer avec spinner ou message de fin */}
       {hasMoreData ? (
         <div className="flex w-full justify-center border-t border-border/70 p-2">
           <Spinner
