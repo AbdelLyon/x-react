@@ -159,7 +159,8 @@ export function DataGrid<T extends { id: string | number }>({
                   {...childrenProps?.tableCellProps}
                   className={mergeTailwindClasses(
                     childrenProps?.tableCellProps?.className,
-                    columns[rows.indexOf(row)].className,
+                    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+                    columns.find((col) => col.field === columnKey)?.className,
                   )}
                 >
                   {extractCellValue(columnKey, row, columns)}

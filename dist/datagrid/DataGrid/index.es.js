@@ -181,13 +181,14 @@ function DataGrid(_a) {
           }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
             children: (row) => {
               return /* @__PURE__ */ jsx(TableRow, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), { children: (columnKey) => {
-                var _a3;
+                var _a3, _b3;
                 return /* @__PURE__ */ jsx(
                   TableCell,
                   __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
                     className: mergeTailwindClasses(
                       (_a3 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a3.className,
-                      columns[rows.indexOf(row)].className
+                      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+                      (_b3 = columns.find((col) => col.field === columnKey)) == null ? void 0 : _b3.className
                     ),
                     children: extractCellValue(columnKey, row, columns)
                   })
