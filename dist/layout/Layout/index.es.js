@@ -29,7 +29,7 @@ const Layout = ({
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const hasNavbar = Boolean(navbar);
   const hasSidebar = Boolean(sidebar);
-  return /* @__PURE__ */ jsxs("div", { className: "h-full max-h-screen overflow-x-hidden bg-background", children: [
+  return /* @__PURE__ */ jsxs("div", { className: "relative h-full max-h-screen overflow-x-hidden bg-background", children: [
     hasNavbar && /* @__PURE__ */ jsx(Navbar, __spreadValues({}, navbar)),
     /* @__PURE__ */ jsxs("div", { className: "flex", children: [
       hasSidebar && /* @__PURE__ */ jsx(Sidebar, __spreadValues({}, sidebar)),
