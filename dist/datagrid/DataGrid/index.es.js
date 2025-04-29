@@ -29,7 +29,7 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsxs, jsx } from "react/jsx-runtime";
+import { jsx, jsxs } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/index.es.js";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
@@ -80,6 +80,18 @@ function DataGrid(_a) {
     }
   });
   const variantClasses = GRID_VARIANTS[variant];
+  if (isLoading) {
+    return /* @__PURE__ */ jsx(
+      DataGridSkeleton,
+      {
+        columns: columns.length,
+        checkboxSelection: props.showSelectionCheckboxes,
+        variant,
+        rows: skeletonRowsCount != null ? skeletonRowsCount : 10,
+        className: (_a2 = props.classNames) == null ? void 0 : _a2.base
+      }
+    );
+  }
   return /* @__PURE__ */ jsxs(
     Table,
     __spreadProps(__spreadValues({
@@ -89,13 +101,13 @@ function DataGrid(_a) {
       classNames: __spreadProps(__spreadValues({}, props.classNames), {
         wrapper: mergeTailwindClasses(
           "dark:bg-background border border-border p-0",
-          (_a2 = props.classNames) == null ? void 0 : _a2.th
+          (_b2 = props.classNames) == null ? void 0 : _b2.th
         ),
-        th: mergeTailwindClasses(variantClasses.th, (_b2 = props.classNames) == null ? void 0 : _b2.th),
-        tr: mergeTailwindClasses(variantClasses.tr, (_c = props.classNames) == null ? void 0 : _c.tr),
+        th: mergeTailwindClasses(variantClasses.th, (_c = props.classNames) == null ? void 0 : _c.th),
+        tr: mergeTailwindClasses(variantClasses.tr, (_d = props.classNames) == null ? void 0 : _d.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto",
-          (_d = props.classNames) == null ? void 0 : _d.base
+          (_e = props.classNames) == null ? void 0 : _e.base
         )
       }),
       bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
@@ -165,16 +177,7 @@ function DataGrid(_a) {
           __spreadProps(__spreadValues({
             isLoading,
             items: rows,
-            loadingContent: /* @__PURE__ */ jsx(
-              DataGridSkeleton,
-              {
-                columns: columns.length,
-                checkboxSelection: props.showSelectionCheckboxes,
-                variant,
-                rows: skeletonRowsCount != null ? skeletonRowsCount : 10,
-                className: (_e = props.classNames) == null ? void 0 : _e.base
-              }
-            )
+            loadingContent: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, color: "primary" })
           }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
             children: (row) => {
               return /* @__PURE__ */ jsx(TableRow, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), { children: (columnKey) => {
@@ -184,7 +187,6 @@ function DataGrid(_a) {
                   __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
                     className: mergeTailwindClasses(
                       (_a3 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a3.className,
-                      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
                       (_b3 = columns.find((col) => col.field === columnKey)) == null ? void 0 : _b3.className
                     ),
                     children: extractCellValue(columnKey, row, columns)
