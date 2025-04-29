@@ -20,14 +20,12 @@ interface DataGridSkeletonProps {
 }
 
 export const DataGridSkeleton = ({
-  columns = 5,
   rows = 10,
   checkboxSelection = true,
   variant = "unstyled",
   className,
 }: DataGridSkeletonProps): JSX.Element => {
   const variantClasses = GRID_VARIANTS[variant];
-  const actualColumns = checkboxSelection ? columns + 1 : columns;
 
   return (
     <Table
@@ -39,7 +37,7 @@ export const DataGridSkeleton = ({
       )}
     >
       <TableHeader className={mergeTailwindClasses(variantClasses.thead)}>
-        {Array(actualColumns)
+        {Array(8)
           .fill(null)
           .map(
             (_, index): JSX.Element => (
@@ -76,7 +74,7 @@ export const DataGridSkeleton = ({
                 key={rowIndex}
                 className={mergeTailwindClasses(variantClasses.tr)}
               >
-                {Array(actualColumns)
+                {Array(8)
                   .fill(null)
                   .map(
                     (_, colIndex): JSX.Element => (

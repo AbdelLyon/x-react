@@ -3,14 +3,12 @@ import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { GRID_VARIANTS } from "../variants/index.es.js";
 import { Table, TableHeader, TableColumn, Skeleton, TableBody, TableRow, TableCell } from "@heroui/react";
 const DataGridSkeleton = ({
-  columns = 5,
   rows = 10,
   checkboxSelection = true,
   variant = "unstyled",
   className
 }) => {
   const variantClasses = GRID_VARIANTS[variant];
-  const actualColumns = checkboxSelection ? columns + 1 : columns;
   return /* @__PURE__ */ jsxs(
     Table,
     {
@@ -21,7 +19,7 @@ const DataGridSkeleton = ({
         className
       ),
       children: [
-        /* @__PURE__ */ jsx(TableHeader, { className: mergeTailwindClasses(variantClasses.thead), children: Array(actualColumns).fill(null).map(
+        /* @__PURE__ */ jsx(TableHeader, { className: mergeTailwindClasses(variantClasses.thead), children: Array(8).fill(null).map(
           (_, index) => /* @__PURE__ */ jsx(
             TableColumn,
             {
@@ -42,7 +40,7 @@ const DataGridSkeleton = ({
             TableRow,
             {
               className: mergeTailwindClasses(variantClasses.tr),
-              children: Array(actualColumns).fill(null).map(
+              children: Array(8).fill(null).map(
                 (_2, colIndex) => /* @__PURE__ */ jsx(
                   TableCell,
                   {
