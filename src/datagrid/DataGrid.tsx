@@ -70,7 +70,7 @@ export function DataGrid<T extends { id: string | number }>({
       classNames={{
         ...props.classNames,
         wrapper: mergeTailwindClasses(
-          "dark:bg-background",
+          "dark:bg-background border border-border p-0",
           props.classNames?.th,
         ),
         th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),

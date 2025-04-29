@@ -34,7 +34,7 @@ export const DataGridSkeleton = ({
       radius="sm"
       aria-label="Loading data"
       className={mergeTailwindClasses(
-        "w-full relative overflow-auto",
+        "w-full relative overflow-hidden",
         className,
       )}
     >
@@ -87,7 +87,7 @@ export const DataGridSkeleton = ({
                         {colIndex === 0 && checkboxSelection ? (
                           <Skeleton className="size-4 rounded-md" />
                         ) : (
-                          <Skeleton className="my-2 h-4 w-full max-w-[200px] rounded-md" />
+                          <Skeleton className="my-2 h-4 w-full max-w-[150px] rounded-md" />
                         )}
                       </TableCell>
                     ),

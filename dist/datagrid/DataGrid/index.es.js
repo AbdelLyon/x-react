@@ -100,7 +100,7 @@ function DataGrid(_a) {
       baseRef: scrollerRef,
       classNames: __spreadProps(__spreadValues({}, props.classNames), {
         wrapper: mergeTailwindClasses(
-          "dark:bg-background",
+          "dark:bg-background border border-border p-0",
           (_b2 = props.classNames) == null ? void 0 : _b2.th
         ),
         th: mergeTailwindClasses(variantClasses.th, (_c = props.classNames) == null ? void 0 : _c.th),
