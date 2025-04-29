@@ -92,124 +92,112 @@ function DataGrid(_a) {
       }
     );
   }
-  return /* @__PURE__ */ jsxs("div", { className: "w-full overflow-hidden rounded-md border border-border dark:bg-background", children: [
-    /* @__PURE__ */ jsxs(
-      Table,
-      __spreadProps(__spreadValues({
-        "aria-label": "data-grid"
-      }, props), {
-        baseRef: scrollerRef,
-        classNames: __spreadProps(__spreadValues({}, props.classNames), {
-          wrapper: mergeTailwindClasses(
-            "dark:bg-background border-0 p-0",
-            (_b2 = props.classNames) == null ? void 0 : _b2.wrapper
-          ),
-          th: mergeTailwindClasses(
-            variantClasses.th,
-            (_c = props.classNames) == null ? void 0 : _c.th,
-            "sticky top-0 z-10"
-          ),
-          tr: mergeTailwindClasses(variantClasses.tr, (_d = props.classNames) == null ? void 0 : _d.tr),
-          base: mergeTailwindClasses("w-full relative", (_e = props.classNames) == null ? void 0 : _e.base)
-        }),
-        children: [
-          /* @__PURE__ */ jsx(
-            TableHeader,
-            __spreadProps(__spreadValues({
-              columns: processedColumns
-            }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
-              children: (column) => /* @__PURE__ */ jsx(
-                TableColumn,
-                __spreadProps(__spreadValues({
-                  "aria-label": extractColumnHeader(column)
-                }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
-                  children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
-                    column.header,
-                    column.sortable !== false && /* @__PURE__ */ jsxs(
-                      "div",
-                      {
-                        className: mergeTailwindClasses(
-                          "relative size-4 cursor-pointer"
-                        ),
-                        onClick: () => onSort(column),
-                        role: "button",
-                        "aria-label": formatSortHeader(column.header),
-                        children: [
-                          /* @__PURE__ */ jsx(
-                            IconChevronUp,
-                            {
-                              size: 16,
-                              className: mergeTailwindClasses(
-                                "absolute -top-1",
-                                sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
-                              )
-                            }
-                          ),
-                          /* @__PURE__ */ jsx(
-                            IconChevronDown,
-                            {
-                              size: 16,
-                              className: mergeTailwindClasses(
-                                "absolute top-1",
-                                sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
-                              )
-                            }
-                          )
-                        ]
-                      }
-                    )
-                  ] })
-                }),
-                column.key
-              )
-            })
-          ),
-          /* @__PURE__ */ jsx(
-            "div",
-            {
-              className: "overflow-auto",
-              style: { maxHeight: "calc(100vh - 350px)" },
-              children: /* @__PURE__ */ jsx(
-                TableBody,
-                __spreadProps(__spreadValues({
-                  isLoading,
-                  items: rows,
-                  loadingContent: /* @__PURE__ */ jsx(Spinner, { color: "primary" })
-                }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
-                  children: (row) => {
-                    return /* @__PURE__ */ jsx(TableRow, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), { children: (columnKey) => {
-                      var _a3;
-                      return /* @__PURE__ */ jsx(
-                        TableCell,
-                        __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
-                          className: mergeTailwindClasses(
-                            variantClasses.td,
-                            (_a3 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a3.className
-                          ),
-                          children: extractCellValue(columnKey, row, columns)
-                        })
-                      );
-                    } }), row.id);
-                  }
-                })
-              )
-            }
-          )
-        ]
-      })
-    ),
-    hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center border-t border-border/70 p-2", children: /* @__PURE__ */ jsx(
-      Spinner,
-      {
-        ref: loaderRef,
-        color: "primary",
-        className: mergeTailwindClasses(
-          isFetching ? "opacity-100" : "opacity-0",
-          "h-8 w-8"
+  return /* @__PURE__ */ jsxs(
+    Table,
+    __spreadProps(__spreadValues({
+      "aria-label": "data-grid"
+    }, props), {
+      baseRef: scrollerRef,
+      classNames: __spreadProps(__spreadValues({}, props.classNames), {
+        wrapper: mergeTailwindClasses(
+          "dark:bg-background border border-border p-0",
+          (_b2 = props.classNames) == null ? void 0 : _b2.th
+        ),
+        th: mergeTailwindClasses(variantClasses.th, (_c = props.classNames) == null ? void 0 : _c.th),
+        tr: mergeTailwindClasses(variantClasses.tr, (_d = props.classNames) == null ? void 0 : _d.tr),
+        base: mergeTailwindClasses(
+          "w-full relative overflow-auto",
+          (_e = props.classNames) == null ? void 0 : _e.base
         )
-      }
-    ) }) : /* @__PURE__ */ jsx("div", { className: "border-t border-border/70 p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" })
-  ] });
+      }),
+      bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
+        Spinner,
+        {
+          ref: loaderRef,
+          color: "primary",
+          className: mergeTailwindClasses(
+            isFetching ? "opacity-100" : "opacity-0"
+          )
+        }
+      ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" }),
+      children: [
+        /* @__PURE__ */ jsx(
+          TableHeader,
+          __spreadProps(__spreadValues({
+            columns: processedColumns
+          }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
+            children: (column) => /* @__PURE__ */ jsx(
+              TableColumn,
+              __spreadProps(__spreadValues({
+                "aria-label": extractColumnHeader(column)
+              }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
+                children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
+                  column.header,
+                  column.sortable !== false && /* @__PURE__ */ jsxs(
+                    "div",
+                    {
+                      className: mergeTailwindClasses(
+                        "relative size-4 cursor-pointer"
+                      ),
+                      onClick: () => onSort(column),
+                      role: "button",
+                      "aria-label": formatSortHeader(column.header),
+                      children: [
+                        /* @__PURE__ */ jsx(
+                          IconChevronUp,
+                          {
+                            size: 16,
+                            className: mergeTailwindClasses(
+                              "absolute -top-1",
+                              sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
+                            )
+                          }
+                        ),
+                        /* @__PURE__ */ jsx(
+                          IconChevronDown,
+                          {
+                            size: 16,
+                            className: mergeTailwindClasses(
+                              "absolute top-1",
+                              sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
+                            )
+                          }
+                        )
+                      ]
+                    }
+                  )
+                ] })
+              }),
+              column.key
+            )
+          })
+        ),
+        /* @__PURE__ */ jsx(
+          TableBody,
+          __spreadProps(__spreadValues({
+            isLoading,
+            items: rows,
+            loadingContent: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, color: "primary" })
+          }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
+            children: (row) => {
+              return /* @__PURE__ */ jsx(TableRow, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), { children: (columnKey) => {
+                var _a3;
+                return /* @__PURE__ */ jsx(
+                  TableCell,
+                  __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
+                    className: mergeTailwindClasses(
+                      (_a3 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a3.className
+                    ),
+                    children: extractCellValue(columnKey, row, columns)
+                  })
+                );
+              } }), row.id);
+            }
+          })
+        )
+      ]
+    })
+  );
 }
 export {
   DataGrid
