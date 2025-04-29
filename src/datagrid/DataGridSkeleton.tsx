@@ -1,15 +1,15 @@
-import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  Skeleton,
-} from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 import type { JSX } from "react";
 import { GRID_VARIANTS } from "./variants";
+import {
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from "@heroui/react";
 
 interface DataGridSkeletonProps {
   columns: number;
@@ -21,7 +21,7 @@ interface DataGridSkeletonProps {
 
 export const DataGridSkeleton = ({
   columns = 5,
-  rows = 5,
+  rows = 10,
   checkboxSelection = true,
   variant = "unstyled",
   className,
@@ -30,7 +30,14 @@ export const DataGridSkeleton = ({
   const actualColumns = checkboxSelection ? columns + 1 : columns;
 
   return (
-    <Table radius="sm" aria-label="Loading data" className={className}>
+    <Table
+      radius="sm"
+      aria-label="Loading data"
+      className={mergeTailwindClasses(
+        "w-full relative max-h-[600px] overflow-auto",
+        className,
+      )}
+    >
       <TableHeader className={mergeTailwindClasses(variantClasses.thead)}>
         {Array(actualColumns)
           .fill(null)
@@ -40,11 +47,21 @@ export const DataGridSkeleton = ({
                 key={index}
                 className={mergeTailwindClasses(variantClasses.th)}
               >
-                {index === 0 && checkboxSelection ? (
-                  <Skeleton className="size-4 rounded-md" />
-                ) : (
-                  <Skeleton className="h-4 w-24 rounded-md" />
-                )}
+                <div className="flex items-center gap-2">
+                  {index === 0 && checkboxSelection ? (
+                    <Skeleton className="size-4 rounded-md" />
+                  ) : (
+                    <Skeleton className="h-4 w-24 rounded-md" />
+                  )}
+                  <div className="relative size-4 opacity-0">
+                    <div className="absolute -top-1">
+                      <Skeleton className="size-4 rounded-md opacity-30" />
+                    </div>
+                    <div className="absolute top-1">
+                      <Skeleton className="size-4 rounded-md opacity-30" />
+                    </div>
+                  </div>
+                </div>
               </TableColumn>
             ),
           )}
@@ -63,7 +80,10 @@ export const DataGridSkeleton = ({
                   .fill(null)
                   .map(
                     (_, colIndex): JSX.Element => (
-                      <TableCell key={colIndex}>
+                      <TableCell
+                        key={colIndex}
+                        className={mergeTailwindClasses(variantClasses.td)}
+                      >
                         {colIndex === 0 && checkboxSelection ? (
                           <Skeleton className="size-4 rounded-md" />
                         ) : (

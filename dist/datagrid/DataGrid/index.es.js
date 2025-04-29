@@ -29,7 +29,7 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsx, jsxs } from "react/jsx-runtime";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/index.es.js";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
@@ -47,7 +47,8 @@ function DataGrid(_a) {
     isFetching = false,
     hasMoreData = true,
     fetchNextPage,
-    childrenProps
+    childrenProps,
+    skeletonRowsCount
   } = _b, props = __objRest(_b, [
     "rows",
     "columns",
@@ -57,7 +58,8 @@ function DataGrid(_a) {
     "isFetching",
     "hasMoreData",
     "fetchNextPage",
-    "childrenProps"
+    "childrenProps",
+    "skeletonRowsCount"
   ]);
   var _a2, _b2, _c;
   const {
@@ -78,17 +80,6 @@ function DataGrid(_a) {
     }
   });
   const variantClasses = GRID_VARIANTS[variant];
-  if (isLoading && rows.length === 0) {
-    return /* @__PURE__ */ jsx(
-      DataGridSkeleton,
-      {
-        columns: columns.length,
-        checkboxSelection: props.showSelectionCheckboxes,
-        variant,
-        rows: 5
-      }
-    );
-  }
   return /* @__PURE__ */ jsxs(
     Table,
     __spreadProps(__spreadValues({
@@ -108,7 +99,9 @@ function DataGrid(_a) {
         {
           ref: loaderRef,
           color: "primary",
-          className: isFetching ? "opacity-100" : "opacity-0"
+          className: mergeTailwindClasses(
+            isFetching ? "opacity-100" : "opacity-0"
+          )
         }
       ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" }),
       children: [
@@ -168,10 +161,30 @@ function DataGrid(_a) {
           __spreadProps(__spreadValues({
             isLoading: isLoading && rows.length > 0,
             items: rows,
-            loadingContent: /* @__PURE__ */ jsx(Spinner, { color: "primary" })
+            loadingContent: /* @__PURE__ */ jsx(
+              DataGridSkeleton,
+              {
+                columns: columns.length,
+                checkboxSelection: props.showSelectionCheckboxes,
+                variant,
+                rows: skeletonRowsCount != null ? skeletonRowsCount : 10
+              }
+            )
           }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
             children: (row) => {
-              return /* @__PURE__ */ jsx(TableRow, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), { children: (columnKey) => /* @__PURE__ */ jsx(TableCell, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), { children: extractCellValue(columnKey, row, columns) })) }), row.id);
+              return /* @__PURE__ */ jsx(TableRow, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), { children: (columnKey) => {
+                var _a3;
+                return /* @__PURE__ */ jsx(
+                  TableCell,
+                  __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
+                    className: mergeTailwindClasses(
+                      variantClasses.td,
+                      (_a3 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a3.className
+                    ),
+                    children: extractCellValue(columnKey, row, columns)
+                  })
+                );
+              } }), row.id);
             }
           })
         )

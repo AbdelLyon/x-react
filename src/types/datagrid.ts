@@ -92,6 +92,8 @@ export interface DataGridInfiniteScrollProps {
   infiniteScrollOptions?: InfiniteScrollOptions;
   loadingMoreContent?: React.ReactNode;
   noMoreDataContent?: React.ReactNode;
+  skeletonRowsCount?: number;
+
 }
 
 export interface DataGridCallbacks<T> {

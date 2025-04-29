@@ -26,6 +26,7 @@ export function DataGrid<T extends { id: string | number }>({
   hasMoreData = true,
   fetchNextPage,
   childrenProps,
+  skeletonRowsCount,
   ...props
 }: DataGridProps<T>): JSX.Element {
   const {
@@ -49,17 +50,6 @@ export function DataGrid<T extends { id: string | number }>({
 
   const variantClasses = GRID_VARIANTS[variant];
 
-  if (isLoading && rows.length === 0) {
-    return (
-      <DataGridSkeleton
-        columns={columns.length}
-        checkboxSelection={props.showSelectionCheckboxes}
-        variant={variant}
-        rows={5}
-      />
-    );
-  }
-
   return (
     <DataTable
       aria-label="data-grid"
@@ -80,7 +70,9 @@ export function DataGrid<T extends { id: string | number }>({
             <Spinner
               ref={loaderRef}
               color="primary"
-              className={isFetching ? "opacity-100" : "opacity-0"}
+              className={mergeTailwindClasses(
+                isFetching ? "opacity-100" : "opacity-0",
+              )}
             />
           </div>
         ) : (
@@ -140,14 +132,27 @@ export function DataGrid<T extends { id: string | number }>({
       <TableBody
         isLoading={isLoading && rows.length > 0}
         items={rows}
-        loadingContent={<Spinner color="primary" />}
+        loadingContent={
+          <DataGridSkeleton
+            columns={columns.length}
+            checkboxSelection={props.showSelectionCheckboxes}
+            variant={variant}
+            rows={skeletonRowsCount ?? 10}
+          />
+        }
         {...childrenProps?.tableBodyProps}
       >
         {(row: T): JSX.Element => {
           return (
             <TableRow key={row.id} {...childrenProps?.tableRowProps}>
               {(columnKey): JSX.Element => (
-                <TableCell {...childrenProps?.tableCellProps}>
+                <TableCell
+                  {...childrenProps?.tableCellProps}
+                  className={mergeTailwindClasses(
+                    variantClasses.td,
+                    childrenProps?.tableCellProps?.className,
+                  )}
+                >
                   {extractCellValue(columnKey, row, columns)}
                 </TableCell>
               )}
