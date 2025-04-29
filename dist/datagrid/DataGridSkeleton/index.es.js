@@ -37,7 +37,7 @@ const DataGridSkeleton = ({
             index
           )
         ) }),
-        /* @__PURE__ */ jsx(TableBody, { children: Array(rows).fill(null).map(
+        /* @__PURE__ */ jsx(TableBody, { children: Array(rows - 1).fill(null).map(
           (_, rowIndex) => /* @__PURE__ */ jsx(
             TableRow,
             {

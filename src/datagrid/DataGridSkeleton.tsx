@@ -68,7 +68,7 @@ export const DataGridSkeleton = ({
       </TableHeader>
 
       <TableBody>
-        {Array(rows)
+        {Array(rows - 1)
           .fill(null)
           .map(
             (_, rowIndex): JSX.Element => (

@@ -69,6 +69,10 @@ export function DataGrid<T extends { id: string | number }>({
       baseRef={scrollerRef}
       classNames={{
         ...props.classNames,
+        wrapper: mergeTailwindClasses(
+          "dark:bg-background",
+          props.classNames?.th,
+        ),
         th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
         tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
         base: mergeTailwindClasses(
