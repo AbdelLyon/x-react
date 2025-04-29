@@ -60,7 +60,7 @@ export function DataGrid<T extends { id: string | number }>({
         th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
         tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
         base: mergeTailwindClasses(
-          "w-full relative max-h-[600px] overflow-auto",
+          "w-full relative overflow-auto",
           props.classNames?.base,
         ),
       }}
@@ -138,6 +138,7 @@ export function DataGrid<T extends { id: string | number }>({
             checkboxSelection={props.showSelectionCheckboxes}
             variant={variant}
             rows={skeletonRowsCount ?? 10}
+            className={props.classNames?.base as string}
           />
         }
         {...childrenProps?.tableBodyProps}

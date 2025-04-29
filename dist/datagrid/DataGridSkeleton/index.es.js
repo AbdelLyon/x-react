@@ -17,7 +17,7 @@ const DataGridSkeleton = ({
       radius: "sm",
       "aria-label": "Loading data",
       className: mergeTailwindClasses(
-        "w-full relative max-h-[600px] overflow-auto",
+        "w-full relative overflow-auto",
         className
       ),
       children: [

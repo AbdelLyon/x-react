@@ -61,7 +61,7 @@ function DataGrid(_a) {
     "childrenProps",
     "skeletonRowsCount"
   ]);
-  var _a2, _b2, _c;
+  var _a2, _b2, _c, _d;
   const {
     sortConfig,
     processedColumns,
@@ -90,7 +90,7 @@ function DataGrid(_a) {
         th: mergeTailwindClasses(variantClasses.th, (_a2 = props.classNames) == null ? void 0 : _a2.th),
         tr: mergeTailwindClasses(variantClasses.tr, (_b2 = props.classNames) == null ? void 0 : _b2.tr),
         base: mergeTailwindClasses(
-          "w-full relative max-h-[600px] overflow-auto",
+          "w-full relative overflow-auto",
           (_c = props.classNames) == null ? void 0 : _c.base
         )
       }),
@@ -167,7 +167,8 @@ function DataGrid(_a) {
                 columns: columns.length,
                 checkboxSelection: props.showSelectionCheckboxes,
                 variant,
-                rows: skeletonRowsCount != null ? skeletonRowsCount : 10
+                rows: skeletonRowsCount != null ? skeletonRowsCount : 10,
+                className: (_d = props.classNames) == null ? void 0 : _d.base
               }
             )
           }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
