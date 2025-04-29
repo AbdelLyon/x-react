@@ -149,7 +149,6 @@ export function DataGrid<T extends { id: string | number }>({
                 <TableCell
                   {...childrenProps?.tableCellProps}
                   className={mergeTailwindClasses(
-                    variantClasses.td,
                     childrenProps?.tableCellProps?.className,
                   )}
                 >

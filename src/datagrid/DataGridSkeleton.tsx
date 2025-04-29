@@ -87,7 +87,7 @@ export const DataGridSkeleton = ({
                         {colIndex === 0 && checkboxSelection ? (
                           <Skeleton className="size-4 rounded-md" />
                         ) : (
-                          <Skeleton className="h-4 w-full max-w-[200px] rounded-md" />
+                          <Skeleton className="my-4 h-4 w-full max-w-[200px] rounded-md" />
                         )}
                       </TableCell>
                     ),
