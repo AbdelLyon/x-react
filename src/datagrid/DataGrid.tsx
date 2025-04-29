@@ -85,6 +85,7 @@ export function DataGrid<T extends { id: string | number }>({
           <div className="flex w-full justify-center p-2">
             <Spinner
               ref={loaderRef}
+              size="sm"
               color="primary"
               className={mergeTailwindClasses(
                 isFetching ? "opacity-100" : "opacity-0",
@@ -148,7 +149,7 @@ export function DataGrid<T extends { id: string | number }>({
       <TableBody
         isLoading={isLoading}
         items={rows}
-        loadingContent={<Spinner ref={loaderRef} color="primary" />}
+        loadingContent={<Spinner ref={loaderRef} size="sm" color="primary" />}
         {...childrenProps?.tableBodyProps}
       >
         {(row: T): JSX.Element => {

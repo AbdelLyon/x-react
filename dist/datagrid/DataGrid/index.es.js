@@ -114,6 +114,7 @@ function DataGrid(_a) {
         Spinner,
         {
           ref: loaderRef,
+          size: "sm",
           color: "primary",
           className: mergeTailwindClasses(
             isFetching ? "opacity-100" : "opacity-0"
@@ -177,7 +178,7 @@ function DataGrid(_a) {
           __spreadProps(__spreadValues({
             isLoading,
             items: rows,
-            loadingContent: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, color: "primary" })
+            loadingContent: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, size: "sm", color: "primary" })
           }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
             children: (row) => {
               return /* @__PURE__ */ jsx(TableRow, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), { children: (columnKey) => {
