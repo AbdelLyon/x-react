@@ -29,7 +29,7 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsxs, jsx } from "react/jsx-runtime";
+import { jsx, jsxs } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/index.es.js";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
@@ -80,6 +80,18 @@ function DataGrid(_a) {
     }
   });
   const variantClasses = GRID_VARIANTS[variant];
+  if (isLoading) {
+    return /* @__PURE__ */ jsx(
+      DataGridSkeleton,
+      {
+        columns: columns.length,
+        checkboxSelection: props.showSelectionCheckboxes,
+        variant,
+        rows: skeletonRowsCount != null ? skeletonRowsCount : 10,
+        className: (_a2 = props.classNames) == null ? void 0 : _a2.base
+      }
+    );
+  }
   return /* @__PURE__ */ jsxs(
     Table,
     __spreadProps(__spreadValues({
@@ -87,11 +99,11 @@ function DataGrid(_a) {
     }, props), {
       baseRef: scrollerRef,
       classNames: __spreadProps(__spreadValues({}, props.classNames), {
-        th: mergeTailwindClasses(variantClasses.th, (_a2 = props.classNames) == null ? void 0 : _a2.th),
-        tr: mergeTailwindClasses(variantClasses.tr, (_b2 = props.classNames) == null ? void 0 : _b2.tr),
+        th: mergeTailwindClasses(variantClasses.th, (_b2 = props.classNames) == null ? void 0 : _b2.th),
+        tr: mergeTailwindClasses(variantClasses.tr, (_c = props.classNames) == null ? void 0 : _c.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto",
-          (_c = props.classNames) == null ? void 0 : _c.base
+          (_d = props.classNames) == null ? void 0 : _d.base
         )
       }),
       bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
@@ -161,16 +173,7 @@ function DataGrid(_a) {
           __spreadProps(__spreadValues({
             isLoading,
             items: rows,
-            loadingContent: /* @__PURE__ */ jsx(
-              DataGridSkeleton,
-              {
-                columns: columns.length,
-                checkboxSelection: props.showSelectionCheckboxes,
-                variant,
-                rows: skeletonRowsCount != null ? skeletonRowsCount : 10,
-                className: (_d = props.classNames) == null ? void 0 : _d.base
-              }
-            )
+            loadingContent: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, color: "primary" })
           }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
             children: (row) => {
               return /* @__PURE__ */ jsx(TableRow, __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), { children: (columnKey) => {

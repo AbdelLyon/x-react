@@ -50,6 +50,18 @@ export function DataGrid<T extends { id: string | number }>({
 
   const variantClasses = GRID_VARIANTS[variant];
 
+  if (isLoading) {
+    return (
+      <DataGridSkeleton
+        columns={columns.length}
+        checkboxSelection={props.showSelectionCheckboxes}
+        variant={variant}
+        rows={skeletonRowsCount ?? 10}
+        className={props.classNames?.base as string}
+      />
+    );
+  }
+
   return (
     <DataTable
       aria-label="data-grid"
@@ -132,15 +144,7 @@ export function DataGrid<T extends { id: string | number }>({
       <TableBody
         isLoading={isLoading}
         items={rows}
-        loadingContent={
-          <DataGridSkeleton
-            columns={columns.length}
-            checkboxSelection={props.showSelectionCheckboxes}
-            variant={variant}
-            rows={skeletonRowsCount ?? 10}
-            className={props.classNames?.base as string}
-          />
-        }
+        loadingContent={<Spinner ref={loaderRef} color="primary" />}
         {...childrenProps?.tableBodyProps}
       >
         {(row: T): JSX.Element => {

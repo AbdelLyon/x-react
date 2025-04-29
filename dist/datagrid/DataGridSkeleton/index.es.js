@@ -47,7 +47,7 @@ const DataGridSkeleton = ({
                   TableCell,
                   {
                     className: mergeTailwindClasses(variantClasses.td),
-                    children: colIndex === 0 && checkboxSelection ? /* @__PURE__ */ jsx(Skeleton, { className: "size-4 rounded-md" }) : /* @__PURE__ */ jsx(Skeleton, { className: "my-4 h-4 w-full max-w-[200px] rounded-md" })
+                    children: colIndex === 0 && checkboxSelection ? /* @__PURE__ */ jsx(Skeleton, { className: "size-4 rounded-md" }) : /* @__PURE__ */ jsx(Skeleton, { className: "my-2 h-4 w-full max-w-[200px] rounded-md" })
                   },
                   colIndex
                 )
