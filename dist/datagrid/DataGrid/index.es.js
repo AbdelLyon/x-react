@@ -132,7 +132,7 @@ function DataGrid(_a) {
                 "aria-label": extractColumnHeader(column)
               }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
                 children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
-                  column.header,
+                  /* @__PURE__ */ jsx("p", { className: column.className, children: column.header }),
                   column.sortable !== false && /* @__PURE__ */ jsxs(
                     "div",
                     {

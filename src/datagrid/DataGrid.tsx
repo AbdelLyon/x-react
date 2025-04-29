@@ -109,7 +109,7 @@ export function DataGrid<T extends { id: string | number }>({
             {...childrenProps?.tableColumnProps}
           >
             <div className="flex items-center gap-2">
-              {column.header}
+              <p className={column.className}>{column.header}</p>
               {column.sortable !== false && (
                 <div
                   className={mergeTailwindClasses(
