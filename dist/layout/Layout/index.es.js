@@ -29,7 +29,7 @@ const Layout = ({
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
   const hasNavbar = Boolean(navbar);
   const hasSidebar = Boolean(sidebar);
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background", children: [
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen overflow-hidden bg-background", children: [
     hasNavbar && /* @__PURE__ */ jsx(Navbar, __spreadValues({}, navbar)),
     /* @__PURE__ */ jsxs("div", { className: "flex", children: [
       hasSidebar && /* @__PURE__ */ jsx(Sidebar, __spreadValues({}, sidebar)),
@@ -37,7 +37,7 @@ const Layout = ({
         "main",
         {
           className: mergeTailwindClasses(
-            "flex-1 px-4 transition-all duration-200",
+            "flex-1 overflow-hidden transition-all duration-200",
             {
               "pt-4": hasNavbar,
               "ml-0": !hasSidebar || !isTablet && !isDesktop,

@@ -27,7 +27,7 @@ export const Layout = ({
   const hasSidebar = Boolean(sidebar);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen overflow-hidden bg-background">
       {/* Navbar */}
       {hasNavbar && <Navbar {...navbar} />}
 
@@ -36,7 +36,7 @@ export const Layout = ({
 
         <main
           className={mergeTailwindClasses(
-            "flex-1 px-4 transition-all duration-200",
+            "flex-1 overflow-hidden transition-all duration-200",
             {
               "pt-4": hasNavbar,
               "ml-0": !hasSidebar || (!isTablet && !isDesktop),
