@@ -159,7 +159,7 @@ function DataGrid(_a) {
         /* @__PURE__ */ jsx(
           TableBody,
           __spreadProps(__spreadValues({
-            isLoading: isLoading && rows.length > 0,
+            isLoading,
             items: rows,
             loadingContent: /* @__PURE__ */ jsx(
               DataGridSkeleton,

@@ -130,7 +130,7 @@ export function DataGrid<T extends { id: string | number }>({
         )}
       </TableHeader>
       <TableBody
-        isLoading={isLoading && rows.length > 0}
+        isLoading={isLoading}
         items={rows}
         loadingContent={
           <DataGridSkeleton
