@@ -6,5 +6,5 @@ interface DataGridSkeletonProps {
     variant?: "bordered" | "striped" | "unstyled";
     className?: string;
 }
-export declare const DataGridSkeleton: ({ rows, checkboxSelection, variant, className, }: DataGridSkeletonProps) => JSX.Element;
+export declare const DataGridSkeleton: ({ rows, checkboxSelection, variant, }: DataGridSkeletonProps) => JSX.Element;
 export {};
