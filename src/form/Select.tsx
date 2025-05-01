@@ -31,7 +31,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         ref={ref}
         classNames={{
           base: "max-w-xs",
-          trigger: "h-10",
+          trigger:
+            "border border-border/70 bg-transparant data-[focus-visible=true]:outline-0 data-[focus=true]:border-outline data-[hover=true]:bg-transparant data-[hover=true]:border-outline",
           value: "text-small",
           ...classNames,
         }}

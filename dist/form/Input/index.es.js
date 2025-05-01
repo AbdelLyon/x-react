@@ -47,7 +47,6 @@ const Input = forwardRef(
       isRequired = false,
       isReadOnly = false,
       isDisabled = false,
-      containerClasses,
       customValidation,
       validate,
       type
@@ -62,7 +61,6 @@ const Input = forwardRef(
       "isRequired",
       "isReadOnly",
       "isDisabled",
-      "containerClasses",
       "customValidation",
       "validate",
       "type"

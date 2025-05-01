@@ -25,7 +25,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       isRequired = false,
       isReadOnly = false,
       isDisabled = false,
-      containerClasses,
       customValidation,
       validate,
       type,
@@ -135,30 +134,30 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-        <InputRoot
-          ref={ref}
-          variant={variant}
-          color={color}
-          size={size}
-          radius={radius}
-          labelPlacement={labelPlacement}
-          fullWidth={fullWidth}
-          isClearable={isClearable}
-          isRequired={isRequired}
-          isReadOnly={isReadOnly}
-          isDisabled={isDisabled}
-          validate={combinedValidate}
-          classNames={{
-            ...propClassNames,
-            inputWrapper: mergeTailwindClasses(
-              getVariantStyles(),
-              propClassNames?.inputWrapper,
-            ),
-          }}
-          endContent={endContent}
-          type={inputType}
-          {...restProps}
-        />
+      <InputRoot
+        ref={ref}
+        variant={variant}
+        color={color}
+        size={size}
+        radius={radius}
+        labelPlacement={labelPlacement}
+        fullWidth={fullWidth}
+        isClearable={isClearable}
+        isRequired={isRequired}
+        isReadOnly={isReadOnly}
+        isDisabled={isDisabled}
+        validate={combinedValidate}
+        classNames={{
+          ...propClassNames,
+          inputWrapper: mergeTailwindClasses(
+            getVariantStyles(),
+            propClassNames?.inputWrapper,
+          ),
+        }}
+        endContent={endContent}
+        type={inputType}
+        {...restProps}
+      />
     );
   },
 );
