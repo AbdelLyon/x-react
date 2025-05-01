@@ -135,7 +135,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className={mergeTailwindClasses("w-full", containerClasses)}>
         <InputRoot
           ref={ref}
           variant={variant}
@@ -160,7 +159,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           type={inputType}
           {...restProps}
         />
-      </div>
     );
   },
 );

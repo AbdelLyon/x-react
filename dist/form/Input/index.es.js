@@ -150,7 +150,7 @@ const Input = forwardRef(
           ].join(" ");
       }
     };
-    return /* @__PURE__ */ jsx("div", { className: mergeTailwindClasses("w-full", containerClasses), children: /* @__PURE__ */ jsx(
+    return /* @__PURE__ */ jsx(
       Input$1,
       __spreadValues({
         ref,
@@ -174,7 +174,7 @@ const Input = forwardRef(
         endContent,
         type: inputType
       }, restProps)
-    ) });
+    );
   }
 );
 Input.displayName = "Input";
