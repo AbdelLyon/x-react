@@ -35,7 +35,6 @@ import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
 import { DataGridSkeleton } from "../DataGridSkeleton/index.es.js";
-import { GRID_VARIANTS } from "../variants/index.es.js";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 function DataGrid(_a) {
   var _b = _a, {
@@ -61,7 +60,7 @@ function DataGrid(_a) {
     "childrenProps",
     "skeletonRowsCount"
   ]);
-  var _a2, _b2, _c, _d, _e;
+  var _a2, _b2, _c;
   const {
     sortConfig,
     processedColumns,
@@ -79,7 +78,6 @@ function DataGrid(_a) {
       fetchNextPage == null ? void 0 : fetchNextPage();
     }
   });
-  const variantClasses = GRID_VARIANTS[variant];
   if (isLoading) {
     return /* @__PURE__ */ jsx(
       DataGridSkeleton,
@@ -100,14 +98,11 @@ function DataGrid(_a) {
       baseRef: scrollerRef,
       classNames: __spreadProps(__spreadValues({}, props.classNames), {
         wrapper: mergeTailwindClasses(
-          "dark:bg-background border border-border p-0",
-          (_b2 = props.classNames) == null ? void 0 : _b2.th
+          "dark:bg-background border border-border p-0"
         ),
-        th: mergeTailwindClasses(variantClasses.th, (_c = props.classNames) == null ? void 0 : _c.th),
-        tr: mergeTailwindClasses(variantClasses.tr, (_d = props.classNames) == null ? void 0 : _d.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto",
-          (_e = props.classNames) == null ? void 0 : _e.base
+          (_b2 = props.classNames) == null ? void 0 : _b2.base
         )
       }),
       bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
@@ -126,7 +121,11 @@ function DataGrid(_a) {
           TableHeader,
           __spreadProps(__spreadValues({
             columns: processedColumns
-          }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
+          }, {
+            className: mergeTailwindClasses(
+              (_c = childrenProps == null ? void 0 : childrenProps.tableHeaderProps) == null ? void 0 : _c.className
+            )
+          }), {
             children: (column) => /* @__PURE__ */ jsx(
               TableColumn,
               __spreadProps(__spreadValues({
