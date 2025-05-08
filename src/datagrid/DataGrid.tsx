@@ -13,6 +13,7 @@ import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import type { DataGridProps } from "@/types/datagrid";
+import { GRID_VARIANTS } from "./variants";
 import { useInfiniteScroll } from "@/hooks";
 
 export function DataGrid<T extends { id: string | number }>({
@@ -47,6 +48,8 @@ export function DataGrid<T extends { id: string | number }>({
     },
   });
 
+  const variantClasses = GRID_VARIANTS[variant];
+
   if (isLoading) {
     return (
       <DataGridSkeleton
@@ -69,7 +72,8 @@ export function DataGrid<T extends { id: string | number }>({
         wrapper: mergeTailwindClasses(
           "dark:bg-background border border-border p-0",
         ),
-
+        th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
+        tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto",
           props.classNames?.base,
@@ -96,17 +100,17 @@ export function DataGrid<T extends { id: string | number }>({
     >
       <TableHeader
         columns={processedColumns}
-        {...(childrenProps?.tableHeaderProps,
-        {
-          className: mergeTailwindClasses(
-            childrenProps?.tableHeaderProps?.className,
-          ),
-        })}
+        className={variantClasses.thead}
+        {...childrenProps?.tableHeaderProps}
       >
         {(column): JSX.Element => (
           <TableColumn
             key={column.key}
             aria-label={extractColumnHeader(column)}
+            className={mergeTailwindClasses(
+              "[&>tr]:first:rounded-none",
+              childrenProps?.tableColumnProps?.className,
+            )}
             {...childrenProps?.tableColumnProps}
           >
             <div className="flex items-center gap-2">
@@ -154,7 +158,14 @@ export function DataGrid<T extends { id: string | number }>({
       >
         {(row: T): JSX.Element => {
           return (
-            <TableRow key={row.id} {...childrenProps?.tableRowProps}>
+            <TableRow
+              key={row.id}
+              {...childrenProps?.tableRowProps}
+              className={mergeTailwindClasses(
+                variantClasses.tr,
+                childrenProps?.tableRowProps?.className,
+              )}
+            >
               {(columnKey): JSX.Element => (
                 <TableCell
                   {...childrenProps?.tableCellProps}
