@@ -95,7 +95,8 @@ function DataGrid(_a) {
   return /* @__PURE__ */ jsxs(
     Table,
     __spreadProps(__spreadValues({
-      "aria-label": "data-grid"
+      "aria-label": "data-grid",
+      "aria-labelledby": "data-grid"
     }, props), {
       baseRef: scrollerRef,
       classNames: __spreadProps(__spreadValues({}, props.classNames), {
@@ -124,6 +125,8 @@ function DataGrid(_a) {
         /* @__PURE__ */ jsx(
           TableHeader,
           __spreadProps(__spreadValues({
+            "aria-label": "table header",
+            "aria-labelledby": "table header",
             columns: processedColumns,
             className: variantClasses.thead
           }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
@@ -132,9 +135,9 @@ function DataGrid(_a) {
               return /* @__PURE__ */ jsx(
                 TableColumn,
                 __spreadProps(__spreadValues({
+                  "aria-labelledby": "table header",
                   "aria-label": extractColumnHeader(column),
                   className: mergeTailwindClasses(
-                    "[&>tr]:first:rounded-none",
                     (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
                   )
                 }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
@@ -185,13 +188,18 @@ function DataGrid(_a) {
           __spreadProps(__spreadValues({
             isLoading,
             items: rows,
+            "aria-label": "table body",
+            "aria-labelledby": "table body",
             loadingContent: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, size: "sm", color: "primary" })
           }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
             children: (row) => {
               var _a3;
               return /* @__PURE__ */ jsx(
                 TableRow,
-                __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableRowProps), {
+                __spreadProps(__spreadValues({
+                  "aria-label": "row",
+                  "aria-labelledby": "row"
+                }, childrenProps == null ? void 0 : childrenProps.tableRowProps), {
                   className: mergeTailwindClasses(
                     variantClasses.tr,
                     (_a3 = childrenProps == null ? void 0 : childrenProps.tableRowProps) == null ? void 0 : _a3.className
@@ -205,6 +213,7 @@ function DataGrid(_a) {
                           (_a4 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a4.className,
                           (_b3 = columns.find((col) => col.field === columnKey)) == null ? void 0 : _b3.className
                         ),
+                        "aria-label": "cell",
                         children: extractCellValue(columnKey, row, columns)
                       })
                     );

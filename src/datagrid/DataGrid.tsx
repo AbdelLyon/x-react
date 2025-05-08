@@ -65,6 +65,7 @@ export function DataGrid<T extends { id: string | number }>({
   return (
     <DataTable
       aria-label="data-grid"
+      aria-labelledby="data-grid"
       {...props}
       baseRef={scrollerRef}
       classNames={{
@@ -99,16 +100,18 @@ export function DataGrid<T extends { id: string | number }>({
       }
     >
       <TableHeader
+        aria-label="table header"
+        aria-labelledby="table header"
         columns={processedColumns}
         className={variantClasses.thead}
         {...childrenProps?.tableHeaderProps}
       >
         {(column): JSX.Element => (
           <TableColumn
+            aria-labelledby="table header"
             key={column.key}
             aria-label={extractColumnHeader(column)}
             className={mergeTailwindClasses(
-              "[&>tr]:first:rounded-none",
               childrenProps?.tableColumnProps?.className,
             )}
             {...childrenProps?.tableColumnProps}
@@ -153,12 +156,16 @@ export function DataGrid<T extends { id: string | number }>({
       <TableBody
         isLoading={isLoading}
         items={rows}
+        aria-label="table body"
+        aria-labelledby="table body"
         loadingContent={<Spinner ref={loaderRef} size="sm" color="primary" />}
         {...childrenProps?.tableBodyProps}
       >
         {(row: T): JSX.Element => {
           return (
             <TableRow
+              aria-label="row"
+              aria-labelledby="row"
               key={row.id}
               {...childrenProps?.tableRowProps}
               className={mergeTailwindClasses(
@@ -174,6 +181,7 @@ export function DataGrid<T extends { id: string | number }>({
                     columns.find((col): boolean => col.field === columnKey)
                       ?.className,
                   )}
+                  aria-label="cell"
                 >
                   {extractCellValue(columnKey, row, columns)}
                 </TableCell>

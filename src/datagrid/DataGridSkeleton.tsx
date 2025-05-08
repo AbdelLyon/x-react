@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/react";
+import type { DataGridComponentProps } from "@/types/datagrid";
 
 interface DataGridSkeletonProps {
   columns: number;
@@ -17,6 +18,7 @@ interface DataGridSkeletonProps {
   checkboxSelection?: boolean;
   variant?: "bordered" | "striped" | "unstyled";
   className?: string;
+  childrenProps?: DataGridComponentProps<unknown>;
 }
 
 export const DataGridSkeleton = ({
@@ -24,6 +26,7 @@ export const DataGridSkeleton = ({
   checkboxSelection = true,
   variant = "unstyled",
   className,
+  childrenProps,
 }: DataGridSkeletonProps): JSX.Element => {
   const variantClasses = GRID_VARIANTS[variant];
 
@@ -31,19 +34,30 @@ export const DataGridSkeleton = ({
     <Table
       radius="sm"
       aria-label="Loading data"
+      aria-labelledby="loading-table"
       className={mergeTailwindClasses(
         "w-full relative overflow-hidden dark:bg-background border border-border rounded-md",
         className,
       )}
     >
-      <TableHeader className={mergeTailwindClasses(variantClasses.thead)}>
+      <TableHeader
+        aria-label="Loading table header"
+        aria-labelledby="loading-table-header"
+        className={variantClasses.thead}
+        {...childrenProps?.tableHeaderProps}
+      >
         {Array(8)
           .fill(null)
           .map(
             (_, index): JSX.Element => (
               <TableColumn
                 key={index}
-                className={mergeTailwindClasses(variantClasses.th)}
+                aria-labelledby="loading-column"
+                aria-label="Loading column"
+                className={mergeTailwindClasses(
+                  childrenProps?.tableColumnProps?.className,
+                )}
+                {...childrenProps?.tableColumnProps}
               >
                 <div className="flex items-center gap-2">
                   {index === 0 && checkboxSelection ? (
@@ -65,14 +79,23 @@ export const DataGridSkeleton = ({
           )}
       </TableHeader>
 
-      <TableBody>
+      <TableBody
+        aria-label="Loading table body"
+        aria-labelledby="loading-table-body"
+      >
         {Array(rows - 1)
           .fill(null)
           .map(
             (_, rowIndex): JSX.Element => (
               <TableRow
                 key={rowIndex}
-                className={mergeTailwindClasses(variantClasses.tr)}
+                {...childrenProps?.tableRowProps}
+                className={mergeTailwindClasses(
+                  variantClasses.tr,
+                  childrenProps?.tableRowProps?.className,
+                )}
+                aria-labelledby="loading-row"
+                aria-label="Loading row"
               >
                 {Array(8)
                   .fill(null)
@@ -80,7 +103,9 @@ export const DataGridSkeleton = ({
                     (_, colIndex): JSX.Element => (
                       <TableCell
                         key={colIndex}
-                        className={mergeTailwindClasses(variantClasses.td)}
+                        className={mergeTailwindClasses(
+                          childrenProps?.tableCellProps?.className,
+                        )}
                       >
                         {colIndex === 0 && checkboxSelection ? (
                           <Skeleton className="size-4 rounded-md" />
