@@ -92,144 +92,141 @@ function DataGrid(_a) {
       }
     );
   }
-  return (
-    // Ajout du div avec padding droit
-    /* @__PURE__ */ jsx("div", { className: "w-full pr-3", children: /* @__PURE__ */ jsx(ScrollShadow, { hideScrollBar: false, size: 20, className: "w-full", children: /* @__PURE__ */ jsxs(
-      Table,
-      __spreadProps(__spreadValues({
-        "aria-label": "data-grid",
-        "aria-labelledby": "data-grid"
-      }, props), {
-        baseRef: scrollerRef,
-        classNames: __spreadProps(__spreadValues({}, props.classNames), {
-          wrapper: mergeTailwindClasses(
-            "dark:bg-background border border-border"
-          ),
-          th: mergeTailwindClasses(variantClasses.th, (_b2 = props.classNames) == null ? void 0 : _b2.th),
-          tr: mergeTailwindClasses(variantClasses.tr, (_c = props.classNames) == null ? void 0 : _c.tr),
-          base: mergeTailwindClasses(
-            "w-full relative overflow-auto",
-            (_d = props.classNames) == null ? void 0 : _d.base
+  return /* @__PURE__ */ jsx(ScrollShadow, { hideScrollBar: false, size: 20, className: "w-full pr-3", children: /* @__PURE__ */ jsxs(
+    Table,
+    __spreadProps(__spreadValues({
+      "aria-label": "data-grid",
+      "aria-labelledby": "data-grid"
+    }, props), {
+      baseRef: scrollerRef,
+      classNames: __spreadProps(__spreadValues({}, props.classNames), {
+        wrapper: mergeTailwindClasses(
+          "dark:bg-background border border-border"
+        ),
+        th: mergeTailwindClasses(variantClasses.th, (_b2 = props.classNames) == null ? void 0 : _b2.th),
+        tr: mergeTailwindClasses(variantClasses.tr, (_c = props.classNames) == null ? void 0 : _c.tr),
+        base: mergeTailwindClasses(
+          "w-full relative overflow-auto",
+          (_d = props.classNames) == null ? void 0 : _d.base
+        )
+      }),
+      bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
+        Spinner,
+        {
+          ref: loaderRef,
+          size: "sm",
+          color: "primary",
+          className: mergeTailwindClasses(
+            isFetching ? "opacity-100" : "opacity-0"
           )
-        }),
-        bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
-          Spinner,
-          {
-            ref: loaderRef,
-            size: "sm",
-            color: "primary",
-            className: mergeTailwindClasses(
-              isFetching ? "opacity-100" : "opacity-0"
-            )
-          }
-        ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" }),
-        children: [
-          /* @__PURE__ */ jsx(
-            TableHeader,
-            __spreadProps(__spreadValues({
-              "aria-label": "table header",
-              "aria-labelledby": "table header",
-              columns: processedColumns,
-              className: variantClasses.thead
-            }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
-              children: (column) => {
-                var _a3;
-                return /* @__PURE__ */ jsx(
-                  TableColumn,
-                  __spreadProps(__spreadValues({
-                    "aria-labelledby": "table header",
-                    "aria-label": extractColumnHeader(column),
-                    className: mergeTailwindClasses(
-                      (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
+        }
+      ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" }),
+      children: [
+        /* @__PURE__ */ jsx(
+          TableHeader,
+          __spreadProps(__spreadValues({
+            "aria-label": "table header",
+            "aria-labelledby": "table header",
+            columns: processedColumns,
+            className: variantClasses.thead
+          }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
+            children: (column) => {
+              var _a3;
+              return /* @__PURE__ */ jsx(
+                TableColumn,
+                __spreadProps(__spreadValues({
+                  "aria-labelledby": "table header",
+                  "aria-label": extractColumnHeader(column),
+                  className: mergeTailwindClasses(
+                    (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
+                  )
+                }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
+                  children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
+                    /* @__PURE__ */ jsx("p", { className: column.className, children: column.header }),
+                    column.sortable !== false && /* @__PURE__ */ jsxs(
+                      "div",
+                      {
+                        className: mergeTailwindClasses(
+                          "relative size-4 cursor-pointer"
+                        ),
+                        onClick: () => onSort(column),
+                        role: "button",
+                        "aria-label": formatSortHeader(column.header),
+                        children: [
+                          /* @__PURE__ */ jsx(
+                            IconChevronUp,
+                            {
+                              size: 16,
+                              className: mergeTailwindClasses(
+                                "absolute -top-1",
+                                sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
+                              )
+                            }
+                          ),
+                          /* @__PURE__ */ jsx(
+                            IconChevronDown,
+                            {
+                              size: 16,
+                              className: mergeTailwindClasses(
+                                "absolute top-1",
+                                sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
+                              )
+                            }
+                          )
+                        ]
+                      }
                     )
-                  }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
-                    children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
-                      /* @__PURE__ */ jsx("p", { className: column.className, children: column.header }),
-                      column.sortable !== false && /* @__PURE__ */ jsxs(
-                        "div",
-                        {
-                          className: mergeTailwindClasses(
-                            "relative size-4 cursor-pointer"
-                          ),
-                          onClick: () => onSort(column),
-                          role: "button",
-                          "aria-label": formatSortHeader(column.header),
-                          children: [
-                            /* @__PURE__ */ jsx(
-                              IconChevronUp,
-                              {
-                                size: 16,
-                                className: mergeTailwindClasses(
-                                  "absolute -top-1",
-                                  sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
-                                )
-                              }
-                            ),
-                            /* @__PURE__ */ jsx(
-                              IconChevronDown,
-                              {
-                                size: 16,
-                                className: mergeTailwindClasses(
-                                  "absolute top-1",
-                                  sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
-                                )
-                              }
-                            )
-                          ]
-                        }
-                      )
-                    ] })
-                  }),
-                  column.key
-                );
-              }
-            })
-          ),
-          /* @__PURE__ */ jsx(
-            TableBody,
-            __spreadProps(__spreadValues({
-              isLoading,
-              items: rows,
-              "aria-label": "table body",
-              "aria-labelledby": "table body",
-              loadingContent: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, size: "sm", color: "primary" })
-            }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
-              children: (row) => {
-                var _a3;
-                return /* @__PURE__ */ jsx(
-                  TableRow,
-                  __spreadProps(__spreadValues({
-                    "aria-label": "row",
-                    "aria-labelledby": "row"
-                  }, childrenProps == null ? void 0 : childrenProps.tableRowProps), {
-                    className: mergeTailwindClasses(
-                      variantClasses.tr,
-                      (_a3 = childrenProps == null ? void 0 : childrenProps.tableRowProps) == null ? void 0 : _a3.className
-                    ),
-                    children: (columnKey) => {
-                      var _a4, _b3;
-                      return /* @__PURE__ */ jsx(
-                        TableCell,
-                        __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
-                          className: mergeTailwindClasses(
-                            (_a4 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a4.className,
-                            (_b3 = columns.find((col) => col.field === columnKey)) == null ? void 0 : _b3.className
-                          ),
-                          "aria-label": "cell",
-                          children: extractCellValue(columnKey, row, columns)
-                        })
-                      );
-                    }
-                  }),
-                  row.id
-                );
-              }
-            })
-          )
-        ]
-      })
-    ) }) })
-  );
+                  ] })
+                }),
+                column.key
+              );
+            }
+          })
+        ),
+        /* @__PURE__ */ jsx(
+          TableBody,
+          __spreadProps(__spreadValues({
+            isLoading,
+            items: rows,
+            "aria-label": "table body",
+            "aria-labelledby": "table body",
+            loadingContent: /* @__PURE__ */ jsx(Spinner, { ref: loaderRef, size: "sm", color: "primary" })
+          }, childrenProps == null ? void 0 : childrenProps.tableBodyProps), {
+            children: (row) => {
+              var _a3;
+              return /* @__PURE__ */ jsx(
+                TableRow,
+                __spreadProps(__spreadValues({
+                  "aria-label": "row",
+                  "aria-labelledby": "row"
+                }, childrenProps == null ? void 0 : childrenProps.tableRowProps), {
+                  className: mergeTailwindClasses(
+                    variantClasses.tr,
+                    (_a3 = childrenProps == null ? void 0 : childrenProps.tableRowProps) == null ? void 0 : _a3.className
+                  ),
+                  children: (columnKey) => {
+                    var _a4, _b3;
+                    return /* @__PURE__ */ jsx(
+                      TableCell,
+                      __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
+                        className: mergeTailwindClasses(
+                          (_a4 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a4.className,
+                          (_b3 = columns.find((col) => col.field === columnKey)) == null ? void 0 : _b3.className
+                        ),
+                        "aria-label": "cell",
+                        children: extractCellValue(columnKey, row, columns)
+                      })
+                    );
+                  }
+                }),
+                row.id
+              );
+            }
+          })
+        )
+      ]
+    })
+  ) });
 }
 export {
   DataGrid
