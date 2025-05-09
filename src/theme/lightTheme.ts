@@ -1,4 +1,4 @@
-import { Colors } from "./types";
+import type { Colors } from "./types";
 
 export const lightTheme: Colors = {
    danger: {
@@ -232,7 +232,7 @@ export const lightTheme: Colors = {
    },
 
    border: {
-      DEFAULT: "#d8dce2",
+      DEFAULT: "#d8dce2be",
       foreground: "#000000",
       50: "#f0f2f5",
       100: "#f0f2f5",

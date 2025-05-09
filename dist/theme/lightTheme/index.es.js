@@ -214,7 +214,7 @@ const lightTheme = {
     900: "#1a1a1a"
   },
   border: {
-    DEFAULT: "#d8dce2",
+    DEFAULT: "#d8dce2be",
     foreground: "#000000",
     50: "#f0f2f5",
     100: "#f0f2f5",
