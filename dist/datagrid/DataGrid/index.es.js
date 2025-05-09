@@ -61,7 +61,7 @@ function DataGrid(_a) {
     "childrenProps",
     "skeletonRowsCount"
   ]);
-  var _a2, _b2, _c, _d;
+  var _a2, _b2, _c, _d, _e;
   const {
     sortConfig,
     processedColumns,
@@ -102,16 +102,17 @@ function DataGrid(_a) {
       baseRef: scrollerRef,
       classNames: {
         wrapper: mergeTailwindClasses(
-          "dark:bg-background border border-border"
+          "dark:bg-background border border-border pr-2",
+          (_b2 = props.classNames) == null ? void 0 : _b2.wrapper
         ),
-        th: mergeTailwindClasses(variantClasses.th, (_b2 = props.classNames) == null ? void 0 : _b2.th),
-        tr: mergeTailwindClasses(variantClasses.tr, (_c = props.classNames) == null ? void 0 : _c.tr),
+        th: mergeTailwindClasses(variantClasses.th, (_c = props.classNames) == null ? void 0 : _c.th),
+        tr: mergeTailwindClasses(variantClasses.tr, (_d = props.classNames) == null ? void 0 : _d.tr),
         base: mergeTailwindClasses(
-          "w-full relative overflow-auto p-2 ",
-          (_d = props.classNames) == null ? void 0 : _d.base
+          "w-full relative overflow-auto",
+          (_e = props.classNames) == null ? void 0 : _e.base
         )
       },
-      bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
+      bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center", children: /* @__PURE__ */ jsx(
         Spinner,
         {
           ref: loaderRef,

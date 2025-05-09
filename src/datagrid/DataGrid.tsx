@@ -71,18 +71,19 @@ export function DataGrid<T extends { id: string | number }>({
       baseRef={scrollerRef}
       classNames={{
         wrapper: mergeTailwindClasses(
-          "dark:bg-background border border-border",
+          "dark:bg-background border border-border pr-2",
+          props.classNames?.wrapper,
         ),
         th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
         tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
         base: mergeTailwindClasses(
-          "w-full relative overflow-auto p-2 ",
+          "w-full relative overflow-auto",
           props.classNames?.base,
         ),
       }}
       bottomContent={
         hasMoreData ? (
-          <div className="flex w-full justify-center p-2">
+          <div className="flex w-full justify-center">
             <Spinner
               ref={loaderRef}
               size="sm"
