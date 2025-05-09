@@ -22,6 +22,7 @@
   "license": "MIT",
   "exports": {
     "./style.css": "./dist/style.css",
+    "./tailwind.config.js": "./tailwind.config.js",
     "./button": {
       "import": "./dist/button/Button/index.es.js",
       "types": "./dist/button/index.d.ts"
