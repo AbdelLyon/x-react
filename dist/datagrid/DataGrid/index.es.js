@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/index.es.js";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, ScrollShadow } from "@heroui/react";
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
 import { DataGridSkeleton } from "../DataGridSkeleton/index.es.js";
 import { GRID_VARIANTS } from "../variants/index.es.js";
@@ -61,7 +61,7 @@ function DataGrid(_a) {
     "childrenProps",
     "skeletonRowsCount"
   ]);
-  var _a2, _b2, _c, _d;
+  var _a2, _b2, _c, _d, _e;
   const {
     sortConfig,
     processedColumns,
@@ -92,37 +92,21 @@ function DataGrid(_a) {
       }
     );
   }
-  return /* @__PURE__ */ jsx("div", { className: "relative rounded-md", children: /* @__PURE__ */ jsx("div", { className: "pr-2", children: /* @__PURE__ */ jsxs(
+  const tableContent = /* @__PURE__ */ jsxs(
     Table,
     __spreadProps(__spreadValues({
       "aria-label": "data-grid",
       "aria-labelledby": "data-grid"
     }, props), {
-      baseRef: scrollerRef,
       classNames: __spreadProps(__spreadValues({}, props.classNames), {
         wrapper: mergeTailwindClasses(
-          "dark:bg-background border border-border"
+          "dark:bg-background border border-border",
+          (_b2 = props.classNames) == null ? void 0 : _b2.wrapper
         ),
-        th: mergeTailwindClasses(variantClasses.th, (_b2 = props.classNames) == null ? void 0 : _b2.th),
-        tr: mergeTailwindClasses(variantClasses.tr, (_c = props.classNames) == null ? void 0 : _c.tr),
-        base: mergeTailwindClasses(
-          "w-full relative overflow-auto",
-          // Ajout de classes pour personnaliser la scrollbar
-          "[&::-webkit-scrollbar]:ml-2 [&::-webkit-scrollbar]:w-1.5",
-          (_d = props.classNames) == null ? void 0 : _d.base
-        )
+        th: mergeTailwindClasses(variantClasses.th, (_c = props.classNames) == null ? void 0 : _c.th),
+        tr: mergeTailwindClasses(variantClasses.tr, (_d = props.classNames) == null ? void 0 : _d.tr),
+        base: mergeTailwindClasses("w-full relative", (_e = props.classNames) == null ? void 0 : _e.base)
       }),
-      bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
-        Spinner,
-        {
-          ref: loaderRef,
-          size: "sm",
-          color: "primary",
-          className: mergeTailwindClasses(
-            isFetching ? "opacity-100" : "opacity-0"
-          )
-        }
-      ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" }),
       children: [
         /* @__PURE__ */ jsx(
           TableHeader,
@@ -228,7 +212,31 @@ function DataGrid(_a) {
         )
       ]
     })
-  ) }) });
+  );
+  const bottomContent = hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
+    Spinner,
+    {
+      ref: loaderRef,
+      size: "sm",
+      color: "primary",
+      className: mergeTailwindClasses(
+        isFetching ? "opacity-100" : "opacity-0"
+      )
+    }
+  ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" });
+  return /* @__PURE__ */ jsx("div", { className: "relative w-full rounded-md", children: /* @__PURE__ */ jsxs("div", { className: "w-full pr-3", children: [
+    /* @__PURE__ */ jsx(
+      ScrollShadow,
+      {
+        ref: scrollerRef,
+        className: "max-h-[calc(100vh-200px)] w-full",
+        size: 20,
+        orientation: "vertical",
+        children: tableContent
+      }
+    ),
+    bottomContent
+  ] }) });
 }
 export {
   DataGrid
