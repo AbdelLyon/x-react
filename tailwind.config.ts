@@ -11,7 +11,7 @@ interface Colors extends Partial<ThemeColors> {
 
 module.exports = {
   content: [
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",

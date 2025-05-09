@@ -1,14 +1,13 @@
-// tailwind.export.js
-/**
- * @fileoverview Ce fichier sera copié dans le package distribué.
- * Les imports ci-dessous seront transformés automatiquement lors de la copie.
- */
 import { heroui } from "@heroui/react";
-import { lightTheme } from "./theme/lightTheme/index.es.js"; // Ces imports seront transformés
-import { darkTheme } from "./theme/darkTheme/index.es.js"; // Ces imports seront transformés
+import { lightTheme } from "./theme/lightTheme/index.es.js";
+import { darkTheme } from "./theme/darkTheme/index.es.js";
 
 export default {
   darkMode: "class",
+  content: [
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   plugins: [
     heroui({
       themes: {
