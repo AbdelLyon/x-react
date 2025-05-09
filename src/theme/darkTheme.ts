@@ -63,7 +63,7 @@ export const darkTheme: Colors = {
    },
 
    outline: {
-      DEFAULT: "#1a90df28",
+      DEFAULT: "#1a90df18",
       foreground: "#ffffff",
    },
 
