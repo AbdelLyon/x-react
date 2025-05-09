@@ -70,6 +70,7 @@ export default defineConfig({
     lib: {
       entry: {
         style: "src/index.css",
+        tailwindcss: "tailwind.config.ts",
         ...Object.fromEntries(
           modules.map((module) => [
             module,
