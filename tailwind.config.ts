@@ -1,6 +1,13 @@
-import { heroui } from "@heroui/react";
-import { lightTheme } from "./src/theme/lightTheme";
-import { darkTheme } from "./src/theme/darkTheme";
+import { heroui, ThemeColors } from "@heroui/react";
+import { lightTheme } from './src/theme/lightTheme';
+import { darkTheme } from './src/theme/darkTheme';
+
+interface Colors extends Partial<ThemeColors> {
+  outline: {
+    DEFAULT: string;
+    foreground: string;
+  };
+}
 
 module.exports = {
   content: [

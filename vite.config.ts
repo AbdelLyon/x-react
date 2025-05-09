@@ -47,12 +47,23 @@ export default defineConfig({
       exclude: ["src/tests/**/*"],
     }),
     {
-      name: 'copy-tailwind-config',
+      name: 'transform-tailwind-config',
       closeBundle() {
-        // Copie le fichier tailwind.config.js vers le répertoire dist
-        fs.copyFileSync(
-          path.resolve(__dirname, 'tailwind.config.js'),
-          path.resolve(__dirname, 'dist/tailwind.config.js')
+        // Lire le contenu du fichier d'export
+        let tailwindExport = fs.readFileSync(
+          path.resolve(__dirname, 'tailwind.export.js'),
+          'utf8'
+        );
+
+        // Transformer les imports
+        tailwindExport = tailwindExport
+          .replace(/from ["']\.\/src\/theme\/lightTheme["']/g, 'from "./theme/lightTheme/index.es.js"')
+          .replace(/from ["']\.\/src\/theme\/darkTheme["']/g, 'from "./theme/darkTheme/index.es.js"');
+
+        // Écrire le fichier transformé
+        fs.writeFileSync(
+          path.resolve(__dirname, 'dist/tailwind.config.js'),
+          tailwindExport
         );
       }
     }
