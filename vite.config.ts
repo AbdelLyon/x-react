@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import tailwindcss from "tailwindcss";
+import fs from 'fs-extra';
 
 const modules = [
   "utils",
@@ -45,6 +46,16 @@ export default defineConfig({
     dts({
       exclude: ["src/tests/**/*"],
     }),
+    {
+      name: 'copy-tailwind-config',
+      closeBundle() {
+        // Copie le fichier tailwind.config.js vers le répertoire dist
+        fs.copyFileSync(
+          path.resolve(__dirname, 'tailwind.config.js'),
+          path.resolve(__dirname, 'dist/tailwind.config.js')
+        );
+      }
+    }
   ],
 
   resolve: {
@@ -70,7 +81,6 @@ export default defineConfig({
     lib: {
       entry: {
         style: "src/index.css",
-        tailwindcss: "tailwind.config.ts",
         ...Object.fromEntries(
           modules.map((module) => [
             module,
