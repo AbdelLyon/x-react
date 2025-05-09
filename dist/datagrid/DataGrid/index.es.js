@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/index.es.js";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { ScrollShadow, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
 import { DataGridSkeleton } from "../DataGridSkeleton/index.es.js";
 import { GRID_VARIANTS } from "../variants/index.es.js";
@@ -92,24 +92,25 @@ function DataGrid(_a) {
       }
     );
   }
-  return /* @__PURE__ */ jsx(ScrollShadow, { hideScrollBar: false, size: 20, className: "w-full pr-3", children: /* @__PURE__ */ jsxs(
+  return /* @__PURE__ */ jsxs(
     Table,
     __spreadProps(__spreadValues({
       "aria-label": "data-grid",
-      "aria-labelledby": "data-grid"
+      "aria-labelledby": "data-grid",
+      className: mergeTailwindClasses("p-2", props.className)
     }, props), {
       baseRef: scrollerRef,
-      classNames: __spreadProps(__spreadValues({}, props.classNames), {
+      classNames: {
         wrapper: mergeTailwindClasses(
           "dark:bg-background border border-border"
         ),
         th: mergeTailwindClasses(variantClasses.th, (_b2 = props.classNames) == null ? void 0 : _b2.th),
         tr: mergeTailwindClasses(variantClasses.tr, (_c = props.classNames) == null ? void 0 : _c.tr),
         base: mergeTailwindClasses(
-          "w-full relative overflow-auto",
+          "w-full relative overflow-auto p-2 ",
           (_d = props.classNames) == null ? void 0 : _d.base
         )
-      }),
+      },
       bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
         Spinner,
         {
@@ -226,7 +227,7 @@ function DataGrid(_a) {
         )
       ]
     })
-  ) });
+  );
 }
 export {
   DataGrid
