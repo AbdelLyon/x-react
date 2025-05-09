@@ -5,10 +5,41 @@
 @layer base {
   * {
     @apply [&::-webkit-scrollbar]:w-1.5
-  [&::-webkit-scrollbar-track]:bg-default-50
-  [&::-webkit-scrollbar-thumb]:bg-default-300
-  dark:[&::-webkit-scrollbar-track]:bg-content1-100
-  dark:[&::-webkit-scrollbar-thumb]:bg-content1-300;
+    [&::-webkit-scrollbar-track]:bg-default-50
+    [&::-webkit-scrollbar-thumb]:bg-default-300
+    [&::-webkit-scrollbar-button]:h-4
+    [&::-webkit-scrollbar-button]:bg-default-200
+    [&::-webkit-scrollbar-button:hover]:bg-default-300
+    dark:[&::-webkit-scrollbar-track]:bg-content1-100
+    dark:[&::-webkit-scrollbar-thumb]:bg-content1-300
+    dark:[&::-webkit-scrollbar-button]:bg-content1-200
+    dark:[&::-webkit-scrollbar-button:hover]:bg-content1-300;
+  }
+
+  /* Flèches pour la scrollbar verticale */
+  *::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23888888'><polygon points='8,4 4,8 12,8'/></svg>");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  *::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23888888'><polygon points='8,12 4,8 12,8'/></svg>");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Flèches pour la scrollbar horizontale */
+  *::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23888888'><polygon points='4,8 8,4 8,12'/></svg>");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  *::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23888888'><polygon points='12,8 8,4 8,12'/></svg>");
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   thead {

@@ -99,7 +99,7 @@ function DataGrid(_a) {
       "aria-labelledby": "data-grid"
     }, props), {
       baseRef: scrollerRef,
-      classNames: __spreadValues({
+      classNames: __spreadProps(__spreadValues({}, props.classNames), {
         wrapper: mergeTailwindClasses(
           "dark:bg-background border border-border"
         ),
@@ -109,7 +109,7 @@ function DataGrid(_a) {
           "w-full relative overflow-auto",
           (_d = props.classNames) == null ? void 0 : _d.base
         )
-      }, props.classNames),
+      }),
       bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-2", children: /* @__PURE__ */ jsx(
         Spinner,
         {
