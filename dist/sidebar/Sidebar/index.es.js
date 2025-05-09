@@ -115,7 +115,7 @@ const Sidebar = ({
         "hr",
         {
           className: mergeTailwindClasses(
-            "border border-border mx-auto mb-3",
+            "border border-[#393938] mx-auto mb-3",
             {
               "w-[90%]": isDesktop,
               "w-10": isTablet
