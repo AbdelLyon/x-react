@@ -1,20 +1,20 @@
-import type { Colors } from "./types";
+import { Colors } from "./types";
 
 export const darkTheme: Colors = {
 
    background: {
-      DEFAULT: "#282a2a",
+      DEFAULT: "#262829",
       foreground: "#ffffff",
-      50: "#1f2121",
-      100: "#1f2121",
-      200: "#232525",
-      300: "#282a2a",
-      400: "#383b3b",
-      500: "#4d5050",
-      600: "#636767",
-      700: "#7c8080",
-      800: "#a6a8a8",
-      900: "#d1d2d2",
+      50: "#1a1c1c",
+      100: "#1e2020",
+      200: "#222424",
+      300: "#262829",
+      400: "#2e3030",
+      500: "#383a3a",
+      600: "#4d5050",
+      700: "#666969",
+      800: "#8a8c8c",
+      900: "#c5c6c6",
    },
 
    primary: {
@@ -48,7 +48,7 @@ export const darkTheme: Colors = {
    },
 
    content1: {
-      DEFAULT: "#323434",
+      DEFAULT: "#292b2b",
       foreground: "#ffffff",
       50: "#292b2b",
       100: "#292b2b",
@@ -63,7 +63,7 @@ export const darkTheme: Colors = {
    },
 
    outline: {
-      DEFAULT: "#1a90df55",
+      DEFAULT: "#1a90df38",
       foreground: "#ffffff",
    },
 
@@ -113,14 +113,14 @@ export const darkTheme: Colors = {
    },
 
    default: {
-      DEFAULT: "#6c7275",
+      DEFAULT: "#37393a",
       foreground: "#ffffff",
       50: "#37393a",
       100: "#37393a",
       200: "#494c4e",
       300: "#5a5f61",
       400: "#6c7275",
-      500: "#798287",
+      500: "#494c4e",
       600: "#9aa1a5",
       700: "#bcc1c3",
       800: "#dde0e1",
@@ -233,7 +233,7 @@ export const darkTheme: Colors = {
    },
 
    border: {
-      DEFAULT: "#313130",
+      DEFAULT: "#393938",
       foreground: "#ffffff",
       50: "#313130",
       100: "#393938",
@@ -277,3 +277,5 @@ export const darkTheme: Colors = {
       900: "#a1a3a3"
    },
 };
+
+

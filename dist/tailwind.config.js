@@ -18,7 +18,7 @@ const config = {
           colors: darkTheme,
         },
       },
-    }),
+    })
   ],
 };
 
