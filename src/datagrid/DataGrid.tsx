@@ -63,133 +63,142 @@ export function DataGrid<T extends { id: string | number }>({
   }
 
   return (
-    <DataTable
-      aria-label="data-grid"
-      aria-labelledby="data-grid"
-      {...props}
-      baseRef={scrollerRef}
-      classNames={{
-        ...props.classNames,
-        wrapper: mergeTailwindClasses(
-          "dark:bg-background border border-border",
-        ),
-        th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
-        tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
-        base: mergeTailwindClasses(
-          "w-full relative overflow-auto",
-          props.classNames?.base,
-        ),
-      }}
-      bottomContent={
-        hasMoreData ? (
-          <div className="flex w-full justify-center p-2">
-            <Spinner
-              ref={loaderRef}
-              size="sm"
-              color="primary"
-              className={mergeTailwindClasses(
-                isFetching ? "opacity-100" : "opacity-0",
-              )}
-            />
-          </div>
-        ) : (
-          <div className="p-3 text-center text-gray-500">
-            Toutes les données ont été chargées
-          </div>
-        )
-      }
-    >
-      <TableHeader
-        aria-label="table header"
-        aria-labelledby="table header"
-        columns={processedColumns}
-        className={variantClasses.thead}
-        {...childrenProps?.tableHeaderProps}
-      >
-        {(column): JSX.Element => (
-          <TableColumn
+    <div className="relative rounded-md">
+      {/* Conteneur externe avec style de padding droit pour l'espace */}
+      <div className="pr-2">
+        <DataTable
+          aria-label="data-grid"
+          aria-labelledby="data-grid"
+          {...props}
+          baseRef={scrollerRef}
+          classNames={{
+            ...props.classNames,
+            wrapper: mergeTailwindClasses(
+              "dark:bg-background border border-border",
+            ),
+            th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
+            tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
+            base: mergeTailwindClasses(
+              "w-full relative overflow-auto",
+              // Ajout de classes pour personnaliser la scrollbar
+              "[&::-webkit-scrollbar]:ml-2 [&::-webkit-scrollbar]:w-1.5",
+              props.classNames?.base,
+            ),
+          }}
+          bottomContent={
+            hasMoreData ? (
+              <div className="flex w-full justify-center p-2">
+                <Spinner
+                  ref={loaderRef}
+                  size="sm"
+                  color="primary"
+                  className={mergeTailwindClasses(
+                    isFetching ? "opacity-100" : "opacity-0",
+                  )}
+                />
+              </div>
+            ) : (
+              <div className="p-3 text-center text-gray-500">
+                Toutes les données ont été chargées
+              </div>
+            )
+          }
+        >
+          <TableHeader
+            aria-label="table header"
             aria-labelledby="table header"
-            key={column.key}
-            aria-label={extractColumnHeader(column)}
-            className={mergeTailwindClasses(
-              childrenProps?.tableColumnProps?.className,
-            )}
-            {...childrenProps?.tableColumnProps}
+            columns={processedColumns}
+            className={variantClasses.thead}
+            {...childrenProps?.tableHeaderProps}
           >
-            <div className="flex items-center gap-2">
-              <p className={column.className}>{column.header}</p>
-              {column.sortable !== false && (
-                <div
-                  className={mergeTailwindClasses(
-                    "relative size-4 cursor-pointer",
+            {(column): JSX.Element => (
+              <TableColumn
+                aria-labelledby="table header"
+                key={column.key}
+                aria-label={extractColumnHeader(column)}
+                className={mergeTailwindClasses(
+                  childrenProps?.tableColumnProps?.className,
+                )}
+                {...childrenProps?.tableColumnProps}
+              >
+                <div className="flex items-center gap-2">
+                  <p className={column.className}>{column.header}</p>
+                  {column.sortable !== false && (
+                    <div
+                      className={mergeTailwindClasses(
+                        "relative size-4 cursor-pointer",
+                      )}
+                      onClick={(): void => onSort(column)}
+                      role="button"
+                      aria-label={formatSortHeader(column.header)}
+                    >
+                      <IconChevronUp
+                        size={16}
+                        className={mergeTailwindClasses(
+                          "absolute -top-1",
+                          sortConfig.field === column.key &&
+                            sortConfig.direction === "asc"
+                            ? "opacity-100"
+                            : "opacity-30",
+                        )}
+                      />
+                      <IconChevronDown
+                        size={16}
+                        className={mergeTailwindClasses(
+                          "absolute top-1",
+                          sortConfig.field === column.key &&
+                            sortConfig.direction === "desc"
+                            ? "opacity-100"
+                            : "opacity-30",
+                        )}
+                      />
+                    </div>
                   )}
-                  onClick={(): void => onSort(column)}
-                  role="button"
-                  aria-label={formatSortHeader(column.header)}
-                >
-                  <IconChevronUp
-                    size={16}
-                    className={mergeTailwindClasses(
-                      "absolute -top-1",
-                      sortConfig.field === column.key &&
-                        sortConfig.direction === "asc"
-                        ? "opacity-100"
-                        : "opacity-30",
-                    )}
-                  />
-                  <IconChevronDown
-                    size={16}
-                    className={mergeTailwindClasses(
-                      "absolute top-1",
-                      sortConfig.field === column.key &&
-                        sortConfig.direction === "desc"
-                        ? "opacity-100"
-                        : "opacity-30",
-                    )}
-                  />
                 </div>
-              )}
-            </div>
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody
-        isLoading={isLoading}
-        items={rows}
-        aria-label="table body"
-        aria-labelledby="table body"
-        loadingContent={<Spinner ref={loaderRef} size="sm" color="primary" />}
-        {...childrenProps?.tableBodyProps}
-      >
-        {(row: T): JSX.Element => {
-          return (
-            <TableRow
-              aria-label="row"
-              aria-labelledby="row"
-              key={row.id}
-              {...childrenProps?.tableRowProps}
-              className={mergeTailwindClasses(
-                variantClasses.tr,
-                childrenProps?.tableRowProps?.className,
-              )}
-            >
-              {(columnKey): JSX.Element => (
-                <TableCell
-                  {...childrenProps?.tableCellProps}
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody
+            isLoading={isLoading}
+            items={rows}
+            aria-label="table body"
+            aria-labelledby="table body"
+            loadingContent={
+              <Spinner ref={loaderRef} size="sm" color="primary" />
+            }
+            {...childrenProps?.tableBodyProps}
+          >
+            {(row: T): JSX.Element => {
+              return (
+                <TableRow
+                  aria-label="row"
+                  aria-labelledby="row"
+                  key={row.id}
+                  {...childrenProps?.tableRowProps}
                   className={mergeTailwindClasses(
-                    childrenProps?.tableCellProps?.className,
-                    columns.find((col): boolean => col.field === columnKey)
-                      ?.className,
+                    variantClasses.tr,
+                    childrenProps?.tableRowProps?.className,
                   )}
-                  aria-label="cell"
                 >
-                  {extractCellValue(columnKey, row, columns)}
-                </TableCell>
-              )}
-            </TableRow>
-          );
-        }}
-      </TableBody>
-    </DataTable>
+                  {(columnKey): JSX.Element => (
+                    <TableCell
+                      {...childrenProps?.tableCellProps}
+                      className={mergeTailwindClasses(
+                        childrenProps?.tableCellProps?.className,
+                        columns.find((col): boolean => col.field === columnKey)
+                          ?.className,
+                      )}
+                      aria-label="cell"
+                    >
+                      {extractCellValue(columnKey, row, columns)}
+                    </TableCell>
+                  )}
+                </TableRow>
+              );
+            }}
+          </TableBody>
+        </DataTable>
+      </div>
+    </div>
   );
 }

@@ -92,7 +92,7 @@ function DataGrid(_a) {
       }
     );
   }
-  return /* @__PURE__ */ jsxs(
+  return /* @__PURE__ */ jsx("div", { className: "relative rounded-md", children: /* @__PURE__ */ jsx("div", { className: "pr-2", children: /* @__PURE__ */ jsxs(
     Table,
     __spreadProps(__spreadValues({
       "aria-label": "data-grid",
@@ -107,6 +107,8 @@ function DataGrid(_a) {
         tr: mergeTailwindClasses(variantClasses.tr, (_c = props.classNames) == null ? void 0 : _c.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto",
+          // Ajout de classes pour personnaliser la scrollbar
+          "[&::-webkit-scrollbar]:ml-2 [&::-webkit-scrollbar]:w-1.5",
           (_d = props.classNames) == null ? void 0 : _d.base
         )
       }),
@@ -226,7 +228,7 @@ function DataGrid(_a) {
         )
       ]
     })
-  );
+  ) }) });
 }
 export {
   DataGrid
