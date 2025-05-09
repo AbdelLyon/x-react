@@ -232,7 +232,7 @@ export const lightTheme: Colors = {
    },
 
    border: {
-      DEFAULT: "#e0e4e9",
+      DEFAULT: "#f0f2f5",
       foreground: "#000000",
       50: "#f0f2f5",
       100: "#f0f2f5",
