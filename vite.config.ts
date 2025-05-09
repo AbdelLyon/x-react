@@ -49,22 +49,25 @@ export default defineConfig({
     {
       name: 'transform-tailwind-config',
       closeBundle() {
-        // Lire le contenu du fichier d'export
         let tailwindExport = fs.readFileSync(
-          path.resolve(__dirname, 'tailwind.export.js'),
+          path.resolve(__dirname, 'tailwind.config.ts'),
           'utf8'
         );
 
-        // Transformer les imports
         tailwindExport = tailwindExport
           .replace(/from ["']\.\/src\/theme\/lightTheme["']/g, 'from "./theme/lightTheme/index.es.js"')
           .replace(/from ["']\.\/src\/theme\/darkTheme["']/g, 'from "./theme/darkTheme/index.es.js"');
 
-        // Écrire le fichier transformé
         fs.writeFileSync(
           path.resolve(__dirname, 'dist/tailwind.config.js'),
           tailwindExport
         );
+
+        fs.copyFileSync(
+          path.resolve(__dirname, 'tailwind.config.d.ts'),
+          path.resolve(__dirname, 'dist/tailwind.config.d.ts')
+        );
+
       }
     }
   ],

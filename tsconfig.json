@@ -35,7 +35,8 @@
     "src",
     "./index.ts",
     "./vite.config.ts",
-    "./vite.config.d.ts"
+    "./vite.config.d.ts",
+    "./tailwind.export.ts"
   ],
   "references": [
     {

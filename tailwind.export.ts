@@ -1,8 +1,7 @@
 import { heroui } from "@heroui/react";
 import { lightTheme } from "./src/theme/lightTheme";
 import { darkTheme } from "./src/theme/darkTheme";
-
-export default {
+const config = {
   darkMode: "class",
   content: [
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
@@ -21,3 +20,5 @@ export default {
     }),
   ],
 };
+
+export default config;
