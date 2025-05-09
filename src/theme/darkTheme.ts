@@ -1,4 +1,4 @@
-import { Colors } from "./types";
+import type { Colors } from "./types";
 
 export const darkTheme: Colors = {
 
@@ -63,7 +63,7 @@ export const darkTheme: Colors = {
    },
 
    outline: {
-      DEFAULT: "#1a90df38",
+      DEFAULT: "#1a90df28",
       foreground: "#ffffff",
    },
 

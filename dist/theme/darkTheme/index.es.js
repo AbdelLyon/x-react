@@ -56,7 +56,7 @@ const darkTheme = {
     900: "#e5e6e6"
   },
   outline: {
-    DEFAULT: "#1a90df38",
+    DEFAULT: "#1a90df28",
     foreground: "#ffffff"
   },
   content2: {
