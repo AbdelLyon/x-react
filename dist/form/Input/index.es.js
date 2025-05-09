@@ -96,6 +96,7 @@ const Input = forwardRef(
             "border-1",
             "bg-white",
             "dark:bg-background",
+            "border-border",
             "data-[hover=true]:border-outline",
             "group-data-[focus=true]:border-outline",
             "group-data-[focus=true]:bg-content1",
