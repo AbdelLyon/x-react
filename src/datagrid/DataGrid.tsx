@@ -69,9 +69,8 @@ export function DataGrid<T extends { id: string | number }>({
       {...props}
       baseRef={scrollerRef}
       classNames={{
-        ...props.classNames,
         wrapper: mergeTailwindClasses(
-          "dark:bg-background border border-border p-0",
+          "dark:bg-background border border-border",
         ),
         th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
         tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
@@ -79,6 +78,7 @@ export function DataGrid<T extends { id: string | number }>({
           "w-full relative overflow-auto",
           props.classNames?.base,
         ),
+        ...props.classNames,
       }}
       bottomContent={
         hasMoreData ? (
