@@ -101,6 +101,7 @@ function DataGrid(_a) {
       "aria-labelledby": "data-grid",
       className: mergeTailwindClasses(
         "overflow-hidden rounded-md border border-border dark:bg-background p-3",
+        "!pr-1.5",
         props.className
       ),
       shadow: (_a2 = props.shadow) != null ? _a2 : "none",
@@ -108,8 +109,8 @@ function DataGrid(_a) {
       baseRef: scrollerRef,
       classNames: {
         wrapper: mergeTailwindClasses(
-          "bg-white border-none dark:bg-background",
-          "p-0 pr-2",
+          "bg-white border-none p-0 dark:bg-background",
+          "!pr-1.5",
           classNames == null ? void 0 : classNames.wrapper
         ),
         th: mergeTailwindClasses(variantClasses.th, classNames == null ? void 0 : classNames.th),

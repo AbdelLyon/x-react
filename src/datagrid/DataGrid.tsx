@@ -70,6 +70,7 @@ export function DataGrid<T extends { id: string | number }>({
       aria-labelledby="data-grid"
       className={mergeTailwindClasses(
         "overflow-hidden rounded-md border border-border dark:bg-background p-3",
+        "!pr-1.5",
         props.className,
       )}
       shadow={props.shadow ?? "none"}
@@ -77,8 +78,8 @@ export function DataGrid<T extends { id: string | number }>({
       baseRef={scrollerRef}
       classNames={{
         wrapper: mergeTailwindClasses(
-          "bg-white border-none dark:bg-background",
-          "p-0 pr-2",
+          "bg-white border-none p-0 dark:bg-background",
+          "!pr-1.5",
           classNames?.wrapper,
         ),
         th: mergeTailwindClasses(variantClasses.th, classNames?.th),
