@@ -108,8 +108,8 @@ function DataGrid(_a) {
       baseRef: scrollerRef,
       classNames: {
         wrapper: mergeTailwindClasses(
-          "bg-white border-none p-0 dark:bg-background",
-          "pr-2",
+          "bg-white border-none dark:bg-background",
+          "p-0 pr-2",
           classNames == null ? void 0 : classNames.wrapper
         ),
         th: mergeTailwindClasses(variantClasses.th, classNames == null ? void 0 : classNames.th),
