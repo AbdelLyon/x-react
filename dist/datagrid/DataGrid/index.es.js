@@ -102,8 +102,7 @@ function DataGrid(_a) {
         props.className
       ),
       shadow: (_b2 = props.shadow) != null ? _b2 : "none",
-      radius: (_c = props.radius) != null ? _c : "none"
-    }, props), {
+      radius: (_c = props.radius) != null ? _c : "none",
       baseRef: scrollerRef,
       classNames: {
         wrapper: mergeTailwindClasses(
@@ -127,7 +126,8 @@ function DataGrid(_a) {
             isFetching ? "opacity-100" : "opacity-0"
           )
         }
-      ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" }),
+      ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" })
+    }, props), {
       children: [
         /* @__PURE__ */ jsx(
           TableHeader,

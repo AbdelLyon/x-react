@@ -72,7 +72,6 @@ export function DataGrid<T extends { id: string | number }>({
       )}
       shadow={props.shadow ?? "none"}
       radius={props.radius ?? "none"}
-      {...props}
       baseRef={scrollerRef}
       classNames={{
         wrapper: mergeTailwindClasses(
@@ -104,6 +103,7 @@ export function DataGrid<T extends { id: string | number }>({
           </div>
         )
       }
+      {...props}
     >
       <TableHeader
         aria-label="table header"
