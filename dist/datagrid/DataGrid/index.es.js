@@ -48,7 +48,8 @@ function DataGrid(_a) {
     hasMoreData = true,
     fetchNextPage,
     childrenProps,
-    skeletonRowsCount
+    skeletonRowsCount,
+    classNames
   } = _b, props = __objRest(_b, [
     "rows",
     "columns",
@@ -59,9 +60,10 @@ function DataGrid(_a) {
     "hasMoreData",
     "fetchNextPage",
     "childrenProps",
-    "skeletonRowsCount"
+    "skeletonRowsCount",
+    "classNames"
   ]);
-  var _a2, _b2, _c, _d, _e, _f, _g;
+  var _a2, _b2;
   const {
     sortConfig,
     processedColumns,
@@ -88,7 +90,7 @@ function DataGrid(_a) {
         checkboxSelection: props.showSelectionCheckboxes,
         variant,
         rows: skeletonRowsCount != null ? skeletonRowsCount : 10,
-        className: (_a2 = props.classNames) == null ? void 0 : _a2.base
+        className: classNames == null ? void 0 : classNames.base
       }
     );
   }
@@ -98,23 +100,23 @@ function DataGrid(_a) {
       "aria-label": "data-grid",
       "aria-labelledby": "data-grid",
       className: mergeTailwindClasses(
-        "overflow-hidden rounded-md border border-border dark:bg-background p-2",
+        "overflow-hidden rounded-md border border-border dark:bg-background p-3",
         props.className
       ),
-      shadow: (_b2 = props.shadow) != null ? _b2 : "none",
-      radius: (_c = props.radius) != null ? _c : "none",
+      shadow: (_a2 = props.shadow) != null ? _a2 : "none",
+      radius: (_b2 = props.radius) != null ? _b2 : "none",
       baseRef: scrollerRef,
       classNames: {
         wrapper: mergeTailwindClasses(
           "bg-white border-none p-0 dark:bg-background",
           "pr-2",
-          (_d = props.classNames) == null ? void 0 : _d.wrapper
+          classNames == null ? void 0 : classNames.wrapper
         ),
-        th: mergeTailwindClasses(variantClasses.th, (_e = props.classNames) == null ? void 0 : _e.th),
-        tr: mergeTailwindClasses(variantClasses.tr, (_f = props.classNames) == null ? void 0 : _f.tr),
+        th: mergeTailwindClasses(variantClasses.th, classNames == null ? void 0 : classNames.th),
+        tr: mergeTailwindClasses(variantClasses.tr, classNames == null ? void 0 : classNames.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto bg-white dark:bg-background",
-          (_g = props.classNames) == null ? void 0 : _g.base
+          classNames == null ? void 0 : classNames.base
         )
       },
       bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center", children: /* @__PURE__ */ jsx(

@@ -27,6 +27,7 @@ export function DataGrid<T extends { id: string | number }>({
   fetchNextPage,
   childrenProps,
   skeletonRowsCount,
+  classNames,
   ...props
 }: DataGridProps<T>): JSX.Element {
   const {
@@ -57,7 +58,7 @@ export function DataGrid<T extends { id: string | number }>({
         checkboxSelection={props.showSelectionCheckboxes}
         variant={variant}
         rows={skeletonRowsCount ?? 10}
-        className={props.classNames?.base as string}
+        className={classNames?.base as string}
       />
     );
   }
@@ -68,7 +69,7 @@ export function DataGrid<T extends { id: string | number }>({
       aria-label="data-grid"
       aria-labelledby="data-grid"
       className={mergeTailwindClasses(
-        "overflow-hidden rounded-md border border-border dark:bg-background p-2",
+        "overflow-hidden rounded-md border border-border dark:bg-background p-3",
         props.className,
       )}
       shadow={props.shadow ?? "none"}
@@ -78,13 +79,13 @@ export function DataGrid<T extends { id: string | number }>({
         wrapper: mergeTailwindClasses(
           "bg-white border-none p-0 dark:bg-background",
           "pr-2",
-          props.classNames?.wrapper,
+          classNames?.wrapper,
         ),
-        th: mergeTailwindClasses(variantClasses.th, props.classNames?.th),
-        tr: mergeTailwindClasses(variantClasses.tr, props.classNames?.tr),
+        th: mergeTailwindClasses(variantClasses.th, classNames?.th),
+        tr: mergeTailwindClasses(variantClasses.tr, classNames?.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto bg-white dark:bg-background",
-          props.classNames?.base,
+          classNames?.base,
         ),
       }}
       bottomContent={
