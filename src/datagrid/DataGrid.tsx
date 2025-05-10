@@ -64,6 +64,7 @@ export function DataGrid<T extends { id: string | number }>({
 
   return (
     <DataTable
+      {...props}
       aria-label="data-grid"
       aria-labelledby="data-grid"
       className={mergeTailwindClasses(
@@ -74,7 +75,6 @@ export function DataGrid<T extends { id: string | number }>({
       radius={props.radius ?? "none"}
       baseRef={scrollerRef}
       classNames={{
-        ...props.classNames,
         wrapper: mergeTailwindClasses(
           "bg-white border-none p-0 pr-1.5 dark:bg-background",
           props.classNames?.wrapper,
@@ -104,7 +104,6 @@ export function DataGrid<T extends { id: string | number }>({
           </div>
         )
       }
-      {...props}
     >
       <TableHeader
         aria-label="table header"
