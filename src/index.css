@@ -12,7 +12,7 @@
   }
 
   thead {
-    @apply [&>tr]:first:rounded-none [&>tr]:first:m-0 sticky top-0 z-20 [&>tr]:first:shadow-none border-b border-border h-12 !important;
+    @apply [&>tr]:first:rounded-none [&>tr]:first:m-0 sticky top-0 z-20 [&>tr]:first:shadow-none border border-border h-12 !important;
   }
 
   @media (max-width: 768px) {

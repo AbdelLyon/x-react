@@ -61,7 +61,7 @@ function DataGrid(_a) {
     "childrenProps",
     "skeletonRowsCount"
   ]);
-  var _a2, _b2, _c, _d, _e;
+  var _a2, _b2, _c, _d, _e, _f, _g;
   const {
     sortConfig,
     processedColumns,
@@ -97,19 +97,24 @@ function DataGrid(_a) {
     __spreadProps(__spreadValues({
       "aria-label": "data-grid",
       "aria-labelledby": "data-grid",
-      className: mergeTailwindClasses("p-2", props.className)
+      className: mergeTailwindClasses(
+        "overflow-hidden rounded-md border border-border p-3 pr-1.5 dark:bg-background",
+        props.className
+      ),
+      shadow: (_b2 = props.shadow) != null ? _b2 : "none",
+      radius: (_c = props.radius) != null ? _c : "none"
     }, props), {
       baseRef: scrollerRef,
       classNames: {
         wrapper: mergeTailwindClasses(
-          "dark:bg-background border border-border pr-2",
-          (_b2 = props.classNames) == null ? void 0 : _b2.wrapper
+          "bg-white border-none p-0 pr-1.5 dark:bg-background",
+          (_d = props.classNames) == null ? void 0 : _d.wrapper
         ),
-        th: mergeTailwindClasses(variantClasses.th, (_c = props.classNames) == null ? void 0 : _c.th),
-        tr: mergeTailwindClasses(variantClasses.tr, (_d = props.classNames) == null ? void 0 : _d.tr),
+        th: mergeTailwindClasses(variantClasses.th, (_e = props.classNames) == null ? void 0 : _e.th),
+        tr: mergeTailwindClasses(variantClasses.tr, (_f = props.classNames) == null ? void 0 : _f.tr),
         base: mergeTailwindClasses(
-          "w-full relative overflow-auto",
-          (_e = props.classNames) == null ? void 0 : _e.base
+          "w-full relative overflow-auto bg-white dark:bg-background",
+          (_g = props.classNames) == null ? void 0 : _g.base
         )
       },
       bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center", children: /* @__PURE__ */ jsx(
