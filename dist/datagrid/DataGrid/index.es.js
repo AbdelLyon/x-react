@@ -104,7 +104,7 @@ function DataGrid(_a) {
       shadow: (_b2 = props.shadow) != null ? _b2 : "none",
       radius: (_c = props.radius) != null ? _c : "none",
       baseRef: scrollerRef,
-      classNames: {
+      classNames: __spreadProps(__spreadValues({}, props.classNames), {
         wrapper: mergeTailwindClasses(
           "bg-white border-none p-0 pr-1.5 dark:bg-background",
           (_d = props.classNames) == null ? void 0 : _d.wrapper
@@ -115,7 +115,7 @@ function DataGrid(_a) {
           "w-full relative overflow-auto bg-white dark:bg-background",
           (_g = props.classNames) == null ? void 0 : _g.base
         )
-      },
+      }),
       bottomContent: hasMoreData ? /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center", children: /* @__PURE__ */ jsx(
         Spinner,
         {
