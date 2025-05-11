@@ -38,6 +38,7 @@ const modules = [
   "typography",
   "HOC",
   "chart",
+  "skeleton"
 ];
 
 export default defineConfig({

@@ -27,6 +27,10 @@
       "import": "./dist/button/Button/index.es.js",
       "types": "./dist/button/index.d.ts"
     },
+    "./skeleton": {
+      "import": "./dist/skeleton/index.es.js",
+      "types": "./dist/skeleton/index.d.ts"
+    },
     "./buttons": {
       "import": "./dist/buttons/Buttons/index.es.js",
       "types": "./dist/buttons/Buttons.d.ts"
