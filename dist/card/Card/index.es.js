@@ -32,6 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { Card as Card$1, CardHeader, CardBody, CardFooter } from "@heroui/react";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 const Card = forwardRef(
   (_a, ref) => {
     var _b = _a, {
@@ -84,7 +85,10 @@ const Card = forwardRef(
         disableAnimation,
         disableRipple,
         allowTextSelectionOnPress,
-        className: classNames == null ? void 0 : classNames.base
+        className: mergeTailwindClasses(
+          "border border-border/40 dark:bg-background p-4 hover:shadow-sm data-[hover=true]:bg-content1-100/30 dark:data-[hover=true]:bg-content1-200/20 transition-all",
+          classNames == null ? void 0 : classNames.base
+        )
       }, props), {
         children: [
           header !== void 0 && /* @__PURE__ */ jsx(CardHeader, { className: classNames == null ? void 0 : classNames.header, children: header }),

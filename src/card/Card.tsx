@@ -10,6 +10,7 @@ import {
   CardBody,
   CardFooter,
 } from "@heroui/react";
+import { mergeTailwindClasses } from "@/utils";
 
 interface CardProps extends NextUICardProps {
   header?: ReactNode;
@@ -55,7 +56,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         disableAnimation={disableAnimation}
         disableRipple={disableRipple}
         allowTextSelectionOnPress={allowTextSelectionOnPress}
-        className={classNames?.base}
+        className={mergeTailwindClasses(
+          "border border-border/40 dark:bg-background p-4 hover:shadow-sm data-[hover=true]:bg-content1-100/30 dark:data-[hover=true]:bg-content1-200/20 transition-all",
+          classNames?.base,
+        )}
         {...props}
       >
         {header !== undefined && (
