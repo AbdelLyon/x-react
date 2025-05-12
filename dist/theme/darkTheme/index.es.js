@@ -42,7 +42,7 @@ const darkTheme = {
     900: "#fdebeb"
   },
   content1: {
-    DEFAULT: "#2f2f2f",
+    DEFAULT: "#292b2b",
     foreground: "#ffffff",
     50: "#292b2b",
     100: "#292b2b",
