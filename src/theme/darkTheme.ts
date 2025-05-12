@@ -48,7 +48,7 @@ export const darkTheme: Colors = {
    },
 
    content1: {
-      DEFAULT: "#292b2b",
+      DEFAULT: "#2f2f2f",
       foreground: "#ffffff",
       50: "#292b2b",
       100: "#292b2b",
