@@ -26,9 +26,9 @@ const Sidebar = ({
       Link,
       {
         className: mergeTailwindClasses(
-          "flex items-center px-3 h-11 text-slate-50 dark:text-slate-50 hover:text-white hover:bg-[#323434] rounded-md cursor-pointer text-sm transition-all duration-200",
+          "flex items-center px-3 h-11 text-slate-50 dark:text-slate-50 hover:text-white hover:bg-[#292b2b99] rounded-md cursor-pointer text-sm transition-all duration-200",
           {
-            "border-l-2 border-primary bg-[#323434] text-white": item.isActive,
+            "border-l-2 border-primary bg-[#292b2b99] text-white": item.isActive,
             "border-l-0 border-l-primary justify-center": isTablet && item.isActive,
             "gap-3 px-3": isDesktop,
             "w-full flex justify-center": isTablet
