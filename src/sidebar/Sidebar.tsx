@@ -155,7 +155,7 @@ export const Sidebar = ({
         {showDivider && (
           <Divider
             className={mergeTailwindClasses(
-              "border border-[#393938] mx-auto mb-3",
+              "border bg-[#393938] mx-auto mb-3",
               {
                 "w-[90%]": isDesktop,
                 "w-10": isTablet,
