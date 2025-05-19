@@ -59,8 +59,6 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
         "text-default-700",
         props.classNames?.tabContent ?? "",
       ),
-
-      ...(props.classNames || {}),
     };
 
     return (

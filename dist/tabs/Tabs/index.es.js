@@ -68,7 +68,7 @@ const Tabs = forwardRef(
       }
       return "";
     };
-    const mergedClassNames = __spreadValues({
+    const mergedClassNames = {
       tabList: mergeTailwindClasses(
         getVariantStyles(),
         (_b2 = (_a2 = props.classNames) == null ? void 0 : _a2.tabList) != null ? _b2 : ""
@@ -77,7 +77,7 @@ const Tabs = forwardRef(
         "text-default-700",
         (_d = (_c = props.classNames) == null ? void 0 : _c.tabContent) != null ? _d : ""
       )
-    }, props.classNames || {});
+    };
     return /* @__PURE__ */ jsx(
       Tabs$1,
       __spreadProps(__spreadValues({
