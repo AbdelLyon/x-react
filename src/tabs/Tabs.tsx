@@ -32,12 +32,7 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
       color = "primary",
       size = "md",
       radius = "md",
-      fullWidth = false,
       placement = "top",
-      isVertical = false,
-      disableAnimation = false,
-      disableCursorAnimation = false,
-      destroyInactiveTabPanel = true,
       ...props
     },
     ref,
@@ -63,19 +58,15 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
         color={color}
         size={size}
         radius={radius}
-        fullWidth={fullWidth}
         placement={placement}
-        isVertical={isVertical}
-        disableAnimation={disableAnimation}
-        disableCursorAnimation={disableCursorAnimation}
-        destroyInactiveTabPanel={destroyInactiveTabPanel}
         defaultSelectedKey={defaultActiveTab}
         classNames={{
           ...props.classNames,
           tabList: mergeTailwindClasses(
-            getVariantStyles(),
             props.classNames?.tabList,
+            getVariantStyles(),
           ),
+          tabContent: "text-default-700",
         }}
         onSelectionChange={handleSelectionChange}
         {...props}

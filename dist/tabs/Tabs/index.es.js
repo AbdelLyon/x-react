@@ -44,12 +44,7 @@ const Tabs = forwardRef(
       color = "primary",
       size = "md",
       radius = "md",
-      fullWidth = false,
-      placement = "top",
-      isVertical = false,
-      disableAnimation = false,
-      disableCursorAnimation = false,
-      destroyInactiveTabPanel = true
+      placement = "top"
     } = _b, props = __objRest(_b, [
       "items",
       "defaultActiveTab",
@@ -59,12 +54,7 @@ const Tabs = forwardRef(
       "color",
       "size",
       "radius",
-      "fullWidth",
-      "placement",
-      "isVertical",
-      "disableAnimation",
-      "disableCursorAnimation",
-      "destroyInactiveTabPanel"
+      "placement"
     ]);
     var _a2;
     const handleSelectionChange = (key) => {
@@ -86,18 +76,14 @@ const Tabs = forwardRef(
         color,
         size,
         radius,
-        fullWidth,
         placement,
-        isVertical,
-        disableAnimation,
-        disableCursorAnimation,
-        destroyInactiveTabPanel,
         defaultSelectedKey: defaultActiveTab,
         classNames: __spreadProps(__spreadValues({}, props.classNames), {
           tabList: mergeTailwindClasses(
-            getVariantStyles(),
-            (_a2 = props.classNames) == null ? void 0 : _a2.tabList
-          )
+            (_a2 = props.classNames) == null ? void 0 : _a2.tabList,
+            getVariantStyles()
+          ),
+          tabContent: "text-default-700"
         }),
         onSelectionChange: handleSelectionChange
       }, props), {
