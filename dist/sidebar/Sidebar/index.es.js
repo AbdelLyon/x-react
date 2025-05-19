@@ -1,7 +1,7 @@
 import { jsxs, jsx, Fragment } from "react/jsx-runtime";
 import { cloneElement } from "react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Button, Link } from "@heroui/react";
+import { Button, Divider, Link } from "@heroui/react";
 import { IconPlus } from "@tabler/icons-react";
 import { useResponsive } from "../../hooks/useResponsive/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
@@ -112,7 +112,7 @@ const Sidebar = ({
         }
       ) }),
       showDivider && /* @__PURE__ */ jsx(
-        "hr",
+        Divider,
         {
           className: mergeTailwindClasses(
             "border border-[#393938] mx-auto mb-3",

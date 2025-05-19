@@ -3,7 +3,7 @@ import { mergeTailwindClasses } from "@/utils";
 import type { Item } from "@/types/navigation";
 import { useResponsive } from "@/hooks";
 import { Tooltip } from "@/tooltip";
-import { Link } from "@heroui/react";
+import { Divider, Link } from "@heroui/react";
 import { Button } from "@heroui/react";
 import type { Color } from "@/types/types";
 import { IconPlus } from "@tabler/icons-react";
@@ -153,7 +153,7 @@ export const Sidebar = ({
           </Button>
         </div>
         {showDivider && (
-          <hr
+          <Divider
             className={mergeTailwindClasses(
               "border border-[#393938] mx-auto mb-3",
               {
