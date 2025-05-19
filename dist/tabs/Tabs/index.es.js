@@ -40,49 +40,62 @@ const Tabs = forwardRef(
       defaultActiveTab,
       onTabChange,
       renderTabContent,
-      variant = "solid",
       color = "primary",
       size = "md",
       radius = "md",
-      placement = "top"
+      placement = "top",
+      classNames: propClassNames
     } = _b, props = __objRest(_b, [
       "items",
       "defaultActiveTab",
       "onTabChange",
       "renderTabContent",
-      "variant",
       "color",
       "size",
       "radius",
-      "placement"
+      "placement",
+      "classNames"
     ]);
-    var _a2, _b2, _c, _d;
     const handleSelectionChange = (key) => {
       onTabChange == null ? void 0 : onTabChange(key.toString());
     };
     const defaultContent = (item) => item.content;
     const contentRenderer = renderTabContent != null ? renderTabContent : defaultContent;
     const getVariantStyles = () => {
-      if (variant === "bordered") {
+      if (props.variant === "bordered") {
         return "border-1 border-border";
       }
       return "";
     };
-    const mergedClassNames = {
-      tabList: mergeTailwindClasses(
-        getVariantStyles(),
-        (_b2 = (_a2 = props.classNames) == null ? void 0 : _a2.tabList) != null ? _b2 : ""
-      ),
-      tabContent: mergeTailwindClasses(
-        "text-default-700",
-        (_d = (_c = props.classNames) == null ? void 0 : _c.tabContent) != null ? _d : ""
-      )
+    const baseClassNames = {
+      base: "",
+      tabList: getVariantStyles(),
+      tab: "",
+      tabContent: "text-default-700",
+      cursor: "",
+      tabItem: ""
     };
+    const mergedClassNames = {};
+    Object.keys(baseClassNames).forEach((key) => {
+      var _a2, _b2;
+      const baseClass = (_a2 = baseClassNames[key]) != null ? _a2 : "";
+      const propClass = (_b2 = propClassNames == null ? void 0 : propClassNames[key]) != null ? _b2 : "";
+      mergedClassNames[key] = mergeTailwindClasses(baseClass, propClass);
+    });
+    if (propClassNames) {
+      Object.keys(propClassNames).forEach((key) => {
+        var _a2;
+        if (!(key in baseClassNames)) {
+          mergedClassNames[key] = mergeTailwindClasses(
+            (_a2 = propClassNames[key]) != null ? _a2 : ""
+          );
+        }
+      });
+    }
     return /* @__PURE__ */ jsx(
       Tabs$1,
       __spreadProps(__spreadValues({
         ref,
-        variant,
         color,
         size,
         radius,

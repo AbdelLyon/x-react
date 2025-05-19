@@ -28,11 +28,11 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
       defaultActiveTab,
       onTabChange,
       renderTabContent,
-      variant = "solid",
       color = "primary",
       size = "md",
       radius = "md",
       placement = "top",
+      classNames: propClassNames,
       ...props
     },
     ref,
@@ -45,26 +45,45 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
     const contentRenderer = renderTabContent ?? defaultContent;
 
     const getVariantStyles = (): string => {
-      if (variant === "bordered") {
+      if (props.variant === "bordered") {
         return "border-1 border-border";
       }
       return "";
     };
-    const mergedClassNames = {
-      tabList: mergeTailwindClasses(
-        getVariantStyles(),
-        props.classNames?.tabList ?? "",
-      ),
-      tabContent: mergeTailwindClasses(
-        "text-default-700",
-        props.classNames?.tabContent ?? "",
-      ),
+
+    const baseClassNames = {
+      base: "",
+      tabList: getVariantStyles(),
+      tab: "",
+      tabContent: "text-default-700",
+      cursor: "",
+      tabItem: "",
     };
+
+    const mergedClassNames: Record<string, string> = {};
+
+    Object.keys(baseClassNames).forEach((key): void => {
+      const baseClass =
+        baseClassNames[key as keyof typeof baseClassNames] ?? "";
+      const propClass =
+        propClassNames?.[key as keyof typeof propClassNames] ?? "";
+
+      mergedClassNames[key] = mergeTailwindClasses(baseClass, propClass);
+    });
+
+    if (propClassNames) {
+      Object.keys(propClassNames).forEach((key): void => {
+        if (!(key in baseClassNames)) {
+          mergedClassNames[key] = mergeTailwindClasses(
+            propClassNames[key as keyof typeof propClassNames] ?? "",
+          );
+        }
+      });
+    }
 
     return (
       <TabsRoot
         ref={ref}
-        variant={variant}
         color={color}
         size={size}
         radius={radius}
