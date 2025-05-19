@@ -90,9 +90,15 @@ const Navbar = forwardRef(
             }
           ) }),
           !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxs(NavbarContent, { justify: "start", children: [
-            !isTablet && appLogo !== null && /* @__PURE__ */ jsxs(NavbarItem, { className: "w-[247px] text-foreground", children: [
+            !isTablet && appLogo !== null && /* @__PURE__ */ jsxs(NavbarItem, { className: "relative w-[247px] text-foreground", children: [
               appLogo,
-              /* @__PURE__ */ jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsx(Divider, { orientation: "vertical" }) })
+              /* @__PURE__ */ jsx(
+                Divider,
+                {
+                  orientation: "vertical",
+                  className: "absolute right-0 bg-border"
+                }
+              )
             ] }),
             appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "text-foreground", children: appName })
           ] }),
