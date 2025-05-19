@@ -27,6 +27,14 @@
       "import": "./dist/button/Button/index.es.js",
       "types": "./dist/button/index.d.ts"
     },
+    "./divider": {
+      "import": "./dist/divider/index.es.js",
+      "types": "./dist/divider/index.d.ts"
+    },
+    "./toast": {
+      "import": "./dist/toast/index.es.js",
+      "types": "./dist/toast/index.d.ts"
+    },
     "./skeleton": {
       "import": "./dist/skeleton/index.es.js",
       "types": "./dist/skeleton/index.d.ts"

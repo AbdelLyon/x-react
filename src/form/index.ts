@@ -7,3 +7,4 @@ export { Textarea } from "@/form/Textarea";
 export { Switch } from "@/form/Switch";
 export { Select, type SelectOption } from "@/form/Select";
 export { InfiniteSelect } from "@/form/InfiniteSelect";
+export { InfiniteAutocomplete } from "@/form/InfiniteAutocomplete";

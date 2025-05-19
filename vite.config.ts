@@ -38,6 +38,8 @@ const modules = [
   "typography",
   "HOC",
   "chart",
+  "divider",
+  "toast",
   "skeleton"
 ];
 

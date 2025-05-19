@@ -6,3 +6,4 @@ export { Textarea } from './Textarea';
 export { Switch } from './Switch';
 export { Select, type SelectOption } from './Select';
 export { InfiniteSelect } from './InfiniteSelect';
+export { InfiniteAutocomplete } from './InfiniteAutocomplete';
