@@ -50,6 +50,18 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
       }
       return "";
     };
+    const mergedClassNames = {
+      tabList: mergeTailwindClasses(
+        getVariantStyles(),
+        props.classNames?.tabList ?? "",
+      ),
+      tabContent: mergeTailwindClasses(
+        "text-default-700",
+        props.classNames?.tabContent ?? "",
+      ),
+
+      ...(props.classNames || {}),
+    };
 
     return (
       <TabsRoot
@@ -60,14 +72,7 @@ export const Tabs = forwardRef<HTMLDivElement, CustomTabsProps>(
         radius={radius}
         placement={placement}
         defaultSelectedKey={defaultActiveTab}
-        classNames={{
-          ...props.classNames,
-          tabList: mergeTailwindClasses(
-            props.classNames?.tabList,
-            getVariantStyles(),
-          ),
-          tabContent: "text-default-700",
-        }}
+        classNames={mergedClassNames}
         onSelectionChange={handleSelectionChange}
         {...props}
       >
