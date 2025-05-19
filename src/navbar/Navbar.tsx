@@ -13,6 +13,7 @@ import {
   NavbarItem,
   NavbarMenuItem,
   Link,
+  Divider,
 } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
 import type { Item } from "@/types/navigation";
@@ -84,13 +85,16 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
         {!isMobile && (appName !== null || appLogo !== null) && (
           <NavbarContent justify="start">
-            {!isTablet && appName !== null && (
-              <NavbarItem className="w-[247px] border-r-2 border-border text-foreground">
-                {appName}
+            {!isTablet && appLogo !== null && (
+              <NavbarItem className="w-[247px] text-foreground">
+                {appLogo}
+                <div className="flex justify-end">
+                  <Divider orientation="vertical" />
+                </div>
               </NavbarItem>
             )}
-            {appLogo !== null && (
-              <NavbarItem className="text-foreground">{appLogo}</NavbarItem>
+            {appName !== null && (
+              <NavbarItem className="text-foreground">{appName}</NavbarItem>
             )}
           </NavbarContent>
         )}

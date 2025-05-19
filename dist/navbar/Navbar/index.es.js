@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsxs, jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
-import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, Link, NavbarMenu, NavbarMenuItem } from "@heroui/react";
+import { Navbar as Navbar$1, NavbarContent, NavbarMenuToggle, NavbarItem, Divider, Link, NavbarMenu, NavbarMenuItem } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { useResponsive } from "../../hooks/useResponsive/index.es.js";
 const Navbar = forwardRef(
@@ -90,8 +90,11 @@ const Navbar = forwardRef(
             }
           ) }),
           !isMobile && (appName !== null || appLogo !== null) && /* @__PURE__ */ jsxs(NavbarContent, { justify: "start", children: [
-            !isTablet && appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "w-[247px] border-r-2 border-border text-foreground", children: appName }),
-            appLogo !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "text-foreground", children: appLogo })
+            !isTablet && appLogo !== null && /* @__PURE__ */ jsxs(NavbarItem, { className: "w-[247px] text-foreground", children: [
+              appLogo,
+              /* @__PURE__ */ jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsx(Divider, { orientation: "vertical" }) })
+            ] }),
+            appName !== null && /* @__PURE__ */ jsx(NavbarItem, { className: "text-foreground", children: appName })
           ] }),
           /* @__PURE__ */ jsxs(NavbarContent, __spreadProps(__spreadValues({ justify: "end" }, contentProps), { children: [
             isDesktop && navigationItems.map(
