@@ -25,15 +25,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       children,
       shadow = "md",
       radius = "lg",
-      fullWidth = false,
-      isHoverable = false,
-      isPressable = false,
-      isBlurred = false,
-      isFooterBlurred = false,
-      isDisabled = false,
-      disableAnimation = false,
-      disableRipple = false,
-      allowTextSelectionOnPress = false,
+
       classNames,
       header,
       footer,
@@ -47,17 +39,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         ref={ref}
         shadow={shadow}
         radius={radius}
-        fullWidth={fullWidth}
-        isHoverable={isHoverable}
-        isPressable={isPressable}
-        isBlurred={isBlurred}
-        isFooterBlurred={isFooterBlurred}
-        isDisabled={isDisabled}
-        disableAnimation={disableAnimation}
-        disableRipple={disableRipple}
-        allowTextSelectionOnPress={allowTextSelectionOnPress}
         className={mergeTailwindClasses(
-          "border border-border/40 dark:bg-background p-4 hover:shadow-sm data-[hover=true]:bg-content1-100/30 dark:data-[hover=true]:bg-content1-200/20 transition-all",
+          "border border-border/40 dark:bg-background p-4 data-[hover=true]:bg-content1-100/30 dark:data-[hover=true]:bg-content1-200/20 transition-all",
           classNames?.base,
         )}
         {...props}
