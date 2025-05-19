@@ -232,10 +232,10 @@ export const darkTheme: Colors = {
    },
 
    border: {
-      DEFAULT: "#3939389393",
+      DEFAULT: "#39393893",
       foreground: "#ffffff",
       50: "#313130",
-      100: "#39393893",
+      100: "#393938",
       200: "#434341",
       300: "#5f5f5d",
       400: "#727270",

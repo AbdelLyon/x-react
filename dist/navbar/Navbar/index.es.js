@@ -96,7 +96,7 @@ const Navbar = forwardRef(
                 Divider,
                 {
                   orientation: "vertical",
-                  className: "absolute right-[1px] top-1/2 h-[80%] -translate-y-1/2 transform bg-border-100 dark:border-border"
+                  className: "absolute right-[1px] top-1/2 h-[80%] -translate-y-1/2 transform bg-border-200 dark:border-border"
                 }
               )
             ] }),
