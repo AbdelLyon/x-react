@@ -37,7 +37,7 @@ const Layout = ({
         "main",
         {
           className: mergeTailwindClasses(
-            "flex-1 overflow-hidden transition-all duration-200",
+            "flex-1 overflow-hidden transition-all duration-200 mb-4",
             {
               "pt-4": hasNavbar,
               "ml-0": !hasSidebar || !isTablet && !isDesktop,
