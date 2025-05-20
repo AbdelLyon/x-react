@@ -65,6 +65,7 @@ export function DataGrid<T extends { id: string | number }>({
 
   return (
     <DataTable
+      {...props}
       aria-label="data-grid"
       aria-labelledby="data-grid"
       className={mergeTailwindClasses(
@@ -106,8 +107,6 @@ export function DataGrid<T extends { id: string | number }>({
           </div>
         )
       }
-      suppressHydrationWarning
-      {...props}
     >
       <TableHeader
         aria-label="table header"
@@ -115,7 +114,6 @@ export function DataGrid<T extends { id: string | number }>({
         columns={processedColumns}
         className={variantClasses.thead}
         {...childrenProps?.tableHeaderProps}
-        suppressHydrationWarning
       >
         {(column): JSX.Element => (
           <TableColumn
@@ -126,7 +124,6 @@ export function DataGrid<T extends { id: string | number }>({
               childrenProps?.tableColumnProps?.className,
             )}
             {...childrenProps?.tableColumnProps}
-            suppressHydrationWarning
           >
             <div className="flex items-center gap-2">
               <p className={column.className}>{column.header}</p>
@@ -167,7 +164,6 @@ export function DataGrid<T extends { id: string | number }>({
       </TableHeader>
       <TableBody
         isLoading={isLoading}
-        suppressHydrationWarning
         items={rows}
         aria-label="table body"
         aria-labelledby="table body"
@@ -179,7 +175,6 @@ export function DataGrid<T extends { id: string | number }>({
             <TableRow
               aria-label="row"
               aria-labelledby="row"
-              suppressHydrationWarning
               key={row.id}
               {...childrenProps?.tableRowProps}
               className={mergeTailwindClasses(
@@ -189,7 +184,6 @@ export function DataGrid<T extends { id: string | number }>({
             >
               {(columnKey): JSX.Element => (
                 <TableCell
-                  suppressHydrationWarning
                   {...childrenProps?.tableCellProps}
                   className={mergeTailwindClasses(
                     childrenProps?.tableCellProps?.className,
