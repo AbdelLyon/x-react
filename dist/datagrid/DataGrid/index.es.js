@@ -69,6 +69,7 @@ function DataGrid(_a) {
     processedColumns,
     formatSortHeader,
     extractCellValue,
+    extractColumnHeader,
     onSort
   } = useDataGridState({
     onSortChange,
@@ -95,7 +96,7 @@ function DataGrid(_a) {
   }
   return /* @__PURE__ */ jsxs(
     Table,
-    __spreadProps(__spreadValues({}, props), {
+    __spreadProps(__spreadValues({
       "aria-label": "data-grid",
       "aria-labelledby": "data-grid",
       className: mergeTailwindClasses(
@@ -130,6 +131,8 @@ function DataGrid(_a) {
           )
         }
       ) }) : /* @__PURE__ */ jsx("div", { className: "p-3 text-center text-gray-500", children: "Toutes les données ont été chargées" }),
+      suppressHydrationWarning: true
+    }, props), {
       children: [
         /* @__PURE__ */ jsx(
           TableHeader,
@@ -139,17 +142,19 @@ function DataGrid(_a) {
             columns: processedColumns,
             className: variantClasses.thead
           }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
+            suppressHydrationWarning: true,
             children: (column) => {
               var _a3;
               return /* @__PURE__ */ jsx(
                 TableColumn,
                 __spreadProps(__spreadValues({
                   "aria-labelledby": "table header",
-                  "aria-label": "table label",
+                  "aria-label": extractColumnHeader(column),
                   className: mergeTailwindClasses(
                     (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
                   )
                 }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
+                  suppressHydrationWarning: true,
                   children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
                     /* @__PURE__ */ jsx("p", { className: column.className, children: column.header }),
                     column.sortable !== false && /* @__PURE__ */ jsxs(
@@ -196,6 +201,7 @@ function DataGrid(_a) {
           TableBody,
           __spreadProps(__spreadValues({
             isLoading,
+            suppressHydrationWarning: true,
             items: rows,
             "aria-label": "table body",
             "aria-labelledby": "table body",
@@ -207,7 +213,8 @@ function DataGrid(_a) {
                 TableRow,
                 __spreadProps(__spreadValues({
                   "aria-label": "row",
-                  "aria-labelledby": "row"
+                  "aria-labelledby": "row",
+                  suppressHydrationWarning: true
                 }, childrenProps == null ? void 0 : childrenProps.tableRowProps), {
                   className: mergeTailwindClasses(
                     variantClasses.tr,
@@ -217,7 +224,9 @@ function DataGrid(_a) {
                     var _a4, _b3;
                     return /* @__PURE__ */ jsx(
                       TableCell,
-                      __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
+                      __spreadProps(__spreadValues({
+                        suppressHydrationWarning: true
+                      }, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
                         className: mergeTailwindClasses(
                           (_a4 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a4.className,
                           (_b3 = columns.find((col) => col.field === columnKey)) == null ? void 0 : _b3.className
