@@ -141,7 +141,7 @@ function DataGrid(_a) {
             className: variantClasses.thead
           }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
             children: (column) => {
-              var _a3;
+              var _a3, _b3;
               return /* @__PURE__ */ jsx(
                 TableColumn,
                 __spreadProps(__spreadValues({
@@ -188,7 +188,7 @@ function DataGrid(_a) {
                     )
                   ] })
                 }),
-                column.key
+                (_b3 = column.header) == null ? void 0 : _b3.toString()
               );
             }
           })

@@ -118,7 +118,7 @@ export function DataGrid<T extends { id: string | number }>({
         {(column): JSX.Element => (
           <TableColumn
             aria-labelledby="table header"
-            key={column.key}
+            key={column.header?.toString()}
             aria-label={extractColumnHeader(column)}
             className={mergeTailwindClasses(
               childrenProps?.tableColumnProps?.className,
