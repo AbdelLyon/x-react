@@ -69,7 +69,6 @@ function DataGrid(_a) {
     processedColumns,
     formatSortHeader,
     extractCellValue,
-    extractColumnHeader,
     onSort
   } = useDataGridState({
     onSortChange,
@@ -141,12 +140,12 @@ function DataGrid(_a) {
             className: variantClasses.thead
           }, childrenProps == null ? void 0 : childrenProps.tableHeaderProps), {
             children: (column) => {
-              var _a3, _b3;
+              var _a3;
               return /* @__PURE__ */ jsx(
                 TableColumn,
                 __spreadProps(__spreadValues({
                   "aria-labelledby": "table header",
-                  "aria-label": extractColumnHeader(column),
+                  "aria-label": "table label",
                   className: mergeTailwindClasses(
                     (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
                   )
@@ -188,7 +187,7 @@ function DataGrid(_a) {
                     )
                   ] })
                 }),
-                (_b3 = column.header) == null ? void 0 : _b3.toString()
+                column.key
               );
             }
           })

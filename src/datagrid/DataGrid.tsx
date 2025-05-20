@@ -35,7 +35,6 @@ export function DataGrid<T extends { id: string | number }>({
     processedColumns,
     formatSortHeader,
     extractCellValue,
-    extractColumnHeader,
     onSort,
   } = useDataGridState({
     onSortChange,
@@ -118,8 +117,8 @@ export function DataGrid<T extends { id: string | number }>({
         {(column): JSX.Element => (
           <TableColumn
             aria-labelledby="table header"
-            key={column.header?.toString()}
-            aria-label={extractColumnHeader(column)}
+            key={column.key}
+            aria-label={"table label"}
             className={mergeTailwindClasses(
               childrenProps?.tableColumnProps?.className,
             )}
