@@ -59,7 +59,7 @@ const Card = forwardRef(
         shadow,
         radius,
         className: mergeTailwindClasses(
-          "border border-border/40 dark:bg-background p-4 data-[hover=true]:bg-content1-100/30 dark:data-[hover=true]:bg-content1-200/20 transition-all",
+          "border border-border/40 dark:bg-background data-[hover=true]:bg-content1-100/30 dark:data-[hover=true]:bg-content1-200/20 transition-all",
           classNames == null ? void 0 : classNames.base
         )
       }, props), {

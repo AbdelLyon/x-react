@@ -33,7 +33,7 @@ export const darkTheme: Colors = {
    },
 
    danger: {
-      DEFAULT: "#e93e3e",
+      DEFAULT: "#8f2121",
       foreground: "#ffffff",
       50: "#8f2121",
       100: "#8f2121",
