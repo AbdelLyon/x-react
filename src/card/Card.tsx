@@ -23,8 +23,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   (
     {
       children,
-      shadow = "md",
-      radius = "lg",
+      shadow = "none",
+      radius = "sm",
 
       classNames,
       header,

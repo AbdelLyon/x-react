@@ -37,8 +37,8 @@ const Card = forwardRef(
   (_a, ref) => {
     var _b = _a, {
       children,
-      shadow = "md",
-      radius = "lg",
+      shadow = "none",
+      radius = "sm",
       classNames,
       header,
       footer,
