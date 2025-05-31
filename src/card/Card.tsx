@@ -40,7 +40,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         shadow={shadow}
         radius={radius}
         className={mergeTailwindClasses(
-          "border border-border/40 dark:bg-background data-[hover=true]:bg-content1-100/30 dark:data-[hover=true]:bg-content1-200/20 transition-all",
+          "border border-border data-[hover=true]:bg-content1-100/30 dark:data-[hover=true]:bg-content1-200/20 transition-all shadow-xl dark:shadow-none bg-gradient-to-b p-2 from-content1 to-content1-100/10 dark:from-background-200/20 dark:to-background",
           classNames?.base,
         )}
         {...props}
