@@ -28,7 +28,7 @@ const darkTheme = {
     900: "#fde6e7"
   },
   danger: {
-    DEFAULT: "#8f2121",
+    DEFAULT: "#b22a2a",
     foreground: "#ffffff",
     50: "#8f2121",
     100: "#8f2121",
