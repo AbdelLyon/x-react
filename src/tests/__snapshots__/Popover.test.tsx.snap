@@ -10,6 +10,7 @@ exports[`Composant Popover > Snapshots > devrait correspondre au snapshot avec d
     aria-haspopup="dialog"
     class="z-10 aria-expanded:scale-[0.97] aria-expanded:opacity-70 subpixel-antialiased"
     data-slot="trigger"
+    tabindex="0"
     type="button"
   >
     Cliquez-moi
@@ -24,6 +25,7 @@ exports[`Composant Popover > Snapshots > devrait correspondre au snapshot avec l
     aria-haspopup="dialog"
     class="z-10 aria-expanded:scale-[0.97] aria-expanded:opacity-70 subpixel-antialiased"
     data-slot="trigger"
+    tabindex="0"
     type="button"
   >
     Cliquez-moi
@@ -41,6 +43,7 @@ exports[`Composant Popover > Snapshots > devrait correspondre au snapshot avec u
     aria-haspopup="dialog"
     class="z-10 aria-expanded:scale-[0.97] aria-expanded:opacity-70 subpixel-antialiased"
     data-slot="trigger"
+    tabindex="0"
     type="button"
   >
     Cliquez-moi
@@ -58,6 +61,7 @@ exports[`Composant Popover > Snapshots > devrait correspondre au snapshot quand 
     aria-haspopup="dialog"
     class="z-10 aria-expanded:scale-[0.97] aria-expanded:opacity-70 subpixel-antialiased"
     data-slot="trigger"
+    tabindex="0"
     type="button"
   >
     Cliquez-moi

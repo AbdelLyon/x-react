@@ -161,7 +161,7 @@ exports[`Composants Avatar > AvatarGroup > Snapshots > devrait correspondre au s
 exports[`Composants Avatar > AvatarGroup > Snapshots > devrait correspondre au snapshot avec styles personnalisés 1`] = `
 <div>
   <div
-    class="flex items-center justify-center h-auto w-max size-6"
+    class="flex items-center justify-center size-6"
     role="group"
   >
     <span
