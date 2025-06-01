@@ -83,7 +83,7 @@ export function DataGrid<T extends { id: string | number }>({
           classNames?.wrapper,
         ),
         th: mergeTailwindClasses(variantClasses.th, classNames?.th),
-        tr: mergeTailwindClasses(variantClasses.tr, classNames?.tr),
+        tr: mergeTailwindClasses(variantClasses.tr, "border-0", classNames?.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto bg-white dark:bg-background",
           classNames?.base,

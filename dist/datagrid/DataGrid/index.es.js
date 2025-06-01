@@ -114,7 +114,7 @@ function DataGrid(_a) {
           classNames == null ? void 0 : classNames.wrapper
         ),
         th: mergeTailwindClasses(variantClasses.th, classNames == null ? void 0 : classNames.th),
-        tr: mergeTailwindClasses(variantClasses.tr, classNames == null ? void 0 : classNames.tr),
+        tr: mergeTailwindClasses(variantClasses.tr, "border-0", classNames == null ? void 0 : classNames.tr),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto bg-white dark:bg-background",
           classNames == null ? void 0 : classNames.base
