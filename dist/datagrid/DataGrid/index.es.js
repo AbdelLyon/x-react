@@ -151,42 +151,51 @@ function DataGrid(_a) {
                     (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
                   )
                 }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
-                  children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
-                    /* @__PURE__ */ jsx("p", { className: column.className, children: column.header }),
-                    column.sortable !== false && /* @__PURE__ */ jsxs(
-                      "div",
-                      {
-                        className: mergeTailwindClasses(
-                          "relative size-4 cursor-pointer"
-                        ),
-                        onClick: () => onSort(column),
-                        role: "button",
-                        "aria-label": formatSortHeader(column.header),
-                        children: [
-                          /* @__PURE__ */ jsx(
-                            IconChevronUp,
-                            {
-                              size: 16,
-                              className: mergeTailwindClasses(
-                                "absolute -top-1",
-                                sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
+                  children: /* @__PURE__ */ jsxs(
+                    "div",
+                    {
+                      className: mergeTailwindClasses(
+                        "flex items-center gap-2",
+                        column.className
+                      ),
+                      children: [
+                        /* @__PURE__ */ jsx("p", { children: column.header }),
+                        column.sortable !== false && /* @__PURE__ */ jsxs(
+                          "div",
+                          {
+                            className: mergeTailwindClasses(
+                              "relative size-4 cursor-pointer"
+                            ),
+                            onClick: () => onSort(column),
+                            role: "button",
+                            "aria-label": formatSortHeader(column.header),
+                            children: [
+                              /* @__PURE__ */ jsx(
+                                IconChevronUp,
+                                {
+                                  size: 16,
+                                  className: mergeTailwindClasses(
+                                    "absolute -top-1",
+                                    sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
+                                  )
+                                }
+                              ),
+                              /* @__PURE__ */ jsx(
+                                IconChevronDown,
+                                {
+                                  size: 16,
+                                  className: mergeTailwindClasses(
+                                    "absolute top-1",
+                                    sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
+                                  )
+                                }
                               )
-                            }
-                          ),
-                          /* @__PURE__ */ jsx(
-                            IconChevronDown,
-                            {
-                              size: 16,
-                              className: mergeTailwindClasses(
-                                "absolute top-1",
-                                sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
-                              )
-                            }
-                          )
-                        ]
-                      }
-                    )
-                  ] })
+                            ]
+                          }
+                        )
+                      ]
+                    }
+                  )
                 }),
                 column.key
               );
