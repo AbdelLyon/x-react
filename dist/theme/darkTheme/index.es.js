@@ -214,7 +214,7 @@ const darkTheme = {
     900: "#ffffff"
   },
   border: {
-    DEFAULT: "#39393893",
+    DEFAULT: "#313130",
     foreground: "#ffffff",
     50: "#313130",
     100: "#393938",
