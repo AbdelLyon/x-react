@@ -184,7 +184,7 @@ export function InfiniteAutocomplete<T extends object>({
 
     // Badge complet cliquable - VERSION MODERNE
     return (
-      <div className="absolute inset-x-0 top-0 z-50 -translate-y-full pb-3">
+      <div className="absolute inset-x-0 top-0 z-50 -translate-y-full rounded-md border border-border pb-1">
         <Popover
           isOpen={isPopoverOpen}
           onOpenChange={setIsPopoverOpen}

@@ -163,7 +163,7 @@ function InfiniteAutocomplete(_a) {
         );
       }) }) });
     }
-    return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-50 -translate-y-full pb-3", children: /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-50 -translate-y-full rounded-md border border-border pb-1", children: /* @__PURE__ */ jsxs(
       Popover,
       {
         isOpen: isPopoverOpen,
