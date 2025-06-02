@@ -232,8 +232,8 @@ export function InfiniteAutocomplete<T extends object>({
                 />
               </div>
             </div>
-            <ScrollShadow className="max-h-64 w-72">
-              <div className="grid grid-cols-3 gap-2">
+            <ScrollShadow className="max-h-64 w-72 overflow-x-hidden">
+              <div className="grid w-full grid-cols-3 gap-2 p-3">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
                   const itemValue = getItemValue(item);
@@ -251,7 +251,7 @@ export function InfiniteAutocomplete<T extends object>({
                           "max-w-xs text-xs bg-background border border-border shadow-lg",
                       }}
                       trigger={
-                        <div className="group relative flex flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm">
+                        <div className="group relative flex min-w-0 flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm">
                           <div className="w-full min-w-0 text-center">
                             <div className="truncate text-xs font-medium text-foreground">
                               {itemValue}

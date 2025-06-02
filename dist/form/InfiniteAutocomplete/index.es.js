@@ -222,7 +222,7 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-3 gap-2", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "grid w-full grid-cols-3 gap-2 p-3", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
               return /* @__PURE__ */ jsx(
@@ -236,7 +236,7 @@ function InfiniteAutocomplete(_a) {
                   classNames: {
                     content: "max-w-xs text-xs bg-background border border-border shadow-lg"
                   },
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm", children: [
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm", children: [
                     /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground", children: itemValue }) }),
                     /* @__PURE__ */ jsx(
                       Button,
