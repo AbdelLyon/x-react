@@ -224,7 +224,7 @@ export function InfiniteAutocomplete<T extends object>({
                   trigger={
                     <IconTrash
                       onClick={handleClearAll}
-                      className="cursor-pointer text-danger opacity-70 hover:opacity-100"
+                      className="cursor-pointer text-danger opacity-60 transition-all duration-200 group-hover:opacity-90"
                       size={18}
                     />
                   }
@@ -258,16 +258,11 @@ export function InfiniteAutocomplete<T extends object>({
                             </div>
                           </div>
 
-                          <Button
-                            isIconOnly
-                            size="sm"
-                            variant="light"
-                            color="danger"
+                          <IconXboxX
+                            size={15}
+                            onClick={(): void => handleRemoveChip(itemKey)}
                             className="absolute -right-3 -top-3 size-5 opacity-60 transition-all duration-200 group-hover:opacity-90"
-                            onPress={(): void => handleRemoveChip(itemKey)}
-                          >
-                            <IconXboxX size={15} />
-                          </Button>
+                          />
                         </div>
                       }
                     />

@@ -214,7 +214,7 @@ function InfiniteAutocomplete(_a) {
                     IconTrash,
                     {
                       onClick: handleClearAll,
-                      className: "cursor-pointer text-danger opacity-70 hover:opacity-100",
+                      className: "cursor-pointer text-danger opacity-60 transition-all duration-200 group-hover:opacity-90",
                       size: 18
                     }
                   ),
@@ -239,15 +239,11 @@ function InfiniteAutocomplete(_a) {
                   trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm", children: [
                     /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground", children: itemValue }) }),
                     /* @__PURE__ */ jsx(
-                      Button,
+                      IconXboxX,
                       {
-                        isIconOnly: true,
-                        size: "sm",
-                        variant: "light",
-                        color: "danger",
-                        className: "absolute -right-3 -top-3 size-5 opacity-60 transition-all duration-200 group-hover:opacity-90",
-                        onPress: () => handleRemoveChip(itemKey),
-                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 15 })
+                        size: 15,
+                        onClick: () => handleRemoveChip(itemKey),
+                        className: "absolute -right-3 -top-3 size-5 opacity-60 transition-all duration-200 group-hover:opacity-90"
                       }
                     )
                   ] })
