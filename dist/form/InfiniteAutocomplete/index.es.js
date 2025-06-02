@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx, jsxs } from "react/jsx-runtime";
-import { Chip, Popover, PopoverTrigger, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
+import { Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
 import { IconXboxX, IconX, IconUsers } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
@@ -98,7 +98,7 @@ function InfiniteAutocomplete(_a) {
   );
   const handleSelectionChange = useCallback(
     (key) => {
-      if (key === null || key === void 0) {
+      if (!key) {
         if (!isMultiSelect) {
           onSelectionChange == null ? void 0 : onSelectionChange(null);
         }
@@ -159,111 +159,103 @@ function InfiniteAutocomplete(_a) {
         );
       }) }) });
     }
-    const visibleItems = selectedItems.slice(0, 2);
-    const remainingCount = selectedItems.length - 2;
-    return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-center gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm", children: [
-      visibleItems.map((item) => {
-        const itemKey = getItemKey(item);
-        return /* @__PURE__ */ jsx(
-          Chip,
-          {
-            onClose: () => handleRemoveChip(itemKey),
-            variant: "flat",
-            size: "sm",
-            endContent: /* @__PURE__ */ jsx(IconXboxX, { size: 12 }),
-            className: "max-w-[120px]",
-            children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs", children: getItemValue(item) })
-          },
-          itemKey
-        );
-      }),
-      /* @__PURE__ */ jsxs(
-        Popover,
-        {
-          isOpen: isPopoverOpen,
-          onOpenChange: setIsPopoverOpen,
-          placement: "top-start",
-          showArrow: true,
-          backdrop: "transparent",
-          children: [
-            /* @__PURE__ */ jsx(PopoverTrigger, { children: /* @__PURE__ */ jsxs(
-              Button,
-              {
-                variant: "flat",
-                size: "sm",
-                startContent: selectionIcon,
-                className: "h-6 border border-divider bg-primary-50 px-2 text-xs text-primary-600 hover:bg-primary-100",
-                onPress: () => setIsPopoverOpen(!isPopoverOpen),
-                children: [
-                  "+",
-                  remainingCount
-                ]
-              }
-            ) }),
-            /* @__PURE__ */ jsxs(PopoverContent, { className: "w-80 p-0", children: [
-              /* @__PURE__ */ jsx("div", { className: "border-b border-divider px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
-                /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
-                  "Éléments ",
-                  selectionLabel,
-                  "s (",
-                  selectedItems.length,
-                  ")"
-                ] }),
-                /* @__PURE__ */ jsxs("div", { className: "flex gap-1", children: [
-                  /* @__PURE__ */ jsx(
-                    Button,
-                    {
-                      size: "sm",
-                      variant: "light",
-                      color: "danger",
-                      onPress: handleClearAll,
-                      className: "h-6 px-2 text-xs",
-                      children: "Tout supprimer"
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    Button,
-                    {
-                      isIconOnly: true,
-                      size: "sm",
-                      variant: "light",
-                      onPress: () => setIsPopoverOpen(false),
-                      className: "size-6",
-                      children: /* @__PURE__ */ jsx(IconX, { size: 14 })
-                    }
-                  )
-                ] })
-              ] }) }),
-              /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
-                const itemKey = getItemKey(item);
-                return /* @__PURE__ */ jsxs(
-                  "div",
+    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsxs(
+      Popover,
+      {
+        isOpen: isPopoverOpen,
+        onOpenChange: setIsPopoverOpen,
+        placement: "top-start",
+        showArrow: true,
+        backdrop: "transparent",
+        children: [
+          /* @__PURE__ */ jsx(PopoverTrigger, { children: /* @__PURE__ */ jsx(
+            Badge,
+            {
+              content: selectedItems.length,
+              color: "primary",
+              size: "sm",
+              className: "cursor-pointer",
+              children: /* @__PURE__ */ jsxs(
+                Button,
+                {
+                  variant: "flat",
+                  size: "sm",
+                  startContent: selectionIcon,
+                  className: "h-8 border border-divider bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm",
+                  onPress: () => setIsPopoverOpen(!isPopoverOpen),
+                  children: [
+                    selectedItems.length,
+                    " ",
+                    selectionLabel,
+                    selectedItems.length > 1 ? "s" : ""
+                  ]
+                }
+              )
+            }
+          ) }),
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "w-80 p-0", children: [
+            /* @__PURE__ */ jsx("div", { className: "border-b border-divider px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
+              /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
+                "Éléments ",
+                selectionLabel,
+                "s (",
+                selectedItems.length,
+                ")"
+              ] }),
+              /* @__PURE__ */ jsxs("div", { className: "flex gap-1", children: [
+                /* @__PURE__ */ jsx(
+                  Button,
                   {
-                    className: "group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100",
-                    children: [
-                      /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-1 items-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm text-foreground", children: getItemValue(item) }) }),
-                      /* @__PURE__ */ jsx(
-                        Button,
-                        {
-                          isIconOnly: true,
-                          size: "sm",
-                          variant: "light",
-                          color: "danger",
-                          className: "size-6 opacity-0 transition-opacity group-hover:opacity-100",
-                          onPress: () => handleRemoveChip(itemKey),
-                          children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
-                        }
-                      )
-                    ]
-                  },
-                  itemKey
-                );
-              }) }) })
-            ] })
-          ]
-        }
-      )
-    ] }) });
+                    size: "sm",
+                    variant: "light",
+                    color: "danger",
+                    onPress: handleClearAll,
+                    className: "h-6 px-2 text-xs",
+                    children: "Tout supprimer"
+                  }
+                ),
+                /* @__PURE__ */ jsx(
+                  Button,
+                  {
+                    isIconOnly: true,
+                    size: "sm",
+                    variant: "light",
+                    onPress: () => setIsPopoverOpen(false),
+                    className: "size-6",
+                    children: /* @__PURE__ */ jsx(IconX, { size: 14 })
+                  }
+                )
+              ] })
+            ] }) }),
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
+              const itemKey = getItemKey(item);
+              return /* @__PURE__ */ jsxs(
+                "div",
+                {
+                  className: "group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100",
+                  children: [
+                    /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-1 items-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm text-foreground", children: getItemValue(item) }) }),
+                    /* @__PURE__ */ jsx(
+                      Button,
+                      {
+                        isIconOnly: true,
+                        size: "sm",
+                        variant: "light",
+                        color: "danger",
+                        className: "size-6 opacity-0 transition-opacity group-hover:opacity-100",
+                        onPress: () => handleRemoveChip(itemKey),
+                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
+                      }
+                    )
+                  ]
+                },
+                itemKey
+              );
+            }) }) })
+          ] })
+        ]
+      }
+    ) });
   }, [
     isMultiSelect,
     selectedItems,
