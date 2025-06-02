@@ -42,7 +42,10 @@ function InfiniteSelect(_a) {
     className = "max-w-xs",
     renderItem,
     getItemKey,
-    selectionMode = "single"
+    selectionMode = "single",
+    onSearchChange,
+    searchPlaceholder = "Rechercher...",
+    isSearchable = false
   } = _b, selectProps = __objRest(_b, [
     "fetchFunction",
     "fetchDelay",
@@ -50,10 +53,13 @@ function InfiniteSelect(_a) {
     "className",
     "renderItem",
     "getItemKey",
-    "selectionMode"
+    "selectionMode",
+    "onSearchChange",
+    "searchPlaceholder",
+    "isSearchable"
   ]);
   const [isOpen, setIsOpen] = useState(false);
-  const { items, hasMore, isLoading, onLoadMore } = useInfiniteList({
+  const { items, hasMore, isLoading, onLoadMore, setSearchText, searchText } = useInfiniteList({
     fetchFunction,
     fetchDelay,
     limit
@@ -64,20 +70,30 @@ function InfiniteSelect(_a) {
     shouldUseLoader: false,
     onLoadMore
   });
+  const handleSearchChange = (value) => {
+    setSearchText(value);
+    onSearchChange == null ? void 0 : onSearchChange(value);
+  };
   return /* @__PURE__ */ jsx(
     Select,
-    __spreadProps(__spreadValues({
+    __spreadProps(__spreadValues(__spreadProps(__spreadValues({
       className,
       isLoading,
       items,
       scrollRef: scrollerRef,
-      selectionMode,
+      selectionMode
+    }, isSearchable && {
+      allowsCustomValue: true,
+      onInputChange: handleSearchChange,
+      inputValue: searchText,
+      placeholder: searchPlaceholder
+    }), {
       onOpenChange: (open) => {
         var _a2;
         setIsOpen(open);
         (_a2 = selectProps.onOpenChange) == null ? void 0 : _a2.call(selectProps, open);
       }
-    }, selectProps), {
+    }), selectProps), {
       children: (item) => /* @__PURE__ */ jsx(SelectItem, { children: renderItem(item) }, getItemKey(item))
     })
   );
