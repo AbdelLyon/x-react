@@ -198,8 +198,8 @@ function InfiniteAutocomplete(_a) {
               )
             }
           ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { children: [
-            /* @__PURE__ */ jsxs("div", { className: "flex w-full items-center justify-between gap-4", children: [
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "px-3", children: [
+            /* @__PURE__ */ jsxs("div", { className: "flex w-full items-center justify-between gap-4 py-4", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
                 selectionLabel,
@@ -221,7 +221,7 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-64", children: /* @__PURE__ */ jsx("div", { className: "w-full space-y-1 p-3", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-64", children: /* @__PURE__ */ jsx("div", { className: "w-full space-y-1", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               return /* @__PURE__ */ jsxs(
                 "div",
