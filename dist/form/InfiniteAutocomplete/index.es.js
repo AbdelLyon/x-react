@@ -32,9 +32,10 @@ var __objRest = (source, exclude) => {
 import { jsx, jsxs } from "react/jsx-runtime";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
-import { IconXboxX, IconUsers } from "@tabler/icons-react";
+import { IconXboxX, IconTrash, IconUsers } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
+import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
 function InfiniteAutocomplete(_a) {
   var _b = _a, {
     items,
@@ -198,7 +199,7 @@ function InfiniteAutocomplete(_a) {
             }
           ) }),
           /* @__PURE__ */ jsxs(PopoverContent, { className: "rounded-t-md border border-border p-0 dark:bg-background", children: [
-            /* @__PURE__ */ jsx("div", { className: "border-b border-border bg-content1-50 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between gap-4 px-2 ", children: [
+            /* @__PURE__ */ jsx("div", { className: "border-b border-border bg-content1-50 py-4", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between gap-4 px-2 ", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
                 selectionLabel,
@@ -207,18 +208,14 @@ function InfiniteAutocomplete(_a) {
                 ")"
               ] }),
               /* @__PURE__ */ jsx("div", { className: "flex gap-1", children: /* @__PURE__ */ jsx(
-                Button,
+                Tooltip,
                 {
-                  size: "sm",
-                  variant: "light",
-                  color: "danger",
-                  onPress: handleClearAll,
-                  className: "h-6 px-2 text-xs",
-                  children: "Tout supprimer"
+                  trigger: /* @__PURE__ */ jsx(IconTrash, { className: "text-danger" }),
+                  content: "Tout supprimer"
                 }
               ) })
             ] }) }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-full", children: /* @__PURE__ */ jsx("div", { className: "w-full space-y-1 p-2", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-full", children: /* @__PURE__ */ jsx("div", { className: "w-full space-y-1 p-3", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               return /* @__PURE__ */ jsxs(
                 "div",

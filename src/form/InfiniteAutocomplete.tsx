@@ -1,4 +1,5 @@
 import { useInfiniteScroll } from "@/hooks";
+import { Tooltip } from "@/tooltip";
 import { mergeTailwindClasses } from "@/utils";
 import type { AutocompleteProps } from "@heroui/react";
 import {
@@ -13,7 +14,7 @@ import {
   Button,
   ScrollShadow,
 } from "@heroui/react";
-import { IconXboxX, IconUsers } from "@tabler/icons-react";
+import { IconXboxX, IconUsers, IconTrash } from "@tabler/icons-react";
 import type { JSX, ReactNode } from "react";
 import { useState, useCallback, useMemo } from "react";
 
@@ -214,27 +215,22 @@ export function InfiniteAutocomplete<T extends object>({
           </PopoverTrigger>
 
           <PopoverContent className="rounded-t-md border border-border p-0 dark:bg-background">
-            <div className="border-b border-border bg-content1-50 py-3">
+            <div className="border-b border-border bg-content1-50 py-4">
               <div className="flex items-center justify-between gap-4 px-2 ">
                 <h4 className="text-sm font-semibold text-foreground">
                   Éléments {selectionLabel}s ({selectedItems.length})
                 </h4>
                 <div className="flex gap-1">
-                  <Button
-                    size="sm"
-                    variant="light"
-                    color="danger"
-                    onPress={handleClearAll}
-                    className="h-6 px-2 text-xs"
-                  >
-                    Tout supprimer
-                  </Button>
+                  <Tooltip
+                    trigger={<IconTrash className="text-danger" />}
+                    content="Tout supprimer"
+                  />
                 </div>
               </div>
             </div>
 
             <ScrollShadow className="max-h-64 w-full">
-              <div className="w-full space-y-1 p-2">
+              <div className="w-full space-y-1 p-3">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
                   return (
