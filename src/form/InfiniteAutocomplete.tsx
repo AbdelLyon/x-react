@@ -259,9 +259,9 @@ export function InfiniteAutocomplete<T extends object>({
                           </div>
 
                           <IconXboxX
-                            size={13}
+                            size={14}
                             onClick={(): void => handleRemoveChip(itemKey)}
-                            className="absolute -right-3 -top-3 size-5 text-danger opacity-60 transition-all duration-200 group-hover:opacity-100"
+                            className="absolute -right-2 -top-2 text-danger opacity-60 transition-all duration-200 group-hover:opacity-100"
                           />
                         </div>
                       }
