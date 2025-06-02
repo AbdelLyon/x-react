@@ -312,10 +312,12 @@ export function InfiniteAutocomplete<T extends object>({
         {(item: T): JSX.Element => (
           <AutocompleteItem
             key={getItemKey(item)}
-            className={cn(
-              isItemSelected(item) && "bg-primary-50 text-primary-600",
-            )}
-            endContent={isItemSelected(item) ? "✓" : undefined}
+            className={cn(isItemSelected(item) && "bg-primary/5")}
+            endContent={
+              isItemSelected(item) ? (
+                <span className="text-success">✓</span>
+              ) : undefined
+            }
           >
             {renderItem(item)}
           </AutocompleteItem>
