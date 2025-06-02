@@ -30,6 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx, jsxs } from "react/jsx-runtime";
+import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
 import { IconXboxX, IconX, IconUsers } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
@@ -274,6 +275,11 @@ function InfiniteAutocomplete(_a) {
       Autocomplete,
       __spreadProps(__spreadValues({
         className: "w-full",
+        inputProps: __spreadValues({
+          classNames: {
+            inputWrapper: autocompleteProps.variant === "bordered" && "border border-border"
+          }
+        }, autocompleteProps.inputProps),
         isLoading: isLoading || isFetching,
         items,
         scrollRef: scrollerRef,
@@ -293,8 +299,9 @@ function InfiniteAutocomplete(_a) {
         children: (item) => /* @__PURE__ */ jsx(
           AutocompleteItem,
           {
-            className: cn(
-              isItemSelected(item) && "bg-primary/10 border border-primary/20"
+            className: mergeTailwindClasses(
+              "border border-border/40",
+              isItemSelected(item) && "bg-outline/5 border-outline/10"
             ),
             endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "text-success", children: "✓" }) : void 0,
             children: renderItem(item)

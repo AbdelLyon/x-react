@@ -1,4 +1,5 @@
 import { useInfiniteScroll } from "@/hooks";
+import { mergeTailwindClasses } from "@/utils";
 import type { AutocompleteProps } from "@heroui/react";
 import {
   Autocomplete,
@@ -293,6 +294,14 @@ export function InfiniteAutocomplete<T extends object>({
       {/* Composant Autocomplete - position normale */}
       <Autocomplete<T>
         className="w-full"
+        inputProps={{
+          classNames: {
+            inputWrapper:
+              autocompleteProps.variant === "bordered" &&
+              "border border-border",
+          },
+          ...autocompleteProps.inputProps,
+        }}
         isLoading={isLoading || isFetching}
         items={items}
         scrollRef={scrollerRef}
@@ -312,8 +321,9 @@ export function InfiniteAutocomplete<T extends object>({
         {(item: T): JSX.Element => (
           <AutocompleteItem
             key={getItemKey(item)}
-            className={cn(
-              isItemSelected(item) && "bg-primary/10 border border-primary/20",
+            className={mergeTailwindClasses(
+              "border border-border/40",
+              isItemSelected(item) && "bg-outline/5 border-outline/10",
             )}
             endContent={
               isItemSelected(item) ? (
