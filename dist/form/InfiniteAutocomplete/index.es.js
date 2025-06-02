@@ -197,7 +197,7 @@ function InfiniteAutocomplete(_a) {
               )
             }
           ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { children: [
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "p-0", children: [
             /* @__PURE__ */ jsx("div", { className: "border-b border-border py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
@@ -223,7 +223,7 @@ function InfiniteAutocomplete(_a) {
               return /* @__PURE__ */ jsxs(
                 "div",
                 {
-                  className: "group flex items-center justify-between rounded-md p-2 transition-colors hover:bg-default-100",
+                  className: "group flex items-center justify-between rounded-md border border-border p-2 transition-colors hover:bg-default",
                   children: [
                     /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-1 items-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm text-foreground", children: getItemValue(item) }) }),
                     /* @__PURE__ */ jsx(

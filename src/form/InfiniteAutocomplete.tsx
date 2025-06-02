@@ -213,7 +213,7 @@ export function InfiniteAutocomplete<T extends object>({
             </Badge>
           </PopoverTrigger>
 
-          <PopoverContent>
+          <PopoverContent className="p-0">
             <div className="border-b border-border py-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-semibold text-foreground">
@@ -240,7 +240,7 @@ export function InfiniteAutocomplete<T extends object>({
                   return (
                     <div
                       key={itemKey}
-                      className="group flex items-center justify-between rounded-md p-2 transition-colors hover:bg-default-100"
+                      className="group flex items-center justify-between rounded-md border border-border p-2 transition-colors hover:bg-default"
                     >
                       <div className="flex min-w-0 flex-1 items-center">
                         <div className="truncate text-sm text-foreground">
