@@ -20,7 +20,6 @@ interface InfiniteSelectProps<T extends object> extends Omit<AutocompleteProps<T
     selectionLabel?: string;
     itemClassName?: string;
 }
-export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, selectionIcon, // Icône par défaut
-selectionLabel, // Label par défaut
+export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, selectionIcon, selectionLabel, // Label par défaut
 itemClassName, ...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
 export {};

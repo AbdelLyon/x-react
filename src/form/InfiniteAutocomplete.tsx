@@ -14,7 +14,7 @@ import {
   Button,
   ScrollShadow,
 } from "@heroui/react";
-import { IconXboxX, IconUsers, IconTrash } from "@tabler/icons-react";
+import { IconXboxX, IconTrash } from "@tabler/icons-react";
 import type { JSX, ReactNode } from "react";
 import { useState, useCallback, useMemo } from "react";
 
@@ -69,7 +69,7 @@ export function InfiniteAutocomplete<T extends object>({
   selectedKeys = new Set(),
   onSelectionChange,
   maxVisibleInBadge = 2,
-  selectionIcon = <IconUsers size={16} />, // Icône par défaut
+  selectionIcon = null,
   selectionLabel = "sélectionné", // Label par défaut
   itemClassName,
   ...autocompleteProps

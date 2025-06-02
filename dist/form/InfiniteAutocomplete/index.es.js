@@ -32,7 +32,7 @@ var __objRest = (source, exclude) => {
 import { jsxs, jsx } from "react/jsx-runtime";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { cn, Autocomplete, AutocompleteItem, Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow } from "@heroui/react";
-import { IconUsers, IconXboxX, IconTrash } from "@tabler/icons-react";
+import { IconXboxX, IconTrash } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
@@ -53,8 +53,8 @@ function InfiniteAutocomplete(_a) {
     selectedKeys = /* @__PURE__ */ new Set(),
     onSelectionChange,
     maxVisibleInBadge = 2,
-    selectionIcon = /* @__PURE__ */ jsx(IconUsers, { size: 16 }),
-    selectionLabel: selectionLabel = "sélectionné",
+    selectionIcon = null,
+    selectionLabel = "sélectionné",
     itemClassName: itemClassName
   } = _b, autocompleteProps = __objRest(_b, [
     "items",
@@ -73,7 +73,6 @@ function InfiniteAutocomplete(_a) {
     "onSelectionChange",
     "maxVisibleInBadge",
     "selectionIcon",
-    // Icône par défaut
     "selectionLabel",
     // Label par défaut
     "itemClassName"
