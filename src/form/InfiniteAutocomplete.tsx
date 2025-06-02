@@ -312,7 +312,9 @@ export function InfiniteAutocomplete<T extends object>({
         {(item: T): JSX.Element => (
           <AutocompleteItem
             key={getItemKey(item)}
-            className={cn(isItemSelected(item) && "bg-primary/5")}
+            className={cn(
+              isItemSelected(item) && "bg-primary/10 border border-primary/20",
+            )}
             endContent={
               isItemSelected(item) ? (
                 <span className="text-success">✓</span>

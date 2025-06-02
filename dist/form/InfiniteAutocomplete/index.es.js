@@ -293,7 +293,9 @@ function InfiniteAutocomplete(_a) {
         children: (item) => /* @__PURE__ */ jsx(
           AutocompleteItem,
           {
-            className: cn(isItemSelected(item) && "bg-primary/5"),
+            className: cn(
+              isItemSelected(item) && "bg-primary/10 border border-primary/20"
+            ),
             endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "text-success", children: "✓" }) : void 0,
             children: renderItem(item)
           },
