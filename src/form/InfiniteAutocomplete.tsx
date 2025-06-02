@@ -234,7 +234,7 @@ export function InfiniteAutocomplete<T extends object>({
             </div>
 
             <ScrollShadow className="max-h-64 w-64">
-              <div className="grid grid-cols-3 gap-1.5 p-2">
+              <div className="grid grid-cols-3 gap-1">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
                   const itemValue = getItemValue(item);
@@ -242,7 +242,7 @@ export function InfiniteAutocomplete<T extends object>({
                   return (
                     <Tooltip
                       trigger={
-                        <div className="group relative flex aspect-square items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10">
+                        <div className="group relative flex aspect-auto items-center justify-center rounded-lg border border-border/30 bg-default/20 px-2 transition-all hover:border-primary/50 hover:bg-primary/10">
                           {/* Texte centré avec truncate */}
                           <div className="truncate text-center text-xs font-medium text-foreground">
                             {itemValue}
