@@ -215,7 +215,7 @@ export function InfiniteAutocomplete<T extends object>({
           </PopoverTrigger>
 
           <PopoverContent>
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex w-full items-center justify-between gap-4">
               <h4 className="text-sm font-semibold text-foreground">
                 Éléments {selectionLabel}s ({selectedItems.length})
               </h4>
