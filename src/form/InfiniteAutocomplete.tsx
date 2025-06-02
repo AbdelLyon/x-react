@@ -206,6 +206,7 @@ export function InfiniteAutocomplete<T extends object>({
   return (
     <div className={className}>
       {/* Composant Autocomplete enrichi */}
+      <div className="flex w-full truncate">{chipsContent}</div>
       <Autocomplete<T>
         className="w-full"
         isLoading={isLoading || isFetching}
@@ -219,8 +220,6 @@ export function InfiniteAutocomplete<T extends object>({
           setIsOpen(open);
           autocompleteProps.onOpenChange?.(open);
         }}
-        // Chips intégrées dans le champ
-        startContent={chipsContent}
         // Enrichissements pour le multiselect
         shouldCloseOnBlur={!isMultiSelect}
         allowsCustomValue={isMultiSelect}

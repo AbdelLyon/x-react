@@ -191,40 +191,42 @@ function InfiniteAutocomplete(_a) {
     handleRemoveChip,
     selectedItems.length
   ]);
-  return /* @__PURE__ */ jsx("div", { className, children: /* @__PURE__ */ jsx(
-    Autocomplete,
-    __spreadProps(__spreadValues({
-      className: "w-full",
-      isLoading: isLoading || isFetching,
-      items,
-      scrollRef: scrollerRef,
-      inputValue,
-      onInputChange: handleInputChange,
-      selectedKey: isMultiSelect ? null : selectedKey,
-      onSelectionChange: handleSelectionChange,
-      onOpenChange: (open) => {
-        var _a2;
-        setIsOpen(open);
-        (_a2 = autocompleteProps.onOpenChange) == null ? void 0 : _a2.call(autocompleteProps, open);
-      },
-      startContent: chipsContent,
-      shouldCloseOnBlur: !isMultiSelect,
-      allowsCustomValue: isMultiSelect,
-      menuTrigger: isMultiSelect ? "focus" : "focus"
-    }, autocompleteProps), {
-      children: (item) => /* @__PURE__ */ jsx(
-        AutocompleteItem,
-        {
-          className: cn(
-            isItemSelected(item) && "bg-primary-50 text-primary-600"
-          ),
-          endContent: isItemSelected(item) ? "✓" : void 0,
-          children: renderItem(item)
+  return /* @__PURE__ */ jsxs("div", { className, children: [
+    /* @__PURE__ */ jsx("div", { className: "flex w-full truncate", children: chipsContent }),
+    /* @__PURE__ */ jsx(
+      Autocomplete,
+      __spreadProps(__spreadValues({
+        className: "w-full",
+        isLoading: isLoading || isFetching,
+        items,
+        scrollRef: scrollerRef,
+        inputValue,
+        onInputChange: handleInputChange,
+        selectedKey: isMultiSelect ? null : selectedKey,
+        onSelectionChange: handleSelectionChange,
+        onOpenChange: (open) => {
+          var _a2;
+          setIsOpen(open);
+          (_a2 = autocompleteProps.onOpenChange) == null ? void 0 : _a2.call(autocompleteProps, open);
         },
-        getItemKey(item)
-      )
-    })
-  ) });
+        shouldCloseOnBlur: !isMultiSelect,
+        allowsCustomValue: isMultiSelect,
+        menuTrigger: isMultiSelect ? "focus" : "focus"
+      }, autocompleteProps), {
+        children: (item) => /* @__PURE__ */ jsx(
+          AutocompleteItem,
+          {
+            className: cn(
+              isItemSelected(item) && "bg-primary-50 text-primary-600"
+            ),
+            endContent: isItemSelected(item) ? "✓" : void 0,
+            children: renderItem(item)
+          },
+          getItemKey(item)
+        )
+      })
+    )
+  ] });
 }
 export {
   InfiniteAutocomplete
