@@ -234,7 +234,7 @@ export function InfiniteAutocomplete<T extends object>({
             </div>
 
             <ScrollShadow className="max-h-64 w-72">
-              <div className="grid grid-cols-3 gap-1">
+              <div className="grid w-full grid-cols-3 gap-1.5">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
                   const itemValue = getItemValue(item);

@@ -222,7 +222,7 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-3 gap-1", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72", children: /* @__PURE__ */ jsx("div", { className: "grid w-full grid-cols-3 gap-1.5", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
               return /* @__PURE__ */ jsx(
