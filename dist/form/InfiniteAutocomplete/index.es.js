@@ -222,7 +222,7 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: " max-h-64 w-72 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "mt-2 grid w-full grid-cols-3 gap-2", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: " max-h-64 w-72 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "mt-2 grid w-full grid-cols-3 gap-2 pr-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
               return /* @__PURE__ */ jsx(
