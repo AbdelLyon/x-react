@@ -263,10 +263,10 @@ export function InfiniteAutocomplete<T extends object>({
                             size="sm"
                             variant="light"
                             color="danger"
-                            className="absolute -right-2 -top-2 size-6 opacity-70 transition-all duration-200 group-hover:opacity-100"
+                            className="absolute -right-3 -top-3 size-6 opacity-70 transition-all duration-200 group-hover:opacity-100"
                             onPress={(): void => handleRemoveChip(itemKey)}
                           >
-                            <IconXboxX size={12} />
+                            <IconXboxX size={14} />
                           </Button>
                         </div>
                       }
