@@ -50,9 +50,9 @@ function InfiniteAutocomplete(_a) {
     selectedKey,
     selectedKeys = /* @__PURE__ */ new Set(),
     onSelectionChange,
-    maxVisibleChips = 2,
-    selectionIcon: selectionIcon = /* @__PURE__ */ jsx(IconUsers, { size: 16 }),
-    selectionLabel = "sélectionné"
+    maxVisibleInBadge = 2,
+    selectionIcon = /* @__PURE__ */ jsx(IconUsers, { size: 16 }),
+    selectionLabel: selectionLabel = "sélectionné"
   } = _b, autocompleteProps = __objRest(_b, [
     "items",
     "isFetching",
@@ -68,9 +68,9 @@ function InfiniteAutocomplete(_a) {
     "selectedKey",
     "selectedKeys",
     "onSelectionChange",
-    "maxVisibleChips",
-    // Affiche 2 chips par défaut
+    "maxVisibleInBadge",
     "selectionIcon",
+    // Icône par défaut
     "selectionLabel"
   ]);
   const [isOpen, setIsOpen] = useState(false);
@@ -98,7 +98,7 @@ function InfiniteAutocomplete(_a) {
   );
   const handleSelectionChange = useCallback(
     (key) => {
-      if (!key) {
+      if (key === null || key === void 0) {
         if (!isMultiSelect) {
           onSelectionChange == null ? void 0 : onSelectionChange(null);
         }
@@ -115,36 +115,21 @@ function InfiniteAutocomplete(_a) {
       } else {
         newSelectedKeys.add(key);
       }
-      const selectedObjects = items.filter(
-        (item) => newSelectedKeys.has(getItemKey(item))
-      );
-      onSelectionChange == null ? void 0 : onSelectionChange({
-        keys: newSelectedKeys,
-        items: selectedObjects
-      });
+      onSelectionChange == null ? void 0 : onSelectionChange(newSelectedKeys);
       setInputValue("");
     },
-    [isMultiSelect, selectedKeys, onSelectionChange, items, getItemKey]
+    [isMultiSelect, selectedKeys, onSelectionChange]
   );
   const handleRemoveChip = useCallback(
     (itemKey) => {
       const newSelectedKeys = new Set(selectedKeys);
       newSelectedKeys.delete(itemKey);
-      const selectedObjects = items.filter(
-        (item) => newSelectedKeys.has(getItemKey(item))
-      );
-      onSelectionChange == null ? void 0 : onSelectionChange({
-        keys: newSelectedKeys,
-        items: selectedObjects
-      });
+      onSelectionChange == null ? void 0 : onSelectionChange(newSelectedKeys);
     },
-    [selectedKeys, onSelectionChange, items, getItemKey]
+    [selectedKeys, onSelectionChange]
   );
   const handleClearAll = useCallback(() => {
-    onSelectionChange == null ? void 0 : onSelectionChange({
-      keys: /* @__PURE__ */ new Set(),
-      items: []
-    });
+    onSelectionChange == null ? void 0 : onSelectionChange(/* @__PURE__ */ new Set());
     setIsPopoverOpen(false);
   }, [onSelectionChange]);
   const isItemSelected = useCallback(
@@ -153,12 +138,29 @@ function InfiniteAutocomplete(_a) {
     },
     [isMultiSelect, selectedKeys, getItemKey]
   );
-  const selectionDisplay = useMemo(() => {
+  const selectionBadge = useMemo(() => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
-    const visibleItems = selectedItems.slice(0, maxVisibleChips);
-    const remainingCount = selectedItems.length - maxVisibleChips;
+    if (selectedItems.length <= maxVisibleInBadge) {
+      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm", children: selectedItems.map((item) => {
+        const itemKey = getItemKey(item);
+        return /* @__PURE__ */ jsx(
+          Chip,
+          {
+            onClose: () => handleRemoveChip(itemKey),
+            variant: "flat",
+            size: "sm",
+            endContent: /* @__PURE__ */ jsx(IconXboxX, { size: 12 }),
+            className: "max-w-[120px]",
+            children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs", children: getItemValue(item) })
+          },
+          itemKey
+        );
+      }) }) });
+    }
+    const visibleItems = selectedItems.slice(0, 2);
+    const remainingCount = selectedItems.length - 2;
     return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-center gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm", children: [
       visibleItems.map((item) => {
         const itemKey = getItemKey(item);
@@ -175,7 +177,7 @@ function InfiniteAutocomplete(_a) {
           itemKey
         );
       }),
-      remainingCount > 0 && /* @__PURE__ */ jsxs(
+      /* @__PURE__ */ jsxs(
         Popover,
         {
           isOpen: isPopoverOpen,
@@ -201,7 +203,7 @@ function InfiniteAutocomplete(_a) {
             /* @__PURE__ */ jsxs(PopoverContent, { className: "w-80 p-0", children: [
               /* @__PURE__ */ jsx("div", { className: "border-b border-divider px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
                 /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
-                  "Tous les ",
+                  "Éléments ",
                   selectionLabel,
                   "s (",
                   selectedItems.length,
@@ -265,7 +267,7 @@ function InfiniteAutocomplete(_a) {
   }, [
     isMultiSelect,
     selectedItems,
-    maxVisibleChips,
+    maxVisibleInBadge,
     isPopoverOpen,
     getItemKey,
     getItemValue,
@@ -275,7 +277,7 @@ function InfiniteAutocomplete(_a) {
     selectionLabel
   ]);
   return /* @__PURE__ */ jsxs("div", { className: cn("relative", className), children: [
-    selectionDisplay,
+    selectionBadge,
     /* @__PURE__ */ jsx(
       Autocomplete,
       __spreadProps(__spreadValues({
