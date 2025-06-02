@@ -199,7 +199,7 @@ function InfiniteAutocomplete(_a) {
             }
           ) }),
           /* @__PURE__ */ jsxs(PopoverContent, { className: "rounded-md p-4", children: [
-            /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between gap-4 px-2", children: [
+            /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between gap-4", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
                 selectionLabel,
@@ -222,7 +222,7 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "grid w-full grid-cols-3 gap-2 p-3", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "grid w-full grid-cols-3 gap-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
               return /* @__PURE__ */ jsx(
@@ -236,14 +236,14 @@ function InfiniteAutocomplete(_a) {
                   classNames: {
                     content: "max-w-xs text-xs bg-background border border-border shadow-lg"
                   },
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm", children: [
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default hover:shadow-sm", children: [
                     /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground", children: itemValue }) }),
                     /* @__PURE__ */ jsx(
                       IconXboxX,
                       {
                         size: 14,
                         onClick: () => handleRemoveChip(itemKey),
-                        className: "absolute -right-2 -top-2 text-danger opacity-60 transition-all duration-200 group-hover:opacity-100"
+                        className: "absolute -right-2 -top-2 cursor-pointer text-danger opacity-60 transition-all duration-200 group-hover:opacity-100"
                       }
                     )
                   ] })
