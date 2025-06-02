@@ -29,7 +29,7 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsxs, jsx } from "react/jsx-runtime";
+import { jsx } from "react/jsx-runtime";
 import { Chip, Autocomplete, AutocompleteItem, cn } from "@heroui/react";
 import { IconXboxX } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
@@ -91,11 +91,14 @@ function InfiniteAutocomplete(_a) {
   const handleSelectionChange = useCallback(
     (key) => {
       if (!key) {
-        onSelectionChange == null ? void 0 : onSelectionChange(null);
+        if (!isMultiSelect) {
+          onSelectionChange == null ? void 0 : onSelectionChange(null);
+        }
         return;
       }
       if (!isMultiSelect) {
         onSelectionChange == null ? void 0 : onSelectionChange(key);
+        setInputValue("");
         return;
       }
       const newSelectedKeys = new Set(selectedKeys);
@@ -123,8 +126,11 @@ function InfiniteAutocomplete(_a) {
     },
     [isMultiSelect, selectedKeys, getItemKey]
   );
-  return /* @__PURE__ */ jsxs("div", { className, children: [
-    isMultiSelect && selectedItems.length > 0 && /* @__PURE__ */ jsx("div", { className: "mb-2 flex flex-wrap gap-1", children: selectedItems.map((item) => {
+  const chipsContent = useMemo(() => {
+    if (!isMultiSelect || selectedItems.length === 0) {
+      return null;
+    }
+    return /* @__PURE__ */ jsx("div", { className: "flex max-w-full flex-wrap gap-1", children: selectedItems.map((item) => {
       const itemKey = getItemKey(item);
       return /* @__PURE__ */ jsx(
         Chip,
@@ -132,48 +138,54 @@ function InfiniteAutocomplete(_a) {
           onClose: () => handleRemoveChip(itemKey),
           variant: "flat",
           size: "sm",
-          endContent: /* @__PURE__ */ jsx(IconXboxX, {}),
-          className: "max-w-xs",
-          children: /* @__PURE__ */ jsx("span", { className: "truncate", children: getItemValue(item) })
+          endContent: /* @__PURE__ */ jsx(IconXboxX, { size: 12 }),
+          className: "max-w-[120px]",
+          children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs", children: getItemValue(item) })
         },
         itemKey
       );
-    }) }),
-    /* @__PURE__ */ jsx(
-      Autocomplete,
-      __spreadProps(__spreadValues(__spreadValues({
-        className: "w-full",
-        isLoading: isLoading || isFetching,
-        items,
-        scrollRef: scrollerRef,
-        inputValue,
-        onInputChange: handleInputChange,
-        selectedKey: isMultiSelect ? null : selectedKey,
-        onSelectionChange: handleSelectionChange,
-        onOpenChange: (open) => {
-          var _a2;
-          setIsOpen(open);
-          (_a2 = autocompleteProps.onOpenChange) == null ? void 0 : _a2.call(autocompleteProps, open);
-        }
-      }, isMultiSelect && {
-        allowsCustomValue: true,
-        shouldCloseOnBlur: false
-        // Garder ouvert en multiselect
-      }), autocompleteProps), {
-        children: (item) => /* @__PURE__ */ jsx(
-          AutocompleteItem,
-          {
-            className: cn(
-              isItemSelected(item) && "bg-primary-50 text-primary-600"
-            ),
-            endContent: isItemSelected(item) ? "✓" : void 0,
-            children: renderItem(item)
-          },
-          getItemKey(item)
-        )
-      })
-    )
-  ] });
+    }) });
+  }, [
+    isMultiSelect,
+    selectedItems,
+    getItemKey,
+    getItemValue,
+    handleRemoveChip
+  ]);
+  return /* @__PURE__ */ jsx("div", { className, children: /* @__PURE__ */ jsx(
+    Autocomplete,
+    __spreadProps(__spreadValues({
+      className: "w-full",
+      isLoading: isLoading || isFetching,
+      items,
+      scrollRef: scrollerRef,
+      inputValue,
+      onInputChange: handleInputChange,
+      selectedKey: isMultiSelect ? null : selectedKey,
+      onSelectionChange: handleSelectionChange,
+      onOpenChange: (open) => {
+        var _a2;
+        setIsOpen(open);
+        (_a2 = autocompleteProps.onOpenChange) == null ? void 0 : _a2.call(autocompleteProps, open);
+      },
+      startContent: chipsContent,
+      shouldCloseOnBlur: !isMultiSelect,
+      allowsCustomValue: isMultiSelect,
+      menuTrigger: isMultiSelect ? "focus" : "focus"
+    }, autocompleteProps), {
+      children: (item) => /* @__PURE__ */ jsx(
+        AutocompleteItem,
+        {
+          className: cn(
+            isItemSelected(item) && "bg-primary-50 text-primary-600"
+          ),
+          endContent: isItemSelected(item) ? "✓" : void 0,
+          children: renderItem(item)
+        },
+        getItemKey(item)
+      )
+    })
+  ) });
 }
 export {
   InfiniteAutocomplete

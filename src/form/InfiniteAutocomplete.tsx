@@ -82,13 +82,16 @@ export function InfiniteAutocomplete<T extends object>({
   const handleSelectionChange = useCallback(
     (key: SelectionKey | null): void => {
       if (!key) {
-        onSelectionChange?.(null);
+        if (!isMultiSelect) {
+          onSelectionChange?.(null);
+        }
         return;
       }
 
       if (!isMultiSelect) {
         // Mode single select - comportement normal de l'Autocomplete
         onSelectionChange?.(key);
+        setInputValue(""); // Vider l'input après sélection
         return;
       }
 
@@ -105,7 +108,7 @@ export function InfiniteAutocomplete<T extends object>({
 
       onSelectionChange?.(newSelectedKeys);
 
-      // Vider l'input et garder le dropdown ouvert en mode multiselect
+      // Vider l'input mais garder le focus et le dropdown ouvert
       setInputValue("");
     },
     [isMultiSelect, selectedKeys, onSelectionChange],
@@ -127,29 +130,41 @@ export function InfiniteAutocomplete<T extends object>({
     [isMultiSelect, selectedKeys, getItemKey],
   );
 
+  // Chips à afficher dans le champ en mode multiselect
+  const chipsContent = useMemo((): JSX.Element | null => {
+    if (!isMultiSelect || selectedItems.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className="flex max-w-full flex-wrap gap-1">
+        {selectedItems.map((item): JSX.Element => {
+          const itemKey = getItemKey(item);
+          return (
+            <Chip
+              key={itemKey}
+              onClose={(): void => handleRemoveChip(itemKey)}
+              variant="flat"
+              size="sm"
+              endContent={<IconXboxX size={12} />}
+              className="max-w-[120px]"
+            >
+              <span className="truncate text-xs">{getItemValue(item)}</span>
+            </Chip>
+          );
+        })}
+      </div>
+    );
+  }, [
+    isMultiSelect,
+    selectedItems,
+    getItemKey,
+    getItemValue,
+    handleRemoveChip,
+  ]);
+
   return (
     <div className={className}>
-      {/* Chips pour les éléments sélectionnés en mode multiselect */}
-      {isMultiSelect && selectedItems.length > 0 && (
-        <div className="mb-2 flex flex-wrap gap-1">
-          {selectedItems.map((item): JSX.Element => {
-            const itemKey = getItemKey(item);
-            return (
-              <Chip
-                key={itemKey}
-                onClose={(): void => handleRemoveChip(itemKey)}
-                variant="flat"
-                size="sm"
-                endContent={<IconXboxX />}
-                className="max-w-xs"
-              >
-                <span className="truncate">{getItemValue(item)}</span>
-              </Chip>
-            );
-          })}
-        </div>
-      )}
-
       {/* Composant Autocomplete enrichi */}
       <Autocomplete<T>
         className="w-full"
@@ -164,11 +179,12 @@ export function InfiniteAutocomplete<T extends object>({
           setIsOpen(open);
           autocompleteProps.onOpenChange?.(open);
         }}
+        // Chips intégrées dans le champ
+        startContent={chipsContent}
         // Enrichissements pour le multiselect
-        {...(isMultiSelect && {
-          allowsCustomValue: true,
-          shouldCloseOnBlur: false, // Garder ouvert en multiselect
-        })}
+        shouldCloseOnBlur={!isMultiSelect}
+        allowsCustomValue={isMultiSelect}
+        menuTrigger={isMultiSelect ? "focus" : "focus"}
         {...autocompleteProps}
       >
         {(item: T): JSX.Element => (
