@@ -214,7 +214,7 @@ export function InfiniteAutocomplete<T extends object>({
             </Badge>
           </PopoverTrigger>
 
-          <PopoverContent className="rounded-md p-4 dark:bg-background">
+          <PopoverContent className="rounded-md border border-border p-4 dark:bg-background">
             <div className="mb-4 flex w-full items-center justify-between gap-4">
               <h4 className="text-sm font-semibold text-foreground">
                 Éléments {selectionLabel}s ({selectedItems.length})
@@ -224,7 +224,7 @@ export function InfiniteAutocomplete<T extends object>({
                   trigger={
                     <IconTrash
                       onClick={handleClearAll}
-                      className="cursor-pointer text-danger opacity-60 transition-all duration-200 hover:opacity-100"
+                      className="cursor-pointer text-danger opacity-80 transition-all duration-200 hover:opacity-100"
                       size={18}
                     />
                   }
@@ -261,7 +261,7 @@ export function InfiniteAutocomplete<T extends object>({
                           <IconXboxX
                             size={14}
                             onClick={(): void => handleRemoveChip(itemKey)}
-                            className="absolute -right-2 -top-2 cursor-pointer text-danger opacity-60 transition-all duration-200 group-hover:opacity-100"
+                            className="absolute -right-2 -top-2 cursor-pointer text-danger opacity-80 transition-all duration-200 group-hover:opacity-100"
                           />
                         </div>
                       }

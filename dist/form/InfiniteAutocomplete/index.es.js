@@ -198,7 +198,7 @@ function InfiniteAutocomplete(_a) {
               )
             }
           ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { className: "rounded-md p-4 dark:bg-background", children: [
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "rounded-md border border-border p-4 dark:bg-background", children: [
             /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between gap-4", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
@@ -214,7 +214,7 @@ function InfiniteAutocomplete(_a) {
                     IconTrash,
                     {
                       onClick: handleClearAll,
-                      className: "cursor-pointer text-danger opacity-60 transition-all duration-200 hover:opacity-100",
+                      className: "cursor-pointer text-danger opacity-80 transition-all duration-200 hover:opacity-100",
                       size: 18
                     }
                   ),
@@ -243,7 +243,7 @@ function InfiniteAutocomplete(_a) {
                       {
                         size: 14,
                         onClick: () => handleRemoveChip(itemKey),
-                        className: "absolute -right-2 -top-2 cursor-pointer text-danger opacity-60 transition-all duration-200 group-hover:opacity-100"
+                        className: "absolute -right-2 -top-2 cursor-pointer text-danger opacity-80 transition-all duration-200 group-hover:opacity-100"
                       }
                     )
                   ] })
