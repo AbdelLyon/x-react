@@ -198,8 +198,8 @@ function InfiniteAutocomplete(_a) {
               )
             }
           ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { className: "px-3", children: [
-            /* @__PURE__ */ jsxs("div", { className: "flex w-full items-center justify-between gap-4 py-4", children: [
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "rounded-md p-4", children: [
+            /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between gap-4", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
                 selectionLabel,
@@ -213,7 +213,7 @@ function InfiniteAutocomplete(_a) {
                   trigger: /* @__PURE__ */ jsx(
                     IconTrash,
                     {
-                      className: "cursor-pointer text-danger",
+                      className: "cursor-pointer text-danger opacity-70 hover:opacity-100",
                       size: 18
                     }
                   ),
@@ -236,7 +236,7 @@ function InfiniteAutocomplete(_a) {
                         size: "sm",
                         variant: "light",
                         color: "danger",
-                        className: "size-6 opacity-80 transition-opacity group-hover:opacity-100",
+                        className: "size-6 opacity-70 transition-opacity group-hover:opacity-100",
                         onPress: () => handleRemoveChip(itemKey),
                         children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
                       }
