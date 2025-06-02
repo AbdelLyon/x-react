@@ -231,12 +231,12 @@ function InfiniteAutocomplete(_a) {
                 )
               ] })
             ] }) }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "flex max-h-64 justify-end", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               return /* @__PURE__ */ jsxs(
                 "div",
                 {
-                  className: "group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100",
+                  className: "group flex items-center justify-between rounded-md p-2 transition-colors hover:bg-default-100",
                   children: [
                     /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-1 items-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm text-foreground", children: getItemValue(item) }) }),
                     /* @__PURE__ */ jsx(
@@ -304,7 +304,7 @@ function InfiniteAutocomplete(_a) {
           {
             className: mergeTailwindClasses(
               "border border-border/40",
-              isItemSelected(item) && "bg-outline-default",
+              isItemSelected(item) && "bg-default",
               itemClassName
             ),
             endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "text-success", children: "✓" }) : void 0,

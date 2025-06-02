@@ -242,14 +242,14 @@ export function InfiniteAutocomplete<T extends object>({
               </div>
             </div>
 
-            <ScrollShadow className="max-h-64">
+            <ScrollShadow className="flex max-h-64 justify-end">
               <div className="space-y-1 p-2">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
                   return (
                     <div
                       key={itemKey}
-                      className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100"
+                      className="group flex items-center justify-between rounded-md p-2 transition-colors hover:bg-default-100"
                     >
                       <div className="flex min-w-0 flex-1 items-center">
                         <div className="truncate text-sm text-foreground">
@@ -325,7 +325,7 @@ export function InfiniteAutocomplete<T extends object>({
             key={getItemKey(item)}
             className={mergeTailwindClasses(
               "border border-border/40",
-              isItemSelected(item) && "bg-outline-default",
+              isItemSelected(item) && "bg-default",
               itemClassName,
             )}
             endContent={
