@@ -1,5 +1,4 @@
 import { useInfiniteScroll } from "@/hooks";
-import { useInfiniteList } from "@/hooks/useInfiniteList";
 import type { SelectProps } from "@heroui/react";
 import { Select, SelectItem } from "@heroui/react";
 import type { JSX } from "react";
@@ -7,17 +6,12 @@ import { useState } from "react";
 
 interface InfiniteSelectProps<T>
   extends Omit<SelectProps, "items" | "children"> {
-  // Fetch function requirements
-  fetchFunction: (
-    offset: number,
-    limit: number,
-    searchText?: string,
-  ) => Promise<{
-    items: T[];
-    hasMore: boolean;
-  }>;
-  fetchDelay?: number;
-  limit?: number;
+  // React Query props
+  items: T[];
+  isFetching: boolean;
+  fetchNextPage: () => void;
+  hasNextPage: boolean;
+  isLoading: boolean;
 
   // Core functionality
   renderItem: (item: T) => React.ReactNode;
@@ -30,9 +24,11 @@ interface InfiniteSelectProps<T>
 }
 
 export function InfiniteSelect<T extends object>({
-  fetchFunction,
-  fetchDelay = 0,
-  limit = 10,
+  items,
+  isFetching,
+  fetchNextPage,
+  hasNextPage,
+  isLoading,
   className = "max-w-xs",
   renderItem,
   getItemKey,
@@ -43,19 +39,13 @@ export function InfiniteSelect<T extends object>({
   ...selectProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-
-  const { items, hasMore, isLoading, onLoadMore, setSearchText, searchText } =
-    useInfiniteList({
-      fetchFunction,
-      fetchDelay,
-      limit,
-    });
+  const [searchText, setSearchText] = useState("");
 
   const [, scrollerRef] = useInfiniteScroll({
-    hasMore,
+    hasMore: hasNextPage,
     isEnabled: isOpen,
     shouldUseLoader: false,
-    onLoadMore,
+    onLoadMore: fetchNextPage,
   });
 
   const handleSearchChange = (value: string): void => {
@@ -66,7 +56,7 @@ export function InfiniteSelect<T extends object>({
   return (
     <Select
       className={className}
-      isLoading={isLoading}
+      isLoading={isLoading || isFetching}
       items={items}
       scrollRef={scrollerRef}
       selectionMode={selectionMode}

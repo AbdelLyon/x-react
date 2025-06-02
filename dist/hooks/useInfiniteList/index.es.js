@@ -28,26 +28,20 @@ function useInfiniteList({
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(0);
-  const [searchText, setSearchTextState] = useState("");
-  const loadItems = (currentOffset, shouldAppend = true) => __async(null, null, function* () {
+  const loadItems = (currentOffset) => __async(null, null, function* () {
     try {
       setIsLoading(true);
-      if (currentOffset > 0 && shouldAppend) {
+      if (offset > 0) {
         yield new Promise(
           (resolve) => setTimeout(resolve, fetchDelay)
         );
       }
       const { items: newItems, hasMore: moreAvailable } = yield fetchFunction(
         currentOffset,
-        limit,
-        searchText
+        limit
       );
       setHasMore(moreAvailable);
-      if (shouldAppend) {
-        setItems((prevItems) => [...prevItems, ...newItems]);
-      } else {
-        setItems(newItems);
-      }
+      setItems((prevItems) => [...prevItems, ...newItems]);
     } catch (error) {
       console.error("There was an error with the fetch operation:", error);
     } finally {
@@ -55,33 +49,18 @@ function useInfiniteList({
     }
   });
   useEffect(() => {
-    void loadItems(0, false);
-  }, [searchText]);
-  useEffect(() => {
     void loadItems(offset);
   }, []);
   const onLoadMore = () => {
     const newOffset = offset + limit;
     setOffset(newOffset);
-    void loadItems(newOffset, true);
-  };
-  const refetch = () => {
-    setOffset(0);
-    setHasMore(true);
-    void loadItems(0, false);
-  };
-  const setSearchText = (newSearchText) => {
-    setSearchTextState(newSearchText);
-    setOffset(0);
+    void loadItems(newOffset);
   };
   return {
     items,
     hasMore,
     isLoading,
-    onLoadMore,
-    refetch,
-    setSearchText,
-    searchText
+    onLoadMore
   };
 }
 export {

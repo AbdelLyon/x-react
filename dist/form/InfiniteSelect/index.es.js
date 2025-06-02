@@ -30,15 +30,16 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx } from "react/jsx-runtime";
-import { useInfiniteList } from "../../hooks/useInfiniteList/index.es.js";
 import { Select, SelectItem } from "@heroui/react";
 import { useState } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 function InfiniteSelect(_a) {
   var _b = _a, {
-    fetchFunction,
-    fetchDelay = 0,
-    limit = 10,
+    items,
+    isFetching,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
     className = "max-w-xs",
     renderItem,
     getItemKey,
@@ -47,9 +48,11 @@ function InfiniteSelect(_a) {
     searchPlaceholder = "Rechercher...",
     isSearchable = false
   } = _b, selectProps = __objRest(_b, [
-    "fetchFunction",
-    "fetchDelay",
-    "limit",
+    "items",
+    "isFetching",
+    "fetchNextPage",
+    "hasNextPage",
+    "isLoading",
     "className",
     "renderItem",
     "getItemKey",
@@ -59,16 +62,12 @@ function InfiniteSelect(_a) {
     "isSearchable"
   ]);
   const [isOpen, setIsOpen] = useState(false);
-  const { items, hasMore, isLoading, onLoadMore, setSearchText, searchText } = useInfiniteList({
-    fetchFunction,
-    fetchDelay,
-    limit
-  });
+  const [searchText, setSearchText] = useState("");
   const [, scrollerRef] = useInfiniteScroll({
-    hasMore,
+    hasMore: hasNextPage,
     isEnabled: isOpen,
     shouldUseLoader: false,
-    onLoadMore
+    onLoadMore: fetchNextPage
   });
   const handleSearchChange = (value) => {
     setSearchText(value);
@@ -78,7 +77,7 @@ function InfiniteSelect(_a) {
     Select,
     __spreadProps(__spreadValues(__spreadProps(__spreadValues({
       className,
-      isLoading,
+      isLoading: isLoading || isFetching,
       items,
       scrollRef: scrollerRef,
       selectionMode
