@@ -1,19 +1,18 @@
 import { useInfiniteScroll } from "@/hooks";
-import type { InputProps } from "@heroui/react";
-import {
-  Input,
-  Chip,
-  Listbox,
-  ListboxItem,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@heroui/react";
-import { IconSearch, IconX } from "@tabler/icons-react";
+import type { AutocompleteProps } from "@heroui/react";
+import { Autocomplete, AutocompleteItem, Chip, cn } from "@heroui/react";
+import { IconXboxX } from "@tabler/icons-react";
 import type { JSX } from "react";
-import { useState, useRef } from "react";
+import { useState, useCallback, useMemo } from "react";
 
-interface InfiniteMultiSelectProps<T> {
+// Utiliser le type Key compatible avec HeroUI
+type SelectionKey = string | number;
+
+interface InfiniteSelectProps<T extends object>
+  extends Omit<
+    AutocompleteProps<T>,
+    "items" | "children" | "selectedKey" | "onSelectionChange"
+  > {
   // React Query props
   items: T[];
   isFetching: boolean;
@@ -23,20 +22,16 @@ interface InfiniteMultiSelectProps<T> {
 
   // Core functionality
   renderItem: (item: T) => React.ReactNode;
-  getItemKey: (item: T) => string | number;
-  getItemValue?: (item: T) => string; // Pour afficher dans les chips
-
-  // Selection
-  selectedItems: T[];
-  onSelectionChange: (items: T[]) => void;
+  getItemKey: (item: T) => SelectionKey;
+  getItemValue?: (item: T) => string;
 
   // Search functionality
   onSearchChange?: (searchText: string) => void;
-  placeholder?: string;
-
-  // Styling
-  className?: string;
-  inputProps?: Partial<InputProps>;
+  // Selection - enrichissement pour multiselect
+  selectionMode?: "single" | "multiple";
+  selectedKey?: SelectionKey | null; // Pour single select
+  selectedKeys?: Set<SelectionKey>; // Pour multiselect
+  onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
 }
 
 export function InfiniteAutocomplete<T extends object>({
@@ -45,19 +40,19 @@ export function InfiniteAutocomplete<T extends object>({
   fetchNextPage,
   hasNextPage,
   isLoading,
+  className = "max-w-xs",
   renderItem,
   getItemKey,
   getItemValue = (item: T): string => String(renderItem(item)),
-  selectedItems,
-  onSelectionChange,
   onSearchChange,
-  placeholder = "Rechercher et sélectionner...",
-  className = "max-w-xs",
-  inputProps,
-}: InfiniteMultiSelectProps<T>): JSX.Element {
-  const [searchText, setSearchText] = useState("");
+  selectionMode = "single",
+  selectedKey,
+  selectedKeys = new Set(),
+  onSelectionChange,
+  ...autocompleteProps
+}: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = useState("");
 
   const [, scrollerRef] = useInfiniteScroll({
     hasMore: hasNextPage,
@@ -66,119 +61,128 @@ export function InfiniteAutocomplete<T extends object>({
     onLoadMore: fetchNextPage,
   });
 
-  const handleSearchChange = (value: string): void => {
-    setSearchText(value);
-    onSearchChange?.(value);
-    setIsOpen(true);
-  };
+  const isMultiSelect = selectionMode === "multiple";
 
-  const handleItemSelect = (item: T): void => {
-    const itemKey = getItemKey(item);
-    const isSelected = selectedItems.some(
-      (selected): boolean => getItemKey(selected) === itemKey,
-    );
-
-    if (isSelected) {
-      onSelectionChange(
-        selectedItems.filter(
-          (selected): boolean => getItemKey(selected) !== itemKey,
-        ),
-      );
-    } else {
-      onSelectionChange([...selectedItems, item]);
+  // Obtenir les items sélectionnés pour l'affichage des chips
+  const selectedItems = useMemo((): T[] => {
+    if (!isMultiSelect) {
+      return [];
     }
+    return items.filter((item): boolean => selectedKeys.has(getItemKey(item)));
+  }, [items, selectedKeys, getItemKey, isMultiSelect]);
 
-    // Clear search and close dropdown after selection
-    setSearchText("");
-    setIsOpen(false);
-    inputRef.current?.focus();
-  };
+  const handleInputChange = useCallback(
+    (value: string): void => {
+      setInputValue(value);
+      onSearchChange?.(value);
+    },
+    [onSearchChange],
+  );
 
-  const handleRemoveItem = (item: T): void => {
-    const itemKey = getItemKey(item);
-    onSelectionChange(
-      selectedItems.filter(
-        (selected): boolean => getItemKey(selected) !== itemKey,
-      ),
-    );
-  };
+  const handleSelectionChange = useCallback(
+    (key: SelectionKey | null): void => {
+      if (!key) {
+        onSelectionChange?.(null);
+        return;
+      }
 
-  const isItemSelected = (item: T): boolean => {
-    const itemKey = getItemKey(item);
-    return selectedItems.some(
-      (selected): boolean => getItemKey(selected) === itemKey,
-    );
-  };
+      if (!isMultiSelect) {
+        // Mode single select - comportement normal de l'Autocomplete
+        onSelectionChange?.(key);
+        return;
+      }
+
+      // Mode multiselect - logique enrichie
+      const newSelectedKeys = new Set(selectedKeys);
+
+      if (selectedKeys.has(key)) {
+        // Désélectionner
+        newSelectedKeys.delete(key);
+      } else {
+        // Sélectionner
+        newSelectedKeys.add(key);
+      }
+
+      onSelectionChange?.(newSelectedKeys);
+
+      // Vider l'input et garder le dropdown ouvert en mode multiselect
+      setInputValue("");
+    },
+    [isMultiSelect, selectedKeys, onSelectionChange],
+  );
+
+  const handleRemoveChip = useCallback(
+    (itemKey: SelectionKey): void => {
+      const newSelectedKeys = new Set(selectedKeys);
+      newSelectedKeys.delete(itemKey);
+      onSelectionChange?.(newSelectedKeys);
+    },
+    [selectedKeys, onSelectionChange],
+  );
+
+  const isItemSelected = useCallback(
+    (item: T): boolean => {
+      return isMultiSelect && selectedKeys.has(getItemKey(item));
+    },
+    [isMultiSelect, selectedKeys, getItemKey],
+  );
 
   return (
     <div className={className}>
-      {/* Selected items chips */}
-      {selectedItems.length > 0 && (
+      {/* Chips pour les éléments sélectionnés en mode multiselect */}
+      {isMultiSelect && selectedItems.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-1">
-          {selectedItems.map(
-            (item): JSX.Element => (
+          {selectedItems.map((item): JSX.Element => {
+            const itemKey = getItemKey(item);
+            return (
               <Chip
-                key={getItemKey(item)}
-                onClose={(): void => handleRemoveItem(item)}
+                key={itemKey}
+                onClose={(): void => handleRemoveChip(itemKey)}
                 variant="flat"
                 size="sm"
-                endContent={<IconX />}
+                endContent={<IconXboxX />}
+                className="max-w-xs"
               >
-                {getItemValue(item)}
+                <span className="truncate">{getItemValue(item)}</span>
               </Chip>
-            ),
-          )}
+            );
+          })}
         </div>
       )}
 
-      {/* Search input with dropdown */}
-      <Popover
-        isOpen={isOpen}
-        onOpenChange={setIsOpen}
-        placement="bottom-start"
-        shouldCloseOnBlur={true}
+      {/* Composant Autocomplete enrichi */}
+      <Autocomplete<T>
+        className="w-full"
+        isLoading={isLoading || isFetching}
+        items={items}
+        scrollRef={scrollerRef}
+        inputValue={inputValue}
+        onInputChange={handleInputChange}
+        selectedKey={isMultiSelect ? null : selectedKey}
+        onSelectionChange={handleSelectionChange}
+        onOpenChange={(open): void => {
+          setIsOpen(open);
+          autocompleteProps.onOpenChange?.(open);
+        }}
+        // Enrichissements pour le multiselect
+        {...(isMultiSelect && {
+          allowsCustomValue: true,
+          shouldCloseOnBlur: false, // Garder ouvert en multiselect
+        })}
+        {...autocompleteProps}
       >
-        <PopoverTrigger>
-          <Input
-            ref={inputRef}
-            placeholder={placeholder}
-            value={searchText}
-            onValueChange={handleSearchChange}
-            isClearable
-            startContent={<IconSearch className="text-default-400" />}
-            variant="bordered"
-            onFocus={(): void => setIsOpen(true)}
-            {...inputProps}
-          />
-        </PopoverTrigger>
-
-        <PopoverContent className="w-full p-0">
-          <Listbox
-            aria-label="Search results"
-            className="max-h-60 overflow-auto"
-            emptyContent={
-              isLoading || isFetching
-                ? "Chargement..."
-                : "Aucun résultat trouvé"
-            }
-            items={items}
-            ref={scrollerRef}
-          >
-            {(item: T): JSX.Element => (
-              <ListboxItem
-                key={getItemKey(item)}
-                onPress={(): void => handleItemSelect(item)}
-                className={
-                  isItemSelected(item) ? "bg-primary-50 text-primary-600" : ""
-                }
-                endContent={isItemSelected(item) ? "✓" : undefined}
-              >
-                {renderItem(item)}
-              </ListboxItem>
+        {(item: T): JSX.Element => (
+          <AutocompleteItem
+            key={getItemKey(item)}
+            className={cn(
+              isItemSelected(item) && "bg-primary-50 text-primary-600",
             )}
-          </Listbox>
-        </PopoverContent>
-      </Popover>
+            endContent={isItemSelected(item) ? "✓" : undefined}
+          >
+            {renderItem(item)}
+          </AutocompleteItem>
+        )}
+      </Autocomplete>
     </div>
   );
 }

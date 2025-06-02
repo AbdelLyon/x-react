@@ -1,20 +1,20 @@
-import { InputProps } from '@heroui/react';
+import { AutocompleteProps } from '@heroui/react';
 import { JSX } from 'react';
-interface InfiniteMultiSelectProps<T> {
+type SelectionKey = string | number;
+interface InfiniteSelectProps<T extends object> extends Omit<AutocompleteProps<T>, "items" | "children" | "selectedKey" | "onSelectionChange"> {
     items: T[];
     isFetching: boolean;
     fetchNextPage: () => void;
     hasNextPage: boolean;
     isLoading: boolean;
     renderItem: (item: T) => React.ReactNode;
-    getItemKey: (item: T) => string | number;
+    getItemKey: (item: T) => SelectionKey;
     getItemValue?: (item: T) => string;
-    selectedItems: T[];
-    onSelectionChange: (items: T[]) => void;
     onSearchChange?: (searchText: string) => void;
-    placeholder?: string;
-    className?: string;
-    inputProps?: Partial<InputProps>;
+    selectionMode?: "single" | "multiple";
+    selectedKey?: SelectionKey | null;
+    selectedKeys?: Set<SelectionKey>;
+    onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
 }
-export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, renderItem, getItemKey, getItemValue, selectedItems, onSelectionChange, onSearchChange, placeholder, className, inputProps, }: InfiniteMultiSelectProps<T>): JSX.Element;
+export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, ...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
 export {};
