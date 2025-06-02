@@ -215,7 +215,7 @@ export function InfiniteAutocomplete<T extends object>({
 
           <PopoverContent className="p-0">
             <div className="border-b border-border py-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between bg-content1-100 px-2 dark:bg-content1">
                 <h4 className="text-sm font-semibold text-foreground">
                   Éléments {selectionLabel}s ({selectedItems.length})
                 </h4>
@@ -233,7 +233,7 @@ export function InfiniteAutocomplete<T extends object>({
               </div>
             </div>
 
-            <ScrollShadow className="max-h-64">
+            <ScrollShadow className="max-h-64 w-full">
               <div className="w-full space-y-1 p-2">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
