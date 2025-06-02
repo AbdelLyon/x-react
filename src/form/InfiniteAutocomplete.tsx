@@ -185,7 +185,7 @@ export function InfiniteAutocomplete<T extends object>({
 
     // Badge avec popover en absolu
     return (
-      <div className="absolute left-0 top-0 z-20 -translate-y-full pb-2">
+      <div className="absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-2">
         <Popover
           isOpen={isPopoverOpen}
           onOpenChange={setIsPopoverOpen}
@@ -204,7 +204,7 @@ export function InfiniteAutocomplete<T extends object>({
                 variant="flat"
                 size="sm"
                 startContent={selectionIcon}
-                className="h-8 border border-divider bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm"
+                className="h-8 border border-border bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm"
                 onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
               >
                 {selectedItems.length} {selectionLabel}
@@ -214,7 +214,7 @@ export function InfiniteAutocomplete<T extends object>({
           </PopoverTrigger>
 
           <PopoverContent className="w-80 p-0">
-            <div className="border-b border-divider px-4 py-3">
+            <div className="border-b border-border px-4 py-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-semibold text-foreground">
                   Éléments {selectionLabel}s ({selectedItems.length})
@@ -242,7 +242,7 @@ export function InfiniteAutocomplete<T extends object>({
               </div>
             </div>
 
-            <ScrollShadow className="flex max-h-64 justify-end">
+            <ScrollShadow className="max-h-64">
               <div className="space-y-1 p-2">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);

@@ -163,7 +163,7 @@ function InfiniteAutocomplete(_a) {
         );
       }) }) });
     }
-    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-2", children: /* @__PURE__ */ jsxs(
       Popover,
       {
         isOpen: isPopoverOpen,
@@ -185,7 +185,7 @@ function InfiniteAutocomplete(_a) {
                   variant: "flat",
                   size: "sm",
                   startContent: selectionIcon,
-                  className: "h-8 border border-divider bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm",
+                  className: "h-8 border border-border bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm",
                   onPress: () => setIsPopoverOpen(!isPopoverOpen),
                   children: [
                     selectedItems.length,
@@ -198,7 +198,7 @@ function InfiniteAutocomplete(_a) {
             }
           ) }),
           /* @__PURE__ */ jsxs(PopoverContent, { className: "w-80 p-0", children: [
-            /* @__PURE__ */ jsx("div", { className: "border-b border-divider px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
+            /* @__PURE__ */ jsx("div", { className: "border-b border-border px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
                 selectionLabel,
@@ -231,7 +231,7 @@ function InfiniteAutocomplete(_a) {
                 )
               ] })
             ] }) }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "flex max-h-64 justify-end", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               return /* @__PURE__ */ jsxs(
                 "div",
