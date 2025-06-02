@@ -11,7 +11,6 @@ interface InfiniteSelectProps<T> extends Omit<SelectProps, "items" | "children">
     onSearchChange?: (searchText: string) => void;
     searchPlaceholder?: string;
     isSearchable?: boolean;
-    searchClassName?: string;
 }
-export declare function InfiniteSelect<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, selectionMode, onSearchChange, searchPlaceholder, isSearchable, searchClassName, ...selectProps }: InfiniteSelectProps<T>): JSX.Element;
+export declare function InfiniteSelect<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, selectionMode, onSearchChange, searchPlaceholder, isSearchable, ...selectProps }: InfiniteSelectProps<T>): JSX.Element;
 export {};

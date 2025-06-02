@@ -3,7 +3,6 @@ import type { SelectProps } from "@heroui/react";
 import { Select, SelectItem } from "@heroui/react";
 import type { JSX } from "react";
 import { useState } from "react";
-import { Input } from "./Input";
 
 interface InfiniteSelectProps<T>
   extends Omit<SelectProps, "items" | "children"> {
@@ -22,7 +21,6 @@ interface InfiniteSelectProps<T>
   onSearchChange?: (searchText: string) => void;
   searchPlaceholder?: string;
   isSearchable?: boolean;
-  searchClassName?: string;
 }
 
 export function InfiniteSelect<T extends object>({
@@ -38,7 +36,6 @@ export function InfiniteSelect<T extends object>({
   onSearchChange,
   searchPlaceholder = "Rechercher...",
   isSearchable = false,
-  searchClassName,
   ...selectProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,35 +54,28 @@ export function InfiniteSelect<T extends object>({
   };
 
   return (
-    <div className="flex flex-col gap-2">
-      {isSearchable && (
-        <Input
-          className={searchClassName}
-          placeholder={searchPlaceholder}
-          value={searchText}
-          onValueChange={handleSearchChange}
-          isClearable
-          variant="bordered"
-          size="sm"
-        />
+    <Select
+      className={className}
+      isLoading={isLoading || isFetching}
+      items={items}
+      scrollRef={scrollerRef}
+      selectionMode={selectionMode}
+      // Props pour la recherche
+      {...(isSearchable && {
+        allowsCustomValue: true,
+        onInputChange: handleSearchChange,
+        inputValue: searchText,
+        placeholder: searchPlaceholder,
+      })}
+      onOpenChange={(open): void => {
+        setIsOpen(open);
+        selectProps.onOpenChange?.(open);
+      }}
+      {...selectProps}
+    >
+      {(item: T): JSX.Element => (
+        <SelectItem key={getItemKey(item)}>{renderItem(item)}</SelectItem>
       )}
-
-      <Select
-        className={className}
-        isLoading={isLoading || isFetching}
-        items={items}
-        scrollRef={scrollerRef}
-        selectionMode={selectionMode}
-        onOpenChange={(open): void => {
-          setIsOpen(open);
-          selectProps.onOpenChange?.(open);
-        }}
-        {...selectProps}
-      >
-        {(item: T): JSX.Element => (
-          <SelectItem key={getItemKey(item)}>{renderItem(item)}</SelectItem>
-        )}
-      </Select>
-    </div>
+    </Select>
   );
 }

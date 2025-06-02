@@ -29,10 +29,9 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsxs, jsx } from "react/jsx-runtime";
+import { jsx } from "react/jsx-runtime";
 import { Select, SelectItem } from "@heroui/react";
 import { useState } from "react";
-import { Input } from "../Input/index.es.js";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 function InfiniteSelect(_a) {
   var _b = _a, {
@@ -47,8 +46,7 @@ function InfiniteSelect(_a) {
     selectionMode = "single",
     onSearchChange,
     searchPlaceholder = "Rechercher...",
-    isSearchable = false,
-    searchClassName
+    isSearchable = false
   } = _b, selectProps = __objRest(_b, [
     "items",
     "isFetching",
@@ -61,8 +59,7 @@ function InfiniteSelect(_a) {
     "selectionMode",
     "onSearchChange",
     "searchPlaceholder",
-    "isSearchable",
-    "searchClassName"
+    "isSearchable"
   ]);
   const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -76,37 +73,29 @@ function InfiniteSelect(_a) {
     setSearchText(value);
     onSearchChange == null ? void 0 : onSearchChange(value);
   };
-  return /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-2", children: [
-    isSearchable && /* @__PURE__ */ jsx(
-      Input,
-      {
-        className: searchClassName,
-        placeholder: searchPlaceholder,
-        value: searchText,
-        onValueChange: handleSearchChange,
-        isClearable: true,
-        variant: "bordered",
-        size: "sm"
+  return /* @__PURE__ */ jsx(
+    Select,
+    __spreadProps(__spreadValues(__spreadProps(__spreadValues({
+      className,
+      isLoading: isLoading || isFetching,
+      items,
+      scrollRef: scrollerRef,
+      selectionMode
+    }, isSearchable && {
+      allowsCustomValue: true,
+      onInputChange: handleSearchChange,
+      inputValue: searchText,
+      placeholder: searchPlaceholder
+    }), {
+      onOpenChange: (open) => {
+        var _a2;
+        setIsOpen(open);
+        (_a2 = selectProps.onOpenChange) == null ? void 0 : _a2.call(selectProps, open);
       }
-    ),
-    /* @__PURE__ */ jsx(
-      Select,
-      __spreadProps(__spreadValues({
-        className,
-        isLoading: isLoading || isFetching,
-        items,
-        scrollRef: scrollerRef,
-        selectionMode,
-        onOpenChange: (open) => {
-          var _a2;
-          setIsOpen(open);
-          (_a2 = selectProps.onOpenChange) == null ? void 0 : _a2.call(selectProps, open);
-        }
-      }, selectProps), {
-        children: (item) => /* @__PURE__ */ jsx(SelectItem, { children: renderItem(item) }, getItemKey(item))
-      })
-    )
-  ] });
+    }), selectProps), {
+      children: (item) => /* @__PURE__ */ jsx(SelectItem, { children: renderItem(item) }, getItemKey(item))
+    })
+  );
 }
 export {
   InfiniteSelect
