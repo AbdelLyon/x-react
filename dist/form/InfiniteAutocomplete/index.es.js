@@ -214,7 +214,7 @@ function InfiniteAutocomplete(_a) {
                     IconTrash,
                     {
                       onClick: handleClearAll,
-                      className: "cursor-pointer text-danger opacity-60 transition-all duration-200 group-hover:opacity-90",
+                      className: "cursor-pointer text-danger opacity-60 transition-all duration-200 hover:opacity-100",
                       size: 18
                     }
                   ),
@@ -241,9 +241,9 @@ function InfiniteAutocomplete(_a) {
                     /* @__PURE__ */ jsx(
                       IconXboxX,
                       {
-                        size: 15,
+                        size: 13,
                         onClick: () => handleRemoveChip(itemKey),
-                        className: "absolute -right-3 -top-3 size-5 opacity-60 transition-all duration-200 group-hover:opacity-90"
+                        className: "absolute -right-3 -top-3 size-5 text-danger opacity-60 transition-all duration-200 group-hover:opacity-100"
                       }
                     )
                   ] })
