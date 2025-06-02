@@ -213,7 +213,7 @@ export function InfiniteAutocomplete<T extends object>({
             </Badge>
           </PopoverTrigger>
 
-          <PopoverContent className="w-80 p-0">
+          <PopoverContent>
             <div className="border-b border-border py-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-semibold text-foreground">
