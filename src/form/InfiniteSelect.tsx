@@ -41,7 +41,7 @@ export function InfiniteSelect<T extends object>({
   const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
 
-  const [, scrollerRef] = useInfiniteScroll({
+  const { scrollContainerRef } = useInfiniteScroll({
     hasMore: hasNextPage,
     isEnabled: isOpen,
     shouldUseLoader: false,
@@ -58,7 +58,7 @@ export function InfiniteSelect<T extends object>({
       className={className}
       isLoading={isLoading || isFetching}
       items={items}
-      scrollRef={scrollerRef}
+      scrollRef={scrollContainerRef}
       selectionMode={selectionMode}
       // Props pour la recherche
       {...(isSearchable && {

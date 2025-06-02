@@ -42,7 +42,7 @@ export function DataGrid<T extends { id: string | number }>({
     columns,
   });
 
-  const [loaderRef, scrollerRef] = useInfiniteScroll({
+  const { loaderRef, scrollContainerRef } = useInfiniteScroll({
     hasMore: hasMoreData,
     onLoadMore: (): void => {
       fetchNextPage?.();
@@ -75,7 +75,7 @@ export function DataGrid<T extends { id: string | number }>({
       )}
       shadow={props.shadow ?? "none"}
       radius={props.radius ?? "none"}
-      baseRef={scrollerRef}
+      baseRef={scrollContainerRef}
       classNames={{
         wrapper: mergeTailwindClasses(
           "bg-white border-0 p-0 dark:bg-background",

@@ -75,7 +75,7 @@ function DataGrid(_a) {
     onSortChange,
     columns
   });
-  const [loaderRef, scrollerRef] = useInfiniteScroll({
+  const { loaderRef, scrollContainerRef } = useInfiniteScroll({
     hasMore: hasMoreData,
     onLoadMore: () => {
       fetchNextPage == null ? void 0 : fetchNextPage();
@@ -106,7 +106,7 @@ function DataGrid(_a) {
       ),
       shadow: (_a2 = props.shadow) != null ? _a2 : "none",
       radius: (_b2 = props.radius) != null ? _b2 : "none",
-      baseRef: scrollerRef,
+      baseRef: scrollContainerRef,
       classNames: {
         wrapper: mergeTailwindClasses(
           "bg-white border-0 p-0 dark:bg-background",

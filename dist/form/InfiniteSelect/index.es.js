@@ -63,7 +63,7 @@ function InfiniteSelect(_a) {
   ]);
   const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [, scrollerRef] = useInfiniteScroll({
+  const { scrollContainerRef } = useInfiniteScroll({
     hasMore: hasNextPage,
     isEnabled: isOpen,
     shouldUseLoader: false,
@@ -79,7 +79,7 @@ function InfiniteSelect(_a) {
       className,
       isLoading: isLoading || isFetching,
       items,
-      scrollRef: scrollerRef,
+      scrollRef: scrollContainerRef,
       selectionMode
     }, isSearchable && {
       allowsCustomValue: true,

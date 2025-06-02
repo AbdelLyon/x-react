@@ -80,7 +80,7 @@ function InfiniteAutocomplete(_a) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [, scrollerRef] = useInfiniteScroll({
+  const { scrollContainerRef } = useInfiniteScroll({
     hasMore: hasNextPage,
     isEnabled: isOpen,
     shouldUseLoader: false,
@@ -268,7 +268,7 @@ function InfiniteAutocomplete(_a) {
         }, autocompleteProps.inputProps),
         isLoading: isLoading || isFetching,
         items,
-        scrollRef: scrollerRef,
+        scrollRef: scrollContainerRef,
         inputValue,
         onInputChange: handleInputChange,
         selectedKey: isMultiSelect ? null : selectedKey,

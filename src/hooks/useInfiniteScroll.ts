@@ -2,103 +2,152 @@ import { createDebouncedFunction } from "@/utils";
 import { useLayoutEffect, useRef, useCallback } from "react";
 
 export interface UseInfiniteScrollProps {
+  /** Active/désactive le scroll infini */
   isEnabled?: boolean;
+  /** Indique s'il y a plus de données à charger */
   hasMore?: boolean;
+  /** Distance en pixels avant le bas pour déclencher le chargement */
   distance?: number;
+  /** Utilise un élément loader avec Intersection Observer */
   shouldUseLoader?: boolean;
+  /** Callback appelé quand il faut charger plus de données */
   onLoadMore?: () => void;
+  /** Délai de debounce pour les événements scroll (ms) */
+  debounceDelay?: number;
+  /** Seuil pour l'Intersection Observer */
+  threshold?: number;
+}
+
+export interface UseInfiniteScrollReturn {
+  /** Ref pour l'élément loader (utilisé avec shouldUseLoader=true) */
+  loaderRef: React.RefObject<HTMLElement | null>;
+  /** Ref pour le conteneur de scroll */
+  scrollContainerRef: React.RefObject<HTMLElement | null>;
+  /** Indique si un chargement est en cours */
+  isLoading: boolean;
+  /** Force le chargement de nouvelles données */
+  triggerLoadMore: () => void;
 }
 
 export const useInfiniteScroll = (
   props: UseInfiniteScrollProps = {},
-): readonly [React.RefObject<HTMLElement>, React.RefObject<HTMLElement>] => {
+): UseInfiniteScrollReturn => {
   const {
     hasMore = true,
     distance = 250,
     isEnabled = true,
     shouldUseLoader = true,
+    debounceDelay = 100,
+    threshold = 0.1,
     onLoadMore,
   } = props;
 
-  const scrollContainerRef = useRef<HTMLElement>(null);
-  const loaderRef = useRef<HTMLElement>(null);
+  // Refs avec types corrects
+  const scrollContainerRef = useRef<HTMLElement | null>(null);
+  const loaderRef = useRef<HTMLElement | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const isLoadingRef = useRef(false);
+  const isLoadingRef = useRef<boolean>(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-  const loadMore = useCallback((): (() => void) => {
-    let timer: ReturnType<typeof setTimeout>;
-
-    if (!isLoadingRef.current && hasMore && onLoadMore) {
-      isLoadingRef.current = true;
-      onLoadMore();
-      timer = setTimeout((): void => {
-        isLoadingRef.current = false;
-      }, 100);
-    }
-
-    return (): void => clearTimeout(timer);
-  }, [hasMore, onLoadMore]);
-
-  useLayoutEffect((): (() => void) | undefined => {
-    const scrollContainerNode = scrollContainerRef.current;
-
-    if (!isEnabled || !scrollContainerNode || !hasMore) {
+  // Fonction de chargement optimisée
+  const triggerLoadMore = useCallback((): void => {
+    if (isLoadingRef.current || !hasMore || !onLoadMore) {
       return;
     }
 
-    if (shouldUseLoader) {
-      const loaderNode = loaderRef.current;
+    isLoadingRef.current = true;
+    onLoadMore();
 
-      if (!loaderNode) {
-        return;
-      }
-
-      const options = {
-        root: scrollContainerNode,
-        rootMargin: `0px 0px ${distance}px 0px`,
-        threshold: 0.1,
-      };
-
-      const observer = new IntersectionObserver((entries): void => {
-        const [entry] = entries;
-
-        if (entry.isIntersecting) {
-          loadMore();
-        }
-      }, options);
-
-      observer.observe(loaderNode);
-      observerRef.current = observer;
-
-      return (): void => {
-        if (observerRef.current) {
-          observerRef.current.disconnect();
-        }
-      };
+    // Reset du flag après un délai
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
 
-    const debouncedCheckIfNearBottom = createDebouncedFunction((): void => {
-      if (
-        scrollContainerNode.scrollHeight - scrollContainerNode.scrollTop <=
-        scrollContainerNode.clientHeight + distance
-      ) {
-        loadMore();
-      }
-    }, 100);
+    timeoutRef.current = setTimeout((): void => {
+      isLoadingRef.current = false;
+    }, debounceDelay);
+  }, [hasMore, onLoadMore, debounceDelay]);
 
-    scrollContainerNode.addEventListener("scroll", debouncedCheckIfNearBottom);
+  // Gestion avec Intersection Observer (mode loader)
+  useLayoutEffect((): (() => void) | undefined => {
+    if (!isEnabled || !shouldUseLoader || !hasMore) {
+      return;
+    }
+
+    const scrollContainer = scrollContainerRef.current;
+    const loader = loaderRef.current;
+
+    if (!scrollContainer || !loader) {
+      return;
+    }
+
+    const options: IntersectionObserverInit = {
+      root: scrollContainer,
+      rootMargin: `0px 0px ${distance}px 0px`,
+      threshold,
+    };
+
+    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]): void => {
+      const [entry] = entries;
+      if (entry?.isIntersecting) {
+        triggerLoadMore();
+      }
+    }, options);
+
+    observer.observe(loader);
+    observerRef.current = observer;
 
     return (): void => {
-      scrollContainerNode.removeEventListener(
-        "scroll",
-        debouncedCheckIfNearBottom,
-      );
+      observer.disconnect();
+      observerRef.current = null;
     };
-  }, [hasMore, distance, isEnabled, shouldUseLoader, loadMore]);
+  }, [isEnabled, shouldUseLoader, hasMore, distance, threshold, triggerLoadMore]);
 
-  return [loaderRef, scrollContainerRef] as const as readonly [
-    React.RefObject<HTMLElement>,
-    React.RefObject<HTMLElement>,
-  ];
+  // Gestion avec scroll event (mode sans loader)
+  useLayoutEffect((): (() => void) | undefined => {
+    if (!isEnabled || shouldUseLoader || !hasMore) {
+      return;
+    }
+
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) {
+      return;
+    }
+
+    const checkScrollPosition = (): void => {
+      const { scrollHeight, scrollTop, clientHeight } = scrollContainer;
+      const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+
+      if (distanceFromBottom <= distance) {
+        triggerLoadMore();
+      }
+    };
+
+    const debouncedCheck = createDebouncedFunction(checkScrollPosition, debounceDelay);
+
+    scrollContainer.addEventListener("scroll", debouncedCheck, { passive: true });
+
+    return (): void => {
+      scrollContainer.removeEventListener("scroll", debouncedCheck);
+    };
+  }, [isEnabled, shouldUseLoader, hasMore, distance, debounceDelay, triggerLoadMore]);
+
+  // Cleanup des timeouts
+  useLayoutEffect((): (() => void) => {
+    return (): void => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  return {
+    loaderRef,
+    scrollContainerRef,
+    isLoading: isLoadingRef.current,
+    triggerLoadMore,
+  };
 };
-export type UseInfiniteScrollReturn = ReturnType<typeof useInfiniteScroll>;
