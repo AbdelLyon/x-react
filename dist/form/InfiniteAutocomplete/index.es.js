@@ -236,8 +236,7 @@ function InfiniteAutocomplete(_a) {
                   classNames: {
                     content: "max-w-xs text-xs bg-background border border-border shadow-lg"
                   },
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group flex flex-col items-center gap-2 rounded-lg border border-border/50 p-3 transition-all hover:border-border hover:bg-default/50", children: [
-                    /* @__PURE__ */ jsx("div", { className: "flex size-6 items-center justify-center rounded-md bg-primary/10", children: selectionIcon }),
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex flex-col items-center rounded-lg border border-border/50 p-3 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm", children: [
                     /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground", children: itemValue }) }),
                     /* @__PURE__ */ jsx(
                       Button,
@@ -246,7 +245,7 @@ function InfiniteAutocomplete(_a) {
                         size: "sm",
                         variant: "light",
                         color: "danger",
-                        className: "size-5 opacity-0 transition-all duration-200 group-hover:opacity-100",
+                        className: "absolute -right-1 -top-1 size-5 opacity-0 transition-all duration-200 group-hover:opacity-100",
                         onPress: () => handleRemoveChip(itemKey),
                         children: /* @__PURE__ */ jsx(IconXboxX, { size: 10 })
                       }
