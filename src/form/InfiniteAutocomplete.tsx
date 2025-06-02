@@ -215,22 +215,20 @@ export function InfiniteAutocomplete<T extends object>({
           </PopoverTrigger>
 
           <PopoverContent>
-            <div className="p-3">
-              <div className="flex items-center justify-between gap-4">
-                <h4 className="text-sm font-semibold text-foreground">
-                  Éléments {selectionLabel}s ({selectedItems.length})
-                </h4>
-                <div className="flex gap-1">
-                  <Tooltip
-                    trigger={
-                      <IconTrash
-                        className="cursor-pointer text-danger"
-                        size={18}
-                      />
-                    }
-                    content="Tout supprimer"
-                  />
-                </div>
+            <div className="flex items-center justify-between gap-4">
+              <h4 className="text-sm font-semibold text-foreground">
+                Éléments {selectionLabel}s ({selectedItems.length})
+              </h4>
+              <div className="flex gap-1">
+                <Tooltip
+                  trigger={
+                    <IconTrash
+                      className="cursor-pointer text-danger"
+                      size={18}
+                    />
+                  }
+                  content="Tout supprimer"
+                />
               </div>
             </div>
 
