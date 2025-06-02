@@ -31,7 +31,7 @@ var __objRest = (source, exclude) => {
 };
 import { jsx, jsxs } from "react/jsx-runtime";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Chip, Popover, PopoverTrigger, Badge, PopoverContent, Button, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
+import { Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
 import { IconXboxX, IconUsers } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
@@ -147,7 +147,7 @@ function InfiniteAutocomplete(_a) {
       return null;
     }
     if (selectedItems.length <= maxVisibleInBadge) {
-      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-50 -translate-y-full pb-3", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2 rounded-2xl border border-border/20 bg-background/80 p-3 shadow-sm backdrop-blur-xl", children: selectedItems.map((item) => {
+      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm", children: selectedItems.map((item) => {
         const itemKey = getItemKey(item);
         return /* @__PURE__ */ jsx(
           Chip,
@@ -156,88 +156,76 @@ function InfiniteAutocomplete(_a) {
             variant: "flat",
             size: "sm",
             endContent: /* @__PURE__ */ jsx(IconXboxX, { size: 12 }),
-            className: "max-w-[140px] bg-default/60 font-medium hover:bg-default/80",
+            className: "max-w-[120px]",
             children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs", children: getItemValue(item) })
           },
           itemKey
         );
       }) }) });
     }
-    return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-50 -translate-y-full rounded-md border border-border pb-1", children: /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-2", children: /* @__PURE__ */ jsxs(
       Popover,
       {
         isOpen: isPopoverOpen,
         onOpenChange: setIsPopoverOpen,
-        placement: "top-end",
+        placement: "top-start",
         showArrow: true,
         backdrop: "transparent",
         children: [
-          /* @__PURE__ */ jsx(PopoverTrigger, { children: /* @__PURE__ */ jsxs(
-            "div",
+          /* @__PURE__ */ jsx(PopoverTrigger, { children: /* @__PURE__ */ jsx(
+            Badge,
             {
-              className: "flex cursor-pointer items-center gap-3 rounded-2xl border border-border/20 bg-background/80 p-4 shadow-sm backdrop-blur-xl transition-all hover:bg-background/90 hover:shadow-md",
-              onClick: () => setIsPopoverOpen(!isPopoverOpen),
-              children: [
-                /* @__PURE__ */ jsx(
-                  Badge,
-                  {
-                    content: selectedItems.length,
-                    color: "primary",
-                    size: "sm",
-                    className: "font-semibold",
-                    children: /* @__PURE__ */ jsx("div", { className: "flex size-10 items-center justify-center rounded-xl bg-primary/10", children: selectionIcon })
-                  }
-                ),
-                /* @__PURE__ */ jsx("div", { className: "min-w-0 flex-1", children: /* @__PURE__ */ jsxs("p", { className: "truncate text-sm font-semibold text-foreground", children: [
-                  selectedItems.length,
-                  " ",
-                  selectionLabel,
-                  selectedItems.length > 1 ? "s" : ""
-                ] }) }),
-                /* @__PURE__ */ jsx("div", { className: "flex-shrink-0", children: /* @__PURE__ */ jsx("div", { className: "flex size-6 items-center justify-center rounded-full bg-primary/10", children: /* @__PURE__ */ jsx("div", { className: "size-2 rounded-full bg-primary/60" }) }) })
-              ]
+              content: selectedItems.length,
+              color: "primary",
+              size: "sm",
+              className: "cursor-pointer",
+              children: /* @__PURE__ */ jsxs(
+                Button,
+                {
+                  variant: "flat",
+                  size: "sm",
+                  startContent: selectionIcon,
+                  className: "h-8 border border-border bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm",
+                  onPress: () => setIsPopoverOpen(!isPopoverOpen),
+                  children: [
+                    selectedItems.length,
+                    " ",
+                    selectionLabel,
+                    selectedItems.length > 1 ? "s" : ""
+                  ]
+                }
+              )
             }
           ) }),
-          /* @__PURE__ */ jsx(PopoverContent, { className: "w-96 border-0 p-0 shadow-xl", children: /* @__PURE__ */ jsxs("div", { className: "overflow-hidden rounded-2xl border border-border/20 bg-background", children: [
-            /* @__PURE__ */ jsx("div", { className: "border-b border-border/20 bg-default/30", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between px-6 py-4", children: [
-              /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3", children: [
-                /* @__PURE__ */ jsx(
-                  Badge,
-                  {
-                    content: selectedItems.length,
-                    color: "primary",
-                    size: "sm",
-                    className: "font-semibold",
-                    children: /* @__PURE__ */ jsx("div", { className: "flex size-8 items-center justify-center rounded-lg bg-primary/10", children: selectionIcon })
-                  }
-                ),
-                /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
-                  selectedItems.length,
-                  " ",
-                  selectionLabel,
-                  selectedItems.length > 1 ? "s" : ""
-                ] }) })
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "w-80 p-0", children: [
+            /* @__PURE__ */ jsx("div", { className: "border-b border-border px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
+              /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
+                "Éléments ",
+                selectionLabel,
+                "s (",
+                selectedItems.length,
+                ")"
               ] }),
-              /* @__PURE__ */ jsx(
+              /* @__PURE__ */ jsx("div", { className: "flex gap-1", children: /* @__PURE__ */ jsx(
                 Button,
                 {
                   size: "sm",
-                  variant: "flat",
+                  variant: "light",
                   color: "danger",
                   onPress: handleClearAll,
-                  className: "h-8 px-3 text-xs font-medium",
+                  className: "h-6 px-2 text-xs",
                   children: "Tout supprimer"
                 }
-              )
+              ) })
             ] }) }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-80", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-4", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               return /* @__PURE__ */ jsxs(
                 "div",
                 {
-                  className: "group flex items-center justify-between rounded-xl p-3 transition-all hover:bg-default/50",
+                  className: "group flex items-center justify-between rounded-md p-2 transition-colors hover:bg-default-100",
                   children: [
-                    /* @__PURE__ */ jsx("div", { className: "min-w-0 flex-1", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm font-medium text-foreground", children: getItemValue(item) }) }),
+                    /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-1 items-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm text-foreground", children: getItemValue(item) }) }),
                     /* @__PURE__ */ jsx(
                       Button,
                       {
@@ -245,9 +233,9 @@ function InfiniteAutocomplete(_a) {
                         size: "sm",
                         variant: "light",
                         color: "danger",
-                        className: "size-7 opacity-0 transition-opacity group-hover:opacity-100",
+                        className: "size-6 opacity-0 transition-opacity group-hover:opacity-100",
                         onPress: () => handleRemoveChip(itemKey),
-                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 14 })
+                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
                       }
                     )
                   ]
@@ -255,7 +243,7 @@ function InfiniteAutocomplete(_a) {
                 itemKey
               );
             }) }) })
-          ] }) })
+          ] })
         ]
       }
     ) });
