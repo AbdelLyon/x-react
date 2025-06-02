@@ -29,10 +29,10 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsx, jsxs } from "react/jsx-runtime";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
-import { IconXboxX, IconTrash, IconUsers } from "@tabler/icons-react";
+import { cn, Autocomplete, AutocompleteItem, Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow } from "@heroui/react";
+import { IconUsers, IconXboxX, IconTrash } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
@@ -143,7 +143,7 @@ function InfiniteAutocomplete(_a) {
     },
     [isMultiSelect, selectedKeys, getItemKey]
   );
-  const selectionBadge = useMemo(() => {
+  const selectionBadge = () => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
@@ -213,6 +213,7 @@ function InfiniteAutocomplete(_a) {
                   trigger: /* @__PURE__ */ jsx(
                     IconTrash,
                     {
+                      onClick: handleClearAll,
                       className: "cursor-pointer text-danger opacity-70 hover:opacity-100",
                       size: 18
                     }
@@ -221,27 +222,27 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-64", children: /* @__PURE__ */ jsx("div", { className: "w-full space-y-1", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-64", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-3 gap-1.5 p-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
-              return /* @__PURE__ */ jsxs(
-                "div",
+              const itemValue = getItemValue(item);
+              return /* @__PURE__ */ jsx(
+                Tooltip,
                 {
-                  className: "group flex items-center justify-between rounded-md border border-border p-2 transition-colors hover:bg-default",
-                  children: [
-                    /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-1 items-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm text-foreground", children: getItemValue(item) }) }),
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex aspect-square items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10", children: [
+                    /* @__PURE__ */ jsx("div", { className: "truncate text-center text-xs font-medium text-foreground", children: itemValue }),
                     /* @__PURE__ */ jsx(
-                      Button,
+                      "button",
                       {
-                        isIconOnly: true,
-                        size: "sm",
-                        variant: "light",
-                        color: "danger",
-                        className: "size-6 opacity-70 transition-opacity group-hover:opacity-100",
-                        onPress: () => handleRemoveChip(itemKey),
-                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
+                        onClick: () => handleRemoveChip(itemKey),
+                        className: "absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-danger text-danger-foreground opacity-0 transition-opacity group-hover:opacity-100",
+                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 8 })
                       }
                     )
-                  ]
+                  ] }),
+                  content: itemValue,
+                  placement: "top",
+                  showArrow: true,
+                  delay: 500
                 },
                 itemKey
               );
@@ -250,20 +251,9 @@ function InfiniteAutocomplete(_a) {
         ]
       }
     ) });
-  }, [
-    isMultiSelect,
-    selectedItems,
-    maxVisibleInBadge,
-    isPopoverOpen,
-    getItemKey,
-    getItemValue,
-    handleRemoveChip,
-    handleClearAll,
-    selectionIcon,
-    selectionLabel
-  ]);
+  };
   return /* @__PURE__ */ jsxs("div", { className: cn("relative", className), children: [
-    selectionBadge,
+    selectionBadge(),
     /* @__PURE__ */ jsx(
       Autocomplete,
       __spreadProps(__spreadValues({

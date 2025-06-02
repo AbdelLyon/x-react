@@ -154,7 +154,7 @@ export function InfiniteAutocomplete<T extends object>({
   );
 
   // Badge pour afficher le nombre d'éléments sélectionnés - POSITION ABSOLUE
-  const selectionBadge = useMemo((): JSX.Element | null => {
+  const selectionBadge = (): JSX.Element | null => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
@@ -223,6 +223,7 @@ export function InfiniteAutocomplete<T extends object>({
                 <Tooltip
                   trigger={
                     <IconTrash
+                      onClick={handleClearAll}
                       className="cursor-pointer text-danger opacity-70 hover:opacity-100"
                       size={18}
                     />
@@ -233,30 +234,35 @@ export function InfiniteAutocomplete<T extends object>({
             </div>
 
             <ScrollShadow className="max-h-64 w-64">
-              <div className="w-full space-y-1">
+              <div className="grid grid-cols-3 gap-1.5 p-2">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
+                  const itemValue = getItemValue(item);
+
                   return (
-                    <div
-                      key={itemKey}
-                      className="group flex items-center justify-between rounded-md border border-border p-2 transition-colors hover:bg-default"
-                    >
-                      <div className="flex min-w-0 flex-1 items-center">
-                        <div className="truncate text-sm text-foreground">
-                          {getItemValue(item)}
+                    <Tooltip
+                      trigger={
+                        <div className="group relative flex aspect-square items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10">
+                          {/* Texte centré avec truncate */}
+                          <div className="truncate text-center text-xs font-medium text-foreground">
+                            {itemValue}
+                          </div>
+
+                          {/* X de suppression en overlay */}
+                          <button
+                            onClick={(): void => handleRemoveChip(itemKey)}
+                            className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-danger text-danger-foreground opacity-0 transition-opacity group-hover:opacity-100"
+                          >
+                            <IconXboxX size={8} />
+                          </button>
                         </div>
-                      </div>
-                      <Button
-                        isIconOnly
-                        size="sm"
-                        variant="light"
-                        color="danger"
-                        className="size-6 opacity-70 transition-opacity group-hover:opacity-100"
-                        onPress={(): void => handleRemoveChip(itemKey)}
-                      >
-                        <IconXboxX size={12} />
-                      </Button>
-                    </div>
+                      }
+                      key={itemKey}
+                      content={itemValue}
+                      placement="top"
+                      showArrow
+                      delay={500}
+                    />
                   );
                 })}
               </div>
@@ -265,23 +271,11 @@ export function InfiniteAutocomplete<T extends object>({
         </Popover>
       </div>
     );
-  }, [
-    isMultiSelect,
-    selectedItems,
-    maxVisibleInBadge,
-    isPopoverOpen,
-    getItemKey,
-    getItemValue,
-    handleRemoveChip,
-    handleClearAll,
-    selectionIcon,
-    selectionLabel,
-  ]);
+  };
 
   return (
     <div className={cn("relative", className)}>
-      {/* Badge absolue - ne déplace PAS le select */}
-      {selectionBadge}
+      {selectionBadge()}
 
       {/* Composant Autocomplete - position normale */}
       <Autocomplete<T>
