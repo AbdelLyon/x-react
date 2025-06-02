@@ -8,6 +8,7 @@ export type FetchFunctionReturn<T> = {
 export type FetchFunction<T> = (
   offset: number,
   limit: number,
+  searchText?: string, // Ajout du paramètre de recherche
 ) => Promise<FetchFunctionReturn<T>>;
 
 export interface UseInfiniteListProps<T> {
@@ -21,6 +22,9 @@ export interface UseInfiniteListReturn<T> {
   hasMore: boolean;
   isLoading: boolean;
   onLoadMore: () => void;
+  refetch: () => void; // Nouvelle fonction pour relancer la recherche
+  setSearchText: (searchText: string) => void; // Fonction pour modifier le texte de recherche
+  searchText: string; // Texte de recherche actuel
 }
 
 export function useInfiniteList<T>({
@@ -32,11 +36,15 @@ export function useInfiniteList<T>({
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(0);
+  const [searchText, setSearchTextState] = useState("");
 
-  const loadItems = async (currentOffset: number): Promise<void> => {
+  const loadItems = async (
+    currentOffset: number,
+    shouldAppend: boolean = true,
+  ): Promise<void> => {
     try {
       setIsLoading(true);
-      if (offset > 0) {
+      if (currentOffset > 0 && shouldAppend) {
         await new Promise(
           (resolve): NodeJS.Timeout => setTimeout(resolve, fetchDelay),
         );
@@ -45,10 +53,17 @@ export function useInfiniteList<T>({
       const { items: newItems, hasMore: moreAvailable } = await fetchFunction(
         currentOffset,
         limit,
+        searchText,
       );
 
       setHasMore(moreAvailable);
-      setItems((prevItems): T[] => [...prevItems, ...newItems]);
+
+      if (shouldAppend) {
+        setItems((prevItems): T[] => [...prevItems, ...newItems]);
+      } else {
+        // Pour une nouvelle recherche, remplacer tous les items
+        setItems(newItems);
+      }
     } catch (error) {
       console.error("There was an error with the fetch operation:", error);
     } finally {
@@ -57,13 +72,29 @@ export function useInfiniteList<T>({
   };
 
   useEffect((): void => {
+    void loadItems(0, false);
+  }, [searchText]); // Se déclenche aussi quand searchText change
+
+  // Chargement initial
+  useEffect((): void => {
     void loadItems(offset);
   }, []);
 
   const onLoadMore = (): void => {
     const newOffset = offset + limit;
     setOffset(newOffset);
-    void loadItems(newOffset);
+    void loadItems(newOffset, true);
+  };
+
+  const refetch = (): void => {
+    setOffset(0);
+    setHasMore(true);
+    void loadItems(0, false);
+  };
+
+  const setSearchText = (newSearchText: string): void => {
+    setSearchTextState(newSearchText);
+    setOffset(0); // Reset offset pour une nouvelle recherche
   };
 
   return {
@@ -71,5 +102,8 @@ export function useInfiniteList<T>({
     hasMore,
     isLoading,
     onLoadMore,
+    refetch,
+    setSearchText,
+    searchText,
   };
 }

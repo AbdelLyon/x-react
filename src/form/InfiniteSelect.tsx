@@ -11,6 +11,7 @@ interface InfiniteSelectProps<T>
   fetchFunction: (
     offset: number,
     limit: number,
+    searchText?: string,
   ) => Promise<{
     items: T[];
     hasMore: boolean;
@@ -21,6 +22,11 @@ interface InfiniteSelectProps<T>
   // Core functionality
   renderItem: (item: T) => React.ReactNode;
   getItemKey: (item: T, index?: number) => string | number;
+
+  // Search functionality
+  onSearchChange?: (searchText: string) => void;
+  searchPlaceholder?: string;
+  isSearchable?: boolean;
 }
 
 export function InfiniteSelect<T extends object>({
@@ -31,15 +37,19 @@ export function InfiniteSelect<T extends object>({
   renderItem,
   getItemKey,
   selectionMode = "single",
+  onSearchChange,
+  searchPlaceholder = "Rechercher...",
+  isSearchable = false,
   ...selectProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { items, hasMore, isLoading, onLoadMore } = useInfiniteList({
-    fetchFunction,
-    fetchDelay,
-    limit,
-  });
+  const { items, hasMore, isLoading, onLoadMore, setSearchText, searchText } =
+    useInfiniteList({
+      fetchFunction,
+      fetchDelay,
+      limit,
+    });
 
   const [, scrollerRef] = useInfiniteScroll({
     hasMore,
@@ -48,6 +58,11 @@ export function InfiniteSelect<T extends object>({
     onLoadMore,
   });
 
+  const handleSearchChange = (value: string): void => {
+    setSearchText(value);
+    onSearchChange?.(value);
+  };
+
   return (
     <Select
       className={className}
@@ -55,6 +70,13 @@ export function InfiniteSelect<T extends object>({
       items={items}
       scrollRef={scrollerRef}
       selectionMode={selectionMode}
+      // Props pour la recherche
+      {...(isSearchable && {
+        allowsCustomValue: true,
+        onInputChange: handleSearchChange,
+        inputValue: searchText,
+        placeholder: searchPlaceholder,
+      })}
       onOpenChange={(open): void => {
         setIsOpen(open);
         selectProps.onOpenChange?.(open);
