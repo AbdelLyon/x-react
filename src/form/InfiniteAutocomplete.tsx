@@ -242,9 +242,9 @@ export function InfiniteAutocomplete<T extends object>({
                   return (
                     <Tooltip
                       trigger={
-                        <div className="group relative flex aspect-auto items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10">
+                        <div className="group relative flex items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10">
                           {/* Texte centré avec truncate */}
-                          <div className="truncate text-center text-xs font-medium text-foreground">
+                          <div className="w-24 truncate text-center text-xs font-medium text-foreground">
                             {itemValue}
                           </div>
 

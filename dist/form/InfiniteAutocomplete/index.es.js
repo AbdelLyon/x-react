@@ -228,8 +228,8 @@ function InfiniteAutocomplete(_a) {
               return /* @__PURE__ */ jsx(
                 Tooltip,
                 {
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex aspect-auto items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10", children: [
-                    /* @__PURE__ */ jsx("div", { className: "truncate text-center text-xs font-medium text-foreground", children: itemValue }),
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10", children: [
+                    /* @__PURE__ */ jsx("div", { className: "w-24 truncate text-center text-xs font-medium text-foreground", children: itemValue }),
                     /* @__PURE__ */ jsx(
                       "button",
                       {
