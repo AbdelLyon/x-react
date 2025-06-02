@@ -222,7 +222,7 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-64", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-3 gap-2 p-2", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-3 gap-2 p-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
               return /* @__PURE__ */ jsx(
@@ -236,7 +236,7 @@ function InfiniteAutocomplete(_a) {
                   classNames: {
                     content: "max-w-xs text-xs bg-background border border-border shadow-lg"
                   },
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex flex-col items-center rounded-lg border border-border/50 p-3 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm", children: [
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm", children: [
                     /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground", children: itemValue }) }),
                     /* @__PURE__ */ jsx(
                       Button,
@@ -245,7 +245,7 @@ function InfiniteAutocomplete(_a) {
                         size: "sm",
                         variant: "light",
                         color: "danger",
-                        className: "absolute -right-1 -top-1 size-5 opacity-0 transition-all duration-200 group-hover:opacity-100",
+                        className: "absolute -right-1 -top-1 size-5 opacity-70 transition-all duration-200 group-hover:opacity-100",
                         onPress: () => handleRemoveChip(itemKey),
                         children: /* @__PURE__ */ jsx(IconXboxX, { size: 10 })
                       }

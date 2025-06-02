@@ -232,7 +232,7 @@ export function InfiniteAutocomplete<T extends object>({
                 />
               </div>
             </div>
-            <ScrollShadow className="max-h-64 w-64">
+            <ScrollShadow className="max-h-64 w-72">
               <div className="grid grid-cols-3 gap-2 p-2">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
@@ -251,21 +251,19 @@ export function InfiniteAutocomplete<T extends object>({
                           "max-w-xs text-xs bg-background border border-border shadow-lg",
                       }}
                       trigger={
-                        <div className="group relative flex flex-col items-center rounded-lg border border-border/50 p-3 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm">
-                          {/* Contenu principal avec truncate */}
+                        <div className="group relative flex flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default/50 hover:shadow-sm">
                           <div className="w-full min-w-0 text-center">
                             <div className="truncate text-xs font-medium text-foreground">
                               {itemValue}
                             </div>
                           </div>
 
-                          {/* Bouton de suppression - apparaît au hover */}
                           <Button
                             isIconOnly
                             size="sm"
                             variant="light"
                             color="danger"
-                            className="absolute -right-1 -top-1 size-5 opacity-0 transition-all duration-200 group-hover:opacity-100"
+                            className="absolute -right-1 -top-1 size-5 opacity-70 transition-all duration-200 group-hover:opacity-100"
                             onPress={(): void => handleRemoveChip(itemKey)}
                           >
                             <IconXboxX size={10} />
