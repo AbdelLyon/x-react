@@ -3,7 +3,7 @@ import type { AutocompleteProps } from "@heroui/react";
 import { Autocomplete, AutocompleteItem, Chip, cn } from "@heroui/react";
 import { IconXboxX } from "@tabler/icons-react";
 import type { JSX } from "react";
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useRef } from "react";
 
 // Utiliser le type Key compatible avec HeroUI
 type SelectionKey = string | number;
@@ -32,6 +32,7 @@ interface InfiniteSelectProps<T extends object>
   selectedKey?: SelectionKey | null; // Pour single select
   selectedKeys?: Set<SelectionKey>; // Pour multiselect
   onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
+  maxVisibleChips?: number; // Nombre max de chips visibles avant truncate
 }
 
 export function InfiniteAutocomplete<T extends object>({
@@ -49,10 +50,12 @@ export function InfiniteAutocomplete<T extends object>({
   selectedKey,
   selectedKeys = new Set(),
   onSelectionChange,
+  maxVisibleChips = 3, // Par défaut, 3 chips max avant truncate
   ...autocompleteProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const chipsContainerRef = useRef<HTMLDivElement>(null);
 
   const [, scrollerRef] = useInfiniteScroll({
     hasMore: hasNextPage,
@@ -70,6 +73,25 @@ export function InfiniteAutocomplete<T extends object>({
     }
     return items.filter((item): boolean => selectedKeys.has(getItemKey(item)));
   }, [items, selectedKeys, getItemKey, isMultiSelect]);
+
+  // Calculer les chips visibles et cachés
+  const { visibleChips, hiddenCount } = useMemo((): {
+    visibleChips: T[];
+    hiddenCount: number;
+  } => {
+    if (!isMultiSelect || selectedItems.length === 0) {
+      return { visibleChips: [], hiddenCount: 0 };
+    }
+
+    if (selectedItems.length <= maxVisibleChips) {
+      return { visibleChips: selectedItems, hiddenCount: 0 };
+    }
+
+    return {
+      visibleChips: selectedItems.slice(0, maxVisibleChips),
+      hiddenCount: selectedItems.length - maxVisibleChips,
+    };
+  }, [selectedItems, maxVisibleChips, isMultiSelect]);
 
   const handleInputChange = useCallback(
     (value: string): void => {
@@ -130,15 +152,19 @@ export function InfiniteAutocomplete<T extends object>({
     [isMultiSelect, selectedKeys, getItemKey],
   );
 
-  // Chips à afficher dans le champ en mode multiselect
+  // Chips à afficher dans le champ en mode multiselect avec truncate
   const chipsContent = useMemo((): JSX.Element | null => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
 
     return (
-      <div className="flex max-w-full flex-wrap gap-1">
-        {selectedItems.map((item): JSX.Element => {
+      <div
+        ref={chipsContainerRef}
+        className="flex max-w-full flex-wrap items-center gap-1"
+      >
+        {/* Chips visibles */}
+        {visibleChips.map((item): JSX.Element => {
           const itemKey = getItemKey(item);
           return (
             <Chip
@@ -147,20 +173,34 @@ export function InfiniteAutocomplete<T extends object>({
               variant="flat"
               size="sm"
               endContent={<IconXboxX size={12} />}
-              className="max-w-[120px]"
+              className="max-w-[120px] shrink-0"
             >
               <span className="truncate text-xs">{getItemValue(item)}</span>
             </Chip>
           );
         })}
+
+        {/* Indicateur pour les chips cachés */}
+        {hiddenCount > 0 && (
+          <Chip
+            variant="solid"
+            size="sm"
+            className="shrink-0 bg-default-200 text-default-600"
+            isCloseable={false}
+          >
+            <span className="text-xs font-medium">+{hiddenCount}</span>
+          </Chip>
+        )}
       </div>
     );
   }, [
     isMultiSelect,
-    selectedItems,
+    visibleChips,
+    hiddenCount,
     getItemKey,
     getItemValue,
     handleRemoveChip,
+    selectedItems.length,
   ]);
 
   return (

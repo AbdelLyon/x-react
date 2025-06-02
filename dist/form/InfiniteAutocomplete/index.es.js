@@ -29,10 +29,10 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsx } from "react/jsx-runtime";
+import { jsxs, jsx } from "react/jsx-runtime";
 import { Chip, Autocomplete, AutocompleteItem, cn } from "@heroui/react";
 import { IconXboxX } from "@tabler/icons-react";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useRef, useMemo, useCallback } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 function InfiniteAutocomplete(_a) {
   var _b = _a, {
@@ -49,7 +49,8 @@ function InfiniteAutocomplete(_a) {
     selectionMode = "single",
     selectedKey,
     selectedKeys = /* @__PURE__ */ new Set(),
-    onSelectionChange
+    onSelectionChange,
+    maxVisibleChips = 3
   } = _b, autocompleteProps = __objRest(_b, [
     "items",
     "isFetching",
@@ -64,10 +65,12 @@ function InfiniteAutocomplete(_a) {
     "selectionMode",
     "selectedKey",
     "selectedKeys",
-    "onSelectionChange"
+    "onSelectionChange",
+    "maxVisibleChips"
   ]);
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const chipsContainerRef = useRef(null);
   const [, scrollerRef] = useInfiniteScroll({
     hasMore: hasNextPage,
     isEnabled: isOpen,
@@ -81,6 +84,18 @@ function InfiniteAutocomplete(_a) {
     }
     return items.filter((item) => selectedKeys.has(getItemKey(item)));
   }, [items, selectedKeys, getItemKey, isMultiSelect]);
+  const { visibleChips, hiddenCount } = useMemo(() => {
+    if (!isMultiSelect || selectedItems.length === 0) {
+      return { visibleChips: [], hiddenCount: 0 };
+    }
+    if (selectedItems.length <= maxVisibleChips) {
+      return { visibleChips: selectedItems, hiddenCount: 0 };
+    }
+    return {
+      visibleChips: selectedItems.slice(0, maxVisibleChips),
+      hiddenCount: selectedItems.length - maxVisibleChips
+    };
+  }, [selectedItems, maxVisibleChips, isMultiSelect]);
   const handleInputChange = useCallback(
     (value) => {
       setInputValue(value);
@@ -130,27 +145,51 @@ function InfiniteAutocomplete(_a) {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
-    return /* @__PURE__ */ jsx("div", { className: "flex max-w-full flex-wrap gap-1", children: selectedItems.map((item) => {
-      const itemKey = getItemKey(item);
-      return /* @__PURE__ */ jsx(
-        Chip,
-        {
-          onClose: () => handleRemoveChip(itemKey),
-          variant: "flat",
-          size: "sm",
-          endContent: /* @__PURE__ */ jsx(IconXboxX, { size: 12 }),
-          className: "max-w-[120px]",
-          children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs", children: getItemValue(item) })
-        },
-        itemKey
-      );
-    }) });
+    return /* @__PURE__ */ jsxs(
+      "div",
+      {
+        ref: chipsContainerRef,
+        className: "flex max-w-full flex-wrap items-center gap-1",
+        children: [
+          visibleChips.map((item) => {
+            const itemKey = getItemKey(item);
+            return /* @__PURE__ */ jsx(
+              Chip,
+              {
+                onClose: () => handleRemoveChip(itemKey),
+                variant: "flat",
+                size: "sm",
+                endContent: /* @__PURE__ */ jsx(IconXboxX, { size: 12 }),
+                className: "max-w-[120px] shrink-0",
+                children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs", children: getItemValue(item) })
+              },
+              itemKey
+            );
+          }),
+          hiddenCount > 0 && /* @__PURE__ */ jsx(
+            Chip,
+            {
+              variant: "solid",
+              size: "sm",
+              className: "shrink-0 bg-default-200 text-default-600",
+              isCloseable: false,
+              children: /* @__PURE__ */ jsxs("span", { className: "text-xs font-medium", children: [
+                "+",
+                hiddenCount
+              ] })
+            }
+          )
+        ]
+      }
+    );
   }, [
     isMultiSelect,
-    selectedItems,
+    visibleChips,
+    hiddenCount,
     getItemKey,
     getItemValue,
-    handleRemoveChip
+    handleRemoveChip,
+    selectedItems.length
   ]);
   return /* @__PURE__ */ jsx("div", { className, children: /* @__PURE__ */ jsx(
     Autocomplete,
