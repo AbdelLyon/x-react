@@ -214,9 +214,9 @@ export function InfiniteAutocomplete<T extends object>({
             </Badge>
           </PopoverTrigger>
 
-          <PopoverContent className="p-0">
-            <div className="border-b border-border py-4">
-              <div className="flex items-center justify-between gap-4 px-2 ">
+          <PopoverContent>
+            <div className="p-3">
+              <div className="flex items-center justify-between gap-4">
                 <h4 className="text-sm font-semibold text-foreground">
                   Éléments {selectionLabel}s ({selectedItems.length})
                 </h4>
