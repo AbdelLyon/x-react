@@ -304,7 +304,7 @@ function InfiniteAutocomplete(_a) {
           {
             className: mergeTailwindClasses(
               "border border-border/40",
-              isItemSelected(item) && "bg-outline/5 border-outline/10",
+              isItemSelected(item) && "bg-outline-default",
               itemClassName
             ),
             endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "text-success", children: "✓" }) : void 0,

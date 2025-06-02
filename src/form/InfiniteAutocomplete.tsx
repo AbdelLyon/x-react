@@ -325,7 +325,7 @@ export function InfiniteAutocomplete<T extends object>({
             key={getItemKey(item)}
             className={mergeTailwindClasses(
               "border border-border/40",
-              isItemSelected(item) && "bg-outline/5 border-outline/10",
+              isItemSelected(item) && "bg-outline-default",
               itemClassName,
             )}
             endContent={
