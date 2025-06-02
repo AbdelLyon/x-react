@@ -157,11 +157,11 @@ export function InfiniteAutocomplete<T extends object>({
       return null;
     }
 
-    // Si peu d'éléments, on affiche les chips inline en absolu
+    // Si peu d'éléments, on affiche les chips inline
     if (selectedItems.length <= maxVisibleInBadge) {
       return (
-        <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-3">
-          <div className="grid auto-cols-max grid-flow-col gap-2 rounded-xl border border-divider/50 bg-gradient-to-r from-background/95 to-background/90 p-3 shadow-lg backdrop-blur-md">
+        <div className="absolute inset-x-0 top-0 z-50 -translate-y-full pb-3">
+          <div className="flex flex-wrap gap-2 rounded-2xl border border-border/20 bg-background/80 p-3 shadow-sm backdrop-blur-xl">
             {selectedItems.map((item): JSX.Element => {
               const itemKey = getItemKey(item);
               return (
@@ -171,7 +171,7 @@ export function InfiniteAutocomplete<T extends object>({
                   variant="flat"
                   size="sm"
                   endContent={<IconXboxX size={12} />}
-                  className="max-w-[140px] font-medium"
+                  className="max-w-[140px] bg-default/60 font-medium hover:bg-default/80"
                 >
                   <span className="truncate text-xs">{getItemValue(item)}</span>
                 </Chip>
@@ -182,129 +182,120 @@ export function InfiniteAutocomplete<T extends object>({
       );
     }
 
-    // Badge avec popover en absolu - VERSION MODERNE
+    // Badge complet cliquable - VERSION MODERNE
     return (
-      <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-3">
-        <div className="grid grid-cols-[1fr_auto] items-center gap-4 rounded-xl border border-divider/50 bg-gradient-to-r from-background/95 to-background/90 p-4 shadow-lg backdrop-blur-md">
-          {/* Colonne gauche - Info avec badge */}
-          <div className="flex min-w-0 items-center gap-3">
-            <div className="flex-shrink-0">
+      <div className="absolute inset-x-0 top-0 z-50 -translate-y-full pb-3">
+        <Popover
+          isOpen={isPopoverOpen}
+          onOpenChange={setIsPopoverOpen}
+          placement="top-end"
+          showArrow
+          backdrop="transparent"
+        >
+          <PopoverTrigger>
+            <div
+              className="flex cursor-pointer items-center gap-3 rounded-2xl border border-border/20 bg-background/80 p-4 shadow-sm backdrop-blur-xl transition-all hover:bg-background/90 hover:shadow-md"
+              onClick={(): void => setIsPopoverOpen(!isPopoverOpen)}
+            >
+              {/* Badge avec icône */}
               <Badge
                 content={selectedItems.length}
                 color="primary"
                 size="sm"
                 className="font-semibold"
               >
-                <div className="flex size-9 items-center justify-center rounded-lg bg-primary-50">
+                <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
                   {selectionIcon}
                 </div>
               </Badge>
+
+              {/* Info */}
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-semibold text-foreground">
+                  {selectedItems.length} {selectionLabel}
+                  {selectedItems.length > 1 ? "s" : ""}
+                </p>
+              </div>
+
+              {/* Indicateur */}
+              <div className="flex-shrink-0">
+                <div className="flex size-6 items-center justify-center rounded-full bg-primary/10">
+                  <div className="size-2 rounded-full bg-primary/60"></div>
+                </div>
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-foreground">
-                {selectedItems.length} {selectionLabel}
-                {selectedItems.length > 1 ? "s" : ""}
-              </p>
-              <p className="truncate text-xs text-foreground-500">
-                Cliquez pour gérer
-              </p>
-            </div>
-          </div>
+          </PopoverTrigger>
 
-          {/* Colonne droite - Action popover */}
-          <div className="flex gap-2">
-            <Popover
-              isOpen={isPopoverOpen}
-              onOpenChange={setIsPopoverOpen}
-              placement="top-end"
-              showArrow
-              backdrop="transparent"
-            >
-              <PopoverTrigger>
-                <Button
-                  variant="flat"
-                  size="sm"
-                  className="h-9 bg-primary-50 px-4 text-xs font-medium text-primary-600 transition-all duration-200 hover:bg-primary-100"
-                  onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
-                >
-                  Gérer
-                </Button>
-              </PopoverTrigger>
-
-              <PopoverContent className="w-96 border-0 p-0 shadow-xl">
-                <div className="overflow-hidden rounded-xl bg-gradient-to-br from-background to-background/95">
-                  {/* En-tête avec grid */}
-                  <div className="border-b border-divider/30 bg-gradient-to-r from-primary-50 to-primary-100/50">
-                    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 px-5 py-4">
-                      <Badge
-                        content={selectedItems.length}
-                        color="primary"
-                        size="sm"
-                        className="font-semibold"
-                      >
-                        <div className="flex size-8 items-center justify-center rounded-lg bg-primary-100">
-                          {selectionIcon}
-                        </div>
-                      </Badge>
-
-                      <div className="min-w-0">
-                        <h4 className="truncate text-sm font-semibold text-foreground">
-                          Éléments {selectionLabel}s
-                        </h4>
-                        <p className="truncate text-xs text-foreground-500">
-                          {selectedItems.length} élément
-                          {selectedItems.length > 1 ? "s" : ""} sélectionné
-                          {selectedItems.length > 1 ? "s" : ""}
-                        </p>
+          <PopoverContent className="w-96 border-0 p-0 shadow-xl">
+            <div className="overflow-hidden rounded-2xl border border-border/20 bg-background">
+              {/* En-tête simplifié */}
+              <div className="border-b border-border/20 bg-default/30">
+                <div className="flex items-center justify-between px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <Badge
+                      content={selectedItems.length}
+                      color="primary"
+                      size="sm"
+                      className="font-semibold"
+                    >
+                      <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
+                        {selectionIcon}
                       </div>
+                    </Badge>
 
-                      <Button
-                        size="sm"
-                        variant="flat"
-                        color="danger"
-                        onPress={handleClearAll}
-                        className="h-8 px-3 text-xs font-medium"
-                      >
-                        Tout supprimer
-                      </Button>
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground">
+                        {selectedItems.length} {selectionLabel}
+                        {selectedItems.length > 1 ? "s" : ""}
+                      </h4>
                     </div>
                   </div>
 
-                  {/* Liste avec grid */}
-                  <ScrollShadow className="max-h-80">
-                    <div className="grid gap-1 p-4">
-                      {selectedItems.map((item): JSX.Element => {
-                        const itemKey = getItemKey(item);
-                        return (
-                          <div
-                            key={itemKey}
-                            className="group grid grid-cols-[1fr_auto] items-center gap-3 rounded-lg border border-transparent p-3 transition-all duration-200 hover:border-divider/50 hover:bg-default-50"
-                          >
-                            <div className="min-w-0">
-                              <div className="truncate text-sm font-medium text-foreground">
-                                {getItemValue(item)}
-                              </div>
-                            </div>
-                            <Button
-                              isIconOnly
-                              size="sm"
-                              variant="light"
-                              color="danger"
-                              className="size-7 opacity-0 transition-all duration-200 group-hover:opacity-100"
-                              onPress={(): void => handleRemoveChip(itemKey)}
-                            >
-                              <IconXboxX size={14} />
-                            </Button>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </ScrollShadow>
+                  <Button
+                    size="sm"
+                    variant="flat"
+                    color="danger"
+                    onPress={handleClearAll}
+                    className="h-8 px-3 text-xs font-medium"
+                  >
+                    Tout supprimer
+                  </Button>
                 </div>
-              </PopoverContent>
-            </Popover>
-          </div>
-        </div>
+              </div>
+
+              {/* Liste simplifiée */}
+              <ScrollShadow className="max-h-80">
+                <div className="space-y-1 p-4">
+                  {selectedItems.map((item): JSX.Element => {
+                    const itemKey = getItemKey(item);
+                    return (
+                      <div
+                        key={itemKey}
+                        className="group flex items-center justify-between rounded-xl p-3 transition-all hover:bg-default/50"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <div className="truncate text-sm font-medium text-foreground">
+                            {getItemValue(item)}
+                          </div>
+                        </div>
+                        <Button
+                          isIconOnly
+                          size="sm"
+                          variant="light"
+                          color="danger"
+                          className="size-7 opacity-0 transition-opacity group-hover:opacity-100"
+                          onPress={(): void => handleRemoveChip(itemKey)}
+                        >
+                          <IconXboxX size={14} />
+                        </Button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </ScrollShadow>
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
     );
   }, [
