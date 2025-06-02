@@ -245,9 +245,9 @@ function InfiniteAutocomplete(_a) {
                         size: "sm",
                         variant: "light",
                         color: "danger",
-                        className: "absolute -right-3 -top-3 size-6 opacity-70 transition-all duration-200 group-hover:opacity-100",
+                        className: "absolute -right-3 -top-3 size-5 opacity-60 transition-all duration-200 group-hover:opacity-90",
                         onPress: () => handleRemoveChip(itemKey),
-                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 14 })
+                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 15 })
                       }
                     )
                   ] })
@@ -291,7 +291,7 @@ function InfiniteAutocomplete(_a) {
           AutocompleteItem,
           {
             className: mergeTailwindClasses(
-              "border border-border/40",
+              "border border-border/10",
               isItemSelected(item) && "bg-default",
               itemClassName
             ),

@@ -263,10 +263,10 @@ export function InfiniteAutocomplete<T extends object>({
                             size="sm"
                             variant="light"
                             color="danger"
-                            className="absolute -right-3 -top-3 size-6 opacity-70 transition-all duration-200 group-hover:opacity-100"
+                            className="absolute -right-3 -top-3 size-5 opacity-60 transition-all duration-200 group-hover:opacity-90"
                             onPress={(): void => handleRemoveChip(itemKey)}
                           >
-                            <IconXboxX size={14} />
+                            <IconXboxX size={15} />
                           </Button>
                         </div>
                       }
@@ -316,7 +316,7 @@ export function InfiniteAutocomplete<T extends object>({
           <AutocompleteItem
             key={getItemKey(item)}
             className={mergeTailwindClasses(
-              "border border-border/40",
+              "border border-border/10",
               isItemSelected(item) && "bg-default",
               itemClassName,
             )}
