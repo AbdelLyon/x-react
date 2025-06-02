@@ -15,8 +15,8 @@ interface InfiniteSelectProps<T extends object> extends Omit<AutocompleteProps<T
     selectedKey?: SelectionKey | null;
     selectedKeys?: Set<SelectionKey>;
     onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
-    maxVisibleChips?: number;
+    maxVisibleInBadge?: number;
 }
-export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleChips, // Par défaut, 3 chips max avant truncate
+export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, // Affiche max 2 éléments dans le badge
 ...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
 export {};

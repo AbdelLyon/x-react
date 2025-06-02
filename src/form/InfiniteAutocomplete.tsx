@@ -1,9 +1,20 @@
 import { useInfiniteScroll } from "@/hooks";
 import type { AutocompleteProps } from "@heroui/react";
-import { Autocomplete, AutocompleteItem, Chip, cn } from "@heroui/react";
-import { IconXboxX } from "@tabler/icons-react";
+import {
+  Autocomplete,
+  AutocompleteItem,
+  Chip,
+  cn,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Badge,
+  Button,
+  ScrollShadow,
+} from "@heroui/react";
+import { IconXboxX, IconUsers, IconX } from "@tabler/icons-react";
 import type { JSX } from "react";
-import { useState, useCallback, useMemo, useRef } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 // Utiliser le type Key compatible avec HeroUI
 type SelectionKey = string | number;
@@ -32,7 +43,7 @@ interface InfiniteSelectProps<T extends object>
   selectedKey?: SelectionKey | null; // Pour single select
   selectedKeys?: Set<SelectionKey>; // Pour multiselect
   onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
-  maxVisibleChips?: number; // Nombre max de chips visibles avant truncate
+  maxVisibleInBadge?: number; // Nombre max dans le badge avant d'utiliser le popover
 }
 
 export function InfiniteAutocomplete<T extends object>({
@@ -50,12 +61,12 @@ export function InfiniteAutocomplete<T extends object>({
   selectedKey,
   selectedKeys = new Set(),
   onSelectionChange,
-  maxVisibleChips = 3, // Par défaut, 3 chips max avant truncate
+  maxVisibleInBadge = 2, // Affiche max 2 éléments dans le badge
   ...autocompleteProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const chipsContainerRef = useRef<HTMLDivElement>(null);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const [, scrollerRef] = useInfiniteScroll({
     hasMore: hasNextPage,
@@ -66,32 +77,13 @@ export function InfiniteAutocomplete<T extends object>({
 
   const isMultiSelect = selectionMode === "multiple";
 
-  // Obtenir les items sélectionnés pour l'affichage des chips
+  // Obtenir les items sélectionnés pour l'affichage
   const selectedItems = useMemo((): T[] => {
     if (!isMultiSelect) {
       return [];
     }
     return items.filter((item): boolean => selectedKeys.has(getItemKey(item)));
   }, [items, selectedKeys, getItemKey, isMultiSelect]);
-
-  // Calculer les chips visibles et cachés
-  const { visibleChips, hiddenCount } = useMemo((): {
-    visibleChips: T[];
-    hiddenCount: number;
-  } => {
-    if (!isMultiSelect || selectedItems.length === 0) {
-      return { visibleChips: [], hiddenCount: 0 };
-    }
-
-    if (selectedItems.length <= maxVisibleChips) {
-      return { visibleChips: selectedItems, hiddenCount: 0 };
-    }
-
-    return {
-      visibleChips: selectedItems.slice(0, maxVisibleChips),
-      hiddenCount: selectedItems.length - maxVisibleChips,
-    };
-  }, [selectedItems, maxVisibleChips, isMultiSelect]);
 
   const handleInputChange = useCallback(
     (value: string): void => {
@@ -111,26 +103,20 @@ export function InfiniteAutocomplete<T extends object>({
       }
 
       if (!isMultiSelect) {
-        // Mode single select - comportement normal de l'Autocomplete
         onSelectionChange?.(key);
-        setInputValue(""); // Vider l'input après sélection
+        setInputValue("");
         return;
       }
 
-      // Mode multiselect - logique enrichie
       const newSelectedKeys = new Set(selectedKeys);
 
       if (selectedKeys.has(key)) {
-        // Désélectionner
         newSelectedKeys.delete(key);
       } else {
-        // Sélectionner
         newSelectedKeys.add(key);
       }
 
       onSelectionChange?.(newSelectedKeys);
-
-      // Vider l'input mais garder le focus et le dropdown ouvert
       setInputValue("");
     },
     [isMultiSelect, selectedKeys, onSelectionChange],
@@ -145,6 +131,11 @@ export function InfiniteAutocomplete<T extends object>({
     [selectedKeys, onSelectionChange],
   );
 
+  const handleClearAll = useCallback((): void => {
+    onSelectionChange?.(new Set());
+    setIsPopoverOpen(false);
+  }, [onSelectionChange]);
+
   const isItemSelected = useCallback(
     (item: T): boolean => {
       return isMultiSelect && selectedKeys.has(getItemKey(item));
@@ -152,61 +143,144 @@ export function InfiniteAutocomplete<T extends object>({
     [isMultiSelect, selectedKeys, getItemKey],
   );
 
-  // Chips à afficher dans le champ en mode multiselect avec truncate
-  const chipsContent = useMemo((): JSX.Element | null => {
+  // Badge pour afficher le nombre d'éléments sélectionnés
+  const selectionBadge = useMemo((): JSX.Element | null => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
 
-    return (
-      <div
-        ref={chipsContainerRef}
-        className="flex max-w-full flex-wrap items-center gap-1"
-      >
-        {/* Chips visibles */}
-        {visibleChips.map((item): JSX.Element => {
-          const itemKey = getItemKey(item);
-          return (
-            <Chip
-              key={itemKey}
-              onClose={(): void => handleRemoveChip(itemKey)}
-              variant="flat"
-              size="sm"
-              endContent={<IconXboxX size={12} />}
-              className="max-w-[120px] shrink-0"
-            >
-              <span className="truncate text-xs">{getItemValue(item)}</span>
-            </Chip>
-          );
-        })}
+    // Si peu d'éléments, on affiche les chips inline
+    if (selectedItems.length <= maxVisibleInBadge) {
+      return (
+        <div className="mb-2 flex flex-wrap gap-1">
+          {selectedItems.map((item): JSX.Element => {
+            const itemKey = getItemKey(item);
+            return (
+              <Chip
+                key={itemKey}
+                onClose={(): void => handleRemoveChip(itemKey)}
+                variant="flat"
+                size="sm"
+                endContent={<IconXboxX size={12} />}
+                className="max-w-[120px]"
+              >
+                <span className="truncate text-xs">{getItemValue(item)}</span>
+              </Chip>
+            );
+          })}
+        </div>
+      );
+    }
 
-        {/* Indicateur pour les chips cachés */}
-        {hiddenCount > 0 && (
-          <Chip
-            variant="solid"
-            size="sm"
-            className="shrink-0 bg-default-200 text-default-600"
-            isCloseable={false}
-          >
-            <span className="text-xs font-medium">+{hiddenCount}</span>
-          </Chip>
-        )}
+    // Sinon, badge avec popover
+    return (
+      <div className="mb-2">
+        <Popover
+          isOpen={isPopoverOpen}
+          onOpenChange={setIsPopoverOpen}
+          placement="top-start"
+          showArrow
+          backdrop="transparent"
+        >
+          <PopoverTrigger>
+            <Badge
+              content={selectedItems.length}
+              color="primary"
+              size="sm"
+              className="cursor-pointer"
+            >
+              <Button
+                variant="flat"
+                size="sm"
+                startContent={<IconUsers size={16} />}
+                className="h-8 px-3 text-xs"
+                onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
+              >
+                {selectedItems.length} sélectionné
+                {selectedItems.length > 1 ? "s" : ""}
+              </Button>
+            </Badge>
+          </PopoverTrigger>
+
+          <PopoverContent className="w-80 p-0">
+            <div className="border-b border-divider px-4 py-3">
+              <div className="flex items-center justify-between">
+                <h4 className="text-sm font-semibold text-foreground">
+                  Éléments sélectionnés ({selectedItems.length})
+                </h4>
+                <div className="flex gap-1">
+                  <Button
+                    size="sm"
+                    variant="light"
+                    color="danger"
+                    onPress={handleClearAll}
+                    className="h-6 px-2 text-xs"
+                  >
+                    Tout supprimer
+                  </Button>
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    variant="light"
+                    onPress={(): void => setIsPopoverOpen(false)}
+                    className="size-6"
+                  >
+                    <IconX size={14} />
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <ScrollShadow className="max-h-64">
+              <div className="space-y-1 p-2">
+                {selectedItems.map((item): JSX.Element => {
+                  const itemKey = getItemKey(item);
+                  return (
+                    <div
+                      key={itemKey}
+                      className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100"
+                    >
+                      <div className="flex min-w-0 flex-1 items-center">
+                        <div className="truncate text-sm text-foreground">
+                          {getItemValue(item)}
+                        </div>
+                      </div>
+                      <Button
+                        isIconOnly
+                        size="sm"
+                        variant="light"
+                        color="danger"
+                        className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
+                        onPress={(): void => handleRemoveChip(itemKey)}
+                      >
+                        <IconXboxX size={12} />
+                      </Button>
+                    </div>
+                  );
+                })}
+              </div>
+            </ScrollShadow>
+          </PopoverContent>
+        </Popover>
       </div>
     );
   }, [
     isMultiSelect,
-    visibleChips,
-    hiddenCount,
+    selectedItems,
+    maxVisibleInBadge,
+    isPopoverOpen,
     getItemKey,
     getItemValue,
     handleRemoveChip,
-    selectedItems.length,
+    handleClearAll,
   ]);
 
   return (
     <div className={className}>
-      {/* Composant Autocomplete enrichi */}
-      <div className="flex w-full truncate">{chipsContent}</div>
+      {/* Badge moderne pour les sélections */}
+      {selectionBadge}
+
+      {/* Composant Autocomplete */}
       <Autocomplete<T>
         className="w-full"
         isLoading={isLoading || isFetching}
@@ -220,7 +294,6 @@ export function InfiniteAutocomplete<T extends object>({
           setIsOpen(open);
           autocompleteProps.onOpenChange?.(open);
         }}
-        // Enrichissements pour le multiselect
         shouldCloseOnBlur={!isMultiSelect}
         allowsCustomValue={isMultiSelect}
         menuTrigger={isMultiSelect ? "focus" : "focus"}
