@@ -245,7 +245,7 @@ function InfiniteAutocomplete(_a) {
                         size: "sm",
                         variant: "light",
                         color: "danger",
-                        className: "absolute -right-0 -top-0 size-6 opacity-70 transition-all duration-200 group-hover:opacity-100",
+                        className: "absolute -right-2 -top-2 size-6 opacity-70 transition-all duration-200 group-hover:opacity-100",
                         onPress: () => handleRemoveChip(itemKey),
                         children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
                       }
