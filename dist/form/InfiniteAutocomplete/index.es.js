@@ -222,27 +222,36 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72", children: /* @__PURE__ */ jsx("div", { className: "grid w-full grid-cols-3 gap-1.5", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-64", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-3 gap-2 p-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
               return /* @__PURE__ */ jsx(
                 Tooltip,
                 {
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10", children: [
-                    /* @__PURE__ */ jsx("div", { className: "w-24 truncate text-center text-xs font-medium text-foreground", children: itemValue }),
-                    /* @__PURE__ */ jsx(
-                      "button",
-                      {
-                        onClick: () => handleRemoveChip(itemKey),
-                        className: "absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-danger text-danger-foreground opacity-0 transition-opacity group-hover:opacity-100",
-                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 8 })
-                      }
-                    )
-                  ] }),
                   content: itemValue,
                   placement: "top",
                   showArrow: true,
-                  delay: 500
+                  delay: 500,
+                  closeDelay: 0,
+                  classNames: {
+                    content: "max-w-xs text-xs bg-background border border-border shadow-lg"
+                  },
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group flex flex-col items-center gap-2 rounded-lg border border-border/50 p-3 transition-all hover:border-border hover:bg-default/50", children: [
+                    /* @__PURE__ */ jsx("div", { className: "flex size-6 items-center justify-center rounded-md bg-primary/10", children: selectionIcon }),
+                    /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground", children: itemValue }) }),
+                    /* @__PURE__ */ jsx(
+                      Button,
+                      {
+                        isIconOnly: true,
+                        size: "sm",
+                        variant: "light",
+                        color: "danger",
+                        className: "size-5 opacity-0 transition-all duration-200 group-hover:opacity-100",
+                        onPress: () => handleRemoveChip(itemKey),
+                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 10 })
+                      }
+                    )
+                  ] })
                 },
                 itemKey
               );

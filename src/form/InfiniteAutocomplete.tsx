@@ -233,35 +233,51 @@ export function InfiniteAutocomplete<T extends object>({
               </div>
             </div>
 
-            <ScrollShadow className="max-h-64 w-72">
-              <div className="grid w-full grid-cols-3 gap-1.5">
+            <ScrollShadow className="max-h-64 w-64">
+              <div className="grid grid-cols-3 gap-2 p-2">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
                   const itemValue = getItemValue(item);
 
                   return (
                     <Tooltip
-                      trigger={
-                        <div className="group relative flex items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10">
-                          {/* Texte centré avec truncate */}
-                          <div className="w-24 truncate text-center text-xs font-medium text-foreground">
-                            {itemValue}
-                          </div>
-
-                          {/* X de suppression en overlay */}
-                          <button
-                            onClick={(): void => handleRemoveChip(itemKey)}
-                            className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-danger text-danger-foreground opacity-0 transition-opacity group-hover:opacity-100"
-                          >
-                            <IconXboxX size={8} />
-                          </button>
-                        </div>
-                      }
                       key={itemKey}
                       content={itemValue}
                       placement="top"
                       showArrow
                       delay={500}
+                      closeDelay={0}
+                      classNames={{
+                        content:
+                          "max-w-xs text-xs bg-background border border-border shadow-lg",
+                      }}
+                      trigger={
+                        <div className="group flex flex-col items-center gap-2 rounded-lg border border-border/50 p-3 transition-all hover:border-border hover:bg-default/50">
+                          {/* Icône représentative (optionnelle) */}
+                          <div className="flex size-6 items-center justify-center rounded-md bg-primary/10">
+                            {selectionIcon}
+                          </div>
+
+                          {/* Texte avec truncate */}
+                          <div className="w-full min-w-0 text-center">
+                            <div className="truncate text-xs font-medium text-foreground">
+                              {itemValue}
+                            </div>
+                          </div>
+
+                          {/* Bouton de suppression en bas */}
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="light"
+                            color="danger"
+                            className="size-5 opacity-0 transition-all duration-200 group-hover:opacity-100"
+                            onPress={(): void => handleRemoveChip(itemKey)}
+                          >
+                            <IconXboxX size={10} />
+                          </Button>
+                        </div>
+                      }
                     />
                   );
                 })}
