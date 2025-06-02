@@ -214,8 +214,8 @@ export function InfiniteAutocomplete<T extends object>({
           </PopoverTrigger>
 
           <PopoverContent className="p-0">
-            <div className="border-b border-border py-3">
-              <div className="flex items-center justify-between bg-content1-100 px-2 dark:bg-content1">
+            <div className="border-b border-border bg-content1-50 py-3 dark:bg-background">
+              <div className="flex items-center justify-between px-2 ">
                 <h4 className="text-sm font-semibold text-foreground">
                   Éléments {selectionLabel}s ({selectedItems.length})
                 </h4>
@@ -252,7 +252,7 @@ export function InfiniteAutocomplete<T extends object>({
                         size="sm"
                         variant="light"
                         color="danger"
-                        className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
+                        className="size-6 opacity-80 transition-opacity group-hover:opacity-100"
                         onPress={(): void => handleRemoveChip(itemKey)}
                       >
                         <IconXboxX size={12} />
