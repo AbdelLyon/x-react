@@ -53,7 +53,8 @@ function InfiniteAutocomplete(_a) {
     onSelectionChange,
     maxVisibleInBadge = 2,
     selectionIcon = /* @__PURE__ */ jsx(IconUsers, { size: 16 }),
-    selectionLabel: selectionLabel = "sélectionné"
+    selectionLabel: selectionLabel = "sélectionné",
+    itemClassName: itemClassName
   } = _b, autocompleteProps = __objRest(_b, [
     "items",
     "isFetching",
@@ -72,7 +73,9 @@ function InfiniteAutocomplete(_a) {
     "maxVisibleInBadge",
     "selectionIcon",
     // Icône par défaut
-    "selectionLabel"
+    "selectionLabel",
+    // Label par défaut
+    "itemClassName"
   ]);
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -301,7 +304,8 @@ function InfiniteAutocomplete(_a) {
           {
             className: mergeTailwindClasses(
               "border border-border/40",
-              isItemSelected(item) && "bg-outline/5 border-outline/10"
+              isItemSelected(item) && "bg-outline/5 border-outline/10",
+              itemClassName
             ),
             endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "text-success", children: "✓" }) : void 0,
             children: renderItem(item)

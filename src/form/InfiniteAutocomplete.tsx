@@ -49,6 +49,7 @@ interface InfiniteSelectProps<T extends object>
   // Customization pour généricité
   selectionIcon?: ReactNode; // Icône configurable
   selectionLabel?: string; // Label configurable (ex: "sélectionné", "choisi", etc.)
+  itemClassName?: string;
 }
 
 export function InfiniteAutocomplete<T extends object>({
@@ -69,6 +70,7 @@ export function InfiniteAutocomplete<T extends object>({
   maxVisibleInBadge = 2,
   selectionIcon = <IconUsers size={16} />, // Icône par défaut
   selectionLabel = "sélectionné", // Label par défaut
+  itemClassName,
   ...autocompleteProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
@@ -324,6 +326,7 @@ export function InfiniteAutocomplete<T extends object>({
             className={mergeTailwindClasses(
               "border border-border/40",
               isItemSelected(item) && "bg-outline/5 border-outline/10",
+              itemClassName,
             )}
             endContent={
               isItemSelected(item) ? (
