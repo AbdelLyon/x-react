@@ -30,8 +30,8 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx, jsxs } from "react/jsx-runtime";
-import { Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, Autocomplete, AutocompleteItem, cn } from "@heroui/react";
-import { IconXboxX, IconUsers, IconX } from "@tabler/icons-react";
+import { Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
+import { IconXboxX, IconX, IconUsers } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 function InfiniteAutocomplete(_a) {
@@ -50,7 +50,9 @@ function InfiniteAutocomplete(_a) {
     selectedKey,
     selectedKeys = /* @__PURE__ */ new Set(),
     onSelectionChange,
-    maxVisibleInBadge = 2
+    maxVisibleInBadge = 2,
+    selectionIcon = /* @__PURE__ */ jsx(IconUsers, { size: 16 }),
+    selectionLabel: selectionLabel = "sélectionné"
   } = _b, autocompleteProps = __objRest(_b, [
     "items",
     "isFetching",
@@ -66,7 +68,10 @@ function InfiniteAutocomplete(_a) {
     "selectedKey",
     "selectedKeys",
     "onSelectionChange",
-    "maxVisibleInBadge"
+    "maxVisibleInBadge",
+    "selectionIcon",
+    // Icône par défaut
+    "selectionLabel"
   ]);
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -138,7 +143,7 @@ function InfiniteAutocomplete(_a) {
       return null;
     }
     if (selectedItems.length <= maxVisibleInBadge) {
-      return /* @__PURE__ */ jsx("div", { className: "mb-2 flex flex-wrap gap-1", children: selectedItems.map((item) => {
+      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm", children: selectedItems.map((item) => {
         const itemKey = getItemKey(item);
         return /* @__PURE__ */ jsx(
           Chip,
@@ -152,9 +157,9 @@ function InfiniteAutocomplete(_a) {
           },
           itemKey
         );
-      }) });
+      }) }) });
     }
-    return /* @__PURE__ */ jsx("div", { className: "mb-2", children: /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsxs(
       Popover,
       {
         isOpen: isPopoverOpen,
@@ -175,12 +180,13 @@ function InfiniteAutocomplete(_a) {
                 {
                   variant: "flat",
                   size: "sm",
-                  startContent: /* @__PURE__ */ jsx(IconUsers, { size: 16 }),
-                  className: "h-8 px-3 text-xs",
+                  startContent: selectionIcon,
+                  className: "h-8 border border-divider bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm",
                   onPress: () => setIsPopoverOpen(!isPopoverOpen),
                   children: [
                     selectedItems.length,
-                    " sélectionné",
+                    " ",
+                    selectionLabel,
                     selectedItems.length > 1 ? "s" : ""
                   ]
                 }
@@ -190,7 +196,9 @@ function InfiniteAutocomplete(_a) {
           /* @__PURE__ */ jsxs(PopoverContent, { className: "w-80 p-0", children: [
             /* @__PURE__ */ jsx("div", { className: "border-b border-divider px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
-                "Éléments sélectionnés (",
+                "Éléments ",
+                selectionLabel,
+                "s (",
                 selectedItems.length,
                 ")"
               ] }),
@@ -256,9 +264,11 @@ function InfiniteAutocomplete(_a) {
     getItemKey,
     getItemValue,
     handleRemoveChip,
-    handleClearAll
+    handleClearAll,
+    selectionIcon,
+    selectionLabel
   ]);
-  return /* @__PURE__ */ jsxs("div", { className, children: [
+  return /* @__PURE__ */ jsxs("div", { className: cn("relative", className), children: [
     selectionBadge,
     /* @__PURE__ */ jsx(
       Autocomplete,

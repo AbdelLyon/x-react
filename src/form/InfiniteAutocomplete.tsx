@@ -13,7 +13,7 @@ import {
   ScrollShadow,
 } from "@heroui/react";
 import { IconXboxX, IconUsers, IconX } from "@tabler/icons-react";
-import type { JSX } from "react";
+import type { JSX, ReactNode } from "react";
 import { useState, useCallback, useMemo } from "react";
 
 // Utiliser le type Key compatible avec HeroUI
@@ -44,6 +44,10 @@ interface InfiniteSelectProps<T extends object>
   selectedKeys?: Set<SelectionKey>; // Pour multiselect
   onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
   maxVisibleInBadge?: number; // Nombre max dans le badge avant d'utiliser le popover
+
+  // Customization pour généricité
+  selectionIcon?: ReactNode; // Icône configurable
+  selectionLabel?: string; // Label configurable (ex: "sélectionné", "choisi", etc.)
 }
 
 export function InfiniteAutocomplete<T extends object>({
@@ -61,7 +65,9 @@ export function InfiniteAutocomplete<T extends object>({
   selectedKey,
   selectedKeys = new Set(),
   onSelectionChange,
-  maxVisibleInBadge = 2, // Affiche max 2 éléments dans le badge
+  maxVisibleInBadge = 2,
+  selectionIcon = <IconUsers size={16} />, // Icône par défaut
+  selectionLabel = "sélectionné", // Label par défaut
   ...autocompleteProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
@@ -143,38 +149,40 @@ export function InfiniteAutocomplete<T extends object>({
     [isMultiSelect, selectedKeys, getItemKey],
   );
 
-  // Badge pour afficher le nombre d'éléments sélectionnés
+  // Badge pour afficher le nombre d'éléments sélectionnés - POSITION ABSOLUE
   const selectionBadge = useMemo((): JSX.Element | null => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
 
-    // Si peu d'éléments, on affiche les chips inline
+    // Si peu d'éléments, on affiche les chips inline en absolu
     if (selectedItems.length <= maxVisibleInBadge) {
       return (
-        <div className="mb-2 flex flex-wrap gap-1">
-          {selectedItems.map((item): JSX.Element => {
-            const itemKey = getItemKey(item);
-            return (
-              <Chip
-                key={itemKey}
-                onClose={(): void => handleRemoveChip(itemKey)}
-                variant="flat"
-                size="sm"
-                endContent={<IconXboxX size={12} />}
-                className="max-w-[120px]"
-              >
-                <span className="truncate text-xs">{getItemValue(item)}</span>
-              </Chip>
-            );
-          })}
+        <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-2">
+          <div className="flex flex-wrap gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm">
+            {selectedItems.map((item): JSX.Element => {
+              const itemKey = getItemKey(item);
+              return (
+                <Chip
+                  key={itemKey}
+                  onClose={(): void => handleRemoveChip(itemKey)}
+                  variant="flat"
+                  size="sm"
+                  endContent={<IconXboxX size={12} />}
+                  className="max-w-[120px]"
+                >
+                  <span className="truncate text-xs">{getItemValue(item)}</span>
+                </Chip>
+              );
+            })}
+          </div>
         </div>
       );
     }
 
-    // Sinon, badge avec popover
+    // Badge avec popover en absolu
     return (
-      <div className="mb-2">
+      <div className="absolute left-0 top-0 z-20 -translate-y-full pb-2">
         <Popover
           isOpen={isPopoverOpen}
           onOpenChange={setIsPopoverOpen}
@@ -192,11 +200,11 @@ export function InfiniteAutocomplete<T extends object>({
               <Button
                 variant="flat"
                 size="sm"
-                startContent={<IconUsers size={16} />}
-                className="h-8 px-3 text-xs"
+                startContent={selectionIcon}
+                className="h-8 border border-divider bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm"
                 onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
               >
-                {selectedItems.length} sélectionné
+                {selectedItems.length} {selectionLabel}
                 {selectedItems.length > 1 ? "s" : ""}
               </Button>
             </Badge>
@@ -206,7 +214,7 @@ export function InfiniteAutocomplete<T extends object>({
             <div className="border-b border-divider px-4 py-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-semibold text-foreground">
-                  Éléments sélectionnés ({selectedItems.length})
+                  Éléments {selectionLabel}s ({selectedItems.length})
                 </h4>
                 <div className="flex gap-1">
                   <Button
@@ -273,14 +281,16 @@ export function InfiniteAutocomplete<T extends object>({
     getItemValue,
     handleRemoveChip,
     handleClearAll,
+    selectionIcon,
+    selectionLabel,
   ]);
 
   return (
-    <div className={className}>
-      {/* Badge moderne pour les sélections */}
+    <div className={cn("relative", className)}>
+      {/* Badge absolue - ne déplace PAS le select */}
       {selectionBadge}
 
-      {/* Composant Autocomplete */}
+      {/* Composant Autocomplete - position normale */}
       <Autocomplete<T>
         className="w-full"
         isLoading={isLoading || isFetching}

@@ -1,5 +1,5 @@
 import { AutocompleteProps } from '@heroui/react';
-import { JSX } from 'react';
+import { JSX, ReactNode } from 'react';
 type SelectionKey = string | number;
 interface InfiniteSelectProps<T extends object> extends Omit<AutocompleteProps<T>, "items" | "children" | "selectedKey" | "onSelectionChange"> {
     items: T[];
@@ -16,7 +16,10 @@ interface InfiniteSelectProps<T extends object> extends Omit<AutocompleteProps<T
     selectedKeys?: Set<SelectionKey>;
     onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
     maxVisibleInBadge?: number;
+    selectionIcon?: ReactNode;
+    selectionLabel?: string;
 }
-export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, // Affiche max 2 éléments dans le badge
+export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, selectionIcon, // Icône par défaut
+selectionLabel, // Label par défaut
 ...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
 export {};
