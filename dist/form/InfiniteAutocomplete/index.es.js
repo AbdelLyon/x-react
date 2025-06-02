@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { jsx, jsxs } from "react/jsx-runtime";
-import { Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
+import { Chip, Popover, PopoverTrigger, Button, PopoverContent, ScrollShadow, cn, Autocomplete, AutocompleteItem } from "@heroui/react";
 import { IconXboxX, IconX, IconUsers } from "@tabler/icons-react";
 import { useState, useMemo, useCallback } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
@@ -50,9 +50,9 @@ function InfiniteAutocomplete(_a) {
     selectedKey,
     selectedKeys = /* @__PURE__ */ new Set(),
     onSelectionChange,
-    maxVisibleInBadge = 2,
-    selectionIcon = /* @__PURE__ */ jsx(IconUsers, { size: 16 }),
-    selectionLabel: selectionLabel = "sélectionné"
+    maxVisibleChips = 2,
+    selectionIcon: selectionIcon = /* @__PURE__ */ jsx(IconUsers, { size: 16 }),
+    selectionLabel = "sélectionné"
   } = _b, autocompleteProps = __objRest(_b, [
     "items",
     "isFetching",
@@ -68,9 +68,9 @@ function InfiniteAutocomplete(_a) {
     "selectedKey",
     "selectedKeys",
     "onSelectionChange",
-    "maxVisibleInBadge",
+    "maxVisibleChips",
+    // Affiche 2 chips par défaut
     "selectionIcon",
-    // Icône par défaut
     "selectionLabel"
   ]);
   const [isOpen, setIsOpen] = useState(false);
@@ -115,21 +115,36 @@ function InfiniteAutocomplete(_a) {
       } else {
         newSelectedKeys.add(key);
       }
-      onSelectionChange == null ? void 0 : onSelectionChange(newSelectedKeys);
+      const selectedObjects = items.filter(
+        (item) => newSelectedKeys.has(getItemKey(item))
+      );
+      onSelectionChange == null ? void 0 : onSelectionChange({
+        keys: newSelectedKeys,
+        items: selectedObjects
+      });
       setInputValue("");
     },
-    [isMultiSelect, selectedKeys, onSelectionChange]
+    [isMultiSelect, selectedKeys, onSelectionChange, items, getItemKey]
   );
   const handleRemoveChip = useCallback(
     (itemKey) => {
       const newSelectedKeys = new Set(selectedKeys);
       newSelectedKeys.delete(itemKey);
-      onSelectionChange == null ? void 0 : onSelectionChange(newSelectedKeys);
+      const selectedObjects = items.filter(
+        (item) => newSelectedKeys.has(getItemKey(item))
+      );
+      onSelectionChange == null ? void 0 : onSelectionChange({
+        keys: newSelectedKeys,
+        items: selectedObjects
+      });
     },
-    [selectedKeys, onSelectionChange]
+    [selectedKeys, onSelectionChange, items, getItemKey]
   );
   const handleClearAll = useCallback(() => {
-    onSelectionChange == null ? void 0 : onSelectionChange(/* @__PURE__ */ new Set());
+    onSelectionChange == null ? void 0 : onSelectionChange({
+      keys: /* @__PURE__ */ new Set(),
+      items: []
+    });
     setIsPopoverOpen(false);
   }, [onSelectionChange]);
   const isItemSelected = useCallback(
@@ -138,12 +153,14 @@ function InfiniteAutocomplete(_a) {
     },
     [isMultiSelect, selectedKeys, getItemKey]
   );
-  const selectionBadge = useMemo(() => {
+  const selectionDisplay = useMemo(() => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
-    if (selectedItems.length <= maxVisibleInBadge) {
-      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm", children: selectedItems.map((item) => {
+    const visibleItems = selectedItems.slice(0, maxVisibleChips);
+    const remainingCount = selectedItems.length - maxVisibleChips;
+    return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-center gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm", children: [
+      visibleItems.map((item) => {
         const itemKey = getItemKey(item);
         return /* @__PURE__ */ jsx(
           Chip,
@@ -157,109 +174,98 @@ function InfiniteAutocomplete(_a) {
           },
           itemKey
         );
-      }) }) });
-    }
-    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsxs(
-      Popover,
-      {
-        isOpen: isPopoverOpen,
-        onOpenChange: setIsPopoverOpen,
-        placement: "top-start",
-        showArrow: true,
-        backdrop: "transparent",
-        children: [
-          /* @__PURE__ */ jsx(PopoverTrigger, { children: /* @__PURE__ */ jsx(
-            Badge,
-            {
-              content: selectedItems.length,
-              color: "primary",
-              size: "sm",
-              className: "cursor-pointer",
-              children: /* @__PURE__ */ jsxs(
-                Button,
-                {
-                  variant: "flat",
-                  size: "sm",
-                  startContent: selectionIcon,
-                  className: "h-8 border border-divider bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm",
-                  onPress: () => setIsPopoverOpen(!isPopoverOpen),
-                  children: [
-                    selectedItems.length,
-                    " ",
-                    selectionLabel,
-                    selectedItems.length > 1 ? "s" : ""
-                  ]
-                }
-              )
-            }
-          ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { className: "w-80 p-0", children: [
-            /* @__PURE__ */ jsx("div", { className: "border-b border-divider px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
-              /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
-                "Éléments ",
-                selectionLabel,
-                "s (",
-                selectedItems.length,
-                ")"
-              ] }),
-              /* @__PURE__ */ jsxs("div", { className: "flex gap-1", children: [
-                /* @__PURE__ */ jsx(
-                  Button,
+      }),
+      remainingCount > 0 && /* @__PURE__ */ jsxs(
+        Popover,
+        {
+          isOpen: isPopoverOpen,
+          onOpenChange: setIsPopoverOpen,
+          placement: "top-start",
+          showArrow: true,
+          backdrop: "transparent",
+          children: [
+            /* @__PURE__ */ jsx(PopoverTrigger, { children: /* @__PURE__ */ jsxs(
+              Button,
+              {
+                variant: "flat",
+                size: "sm",
+                startContent: selectionIcon,
+                className: "h-6 border border-divider bg-primary-50 px-2 text-xs text-primary-600 hover:bg-primary-100",
+                onPress: () => setIsPopoverOpen(!isPopoverOpen),
+                children: [
+                  "+",
+                  remainingCount
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxs(PopoverContent, { className: "w-80 p-0", children: [
+              /* @__PURE__ */ jsx("div", { className: "border-b border-divider px-4 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
+                /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
+                  "Tous les ",
+                  selectionLabel,
+                  "s (",
+                  selectedItems.length,
+                  ")"
+                ] }),
+                /* @__PURE__ */ jsxs("div", { className: "flex gap-1", children: [
+                  /* @__PURE__ */ jsx(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "light",
+                      color: "danger",
+                      onPress: handleClearAll,
+                      className: "h-6 px-2 text-xs",
+                      children: "Tout supprimer"
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    Button,
+                    {
+                      isIconOnly: true,
+                      size: "sm",
+                      variant: "light",
+                      onPress: () => setIsPopoverOpen(false),
+                      className: "size-6",
+                      children: /* @__PURE__ */ jsx(IconX, { size: 14 })
+                    }
+                  )
+                ] })
+              ] }) }),
+              /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
+                const itemKey = getItemKey(item);
+                return /* @__PURE__ */ jsxs(
+                  "div",
                   {
-                    size: "sm",
-                    variant: "light",
-                    color: "danger",
-                    onPress: handleClearAll,
-                    className: "h-6 px-2 text-xs",
-                    children: "Tout supprimer"
-                  }
-                ),
-                /* @__PURE__ */ jsx(
-                  Button,
-                  {
-                    isIconOnly: true,
-                    size: "sm",
-                    variant: "light",
-                    onPress: () => setIsPopoverOpen(false),
-                    className: "size-6",
-                    children: /* @__PURE__ */ jsx(IconX, { size: 14 })
-                  }
-                )
-              ] })
-            ] }) }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64", children: /* @__PURE__ */ jsx("div", { className: "space-y-1 p-2", children: selectedItems.map((item) => {
-              const itemKey = getItemKey(item);
-              return /* @__PURE__ */ jsxs(
-                "div",
-                {
-                  className: "group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100",
-                  children: [
-                    /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-1 items-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm text-foreground", children: getItemValue(item) }) }),
-                    /* @__PURE__ */ jsx(
-                      Button,
-                      {
-                        isIconOnly: true,
-                        size: "sm",
-                        variant: "light",
-                        color: "danger",
-                        className: "size-6 opacity-0 transition-opacity group-hover:opacity-100",
-                        onPress: () => handleRemoveChip(itemKey),
-                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
-                      }
-                    )
-                  ]
-                },
-                itemKey
-              );
-            }) }) })
-          ] })
-        ]
-      }
-    ) });
+                    className: "group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100",
+                    children: [
+                      /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-1 items-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-sm text-foreground", children: getItemValue(item) }) }),
+                      /* @__PURE__ */ jsx(
+                        Button,
+                        {
+                          isIconOnly: true,
+                          size: "sm",
+                          variant: "light",
+                          color: "danger",
+                          className: "size-6 opacity-0 transition-opacity group-hover:opacity-100",
+                          onPress: () => handleRemoveChip(itemKey),
+                          children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
+                        }
+                      )
+                    ]
+                  },
+                  itemKey
+                );
+              }) }) })
+            ] })
+          ]
+        }
+      )
+    ] }) });
   }, [
     isMultiSelect,
     selectedItems,
-    maxVisibleInBadge,
+    maxVisibleChips,
     isPopoverOpen,
     getItemKey,
     getItemValue,
@@ -269,7 +275,7 @@ function InfiniteAutocomplete(_a) {
     selectionLabel
   ]);
   return /* @__PURE__ */ jsxs("div", { className: cn("relative", className), children: [
-    selectionBadge,
+    selectionDisplay,
     /* @__PURE__ */ jsx(
       Autocomplete,
       __spreadProps(__spreadValues({

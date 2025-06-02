@@ -1,8 +1,12 @@
 import { AutocompleteProps } from '@heroui/react';
 import { JSX, ReactNode } from 'react';
 type SelectionKey = string | number;
-interface InfiniteSelectProps<T extends object> extends Omit<AutocompleteProps<T>, "items" | "children" | "selectedKey" | "onSelectionChange"> {
+interface SelectionChangeData<T> {
+    keys: Set<SelectionKey>;
     items: T[];
+}
+interface InfiniteSelectProps<T extends object> extends Omit<AutocompleteProps<T>, "items" | "children" | "selectedKey" | "onSelectionChange"> {
+    items: Array<T>;
     isFetching: boolean;
     fetchNextPage: () => void;
     hasNextPage: boolean;
@@ -14,12 +18,11 @@ interface InfiniteSelectProps<T extends object> extends Omit<AutocompleteProps<T
     selectionMode?: "single" | "multiple";
     selectedKey?: SelectionKey | null;
     selectedKeys?: Set<SelectionKey>;
-    onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
-    maxVisibleInBadge?: number;
+    onSelectionChange?: (data: SelectionKey | SelectionChangeData<T> | null) => void;
+    maxVisibleChips?: number;
     selectionIcon?: ReactNode;
     selectionLabel?: string;
 }
-export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, selectionIcon, // Icône par défaut
-selectionLabel, // Label par défaut
-...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
+export declare function InfiniteAutocomplete<T extends object>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, className, renderItem, getItemKey, getItemValue, onSearchChange, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleChips, // Affiche 2 chips par défaut
+selectionIcon, selectionLabel, ...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
 export {};

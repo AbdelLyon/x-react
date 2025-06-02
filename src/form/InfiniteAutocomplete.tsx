@@ -8,7 +8,6 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  Badge,
   Button,
   ScrollShadow,
 } from "@heroui/react";
@@ -19,13 +18,18 @@ import { useState, useCallback, useMemo } from "react";
 // Utiliser le type Key compatible avec HeroUI
 type SelectionKey = string | number;
 
+interface SelectionChangeData<T> {
+  keys: Set<SelectionKey>;
+  items: T[];
+}
+
 interface InfiniteSelectProps<T extends object>
   extends Omit<
     AutocompleteProps<T>,
     "items" | "children" | "selectedKey" | "onSelectionChange"
   > {
   // React Query props
-  items: T[];
+  items: Array<T>;
   isFetching: boolean;
   fetchNextPage: () => void;
   hasNextPage: boolean;
@@ -38,16 +42,20 @@ interface InfiniteSelectProps<T extends object>
 
   // Search functionality
   onSearchChange?: (searchText: string) => void;
-  // Selection - enrichissement pour multiselect
+
+  // Selection - enrichi pour retourner keys ET objects
   selectionMode?: "single" | "multiple";
   selectedKey?: SelectionKey | null; // Pour single select
   selectedKeys?: Set<SelectionKey>; // Pour multiselect
-  onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
-  maxVisibleInBadge?: number; // Nombre max dans le badge avant d'utiliser le popover
+  onSelectionChange?: (
+    data: SelectionKey | SelectionChangeData<T> | null,
+  ) => void;
+
+  maxVisibleChips?: number; // Nombre de chips visibles avant "+N"
 
   // Customization pour généricité
-  selectionIcon?: ReactNode; // Icône configurable
-  selectionLabel?: string; // Label configurable (ex: "sélectionné", "choisi", etc.)
+  selectionIcon?: ReactNode;
+  selectionLabel?: string;
 }
 
 export function InfiniteAutocomplete<T extends object>({
@@ -65,9 +73,9 @@ export function InfiniteAutocomplete<T extends object>({
   selectedKey,
   selectedKeys = new Set(),
   onSelectionChange,
-  maxVisibleInBadge = 2,
-  selectionIcon = <IconUsers size={16} />, // Icône par défaut
-  selectionLabel = "sélectionné", // Label par défaut
+  maxVisibleChips = 2, // Affiche 2 chips par défaut
+  selectionIcon = <IconUsers size={16} />,
+  selectionLabel = "sélectionné",
   ...autocompleteProps
 }: InfiniteSelectProps<T>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
@@ -109,11 +117,13 @@ export function InfiniteAutocomplete<T extends object>({
       }
 
       if (!isMultiSelect) {
+        // Mode single - retourne juste la clé
         onSelectionChange?.(key);
         setInputValue("");
         return;
       }
 
+      // Mode multiselect - retourne keys ET objects
       const newSelectedKeys = new Set(selectedKeys);
 
       if (selectedKeys.has(key)) {
@@ -122,23 +132,44 @@ export function InfiniteAutocomplete<T extends object>({
         newSelectedKeys.add(key);
       }
 
-      onSelectionChange?.(newSelectedKeys);
+      // Récupérer les objets complets correspondants
+      const selectedObjects = items.filter((item): boolean =>
+        newSelectedKeys.has(getItemKey(item)),
+      );
+
+      onSelectionChange?.({
+        keys: newSelectedKeys,
+        items: selectedObjects,
+      });
+
       setInputValue("");
     },
-    [isMultiSelect, selectedKeys, onSelectionChange],
+    [isMultiSelect, selectedKeys, onSelectionChange, items, getItemKey],
   );
 
   const handleRemoveChip = useCallback(
     (itemKey: SelectionKey): void => {
       const newSelectedKeys = new Set(selectedKeys);
       newSelectedKeys.delete(itemKey);
-      onSelectionChange?.(newSelectedKeys);
+
+      // Récupérer les objets complets
+      const selectedObjects = items.filter((item): boolean =>
+        newSelectedKeys.has(getItemKey(item)),
+      );
+
+      onSelectionChange?.({
+        keys: newSelectedKeys,
+        items: selectedObjects,
+      });
     },
-    [selectedKeys, onSelectionChange],
+    [selectedKeys, onSelectionChange, items, getItemKey],
   );
 
   const handleClearAll = useCallback((): void => {
-    onSelectionChange?.(new Set());
+    onSelectionChange?.({
+      keys: new Set(),
+      items: [],
+    });
     setIsPopoverOpen(false);
   }, [onSelectionChange]);
 
@@ -149,133 +180,124 @@ export function InfiniteAutocomplete<T extends object>({
     [isMultiSelect, selectedKeys, getItemKey],
   );
 
-  // Badge pour afficher le nombre d'éléments sélectionnés - POSITION ABSOLUE
-  const selectionBadge = useMemo((): JSX.Element | null => {
+  // Badge/Chips pour afficher les éléments sélectionnés
+  const selectionDisplay = useMemo((): JSX.Element | null => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
 
-    // Si peu d'éléments, on affiche les chips inline en absolu
-    if (selectedItems.length <= maxVisibleInBadge) {
-      return (
-        <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-2">
-          <div className="flex flex-wrap gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm">
-            {selectedItems.map((item): JSX.Element => {
-              const itemKey = getItemKey(item);
-              return (
-                <Chip
-                  key={itemKey}
-                  onClose={(): void => handleRemoveChip(itemKey)}
-                  variant="flat"
-                  size="sm"
-                  endContent={<IconXboxX size={12} />}
-                  className="max-w-[120px]"
-                >
-                  <span className="truncate text-xs">{getItemValue(item)}</span>
-                </Chip>
-              );
-            })}
-          </div>
-        </div>
-      );
-    }
+    const visibleItems = selectedItems.slice(0, maxVisibleChips);
+    const remainingCount = selectedItems.length - maxVisibleChips;
 
-    // Badge avec popover en absolu
     return (
-      <div className="absolute left-0 top-0 z-20 -translate-y-full pb-2">
-        <Popover
-          isOpen={isPopoverOpen}
-          onOpenChange={setIsPopoverOpen}
-          placement="top-start"
-          showArrow
-          backdrop="transparent"
-        >
-          <PopoverTrigger>
-            <Badge
-              content={selectedItems.length}
-              color="primary"
-              size="sm"
-              className="cursor-pointer"
-            >
-              <Button
+      <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-2">
+        <div className="flex flex-wrap items-center gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm">
+          {/* Afficher les premiers chips */}
+          {visibleItems.map((item): JSX.Element => {
+            const itemKey = getItemKey(item);
+            return (
+              <Chip
+                key={itemKey}
+                onClose={(): void => handleRemoveChip(itemKey)}
                 variant="flat"
                 size="sm"
-                startContent={selectionIcon}
-                className="h-8 border border-divider bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm"
-                onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
+                endContent={<IconXboxX size={12} />}
+                className="max-w-[120px]"
               >
-                {selectedItems.length} {selectionLabel}
-                {selectedItems.length > 1 ? "s" : ""}
-              </Button>
-            </Badge>
-          </PopoverTrigger>
+                <span className="truncate text-xs">{getItemValue(item)}</span>
+              </Chip>
+            );
+          })}
 
-          <PopoverContent className="w-80 p-0">
-            <div className="border-b border-divider px-4 py-3">
-              <div className="flex items-center justify-between">
-                <h4 className="text-sm font-semibold text-foreground">
-                  Éléments {selectionLabel}s ({selectedItems.length})
-                </h4>
-                <div className="flex gap-1">
-                  <Button
-                    size="sm"
-                    variant="light"
-                    color="danger"
-                    onPress={handleClearAll}
-                    className="h-6 px-2 text-xs"
-                  >
-                    Tout supprimer
-                  </Button>
-                  <Button
-                    isIconOnly
-                    size="sm"
-                    variant="light"
-                    onPress={(): void => setIsPopoverOpen(false)}
-                    className="size-6"
-                  >
-                    <IconX size={14} />
-                  </Button>
-                </div>
-              </div>
-            </div>
+          {/* Badge "+N" avec popover si il y a plus d'éléments */}
+          {remainingCount > 0 && (
+            <Popover
+              isOpen={isPopoverOpen}
+              onOpenChange={setIsPopoverOpen}
+              placement="top-start"
+              showArrow
+              backdrop="transparent"
+            >
+              <PopoverTrigger>
+                <Button
+                  variant="flat"
+                  size="sm"
+                  startContent={selectionIcon}
+                  className="h-6 border border-divider bg-primary-50 px-2 text-xs text-primary-600 hover:bg-primary-100"
+                  onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
+                >
+                  +{remainingCount}
+                </Button>
+              </PopoverTrigger>
 
-            <ScrollShadow className="max-h-64">
-              <div className="space-y-1 p-2">
-                {selectedItems.map((item): JSX.Element => {
-                  const itemKey = getItemKey(item);
-                  return (
-                    <div
-                      key={itemKey}
-                      className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100"
-                    >
-                      <div className="flex min-w-0 flex-1 items-center">
-                        <div className="truncate text-sm text-foreground">
-                          {getItemValue(item)}
-                        </div>
-                      </div>
+              <PopoverContent className="w-80 p-0">
+                <div className="border-b border-divider px-4 py-3">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-semibold text-foreground">
+                      Tous les {selectionLabel}s ({selectedItems.length})
+                    </h4>
+                    <div className="flex gap-1">
+                      <Button
+                        size="sm"
+                        variant="light"
+                        color="danger"
+                        onPress={handleClearAll}
+                        className="h-6 px-2 text-xs"
+                      >
+                        Tout supprimer
+                      </Button>
                       <Button
                         isIconOnly
                         size="sm"
                         variant="light"
-                        color="danger"
-                        className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
-                        onPress={(): void => handleRemoveChip(itemKey)}
+                        onPress={(): void => setIsPopoverOpen(false)}
+                        className="size-6"
                       >
-                        <IconXboxX size={12} />
+                        <IconX size={14} />
                       </Button>
                     </div>
-                  );
-                })}
-              </div>
-            </ScrollShadow>
-          </PopoverContent>
-        </Popover>
+                  </div>
+                </div>
+
+                <ScrollShadow className="max-h-64">
+                  <div className="space-y-1 p-2">
+                    {selectedItems.map((item): JSX.Element => {
+                      const itemKey = getItemKey(item);
+                      return (
+                        <div
+                          key={itemKey}
+                          className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-default-100"
+                        >
+                          <div className="flex min-w-0 flex-1 items-center">
+                            <div className="truncate text-sm text-foreground">
+                              {getItemValue(item)}
+                            </div>
+                          </div>
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="light"
+                            color="danger"
+                            className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
+                            onPress={(): void => handleRemoveChip(itemKey)}
+                          >
+                            <IconXboxX size={12} />
+                          </Button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </ScrollShadow>
+              </PopoverContent>
+            </Popover>
+          )}
+        </div>
       </div>
     );
   }, [
     isMultiSelect,
     selectedItems,
-    maxVisibleInBadge,
+    maxVisibleChips,
     isPopoverOpen,
     getItemKey,
     getItemValue,
@@ -287,10 +309,10 @@ export function InfiniteAutocomplete<T extends object>({
 
   return (
     <div className={cn("relative", className)}>
-      {/* Badge absolue - ne déplace PAS le select */}
-      {selectionBadge}
+      {/* Affichage des sélections - position absolue */}
+      {selectionDisplay}
 
-      {/* Composant Autocomplete - position normale */}
+      {/* Composant Autocomplete */}
       <Autocomplete<T>
         className="w-full"
         isLoading={isLoading || isFetching}
