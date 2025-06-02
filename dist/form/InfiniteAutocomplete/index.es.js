@@ -199,7 +199,7 @@ function InfiniteAutocomplete(_a) {
             }
           ) }),
           /* @__PURE__ */ jsxs(PopoverContent, { className: "rounded-md p-4", children: [
-            /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between gap-4", children: [
+            /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between gap-4 px-2", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
                 selectionLabel,
