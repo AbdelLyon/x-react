@@ -197,8 +197,8 @@ function InfiniteAutocomplete(_a) {
               )
             }
           ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { className: "p-0", children: [
-            /* @__PURE__ */ jsx("div", { className: "border-b border-border bg-content1-50 py-3 dark:bg-background", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between px-2 ", children: [
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "border border-border p-0 dark:bg-background", children: [
+            /* @__PURE__ */ jsx("div", { className: "border-b border-border bg-content1-50 py-3", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between px-2 ", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
                 selectionLabel,
