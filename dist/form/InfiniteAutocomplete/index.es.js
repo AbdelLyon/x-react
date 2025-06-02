@@ -222,13 +222,13 @@ function InfiniteAutocomplete(_a) {
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-64", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-3 gap-1", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-64 w-72", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-3 gap-1", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
               return /* @__PURE__ */ jsx(
                 Tooltip,
                 {
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex aspect-auto items-center justify-center rounded-lg border border-border/30 bg-default/20 px-2 transition-all hover:border-primary/50 hover:bg-primary/10", children: [
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex aspect-auto items-center justify-center rounded-lg border border-border/30 bg-default/20 p-2 transition-all hover:border-primary/50 hover:bg-primary/10", children: [
                     /* @__PURE__ */ jsx("div", { className: "truncate text-center text-xs font-medium text-foreground", children: itemValue }),
                     /* @__PURE__ */ jsx(
                       "button",
