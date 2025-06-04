@@ -17,9 +17,9 @@ import {
 } from "@heroui/react";
 import { IconXboxX, IconTrash } from "@tabler/icons-react";
 import type { JSX, ReactNode } from "react";
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 
-// Utiliser le type Key compatible avec HeroUI
+// Type plus restrictif pour les clés
 type SelectionKey = string | number;
 
 interface InfiniteSelectProps<T extends Record<string, unknown>>
@@ -44,25 +44,27 @@ interface InfiniteSelectProps<T extends Record<string, unknown>>
   onSearchChange?: (searchText: string) => void;
   searchDebounceMs?: number;
 
-  // Selection - enrichissement pour multiselect
+  // Selection
   selectionMode?: "single" | "multiple";
-  selectedKey?: SelectionKey | null; // Pour single select
-  selectedKeys?: Set<SelectionKey>; // Pour multiselect
+  selectedKey?: SelectionKey | null;
+  selectedKeys?: Set<SelectionKey>;
   onSelectionChange?: (key: SelectionKey | Set<SelectionKey> | null) => void;
-  maxVisibleInBadge?: number; // Nombre max dans le badge avant d'utiliser le popover
+  maxVisibleInBadge?: number;
 
-  // Customization pour généricité
-  selectionIcon?: ReactNode; // Icône configurable
-  selectionLabel?: string; // Label configurable (ex: "sélectionné", "choisi", etc.)
+  // Customization
+  selectionIcon?: ReactNode;
+  selectionLabel?: string;
   itemClassName?: string;
 
-  // Empty state
+  // Content states
   emptyContent?: React.ReactNode;
   errorContent?: React.ReactNode;
-
-  // Loading states
   loadingContent?: React.ReactNode;
   fetchingMoreContent?: React.ReactNode;
+
+  // Accessibility
+  "aria-label"?: string;
+  "aria-describedby"?: string;
 }
 
 /**
@@ -79,7 +81,8 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
   className = "max-w-xs",
   renderItem,
   getItemKey,
-  getItemValue = (item: T): string => String(renderItem(item)),
+  getItemValue = (item: T): string =>
+    String(renderItem(item)).replace(/<[^>]*>/g, ""), // Strip HTML
   onSearchChange,
   searchDebounceMs = 300,
   selectionMode = "single",
@@ -92,18 +95,23 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
   itemClassName,
   emptyContent = "Aucun élément trouvé",
   errorContent,
-  loadingContent,
-  fetchingMoreContent,
+  loadingContent = "Chargement des données...",
+  fetchingMoreContent = "Chargement de plus d'éléments...",
   ...autocompleteProps
 }: InfiniteSelectProps<T>): JSX.Element {
+  // États
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
   const [savedSelectedItems, setSavedSelectedItems] = useState<
     Map<SelectionKey, T>
   >(new Map());
 
+  // Refs pour la performance
+  const lastSearchTermRef = useRef<string>("");
+  const isMultiSelect = selectionMode === "multiple";
+
+  // Hooks
   const { debouncedValue: debouncedSearchTerm, cancel: cancelDebounce } =
     useDebouncedValue(inputValue, searchDebounceMs);
 
@@ -114,14 +122,15 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     onLoadMore: fetchNextPage,
   });
 
-  const isMultiSelect = selectionMode === "multiple";
-
+  // Effet pour la recherche
   useEffect((): void => {
-    if (onSearchChange && inputValue !== "") {
+    if (onSearchChange && debouncedSearchTerm !== lastSearchTermRef.current) {
+      lastSearchTermRef.current = debouncedSearchTerm;
       onSearchChange(debouncedSearchTerm);
     }
-  }, [debouncedSearchTerm, onSearchChange, inputValue]);
+  }, [debouncedSearchTerm, onSearchChange]);
 
+  // Effet pour sauvegarder les éléments sélectionnés
   useEffect((): void => {
     if (!isMultiSelect) {
       return;
@@ -130,6 +139,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     setSavedSelectedItems((prev): Map<SelectionKey, T> => {
       const newSavedItems = new Map(prev);
 
+      // Ajouter les nouveaux éléments sélectionnés
       items.forEach((item): void => {
         const key = getItemKey(item);
         if (selectedKeys.has(key) && !newSavedItems.has(key)) {
@@ -137,29 +147,29 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
         }
       });
 
-      for (const [key] of newSavedItems) {
+      // Supprimer les éléments désélectionnés
+      Array.from(newSavedItems.keys()).forEach((key): void => {
         if (!selectedKeys.has(key)) {
           newSavedItems.delete(key);
         }
-      }
+      });
 
       return newSavedItems;
     });
   }, [items, selectedKeys, getItemKey, isMultiSelect]);
 
+  // Mémoisation des éléments sélectionnés
   const selectedItems = useMemo((): T[] => {
-    if (!isMultiSelect) {
-      return [];
-    }
-    return Array.from(savedSelectedItems.values());
+    return isMultiSelect ? Array.from(savedSelectedItems.values()) : [];
   }, [savedSelectedItems, isMultiSelect]);
 
+  // Gestionnaires d'événements
   const handleInputChange = useCallback(
     (value: string): void => {
       setInputValue(value);
-
       if (value === "" && onSearchChange) {
         cancelDebounce();
+        lastSearchTermRef.current = "";
         onSearchChange("");
       }
     },
@@ -181,8 +191,8 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
         return;
       }
 
+      // Mode multiple
       const newSelectedKeys = new Set(selectedKeys);
-
       if (selectedKeys.has(key)) {
         newSelectedKeys.delete(key);
       } else {
@@ -197,17 +207,25 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
 
   const handleRemoveChip = useCallback(
     (itemKey: SelectionKey): void => {
+      if (!isMultiSelect) {
+        return;
+      }
+
       const newSelectedKeys = new Set(selectedKeys);
       newSelectedKeys.delete(itemKey);
       onSelectionChange?.(newSelectedKeys);
     },
-    [selectedKeys, onSelectionChange],
+    [selectedKeys, onSelectionChange, isMultiSelect],
   );
 
   const handleClearAll = useCallback((): void => {
+    if (!isMultiSelect) {
+      return;
+    }
+
     onSelectionChange?.(new Set());
     setIsPopoverOpen(false);
-  }, [onSelectionChange]);
+  }, [onSelectionChange, isMultiSelect]);
 
   const handleOpenChange = useCallback(
     (open: boolean): void => {
@@ -217,12 +235,14 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
       if (!open && inputValue) {
         setInputValue("");
         cancelDebounce();
+        lastSearchTermRef.current = "";
         onSearchChange?.("");
       }
     },
     [autocompleteProps, inputValue, onSearchChange, cancelDebounce],
   );
 
+  // Utilitaires
   const isItemSelected = useCallback(
     (item: T): boolean => {
       return isMultiSelect && selectedKeys.has(getItemKey(item));
@@ -230,19 +250,20 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     [isMultiSelect, selectedKeys, getItemKey],
   );
 
-  const autocompleteItems = useMemo((): ReactNode[] => {
+  // Rendu des éléments de l'autocomplete
+  const autocompleteItems = useMemo((): JSX.Element[] => {
     return items.map(
-      (item): ReactNode => (
+      (item): JSX.Element => (
         <AutocompleteItem
           key={getItemKey(item)}
           className={mergeTailwindClasses(
-            "border border-border/10",
-            isItemSelected(item) && "bg-default",
+            "border border-border/10 transition-colors duration-200",
+            isItemSelected(item) && "bg-default/50 border-primary/20",
             itemClassName,
           )}
           endContent={
             isItemSelected(item) ? (
-              <span className="text-success">✓</span>
+              <span className="font-semibold text-success">✓</span>
             ) : undefined
           }
         >
@@ -252,6 +273,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     );
   }, [items, getItemKey, isItemSelected, itemClassName, renderItem]);
 
+  // Badge de sélection
   const selectionBadge = useCallback((): JSX.Element | null => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
@@ -259,10 +281,12 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
 
     if (selectedItems.length <= maxVisibleInBadge) {
       return (
-        <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-3">
-          <div className="flex flex-wrap gap-2 rounded-md border border-primary/20 bg-content1-100/40 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background">
+        <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-2">
+          <div className="flex flex-wrap gap-2 rounded-lg border border-primary/20 bg-content1/90 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background/90">
             {selectedItems.map((item): JSX.Element => {
               const itemKey = getItemKey(item);
+              const itemValue = getItemValue(item);
+
               return (
                 <Chip
                   key={itemKey}
@@ -275,10 +299,13 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
                       className="text-default-400 transition-colors duration-200 hover:text-danger"
                     />
                   }
-                  className="max-w-[140px] border border-primary/20 bg-primary/10 text-primary shadow-sm transition-all duration-200 hover:bg-primary/20"
+                  className="max-w-[140px] border border-primary/20 bg-primary/10 text-primary shadow-sm transition-all duration-200 hover:border-primary/30 hover:bg-primary/20"
                 >
-                  <span className="truncate text-xs font-medium">
-                    {getItemValue(item)}
+                  <span
+                    className="truncate text-xs font-medium"
+                    title={itemValue}
+                  >
+                    {itemValue}
                   </span>
                 </Chip>
               );
@@ -289,7 +316,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     }
 
     return (
-      <div className="absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-3">
+      <div className="absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-2">
         <Popover
           isOpen={isPopoverOpen}
           onOpenChange={setIsPopoverOpen}
@@ -307,15 +334,16 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
               size="lg"
               className="cursor-pointer"
               classNames={{
-                badge: "bg-primary text-white font-semibold",
+                badge: "bg-primary text-white font-semibold min-w-5 h-5",
               }}
             >
               <Button
                 variant="flat"
                 size="sm"
                 startContent={selectionIcon}
-                className="h-9 border border-primary/20 bg-content1-100/40 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/20 hover:via-primary/5 hover:to-secondary/20 hover:shadow-sm"
+                className="h-9 border border-primary/20 bg-content1/90 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-primary/10 hover:shadow-md"
                 onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
+                aria-label={`${selectedItems.length} ${selectionLabel}${selectedItems.length > 1 ? "s" : ""} sélectionné${selectedItems.length > 1 ? "s" : ""}`}
               >
                 {selectedItems.length} {selectionLabel}
                 {selectedItems.length > 1 ? "s" : ""}
@@ -323,69 +351,61 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
             </Badge>
           </PopoverTrigger>
 
-          <PopoverContent className="border border-border bg-gradient-to-b from-content1 to-content1-100/10 p-2 backdrop-blur-xl transition-all data-[hover=true]:bg-content1-100/30 dark:bg-background dark:from-background-200/20 dark:to-background dark:data-[hover=true]:bg-content1-200/20">
-            <div className="mb-5 flex w-full items-center justify-between gap-4">
-              <h4 className="text-sm font-bold">
+          <PopoverContent className="border border-border bg-gradient-to-b from-content1 to-content1/80 p-3 backdrop-blur-xl transition-all dark:from-background/90 dark:to-background/70">
+            <div className="mb-4 flex w-full items-center justify-between">
+              <h4 className="text-sm font-semibold text-foreground">
                 Éléments {selectionLabel}s ({selectedItems.length})
               </h4>
-              <div className="flex gap-2">
-                <Tooltip
-                  trigger={
-                    <Button
-                      isIconOnly
-                      size="sm"
-                      variant="flat"
-                      color="danger"
-                      onPress={handleClearAll}
-                      className="size-8 bg-danger/10 transition-all duration-200 hover:scale-110 hover:bg-danger/20"
-                    >
-                      <IconTrash size={16} />
-                    </Button>
-                  }
-                  content="Tout supprimer"
-                  placement="top"
-                />
-              </div>
+              <Tooltip
+                content="Tout supprimer"
+                placement="top"
+                delay={500}
+                trigger={
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    variant="flat"
+                    color="danger"
+                    onPress={handleClearAll}
+                    className="size-8 bg-danger/10 transition-all duration-200 hover:scale-105 hover:bg-danger/20"
+                    aria-label="Supprimer tous les éléments sélectionnés"
+                  >
+                    <IconTrash size={16} />
+                  </Button>
+                }
+              />
             </div>
+
             <ScrollShadow className="max-h-80 w-80 overflow-x-hidden">
-              <div className="grid w-full grid-cols-2 gap-3 pr-2">
+              <div className="grid w-full grid-cols-2 gap-2 pr-2">
                 {selectedItems.map((item): JSX.Element => {
                   const itemKey = getItemKey(item);
                   const itemValue = getItemValue(item);
 
                   return (
-                    <Tooltip
+                    <div
                       key={itemKey}
-                      content={itemValue}
-                      placement="top"
-                      showArrow
-                      delay={300}
-                      closeDelay={0}
-                      classNames={{
-                        content:
-                          "max-w-xs text-xs bg-content1-100/40 border border-primary/5 shadow-xl backdrop-blur-md",
-                      }}
-                      trigger={
-                        <div className="group relative flex min-w-0 flex-col items-center rounded-sm border border-primary/20 bg-content1-100/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/10 hover:shadow-sm">
-                          <div className="w-full min-w-0 text-center">
-                            <div className="truncate text-xs font-medium text-foreground transition-colors duration-200 group-hover:text-primary">
-                              {itemValue}
-                            </div>
-                          </div>
+                      className="group relative flex min-w-0 items-center rounded-md border border-primary/20 bg-content1/50 p-2 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm"
+                    >
+                      <span
+                        className="flex-1 truncate text-xs font-medium text-foreground group-hover:text-primary"
+                        title={itemValue}
+                      >
+                        {itemValue}
+                      </span>
 
-                          <Button
-                            isIconOnly
-                            size="sm"
-                            variant="flat"
-                            color="danger"
-                            onPress={(): void => handleRemoveChip(itemKey)}
-                            className="absolute -right-1 -top-1 size-6 bg-danger/20 opacity-70 transition-all duration-200 hover:scale-110 hover:bg-danger/30 group-hover:opacity-100"
-                          >
-                            <IconXboxX size={12} />
-                          </Button>
-                        </div>
-                      }
-                    />
+                      <Button
+                        isIconOnly
+                        size="sm"
+                        variant="flat"
+                        color="danger"
+                        onPress={(): void => handleRemoveChip(itemKey)}
+                        className="ml-2 size-5 bg-danger/20 opacity-60 transition-all duration-200 hover:scale-110 hover:bg-danger/30 hover:opacity-100"
+                        aria-label={`Supprimer ${itemValue}`}
+                      >
+                        <IconXboxX size={10} />
+                      </Button>
+                    </div>
                   );
                 })}
               </div>
@@ -407,6 +427,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     handleClearAll,
   ]);
 
+  // États d'erreur
   if (error && !isLoading) {
     return (
       <div className={cn("relative", className)}>
@@ -418,7 +439,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
           aria-label="Autocomplete en erreur"
           {...autocompleteProps}
         >
-          <AutocompleteItem key="error" isReadOnly>
+          <AutocompleteItem key="error" isReadOnly className="text-danger">
             {errorContent ?? `Erreur: ${error.message}`}
           </AutocompleteItem>
         </Autocomplete>
@@ -426,6 +447,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     );
   }
 
+  // État de chargement initial
   if (isLoading && items.length === 0) {
     return (
       <div className={cn("relative", className)}>
@@ -437,14 +459,19 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
           aria-label="Autocomplete en chargement"
           {...autocompleteProps}
         >
-          <AutocompleteItem key="loading" isReadOnly>
-            {loadingContent ?? "Chargement des données..."}
+          <AutocompleteItem
+            key="loading"
+            isReadOnly
+            className="text-default-500"
+          >
+            {loadingContent}
           </AutocompleteItem>
         </Autocomplete>
       </div>
     );
   }
 
+  // Rendu principal
   return (
     <div className={cn("relative", className)}>
       {selectionBadge()}
@@ -453,9 +480,11 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
         className="w-full"
         inputProps={{
           classNames: {
-            inputWrapper:
+            inputWrapper: cn(
               autocompleteProps.variant === "bordered" &&
-              "border border-border",
+                "border border-border",
+              "transition-colors duration-200",
+            ),
           },
           ...autocompleteProps.inputProps,
         }}
@@ -469,7 +498,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
         onOpenChange={handleOpenChange}
         shouldCloseOnBlur={!isMultiSelect}
         allowsCustomValue={isMultiSelect}
-        menuTrigger={isMultiSelect ? "focus" : "focus"}
+        menuTrigger="focus"
         aria-label={
           autocompleteProps["aria-label"] || "Autocomplete avec scroll infini"
         }
@@ -481,7 +510,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
         {...autocompleteProps}
       >
         {items.length === 0 && !isLoading ? (
-          <AutocompleteItem key="empty" isReadOnly>
+          <AutocompleteItem key="empty" isReadOnly className="text-default-500">
             {emptyContent}
           </AutocompleteItem>
         ) : (
@@ -489,8 +518,12 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
         )}
 
         {isFetching && items.length > 0 ? (
-          <AutocompleteItem key="fetching-more" isReadOnly>
-            {fetchingMoreContent ?? "Chargement..."}
+          <AutocompleteItem
+            key="fetching-more"
+            isReadOnly
+            className="text-default-500"
+          >
+            {fetchingMoreContent}
           </AutocompleteItem>
         ) : null}
       </Autocomplete>

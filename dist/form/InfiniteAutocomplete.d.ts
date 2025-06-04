@@ -25,10 +25,13 @@ interface InfiniteSelectProps<T extends Record<string, unknown>> extends Omit<Au
     errorContent?: React.ReactNode;
     loadingContent?: React.ReactNode;
     fetchingMoreContent?: React.ReactNode;
+    "aria-label"?: string;
+    "aria-describedby"?: string;
 }
 /**
  * Composant Autocomplete avec scroll infini, recherche et sélection multiple
  * @template T - Type des éléments dans la liste
  */
-export declare function InfiniteAutocomplete<T extends Record<string, unknown>>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, error, className, renderItem, getItemKey, getItemValue, onSearchChange, searchDebounceMs, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, selectionIcon, selectionLabel, itemClassName, emptyContent, errorContent, loadingContent, fetchingMoreContent, ...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
+export declare function InfiniteAutocomplete<T extends Record<string, unknown>>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, error, className, renderItem, getItemKey, getItemValue, // Strip HTML
+onSearchChange, searchDebounceMs, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, selectionIcon, selectionLabel, itemClassName, emptyContent, errorContent, loadingContent, fetchingMoreContent, ...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
 export type { InfiniteSelectProps };

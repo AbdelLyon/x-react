@@ -33,7 +33,7 @@ import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { AutocompleteItem, Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete } from "@heroui/react";
 import { IconXboxX, IconTrash } from "@tabler/icons-react";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue/index.es.js";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
@@ -48,8 +48,8 @@ function InfiniteAutocomplete(_a) {
     className = "max-w-xs",
     renderItem,
     getItemKey,
-    getItemValue = (item) => String(renderItem(item)),
-    onSearchChange,
+    getItemValue = (item) => String(renderItem(item)).replace(/<[^>]*>/g, ""),
+    onSearchChange: onSearchChange,
     searchDebounceMs = 300,
     selectionMode = "single",
     selectedKey,
@@ -61,8 +61,8 @@ function InfiniteAutocomplete(_a) {
     itemClassName,
     emptyContent = "Aucun élément trouvé",
     errorContent,
-    loadingContent,
-    fetchingMoreContent
+    loadingContent = "Chargement des données...",
+    fetchingMoreContent = "Chargement de plus d'éléments..."
   } = _b, autocompleteProps = __objRest(_b, [
     "items",
     "isFetching",
@@ -74,6 +74,7 @@ function InfiniteAutocomplete(_a) {
     "renderItem",
     "getItemKey",
     "getItemValue",
+    // Strip HTML
     "onSearchChange",
     "searchDebounceMs",
     "selectionMode",
@@ -93,6 +94,8 @@ function InfiniteAutocomplete(_a) {
   const [inputValue, setInputValue] = useState("");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [savedSelectedItems, setSavedSelectedItems] = useState(/* @__PURE__ */ new Map());
+  const lastSearchTermRef = useRef("");
+  const isMultiSelect = selectionMode === "multiple";
   const { debouncedValue: debouncedSearchTerm, cancel: cancelDebounce } = useDebouncedValue(inputValue, searchDebounceMs);
   const { scrollContainerRef } = useInfiniteScroll({
     hasMore: hasNextPage,
@@ -100,12 +103,12 @@ function InfiniteAutocomplete(_a) {
     shouldUseLoader: false,
     onLoadMore: fetchNextPage
   });
-  const isMultiSelect = selectionMode === "multiple";
   useEffect(() => {
-    if (onSearchChange && inputValue !== "") {
+    if (onSearchChange && debouncedSearchTerm !== lastSearchTermRef.current) {
+      lastSearchTermRef.current = debouncedSearchTerm;
       onSearchChange(debouncedSearchTerm);
     }
-  }, [debouncedSearchTerm, onSearchChange, inputValue]);
+  }, [debouncedSearchTerm, onSearchChange]);
   useEffect(() => {
     if (!isMultiSelect) {
       return;
@@ -118,25 +121,23 @@ function InfiniteAutocomplete(_a) {
           newSavedItems.set(key, item);
         }
       });
-      for (const [key] of newSavedItems) {
+      Array.from(newSavedItems.keys()).forEach((key) => {
         if (!selectedKeys.has(key)) {
           newSavedItems.delete(key);
         }
-      }
+      });
       return newSavedItems;
     });
   }, [items, selectedKeys, getItemKey, isMultiSelect]);
   const selectedItems = useMemo(() => {
-    if (!isMultiSelect) {
-      return [];
-    }
-    return Array.from(savedSelectedItems.values());
+    return isMultiSelect ? Array.from(savedSelectedItems.values()) : [];
   }, [savedSelectedItems, isMultiSelect]);
   const handleInputChange = useCallback(
     (value) => {
       setInputValue(value);
       if (value === "" && onSearchChange) {
         cancelDebounce();
+        lastSearchTermRef.current = "";
         onSearchChange("");
       }
     },
@@ -168,16 +169,22 @@ function InfiniteAutocomplete(_a) {
   );
   const handleRemoveChip = useCallback(
     (itemKey) => {
+      if (!isMultiSelect) {
+        return;
+      }
       const newSelectedKeys = new Set(selectedKeys);
       newSelectedKeys.delete(itemKey);
       onSelectionChange == null ? void 0 : onSelectionChange(newSelectedKeys);
     },
-    [selectedKeys, onSelectionChange]
+    [selectedKeys, onSelectionChange, isMultiSelect]
   );
   const handleClearAll = useCallback(() => {
+    if (!isMultiSelect) {
+      return;
+    }
     onSelectionChange == null ? void 0 : onSelectionChange(/* @__PURE__ */ new Set());
     setIsPopoverOpen(false);
-  }, [onSelectionChange]);
+  }, [onSelectionChange, isMultiSelect]);
   const handleOpenChange = useCallback(
     (open) => {
       var _a2;
@@ -186,6 +193,7 @@ function InfiniteAutocomplete(_a) {
       if (!open && inputValue) {
         setInputValue("");
         cancelDebounce();
+        lastSearchTermRef.current = "";
         onSearchChange == null ? void 0 : onSearchChange("");
       }
     },
@@ -203,11 +211,11 @@ function InfiniteAutocomplete(_a) {
         AutocompleteItem,
         {
           className: mergeTailwindClasses(
-            "border border-border/10",
-            isItemSelected(item) && "bg-default",
+            "border border-border/10 transition-colors duration-200",
+            isItemSelected(item) && "bg-default/50 border-primary/20",
             itemClassName
           ),
-          endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "text-success", children: "✓" }) : void 0,
+          endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "font-semibold text-success", children: "✓" }) : void 0,
           children: renderItem(item)
         },
         getItemKey(item)
@@ -219,8 +227,9 @@ function InfiniteAutocomplete(_a) {
       return null;
     }
     if (selectedItems.length <= maxVisibleInBadge) {
-      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-3", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2 rounded-md border border-primary/20 bg-content1-100/40 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background", children: selectedItems.map((item) => {
+      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2 rounded-lg border border-primary/20 bg-content1/90 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background/90", children: selectedItems.map((item) => {
         const itemKey = getItemKey(item);
+        const itemValue = getItemValue(item);
         return /* @__PURE__ */ jsx(
           Chip,
           {
@@ -234,14 +243,21 @@ function InfiniteAutocomplete(_a) {
                 className: "text-default-400 transition-colors duration-200 hover:text-danger"
               }
             ),
-            className: "max-w-[140px] border border-primary/20 bg-primary/10 text-primary shadow-sm transition-all duration-200 hover:bg-primary/20",
-            children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs font-medium", children: getItemValue(item) })
+            className: "max-w-[140px] border border-primary/20 bg-primary/10 text-primary shadow-sm transition-all duration-200 hover:border-primary/30 hover:bg-primary/20",
+            children: /* @__PURE__ */ jsx(
+              "span",
+              {
+                className: "truncate text-xs font-medium",
+                title: itemValue,
+                children: itemValue
+              }
+            )
           },
           itemKey
         );
       }) }) });
     }
-    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-3", children: /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-2", children: /* @__PURE__ */ jsxs(
       Popover,
       {
         isOpen: isPopoverOpen,
@@ -261,7 +277,7 @@ function InfiniteAutocomplete(_a) {
               size: "lg",
               className: "cursor-pointer",
               classNames: {
-                badge: "bg-primary text-white font-semibold"
+                badge: "bg-primary text-white font-semibold min-w-5 h-5"
               },
               children: /* @__PURE__ */ jsxs(
                 Button,
@@ -269,8 +285,9 @@ function InfiniteAutocomplete(_a) {
                   variant: "flat",
                   size: "sm",
                   startContent: selectionIcon,
-                  className: "h-9 border border-primary/20 bg-content1-100/40 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/20 hover:via-primary/5 hover:to-secondary/20 hover:shadow-sm",
+                  className: "h-9 border border-primary/20 bg-content1/90 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-primary/10 hover:shadow-md",
                   onPress: () => setIsPopoverOpen(!isPopoverOpen),
+                  "aria-label": `${selectedItems.length} ${selectionLabel}${selectedItems.length > 1 ? "s" : ""} sélectionné${selectedItems.length > 1 ? "s" : ""}`,
                   children: [
                     selectedItems.length,
                     " ",
@@ -281,18 +298,21 @@ function InfiniteAutocomplete(_a) {
               )
             }
           ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { className: "border border-border bg-gradient-to-b from-content1 to-content1-100/10 p-2 backdrop-blur-xl transition-all data-[hover=true]:bg-content1-100/30 dark:bg-background dark:from-background-200/20 dark:to-background dark:data-[hover=true]:bg-content1-200/20", children: [
-            /* @__PURE__ */ jsxs("div", { className: "mb-5 flex w-full items-center justify-between gap-4", children: [
-              /* @__PURE__ */ jsxs("h4", { className: "text-sm font-bold", children: [
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "border border-border bg-gradient-to-b from-content1 to-content1/80 p-3 backdrop-blur-xl transition-all dark:from-background/90 dark:to-background/70", children: [
+            /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between", children: [
+              /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
                 selectionLabel,
                 "s (",
                 selectedItems.length,
                 ")"
               ] }),
-              /* @__PURE__ */ jsx("div", { className: "flex gap-2", children: /* @__PURE__ */ jsx(
+              /* @__PURE__ */ jsx(
                 Tooltip,
                 {
+                  content: "Tout supprimer",
+                  placement: "top",
+                  delay: 500,
                   trigger: /* @__PURE__ */ jsx(
                     Button,
                     {
@@ -301,31 +321,30 @@ function InfiniteAutocomplete(_a) {
                       variant: "flat",
                       color: "danger",
                       onPress: handleClearAll,
-                      className: "size-8 bg-danger/10 transition-all duration-200 hover:scale-110 hover:bg-danger/20",
+                      className: "size-8 bg-danger/10 transition-all duration-200 hover:scale-105 hover:bg-danger/20",
+                      "aria-label": "Supprimer tous les éléments sélectionnés",
                       children: /* @__PURE__ */ jsx(IconTrash, { size: 16 })
                     }
-                  ),
-                  content: "Tout supprimer",
-                  placement: "top"
+                  )
                 }
-              ) })
+              )
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-80 w-80 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "grid w-full grid-cols-2 gap-3 pr-2", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-80 w-80 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "grid w-full grid-cols-2 gap-2 pr-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
-              return /* @__PURE__ */ jsx(
-                Tooltip,
+              return /* @__PURE__ */ jsxs(
+                "div",
                 {
-                  content: itemValue,
-                  placement: "top",
-                  showArrow: true,
-                  delay: 300,
-                  closeDelay: 0,
-                  classNames: {
-                    content: "max-w-xs text-xs bg-content1-100/40 border border-primary/5 shadow-xl backdrop-blur-md"
-                  },
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-sm border border-primary/20 bg-content1-100/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/10 hover:shadow-sm", children: [
-                    /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground transition-colors duration-200 group-hover:text-primary", children: itemValue }) }),
+                  className: "group relative flex min-w-0 items-center rounded-md border border-primary/20 bg-content1/50 p-2 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm",
+                  children: [
+                    /* @__PURE__ */ jsx(
+                      "span",
+                      {
+                        className: "flex-1 truncate text-xs font-medium text-foreground group-hover:text-primary",
+                        title: itemValue,
+                        children: itemValue
+                      }
+                    ),
                     /* @__PURE__ */ jsx(
                       Button,
                       {
@@ -334,11 +353,12 @@ function InfiniteAutocomplete(_a) {
                         variant: "flat",
                         color: "danger",
                         onPress: () => handleRemoveChip(itemKey),
-                        className: "absolute -right-1 -top-1 size-6 bg-danger/20 opacity-70 transition-all duration-200 hover:scale-110 hover:bg-danger/30 group-hover:opacity-100",
-                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
+                        className: "ml-2 size-5 bg-danger/20 opacity-60 transition-all duration-200 hover:scale-110 hover:bg-danger/30 hover:opacity-100",
+                        "aria-label": `Supprimer ${itemValue}`,
+                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 10 })
                       }
                     )
-                  ] })
+                  ]
                 },
                 itemKey
               );
@@ -370,7 +390,7 @@ function InfiniteAutocomplete(_a) {
           placeholder: "Erreur de chargement",
           "aria-label": "Autocomplete en erreur"
         }, autocompleteProps), {
-          children: /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, children: errorContent != null ? errorContent : `Erreur: ${error.message}` }, "error")
+          children: /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, className: "text-danger", children: errorContent != null ? errorContent : `Erreur: ${error.message}` }, "error")
         })
       )
     ] });
@@ -386,7 +406,15 @@ function InfiniteAutocomplete(_a) {
           placeholder: "Chargement...",
           "aria-label": "Autocomplete en chargement"
         }, autocompleteProps), {
-          children: /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, children: loadingContent != null ? loadingContent : "Chargement des données..." }, "loading")
+          children: /* @__PURE__ */ jsx(
+            AutocompleteItem,
+            {
+              isReadOnly: true,
+              className: "text-default-500",
+              children: loadingContent
+            },
+            "loading"
+          )
         })
       )
     ] });
@@ -399,7 +427,10 @@ function InfiniteAutocomplete(_a) {
         className: "w-full",
         inputProps: __spreadValues({
           classNames: {
-            inputWrapper: autocompleteProps.variant === "bordered" && "border border-border"
+            inputWrapper: cn(
+              autocompleteProps.variant === "bordered" && "border border-border",
+              "transition-colors duration-200"
+            )
           }
         }, autocompleteProps.inputProps),
         isLoading: isFetching && items.length === 0,
@@ -412,13 +443,21 @@ function InfiniteAutocomplete(_a) {
         onOpenChange: handleOpenChange,
         shouldCloseOnBlur: !isMultiSelect,
         allowsCustomValue: isMultiSelect,
-        menuTrigger: isMultiSelect ? "focus" : "focus",
+        menuTrigger: "focus",
         "aria-label": autocompleteProps["aria-label"] || "Autocomplete avec scroll infini",
         "aria-describedby": isFetching ? "infinite-autocomplete-loading" : autocompleteProps["aria-describedby"]
       }, autocompleteProps), {
         children: [
-          items.length === 0 && !isLoading ? /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, children: emptyContent }, "empty") : /* @__PURE__ */ jsx(Fragment, { children: autocompleteItems }),
-          isFetching && items.length > 0 ? /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, children: fetchingMoreContent != null ? fetchingMoreContent : "Chargement..." }, "fetching-more") : null
+          items.length === 0 && !isLoading ? /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, className: "text-default-500", children: emptyContent }, "empty") : /* @__PURE__ */ jsx(Fragment, { children: autocompleteItems }),
+          isFetching && items.length > 0 ? /* @__PURE__ */ jsx(
+            AutocompleteItem,
+            {
+              isReadOnly: true,
+              className: "text-default-500",
+              children: fetchingMoreContent
+            },
+            "fetching-more"
+          ) : null
         ]
       })
     )
