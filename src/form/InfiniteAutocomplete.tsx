@@ -260,7 +260,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     if (selectedItems.length <= maxVisibleInBadge) {
       return (
         <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-3">
-          <div className="flex flex-wrap gap-2 rounded-xl border border-primary/20 bg-gradient-to-br from-background/95 via-background/90 to-primary/5 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md">
+          <div className="flex flex-wrap gap-2 rounded-xl border border-primary/5 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background">
             {selectedItems.map((item): JSX.Element => {
               const itemKey = getItemKey(item);
               return (
@@ -307,15 +307,14 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
               size="lg"
               className="cursor-pointer"
               classNames={{
-                badge:
-                  "bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-lg",
+                badge: "bg-primary text-white font-semibold",
               }}
             >
               <Button
                 variant="flat"
                 size="sm"
                 startContent={selectionIcon}
-                className="h-9 border border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/20 hover:via-primary/10 hover:to-secondary/20 hover:shadow-lg"
+                className="h-9 border border-primary/30 bg-content1-100/40 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/20 hover:via-primary/5 hover:to-secondary/20 hover:shadow-sm"
                 onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
               >
                 {selectedItems.length} {selectionLabel}
@@ -326,7 +325,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
 
           <PopoverContent className="border border-border bg-gradient-to-b from-content1 to-content1-100/10 p-2 backdrop-blur-xl transition-all data-[hover=true]:bg-content1-100/30 dark:bg-background dark:from-background-200/20 dark:to-background dark:data-[hover=true]:bg-content1-200/20">
             <div className="mb-5 flex w-full items-center justify-between gap-4">
-              <h4 className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-sm font-bold text-transparent">
+              <h4 className="bg-clip-text text-sm font-bold text-transparent">
                 Éléments {selectionLabel}s ({selectedItems.length})
               </h4>
               <div className="flex gap-2">
@@ -364,10 +363,10 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
                       closeDelay={0}
                       classNames={{
                         content:
-                          "max-w-xs text-xs bg-gradient-to-r from-background to-primary/5 border border-primary/20 shadow-xl backdrop-blur-md",
+                          "max-w-xs text-xs bg-content1-100/40 border border-primary/5 shadow-xl backdrop-blur-md",
                       }}
                       trigger={
-                        <div className="group relative flex min-w-0 flex-col items-center rounded-xl border border-primary/20 bg-gradient-to-br from-background/80 to-primary/5 p-3 transition-all duration-300 hover:scale-[1.02] hover:border-primary/40 hover:bg-gradient-to-br hover:from-primary/10 hover:to-secondary/10 hover:shadow-lg">
+                        <div className="group relative flex min-w-0 flex-col items-center rounded-xl border border-primary/5 bg-content1-100/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/10 hover:shadow-sm">
                           <div className="w-full min-w-0 text-center">
                             <div className="truncate text-xs font-medium text-foreground transition-colors duration-200 group-hover:text-primary">
                               {itemValue}
