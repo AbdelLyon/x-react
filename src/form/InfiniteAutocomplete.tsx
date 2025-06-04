@@ -260,7 +260,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     if (selectedItems.length <= maxVisibleInBadge) {
       return (
         <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-3">
-          <div className="flex flex-wrap gap-2 rounded-xl border border-primary/5 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background">
+          <div className="flex flex-wrap gap-2 rounded-xl border border-primary/20 bg-content1-100/40 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background">
             {selectedItems.map((item): JSX.Element => {
               const itemKey = getItemKey(item);
               return (
@@ -314,7 +314,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
                 variant="flat"
                 size="sm"
                 startContent={selectionIcon}
-                className="h-9 border border-primary/30 bg-content1-100/40 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/20 hover:via-primary/5 hover:to-secondary/20 hover:shadow-sm"
+                className="h-9 border border-primary/20 bg-content1-100/40 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/20 hover:via-primary/5 hover:to-secondary/20 hover:shadow-sm"
                 onPress={(): void => setIsPopoverOpen(!isPopoverOpen)}
               >
                 {selectedItems.length} {selectionLabel}
@@ -325,7 +325,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
 
           <PopoverContent className="border border-border bg-gradient-to-b from-content1 to-content1-100/10 p-2 backdrop-blur-xl transition-all data-[hover=true]:bg-content1-100/30 dark:bg-background dark:from-background-200/20 dark:to-background dark:data-[hover=true]:bg-content1-200/20">
             <div className="mb-5 flex w-full items-center justify-between gap-4">
-              <h4 className="bg-clip-text text-sm font-bold text-transparent">
+              <h4 className="text-sm font-bold">
                 Éléments {selectionLabel}s ({selectedItems.length})
               </h4>
               <div className="flex gap-2">
