@@ -324,7 +324,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
             </Badge>
           </PopoverTrigger>
 
-          <PopoverContent className="rounded-2xl border border-primary/20 bg-gradient-to-br from-background/[0.98] via-background/95 to-primary/5 p-5 shadow-2xl ring-1 ring-primary/10 backdrop-blur-xl">
+          <PopoverContent className="border border-border bg-gradient-to-b from-content1 to-content1-100/10 p-2 backdrop-blur-xl transition-all data-[hover=true]:bg-content1-100/30 dark:bg-background dark:from-background-200/20 dark:to-background dark:data-[hover=true]:bg-content1-200/20">
             <div className="mb-5 flex w-full items-center justify-between gap-4">
               <h4 className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-sm font-bold text-transparent">
                 Éléments {selectionLabel}s ({selectedItems.length})
@@ -337,7 +337,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
                       size="sm"
                       variant="flat"
                       color="danger"
-                      onClick={handleClearAll}
+                      onPress={handleClearAll}
                       className="size-8 bg-danger/10 transition-all duration-200 hover:scale-110 hover:bg-danger/20"
                     >
                       <IconTrash size={16} />
