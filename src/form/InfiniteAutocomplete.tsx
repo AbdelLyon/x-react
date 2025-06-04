@@ -351,7 +351,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
             </Badge>
           </PopoverTrigger>
 
-          <PopoverContent className="border border-border bg-gradient-to-b from-content1 to-content1/80 p-3 backdrop-blur-xl transition-all dark:from-background/90 dark:to-background/70">
+          <PopoverContent className="border border-border bg-gradient-to-b from-content1 to-content1 p-3 backdrop-blur-xl transition-all dark:from-background/90 dark:to-background/70">
             <div className="mb-4 flex w-full items-center justify-between">
               <h4 className="text-sm font-semibold text-foreground">
                 Éléments {selectionLabel}s ({selectedItems.length})

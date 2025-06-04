@@ -298,7 +298,7 @@ function InfiniteAutocomplete(_a) {
               )
             }
           ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { className: "border border-border bg-gradient-to-b from-content1 to-content1/80 p-3 backdrop-blur-xl transition-all dark:from-background/90 dark:to-background/70", children: [
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "border border-border bg-gradient-to-b from-content1 to-content1 p-3 backdrop-blur-xl transition-all dark:from-background/90 dark:to-background/70", children: [
             /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between", children: [
               /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
                 "Éléments ",
