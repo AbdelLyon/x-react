@@ -219,7 +219,7 @@ function InfiniteAutocomplete(_a) {
       return null;
     }
     if (selectedItems.length <= maxVisibleInBadge) {
-      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-3", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2 rounded-xl border border-primary/20 bg-content1-100/40 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background", children: selectedItems.map((item) => {
+      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-3", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2 rounded-md border border-primary/20 bg-content1-100/40 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background", children: selectedItems.map((item) => {
         const itemKey = getItemKey(item);
         return /* @__PURE__ */ jsx(
           Chip,
@@ -324,7 +324,7 @@ function InfiniteAutocomplete(_a) {
                   classNames: {
                     content: "max-w-xs text-xs bg-content1-100/40 border border-primary/5 shadow-xl backdrop-blur-md"
                   },
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-xl border border-primary/5 bg-content1-100/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/10 hover:shadow-sm", children: [
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-sm border border-primary/20 bg-content1-100/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/10 hover:shadow-sm", children: [
                     /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground transition-colors duration-200 group-hover:text-primary", children: itemValue }) }),
                     /* @__PURE__ */ jsx(
                       Button,
@@ -333,8 +333,8 @@ function InfiniteAutocomplete(_a) {
                         size: "sm",
                         variant: "flat",
                         color: "danger",
-                        onClick: () => handleRemoveChip(itemKey),
-                        className: "absolute -right-1 -top-1 size-6 bg-danger/20 opacity-0 transition-all duration-200 hover:scale-110 hover:bg-danger/30 group-hover:opacity-100",
+                        onPress: () => handleRemoveChip(itemKey),
+                        className: "absolute -right-1 -top-1 size-6 bg-danger/20 opacity-70 transition-all duration-200 hover:scale-110 hover:bg-danger/30 group-hover:opacity-100",
                         children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
                       }
                     )

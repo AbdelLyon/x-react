@@ -260,7 +260,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     if (selectedItems.length <= maxVisibleInBadge) {
       return (
         <div className="absolute inset-x-0 top-0 z-20 -translate-y-full pb-3">
-          <div className="flex flex-wrap gap-2 rounded-xl border border-primary/20 bg-content1-100/40 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background">
+          <div className="flex flex-wrap gap-2 rounded-md border border-primary/20 bg-content1-100/40 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md dark:bg-background">
             {selectedItems.map((item): JSX.Element => {
               const itemKey = getItemKey(item);
               return (
@@ -366,7 +366,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
                           "max-w-xs text-xs bg-content1-100/40 border border-primary/5 shadow-xl backdrop-blur-md",
                       }}
                       trigger={
-                        <div className="group relative flex min-w-0 flex-col items-center rounded-xl border border-primary/5 bg-content1-100/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/10 hover:shadow-sm">
+                        <div className="group relative flex min-w-0 flex-col items-center rounded-sm border border-primary/20 bg-content1-100/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/10 hover:shadow-sm">
                           <div className="w-full min-w-0 text-center">
                             <div className="truncate text-xs font-medium text-foreground transition-colors duration-200 group-hover:text-primary">
                               {itemValue}
@@ -378,8 +378,8 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
                             size="sm"
                             variant="flat"
                             color="danger"
-                            onClick={(): void => handleRemoveChip(itemKey)}
-                            className="absolute -right-1 -top-1 size-6 bg-danger/20 opacity-0 transition-all duration-200 hover:scale-110 hover:bg-danger/30 group-hover:opacity-100"
+                            onPress={(): void => handleRemoveChip(itemKey)}
+                            className="absolute -right-1 -top-1 size-6 bg-danger/20 opacity-70 transition-all duration-200 hover:scale-110 hover:bg-danger/30 group-hover:opacity-100"
                           >
                             <IconXboxX size={12} />
                           </Button>
