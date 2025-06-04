@@ -29,9 +29,9 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsx } from "react/jsx-runtime";
-import { Select, SelectItem } from "@heroui/react";
-import { useState } from "react";
+import { jsx, jsxs, Fragment } from "react/jsx-runtime";
+import { SelectItem, Select } from "@heroui/react";
+import { useState, useCallback, useMemo } from "react";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 function InfiniteSelect(_a) {
   var _b = _a, {
@@ -40,60 +40,112 @@ function InfiniteSelect(_a) {
     fetchNextPage,
     hasNextPage,
     isLoading,
+    error,
     className = "max-w-xs",
     renderItem,
     getItemKey,
     selectionMode = "single",
-    onSearchChange,
-    searchPlaceholder = "Rechercher...",
-    isSearchable = false
+    onSelectionChange,
+    onMultipleSelectionChange,
+    emptyContent = "Aucun élément trouvé",
+    errorContent,
+    loadingContent,
+    fetchingMoreContent
   } = _b, selectProps = __objRest(_b, [
     "items",
     "isFetching",
     "fetchNextPage",
     "hasNextPage",
     "isLoading",
+    "error",
     "className",
     "renderItem",
     "getItemKey",
     "selectionMode",
-    "onSearchChange",
-    "searchPlaceholder",
-    "isSearchable"
+    "onSelectionChange",
+    "onMultipleSelectionChange",
+    "emptyContent",
+    "errorContent",
+    "loadingContent",
+    "fetchingMoreContent"
   ]);
   const [isOpen, setIsOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
   const { scrollContainerRef } = useInfiniteScroll({
     hasMore: hasNextPage,
-    isEnabled: isOpen,
+    isEnabled: isOpen && !error,
     shouldUseLoader: false,
     onLoadMore: fetchNextPage
   });
-  const handleSearchChange = (value) => {
-    setSearchText(value);
-    onSearchChange == null ? void 0 : onSearchChange(value);
-  };
-  return /* @__PURE__ */ jsx(
+  const handleSelectionChange = useCallback(
+    (keys) => {
+      if (keys === "all") {
+        return;
+      }
+      if (selectionMode === "single") {
+        const key = keys.size > 0 ? Array.from(keys)[0] : null;
+        onSelectionChange == null ? void 0 : onSelectionChange(key);
+      } else {
+        onMultipleSelectionChange == null ? void 0 : onMultipleSelectionChange(keys);
+      }
+    },
+    [selectionMode, onSelectionChange, onMultipleSelectionChange]
+  );
+  const handleOpenChange = useCallback(
+    (open) => {
+      var _a2;
+      setIsOpen(open);
+      (_a2 = selectProps.onOpenChange) == null ? void 0 : _a2.call(selectProps, open);
+    },
+    [selectProps]
+  );
+  const selectItems = useMemo(() => {
+    return items.map(
+      (item, index) => /* @__PURE__ */ jsx(SelectItem, { children: renderItem(item) }, getItemKey(item, index))
+    );
+  }, [items, getItemKey, renderItem]);
+  if (error && !isLoading) {
+    return /* @__PURE__ */ jsx(
+      Select,
+      __spreadProps(__spreadValues({
+        className,
+        isDisabled: true,
+        placeholder: "Erreur de chargement",
+        "aria-label": "Select en erreur"
+      }, selectProps), {
+        children: /* @__PURE__ */ jsx(SelectItem, { isReadOnly: true, children: errorContent !== void 0 ? errorContent : `Erreur: ${error.message}` }, "error")
+      })
+    );
+  }
+  if (isLoading && items.length === 0) {
+    return /* @__PURE__ */ jsx(
+      Select,
+      __spreadProps(__spreadValues({
+        className,
+        isLoading: true,
+        placeholder: "Chargement...",
+        "aria-label": "Select en chargement"
+      }, selectProps), {
+        children: /* @__PURE__ */ jsx(SelectItem, { isReadOnly: true, children: loadingContent != null ? loadingContent : "Chargement des données..." }, "loading")
+      })
+    );
+  }
+  return /* @__PURE__ */ jsxs(
     Select,
-    __spreadProps(__spreadValues(__spreadProps(__spreadValues({
+    __spreadProps(__spreadValues({
       className,
-      isLoading: isLoading || isFetching,
+      isLoading: isFetching && items.length === 0,
       items,
       scrollRef: scrollContainerRef,
-      selectionMode
-    }, isSearchable && {
-      allowsCustomValue: true,
-      onInputChange: handleSearchChange,
-      inputValue: searchText,
-      placeholder: searchPlaceholder
-    }), {
-      onOpenChange: (open) => {
-        var _a2;
-        setIsOpen(open);
-        (_a2 = selectProps.onOpenChange) == null ? void 0 : _a2.call(selectProps, open);
-      }
-    }), selectProps), {
-      children: (item) => /* @__PURE__ */ jsx(SelectItem, { children: renderItem(item) }, getItemKey(item))
+      selectionMode,
+      onOpenChange: handleOpenChange,
+      onSelectionChange: handleSelectionChange,
+      "aria-label": selectProps["aria-label"] || "Select avec scroll infini",
+      "aria-describedby": isFetching ? "infinite-select-loading" : selectProps["aria-describedby"]
+    }, selectProps), {
+      children: [
+        items.length === 0 && !isLoading ? /* @__PURE__ */ jsx(SelectItem, { isReadOnly: true, children: emptyContent }, "empty") : /* @__PURE__ */ jsx(Fragment, { children: selectItems }),
+        isFetching && items.length > 0 ? /* @__PURE__ */ jsx(SelectItem, { isReadOnly: true, children: fetchingMoreContent != null ? fetchingMoreContent : "Chargement..." }, "fetching-more") : null
+      ]
     })
   );
 }

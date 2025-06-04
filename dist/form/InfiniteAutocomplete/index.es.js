@@ -29,11 +29,12 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { jsxs, jsx } from "react/jsx-runtime";
+import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { cn, Autocomplete, AutocompleteItem, Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow } from "@heroui/react";
+import { AutocompleteItem, Chip, Popover, PopoverTrigger, Badge, Button, PopoverContent, ScrollShadow, cn, Autocomplete } from "@heroui/react";
 import { IconXboxX, IconTrash } from "@tabler/icons-react";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { useDebouncedValue } from "../../hooks/useDebouncedValue/index.es.js";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 import { Tooltip } from "../../tooltip/Tooltip/index.es.js";
 function InfiniteAutocomplete(_a) {
@@ -43,11 +44,13 @@ function InfiniteAutocomplete(_a) {
     fetchNextPage,
     hasNextPage,
     isLoading,
+    error,
     className = "max-w-xs",
     renderItem,
     getItemKey,
     getItemValue = (item) => String(renderItem(item)),
     onSearchChange,
+    searchDebounceMs = 300,
     selectionMode = "single",
     selectedKey,
     selectedKeys = /* @__PURE__ */ new Set(),
@@ -55,18 +58,24 @@ function InfiniteAutocomplete(_a) {
     maxVisibleInBadge = 2,
     selectionIcon = null,
     selectionLabel = "sélectionné",
-    itemClassName: itemClassName
+    itemClassName,
+    emptyContent = "Aucun élément trouvé",
+    errorContent,
+    loadingContent,
+    fetchingMoreContent
   } = _b, autocompleteProps = __objRest(_b, [
     "items",
     "isFetching",
     "fetchNextPage",
     "hasNextPage",
     "isLoading",
+    "error",
     "className",
     "renderItem",
     "getItemKey",
     "getItemValue",
     "onSearchChange",
+    "searchDebounceMs",
     "selectionMode",
     "selectedKey",
     "selectedKeys",
@@ -74,35 +83,68 @@ function InfiniteAutocomplete(_a) {
     "maxVisibleInBadge",
     "selectionIcon",
     "selectionLabel",
-    // Label par défaut
-    "itemClassName"
+    "itemClassName",
+    "emptyContent",
+    "errorContent",
+    "loadingContent",
+    "fetchingMoreContent"
   ]);
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [savedSelectedItems, setSavedSelectedItems] = useState(/* @__PURE__ */ new Map());
+  const { debouncedValue: debouncedSearchTerm, cancel: cancelDebounce } = useDebouncedValue(inputValue, searchDebounceMs);
   const { scrollContainerRef } = useInfiniteScroll({
     hasMore: hasNextPage,
-    isEnabled: isOpen,
+    isEnabled: isOpen && !error,
     shouldUseLoader: false,
     onLoadMore: fetchNextPage
   });
   const isMultiSelect = selectionMode === "multiple";
+  useEffect(() => {
+    if (onSearchChange && inputValue !== "") {
+      onSearchChange(debouncedSearchTerm);
+    }
+  }, [debouncedSearchTerm, onSearchChange, inputValue]);
+  useEffect(() => {
+    if (!isMultiSelect) {
+      return;
+    }
+    setSavedSelectedItems((prev) => {
+      const newSavedItems = new Map(prev);
+      items.forEach((item) => {
+        const key = getItemKey(item);
+        if (selectedKeys.has(key) && !newSavedItems.has(key)) {
+          newSavedItems.set(key, item);
+        }
+      });
+      for (const [key] of newSavedItems) {
+        if (!selectedKeys.has(key)) {
+          newSavedItems.delete(key);
+        }
+      }
+      return newSavedItems;
+    });
+  }, [items, selectedKeys, getItemKey, isMultiSelect]);
   const selectedItems = useMemo(() => {
     if (!isMultiSelect) {
       return [];
     }
-    return items.filter((item) => selectedKeys.has(getItemKey(item)));
-  }, [items, selectedKeys, getItemKey, isMultiSelect]);
+    return Array.from(savedSelectedItems.values());
+  }, [savedSelectedItems, isMultiSelect]);
   const handleInputChange = useCallback(
     (value) => {
       setInputValue(value);
-      onSearchChange == null ? void 0 : onSearchChange(value);
+      if (value === "" && onSearchChange) {
+        cancelDebounce();
+        onSearchChange("");
+      }
     },
-    [onSearchChange]
+    [onSearchChange, cancelDebounce]
   );
   const handleSelectionChange = useCallback(
     (key) => {
-      if (!key) {
+      if (key === null || key === void 0) {
         if (!isMultiSelect) {
           onSelectionChange == null ? void 0 : onSelectionChange(null);
         }
@@ -136,18 +178,48 @@ function InfiniteAutocomplete(_a) {
     onSelectionChange == null ? void 0 : onSelectionChange(/* @__PURE__ */ new Set());
     setIsPopoverOpen(false);
   }, [onSelectionChange]);
+  const handleOpenChange = useCallback(
+    (open) => {
+      var _a2;
+      setIsOpen(open);
+      (_a2 = autocompleteProps.onOpenChange) == null ? void 0 : _a2.call(autocompleteProps, open);
+      if (!open && inputValue) {
+        setInputValue("");
+        cancelDebounce();
+        onSearchChange == null ? void 0 : onSearchChange("");
+      }
+    },
+    [autocompleteProps, inputValue, onSearchChange, cancelDebounce]
+  );
   const isItemSelected = useCallback(
     (item) => {
       return isMultiSelect && selectedKeys.has(getItemKey(item));
     },
     [isMultiSelect, selectedKeys, getItemKey]
   );
-  const selectionBadge = () => {
+  const autocompleteItems = useMemo(() => {
+    return items.map(
+      (item) => /* @__PURE__ */ jsx(
+        AutocompleteItem,
+        {
+          className: mergeTailwindClasses(
+            "border border-border/10",
+            isItemSelected(item) && "bg-default",
+            itemClassName
+          ),
+          endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "text-success", children: "✓" }) : void 0,
+          children: renderItem(item)
+        },
+        getItemKey(item)
+      )
+    );
+  }, [items, getItemKey, isItemSelected, itemClassName, renderItem]);
+  const selectionBadge = useCallback(() => {
     if (!isMultiSelect || selectedItems.length === 0) {
       return null;
     }
     if (selectedItems.length <= maxVisibleInBadge) {
-      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-2", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-1 rounded-lg border border-divider bg-background/95 p-2 shadow-medium backdrop-blur-sm", children: selectedItems.map((item) => {
+      return /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 z-20 -translate-y-full pb-3", children: /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2 rounded-xl border border-primary/20 bg-gradient-to-br from-background/95 via-background/90 to-primary/5 p-3 shadow-lg ring-1 ring-primary/10 backdrop-blur-md", children: selectedItems.map((item) => {
         const itemKey = getItemKey(item);
         return /* @__PURE__ */ jsx(
           Chip,
@@ -155,15 +227,21 @@ function InfiniteAutocomplete(_a) {
             onClose: () => handleRemoveChip(itemKey),
             variant: "flat",
             size: "sm",
-            endContent: /* @__PURE__ */ jsx(IconXboxX, { size: 12 }),
-            className: "max-w-[120px]",
-            children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs", children: getItemValue(item) })
+            endContent: /* @__PURE__ */ jsx(
+              IconXboxX,
+              {
+                size: 12,
+                className: "text-default-400 transition-colors duration-200 hover:text-danger"
+              }
+            ),
+            className: "max-w-[140px] border border-primary/20 bg-primary/10 text-primary shadow-sm transition-all duration-200 hover:bg-primary/20",
+            children: /* @__PURE__ */ jsx("span", { className: "truncate text-xs font-medium", children: getItemValue(item) })
           },
           itemKey
         );
       }) }) });
     }
-    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-2", children: /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 z-20 flex -translate-y-full justify-end pb-3", children: /* @__PURE__ */ jsxs(
       Popover,
       {
         isOpen: isPopoverOpen,
@@ -171,21 +249,27 @@ function InfiniteAutocomplete(_a) {
         placement: "top-start",
         showArrow: true,
         backdrop: "transparent",
+        classNames: {
+          content: "border-0 bg-transparent shadow-none p-0"
+        },
         children: [
           /* @__PURE__ */ jsx(PopoverTrigger, { children: /* @__PURE__ */ jsx(
             Badge,
             {
               content: selectedItems.length,
               color: "primary",
-              size: "sm",
+              size: "lg",
               className: "cursor-pointer",
+              classNames: {
+                badge: "bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-lg"
+              },
               children: /* @__PURE__ */ jsxs(
                 Button,
                 {
                   variant: "flat",
                   size: "sm",
                   startContent: selectionIcon,
-                  className: "h-8 border border-border bg-background/95 px-3 text-xs shadow-medium backdrop-blur-sm",
+                  className: "h-9 border border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 px-4 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/20 hover:via-primary/10 hover:to-secondary/20 hover:shadow-lg",
                   onPress: () => setIsPopoverOpen(!isPopoverOpen),
                   children: [
                     selectedItems.length,
@@ -197,31 +281,36 @@ function InfiniteAutocomplete(_a) {
               )
             }
           ) }),
-          /* @__PURE__ */ jsxs(PopoverContent, { className: "rounded-md border border-border p-4 dark:bg-background", children: [
-            /* @__PURE__ */ jsxs("div", { className: "mb-4 flex w-full items-center justify-between gap-4", children: [
-              /* @__PURE__ */ jsxs("h4", { className: "text-sm font-semibold text-foreground", children: [
+          /* @__PURE__ */ jsxs(PopoverContent, { className: "rounded-2xl border border-primary/20 bg-gradient-to-br from-background/[0.98] via-background/95 to-primary/5 p-5 shadow-2xl ring-1 ring-primary/10 backdrop-blur-xl", children: [
+            /* @__PURE__ */ jsxs("div", { className: "mb-5 flex w-full items-center justify-between gap-4", children: [
+              /* @__PURE__ */ jsxs("h4", { className: "bg-gradient-to-r from-primary to-secondary bg-clip-text text-sm font-bold text-transparent", children: [
                 "Éléments ",
                 selectionLabel,
                 "s (",
                 selectedItems.length,
                 ")"
               ] }),
-              /* @__PURE__ */ jsx("div", { className: "flex gap-1", children: /* @__PURE__ */ jsx(
+              /* @__PURE__ */ jsx("div", { className: "flex gap-2", children: /* @__PURE__ */ jsx(
                 Tooltip,
                 {
                   trigger: /* @__PURE__ */ jsx(
-                    IconTrash,
+                    Button,
                     {
+                      isIconOnly: true,
+                      size: "sm",
+                      variant: "flat",
+                      color: "danger",
                       onClick: handleClearAll,
-                      className: "cursor-pointer text-danger opacity-80 transition-all duration-200 hover:opacity-100",
-                      size: 18
+                      className: "size-8 bg-danger/10 transition-all duration-200 hover:scale-110 hover:bg-danger/20",
+                      children: /* @__PURE__ */ jsx(IconTrash, { size: 16 })
                     }
                   ),
-                  content: "Tout supprimer"
+                  content: "Tout supprimer",
+                  placement: "top"
                 }
               ) })
             ] }),
-            /* @__PURE__ */ jsx(ScrollShadow, { className: " max-h-64 w-72 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "mt-2 grid w-full grid-cols-3 gap-2 pr-2", children: selectedItems.map((item) => {
+            /* @__PURE__ */ jsx(ScrollShadow, { className: "max-h-80 w-80 overflow-x-hidden", children: /* @__PURE__ */ jsx("div", { className: "grid w-full grid-cols-2 gap-3 pr-2", children: selectedItems.map((item) => {
               const itemKey = getItemKey(item);
               const itemValue = getItemValue(item);
               return /* @__PURE__ */ jsx(
@@ -230,19 +319,23 @@ function InfiniteAutocomplete(_a) {
                   content: itemValue,
                   placement: "top",
                   showArrow: true,
-                  delay: 500,
+                  delay: 300,
                   closeDelay: 0,
                   classNames: {
-                    content: "max-w-xs text-xs bg-background border border-border shadow-lg"
+                    content: "max-w-xs text-xs bg-gradient-to-r from-background to-primary/5 border border-primary/20 shadow-xl backdrop-blur-md"
                   },
-                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-md border border-border p-2 transition-all hover:border-border hover:bg-default hover:shadow-sm", children: [
-                    /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground", children: itemValue }) }),
+                  trigger: /* @__PURE__ */ jsxs("div", { className: "group relative flex min-w-0 flex-col items-center rounded-xl border border-primary/20 bg-gradient-to-br from-background/80 to-primary/5 p-3 transition-all duration-300 hover:scale-[1.02] hover:border-primary/40 hover:bg-gradient-to-br hover:from-primary/10 hover:to-secondary/10 hover:shadow-lg", children: [
+                    /* @__PURE__ */ jsx("div", { className: "w-full min-w-0 text-center", children: /* @__PURE__ */ jsx("div", { className: "truncate text-xs font-medium text-foreground transition-colors duration-200 group-hover:text-primary", children: itemValue }) }),
                     /* @__PURE__ */ jsx(
-                      IconXboxX,
+                      Button,
                       {
-                        size: 14,
+                        isIconOnly: true,
+                        size: "sm",
+                        variant: "flat",
+                        color: "danger",
                         onClick: () => handleRemoveChip(itemKey),
-                        className: "absolute -right-2 -top-2 cursor-pointer text-danger opacity-80 transition-all duration-200 group-hover:opacity-100"
+                        className: "absolute -right-1 -top-1 size-6 bg-danger/20 opacity-0 transition-all duration-200 hover:scale-110 hover:bg-danger/30 group-hover:opacity-100",
+                        children: /* @__PURE__ */ jsx(IconXboxX, { size: 12 })
                       }
                     )
                   ] })
@@ -254,10 +347,53 @@ function InfiniteAutocomplete(_a) {
         ]
       }
     ) });
-  };
+  }, [
+    isMultiSelect,
+    selectedItems,
+    maxVisibleInBadge,
+    getItemKey,
+    getItemValue,
+    handleRemoveChip,
+    isPopoverOpen,
+    selectionIcon,
+    selectionLabel,
+    handleClearAll
+  ]);
+  if (error && !isLoading) {
+    return /* @__PURE__ */ jsxs("div", { className: cn("relative", className), children: [
+      selectionBadge(),
+      /* @__PURE__ */ jsx(
+        Autocomplete,
+        __spreadProps(__spreadValues({
+          className: "w-full",
+          isDisabled: true,
+          placeholder: "Erreur de chargement",
+          "aria-label": "Autocomplete en erreur"
+        }, autocompleteProps), {
+          children: /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, children: errorContent != null ? errorContent : `Erreur: ${error.message}` }, "error")
+        })
+      )
+    ] });
+  }
+  if (isLoading && items.length === 0) {
+    return /* @__PURE__ */ jsxs("div", { className: cn("relative", className), children: [
+      selectionBadge(),
+      /* @__PURE__ */ jsx(
+        Autocomplete,
+        __spreadProps(__spreadValues({
+          className: "w-full",
+          isLoading: true,
+          placeholder: "Chargement...",
+          "aria-label": "Autocomplete en chargement"
+        }, autocompleteProps), {
+          children: /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, children: loadingContent != null ? loadingContent : "Chargement des données..." }, "loading")
+        })
+      )
+    ] });
+  }
   return /* @__PURE__ */ jsxs("div", { className: cn("relative", className), children: [
     selectionBadge(),
-    /* @__PURE__ */ jsx(
+    /* @__PURE__ */ jsxs(
       Autocomplete,
       __spreadProps(__spreadValues({
         className: "w-full",
@@ -266,35 +402,24 @@ function InfiniteAutocomplete(_a) {
             inputWrapper: autocompleteProps.variant === "bordered" && "border border-border"
           }
         }, autocompleteProps.inputProps),
-        isLoading: isLoading || isFetching,
+        isLoading: isFetching && items.length === 0,
         items,
         scrollRef: scrollContainerRef,
         inputValue,
         onInputChange: handleInputChange,
         selectedKey: isMultiSelect ? null : selectedKey,
         onSelectionChange: handleSelectionChange,
-        onOpenChange: (open) => {
-          var _a2;
-          setIsOpen(open);
-          (_a2 = autocompleteProps.onOpenChange) == null ? void 0 : _a2.call(autocompleteProps, open);
-        },
+        onOpenChange: handleOpenChange,
         shouldCloseOnBlur: !isMultiSelect,
         allowsCustomValue: isMultiSelect,
-        menuTrigger: isMultiSelect ? "focus" : "focus"
+        menuTrigger: isMultiSelect ? "focus" : "focus",
+        "aria-label": autocompleteProps["aria-label"] || "Autocomplete avec scroll infini",
+        "aria-describedby": isFetching ? "infinite-autocomplete-loading" : autocompleteProps["aria-describedby"]
       }, autocompleteProps), {
-        children: (item) => /* @__PURE__ */ jsx(
-          AutocompleteItem,
-          {
-            className: mergeTailwindClasses(
-              "border border-border/10",
-              isItemSelected(item) && "bg-default",
-              itemClassName
-            ),
-            endContent: isItemSelected(item) ? /* @__PURE__ */ jsx("span", { className: "text-success", children: "✓" }) : void 0,
-            children: renderItem(item)
-          },
-          getItemKey(item)
-        )
+        children: [
+          items.length === 0 && !isLoading ? /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, children: emptyContent }, "empty") : /* @__PURE__ */ jsx(Fragment, { children: autocompleteItems }),
+          isFetching && items.length > 0 ? /* @__PURE__ */ jsx(AutocompleteItem, { isReadOnly: true, children: fetchingMoreContent != null ? fetchingMoreContent : "Chargement..." }, "fetching-more") : null
+        ]
       })
     )
   ] });
