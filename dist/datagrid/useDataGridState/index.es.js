@@ -17,7 +17,7 @@ var __spreadValues = (a, b) => {
   return a;
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 const useDataGridState = ({
   columns,
   onSortChange,
@@ -27,19 +27,22 @@ const useDataGridState = ({
     field: null,
     direction: "asc"
   });
-  const processedColumns = columns.map(
-    (column, index) => __spreadProps(__spreadValues({}, column), {
-      key: typeof column.field === "string" ? String(column.field) : String(index),
-      header: column.header
-    })
+  const processedColumns = useMemo(
+    () => columns.map(
+      (column, index) => __spreadProps(__spreadValues({}, column), {
+        key: typeof column.field === "string" ? String(column.field) : String(index),
+        header: column.header
+      })
+    ),
+    [columns]
   );
-  const extractColumnHeader = (column) => {
+  const extractColumnHeader = useCallback((column) => {
     return typeof column.header === "string" && column.header.length > 0 ? column.header : typeof column.key === "string" && column.key.length > 0 ? column.key : "Column";
-  };
-  const formatSortHeader = (header) => {
+  }, []);
+  const formatSortHeader = useCallback((header) => {
     return typeof header === "string" && header.length > 0 ? `Sort by ${header}` : "Sort column";
-  };
-  const extractCellValue = (columnKey, row, columns2) => {
+  }, []);
+  const extractCellValue = useCallback((columnKey, row, columns2) => {
     const column = columns2.find(
       (c) => typeof c.field === "string" && String(c.field) === String(columnKey)
     );
@@ -54,29 +57,29 @@ const useDataGridState = ({
       return typeof value === "string" || typeof value === "number" ? String(value) : null;
     }
     return null;
-  };
-  const onSort = (column) => {
+  }, []);
+  const onSort = useCallback((column) => {
     const matchedColumn = columns.find(
       (c) => typeof c.field === "string" && c.field.length > 0 && String(c.field) === column.key
     );
     const columnField = matchedColumn == null ? void 0 : matchedColumn.field;
     if (columnField !== void 0 && columnField !== "actions") {
-      setSortConfig({
+      setSortConfig((prev) => ({
         field: columnField,
-        direction: sortConfig.direction === "asc" ? "desc" : "asc"
-      });
+        direction: prev.direction === "asc" ? "desc" : "asc"
+      }));
       onSortChange == null ? void 0 : onSortChange(
         columnField,
         sortConfig.direction === "asc" ? "desc" : "asc"
       );
     }
-  };
-  const handleGridScroll = (e) => {
+  }, [columns, onSortChange, sortConfig.direction]);
+  const handleGridScroll = useCallback((e) => {
     const element = e.currentTarget;
     if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
       onGridScrollEnd == null ? void 0 : onGridScrollEnd();
     }
-  };
+  }, [onGridScrollEnd]);
   return {
     sortConfig,
     onSort,

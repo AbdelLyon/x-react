@@ -17,3 +17,20 @@ global.ResizeObserver = class {
   unobserve(): void {}
   disconnect(): void {}
 };
+
+global.IntersectionObserver = class {
+  constructor(
+    callback: IntersectionObserverCallback,
+    options?: IntersectionObserverInit
+  ) {
+    this.callback = callback;
+    this.options = options;
+  }
+  
+  callback: IntersectionObserverCallback;
+  options?: IntersectionObserverInit;
+  
+  observe(): void {}
+  unobserve(): void {}
+  disconnect(): void {}
+};

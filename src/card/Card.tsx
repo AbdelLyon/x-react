@@ -11,8 +11,12 @@ import {
   CardFooter,
 } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
+import type { BaseComponentProps, AccessibilityProps } from "@/types";
 
-interface CardProps extends NextUICardProps {
+export interface CardProps 
+  extends NextUICardProps,
+  BaseComponentProps,
+  Pick<AccessibilityProps, 'aria-label' | 'aria-labelledby' | 'aria-describedby'> {
   header?: ReactNode;
   footer?: ReactNode;
   footerProps?: CardFooterProps;

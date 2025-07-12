@@ -1,6 +1,6 @@
 import type { ColumnDefinition, ExtendedColumn } from "@/types/datagrid";
 import type { Key } from "react";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 // types.ts
 type RowIdentifier = string | number;
@@ -47,30 +47,34 @@ export const useDataGridState = <T extends DataGridRow>({
     direction: "asc",
   });
 
-  const processedColumns = columns.map(
-    (column, index): ExtendedColumn<T> => ({
-      ...column,
-      key:
-        typeof column.field === "string" ? String(column.field) : String(index),
-      header: column.header,
-    }),
+  const processedColumns = useMemo(
+    (): ExtendedColumn<T>[] =>
+      columns.map(
+        (column, index): ExtendedColumn<T> => ({
+          ...column,
+          key:
+            typeof column.field === "string" ? String(column.field) : String(index),
+          header: column.header,
+        }),
+      ),
+    [columns],
   );
 
-  const extractColumnHeader = (column: ExtendedColumn<T>): string => {
+  const extractColumnHeader = useCallback((column: ExtendedColumn<T>): string => {
     return typeof column.header === "string" && column.header.length > 0
       ? column.header
       : typeof column.key === "string" && column.key.length > 0
         ? column.key
         : "Column";
-  };
+  }, []);
 
-  const formatSortHeader = (header: React.ReactNode): string => {
+  const formatSortHeader = useCallback((header: React.ReactNode): string => {
     return typeof header === "string" && header.length > 0
       ? `Sort by ${header}`
       : "Sort column";
-  };
+  }, []);
 
-  const extractCellValue = (
+  const extractCellValue = useCallback((
     columnKey: Key,
     row: T,
     columns: ColumnDefinition<T>[],
@@ -100,9 +104,9 @@ export const useDataGridState = <T extends DataGridRow>({
     }
 
     return null;
-  };
+  }, []);
 
-  const onSort = (column: ExtendedColumn<T>): void => {
+  const onSort = useCallback((column: ExtendedColumn<T>): void => {
     const matchedColumn = columns.find(
       (c): c is ColumnDefinition<T> =>
         typeof c.field === "string" &&
@@ -113,24 +117,24 @@ export const useDataGridState = <T extends DataGridRow>({
     const columnField = matchedColumn?.field;
 
     if (columnField !== undefined && columnField !== "actions") {
-      setSortConfig({
+      setSortConfig((prev): SortConfig<T> => ({
         field: columnField,
-        direction: sortConfig.direction === "asc" ? "desc" : "asc",
-      });
+        direction: prev.direction === "asc" ? "desc" : "asc",
+      }));
       onSortChange?.(
         columnField,
         sortConfig.direction === "asc" ? "desc" : "asc",
       );
     }
-  };
+  }, [columns, onSortChange, sortConfig.direction]);
 
-  const handleGridScroll = (e: React.UIEvent<HTMLDivElement>): void => {
+  const handleGridScroll = useCallback((e: React.UIEvent<HTMLDivElement>): void => {
     const element = e.currentTarget;
 
     if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
       onGridScrollEnd?.();
     }
-  };
+  }, [onGridScrollEnd]);
 
   return {
     sortConfig,

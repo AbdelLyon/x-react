@@ -97,6 +97,7 @@ export default defineConfig({
 
     lib: {
       entry: {
+        index: "index.ts",
         style: "src/index.css",
         ...Object.fromEntries(
           modules.map((module) => [

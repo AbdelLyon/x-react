@@ -132,6 +132,12 @@ function InfiniteAutocomplete(_a) {
   const selectedItems = useMemo(() => {
     return isMultiSelect ? Array.from(savedSelectedItems.values()) : [];
   }, [savedSelectedItems, isMultiSelect]);
+  const isItemSelected = useCallback(
+    (item) => {
+      return isMultiSelect && selectedKeys.has(getItemKey(item));
+    },
+    [isMultiSelect, selectedKeys, getItemKey]
+  );
   const handleInputChange = useCallback(
     (value) => {
       setInputValue(value);
@@ -198,12 +204,6 @@ function InfiniteAutocomplete(_a) {
       }
     },
     [autocompleteProps, inputValue, onSearchChange, cancelDebounce]
-  );
-  const isItemSelected = useCallback(
-    (item) => {
-      return isMultiSelect && selectedKeys.has(getItemKey(item));
-    },
-    [isMultiSelect, selectedKeys, getItemKey]
   );
   const autocompleteItems = useMemo(() => {
     return items.map(

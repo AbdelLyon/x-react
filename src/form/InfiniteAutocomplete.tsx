@@ -22,7 +22,7 @@ import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 // Type plus restrictif pour les clés
 type SelectionKey = string | number;
 
-interface InfiniteSelectProps<T extends Record<string, unknown>>
+export interface InfiniteAutocompleteProps<T extends Record<string, unknown>>
   extends Omit<
     AutocompleteProps<T>,
     "items" | "children" | "selectedKey" | "onSelectionChange"
@@ -65,6 +65,9 @@ interface InfiniteSelectProps<T extends Record<string, unknown>>
   // Accessibility
   "aria-label"?: string;
   "aria-describedby"?: string;
+  "aria-expanded"?: boolean;
+  "aria-invalid"?: boolean;
+  "aria-required"?: boolean;
 }
 
 /**
@@ -98,7 +101,7 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
   loadingContent = "Chargement des données...",
   fetchingMoreContent = "Chargement de plus d'éléments...",
   ...autocompleteProps
-}: InfiniteSelectProps<T>): JSX.Element {
+}: InfiniteAutocompleteProps<T>): JSX.Element {
   // États
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -162,6 +165,14 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
   const selectedItems = useMemo((): T[] => {
     return isMultiSelect ? Array.from(savedSelectedItems.values()) : [];
   }, [savedSelectedItems, isMultiSelect]);
+
+  // Memoization de la fonction de vérification de sélection
+  const isItemSelected = useCallback(
+    (item: T): boolean => {
+      return isMultiSelect && selectedKeys.has(getItemKey(item));
+    },
+    [isMultiSelect, selectedKeys, getItemKey],
+  );
 
   // Gestionnaires d'événements
   const handleInputChange = useCallback(
@@ -242,13 +253,6 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
     [autocompleteProps, inputValue, onSearchChange, cancelDebounce],
   );
 
-  // Utilitaires
-  const isItemSelected = useCallback(
-    (item: T): boolean => {
-      return isMultiSelect && selectedKeys.has(getItemKey(item));
-    },
-    [isMultiSelect, selectedKeys, getItemKey],
-  );
 
   // Rendu des éléments de l'autocomplete
   const autocompleteItems = useMemo((): JSX.Element[] => {
@@ -531,4 +535,3 @@ export function InfiniteAutocomplete<T extends Record<string, unknown>>({
   );
 }
 
-export type { InfiniteSelectProps };

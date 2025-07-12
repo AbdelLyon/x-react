@@ -1,7 +1,7 @@
 import { AutocompleteProps } from '@heroui/react';
 import { JSX, ReactNode } from 'react';
 type SelectionKey = string | number;
-interface InfiniteSelectProps<T extends Record<string, unknown>> extends Omit<AutocompleteProps<T>, "items" | "children" | "selectedKey" | "onSelectionChange"> {
+export interface InfiniteAutocompleteProps<T extends Record<string, unknown>> extends Omit<AutocompleteProps<T>, "items" | "children" | "selectedKey" | "onSelectionChange"> {
     items: T[];
     isFetching: boolean;
     fetchNextPage: () => void;
@@ -27,11 +27,14 @@ interface InfiniteSelectProps<T extends Record<string, unknown>> extends Omit<Au
     fetchingMoreContent?: React.ReactNode;
     "aria-label"?: string;
     "aria-describedby"?: string;
+    "aria-expanded"?: boolean;
+    "aria-invalid"?: boolean;
+    "aria-required"?: boolean;
 }
 /**
  * Composant Autocomplete avec scroll infini, recherche et sélection multiple
  * @template T - Type des éléments dans la liste
  */
 export declare function InfiniteAutocomplete<T extends Record<string, unknown>>({ items, isFetching, fetchNextPage, hasNextPage, isLoading, error, className, renderItem, getItemKey, getItemValue, // Strip HTML
-onSearchChange, searchDebounceMs, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, selectionIcon, selectionLabel, itemClassName, emptyContent, errorContent, loadingContent, fetchingMoreContent, ...autocompleteProps }: InfiniteSelectProps<T>): JSX.Element;
-export type { InfiniteSelectProps };
+onSearchChange, searchDebounceMs, selectionMode, selectedKey, selectedKeys, onSelectionChange, maxVisibleInBadge, selectionIcon, selectionLabel, itemClassName, emptyContent, errorContent, loadingContent, fetchingMoreContent, ...autocompleteProps }: InfiniteAutocompleteProps<T>): JSX.Element;
+export {};

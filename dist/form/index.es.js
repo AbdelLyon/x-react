@@ -1,4 +1,3 @@
-/* empty css                */
 import { RadioGroup } from "./Radio/index.es.js";
 import { CheckboxGroup } from "./Checkbox/index.es.js";
 import { InputOtp } from "./InputOpt/index.es.js";
