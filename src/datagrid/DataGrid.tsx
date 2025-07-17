@@ -9,7 +9,7 @@ import {
   TableCell,
   Spinner,
 } from "@heroui/react";
-import { IconCaretDown, IconCaretUp } from "@tabler/icons-react";
+import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import { TruncatedText } from "./TruncatedText";
@@ -70,7 +70,8 @@ export function DataGrid<T extends { id: string | number }>({
       aria-label="data-grid"
       aria-labelledby="data-grid"
       className={mergeTailwindClasses(
-        "overflow-hidden rounded-md border border-border dark:bg-background p-3",
+        "overflow-hidden rounded-xl border border-border/50 dark:bg-background/95 backdrop-blur-sm shadow-sm",
+        "p-4 transition-all duration-300 hover:shadow-md hover:border-border/70",
         "!pr-1.5",
         props.className,
       )}
@@ -79,45 +80,70 @@ export function DataGrid<T extends { id: string | number }>({
       baseRef={scrollContainerRef}
       classNames={{
         wrapper: mergeTailwindClasses(
-          "bg-white border-0 p-0 dark:bg-background",
+          "bg-white/80 backdrop-blur-sm border-0 p-0 dark:bg-background/90",
+          "rounded-lg transition-colors duration-300",
           "!pr-1.5",
           classNames?.wrapper,
         ),
         th: mergeTailwindClasses(
           variantClasses.th,
-          "first:pl-3 px-3 text-left whitespace-nowrap",
+          "first:pl-4 px-4 py-4 text-left whitespace-nowrap",
+          "bg-muted/30 backdrop-blur-sm border-b border-border/30",
+          "transition-all duration-200 group-hover:bg-muted/40",
           props.showSelectionCheckboxes && "first:w-12 first:min-w-12",
           classNames?.th,
         ),
-        tr: mergeTailwindClasses(variantClasses.tr, "border-0", classNames?.tr),
+        tr: mergeTailwindClasses(
+          variantClasses.tr,
+          "border-0 transition-all duration-200 hover:bg-muted/20",
+          "hover:shadow-sm hover:scale-[1.002] group",
+          classNames?.tr
+        ),
         td: mergeTailwindClasses(
-          "first:pl-3 px-3 py-2 text-left",
-          "truncate max-w-0",
+          "first:pl-4 px-4 py-3 text-left",
+          "truncate max-w-0 transition-all duration-200",
+          "group-hover:bg-white/50 dark:group-hover:bg-background/50",
           props.showSelectionCheckboxes &&
             "first:w-12 first:min-w-12 first:max-w-12",
           classNames?.td,
         ),
         base: mergeTailwindClasses(
-          "w-full relative overflow-auto bg-white dark:bg-background",
-          "table-fixed",
+          "w-full relative overflow-auto bg-white/90 dark:bg-background/90",
+          "table-fixed backdrop-blur-sm rounded-lg",
+          "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border/20",
+          "hover:scrollbar-thumb-border/30 transition-all duration-300",
           classNames?.base,
         ),
       }}
       bottomContent={
         hasMoreData ? (
-          <div className="flex w-full justify-center">
-            <Spinner
-              ref={loaderRef}
-              size="sm"
-              color="primary"
-              className={mergeTailwindClasses(
-                isFetching ? "opacity-100" : "opacity-0",
-              )}
-            />
+          <div className="flex w-full justify-center py-4">
+            <div className="flex items-center gap-3 rounded-full bg-muted/20 px-6 py-3 backdrop-blur-sm">
+              <Spinner
+                ref={loaderRef}
+                size="sm"
+                color="primary"
+                className={mergeTailwindClasses(
+                  "transition-all duration-500",
+                  isFetching ? "opacity-100 scale-100" : "opacity-0 scale-75",
+                )}
+              />
+              <span className={mergeTailwindClasses(
+                "text-sm text-muted-foreground transition-all duration-500",
+                isFetching ? "opacity-100" : "opacity-70"
+              )}>
+                {isFetching ? "Chargement..." : "Scroll pour plus"}
+              </span>
+            </div>
           </div>
         ) : (
-          <div className="p-3 text-center text-gray-500">
-            Toutes les données ont été chargées
+          <div className="p-6 text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/10 px-4 py-2 text-success">
+              <div className="size-2 animate-pulse rounded-full bg-success" />
+              <span className="text-sm font-medium">
+                Toutes les données ont été chargées
+              </span>
+            </div>
           </div>
         )
       }
@@ -143,9 +169,13 @@ export function DataGrid<T extends { id: string | number }>({
           >
             <div
               className={mergeTailwindClasses(
-                "flex items-center w-max min-w-0 gap-1 opacity-75",
+                "flex min-w-0 w-max items-center gap-2 transition-all duration-300",
+                "opacity-80 hover:opacity-100",
                 column.sortable !== false
-                  ? "cursor-pointer hover:opacity-100"
+                  ? "cursor-pointer hover:bg-primary/5 hover:scale-105 rounded-md px-2 py-1 -mx-2 -my-1"
+                  : "",
+                sortConfig.field === column.key
+                  ? "opacity-100 bg-primary/10 scale-105"
                   : "",
               )}
               onClick={
@@ -160,29 +190,34 @@ export function DataGrid<T extends { id: string | number }>({
                   : undefined
               }
             >
-              <p className="truncate text-sm font-medium text-foreground">
+              <p className={mergeTailwindClasses(
+                "truncate text-sm font-semibold text-foreground transition-all duration-200",
+                sortConfig.field === column.key
+                  ? "text-primary font-bold"
+                  : "group-hover:text-primary/80"
+              )}>
                 {column.header}
               </p>
               {column.sortable !== false && (
-                <div className="flex h-5 w-4 flex-shrink-0 flex-col items-center justify-center">
-                  <IconCaretUp
-                    size={18}
+                <div className="flex size-5 flex-shrink-0 flex-col items-center justify-center">
+                  <IconCaretUpFilled
+                    size={14}
                     className={mergeTailwindClasses(
-                      "transition-opacity -mb-1",
+                      "transition-all duration-300 -mb-0.5",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "asc"
-                        ? "opacity-100"
-                        : "opacity-40",
+                        ? "opacity-100 text-primary scale-110 drop-shadow-sm"
+                        : "opacity-30 hover:opacity-60 hover:scale-105",
                     )}
                   />
-                  <IconCaretDown
-                    size={18}
+                  <IconCaretDownFilled
+                    size={14}
                     className={mergeTailwindClasses(
-                      "transition-opacity -mt-1",
+                      "transition-all duration-300 -mt-0.5",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "desc"
-                        ? "opacity-100"
-                        : "opacity-40",
+                        ? "opacity-100 text-primary scale-110 drop-shadow-sm"
+                        : "opacity-30 hover:opacity-60 hover:scale-105",
                     )}
                   />
                 </div>
@@ -223,8 +258,8 @@ export function DataGrid<T extends { id: string | number }>({
                   aria-label="cell"
                 >
                   <TruncatedText
-                    className="w-full truncate text-sm text-foreground"
-                    tooltipClassName="border border-border px-2 py-1 shadow-lg"
+                    className="w-full truncate text-sm font-medium text-foreground/90 transition-colors duration-200 group-hover:text-foreground"
+                    tooltipClassName="border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg"
                     placement="top"
                   >
                     {extractCellValue(columnKey, row, columns)}
