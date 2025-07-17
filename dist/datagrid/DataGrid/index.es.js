@@ -202,12 +202,14 @@ function DataGrid(_a) {
                       "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
                       children: [
                         /* @__PURE__ */ jsx(
-                          "p",
+                          TruncatedText,
                           {
                             className: mergeTailwindClasses(
                               "truncate text-sm font-semibold text-foreground transition-all duration-200",
                               sortConfig.field === column.key ? "opacity-80 font-bold" : "group-hover:opacity-100"
                             ),
+                            tooltipClassName: "border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg",
+                            placement: "top",
                             children: column.header
                           }
                         ),
