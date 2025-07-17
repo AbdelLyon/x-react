@@ -69,7 +69,7 @@ export function DataGrid<T extends { id: string | number }>({
       aria-label="data-grid"
       aria-labelledby="data-grid"
       className={mergeTailwindClasses(
-        "overflow-hidden rounded-md border border-border dark:bg-red-950 p-3",
+        "overflow-hidden rounded-md border border-border dark:bg-background p-3",
         "!pr-1.5",
         props.className,
       )}
@@ -142,7 +142,7 @@ export function DataGrid<T extends { id: string | number }>({
           >
             <div
               className={mergeTailwindClasses(
-                "flex items-center justify-between w-full min-w-0",
+                "flex items-center w-full min-w-0 gap-1",
                 column.sortable !== false ? "cursor-pointer" : "",
               )}
               onClick={
@@ -157,33 +157,31 @@ export function DataGrid<T extends { id: string | number }>({
                   : undefined
               }
             >
-              <p className="mr-1 truncate text-sm font-medium text-foreground">
+              <p className="flex-1 truncate text-sm font-medium text-foreground">
                 {column.header}
               </p>
               {column.sortable !== false && (
-                <div className="relative flex h-6 w-5 flex-shrink-0 items-center justify-center rounded transition-colors hover:bg-default-100">
-                  <div className="relative size-4">
-                    <IconChevronUp
-                      size={16}
-                      className={mergeTailwindClasses(
-                        "absolute top-0 left-0 transition-opacity",
-                        sortConfig.field === column.key &&
-                          sortConfig.direction === "asc"
-                          ? "opacity-100 text-primary"
-                          : "opacity-30",
-                      )}
-                    />
-                    <IconChevronDown
-                      size={16}
-                      className={mergeTailwindClasses(
-                        "absolute bottom-0 left-0 transition-opacity",
-                        sortConfig.field === column.key &&
-                          sortConfig.direction === "desc"
-                          ? "opacity-100 text-primary"
-                          : "opacity-30",
-                      )}
-                    />
-                  </div>
+                <div className="flex h-5 w-4 flex-shrink-0 flex-col items-center justify-center rounded transition-colors hover:bg-default-100">
+                  <IconChevronUp
+                    size={18}
+                    className={mergeTailwindClasses(
+                      "transition-opacity -mb-1",
+                      sortConfig.field === column.key &&
+                        sortConfig.direction === "asc"
+                        ? "opacity-100 text-primary"
+                        : "opacity-30",
+                    )}
+                  />
+                  <IconChevronDown
+                    size={18}
+                    className={mergeTailwindClasses(
+                      "transition-opacity -mt-1",
+                      sortConfig.field === column.key &&
+                        sortConfig.direction === "desc"
+                        ? "opacity-100 text-primary"
+                        : "opacity-30",
+                    )}
+                  />
                 </div>
               )}
             </div>

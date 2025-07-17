@@ -100,7 +100,7 @@ function DataGrid(_a) {
       "aria-label": "data-grid",
       "aria-labelledby": "data-grid",
       className: mergeTailwindClasses(
-        "overflow-hidden rounded-md border border-border dark:bg-red-950 p-3",
+        "overflow-hidden rounded-md border border-border dark:bg-background p-3",
         "!pr-1.5",
         props.className
       ),
@@ -169,21 +169,21 @@ function DataGrid(_a) {
                     "div",
                     {
                       className: mergeTailwindClasses(
-                        "flex items-center justify-between w-full min-w-0",
+                        "flex items-center w-full min-w-0 gap-1",
                         column.sortable !== false ? "cursor-pointer" : ""
                       ),
                       onClick: column.sortable !== false ? () => onSort(column) : void 0,
                       role: column.sortable !== false ? "button" : void 0,
                       "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
                       children: [
-                        /* @__PURE__ */ jsx("p", { className: "mr-1 truncate text-sm font-medium text-foreground", children: column.header }),
-                        column.sortable !== false && /* @__PURE__ */ jsx("div", { className: "relative flex h-6 w-5 flex-shrink-0 items-center justify-center rounded transition-colors hover:bg-default-100", children: /* @__PURE__ */ jsxs("div", { className: "relative size-4", children: [
+                        /* @__PURE__ */ jsx("p", { className: "flex-1 truncate text-sm font-medium text-foreground", children: column.header }),
+                        column.sortable !== false && /* @__PURE__ */ jsxs("div", { className: "flex h-5 w-4 flex-shrink-0 flex-col items-center justify-center rounded transition-colors hover:bg-default-100", children: [
                           /* @__PURE__ */ jsx(
                             IconChevronUp,
                             {
-                              size: 16,
+                              size: 18,
                               className: mergeTailwindClasses(
-                                "absolute top-0 left-0 transition-opacity",
+                                "transition-opacity -mb-1",
                                 sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100 text-primary" : "opacity-30"
                               )
                             }
@@ -191,14 +191,14 @@ function DataGrid(_a) {
                           /* @__PURE__ */ jsx(
                             IconChevronDown,
                             {
-                              size: 16,
+                              size: 18,
                               className: mergeTailwindClasses(
-                                "absolute bottom-0 left-0 transition-opacity",
+                                "transition-opacity -mt-1",
                                 sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100 text-primary" : "opacity-30"
                               )
                             }
                           )
-                        ] }) })
+                        ] })
                       ]
                     }
                   )
