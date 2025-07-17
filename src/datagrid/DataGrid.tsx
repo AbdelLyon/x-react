@@ -184,7 +184,7 @@ export function DataGrid<T extends { id: string | number }>({
                   : undefined
               }
             >
-              <div className="flex items-center gap-1">
+              <div className="flex w-max items-center gap-2">
                 <TruncatedText
                   className={mergeTailwindClasses(
                     "w-full truncate text-sm font-semibold text-foreground transition-all duration-200",

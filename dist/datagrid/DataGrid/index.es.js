@@ -200,7 +200,7 @@ function DataGrid(_a) {
                       onClick: column.sortable !== false ? () => onSort(column) : void 0,
                       role: column.sortable !== false ? "button" : void 0,
                       "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
-                      children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1", children: [
+                      children: /* @__PURE__ */ jsxs("div", { className: "flex w-max items-center gap-2", children: [
                         /* @__PURE__ */ jsx(
                           TruncatedText,
                           {
