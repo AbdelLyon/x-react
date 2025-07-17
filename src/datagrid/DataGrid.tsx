@@ -142,7 +142,7 @@ export function DataGrid<T extends { id: string | number }>({
           >
             <div
               className={mergeTailwindClasses(
-                "flex items-center w-full min-w-0 gap-1",
+                "flex items-center w-max min-w-0 gap-1",
                 column.sortable !== false ? "cursor-pointer" : "",
               )}
               onClick={
@@ -157,7 +157,7 @@ export function DataGrid<T extends { id: string | number }>({
                   : undefined
               }
             >
-              <p className="flex-1 truncate text-sm font-medium text-foreground">
+              <p className="truncate text-sm font-medium text-foreground">
                 {column.header}
               </p>
               {column.sortable !== false && (
