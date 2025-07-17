@@ -158,8 +158,8 @@ export function DataGrid<T extends { id: string | number }>({
             aria-label={extractColumnHeader(column)}
             className={mergeTailwindClasses(
               "relative",
-              column.className,
               childrenProps?.tableColumnProps?.className,
+              column.className,
             )}
             {...childrenProps?.tableColumnProps}
           >

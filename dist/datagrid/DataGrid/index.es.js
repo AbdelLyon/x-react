@@ -184,8 +184,8 @@ function DataGrid(_a) {
                   "aria-label": extractColumnHeader(column),
                   className: mergeTailwindClasses(
                     "relative",
-                    column.className,
-                    (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
+                    (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className,
+                    column.className
                   )
                 }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
                   children: /* @__PURE__ */ jsxs(
