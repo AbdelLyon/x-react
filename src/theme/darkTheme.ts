@@ -1,22 +1,18 @@
-import type { Colors } from "./types";
-
-export const darkTheme: Colors = {
-
+const darkTheme = {
    background: {
-      DEFAULT: "#09090b",
-      foreground: "#fafafa",
-      50: "#18181b",
-      100: "#27272a",
-      200: "#3f3f46",
-      300: "#52525b",
-      400: "#71717a",
-      500: "#a1a1aa",
-      600: "#d4d4d8",
-      700: "#e4e4e7",
-      800: "#f4f4f5",
-      900: "#fafafa",
+      DEFAULT: "#262829",
+      foreground: "#ffffff",
+      50: "#1a1c1c",
+      100: "#1e2020",
+      200: "#222424",
+      300: "#262829",
+      400: "#2e3030",
+      500: "#383a3a",
+      600: "#4d5050",
+      700: "#666969",
+      800: "#8a8c8c",
+      900: "#c5c6c6"
    },
-
    primary: {
       DEFAULT: "#e2121d",
       foreground: "#ffffff",
@@ -29,11 +25,10 @@ export const darkTheme: Colors = {
       600: "#f57277",
       700: "#f9a0a3",
       800: "#fccecf",
-      900: "#fde6e7",
+      900: "#fde6e7"
    },
-
    danger: {
-      DEFAULT: "#b22a2a",
+      DEFAULT: "#e93e3e",
       foreground: "#ffffff",
       50: "#8f2121",
       100: "#8f2121",
@@ -44,28 +39,26 @@ export const darkTheme: Colors = {
       600: "#f58989",
       700: "#f9b0b0",
       800: "#fcd7d7",
-      900: "#fdebeb",
+      900: "#fdebeb"
    },
-
    content1: {
-      DEFAULT: "#18181b",
-      foreground: "#fafafa",
-      50: "#262626",
-      100: "#525252",
-      200: "#8a8a8a",
-      300: "#b5b5b5",
-      400: "#d4d4d4",
-      500: "#e5e5e5",
-      600: "#f0f0f0",
-      700: "#f5f5f5",
-      800: "#fafafa",
-      900: "#ffffff",
+      DEFAULT: "#292b2b",
+      foreground: "#ffffff",
+      50: "#292b2b",
+      100: "#292b2b",
+      200: "#2e3030",
+      300: "#323434",
+      400: "#454848",
+      500: "#5c5f5f",
+      600: "#767979",
+      700: "#909393",
+      800: "#babcbc",
+      900: "#e5e6e6"
    },
    outline: {
-      DEFAULT: "#1a90df18",
-      foreground: "#ffffff",
+      DEFAULT: "#1a90df38",
+      foreground: "#ffffff"
    },
-
    content2: {
       DEFAULT: "#2b2b2d",
       foreground: "#ffffff",
@@ -78,9 +71,8 @@ export const darkTheme: Colors = {
       600: "#6c6c6f",
       700: "#868689",
       800: "#b3b3b5",
-      900: "#dfdfe0",
+      900: "#dfdfe0"
    },
-
    content3: {
       DEFAULT: "#e93e3e",
       foreground: "#ffffff",
@@ -93,9 +85,8 @@ export const darkTheme: Colors = {
       600: "#f58989",
       700: "#f9b0b0",
       800: "#fcd7d7",
-      900: "#fdebeb",
+      900: "#fdebeb"
    },
-
    focus: {
       DEFAULT: "#1a90df",
       foreground: "#ffffff",
@@ -108,24 +99,22 @@ export const darkTheme: Colors = {
       600: "#6fb8e3",
       700: "#9fd0ed",
       800: "#cfe7f6",
-      900: "#e7f3fa",
+      900: "#e7f3fa"
    },
-
    default: {
-      DEFAULT: "#27272a",
-      foreground: "#fafafa",
-      50: "#18181b",
-      100: "#27272a",
-      200: "#3f3f46",
-      300: "#52525b",
-      400: "#71717a",
-      500: "#a1a1aa",
-      600: "#d4d4d8",
-      700: "#e4e4e7",
-      800: "#f4f4f5",
-      900: "#fafafa",
+      DEFAULT: "#37393a",
+      foreground: "#ffffff",
+      50: "#37393a",
+      100: "#37393a",
+      200: "#494c4e",
+      300: "#5a5f61",
+      400: "#6c7275",
+      500: "#494c4e",
+      600: "#9aa1a5",
+      700: "#bcc1c3",
+      800: "#dde0e1",
+      900: "#eef0f0"
    },
-
    secondary: {
       DEFAULT: "#6c757d",
       foreground: "#ffffff",
@@ -138,9 +127,8 @@ export const darkTheme: Colors = {
       600: "#99a3ab",
       700: "#bbc2c7",
       800: "#dde0e3",
-      900: "#eef0f1",
+      900: "#eef0f1"
    },
-
    success: {
       DEFAULT: "#2fb344",
       foreground: "#ffffff",
@@ -153,9 +141,8 @@ export const darkTheme: Colors = {
       600: "#7ed28e",
       700: "#a9e1b3",
       800: "#d4f0d9",
-      900: "#e9f7ec",
+      900: "#e9f7ec"
    },
-
    warning: {
       DEFAULT: "#ffc107",
       foreground: "#000000",
@@ -168,9 +155,8 @@ export const darkTheme: Colors = {
       600: "#ffdb66",
       700: "#ffe799",
       800: "#fff3cc",
-      900: "#fff9e6",
+      900: "#fff9e6"
    },
-
    divider: {
       DEFAULT: "#3f4244",
       foreground: "#ffffff",
@@ -183,9 +169,8 @@ export const darkTheme: Colors = {
       600: "#8a8d90",
       700: "#b1b3b5",
       800: "#d8d9d9",
-      900: "#ebebec",
+      900: "#ebebec"
    },
-
    overlay: {
       DEFAULT: "rgba(0, 0, 0, 0.7)",
       foreground: "#ffffff",
@@ -198,9 +183,8 @@ export const darkTheme: Colors = {
       600: "rgba(0, 0, 0, 0.4)",
       700: "rgba(0, 0, 0, 0.3)",
       800: "rgba(0, 0, 0, 0.2)",
-      900: "rgba(0, 0, 0, 0.1)",
+      900: "rgba(0, 0, 0, 0.1)"
    },
-
    content4: {
       DEFAULT: "#343638",
       foreground: "#ffffff",
@@ -213,9 +197,8 @@ export const darkTheme: Colors = {
       600: "#818487",
       700: "#abadaf",
       800: "#d5d6d7",
-      900: "#eaeaeb",
+      900: "#eaeaeb"
    },
-
    foreground: {
       DEFAULT: "#ffffff",
       foreground: "#000000",
@@ -228,24 +211,22 @@ export const darkTheme: Colors = {
       600: "#eeeeee",
       700: "#f5f5f5",
       800: "#fafafa",
-      900: "#ffffff",
+      900: "#ffffff"
    },
-
    border: {
-      DEFAULT: "#27272a",
-      foreground: "#a1a1aa",
-      50: "#18181b",
-      100: "#27272a",
-      200: "#3f3f46",
-      300: "#52525b",
-      400: "#71717a",
-      500: "#a1a1aa",
-      600: "#d4d4d8",
-      700: "#e4e4e7",
-      800: "#f4f4f5",
-      900: "#fafafa"
+      DEFAULT: "#393938",
+      foreground: "#ffffff",
+      50: "#313130",
+      100: "#393938",
+      200: "#434341",
+      300: "#5f5f5d",
+      400: "#727270",
+      500: "#848482",
+      600: "#a1a19f",
+      700: "#c1c1bf",
+      800: "#e0e0de",
+      900: "#efeff0"
    },
-
    shadow: {
       DEFAULT: "rgba(0, 0, 0, 0.5)",
       foreground: "#ffffff",
@@ -258,9 +239,8 @@ export const darkTheme: Colors = {
       600: "rgba(0, 0, 0, 0.2)",
       700: "rgba(0, 0, 0, 0.15)",
       800: "rgba(0, 0, 0, 0.1)",
-      900: "rgba(0, 0, 0, 0.05)",
+      900: "rgba(0, 0, 0, 0.05)"
    },
-
    skeleton: {
       DEFAULT: "#2d2f2f",
       foreground: "#4b5563",
@@ -274,78 +254,8 @@ export const darkTheme: Colors = {
       700: "#676969",
       800: "#818383",
       900: "#a1a3a3"
-   },
-
-   // Variables professionnelles 
-   hover: {
-      DEFAULT: "#27272a", // #27272a
-      foreground: "#fafafa", // #fafafa
-   },
-
-   active: {
-      DEFAULT: "#3f3f46", // #3f3f46
-      foreground: "#fafafa", // #fafafa
-   },
-
-   disabled: {
-      DEFAULT: "#18181b", // #18181b
-      foreground: "#71717a", // #71717a
-   },
-
-   muted: {
-      DEFAULT: "#0c0a09", // #0c0a09
-      foreground: "#a1a1aa", // #a1a1aa
-   },
-
-   surface: {
-      DEFAULT: "#09090b", // #09090b
-      foreground: "#fafafa", // #fafafa
-   },
-
-   elevated: {
-      DEFAULT: "#18181b", // #18181b
-      foreground: "#fafafa", // #fafafa
-   },
-
-   input: {
-      DEFAULT: "#09090b", // #09090b
-      foreground: "#fafafa", // #fafafa
-   },
-
-   accent: {
-      DEFAULT: "#f1444b", // #f1444b - Plus clair que votre primary pour dark
-      foreground: "#ffffff", // #ffffff
-      50: "#4a0509", // #4a0509
-      100: "#61070d", // #61070d
-      200: "#810a11", // #810a11
-      300: "#a20c15", // #a20c15
-      400: "#c20f19", // #c20f19
-      500: "#e2121d", // #e2121d - Votre primary
-      600: "#f1444b", // #f1444b
-      700: "#f57277", // #f57277
-      800: "#f9a0a3", // #f9a0a3
-      900: "#fccecf", // #fccecf
-   },
-
-   info: {
-      DEFAULT: "#1a90df", // #1a90df - Votre focus dark existant
-      foreground: "#ffffff", // #ffffff
-      50: "#042334", // #042334
-      100: "#063556", // #063556
-      200: "#084a78", // #084a78
-      300: "#0a609b", // #0a609b
-      400: "#0c75bd", // #0c75bd
-      500: "#1a90df", // #1a90df
-      600: "#3fa1da", // #3fa1da
-      700: "#6fb8e3", // #6fb8e3
-      800: "#9fd0ed", // #9fd0ed
-      900: "#cfe7f6", // #cfe7f6
-   },
-
-   destructive: {
-      DEFAULT: "#dc2626", // #dc2626
-      foreground: "#ffffff", // #ffffff
-   },
+   }
 };
-
-
+export {
+   darkTheme
+};
