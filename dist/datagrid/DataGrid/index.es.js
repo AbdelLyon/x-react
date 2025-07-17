@@ -201,7 +201,7 @@ function DataGrid(_a) {
                       role: column.sortable !== false ? "button" : void 0,
                       "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
                       children: [
-                        /* @__PURE__ */ jsx("div", { className: "min-w-0 max-w-full", children: /* @__PURE__ */ jsx(
+                        /* @__PURE__ */ jsx(
                           TruncatedText,
                           {
                             className: mergeTailwindClasses(
@@ -210,9 +210,10 @@ function DataGrid(_a) {
                             ),
                             tooltipClassName: "border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg",
                             placement: "top",
+                            style: { maxWidth: column.sortable !== false ? "calc(100% - 28px)" : "100%" },
                             children: column.header
                           }
-                        ) }),
+                        ),
                         column.sortable !== false && /* @__PURE__ */ jsxs("div", { className: "flex size-5 flex-shrink-0 flex-col items-center justify-center", children: [
                           /* @__PURE__ */ jsx(
                             IconCaretUpFilled,

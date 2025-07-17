@@ -1,5 +1,5 @@
 import { Tooltip } from "@/tooltip";
-import type { ReactNode, JSX } from "react";
+import type { ReactNode, JSX, CSSProperties } from "react";
 import { useRef, useEffect, useState } from "react";
 
 interface TruncatedTextProps {
@@ -7,6 +7,7 @@ interface TruncatedTextProps {
   className?: string;
   tooltipClassName?: string;
   placement?: "top" | "bottom" | "left" | "right";
+  style?: CSSProperties;
 }
 
 export function TruncatedText({
@@ -14,6 +15,7 @@ export function TruncatedText({
   className = "",
   tooltipClassName,
   placement = "top",
+  style,
 }: TruncatedTextProps): JSX.Element {
   const textRef = useRef<HTMLDivElement>(null);
   const [isTruncated, setIsTruncated] = useState(false);
@@ -44,6 +46,7 @@ export function TruncatedText({
     <div
       ref={textRef}
       className={className}
+      style={style}
     >
       {children}
     </div>

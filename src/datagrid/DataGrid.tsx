@@ -184,20 +184,19 @@ export function DataGrid<T extends { id: string | number }>({
                   : undefined
               }
             >
-              <div className="min-w-0 max-w-full">
-                <TruncatedText
-                  className={mergeTailwindClasses(
-                    "truncate text-sm font-semibold text-foreground transition-all duration-200",
-                    sortConfig.field === column.key
-                      ? "opacity-80 font-bold"
-                      : "group-hover:opacity-100",
-                  )}
-                  tooltipClassName="border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg"
-                  placement="top"
-                >
-                  {column.header}
-                </TruncatedText>
-              </div>
+              <TruncatedText
+                className={mergeTailwindClasses(
+                  "truncate text-sm font-semibold text-foreground transition-all duration-200",
+                  sortConfig.field === column.key
+                    ? "opacity-80 font-bold"
+                    : "group-hover:opacity-100",
+                )}
+                tooltipClassName="border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg"
+                placement="top"
+                style={{ maxWidth: column.sortable !== false ? 'calc(100% - 28px)' : '100%' }}
+              >
+                {column.header}
+              </TruncatedText>
               {column.sortable !== false && (
                 <div className="flex size-5 flex-shrink-0 flex-col items-center justify-center">
                   <IconCaretUpFilled

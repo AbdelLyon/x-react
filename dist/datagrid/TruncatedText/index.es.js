@@ -5,7 +5,8 @@ function TruncatedText({
   children,
   className = "",
   tooltipClassName,
-  placement = "top"
+  placement = "top",
+  style
 }) {
   const textRef = useRef(null);
   const [isTruncated, setIsTruncated] = useState(false);
@@ -31,6 +32,7 @@ function TruncatedText({
     {
       ref: textRef,
       className,
+      style,
       children
     }
   );
