@@ -118,22 +118,12 @@ function DataGrid(_a) {
         ),
         th: mergeTailwindClasses(
           variantClasses.th,
-          "first:pl-4 px-4 py-4 text-left whitespace-nowrap",
-          "backdrop-blur-sm border-b border-border/30",
-          "transition-all duration-200 group-hover:bg-content1-100/70",
           props.showSelectionCheckboxes && "first:w-12 first:min-w-12",
           classNames == null ? void 0 : classNames.th
         ),
-        tr: mergeTailwindClasses(
-          variantClasses.tr,
-          "border-0 transition-all duration-200 hover:bg-content1-100",
-          "hover:shadow-sm hover:scale-[1.002] group",
-          classNames == null ? void 0 : classNames.tr
-        ),
+        tr: mergeTailwindClasses(variantClasses.tr, classNames == null ? void 0 : classNames.tr),
         td: mergeTailwindClasses(
-          "first:pl-4 px-4 py-3 text-left",
-          "truncate max-w-0 transition-all duration-200",
-          "group-hover:bg-white/50 dark:group-hover:bg-background/50",
+          variantClasses.td,
           props.showSelectionCheckboxes && "first:w-12 first:min-w-12 first:max-w-12",
           classNames == null ? void 0 : classNames.td
         ),
