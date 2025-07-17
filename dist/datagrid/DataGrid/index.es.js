@@ -101,7 +101,7 @@ function DataGrid(_a) {
       "aria-label": "data-grid",
       "aria-labelledby": "data-grid",
       className: mergeTailwindClasses(
-        "overflow-hidden rounded-xl border border-border/50 dark:bg-background/95 backdrop-blur-sm shadow-sm",
+        "overflow-hidden rounded-xl border border-border/60 dark:bg-background/95 backdrop-blur-sm shadow-sm",
         "p-4 transition-all duration-300 hover:shadow-md hover:border-border/70",
         "!pr-1.5",
         props.className
