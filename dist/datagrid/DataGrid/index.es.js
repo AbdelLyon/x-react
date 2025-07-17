@@ -188,11 +188,11 @@ function DataGrid(_a) {
                     column.className
                   )
                 }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
-                  children: /* @__PURE__ */ jsx(
+                  children: /* @__PURE__ */ jsxs(
                     "div",
                     {
                       className: mergeTailwindClasses(
-                        "min-w-0 w-full transition-all duration-300",
+                        "flex min-w-0 w-full items-center gap-2 transition-all duration-300",
                         "opacity-80 hover:opacity-100",
                         column.sortable !== false ? "cursor-pointer px-2 py-1 -mx-2 -my-1" : "",
                         sortConfig.field === column.key ? "opacity-100" : ""
@@ -200,12 +200,12 @@ function DataGrid(_a) {
                       onClick: column.sortable !== false ? () => onSort(column) : void 0,
                       role: column.sortable !== false ? "button" : void 0,
                       "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
-                      children: /* @__PURE__ */ jsxs("div", { className: "flex w-max items-center gap-2", children: [
+                      children: [
                         /* @__PURE__ */ jsx(
                           TruncatedText,
                           {
                             className: mergeTailwindClasses(
-                              "w-full truncate text-sm font-semibold text-foreground transition-all duration-200",
+                              "flex-1 min-w-0 truncate text-sm font-semibold text-foreground transition-all duration-200",
                               sortConfig.field === column.key ? "opacity-80 font-bold" : "group-hover:opacity-100"
                             ),
                             tooltipClassName: "border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg",
@@ -235,7 +235,7 @@ function DataGrid(_a) {
                             }
                           )
                         ] })
-                      ] })
+                      ]
                     }
                   )
                 }),

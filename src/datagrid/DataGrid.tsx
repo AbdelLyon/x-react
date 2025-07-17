@@ -165,7 +165,7 @@ export function DataGrid<T extends { id: string | number }>({
           >
             <div
               className={mergeTailwindClasses(
-                "min-w-0 w-full transition-all duration-300",
+                "flex min-w-0 w-full items-center gap-2 transition-all duration-300",
                 "opacity-80 hover:opacity-100",
                 column.sortable !== false
                   ? "cursor-pointer px-2 py-1 -mx-2 -my-1"
@@ -184,44 +184,42 @@ export function DataGrid<T extends { id: string | number }>({
                   : undefined
               }
             >
-              <div className="flex w-max items-center gap-2">
-                <TruncatedText
-                  className={mergeTailwindClasses(
-                    "w-full truncate text-sm font-semibold text-foreground transition-all duration-200",
-                    sortConfig.field === column.key
-                      ? "opacity-80 font-bold"
-                      : "group-hover:opacity-100",
-                  )}
-                  tooltipClassName="border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg"
-                  placement="top"
-                >
-                  {column.header}
-                </TruncatedText>
-                {column.sortable !== false && (
-                  <div className="flex size-5 flex-shrink-0 flex-col items-center justify-center">
-                    <IconCaretUpFilled
-                      size={14}
-                      className={mergeTailwindClasses(
-                        "transition-all duration-300 -mb-0.5",
-                        sortConfig.field === column.key &&
-                          sortConfig.direction === "asc"
-                          ? "opacity-100 drop-shadow-sm"
-                          : "opacity-40 hover:opacity-60",
-                      )}
-                    />
-                    <IconCaretDownFilled
-                      size={14}
-                      className={mergeTailwindClasses(
-                        "transition-all duration-300 -mt-0.5",
-                        sortConfig.field === column.key &&
-                          sortConfig.direction === "desc"
-                          ? "opacity-100 scale-110 drop-shadow-sm"
-                          : "opacity-40 hover:opacity-60",
-                      )}
-                    />
-                  </div>
+              <TruncatedText
+                className={mergeTailwindClasses(
+                  "flex-1 min-w-0 truncate text-sm font-semibold text-foreground transition-all duration-200",
+                  sortConfig.field === column.key
+                    ? "opacity-80 font-bold"
+                    : "group-hover:opacity-100",
                 )}
-              </div>
+                tooltipClassName="border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg"
+                placement="top"
+              >
+                {column.header}
+              </TruncatedText>
+              {column.sortable !== false && (
+                <div className="flex size-5 flex-shrink-0 flex-col items-center justify-center">
+                  <IconCaretUpFilled
+                    size={14}
+                    className={mergeTailwindClasses(
+                      "transition-all duration-300 -mb-0.5",
+                      sortConfig.field === column.key &&
+                        sortConfig.direction === "asc"
+                        ? "opacity-100 drop-shadow-sm"
+                        : "opacity-40 hover:opacity-60",
+                    )}
+                  />
+                  <IconCaretDownFilled
+                    size={14}
+                    className={mergeTailwindClasses(
+                      "transition-all duration-300 -mt-0.5",
+                      sortConfig.field === column.key &&
+                        sortConfig.direction === "desc"
+                        ? "opacity-100 scale-110 drop-shadow-sm"
+                        : "opacity-40 hover:opacity-60",
+                    )}
+                  />
+                </div>
+              )}
             </div>
           </TableColumn>
         )}
