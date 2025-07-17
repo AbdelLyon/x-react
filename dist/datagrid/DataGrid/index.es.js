@@ -188,11 +188,11 @@ function DataGrid(_a) {
                     column.className
                   )
                 }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
-                  children: /* @__PURE__ */ jsxs(
+                  children: /* @__PURE__ */ jsx(
                     "div",
                     {
                       className: mergeTailwindClasses(
-                        "flex min-w-0 w-max items-center gap-2 transition-all duration-300",
+                        "min-w-0 w-full transition-all duration-300",
                         "opacity-80 hover:opacity-100",
                         column.sortable !== false ? "cursor-pointer px-2 py-1 -mx-2 -my-1" : "",
                         sortConfig.field === column.key ? "opacity-100" : ""
@@ -200,7 +200,7 @@ function DataGrid(_a) {
                       onClick: column.sortable !== false ? () => onSort(column) : void 0,
                       role: column.sortable !== false ? "button" : void 0,
                       "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
-                      children: [
+                      children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1", children: [
                         /* @__PURE__ */ jsx(
                           TruncatedText,
                           {
@@ -235,7 +235,7 @@ function DataGrid(_a) {
                             }
                           )
                         ] })
-                      ]
+                      ] })
                     }
                   )
                 }),
