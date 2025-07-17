@@ -35,6 +35,7 @@ import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
 import { DataGridSkeleton } from "../DataGridSkeleton/index.es.js";
+import { TruncatedText } from "../TruncatedText/index.es.js";
 import { GRID_VARIANTS } from "../variants/index.es.js";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
 function DataGrid(_a) {
@@ -240,7 +241,15 @@ function DataGrid(_a) {
                           (_b3 = columns.find((col) => col.field === columnKey)) == null ? void 0 : _b3.className
                         ),
                         "aria-label": "cell",
-                        children: /* @__PURE__ */ jsx("div", { className: "w-full truncate text-sm text-foreground", children: extractCellValue(columnKey, row, columns) })
+                        children: /* @__PURE__ */ jsx(
+                          TruncatedText,
+                          {
+                            className: "w-full truncate text-sm text-foreground",
+                            tooltipClassName: "border border-border px-2 py-1 shadow-lg",
+                            placement: "top",
+                            children: extractCellValue(columnKey, row, columns)
+                          }
+                        )
                       })
                     );
                   }

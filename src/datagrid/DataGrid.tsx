@@ -12,6 +12,7 @@ import {
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
+import { TruncatedText } from "./TruncatedText";
 import type { DataGridProps } from "@/types/datagrid";
 import { GRID_VARIANTS } from "./variants";
 import { useInfiniteScroll } from "@/hooks";
@@ -219,9 +220,13 @@ export function DataGrid<T extends { id: string | number }>({
                   )}
                   aria-label="cell"
                 >
-                  <div className="w-full truncate text-sm text-foreground">
+                  <TruncatedText
+                    className="w-full truncate text-sm text-foreground"
+                    tooltipClassName="border border-border px-2 py-1 shadow-lg"
+                    placement="top"
+                  >
                     {extractCellValue(columnKey, row, columns)}
-                  </div>
+                  </TruncatedText>
                 </TableCell>
               )}
             </TableRow>
