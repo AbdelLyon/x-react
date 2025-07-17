@@ -158,8 +158,8 @@ export function DataGrid<T extends { id: string | number }>({
             aria-label={extractColumnHeader(column)}
             className={mergeTailwindClasses(
               "relative",
-              childrenProps?.tableColumnProps?.className,
               column.className,
+              childrenProps?.tableColumnProps?.className,
             )}
             {...childrenProps?.tableColumnProps}
           >
@@ -191,9 +191,8 @@ export function DataGrid<T extends { id: string | number }>({
                     ? "opacity-80 font-bold"
                     : "group-hover:opacity-100",
                 )}
-                tooltipClassName="border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg"
+                tooltipClassName="border border-bordTr/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg"
                 placement="top"
-                style={{ maxWidth: column.sortable !== false ? 'calc(100% - 28px)' : '100%' }}
               >
                 {column.header}
               </TruncatedText>

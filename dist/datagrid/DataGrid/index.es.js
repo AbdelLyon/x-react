@@ -184,8 +184,8 @@ function DataGrid(_a) {
                   "aria-label": extractColumnHeader(column),
                   className: mergeTailwindClasses(
                     "relative",
-                    (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className,
-                    column.className
+                    column.className,
+                    (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
                   )
                 }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
                   children: /* @__PURE__ */ jsxs(
@@ -208,9 +208,8 @@ function DataGrid(_a) {
                               "truncate text-sm font-semibold text-foreground transition-all duration-200",
                               sortConfig.field === column.key ? "opacity-80 font-bold" : "group-hover:opacity-100"
                             ),
-                            tooltipClassName: "border border-border/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg",
+                            tooltipClassName: "border border-bordTr/50 px-3 py-2 shadow-xl backdrop-blur-md bg-white/95 dark:bg-background/95 rounded-lg",
                             placement: "top",
-                            style: { maxWidth: column.sortable !== false ? "calc(100% - 28px)" : "100%" },
                             children: column.header
                           }
                         ),
