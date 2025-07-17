@@ -192,7 +192,7 @@ function DataGrid(_a) {
                     "div",
                     {
                       className: mergeTailwindClasses(
-                        "flex min-w-0 w-full items-center gap-2 transition-all duration-300",
+                        "flex min-w-0 w-max items-center gap-2 transition-all duration-300",
                         "opacity-80 hover:opacity-100",
                         column.sortable !== false ? "cursor-pointer px-2 py-1 -mx-2 -my-1" : "",
                         sortConfig.field === column.key ? "opacity-100" : ""
