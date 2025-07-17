@@ -33,7 +33,7 @@ import { jsx, jsxs } from "react/jsx-runtime";
 import { useDataGridState } from "../useDataGridState/index.es.js";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
-import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
+import { IconCaretUp, IconCaretDown } from "@tabler/icons-react";
 import { DataGridSkeleton } from "../DataGridSkeleton/index.es.js";
 import { TruncatedText } from "../TruncatedText/index.es.js";
 import { GRID_VARIANTS } from "../variants/index.es.js";
@@ -170,32 +170,32 @@ function DataGrid(_a) {
                     "div",
                     {
                       className: mergeTailwindClasses(
-                        "flex items-center w-max min-w-0 gap-1",
-                        column.sortable !== false ? "cursor-pointer" : ""
+                        "flex items-center w-max min-w-0 gap-1 opacity-75",
+                        column.sortable !== false ? "cursor-pointer hover:opacity-100" : ""
                       ),
                       onClick: column.sortable !== false ? () => onSort(column) : void 0,
                       role: column.sortable !== false ? "button" : void 0,
                       "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
                       children: [
                         /* @__PURE__ */ jsx("p", { className: "truncate text-sm font-medium text-foreground", children: column.header }),
-                        column.sortable !== false && /* @__PURE__ */ jsxs("div", { className: "flex h-5 w-4 flex-shrink-0 flex-col items-center justify-center rounded transition-colors hover:bg-default-100", children: [
+                        column.sortable !== false && /* @__PURE__ */ jsxs("div", { className: "flex h-5 w-4 flex-shrink-0 flex-col items-center justify-center", children: [
                           /* @__PURE__ */ jsx(
-                            IconChevronUp,
+                            IconCaretUp,
                             {
                               size: 18,
                               className: mergeTailwindClasses(
                                 "transition-opacity -mb-1",
-                                sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100 text-primary" : "opacity-30"
+                                sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-40"
                               )
                             }
                           ),
                           /* @__PURE__ */ jsx(
-                            IconChevronDown,
+                            IconCaretDown,
                             {
                               size: 18,
                               className: mergeTailwindClasses(
                                 "transition-opacity -mt-1",
-                                sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100 text-primary" : "opacity-30"
+                                sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-40"
                               )
                             }
                           )

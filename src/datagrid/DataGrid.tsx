@@ -9,7 +9,7 @@ import {
   TableCell,
   Spinner,
 } from "@heroui/react";
-import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { IconCaretDown, IconCaretUp } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
 import { TruncatedText } from "./TruncatedText";
@@ -143,8 +143,10 @@ export function DataGrid<T extends { id: string | number }>({
           >
             <div
               className={mergeTailwindClasses(
-                "flex items-center w-max min-w-0 gap-1",
-                column.sortable !== false ? "cursor-pointer" : "",
+                "flex items-center w-max min-w-0 gap-1 opacity-75",
+                column.sortable !== false
+                  ? "cursor-pointer hover:opacity-100"
+                  : "",
               )}
               onClick={
                 column.sortable !== false
@@ -162,25 +164,25 @@ export function DataGrid<T extends { id: string | number }>({
                 {column.header}
               </p>
               {column.sortable !== false && (
-                <div className="flex h-5 w-4 flex-shrink-0 flex-col items-center justify-center rounded transition-colors hover:bg-default-100">
-                  <IconChevronUp
+                <div className="flex h-5 w-4 flex-shrink-0 flex-col items-center justify-center">
+                  <IconCaretUp
                     size={18}
                     className={mergeTailwindClasses(
                       "transition-opacity -mb-1",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "asc"
-                        ? "opacity-100 text-primary"
-                        : "opacity-30",
+                        ? "opacity-100"
+                        : "opacity-40",
                     )}
                   />
-                  <IconChevronDown
+                  <IconCaretDown
                     size={18}
                     className={mergeTailwindClasses(
                       "transition-opacity -mt-1",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "desc"
-                        ? "opacity-100 text-primary"
-                        : "opacity-30",
+                        ? "opacity-100"
+                        : "opacity-40",
                     )}
                   />
                 </div>
