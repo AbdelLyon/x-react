@@ -60,7 +60,7 @@ const lightTheme = {
     900: "#262626"
   },
   default: {
-    DEFAULT: "#f4f4f5",
+    DEFAULT: "#e4e4e7",
     foreground: "#000000",
     50: "#fafafa",
     100: "#f4f4f5",

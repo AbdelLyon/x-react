@@ -55,7 +55,7 @@ export const lightTheme: Colors = {
       DEFAULT: "#ffffff",
       foreground: "#000000",
       50: "#ffffff",
-      100: "#fafafa", 
+      100: "#fafafa",
       200: "#f5f5f5",
       300: "#f0f0f0",
       400: "#e5e5e5",
@@ -66,7 +66,7 @@ export const lightTheme: Colors = {
       900: "#262626",
    },
    default: {
-      DEFAULT: "#f4f4f5",
+      DEFAULT: "#e4e4e7",
       foreground: "#000000",
       50: "#fafafa",
       100: "#f4f4f5",

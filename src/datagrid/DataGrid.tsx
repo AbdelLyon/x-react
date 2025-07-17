@@ -69,6 +69,10 @@ export function DataGrid<T extends { id: string | number }>({
       {...props}
       aria-label="data-grid"
       aria-labelledby="data-grid"
+      checkboxesProps={{
+        classNames: {},
+        color: "danger",
+      }}
       className={mergeTailwindClasses(
         "overflow-hidden rounded-xl border border-border/60 dark:bg-background/95 backdrop-blur-sm shadow-sm",
         "p-4 transition-all duration-300 hover:shadow-md hover:border-border/70",
