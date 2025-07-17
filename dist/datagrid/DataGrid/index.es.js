@@ -190,8 +190,8 @@ function DataGrid(_a) {
                       className: mergeTailwindClasses(
                         "flex min-w-0 w-max items-center gap-2 transition-all duration-300",
                         "opacity-80 hover:opacity-100",
-                        column.sortable !== false ? "cursor-pointer hover:scale-105 px-2 py-1 -mx-2 -my-1" : "",
-                        sortConfig.field === column.key ? "opacity-100 scale-105" : ""
+                        column.sortable !== false ? "cursor-pointer px-2 py-1 -mx-2 -my-1" : "",
+                        sortConfig.field === column.key ? "opacity-100" : ""
                       ),
                       onClick: column.sortable !== false ? () => onSort(column) : void 0,
                       role: column.sortable !== false ? "button" : void 0,
@@ -202,7 +202,7 @@ function DataGrid(_a) {
                           {
                             className: mergeTailwindClasses(
                               "truncate text-sm font-semibold text-foreground transition-all duration-200",
-                              sortConfig.field === column.key ? "opacity-80s font-bold" : "group-hover:opacity-100"
+                              sortConfig.field === column.key ? "opacity-80 font-bold" : "group-hover:opacity-100"
                             ),
                             children: column.header
                           }
@@ -214,7 +214,7 @@ function DataGrid(_a) {
                               size: 14,
                               className: mergeTailwindClasses(
                                 "transition-all duration-300 -mb-0.5",
-                                sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100 scale-110 drop-shadow-sm" : "opacity-30 hover:opacity-60 hover:scale-105"
+                                sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100 drop-shadow-sm" : "opacity-40 hover:opacity-60"
                               )
                             }
                           ),
@@ -224,7 +224,7 @@ function DataGrid(_a) {
                               size: 14,
                               className: mergeTailwindClasses(
                                 "transition-all duration-300 -mt-0.5",
-                                sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100 scale-110 drop-shadow-sm" : "opacity-30 hover:opacity-60 hover:scale-105"
+                                sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100 scale-110 drop-shadow-sm" : "opacity-40 hover:opacity-60"
                               )
                             }
                           )

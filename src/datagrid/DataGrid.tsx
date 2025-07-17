@@ -164,9 +164,9 @@ export function DataGrid<T extends { id: string | number }>({
                 "flex min-w-0 w-max items-center gap-2 transition-all duration-300",
                 "opacity-80 hover:opacity-100",
                 column.sortable !== false
-                  ? "cursor-pointer hover:scale-105 px-2 py-1 -mx-2 -my-1"
+                  ? "cursor-pointer px-2 py-1 -mx-2 -my-1"
                   : "",
-                sortConfig.field === column.key ? "opacity-100 scale-105" : "",
+                sortConfig.field === column.key ? "opacity-100" : "",
               )}
               onClick={
                 column.sortable !== false
@@ -184,7 +184,7 @@ export function DataGrid<T extends { id: string | number }>({
                 className={mergeTailwindClasses(
                   "truncate text-sm font-semibold text-foreground transition-all duration-200",
                   sortConfig.field === column.key
-                    ? "opacity-80s font-bold"
+                    ? "opacity-80 font-bold"
                     : "group-hover:opacity-100",
                 )}
               >
@@ -198,8 +198,8 @@ export function DataGrid<T extends { id: string | number }>({
                       "transition-all duration-300 -mb-0.5",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "asc"
-                        ? "opacity-100 scale-110 drop-shadow-sm"
-                        : "opacity-30 hover:opacity-60 hover:scale-105",
+                        ? "opacity-100 drop-shadow-sm"
+                        : "opacity-40 hover:opacity-60",
                     )}
                   />
                   <IconCaretDownFilled
@@ -209,7 +209,7 @@ export function DataGrid<T extends { id: string | number }>({
                       sortConfig.field === column.key &&
                         sortConfig.direction === "desc"
                         ? "opacity-100 scale-110 drop-shadow-sm"
-                        : "opacity-30 hover:opacity-60 hover:scale-105",
+                        : "opacity-40 hover:opacity-60",
                     )}
                   />
                 </div>
