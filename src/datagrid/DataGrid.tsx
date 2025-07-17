@@ -83,17 +83,18 @@ export function DataGrid<T extends { id: string | number }>({
           classNames?.wrapper,
         ),
         th: mergeTailwindClasses(
-          variantClasses.th, 
+          variantClasses.th,
           "first:pl-3 px-3 text-left whitespace-nowrap",
           props.showSelectionCheckboxes && "first:w-12 first:min-w-12",
-          classNames?.th
+          classNames?.th,
         ),
         tr: mergeTailwindClasses(variantClasses.tr, "border-0", classNames?.tr),
         td: mergeTailwindClasses(
           "first:pl-3 px-3 py-2 text-left",
           "truncate max-w-0",
-          props.showSelectionCheckboxes && "first:w-12 first:min-w-12 first:max-w-12",
-          classNames?.td
+          props.showSelectionCheckboxes &&
+            "first:w-12 first:min-w-12 first:max-w-12",
+          classNames?.td,
         ),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto bg-white dark:bg-background",
@@ -141,22 +142,30 @@ export function DataGrid<T extends { id: string | number }>({
           >
             <div
               className={mergeTailwindClasses(
-                "flex items-center justify-between w-full min-w-0",
-                "pr-6",
+                "flex items-center w-full min-w-0 gap-2",
+                column.sortable !== false ? "cursor-pointer" : "",
               )}
+              onClick={
+                column.sortable !== false
+                  ? (): void => onSort(column)
+                  : undefined
+              }
+              role={column.sortable !== false ? "button" : undefined}
+              aria-label={
+                column.sortable !== false
+                  ? formatSortHeader(column.header)
+                  : undefined
+              }
             >
-              <p className="truncate text-sm font-medium text-foreground">
+              <p className="flex-1 truncate text-sm font-medium text-foreground">
                 {column.header}
               </p>
               {column.sortable !== false && (
                 <div
                   className={mergeTailwindClasses(
-                    "relative size-4 cursor-pointer flex-shrink-0 ml-2",
+                    "relative size-4 flex-shrink-0",
                     "hover:bg-default-100 rounded transition-colors p-0.5",
                   )}
-                  onClick={(): void => onSort(column)}
-                  role="button"
-                  aria-label={formatSortHeader(column.header)}
                 >
                   <IconChevronUp
                     size={14}

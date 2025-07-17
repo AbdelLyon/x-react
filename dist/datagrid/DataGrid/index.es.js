@@ -169,21 +169,21 @@ function DataGrid(_a) {
                     "div",
                     {
                       className: mergeTailwindClasses(
-                        "flex items-center justify-between w-full min-w-0",
-                        "pr-6"
+                        "flex items-center w-full min-w-0 gap-2",
+                        column.sortable !== false ? "cursor-pointer" : ""
                       ),
+                      onClick: column.sortable !== false ? () => onSort(column) : void 0,
+                      role: column.sortable !== false ? "button" : void 0,
+                      "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
                       children: [
-                        /* @__PURE__ */ jsx("p", { className: "truncate text-sm font-medium text-foreground", children: column.header }),
+                        /* @__PURE__ */ jsx("p", { className: "flex-1 truncate text-sm font-medium text-foreground", children: column.header }),
                         column.sortable !== false && /* @__PURE__ */ jsxs(
                           "div",
                           {
                             className: mergeTailwindClasses(
-                              "relative size-4 cursor-pointer flex-shrink-0 ml-2",
+                              "relative size-4 flex-shrink-0",
                               "hover:bg-default-100 rounded transition-colors p-0.5"
                             ),
-                            onClick: () => onSort(column),
-                            role: "button",
-                            "aria-label": formatSortHeader(column.header),
                             children: [
                               /* @__PURE__ */ jsx(
                                 IconChevronUp,
