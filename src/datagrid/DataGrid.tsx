@@ -88,7 +88,7 @@ export function DataGrid<T extends { id: string | number }>({
         th: mergeTailwindClasses(
           variantClasses.th,
           "first:pl-4 px-4 py-4 text-left whitespace-nowrap",
-          "bg-muted/30 backdrop-blur-sm border-b border-border/30",
+          "backdrop-blur-sm border-b border-border/30",
           "transition-all duration-200 group-hover:bg-muted/40",
           props.showSelectionCheckboxes && "first:w-12 first:min-w-12",
           classNames?.th,
@@ -97,7 +97,7 @@ export function DataGrid<T extends { id: string | number }>({
           variantClasses.tr,
           "border-0 transition-all duration-200 hover:bg-muted/20",
           "hover:shadow-sm hover:scale-[1.002] group",
-          classNames?.tr
+          classNames?.tr,
         ),
         td: mergeTailwindClasses(
           "first:pl-4 px-4 py-3 text-left",
@@ -128,10 +128,12 @@ export function DataGrid<T extends { id: string | number }>({
                   isFetching ? "opacity-100 scale-100" : "opacity-0 scale-75",
                 )}
               />
-              <span className={mergeTailwindClasses(
-                "text-sm text-muted-foreground transition-all duration-500",
-                isFetching ? "opacity-100" : "opacity-70"
-              )}>
+              <span
+                className={mergeTailwindClasses(
+                  "text-sm text-muted-foreground transition-all duration-500",
+                  isFetching ? "opacity-100" : "opacity-70",
+                )}
+              >
                 {isFetching ? "Chargement..." : "Scroll pour plus"}
               </span>
             </div>
@@ -172,11 +174,9 @@ export function DataGrid<T extends { id: string | number }>({
                 "flex min-w-0 w-max items-center gap-2 transition-all duration-300",
                 "opacity-80 hover:opacity-100",
                 column.sortable !== false
-                  ? "cursor-pointer hover:bg-primary/5 hover:scale-105 rounded-md px-2 py-1 -mx-2 -my-1"
+                  ? "cursor-pointer hover:scale-105 px-2 py-1 -mx-2 -my-1"
                   : "",
-                sortConfig.field === column.key
-                  ? "opacity-100 bg-primary/10 scale-105"
-                  : "",
+                sortConfig.field === column.key ? "opacity-100 scale-105" : "",
               )}
               onClick={
                 column.sortable !== false
@@ -190,12 +190,14 @@ export function DataGrid<T extends { id: string | number }>({
                   : undefined
               }
             >
-              <p className={mergeTailwindClasses(
-                "truncate text-sm font-semibold text-foreground transition-all duration-200",
-                sortConfig.field === column.key
-                  ? "text-primary font-bold"
-                  : "group-hover:text-primary/80"
-              )}>
+              <p
+                className={mergeTailwindClasses(
+                  "truncate text-sm font-semibold text-foreground transition-all duration-200",
+                  sortConfig.field === column.key
+                    ? "opacity-80s font-bold"
+                    : "group-hover:opacity-100",
+                )}
+              >
                 {column.header}
               </p>
               {column.sortable !== false && (
@@ -206,7 +208,7 @@ export function DataGrid<T extends { id: string | number }>({
                       "transition-all duration-300 -mb-0.5",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "asc"
-                        ? "opacity-100 text-primary scale-110 drop-shadow-sm"
+                        ? "opacity-100 scale-110 drop-shadow-sm"
                         : "opacity-30 hover:opacity-60 hover:scale-105",
                     )}
                   />
@@ -216,7 +218,7 @@ export function DataGrid<T extends { id: string | number }>({
                       "transition-all duration-300 -mt-0.5",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "desc"
-                        ? "opacity-100 text-primary scale-110 drop-shadow-sm"
+                        ? "opacity-100 scale-110 drop-shadow-sm"
                         : "opacity-30 hover:opacity-60 hover:scale-105",
                     )}
                   />
