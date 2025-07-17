@@ -142,7 +142,7 @@ export function DataGrid<T extends { id: string | number }>({
           >
             <div
               className={mergeTailwindClasses(
-                "flex items-center w-full min-w-0 gap-2",
+                "flex items-center justify-between w-full min-w-0",
                 column.sortable !== false ? "cursor-pointer" : "",
               )}
               onClick={
@@ -157,36 +157,33 @@ export function DataGrid<T extends { id: string | number }>({
                   : undefined
               }
             >
-              <p className="flex-1 truncate text-sm font-medium text-foreground">
+              <p className="mr-1 truncate text-sm font-medium text-foreground">
                 {column.header}
               </p>
               {column.sortable !== false && (
-                <div
-                  className={mergeTailwindClasses(
-                    "relative size-4 flex-shrink-0",
-                    "hover:bg-default-100 rounded transition-colors p-0.5",
-                  )}
-                >
-                  <IconChevronUp
-                    size={14}
-                    className={mergeTailwindClasses(
-                      "absolute top-0 left-0.5 transition-opacity",
-                      sortConfig.field === column.key &&
-                        sortConfig.direction === "asc"
-                        ? "opacity-100 text-primary"
-                        : "opacity-30",
-                    )}
-                  />
-                  <IconChevronDown
-                    size={14}
-                    className={mergeTailwindClasses(
-                      "absolute bottom-0 left-0.5 transition-opacity",
-                      sortConfig.field === column.key &&
-                        sortConfig.direction === "desc"
-                        ? "opacity-100 text-primary"
-                        : "opacity-30",
-                    )}
-                  />
+                <div className="relative flex h-6 w-5 flex-shrink-0 items-center justify-center rounded transition-colors hover:bg-default-100">
+                  <div className="relative size-4">
+                    <IconChevronUp
+                      size={16}
+                      className={mergeTailwindClasses(
+                        "absolute top-0 left-0 transition-opacity",
+                        sortConfig.field === column.key &&
+                          sortConfig.direction === "asc"
+                          ? "opacity-100 text-primary"
+                          : "opacity-30",
+                      )}
+                    />
+                    <IconChevronDown
+                      size={16}
+                      className={mergeTailwindClasses(
+                        "absolute bottom-0 left-0 transition-opacity",
+                        sortConfig.field === column.key &&
+                          sortConfig.direction === "desc"
+                          ? "opacity-100 text-primary"
+                          : "opacity-30",
+                      )}
+                    />
+                  </div>
                 </div>
               )}
             </div>

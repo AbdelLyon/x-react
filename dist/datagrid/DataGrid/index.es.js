@@ -169,45 +169,36 @@ function DataGrid(_a) {
                     "div",
                     {
                       className: mergeTailwindClasses(
-                        "flex items-center w-full min-w-0 gap-2",
+                        "flex items-center justify-between w-full min-w-0",
                         column.sortable !== false ? "cursor-pointer" : ""
                       ),
                       onClick: column.sortable !== false ? () => onSort(column) : void 0,
                       role: column.sortable !== false ? "button" : void 0,
                       "aria-label": column.sortable !== false ? formatSortHeader(column.header) : void 0,
                       children: [
-                        /* @__PURE__ */ jsx("p", { className: "flex-1 truncate text-sm font-medium text-foreground", children: column.header }),
-                        column.sortable !== false && /* @__PURE__ */ jsxs(
-                          "div",
-                          {
-                            className: mergeTailwindClasses(
-                              "relative size-4 flex-shrink-0",
-                              "hover:bg-default-100 rounded transition-colors p-0.5"
-                            ),
-                            children: [
-                              /* @__PURE__ */ jsx(
-                                IconChevronUp,
-                                {
-                                  size: 14,
-                                  className: mergeTailwindClasses(
-                                    "absolute top-0 left-0.5 transition-opacity",
-                                    sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100 text-primary" : "opacity-30"
-                                  )
-                                }
-                              ),
-                              /* @__PURE__ */ jsx(
-                                IconChevronDown,
-                                {
-                                  size: 14,
-                                  className: mergeTailwindClasses(
-                                    "absolute bottom-0 left-0.5 transition-opacity",
-                                    sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100 text-primary" : "opacity-30"
-                                  )
-                                }
+                        /* @__PURE__ */ jsx("p", { className: "mr-1 truncate text-sm font-medium text-foreground", children: column.header }),
+                        column.sortable !== false && /* @__PURE__ */ jsx("div", { className: "relative flex h-6 w-5 flex-shrink-0 items-center justify-center rounded transition-colors hover:bg-default-100", children: /* @__PURE__ */ jsxs("div", { className: "relative size-4", children: [
+                          /* @__PURE__ */ jsx(
+                            IconChevronUp,
+                            {
+                              size: 16,
+                              className: mergeTailwindClasses(
+                                "absolute top-0 left-0 transition-opacity",
+                                sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100 text-primary" : "opacity-30"
                               )
-                            ]
-                          }
-                        )
+                            }
+                          ),
+                          /* @__PURE__ */ jsx(
+                            IconChevronDown,
+                            {
+                              size: 16,
+                              className: mergeTailwindClasses(
+                                "absolute bottom-0 left-0 transition-opacity",
+                                sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100 text-primary" : "opacity-30"
+                              )
+                            }
+                          )
+                        ] }) })
                       ]
                     }
                   )
