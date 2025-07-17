@@ -22,18 +22,18 @@ export const lightTheme: Colors = {
    },
 
    background: {
-      DEFAULT: "#fefefe",
-      foreground: "#000000",
-      50: "#fefefe",
-      100: "#fefefe",
-      200: "#f5f5f5",
-      300: "#e8e8e8",
-      400: "#d6d6d6",
-      500: "#b8b8b8",
-      600: "#999999",
-      700: "#787878",
-      800: "#5a5a5a",
-      900: "#303030",
+      DEFAULT: "#ffffff",
+      foreground: "#09090b",
+      50: "#ffffff",
+      100: "#fafafa",
+      200: "#f4f4f5",
+      300: "#e4e4e7",
+      400: "#d4d4d8",
+      500: "#a1a1aa",
+      600: "#71717a",
+      700: "#3f3f46",
+      800: "#27272a",
+      900: "#18181b",
    },
 
    primary: {
@@ -54,30 +54,30 @@ export const lightTheme: Colors = {
    content1: {
       DEFAULT: "#ffffff",
       foreground: "#000000",
-      50: "#f8f8f8",
-      100: "#ececec",
-      200: "#d1d1d1",
-      300: "#b5b5b5",
-      400: "#989898",
-      500: "#7c7c7c",
-      600: "#606060",
-      700: "#454545",
-      800: "#2a2a2a",
-      900: "#1a1a1a",
+      50: "#ffffff",
+      100: "#fafafa", 
+      200: "#f5f5f5",
+      300: "#f0f0f0",
+      400: "#e5e5e5",
+      500: "#d4d4d4",
+      600: "#b5b5b5",
+      700: "#8a8a8a",
+      800: "#525252",
+      900: "#262626",
    },
    default: {
-      DEFAULT: "#f0f0f0",
+      DEFAULT: "#f4f4f5",
       foreground: "#000000",
       50: "#fafafa",
-      100: "#fafafa",
-      200: "#f5f5f5",
-      300: "#e6e6e6",
-      400: "#d6d6d6",
-      500: "#c7c7c7",
-      600: "#a8a8a8",
-      700: "#8a8a8a",
-      800: "#6c6c6c",
-      900: "#4d4d4d",
+      100: "#f4f4f5",
+      200: "#e4e4e7",
+      300: "#d4d4d8",
+      400: "#a1a1aa",
+      500: "#71717a",
+      600: "#52525b",
+      700: "#3f3f46",
+      800: "#27272a",
+      900: "#18181b",
    },
 
    secondary: {
@@ -231,18 +231,18 @@ export const lightTheme: Colors = {
    },
 
    border: {
-      DEFAULT: "#d8dce2be",
-      foreground: "#000000",
-      50: "#f0f2f5",
-      100: "#f0f2f5",
-      200: "#d8dce2",
-      300: "#c9d0d8",
-      400: "#95a1b0",
-      500: "#677485",
-      600: "#4d5864",
-      700: "#384050",
-      800: "#242e3c",
-      900: "#16202c"
+      DEFAULT: "#e4e4e7",
+      foreground: "#71717a",
+      50: "#fafafa",
+      100: "#f4f4f5",
+      200: "#e4e4e7",
+      300: "#d4d4d8",
+      400: "#a1a1aa",
+      500: "#71717a",
+      600: "#52525b",
+      700: "#3f3f46",
+      800: "#27272a",
+      900: "#18181b"
    },
 
    shadow: {
@@ -273,6 +273,77 @@ export const lightTheme: Colors = {
       700: "#868e96",
       800: "#495057",
       900: "#343a40",
+   },
+
+   // Variables professionnelles
+   hover: {
+      DEFAULT: "#f4f4f5", // #f4f4f5
+      foreground: "#09090b", // #09090b
+   },
+
+   active: {
+      DEFAULT: "#e4e4e7", // #e4e4e7
+      foreground: "#09090b", // #09090b
+   },
+
+   disabled: {
+      DEFAULT: "#f4f4f5", // #f4f4f5
+      foreground: "#a1a1aa", // #a1a1aa
+   },
+
+   muted: {
+      DEFAULT: "#f9fafb", // #f9fafb
+      foreground: "#71717a", // #71717a
+   },
+
+   surface: {
+      DEFAULT: "#ffffff", // #ffffff
+      foreground: "#09090b", // #09090b
+   },
+
+   elevated: {
+      DEFAULT: "#fafafa", // #fafafa
+      foreground: "#09090b", // #09090b
+   },
+
+   input: {
+      DEFAULT: "#ffffff", // #ffffff
+      foreground: "#09090b", // #09090b
+   },
+
+   accent: {
+      DEFAULT: "#c20f19", // #c20f19 - Plus sombre que votre primary
+      foreground: "#ffffff", // #ffffff
+      50: "#fde6e7", // #fde6e7
+      100: "#fccecf", // #fccecf
+      200: "#f9a0a3", // #f9a0a3
+      300: "#f57277", // #f57277
+      400: "#e2121d", // #e2121d - Votre primary
+      500: "#c20f19", // #c20f19
+      600: "#a20c15", // #a20c15
+      700: "#810a11", // #810a11
+      800: "#61070d", // #61070d
+      900: "#4a0509", // #4a0509
+   },
+
+   info: {
+      DEFAULT: "#0e8bdf", // #0e8bdf - Votre focus existant
+      foreground: "#ffffff", // #ffffff
+      50: "#e6f3fc", // #e6f3fc
+      100: "#cce7f9", // #cce7f9
+      200: "#99d0f3", // #99d0f3
+      300: "#66b8ed", // #66b8ed
+      400: "#0e8bdf", // #0e8bdf
+      500: "#0c75bd", // #0c75bd
+      600: "#0a609b", // #0a609b
+      700: "#084a78", // #084a78
+      800: "#063556", // #063556
+      900: "#042334", // #042334
+   },
+
+   destructive: {
+      DEFAULT: "#dc2626", // #dc2626
+      foreground: "#ffffff", // #ffffff
    },
 }
 

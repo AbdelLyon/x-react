@@ -82,10 +82,22 @@ export function DataGrid<T extends { id: string | number }>({
           "!pr-1.5",
           classNames?.wrapper,
         ),
-        th: mergeTailwindClasses(variantClasses.th, classNames?.th),
+        th: mergeTailwindClasses(
+          variantClasses.th, 
+          "first:pl-3 px-3 text-left whitespace-nowrap",
+          props.showSelectionCheckboxes && "first:w-12 first:min-w-12",
+          classNames?.th
+        ),
         tr: mergeTailwindClasses(variantClasses.tr, "border-0", classNames?.tr),
+        td: mergeTailwindClasses(
+          "first:pl-3 px-3 py-2 text-left",
+          "truncate max-w-0",
+          props.showSelectionCheckboxes && "first:w-12 first:min-w-12 first:max-w-12",
+          classNames?.td
+        ),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto bg-white dark:bg-background",
+          "table-fixed",
           classNames?.base,
         ),
       }}
@@ -121,43 +133,48 @@ export function DataGrid<T extends { id: string | number }>({
             key={column.key}
             aria-label={extractColumnHeader(column)}
             className={mergeTailwindClasses(
+              "relative",
+              column.className,
               childrenProps?.tableColumnProps?.className,
             )}
             {...childrenProps?.tableColumnProps}
           >
             <div
               className={mergeTailwindClasses(
-                "flex items-center gap-2",
-                column.className,
+                "flex items-center justify-between w-full min-w-0",
+                "pr-6",
               )}
             >
-              <p>{column.header}</p>
+              <p className="truncate text-sm font-medium text-foreground">
+                {column.header}
+              </p>
               {column.sortable !== false && (
                 <div
                   className={mergeTailwindClasses(
-                    "relative size-4 cursor-pointer",
+                    "relative size-4 cursor-pointer flex-shrink-0 ml-2",
+                    "hover:bg-default-100 rounded transition-colors p-0.5",
                   )}
                   onClick={(): void => onSort(column)}
                   role="button"
                   aria-label={formatSortHeader(column.header)}
                 >
                   <IconChevronUp
-                    size={16}
+                    size={14}
                     className={mergeTailwindClasses(
-                      "absolute -top-1",
+                      "absolute top-0 left-0.5 transition-opacity",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "asc"
-                        ? "opacity-100"
+                        ? "opacity-100 text-primary"
                         : "opacity-30",
                     )}
                   />
                   <IconChevronDown
-                    size={16}
+                    size={14}
                     className={mergeTailwindClasses(
-                      "absolute top-1",
+                      "absolute bottom-0 left-0.5 transition-opacity",
                       sortConfig.field === column.key &&
                         sortConfig.direction === "desc"
-                        ? "opacity-100"
+                        ? "opacity-100 text-primary"
                         : "opacity-30",
                     )}
                   />
@@ -191,13 +208,16 @@ export function DataGrid<T extends { id: string | number }>({
                 <TableCell
                   {...childrenProps?.tableCellProps}
                   className={mergeTailwindClasses(
+                    "relative min-w-0",
                     childrenProps?.tableCellProps?.className,
                     columns.find((col): boolean => col.field === columnKey)
                       ?.className,
                   )}
                   aria-label="cell"
                 >
-                  {extractCellValue(columnKey, row, columns)}
+                  <div className="w-full truncate text-sm text-foreground">
+                    {extractCellValue(columnKey, row, columns)}
+                  </div>
                 </TableCell>
               )}
             </TableRow>

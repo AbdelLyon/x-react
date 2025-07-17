@@ -37,8 +37,20 @@ const DataGridSkeleton = ({
       "aria-labelledby": "loading-table",
       className: mergeTailwindClasses(
         "w-full relative overflow-hidden dark:bg-background border border-border rounded-md",
+        "table-fixed",
         className
       ),
+      classNames: {
+        th: mergeTailwindClasses(
+          "first:pl-3 px-3 text-left whitespace-nowrap",
+          checkboxSelection && "first:w-12 first:min-w-12"
+        ),
+        td: mergeTailwindClasses(
+          "first:pl-3 px-3 py-2 text-left",
+          "truncate max-w-0",
+          checkboxSelection && "first:w-12 first:min-w-12 first:max-w-12"
+        )
+      },
       children: [
         /* @__PURE__ */ jsx(
           TableHeader,
@@ -97,9 +109,10 @@ const DataGridSkeleton = ({
                           TableCell,
                           {
                             className: mergeTailwindClasses(
+                              "relative min-w-0",
                               (_a2 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a2.className
                             ),
-                            children: colIndex === 0 && checkboxSelection ? /* @__PURE__ */ jsx(Skeleton, { className: "size-4 rounded-md" }) : /* @__PURE__ */ jsx(Skeleton, { className: "h-4 w-24 rounded-md" })
+                            children: /* @__PURE__ */ jsx("div", { className: "w-full truncate", children: colIndex === 0 && checkboxSelection ? /* @__PURE__ */ jsx(Skeleton, { className: "size-4 rounded-md" }) : /* @__PURE__ */ jsx(Skeleton, { className: "h-4 w-24 rounded-md" }) })
                           },
                           colIndex
                         );

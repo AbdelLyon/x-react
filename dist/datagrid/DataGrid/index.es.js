@@ -113,10 +113,22 @@ function DataGrid(_a) {
           "!pr-1.5",
           classNames == null ? void 0 : classNames.wrapper
         ),
-        th: mergeTailwindClasses(variantClasses.th, classNames == null ? void 0 : classNames.th),
+        th: mergeTailwindClasses(
+          variantClasses.th,
+          "first:pl-3 px-3 text-left whitespace-nowrap",
+          props.showSelectionCheckboxes && "first:w-12 first:min-w-12",
+          classNames == null ? void 0 : classNames.th
+        ),
         tr: mergeTailwindClasses(variantClasses.tr, "border-0", classNames == null ? void 0 : classNames.tr),
+        td: mergeTailwindClasses(
+          "first:pl-3 px-3 py-2 text-left",
+          "truncate max-w-0",
+          props.showSelectionCheckboxes && "first:w-12 first:min-w-12 first:max-w-12",
+          classNames == null ? void 0 : classNames.td
+        ),
         base: mergeTailwindClasses(
           "w-full relative overflow-auto bg-white dark:bg-background",
+          "table-fixed",
           classNames == null ? void 0 : classNames.base
         )
       },
@@ -148,6 +160,8 @@ function DataGrid(_a) {
                   "aria-labelledby": "table header",
                   "aria-label": extractColumnHeader(column),
                   className: mergeTailwindClasses(
+                    "relative",
+                    column.className,
                     (_a3 = childrenProps == null ? void 0 : childrenProps.tableColumnProps) == null ? void 0 : _a3.className
                   )
                 }, childrenProps == null ? void 0 : childrenProps.tableColumnProps), {
@@ -155,16 +169,17 @@ function DataGrid(_a) {
                     "div",
                     {
                       className: mergeTailwindClasses(
-                        "flex items-center gap-2",
-                        column.className
+                        "flex items-center justify-between w-full min-w-0",
+                        "pr-6"
                       ),
                       children: [
-                        /* @__PURE__ */ jsx("p", { children: column.header }),
+                        /* @__PURE__ */ jsx("p", { className: "truncate text-sm font-medium text-foreground", children: column.header }),
                         column.sortable !== false && /* @__PURE__ */ jsxs(
                           "div",
                           {
                             className: mergeTailwindClasses(
-                              "relative size-4 cursor-pointer"
+                              "relative size-4 cursor-pointer flex-shrink-0 ml-2",
+                              "hover:bg-default-100 rounded transition-colors p-0.5"
                             ),
                             onClick: () => onSort(column),
                             role: "button",
@@ -173,20 +188,20 @@ function DataGrid(_a) {
                               /* @__PURE__ */ jsx(
                                 IconChevronUp,
                                 {
-                                  size: 16,
+                                  size: 14,
                                   className: mergeTailwindClasses(
-                                    "absolute -top-1",
-                                    sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100" : "opacity-30"
+                                    "absolute top-0 left-0.5 transition-opacity",
+                                    sortConfig.field === column.key && sortConfig.direction === "asc" ? "opacity-100 text-primary" : "opacity-30"
                                   )
                                 }
                               ),
                               /* @__PURE__ */ jsx(
                                 IconChevronDown,
                                 {
-                                  size: 16,
+                                  size: 14,
                                   className: mergeTailwindClasses(
-                                    "absolute top-1",
-                                    sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100" : "opacity-30"
+                                    "absolute bottom-0 left-0.5 transition-opacity",
+                                    sortConfig.field === column.key && sortConfig.direction === "desc" ? "opacity-100 text-primary" : "opacity-30"
                                   )
                                 }
                               )
@@ -229,11 +244,12 @@ function DataGrid(_a) {
                       TableCell,
                       __spreadProps(__spreadValues({}, childrenProps == null ? void 0 : childrenProps.tableCellProps), {
                         className: mergeTailwindClasses(
+                          "relative min-w-0",
                           (_a4 = childrenProps == null ? void 0 : childrenProps.tableCellProps) == null ? void 0 : _a4.className,
                           (_b3 = columns.find((col) => col.field === columnKey)) == null ? void 0 : _b3.className
                         ),
                         "aria-label": "cell",
-                        children: extractCellValue(columnKey, row, columns)
+                        children: /* @__PURE__ */ jsx("div", { className: "w-full truncate text-sm text-foreground", children: extractCellValue(columnKey, row, columns) })
                       })
                     );
                   }

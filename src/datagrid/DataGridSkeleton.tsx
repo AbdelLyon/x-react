@@ -37,8 +37,20 @@ export const DataGridSkeleton = ({
       aria-labelledby="loading-table"
       className={mergeTailwindClasses(
         "w-full relative overflow-hidden dark:bg-background border border-border rounded-md",
+        "table-fixed",
         className,
       )}
+      classNames={{
+        th: mergeTailwindClasses(
+          "first:pl-3 px-3 text-left whitespace-nowrap",
+          checkboxSelection && "first:w-12 first:min-w-12",
+        ),
+        td: mergeTailwindClasses(
+          "first:pl-3 px-3 py-2 text-left",
+          "truncate max-w-0",
+          checkboxSelection && "first:w-12 first:min-w-12 first:max-w-12",
+        ),
+      }}
     >
       <TableHeader
         aria-label="Loading table header"
@@ -104,14 +116,17 @@ export const DataGridSkeleton = ({
                       <TableCell
                         key={colIndex}
                         className={mergeTailwindClasses(
+                          "relative min-w-0",
                           childrenProps?.tableCellProps?.className,
                         )}
                       >
-                        {colIndex === 0 && checkboxSelection ? (
-                          <Skeleton className="size-4 rounded-md" />
-                        ) : (
-                          <Skeleton className="h-4 w-24 rounded-md" />
-                        )}
+                        <div className="w-full truncate">
+                          {colIndex === 0 && checkboxSelection ? (
+                            <Skeleton className="size-4 rounded-md" />
+                          ) : (
+                            <Skeleton className="h-4 w-24 rounded-md" />
+                          )}
+                        </div>
                       </TableCell>
                     ),
                   )}
