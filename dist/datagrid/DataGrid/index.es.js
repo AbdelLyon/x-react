@@ -35,9 +35,9 @@ import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@heroui/react";
 import { IconCaretUpFilled, IconCaretDownFilled } from "@tabler/icons-react";
 import { DataGridSkeleton } from "../DataGridSkeleton/index.es.js";
-import { TruncatedText } from "../TruncatedText/index.es.js";
 import { GRID_VARIANTS } from "../variants/index.es.js";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll/index.es.js";
+import { TruncatedText } from "../../utils/TruncatedText/index.es.js";
 function DataGrid(_a) {
   var _b = _a, {
     rows,

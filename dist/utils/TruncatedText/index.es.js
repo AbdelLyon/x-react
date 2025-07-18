@@ -26,14 +26,7 @@ function TruncatedText({
       resizeObserver.disconnect();
     };
   }, [children]);
-  const textElement = /* @__PURE__ */ jsx(
-    "div",
-    {
-      ref: textRef,
-      className,
-      children
-    }
-  );
+  const textElement = /* @__PURE__ */ jsx("div", { ref: textRef, className, children });
   if (isTruncated) {
     return /* @__PURE__ */ jsx(
       Tooltip,

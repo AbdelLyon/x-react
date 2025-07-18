@@ -29,7 +29,6 @@ export function TruncatedText({
 
     checkTruncation();
 
-    // Vérifier à nouveau si la taille change
     const resizeObserver = new ResizeObserver(checkTruncation);
     if (textRef.current) {
       resizeObserver.observe(textRef.current);
@@ -41,10 +40,7 @@ export function TruncatedText({
   }, [children]);
 
   const textElement = (
-    <div
-      ref={textRef}
-      className={className}
-    >
+    <div ref={textRef} className={className}>
       {children}
     </div>
   );

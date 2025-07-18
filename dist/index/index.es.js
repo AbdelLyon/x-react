@@ -34,6 +34,7 @@ import { InfiniteAutocomplete } from "../form/InfiniteAutocomplete/index.es.js";
 import { Layout } from "../layout/Layout/index.es.js";
 import { useLayoutConfig } from "../layout/useLayoutConfig/index.es.js";
 import { DataGrid } from "../datagrid/DataGrid/index.es.js";
+import { TruncatedText } from "../utils/TruncatedText/index.es.js";
 import { useTheme } from "../hooks/useTheme/index.es.js";
 import { useMediaQuery } from "../hooks/useMediaQuery/index.es.js";
 import { useResponsive } from "../hooks/useResponsive/index.es.js";
@@ -106,6 +107,7 @@ export {
   ToastProvider,
   ToggleTheme,
   Tooltip,
+  TruncatedText,
   Typography,
   UserAvatar,
   WithLoading,

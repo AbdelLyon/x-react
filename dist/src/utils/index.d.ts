@@ -41,4 +41,4 @@ export declare function createDebouncedFunction<Callback extends (...args: never
 export declare const dataAttr: (condition: boolean | undefined) => Booleanish;
 export declare const generateUniqueId: (prefix: string) => string;
 export declare function logWarning(message: string, componentName?: string, ...additionalArgs: unknown[]): void;
-export {};
+export { TruncatedText } from './TruncatedText';

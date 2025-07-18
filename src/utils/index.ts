@@ -313,3 +313,6 @@ export function logWarning(
     console.warn(fullMessage, additionalArgs);
   }
 }
+
+// ----- Components -----
+export { TruncatedText } from "./TruncatedText";

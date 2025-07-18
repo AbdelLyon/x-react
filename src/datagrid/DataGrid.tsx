@@ -12,7 +12,7 @@ import {
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { DataGridSkeleton } from "./DataGridSkeleton";
-import { TruncatedText } from "./TruncatedText";
+import { TruncatedText } from "@/utils";
 import type { DataGridProps } from "@/types/datagrid";
 import { GRID_VARIANTS } from "./variants";
 import { useInfiniteScroll } from "@/hooks";

@@ -16,6 +16,7 @@ var __spreadValues = (a, b) => {
 };
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { TruncatedText } from "./TruncatedText/index.es.js";
 const mergeTailwindClasses = (...classes) => {
   return twMerge(clsx(classes));
 };
@@ -212,6 +213,7 @@ function logWarning(message, componentName, ...additionalArgs) {
   }
 }
 export {
+  TruncatedText,
   arrayToObject,
   capitalizeString,
   chainCallbacks,
