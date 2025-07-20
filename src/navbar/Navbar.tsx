@@ -4,6 +4,7 @@ import type {
   NavbarContentProps,
   NavbarMenuProps,
   NavbarProps as NavbarRootProps,
+  PressEvent,
 } from "@heroui/react";
 import {
   Navbar as NavbarRoot,
@@ -56,11 +57,13 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
   ): JSX.Element => {
     const { isDesktop, isMobile, isTablet } = useResponsive();
 
-    const handleItemPress = (item: Item): void => {
-      item.onPress?.();
-      onItemClick?.(item);
-      onMenuOpenChange?.(false);
-    };
+    const handleItemPress =
+      (item: Item): ((e: PressEvent) => void) =>
+      (e: PressEvent): void => {
+        item.onClick?.(e);
+        onItemClick?.(item);
+        onMenuOpenChange?.(false);
+      };
 
     return (
       <NavbarRoot
@@ -114,7 +117,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                       },
                       classNames?.item,
                     )}
-                    onPress={(): void => handleItemPress(item)}
+                    onPress={handleItemPress(item)}
                   >
                     {item.startContent}
                     {item.label}
@@ -142,7 +145,10 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
                       },
                       classNames?.item,
                     )}
-                    onPress={(): void => onItemClick?.(item)}
+                    onPress={(e: PressEvent): void => {
+                      e.continuePropagation();
+                      onItemClick?.(item);
+                    }}
                   >
                     {item.startContent}
                     {item.label}

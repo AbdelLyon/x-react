@@ -1,5 +1,9 @@
 import type { JSX } from "react";
-import type { DropdownProps, DropdownMenuProps } from "@heroui/react";
+import type {
+  DropdownProps,
+  DropdownMenuProps,
+  PressEvent,
+} from "@heroui/react";
 import {
   Dropdown as DropdownRoot,
   DropdownTrigger,
@@ -31,22 +35,24 @@ type Props = {
   trigger: React.ReactNode;
   sections: DropdownSectionConfig[];
   dropdownMenuProps?: DropdownMenuProps;
-  onItemPress?: (item: DropdownItemConfig) => void;
+  onItemClick?: (item: DropdownItemConfig, event: PressEvent) => void;
 } & Omit<DropdownProps, "trigger" | "children">;
 
 export const Dropdown = ({
   trigger,
   sections,
   dropdownMenuProps,
-  onItemPress,
+  onItemClick,
   classNames,
   ...props
 }: Props): JSX.Element => {
-  const handleItemPress = (item: DropdownItemConfig): void => {
-    if (onItemPress) {
-      onItemPress(item);
-    }
-  };
+  const handleItemClick =
+    (item: DropdownItemConfig): ((e: PressEvent) => void) =>
+    (e: PressEvent): void => {
+      if (onItemClick) {
+        onItemClick(item, e);
+      }
+    };
 
   return (
     <DropdownRoot
@@ -76,9 +82,7 @@ export const Dropdown = ({
                       remainingProps.className,
                     )}
                     key={key}
-                    onPress={(): void => {
-                      handleItemPress({ ...item, href });
-                    }}
+                    onPress={handleItemClick({ ...item, href })}
                     {...remainingProps}
                   >
                     {label}

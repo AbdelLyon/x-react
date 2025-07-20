@@ -65,16 +65,16 @@ describe("Composant Card", (): void => {
   });
 
   describe("Comportement", (): void => {
-    it("devrait gérer les événements de pression", (): void => {
-      const onPress = vi.fn();
+    it("devrait gérer les événements de clic", (): void => {
+      const onClick = vi.fn();
       const { getByText } = render(
-        <Card {...defaultProps} isPressable onPress={onPress} />,
+        <Card {...defaultProps} isPressable onClick={onClick} />,
       );
 
       const cardElement = getByText("Contenu de la Card").parentElement;
       if (cardElement) {
         fireEvent.click(cardElement);
-        expect(onPress).toHaveBeenCalled();
+        expect(onClick).toHaveBeenCalled();
       } else {
         throw new Error("Élément Card non trouvé");
       }

@@ -1,3 +1,5 @@
+import type { PressEvent } from "@heroui/react";
+
 // Core theme colors
 export type BaseColor =
   | "primary"
@@ -37,9 +39,9 @@ export type SelectionMode = "single" | "multiple";
 
 // Common event handlers
 export interface CommonEventHandlers<T = unknown> {
-  onPress?: () => void;
-  onPressStart?: () => void;
-  onPressEnd?: () => void;
+  onClick?: (event: PressEvent) => void;
+  onClickStart?: (event: PressEvent) => void;
+  onClickEnd?: (event: PressEvent) => void;
   onChange?: (value: T) => void;
 }
 
