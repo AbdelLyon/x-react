@@ -65,6 +65,7 @@ import { NextUIProvider } from "../providers/NextUIProvider/index.es.js";
 import { ToggleTheme } from "../theme/ToggleTheme/index.es.js";
 import { lightTheme } from "../theme/lightTheme/index.es.js";
 import { darkTheme } from "../theme/darkTheme/index.es.js";
+import { xreactui } from "../theme/xreactui/index.es.js";
 import { WithLoading } from "../HOC/WithLoading/index.es.js";
 export {
   Accordion,
@@ -169,5 +170,6 @@ export {
   useTheme,
   useTimeout,
   useToggle,
-  useWindowEvent
+  useWindowEvent,
+  xreactui
 };

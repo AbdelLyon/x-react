@@ -2,8 +2,8 @@ import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
-import tailwindcss from "@tailwindcss/postcss";
-import fs from 'fs-extra';
+// import tailwindcss from "@tailwindcss/postcss";
+// import fs from 'fs-extra';
 
 const modules = [
   "utils",
@@ -52,30 +52,30 @@ export default defineConfig({
       entryRoot: "src",
       insertTypesEntry: true,
     }),
-    {
-      name: 'transform-tailwind-config',
-      closeBundle() {
-        let tailwindExport = fs.readFileSync(
-          path.resolve(__dirname, 'tailwind.config.ts'),
-          'utf8'
-        );
+    // {
+    //   name: 'transform-tailwind-config',
+    //   closeBundle() {
+    //     let tailwindExport = fs.readFileSync(
+    //       path.resolve(__dirname, 'tailwind.config.ts'),
+    //       'utf8'
+    //     );
 
-        tailwindExport = tailwindExport
-          .replace(/from ["']\.\/src\/theme\/lightTheme["']/g, 'from "./theme/lightTheme/index.es.js"')
-          .replace(/from ["']\.\/src\/theme\/darkTheme["']/g, 'from "./theme/darkTheme/index.es.js"');
+    //     tailwindExport = tailwindExport
+    //       .replace(/from ["']\.\/src\/theme\/lightTheme["']/g, 'from "./theme/lightTheme/index.es.js"')
+    //       .replace(/from ["']\.\/src\/theme\/darkTheme["']/g, 'from "./theme/darkTheme/index.es.js"');
 
-        fs.writeFileSync(
-          path.resolve(__dirname, 'dist/tailwind.config.js'),
-          tailwindExport
-        );
+    //     fs.writeFileSync(
+    //       path.resolve(__dirname, 'dist/tailwind.config.js'),
+    //       tailwindExport
+    //     );
 
-        fs.copyFileSync(
-          path.resolve(__dirname, 'tailwind.config.d.ts'),
-          path.resolve(__dirname, 'dist/tailwind.config.d.ts')
-        );
+    //     fs.copyFileSync(
+    //       path.resolve(__dirname, 'tailwind.config.d.ts'),
+    //       path.resolve(__dirname, 'dist/tailwind.config.d.ts')
+    //     );
 
-      }
-    }
+    //   }
+    // }
   ],
 
   resolve: {
@@ -84,11 +84,11 @@ export default defineConfig({
     },
   },
 
-  css: {
-    postcss: {
-      plugins: [tailwindcss],
-    },
-  },
+  // css: {
+  //   postcss: {
+  //     plugins: [tailwindcss],
+  //   },
+  // },
 
   build: {
     target: "es2015",
