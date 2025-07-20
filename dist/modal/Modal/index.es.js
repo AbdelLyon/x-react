@@ -51,9 +51,8 @@ var __async = (__this, __arguments, generator) => {
 };
 import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { forwardRef, useState, useCallback } from "react";
-import { useDisclosure, Modal as Modal$1, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/react";
+import { useDisclosure, Modal as Modal$1, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
-import { Button } from "../../button/Button/index.es.js";
 const defaultClassNames = {
   closeButton: "absolute right-4 top-4",
   base: "bg-background border border-border shadow-lg dark:shadow-none rounded-lg",

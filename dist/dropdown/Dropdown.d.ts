@@ -1,5 +1,5 @@
 import { JSX } from 'react';
-import { DropdownProps, DropdownMenuProps } from '@heroui/react';
+import { DropdownProps, DropdownMenuProps, PressEvent } from '@heroui/react';
 export type DropdownItemConfig = {
     key: string;
     label: string;
@@ -20,7 +20,7 @@ type Props = {
     trigger: React.ReactNode;
     sections: DropdownSectionConfig[];
     dropdownMenuProps?: DropdownMenuProps;
-    onItemPress?: (item: DropdownItemConfig) => void;
+    onItemClick?: (item: DropdownItemConfig, event: PressEvent) => void;
 } & Omit<DropdownProps, "trigger" | "children">;
-export declare const Dropdown: ({ trigger, sections, dropdownMenuProps, onItemPress, classNames, ...props }: Props) => JSX.Element;
+export declare const Dropdown: ({ trigger, sections, dropdownMenuProps, onItemClick, classNames, ...props }: Props) => JSX.Element;
 export {};

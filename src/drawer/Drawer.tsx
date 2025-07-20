@@ -7,9 +7,9 @@ import {
   DrawerBody,
   DrawerFooter,
   type DrawerProps as DrawerRootProps,
+  Button,
 } from "@heroui/react";
 import { mergeTailwindClasses } from "@/utils";
-import { Button } from "@/button";
 import { useDisclosure } from "@/hooks";
 
 interface DrawerClassNames {
@@ -88,7 +88,7 @@ export const Drawer = ({
           <Button
             {...defaultButtonProps}
             variant="bordered"
-            onClick={close}
+            onPress={close}
             className={mergeTailwindClasses(
               "border-primary/50",
               buttonCloseProps?.className,
@@ -102,7 +102,7 @@ export const Drawer = ({
         {hasValidActionButton && (
           <Button
             {...defaultButtonProps}
-            onClick={handleAction}
+            onPress={handleAction}
             {...buttonActionProps}
           >
             {buttonActionLabel}

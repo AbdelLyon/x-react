@@ -1,3 +1,4 @@
+import { PressEvent } from '@heroui/react';
 export type BaseColor = "primary" | "secondary" | "success" | "warning" | "danger" | undefined;
 export type Color = "default" | BaseColor;
 export type LinkColor = "foreground" | BaseColor;
@@ -15,9 +16,9 @@ export interface LoadingState {
 }
 export type SelectionMode = "single" | "multiple";
 export interface CommonEventHandlers<T = unknown> {
-    onPress?: () => void;
-    onPressStart?: () => void;
-    onPressEnd?: () => void;
+    onClick?: (event: PressEvent) => void;
+    onClickStart?: (event: PressEvent) => void;
+    onClickEnd?: (event: PressEvent) => void;
     onChange?: (value: T) => void;
 }
 export interface AccessibilityProps {

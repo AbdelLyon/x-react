@@ -8,10 +8,10 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Button,
 } from "@heroui/react";
 
 import { mergeTailwindClasses } from "@/utils";
-import { Button } from "@/button";
 
 type Backdrop = ModalPropsRoot["backdrop"];
 

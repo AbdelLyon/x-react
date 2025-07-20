@@ -1,6 +1,7 @@
 import type { JSX } from "react";
-import type { ButtonGroupProps, ButtonProps } from "@heroui/react";
+import type { ButtonGroupProps } from "@heroui/react";
 import { ButtonGroup } from "@heroui/react";
+import type { ButtonProps } from "@/button/Button";
 import { Button } from "@/button/Button";
 
 export interface ButtonsProps extends ButtonGroupProps {

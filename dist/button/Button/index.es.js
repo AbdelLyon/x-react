@@ -45,7 +45,8 @@ const Button = forwardRef(
       fullWidth = false,
       children,
       disabled,
-      className
+      className,
+      onClick
     } = _b, props = __objRest(_b, [
       "variant",
       "color",
@@ -56,14 +57,20 @@ const Button = forwardRef(
       "fullWidth",
       "children",
       "disabled",
-      "className"
+      "className",
+      "onClick"
     ]);
     const isDisabled = disabled || loading;
+    const handlePress = (e) => {
+      e.continuePropagation();
+      onClick == null ? void 0 : onClick(e);
+    };
     return /* @__PURE__ */ jsx(
       Button$1,
       __spreadProps(__spreadValues({
         ref,
         variant,
+        onPress: handlePress,
         color,
         size,
         isDisabled,

@@ -64,9 +64,9 @@ const Navbar = forwardRef(
       "onMenuOpenChange"
     ]);
     const { isDesktop, isMobile, isTablet } = useResponsive();
-    const handleItemPress = (item) => {
+    const handleItemPress = (item) => (e) => {
       var _a2;
-      (_a2 = item.onPress) == null ? void 0 : _a2.call(item);
+      (_a2 = item.onClick) == null ? void 0 : _a2.call(item, e);
       onItemClick == null ? void 0 : onItemClick(item);
       onMenuOpenChange == null ? void 0 : onMenuOpenChange(false);
     };
@@ -114,7 +114,7 @@ const Navbar = forwardRef(
                     },
                     classNames == null ? void 0 : classNames.item
                   ),
-                  onPress: () => handleItemPress(item),
+                  onPress: handleItemPress(item),
                   children: [
                     item.startContent,
                     item.label,
@@ -136,7 +136,10 @@ const Navbar = forwardRef(
                   },
                   classNames == null ? void 0 : classNames.item
                 ),
-                onPress: () => onItemClick == null ? void 0 : onItemClick(item),
+                onPress: (e) => {
+                  e.continuePropagation();
+                  onItemClick == null ? void 0 : onItemClick(item);
+                },
                 children: [
                   item.startContent,
                   item.label,

@@ -50,10 +50,9 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { jsxs, Fragment, jsx } from "react/jsx-runtime";
-import { Drawer as Drawer$1, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@heroui/react";
+import { Drawer as Drawer$1, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, Button } from "@heroui/react";
 import { mergeTailwindClasses } from "../../utils/index.es.js";
 import { useDisclosure } from "../../hooks/useDisclosure/index.es.js";
-import { Button } from "../../button/Button/index.es.js";
 const isValidButtonLabel = (label) => typeof label === "string" && label.length > 0;
 const Drawer = (_a) => {
   var _b = _a, {
@@ -106,7 +105,7 @@ const Drawer = (_a) => {
         Button,
         __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, defaultButtonProps), {
           variant: "bordered",
-          onClick: close,
+          onPress: close,
           className: mergeTailwindClasses(
             "border-primary/50",
             buttonCloseProps == null ? void 0 : buttonCloseProps.className
@@ -118,7 +117,7 @@ const Drawer = (_a) => {
       hasValidActionButton && /* @__PURE__ */ jsx(
         Button,
         __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, defaultButtonProps), {
-          onClick: handleAction
+          onPress: handleAction
         }), buttonActionProps), {
           children: buttonActionLabel
         })

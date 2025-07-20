@@ -37,18 +37,18 @@ const Dropdown = (_a) => {
     trigger,
     sections,
     dropdownMenuProps,
-    onItemPress,
+    onItemClick,
     classNames
   } = _b, props = __objRest(_b, [
     "trigger",
     "sections",
     "dropdownMenuProps",
-    "onItemPress",
+    "onItemClick",
     "classNames"
   ]);
-  const handleItemPress = (item) => {
-    if (onItemPress) {
-      onItemPress(item);
+  const handleItemClick = (item) => (e) => {
+    if (onItemClick) {
+      onItemClick(item, e);
     }
   };
   return /* @__PURE__ */ jsxs(
@@ -77,9 +77,7 @@ const Dropdown = (_a) => {
                       "data-[hover=true]:bg-content1-300",
                       remainingProps.className
                     ),
-                    onPress: () => {
-                      handleItemPress(__spreadProps(__spreadValues({}, item), { href }));
-                    }
+                    onPress: handleItemClick(__spreadProps(__spreadValues({}, item), { href }))
                   }, remainingProps), {
                     children: label
                   }),
