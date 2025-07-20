@@ -4,96 +4,96 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-x-react est une bibliothèque de composants React TypeScript modulaire basée sur HeroUI, conçue pour être tree-shakeable avec des exports individuels par module. Le projet utilise Vite pour le build et la configuration, Vitest pour les tests, et Tailwind CSS pour le styling.
+x-react is a modern React component library built with TypeScript and Vite. It provides a comprehensive set of UI components, hooks, and utilities designed for tree-shaking optimization and modular usage. The library is built on top of HeroUI/NextUI and uses Tailwind CSS for styling.
 
-## Architecture
+## Essential Commands
 
-### Structure Modulaire
-- **Composants par dossier** : Chaque composant UI est dans son propre dossier (button, card, modal, etc.)
-- **Exports modulaires** : Chaque module peut être importé individuellement via package.json exports
-- **Types centralisés** : Types partagés dans `src/types/` (BaseColor, Variant, Size, etc.)
-- **Hooks réutilisables** : Hooks personnalisés dans `src/hooks/`
-- **Providers** : ThemeProvider et NextUIProvider dans `src/providers/`
+### Development
+- `pnpm install` - Install dependencies
+- `pnpm build` - Build the library for production
+- `pnpm lint` - Run ESLint checks
+- `pnpm test` - Run all tests with Vitest
+- `pnpm test:cov` - Run tests with coverage report
+- `pnpm clean` - Clean node_modules, dist, and logs, then reinstall
+- `pnpm reset` - Clean and rebuild the project
 
-### Build Configuration
-- **Vite avec rollup** : Build configuré pour préserver la structure des modules
-- **Multiple entry points** : Un entry point par module pour le tree-shaking
-- **External dependencies** : React, framer-motion, @heroui/react sont externalisés
-- **TypeScript strict** : Configuration TypeScript stricte avec paths alias `@/*`
-
-### Système de Thème
-- **HeroUI integration** : Utilise HeroUI comme base avec thèmes light/dark personnalisés
-- **Tailwind CSS** : Configuration avec thèmes personnalisés dans `tailwind.config.ts`
-- **CSS global** : Styles de base dans `src/index.css` avec scrollbar personnalisée
-
-## Commandes Essentielles
-
-### Développement
+### Testing Individual Components
+Use Vitest filtering to run specific tests:
 ```bash
-# Build du projet
-pnpm build
-
-# Tests avec Vitest
-pnpm test
-
-# Tests avec coverage
-pnpm test:cov
-
-# Linting
-pnpm lint
-
-# Clean et rebuild complet
-pnpm reset
+pnpm test Button.test.tsx
+pnpm test hooks/useCounter
 ```
 
-### Tests
-- **Framework** : Vitest avec @testing-library/react
-- **Setup** : Configuration dans `src/tests/vitest.setup.ts`
-- **Snapshots** : Tests de snapshots pour les composants UI
-- **Coverage** : Rapport de couverture disponible via `pnpm test:cov`
+## Architecture Overview
 
-## Standards de Code
+### Modular Export System
+The library uses a dual export strategy:
+- **Convenience exports**: Import everything from main entry (`import { Button } from "x-react"`)
+- **Optimized imports**: Import specific modules for better tree-shaking (`import { Button } from "x-react/button"`)
 
-### TypeScript
-- **Strict mode** : Types explicites requis pour les fonctions
-- **No any** : Utilisation d'`any` interdite
-- **Consistent imports** : Type imports requis avec `import type`
-- **Boolean expressions** : Expressions booléennes strictes
+Each module has its own `/index.ts` that imports the CSS and exports components/hooks, enabling independent usage without style conflicts.
 
-### React
-- **Hooks rules** : Rules of hooks strictement appliquées
-- **Function return types** : Types de retour explicites requis
-- **Props typing** : Props typées avec interfaces dédiées
+### Build Configuration
+- **Primary build**: Vite handles the main library build with ES modules
+- **Module splitting**: Each component/hook category builds to separate dist folders
+- **External dependencies**: React, React DOM, Framer Motion, Tabler Icons, and HeroUI are externalized
+- **Tailwind config transformation**: Custom Vite plugin transforms tailwind config paths for distribution
 
-### Styling
-- **Tailwind classnames** : Ordre des classes vérifié par ESLint
-- **HeroUI components** : Préférer les composants HeroUI comme base
-- **Responsive design** : Support mobile-first avec breakpoints
+### Component Architecture
+Components follow these patterns:
+- Each component has its own folder with index.ts for exports
+- Components import `"@/index.css"` for base styles  
+- TypeScript with strict type checking
+- Uses `@/` alias for src directory imports
 
-## Conventions de Développement
+### Theme System
+- Built on HeroUI's theme system with custom light/dark themes
+- Uses next-themes for theme switching with class-based dark mode
+- Custom color palettes defined in `src/theme/lightTheme.ts` and `src/theme/darkTheme.ts`
+- ThemeProvider wraps next-themes with sensible defaults
 
-### Structure des Composants
-- Chaque composant dans son dossier avec `ComponentName.tsx` et `index.ts`
-- Export nommé dans `index.ts` pour l'auto-import
-- Props interface nommée `ComponentNameProps`
-- Utilisation des variants HeroUI (color, size, variant, radius)
+### Hook Categories
+The library provides extensive custom hooks organized by purpose:
+- **State management**: useControlledState, useDisclosure, useToggle, useStateHistory
+- **Performance**: useDebouncedCallback, useDebouncedState, useDebouncedValue, useMounted
+- **DOM interaction**: useClickOutside, useFocusDetection, useWindowEvent, useIntersection
+- **Utilities**: useMediaQuery, useResponsive, useLocalStorage, useMergedRef
+- **Data handling**: useInfiniteScroll, useReactiveSet, useCounter
 
-### Hooks
-- Préfixe `use` obligatoire
-- Tests unitaires dans `src/tests/`
-- Documentation des paramètres et valeurs de retour
+### Testing Setup
+- **Framework**: Vitest with jsdom environment
+- **Setup file**: `src/tests/vitest.setup.ts` mocks browser APIs (matchMedia, ResizeObserver, IntersectionObserver)
+- **Coverage**: V8 provider with text, JSON, and HTML reports
+- **Testing Library**: React Testing Library with Jest DOM matchers
 
-### Tests
-- Un fichier test par composant/hook
-- Utilisation de snapshots pour les composants UI
-- Tests d'interaction utilisateur avec user-event
-- Mocking des APIs browser (ResizeObserver, matchMedia) dans setup
+## Key Implementation Patterns
 
-## Modules Clés
+### Component Structure
+```typescript
+// Each component index.ts follows this pattern:
+import "@/index.css";
+export { ComponentName } from "@/path/ComponentName";
+```
 
-- **form** : Composants de formulaire (Input, Select, Checkbox, etc.)
-- **datagrid** : DataGrid avec état géré par `useDataGridState`
-- **layout** : Container, Layout avec `useLayoutConfig`
-- **providers** : ThemeProvider et NextUIProvider
-- **hooks** : Hooks utilitaires (useLocalStorage, useMediaQuery, etc.)
-- **utils** : Utilitaires partagés
+### Hook Exports
+Hooks are grouped by functionality and exported with their types:
+```typescript
+export { useHookName, type UseHookOptions } from "@/hooks/useHookName";
+```
+
+### Theme Integration
+Components leverage the HeroUI theme system while extending it with custom color definitions for consistent branding across light/dark modes.
+
+### Build Optimization
+The build process creates:
+- Individual module builds for tree-shaking
+- Shared CSS bundle
+- Type definitions for each module (both `module.d.ts` and `module/index.d.ts` formats)
+- Transformed Tailwind configuration for consumers
+
+### TypeScript Declaration Files
+The library generates TypeScript declarations in two formats to support different import patterns:
+- Root-level declarations: `dist/datagrid.d.ts` for imports like `import { DataGrid } from "x-react/datagrid"`
+- Nested declarations: `dist/datagrid/index.d.ts` for package.json exports mapping
+
+This dual approach ensures compatibility with various bundlers and import strategies while maintaining proper type inference.

@@ -48,6 +48,9 @@ export default defineConfig({
     react(),
     dts({
       exclude: ["src/tests/**/*"],
+      outDir: "dist",
+      entryRoot: "src",
+      insertTypesEntry: true,
     }),
     {
       name: 'transform-tailwind-config',
@@ -146,9 +149,6 @@ export default defineConfig({
           return `${chunkInfo.name}/index.es.js`;
         },
         assetFileNames: (chunkInfo) => {
-          if (chunkInfo.type?.endsWith(".d.ts")) {
-            return `${chunkInfo.type.replace(".d.ts", "")}/index.d.ts`;
-          }
           return "[name][extname]";
         },
       },
