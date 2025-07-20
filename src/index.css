@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin './theme/xreactui.ts';
+@plugin './theme/tailwind.preset.ts';
 @layer base {
   * {
     &::-webkit-scrollbar {
