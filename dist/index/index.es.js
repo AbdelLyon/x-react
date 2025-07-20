@@ -1,4 +1,5 @@
 import { arrayToObject, capitalizeString, chainCallbacks, clampNumber, cleanObject, convertToLowerCase, convertToUpperCase, createDebouncedFunction, dataAttr, filterUnique, findIntersection, generateUniqueId, getNestedValue, hasPrefix, hasSuffix, isArray, isEmpty, isEmptyArray, isEmptyObject, isFunction, isNumeric, isObject, joinStringsWithSpace, logWarning, mergeTailwindClasses, reverseString, serializeObject, trimWhitespace } from "../utils/index.es.js";
+import { default as default2 } from "../theme/xreactui/index.es.js";
 import { Button } from "../button/Button/index.es.js";
 import { Card } from "../card/Card/index.es.js";
 import { Modal } from "../modal/Modal/index.es.js";
@@ -65,7 +66,6 @@ import { NextUIProvider } from "../providers/NextUIProvider/index.es.js";
 import { ToggleTheme } from "../theme/ToggleTheme/index.es.js";
 import { lightTheme } from "../theme/lightTheme/index.es.js";
 import { darkTheme } from "../theme/darkTheme/index.es.js";
-import { xreactui } from "../theme/xreactui/index.es.js";
 import { WithLoading } from "../HOC/WithLoading/index.es.js";
 export {
   Accordion,
@@ -171,5 +171,5 @@ export {
   useTimeout,
   useToggle,
   useWindowEvent,
-  xreactui
+  default2 as xreactui
 };

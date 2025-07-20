@@ -12,5 +12,5 @@ const xreactui = heroui({
   }
 });
 export {
-  xreactui
+  xreactui as default
 };

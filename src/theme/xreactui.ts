@@ -3,7 +3,7 @@ import { lightTheme } from "./lightTheme";
 import { darkTheme } from "./darkTheme";
 
 
-export const xreactui = heroui({
+const xreactui = heroui({
    themes: {
       light: {
          colors: lightTheme,
@@ -13,3 +13,7 @@ export const xreactui = heroui({
       },
    },
 });
+
+export default xreactui;
+
+

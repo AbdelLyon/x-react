@@ -1,1 +1,2 @@
-export declare const xreactui: any;
+declare const xreactui: any;
+export default xreactui;
