@@ -1,5 +1,5 @@
 import { arrayToObject, capitalizeString, chainCallbacks, clampNumber, cleanObject, convertToLowerCase, convertToUpperCase, createDebouncedFunction, dataAttr, filterUnique, findIntersection, generateUniqueId, getNestedValue, hasPrefix, hasSuffix, isArray, isEmpty, isEmptyArray, isEmptyObject, isFunction, isNumeric, isObject, joinStringsWithSpace, logWarning, mergeTailwindClasses, reverseString, serializeObject, trimWhitespace } from "../utils/index.es.js";
-import { default as default2 } from "../theme/tailwind.preset/index.es.js";
+import { default as default2 } from "../theme/xreactui/index.es.js";
 import { Button } from "../button/Button/index.es.js";
 import { Card } from "../card/Card/index.es.js";
 import { Modal } from "../modal/Modal/index.es.js";
@@ -171,5 +171,5 @@ export {
   useTimeout,
   useToggle,
   useWindowEvent,
-  default2 as xreactuiPreset
+  default2 as xreactui
 };

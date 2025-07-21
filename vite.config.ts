@@ -2,7 +2,7 @@ import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
-// import tailwindcss from "@tailwindcss/postcss";
+import tailwindcss from "@tailwindcss/vite";
 // import fs from 'fs-extra';
 
 const modules = [
@@ -46,6 +46,7 @@ const modules = [
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     dts({
       exclude: ["src/tests/**/*"],
       outDir: "dist",

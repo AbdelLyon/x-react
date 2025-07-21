@@ -191,6 +191,7 @@
   },
   "dependencies": {
     "@heroui/react": "^2.7.8",
+    "@tailwindcss/vite": "^4.1.11",
     "clsx": "^2.1.1",
     "fs-extra": "^11.3.0",
     "next-themes": "^0.4.6",
